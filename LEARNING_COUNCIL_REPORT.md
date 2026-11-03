@@ -1,48 +1,60 @@
-# 🧠 TACTIX HOCKEY — 6-Seat Professional Industry Board Review (`LEARNING_COUNCIL_REPORT.md`)
+# 🧠 TACTIX HOCKEY — 7-Seat Professional Industry & Engineering Board Review (`LEARNING_COUNCIL_REPORT.md`)
 
-**Agent:** `Council-Agent` (6-Seat Professional Industry Board)  
-**Target Build:** TACTIX HOCKEY v8.0 Nightly Auto-Pilot Pipeline (`RUN NIGHTLY AUTOPILOT`)  
+**Agent:** `Council-Agent` (7-Seat Professional Industry & Engineering Board)  
+**Target Build:** TACTIX HOCKEY v8.1 Nightly Auto-Pilot Pipeline (`RUN NIGHTLY AUTOPILOT`)  
 **Date:** November 2, 2026  
-**Inputs Audited:** `PLAYTEST_REPORT.md` (Stage 1 Bot Audit), `FOUNDER_VISION_NOTES.md` (Sections 1–12), and `public.pucksense_agent_inbox` (`https://jrusjgpfcnptozfehcrv.supabase.co`).
+**Inputs Audited:** `PLAYTEST_REPORT.md` (Stage 1 5-Persona Deep Playtest & Pixel/Graphics Suite), `deep_playtest_telemetry.json`, `FOUNDER_VISION_NOTES.md` (Sections 1–12), and `public.pucksense_agent_inbox` (`https://jrusjgpfcnptozfehcrv.supabase.co`).
 
 ---
 
-## PART A — Scenario Factory Expansion Specification (`generate-tactix-bank.js`: `240 -> 360` Scenarios)
+## PART A — Scenario Factory & Curriculum Specification (`generate-tactix-bank.js`: `360` Cloud Scenarios across `15` Buckets)
 
-To expand our live Supabase curriculum in `public.tactix_concept_buckets` and `public.tactix_scenarios` from **10 buckets (240 permutations)** to **15 buckets (360 QC-approved permutations)**, the 6-Seat Industry Board specifies the following **5 new NCAA D1 / AAA / USA Hockey ADM Tactical Sub-Lessons** (24 permutations each = **120 new permutations**):
+Our 3-Bot Scenario Factory (`generate-tactix-bank.js`) maintains **360 QC-approved scenarios** (`5,760` dynamic permutations) across **15 NCAA D1 / AAA / USA Hockey ADM Concept Buckets**:
 
 | Bucket # | `bucket_code` | Sub-Lesson Title | Source Authority | Age Divisions | `8U` ADM Rule |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Bucket 11** | `oz_cycle_scissors` | **O-Zone High-Low Cycle & Scissors Switch** | NCAA D1 / Weiss Tech O-Zone Playbook | `8U, 10U, 12U, 14U, 16U, 18U` | `8U` strictly `5v5` (`<=14w` triangle support in high slot) |
-| **Bucket 12** | `nz_regroup_hinge` | **Neutral Zone D-to-D Hinge Regroup & Speed Seam** | USA Hockey NTDP / Junior A Transition | `10U, 12U, 14U, 16U, 18U` | **Strictly blocked in `8U`** (`10U+` Full-Ice Transition) |
-| **Bucket 13** | `dz_box_plus_one` | **D-Zone Box+1 Net-Front Stick Lift & Royal-Road Denial** | Hockey Canada LTAD & USA Hockey ADM | `8U, 10U, 12U, 14U, 16U, 18U` | `8U` strictly `5v5` (`<=14w` net-side House protection) |
-| **Bucket 14** | `goalie_screen_rebound` | **Goalie Sightline Screen Look-Around & Corner Rebound Steering** | USA Hockey Goaltending Model (Gold) | `8U, 10U, 12U, 14U, 16U, 18U` | `8U` strictly `5v5` (`<=14w` top-of-crease square angle) |
-| **Bucket 15** | `faceoff_oz_win_play` | **O-Zone Faceoff Win Set Play & Point Activation** | NCAA D1 / AAA Special Situations | `8U, 10U, 12U, 14U, 16U, 18U` | `8U` strictly `5v5` (`<=14w` hashmarks slot shot support) |
-
-### Mandatory Tuning on Existing & New Permutations (Stage 1 Audit Fix)
-1. **Decoupled Tier × Age Rotation (`10U AAA` Depth Fix):**
-   * In `generate-tactix-bank.js`, decouple the `tier_level` index (`['Rec', 'B', 'A', 'AA', 'AAA'][(idx + Math.floor(idx / 5)) % 5]`) from the `age_division` index (`idx % 6`) and include `10U` in `AAA`-tier `allowed_divisions` for all `10U`-eligible buckets so `10U AAA` has 60+ candidate scenarios instead of 2.
-2. **Strict `8U` ADM Verification:**
-   * All `8U`-allowed scenarios across all 15 buckets (`360` total scenarios) must be `5-on-5 Even Strength`, `<= 14 words` in `coach_bob_prompt`, with `0` offsides, `0` `5v4` Power Play, `0` `4v5` Penalty Kill, and `0` unannounced `3v3`.
+| **Bucket 1** | `basics_support` | **Puck Support 101 & Attack Triangle Spacing** | USA Hockey ADM & Hockey Canada LTAD | `8U–18U` | Strictly `5v5`, `<=14w` |
+| **Bucket 2** | `f1_f2_f3_roles` | **Dynamic Forward Roles: 🐂 F1 Bull, 🦊 F2 Fox, 🦅 F3 Eagle** | USA Hockey ADM / Weiss Tech | `8U–18U` | Strictly `5v5`, `<=14w` |
+| **Bucket 3** | `dzone_house` | **Defensive Zone: Protect the House & Net-Side Stick** | USA Hockey ADM / D1 Systems | `8U–18U` | Strictly `5v5`, `<=14w` |
+| **Bucket 4** | `offsides_rules` | **Blue-Line Offsides, Tag-Up & Delayed Entry Reads** | USA Hockey Rulebook & 10U ADM | `10U–18U` | **Blocked in `8U`** |
+| **Bucket 5** | `breakout_d_to_d` | **D-to-D Breakout, Hashmarks Wall & Center Low-and-Slow Curl** | USA Hockey NTDP / Weiss Tech | `8U–18U` | `8U` foundational `5v5` only |
+| **Bucket 6** | `rush_attack` | **Odd-Man Rushes: 2-on-1 & 3-on-2 Middle Lane Drive** | Hockey Canada / NHL Analytics | `10U–18U` | **Blocked in `8U`** |
+| **Bucket 7** | `forecheck_systems` | **2-1-2 & 1-2-2 Forecheck Angling & Backcheck Track** | NCAA D1 / AAA Systems Playbook | `12U–18U` | **Blocked in `8U/10U`** |
+| **Bucket 8** | `powerplay_5v4` | **5-on-4 Power Play Umbrella, Bumper & Flank One-Timer** | NHL / NCAA D1 Special Teams | `12U–18U` | **Blocked in `8U/10U`** |
+| **Bucket 9** | `penaltykill_4v5` | **4-on-5 Penalty Kill Tight Box, Diamond & Royal-Road Seal** | NHL / NCAA D1 Special Teams | `12U–18U` | **Blocked in `8U/10U`** |
+| **Bucket 10** | `deception_prescan` | **Pre-Scan Shoulder Check, Look-Off Deception & Hip Shield** | Pediatric Cognitive Sport Science | `10U–18U` | **Blocked in `8U`** |
+| **Bucket 11** | `oz_cycle_scissors` | **O-Zone High-Low Cycle, Scissors Switch & D1 Pinch Backfill** | NCAA D1 / Weiss Tech O-Zone Playbook | `8U–18U` | Strictly `5v5`, `<=14w` |
+| **Bucket 12** | `nz_regroup_hinge` | **Neutral Zone D-to-D Hinge Regroup & Weak-Side Speed Slash** | USA Hockey NTDP / Junior A Transition | `10U–18U` | **Blocked in `8U`** |
+| **Bucket 13** | `dz_box_plus_one` | **D-Zone Box+1 Low-Slot Lock & Strong-Post Royal-Road Denial** | Hockey Canada LTAD & USA Hockey ADM | `8U–18U` | Strictly `5v5`, `<=14w` |
+| **Bucket 14** | `goalie_screen_rebound` | **Goalie Sightline Box-Out, Stick Lift & Rebound Clearing** | USA Hockey Goaltending Model (Gold) | `8U–18U` | Strictly `5v5`, `<=14w` |
+| **Bucket 15** | `faceoff_oz_win_play` | **O-Zone & D-Zone Faceoff Alignment & Win Set Plays** | NCAA D1 / AAA Special Situations | `8U–18U` | Strictly `5v5`, `<=14w` |
 
 ---
 
-## PART B — Main App Code Builder Specification (`index.html` & `report.html` Upgrades Across All 6 Industry Seats)
+## PART B — 7-Seat Professional Industry & Engineering Board Prescriptions (`index.html` & `report.html`)
 
 ### 🏒 Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director
-* **Upgrade:** Fix `loadScenario()` in `index.html` so that changing `state.currentCityIdx` or `prof.ageGroup` automatically invalidates `state.activeScenarioInstance` (tracking `state.lastLoadedCityIdx` and `state.lastLoadedAgeGroup`), and update `getFilteredScenarios()` to prioritize scenarios matching the active city stop's Mathseeds skill tier (`Rec -> B -> A -> AA -> AAA`) when `state.conceptFilter === 'all'`.
+* **Prescription:** Expose all **15 official cloud `bucket_code` options** directly in both `#selectCustomSystem` (`🛠️ Create My Own Lesson`) and `#selectCoachWeeklyFocus` (`🏒 Team Portal`) and ensure `getFilteredScenarios()` matches `s.bucket_code === state.conceptFilter || s.concept === state.conceptFilter` across all 5 positions (`C, LW, RW, D, G`).
 
 ### 🧠 Seat 2 — Pediatric Sports Psychologist & Cognitive Scientist
-* **Upgrade:** Add a live **`#coachBobRoleCalloutBadge`** pill inside Coach Bob's lower-left Reflex pop-up (`#coachBobPopup`) that automatically displays the player's real-time dynamic proximity role on that play (e.g., `YOU = 🐂 F1 Bull`, `YOU = 🦊 F2 Fox`, `YOU = 🦅 F3 Eagle`, `YOU = 🛡️ D1`, `YOU = 🏰 D2`, or `YOU = 🥅 G`) so `8U–18U` skaters connect Coach Bob's verbal cue to their exact on-ice role badge before moving.
+* **Prescription:** Trigger Coach Bob's `.coach-bob-state-mistake` chalkboard shake and `.coach-bob-state-celebrate` golden fist-pump bounce **immediately** inside `resolveAttempt()` (0ms latency upon play submission, before the 620ms puck/skater resolution animation completes) and support both `opts.stateMode` and `opts.mode` in `showCoachBobPopup(opts)` so `8U–18U` players receive immediate visual reinforcement.
 
 ### 🏆 Seat 3 — Mobile Game & EdTech Retention Designer
-* **Upgrade:** Add a **`1st-Try Gold IQ Tier Bonus (+15 PuckBucks)`** celebration callout when a player nails the `1st Choice Optimal (100% Gold IQ)` read on a play, and update the cloud library counter badges across the UI to reflect all **360 QC-Verified Cloud Scenarios across 15 Tactical Buckets**.
+* **Prescription:** Keep `state.lastLoadedCityIdx` and `state.lastLoadedAgeGroup` synced in `getCurrentScenario()` so advancing across the 32 NHL Cities (`Rec -> B -> A -> AA -> AAA`) immediately serves fresh tier-matched drills and awards `1st-Choice Gold IQ` bonuses cleanly.
 
 ### 📱 Seat 4 — Native iPad / Phone Touch UX Architect
-* **Upgrade:** Wire all **15 tactical concept buckets** cleanly into `#selectCustomSystem` (`🛠️ Create My Own Lesson`), `#selectCoachWeeklyFocus` (`🏒 Team Portal`), and the 6-Slice Hockey IQ Performance Pie Chart (`computeSixSlicePieStats`) so players and coaches can filter or drill down into `O-Zone Cycle & Scissors`, `NZ D-to-D Hinge Regroup`, `D-Zone Box+1 Royal Road`, `Goalie Screens & Rebounds`, and `O-Zone Faceoff Set Plays` on any phone or iPad screen.
+* **Prescription:** Eliminate all text truncation (`scrollWidth > clientWidth`) on `#coachBobPopup` header pills (`#cornerCoachTitle`, `#coachBobRoleCalloutBadge`, `#coachBobSituationTag`) and `tactical_choice` action cards in `#multiFormatControlsBar` by replacing `truncate` / `max-w-[250px]` with responsive `flex-wrap` and `whitespace-normal leading-tight`.
 
 ### 🧑‍💼 Seat 5 — Youth Hockey Coach & Association Director Liaison
-* **Upgrade:** Add a 1-tap **`📋 Share Live Team Link & Code`** button (`#btnCopyLiveTeamShareLink`) inside the Sandbox/Portal Gate (`#sandboxLoginModal`) and Coach Portal (`#teamManagerModal`) that copies `"Join our team on TACTIX HOCKEY (https://danebekkedahl.github.io/tactix-hockey/) using Team/Association Code: <CODE>"` to the clipboard with an instant confirmation toast.
+* **Prescription:** Fix `#btnCopyLiveTeamShareLink` and `?team=` URL query param hydration to bind directly to `#sandboxTeamCodeInput` (`PUCK99`, `ASSOC-MINOT`, `ASSOC-FOOTHILLS`, `ASSOC-LIGHTNING`) so coaches can share 1-click association sign-in links.
 
 ### 💎 Seat 6 — App Store & Subscription Product Strategist
-* **Upgrade:** Update `#pricingAndPlansModal` (`Tier 3: Tactix Pro`) and `#successStoriesModal` to highlight the expanded **360+ Tagged Cloud Scenario Library & 15 D1/AAA Concept Buckets**, reinforcing the upgrade value of `Tactix Pro ($4.99/mo or $49.99/yr)` and the `50% Partner Association Coach Discount ($49.99/yr)`.
+* **Prescription:** Ensure the Pro Custom Lesson Builder (`#upgradeModal`) and 6-Slice Performance Pie Chart (`#reportModal`) seamlessly filter all 15 cloud buckets and 5 positions (`C, LW, RW, D, G`) to demonstrate clear Tier 3 `Tactix Pro ($4.99/mo or $49.99/yr)` value.
+
+### 🖥️ Seat 7 — Principal Full-Stack App & `<canvas>` Graphics Engineer *(NEW SEAT)*
+* **Charter:** Analyzes Persona 5's pixel/bounding-box telemetry (`getBoundingClientRect()`), `<canvas>` 2D/3D POV rendering smoothness, Coach Bob cutout transitions, state management, and mobile responsiveness across all 4 viewports (`390x844`, `768x1024`, `1024x768`, `1280x800`).
+* **Exact Code / CSS / `<canvas>` Prescriptions (Shipped in Stage 4):**
+  1. **Unified Top HUD Stack (`#topRinkHudStack`):** Wrap `#situationContextBanner` and `#multiFormatControlsBar` inside a single `flex-col items-center gap-1.5` container at `top-2 left-1/2 -translate-x-1/2` so `#multiFormatControlsBar` never collides with a 2-line `#situationContextBanner` on `390x844` or `768x1024` (`0px` overlap).
+  2. **Zero-Collision Coach Bob & Tactical Dock Layout:** Position `#coachBobPopup` at `bottom-[86px]` (`bottom: 86px`) above `#tacticalActionDock` (`bottom-2`) so Coach Bob's Reflex speech bubble and `#tacticalActionDock` can both remain visible and interactive simultaneously with `0px` bounding-box overlap across all 4 viewports.
+  3. **Portrait Viewport Fit (`390x844` & `768x1024`):** In `@media (orientation: portrait)`, set `#rinkCanvasContainer { flex: 1 1 0% !important; min-height: 0 !important; }` and compact `#rightActionRibbon` padding/buttons so `#rightActionRibbon` never overflows past `844px` (`0` out-of-viewport elements).
+  4. **Stage 4 Verification Sign-Off:** Re-ran `deep_playtest_audit.js` after applying all 7 Seat prescriptions — confirmed **`0` HUD overlaps, `0` out-of-viewport elements, `0` clipped text elements, `0` console errors, and `360/360` cloud scenarios live**.

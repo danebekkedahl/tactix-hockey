@@ -160,13 +160,13 @@
       body.in-game-clean-mode #rinkRowLayout,
       body.fullscreen-rink-mode #rinkRowLayout {
         flex-direction: column !important;
-        gap: 6px !important;
+        gap: 4px !important;
       }
       body.in-game-clean-mode #rinkCanvasContainer,
       body.fullscreen-rink-mode #rinkCanvasContainer {
-        flex: 1 1 auto !important;
+        flex: 1 1 0% !important;
         width: 100% !important;
-        min-height: 56dvh !important;
+        min-height: 0 !important;
       }
       body.in-game-clean-mode #rightActionRibbon,
       body.fullscreen-rink-mode #rightActionRibbon {
@@ -177,8 +177,8 @@
         flex-wrap: wrap !important;
         align-items: center !important;
         justify-content: space-between !important;
-        padding: 6px 8px !important;
-        gap: 6px !important;
+        padding: 4px 6px !important;
+        gap: 4px !important;
       }
       body.in-game-clean-mode #rightActionRibbon > div,
       body.fullscreen-rink-mode #rightActionRibbon > div {
@@ -186,22 +186,28 @@
         flex-direction: row !important;
         flex-wrap: wrap !important;
         align-items: center !important;
-        gap: 4px !important;
+        gap: 3px !important;
         margin: 0 !important;
+        flex: 1 1 auto !important;
+      }
+      body.in-game-clean-mode #rightActionRibbon > div > button,
+      body.fullscreen-rink-mode #rightActionRibbon > div > button {
+        width: auto !important;
+        flex: 1 1 auto !important;
+        padding: 3px 6px !important;
+        font-size: 9px !important;
       }
       body.in-game-clean-mode #btnRibbonCheckPos,
       body.fullscreen-rink-mode #btnRibbonCheckPos {
-        min-height: 42px !important;
+        min-height: 34px !important;
         flex-direction: row !important;
-        padding: 6px 12px !important;
-        flex: 0 1 auto !important;
+        padding: 4px 10px !important;
+        flex: 0 0 auto !important;
       }
     }
     @media (max-width: 920px) and (orientation: landscape) {
       #coachCornerFloating {
-        max-width: 195px !important;
-        bottom: 6px !important;
-        left: 6px !important;
+        max-width: 240px !important;
       }
       #tacticalActionDock {
         left: 54% !important;
@@ -681,14 +687,18 @@
           <div id="rinkCanvasContainer" class="flex-1 relative min-w-0 h-full" style="aspect-ratio: 16 / 10;">
             <canvas id="rinkCanvas" class="w-full h-full rounded-xl cursor-pointer block"></canvas>
 
-            <!-- 🏒 MANDATORY SITUATION CONTEXT BANNER + MULTI-FORMAT QUESTION BADGE (Top-Center of Every Drill!) -->
-            <div id="situationContextBanner" class="absolute top-2 left-1/2 -translate-x-1/2 z-20 flex flex-wrap items-center justify-center gap-1.5 bg-slate-950/92 border border-sky-400/70 rounded-full px-3.5 py-1 shadow-xl backdrop-blur-md max-w-[95%]">
-              <span id="situationBannerText" class="text-[11px] sm:text-xs font-black text-white tracking-tight">🏒 5-on-5 Even Strength • Offensive Zone (OZ)</span>
-              <span class="text-slate-600 font-black">•</span>
-              <span id="situationTierPill" class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black uppercase">10U • Rec Tier</span>
-              <button id="btnCycleQuestionFormat" type="button" class="px-2 py-0.5 rounded-full bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/60 text-amber-300 text-[10px] font-black transition" title="Tap to switch interactive question format (Tap Zone A/B/C, Tap Player, Tactical Choice Cards, Drag Skater, Spot & Fix)">
-                <span id="questionStyleBadge">🎯 Tap Zone A/B/C</span>
-              </button>
+            <!-- 🏒 UNIFIED TOP HUD STACK (Situation Context Banner + Multi-Format Question Action Bar — Zero Overlap!) -->
+            <div id="topRinkHudStack" class="absolute top-2 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 w-[96%] max-w-4xl pointer-events-none">
+              <div id="situationContextBanner" class="relative pointer-events-auto flex flex-wrap items-center justify-center gap-1.5 bg-slate-950/92 border border-sky-400/70 rounded-full px-3 py-1 shadow-xl backdrop-blur-md max-w-full">
+                <span id="situationBannerText" class="text-[11px] sm:text-xs font-black text-white tracking-tight">🏒 5-on-5 Even Strength • Offensive Zone (OZ)</span>
+                <span class="text-slate-600 font-black">•</span>
+                <span id="situationTierPill" class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black uppercase whitespace-nowrap">10U • Rec Tier</span>
+                <button id="btnCycleQuestionFormat" type="button" class="px-2 py-0.5 rounded-full bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/60 text-amber-300 text-[10px] font-black transition whitespace-nowrap" title="Tap to switch interactive question format (Tap Zone A/B/C, Tap Player, Tactical Choice Cards, Drag Skater, Spot & Fix)">
+                  <span id="questionStyleBadge">🎯 Tap Zone A/B/C</span>
+                </button>
+              </div>
+              <!-- 🎮 MULTI-FORMAT QUESTION ACTION BAR (Renders Zone A/B/C Buttons, Teammate Tap Pills, or Tactical Action Cards!) -->
+              <div id="multiFormatControlsBar" class="hidden relative pointer-events-auto flex flex-wrap items-center justify-center gap-1.5 bg-slate-950/92 border border-amber-400/70 rounded-2xl px-2.5 py-1.5 shadow-2xl backdrop-blur-md max-w-full"></div>
             </div>
 
             <!-- 🚨 FLASHING RED GOAL SCORING LAMPS OVERLAY (No "GOAL LAMP!" text under the lights) -->
@@ -752,28 +762,28 @@
               <span class="text-[10px] font-black text-amber-300">📣 Call Coach Bob</span>
             </button>
 
-            <!-- 🧢 EXPLORELEARNING REFLEX-STYLE POP-UP AVATAR (#coachBobPopup — Slides Up on Intro/Miss/Gold IQ & Auto-Hides!) -->
-            <div id="coachBobPopup" class="coach-bob-state-talking absolute bottom-2.5 left-2.5 z-30 flex items-end gap-2.5 max-w-[92%] sm:max-w-[500px] transition-all duration-300 ease-out">
+            <!-- 🧢 EXPLORELEARNING REFLEX-STYLE POP-UP AVATAR (#coachBobPopup — Slides Up in Lower-Left on Intro/Miss/Gold IQ & Auto-Hides!) -->
+            <div id="coachBobPopup" class="coach-bob-state-talking absolute bottom-2.5 left-2.5 z-30 flex items-end gap-2 max-w-[94%] sm:max-w-[500px] transition-all duration-300 ease-out">
               <!-- Frameless/Circular Cutout Avatar of Coach Bob with Soundwave Rings & Multi-State Aura -->
               <div class="relative shrink-0">
                 <span id="coachBobSoundwaveRing1" class="hidden absolute -inset-1.5 rounded-full border-2 border-sky-400/70 pointer-events-none"></span>
                 <span id="coachBobSoundwaveRing2" class="hidden absolute -inset-3 rounded-full border border-amber-300/60 pointer-events-none"></span>
-                <img id="coachBobAvatarImg" src="assets/coach-bob.png" alt="Coach Bob" class="relative z-10 w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-amber-400 shadow-[0_0_24px_rgba(245,158,11,0.55)] bg-slate-900" />
+                <img id="coachBobAvatarImg" src="assets/coach-bob.png" alt="Coach Bob" class="relative z-10 w-14 h-14 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-amber-400 shadow-[0_0_24px_rgba(245,158,11,0.55)] bg-slate-900" />
                 <span id="cornerCoachPulseDot" class="hidden absolute -top-0.5 -right-0.5 z-20 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-slate-950 animate-ping"></span>
                 <span id="coachBobAnimStateBadge" class="absolute -bottom-1 left-1/2 -translate-x-1/2 z-20 px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[9px] font-black uppercase whitespace-nowrap shadow">🎙️ Coach Bob</span>
               </div>
 
               <!-- Speech Bubble Card -->
-              <div id="coachCornerFloating" class="bg-slate-950/96 border-2 border-amber-400 rounded-2xl p-3 text-left shadow-2xl backdrop-blur-md flex-1 min-w-[230px]">
-                <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-1.5 mb-1.5">
-                  <div class="flex items-center gap-1.5 min-w-0">
-                    <span id="cornerCoachTitle" class="text-[11px] font-black text-amber-300 truncate">🧢 Coach Bob</span>
-                    <span id="coachBobRoleCalloutBadge" class="px-1.5 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 text-amber-300 text-[9px] font-black truncate">YOU = 🐂 F1 Bull</span>
-                    <span id="coachBobSituationTag" class="px-1.5 py-0.5 rounded bg-sky-500/20 border border-sky-400/40 text-sky-300 text-[9px] font-black truncate">5v5 • OZ</span>
+              <div id="coachCornerFloating" class="bg-slate-950/96 border-2 border-amber-400 rounded-2xl p-2 sm:p-3 text-left shadow-2xl backdrop-blur-md flex-1 min-w-[200px]">
+                <div class="flex flex-wrap items-center justify-between gap-1.5 border-b border-slate-800 pb-1.5 mb-1.5">
+                  <div class="flex flex-wrap items-center gap-1 min-w-0">
+                    <span id="cornerCoachTitle" class="text-[11px] font-black text-amber-300 whitespace-nowrap">🧢 Coach Bob</span>
+                    <span id="coachBobRoleCalloutBadge" class="px-1.5 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 text-amber-300 text-[9px] font-black whitespace-nowrap">YOU = 🐂 F1 Bull</span>
+                    <span id="coachBobSituationTag" class="px-1.5 py-0.5 rounded bg-sky-500/20 border border-sky-400/40 text-sky-300 text-[9px] font-black whitespace-nowrap">5v5 • OZ</span>
                   </div>
                   <div class="flex items-center gap-1 shrink-0">
-                    <button id="btnCornerSpeakBtn" type="button" class="px-2 py-0.5 rounded bg-sky-500/25 hover:bg-sky-500/40 text-sky-200 text-[10px] font-black" title="Replay Coach Bob Voice">🔊</button>
-                    <button id="btnDismissCoachBob" type="button" class="px-2.5 py-0.5 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-[10px] font-black shadow transition" title="Hide Coach Bob & Play on Full Unobstructed Ice">
+                    <button id="btnCornerSpeakBtn" type="button" class="px-2 py-0.5 rounded bg-sky-500/25 hover:bg-sky-500/40 text-sky-200 text-[10px] font-black whitespace-nowrap" title="Replay Coach Bob Voice">🔊</button>
+                    <button id="btnDismissCoachBob" type="button" class="px-2 py-0.5 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-[10px] font-black shadow transition whitespace-nowrap" title="Hide Coach Bob & Play on Full Unobstructed Ice">
                       Got It / Start Play ▶
                     </button>
                   </div>
@@ -790,9 +800,6 @@
                 <button id="btnCloseCornerBubble" type="button" class="hidden"></button>
               </div>
             </div>
-
-            <!-- 🎮 MULTI-FORMAT QUESTION ACTION BAR (Renders Zone A/B/C Buttons, Teammate Tap Pills, or Tactical Action Cards!) -->
-            <div id="multiFormatControlsBar" class="hidden absolute top-11 left-1/2 -translate-x-1/2 z-20 flex flex-wrap items-center justify-center gap-1.5 bg-slate-950/92 border border-amber-400/70 rounded-2xl px-3 py-1.5 shadow-2xl backdrop-blur-md max-w-[94%]"></div>
 
             <!-- ℹ️ F1-F3 / D1-D2 DYNAMIC PROXIMITY ROLE GUIDE POPOVER ("THE BULL, FOX & EAGLE" SYSTEM) -->
             <div id="roleGuidePopover" style="background: rgba(2, 6, 23, 0.97);" class="hidden absolute bottom-20 left-1/2 -translate-x-1/2 z-30 w-[330px] sm:w-[460px] bg-slate-950 border-2 border-amber-400 rounded-2xl p-3.5 shadow-2xl backdrop-blur-md text-left">
@@ -1782,13 +1789,23 @@
             <label class="text-[11px] font-bold text-slate-300 block mb-1">3. Specific Tactical Focus</label>
             <select id="selectCustomSystem" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
               <option value="all">Full Mix (All 15 Concept Buckets & 360 Cloud Scenarios)</option>
-              <option value="role_f1f2f3">🐂🦊🦅 F1 Bull / F2 Fox / F3 Eagle Rotation</option>
-              <option value="role_d1d2">🛡️🏰 D1 Challenge / D2 Protect the House</option>
-              <option value="oz_cycle_scissors">🔄 OZ Low-to-High Cycle, Scissor Switch & D-Pinch Backfill</option>
-              <option value="nz_regroup_hinge">⚡ NZ Regroup, D-to-D Hinge & Weak-Side Slash (10U+)</option>
-              <option value="dz_box_plus_one">🏰 D-Zone Box+1 Low-Slot Lock & Strong-Side Seal</option>
-              <option value="goalie_screen_rebound">🥅 Goalie Sightline Box-Out, Stick Lift & Rebound Clear</option>
-              <option value="faceoff_oz_win_play">🏒 OZ & DZ Faceoff Alignment & Win Set-Plays</option>
+              <option value="basics_support">1. 🏒 Puck Support & Open-Ice Spacing (basics_support)</option>
+              <option value="f1_f2_f3_roles">2. 🐂🦊🦅 Dynamic F1 Bull / F2 Fox / F3 Eagle Roles (f1_f2_f3_roles)</option>
+              <option value="dzone_house">3. 🏰 D-Zone Protect the House & D1/D2 Splits (dzone_house)</option>
+              <option value="offsides_rules">4. 📏 Blue-Line Offsides, Tag-Up & Zone Entry Timing (offsides_rules)</option>
+              <option value="breakout_d_to_d">5. 🔄 Breakout Wall Support, Center Curl & D-to-D Swing (breakout_d_to_d)</option>
+              <option value="rush_attack">6. ⚡ Odd-Man Rushes (2v1, 3v2 High Trailer & Middle Drive) (rush_attack)</option>
+              <option value="forecheck_systems">7. 🐂 2-1-2 & 1-2-2 Forecheck Angling & F3 Reload (forecheck_systems)</option>
+              <option value="powerplay_5v4">8. 🔥 5-on-4 Power Play Umbrella & Bumper Support (powerplay_5v4)</option>
+              <option value="penaltykill_4v5">9. 🛡️ 4-on-5 Penalty Kill Box, Diamond & Clear Lanes (penaltykill_4v5)</option>
+              <option value="deception_prescan">10. 👀 Pre-Scan Shoulder Checks, Look-Offs & Puck Protection (deception_prescan)</option>
+              <option value="oz_cycle_scissors">11. 🔄 OZ Low-to-High Cycle, Scissor Switch & D-Pinch Backfill (oz_cycle_scissors)</option>
+              <option value="nz_regroup_hinge">12. ⚡ NZ Regroup, D-to-D Hinge & Weak-Side Slash (nz_regroup_hinge)</option>
+              <option value="dz_box_plus_one">13. 🏰 D-Zone Box+1 Low-Slot Lock & Strong-Side Seal (dz_box_plus_one)</option>
+              <option value="goalie_screen_rebound">14. 🥅 Goalie Sightline Box-Out, Stick Lift & Rebound Clear (goalie_screen_rebound)</option>
+              <option value="faceoff_oz_win_play">15. 🏒 OZ & DZ Faceoff Alignment & Win Set-Plays (faceoff_oz_win_play)</option>
+              <option value="role_f1f2f3">🐂🦊🦅 F1 Bull / F2 Fox / F3 Eagle Rotation (Legacy Filter)</option>
+              <option value="role_d1d2">🛡️🏰 D1 Challenge / D2 Protect the House (Legacy Filter)</option>
               <option value="forecheck">2-1-2 & 1-2-2 Forecheck / Dump & Chase F3 Support</option>
               <option value="breakout">D-to-D Breakout, Hashmarks Wall & Center Curl</option>
               <option value="house">D-Zone Coverage (Protect The House, Box+1, Net-Side)</option>
@@ -2077,13 +2094,23 @@
               <label class="text-[10px] font-bold text-slate-400 uppercase block mb-1">Weekly Priority Preset</label>
               <select id="selectCoachWeeklyFocus" class="w-full px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
                 <option value="breakout">Breakouts: Behind-the-Net D-to-D Swing & Wall Outlets</option>
+                <option value="basics_support">1. 🏒 Puck Support & Open-Ice Spacing (basics_support)</option>
+                <option value="f1_f2_f3_roles">2. 🐂🦊🦅 Dynamic F1 Bull / F2 Fox / F3 Eagle Roles (f1_f2_f3_roles)</option>
+                <option value="dzone_house">3. 🏰 D-Zone Protect the House & D1/D2 Splits (dzone_house)</option>
+                <option value="offsides_rules">4. 📏 Blue-Line Offsides, Tag-Up & Zone Entry Timing (offsides_rules)</option>
+                <option value="breakout_d_to_d">5. 🔄 Breakout Wall Support, Center Curl & D-to-D Swing (breakout_d_to_d)</option>
+                <option value="rush_attack">6. ⚡ Odd-Man Rushes (2v1, 3v2 High Trailer & Middle Drive) (rush_attack)</option>
+                <option value="forecheck_systems">7. 🐂 2-1-2 & 1-2-2 Forecheck Angling & F3 Reload (forecheck_systems)</option>
+                <option value="powerplay_5v4">8. 🔥 5-on-4 Power Play Umbrella & Bumper Support (powerplay_5v4)</option>
+                <option value="penaltykill_4v5">9. 🛡️ 4-on-5 Penalty Kill Box, Diamond & Clear Lanes (penaltykill_4v5)</option>
+                <option value="deception_prescan">10. 👀 Pre-Scan Shoulder Checks, Look-Offs & Puck Protection (deception_prescan)</option>
+                <option value="oz_cycle_scissors">11. 🔄 OZ Cycle, Scissor Switch & D-Pinch Backfill (oz_cycle_scissors)</option>
+                <option value="nz_regroup_hinge">12. ⚡ NZ Regroup, D-to-D Hinge & Weak-Side Slash (nz_regroup_hinge)</option>
+                <option value="dz_box_plus_one">13. 🏰 D-Zone Box+1 Low-Slot Lock & Strong-Side Seal (dz_box_plus_one)</option>
+                <option value="goalie_screen_rebound">14. 🥅 Goalie Sightline Box-Out, Stick Lift & Rebound Clear (goalie_screen_rebound)</option>
+                <option value="faceoff_oz_win_play">15. 🏒 OZ & DZ Faceoff Alignment & Win Set-Plays (faceoff_oz_win_play)</option>
                 <option value="role_f1f2f3">🐂🦊🦅 F1 Bull / F2 Fox / F3 Eagle Rotation</option>
                 <option value="role_d1d2">🛡️🏰 D1 Challenge / D2 Protect the House</option>
-                <option value="oz_cycle_scissors">🔄 OZ Cycle, Scissor Switch & D-Pinch Backfill</option>
-                <option value="nz_regroup_hinge">⚡ NZ Regroup, D-to-D Hinge & Weak-Side Slash (10U+)</option>
-                <option value="dz_box_plus_one">🏰 D-Zone Box+1 Low-Slot Lock & Strong-Side Seal</option>
-                <option value="goalie_screen_rebound">🥅 Goalie Sightline Box-Out, Stick Lift & Rebound Clear</option>
-                <option value="faceoff_oz_win_play">🏒 OZ & DZ Faceoff Alignment & Win Set-Plays</option>
                 <option value="defense_d">🛡️ Defenseman Gap, Slides & Box-Out (D)</option>
                 <option value="goalie_g">🥅 Goalie Crease Angles, Screens & Rims (G)</option>
                 <option value="house">Defense + Penalty Kill + Box+1 House Coverage</option>
@@ -5485,9 +5512,11 @@
         coachBobAutoHideTimer = null;
       }
       state.coachBobVisible = true;
-      setCoachBobAnimationState(opts.stateMode || 'talking');
+      setCoachBobAnimationState(opts.stateMode || opts.mode || 'talking');
       popup.classList.remove('translate-y-[130%]', 'opacity-0', 'pointer-events-none');
       popup.classList.add('translate-y-0', 'opacity-100');
+      const dock = document.getElementById('tacticalActionDock');
+      if (dock) dock.classList.add('opacity-0', 'pointer-events-none');
       if (opts.title) {
         const tEl = document.getElementById('cornerBubbleQuestionTitle');
         if (tEl) tEl.textContent = opts.title;
@@ -5519,6 +5548,8 @@
       state.coachBobVisible = false;
       popup.classList.remove('translate-y-0', 'opacity-100', 'coach-bob-state-talking', 'coach-bob-state-mistake', 'coach-bob-state-celebrate');
       popup.classList.add('translate-y-[130%]', 'opacity-0', 'pointer-events-none');
+      const dock = document.getElementById('tacticalActionDock');
+      if (dock) dock.classList.remove('opacity-0', 'pointer-events-none');
     }
     window.hideCoachBobPopup = hideCoachBobPopup;
 
@@ -5673,7 +5704,7 @@
           btn.type = 'button';
           btn.dataset.tacticalChoiceIdx = String(idx);
           btn.dataset.tacticalCorrect = ch.correct ? '1' : '0';
-          btn.className = 'px-2.5 py-1.5 rounded-xl bg-slate-900/95 hover:bg-sky-900/80 border border-amber-400/60 text-left text-[11px] font-bold text-white shadow transition max-w-[250px] truncate';
+          btn.className = 'px-2.5 py-1.5 rounded-xl bg-slate-900/95 hover:bg-sky-900/80 border border-amber-400/60 text-left text-[11px] font-bold text-white shadow transition max-w-full sm:max-w-[310px] whitespace-normal leading-tight';
           btn.innerHTML = `<span class="text-amber-300 font-black mr-1">⚡ ${idx + 1}.</span><span>${ch.text}</span>`;
           btn.title = ch.text;
           btn.addEventListener('click', () => {
@@ -8982,6 +9013,17 @@
       state.animPhase = 'resolving';
       state.animProgress = 0;
 
+      // Immediately pop up Coach Bob in Mistake or Celebrate state so zero-latency feedback is visible
+      showCoachBobPopup({
+        stateMode: success ? (state.lastConsensusMultiplier >= 0.99 ? 'celebrate' : 'talking') : 'mistake',
+        title: success
+          ? (state.lastConsensusBadge || '🚨 High Hockey IQ Read!')
+          : '🧢 Coach Bob Adjustment — Try Again!',
+        prompt: message,
+        rule: `💡 Golden Rule: ${scen.goldenRule}`,
+        autoHideMs: success ? 4800 : 7200
+      });
+
       if (success) SoundFX.playGoalHorn();
       else SoundFX.playBuzzer();
 
@@ -10914,7 +10956,7 @@
 
       const assign = state.coachWeeklyAssignment || {};
       const inbTitle = document.getElementById('playerInboxAssignmentTitle');
-      const inbPrompt = document.getElementById('playerInboxAssignmentPrompt');
+      const inbPrompt = document.getElementById('playerInboxAssignmentDesc') || document.getElementById('playerInboxAssignmentPrompt');
       const inbBadge = document.getElementById('playerInboxStatusBadge');
       const curProf = getActiveProfile();
       const hasRemedial = Array.isArray(curProf.remedialInbox) && curProf.remedialInbox.length > 0;
@@ -13197,7 +13239,7 @@
     if (sbCopyTeamShareBtn) {
       sbCopyTeamShareBtn.addEventListener('click', () => {
         SoundFX.playTap();
-        const codeInput = document.getElementById('inputSandboxTeamCode');
+        const codeInput = document.getElementById('sandboxTeamCodeInput') || document.getElementById('inputSandboxTeamCode');
         const teamCode = (codeInput && codeInput.value.trim().toUpperCase()) || 'WOLVES-12U';
         const shareUrl = `https://danebekkedahl.github.io/tactix-hockey/?team=${encodeURIComponent(teamCode)}`;
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -13214,7 +13256,7 @@
       const urlParams = new URLSearchParams(window.location.search);
       const urlTeam = urlParams.get('team');
       if (urlTeam) {
-        const codeInput = document.getElementById('inputSandboxTeamCode');
+        const codeInput = document.getElementById('sandboxTeamCodeInput') || document.getElementById('inputSandboxTeamCode');
         if (codeInput) codeInput.value = urlTeam.trim().toUpperCase();
       }
     } catch (e) {}
