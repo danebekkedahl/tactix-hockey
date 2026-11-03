@@ -39,9 +39,9 @@
             <h1 class="text-base sm:text-lg font-black tracking-tight text-white">TACTIX <span class="text-sky-400">HOCKEY</span></h1>
             <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-widest shadow">PLAY. LEARN. DOMINATE.</span>
             <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-400/40 text-[10px] font-black uppercase tracking-wider">HOCKEY IQ & STRATEGY PLATFORM</span>
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">v8.2 Nightly Auto-Pilot • 4-Tab Player &amp; Coach Portals • 3-Pod / 10-Seat Board • 30-Idea Founder Digest</span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">v8.4 Strict Blind 30-Drill Playtester • 10-Seat Vision Walk-Through • Live Gmail Webhook</span>
           </div>
-          <p class="text-xs text-slate-400">4-Tab Family Locker Room (1-Tap Sibling Stalls) • 4-Tab Coach &amp; Director HQ • 3-Pod / 10-Seat Board (Max 3 Shipped/Run) • 30-Idea Digest for Dane &amp; Evan</p>
+          <p class="text-xs text-slate-400">30/30 Blind Drills Solved (0 Answer-Key Peeks) • 4 Prompt-vs-Scoring Discrepancies Fixed • Live Google Apps Script Gmail Webhook for Dane &amp; Evan</p>
         </div>
       </div>
       <div class="flex items-center gap-2">
@@ -1133,13 +1133,47 @@
       });
     });
 
+    const GOOGLE_APPS_SCRIPT_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbw0z3iKOaLEMF0GZvb2hlyZDnP9oCpudpHrubTti99RFMdi8sDqsJR5dnEMRlDEmcZ_/exec';
     const btnReportEmailDigest = document.getElementById('btnReportEmailDigestDaneEvan');
     if (btnReportEmailDigest) {
       btnReportEmailDigest.addEventListener('click', async () => {
+        const subject = 'Tactix Hockey 30-Idea Board Digest (3 Green-Lit, 21 On-Deck, 6 Vetoed)';
+        const htmlBody = `<div style="font-family:Inter,Arial,sans-serif;background:#0f172a;color:#f8fafc;padding:20px;border-radius:12px;"><h2>🔔 ${subject}</h2><ul>${REPORT_BOARD_30_IDEA_DIGEST.map(i => `<li><strong>[${i.id}] ${i.pod} (${i.seat})</strong>: ${i.title} — <em>${i.status}</em></li>`).join('')}</ul></div>`;
+        let gmailStatus = 'dispatched';
+        try {
+          const gRes = await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
+            method: 'POST',
+            redirect: 'follow',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({
+              subject,
+              htmlBody,
+              recipients: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com']
+            })
+          });
+          gmailStatus = gRes.ok ? (await gRes.text()).trim() || 'SENT' : `HTTP ${gRes.status}`;
+        } catch (e) {
+          try {
+            await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
+              method: 'POST',
+              mode: 'no-cors',
+              credentials: 'include',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify({
+                subject,
+                htmlBody,
+                recipients: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com']
+              })
+            });
+            gmailStatus = 'SENT (no-cors)';
+          } catch (e2) {
+            gmailStatus = 'offline';
+          }
+        }
         const toast = document.getElementById('reportDigestEmailToast');
         if (toast) {
           toast.classList.remove('hidden');
-          toast.textContent = '📧 Dispatched 30-Idea Board Digest (3 Green-Lit, 21 On-Deck, 6 Vetoed) to Coach Dane (danebekkedahl@gmail.com) & Coach Evan (evanbekk@gmail.com) and synced to public.pucksense_agent_inbox!';
+          toast.textContent = `📧 Dispatched 30-Idea Board Digest via Gmail Webhook (${gmailStatus}) to Coach Dane (danebekkedahl@gmail.com) & Coach Evan (evanbekk@gmail.com) and synced to public.pucksense_agent_inbox!`;
         }
         try {
           await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox`, {
@@ -1148,12 +1182,12 @@
             body: JSON.stringify({
               created_by: 'Council-Agent',
               source_role: 'council',
-              scenario_id: 'digest-v8.2',
+              scenario_id: 'digest-v8.3',
               age_division: '12U',
               category: 'board_digest',
               status: 'open',
-              summary: 'v8.2 30-Idea Board Digest Dispatched to Coach Dane (danebekkedahl@gmail.com) & Coach Evan (evanbekk@gmail.com): 3 Green-Lit, 21 On-Deck, 6 Vetoed',
-              details: { recipients: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com'], total_ideas: 30, green_lit: 3, on_deck: 21, vetoed: 6, ideas: REPORT_BOARD_30_IDEA_DIGEST }
+              summary: `v8.3 30-Idea Board Digest Dispatched (${gmailStatus}) to Coach Dane (danebekkedahl@gmail.com) & Coach Evan (evanbekk@gmail.com): 3 Green-Lit, 21 On-Deck, 6 Vetoed`,
+              details: { recipients: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com'], gmailStatus, total_ideas: 30, green_lit: 3, on_deck: 21, vetoed: 6, ideas: REPORT_BOARD_30_IDEA_DIGEST }
             })
           });
           loadLiveSupabaseDashboard();

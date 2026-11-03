@@ -6733,6 +6733,7 @@
           posRole: row.target_position || payload.target_position || 'ALL',
           question_style: row.question_style || payload.question_style || 'tap_zone',
           coach_bob_prompt: row.coach_bob_prompt || payload.coach_bob_prompt || payload.subtitle || '',
+          customTargetZones: Array.isArray(row.consensus_zones) ? row.consensus_zones : (Array.isArray(payload.targetZones) ? payload.targetZones : null),
           lockSide: true,
           ...(cleanTeammates ? { teammates: cleanTeammates } : {}),
           ...(cleanDefenders ? { defenders: cleanDefenders } : {})
@@ -6755,17 +6756,18 @@
             localScen.ice_zone = norm.ice_zone || localScen.ice_zone || (localScen.zone === 'defense' ? 'DZ' : 'OZ');
             localScen.target_position = norm.target_position || localScen.target_position || 'ALL';
             localScen.question_style = norm.question_style || localScen.question_style || 'tap_zone';
-            localScen.coach_bob_prompt = norm.coach_bob_prompt || localScen.coach_bob_prompt || localScen.subtitle;
-            if (norm.prompt8U) localScen.prompt8U = norm.prompt8U;
+            // Keep canonical localScen's crafted subtitle/prompt so on-ice coordinates and Coach Bob text stay 100% aligned
+            localScen.coach_bob_prompt = localScen.subtitle || norm.coach_bob_prompt;
           } else if (norm.youStart && norm.targetSpot && Array.isArray(norm.teammates) && Array.isArray(norm.defenders)) {
             SCENARIOS.push(norm);
           }
-          // Index by age_division and tier_level for instant lookup
+          // Index by age_division and tier_level for instant lookup (prefer canonical localScen if matched)
+          const refScen = localScen || norm;
           (norm.allowed_divisions || []).forEach(div => {
             const key = `${div}_${norm.tier_level || 'Rec'}`;
             if (!this.scenariosByAgeAndTier[key]) this.scenariosByAgeAndTier[key] = [];
-            if (!this.scenariosByAgeAndTier[key].some(x => x.id === norm.id)) {
-              this.scenariosByAgeAndTier[key].push(norm);
+            if (!this.scenariosByAgeAndTier[key].some(x => x.id === refScen.id)) {
+              this.scenariosByAgeAndTier[key].push(refScen);
             }
           });
         });
@@ -7072,12 +7074,7 @@
       const age = ageGroup || '12U';
       const mapFn = typeof applyRoleLabelMap === 'function' ? applyRoleLabelMap : (s => s);
       if (age === '8U') {
-        if (scen && scen.prompt8U) {
-          const pWords = String(scen.prompt8U).trim().split(/\s+/);
-          const out = pWords.length <= 14 ? String(scen.prompt8U).trim() : (pWords.slice(0, 14).join(' ') + '!');
-          return mapFn(out);
-        }
-        // Use ultra-crisp 8U Coach Bob prompt (<= 14 words)
+        // Use ultra-crisp 8U Coach Bob prompt (<= 14 words) matched to canonical scenario geometry
         const short8U = {
           'basics-center': 'Skate #9 to the middle slot to support your wingers!',
           'basics-defense': 'Hold the Left Point just inside the blue line!',
@@ -7095,7 +7092,15 @@
           'd-net-front': 'You are D2 in the House! Tie up R2 in front!',
           'goalie-square-angle': 'Step out to the top of your crease square to the puck!'
         };
-        if (scen && short8U[scen.id]) return mapFn(short8U[scen.id]);
+        if (scen && short8U[scen.id]) {
+          const base8U = scen.mirroredY ? swapDirectionalTerms(short8U[scen.id]) : short8U[scen.id];
+          return mapFn(base8U);
+        }
+        if (scen && scen.prompt8U) {
+          const pWords = String(scen.prompt8U).trim().split(/\s+/);
+          const out = pWords.length <= 14 ? String(scen.prompt8U).trim() : (pWords.slice(0, 14).join(' ') + '!');
+          return mapFn(out);
+        }
         if (scen && scen.coach_bob_prompt) {
           const words = scen.coach_bob_prompt.trim().split(/\s+/);
           const out = words.length <= 14 ? scen.coach_bob_prompt.trim() : (words.slice(0, 14).join(' ') + '!');
@@ -7275,6 +7280,26 @@
     }
     window.getQuestionStyleForScenario = getQuestionStyleForScenario;
 
+    function describePhysicalRinkLandmark(x, y, scen) {
+      const zone = (scen && scen.zone) || 'offense';
+      const vDist = Math.abs(y - 0.5);
+      const wingLabel = y < 0.34 ? 'Left Wing' : (y > 0.66 ? 'Right Wing' : 'Middle Slot');
+      if (zone === 'defense') {
+        if (x < 0.16 && vDist < 0.12) return 'Top of Crease';
+        if (x < 0.24 && vDist < 0.16) return 'Low House Net-Front';
+        if (x < 0.36 && vDist < 0.18) return 'High House Slot';
+        if (x < 0.32 && vDist >= 0.18) return `${wingLabel} Hashmarks Wall`;
+        if (x < 0.45) return `${wingLabel} Circle Lane`;
+        return `${wingLabel} Neutral-Zone Gap`;
+      }
+      if (x > 0.80 && vDist >= 0.12) return `${wingLabel} Back-Post / Goal Line`;
+      if (x > 0.72 && vDist < 0.16) return 'Low Slot / Net-Front';
+      if (x >= 0.60 && x <= 0.78 && vDist < 0.18) return 'High Slot Triangle';
+      if (x >= 0.50 && x < 0.64) return `${wingLabel} Inside Blue Line / Point`;
+      return `${wingLabel} Open Ice`;
+    }
+    window.describePhysicalRinkLandmark = describePhysicalRinkLandmark;
+
     function buildTapZonesForScenario(scen) {
       ensureScenarioConsensusZones(scen);
       const zGold = (scen.targetZones && scen.targetZones[0]) || { x: scen.targetSpot.x, y: scen.targetSpot.y, radius: 0.095, multiplier: 1.0, badge: '🥇 1st Choice Consensus Optimal (100% Gold IQ)', feedback: (scen.readChoices && scen.readChoices[0] && scen.readChoices[0].feedback) || 'Great read!' };
@@ -7285,14 +7310,15 @@
         { ...zSilver, rank: 2, multiplier: 0.8 },
         { ...zBronze, rank: 3, multiplier: 0.6 }
       ];
-      // Deterministic rotation by question number so Zone A is not always 1st choice, while exposing zone.rank for testing
+      // Deterministic rotation by question number so Zone A is not always 1st choice
       const shift = ((state.seriesQuestionNum || 1) + (state.currentCityIdx || 0)) % 3;
       const rotated = [raw[shift], raw[(shift + 1) % 3], raw[(shift + 2) % 3]];
       const letters = ['A', 'B', 'C'];
       return rotated.map((z, i) => ({
         ...z,
         zoneLetter: letters[i],
-        label: `Zone ${letters[i]}`
+        label: `Zone ${letters[i]}`,
+        spotLabel: describePhysicalRinkLandmark(z.x, z.y, scen)
       }));
     }
     window.buildTapZonesForScenario = buildTapZonesForScenario;
@@ -7339,9 +7365,10 @@
           const btn = document.createElement('button');
           btn.type = 'button';
           btn.dataset.zoneLetter = z.zoneLetter;
-          btn.dataset.zoneRank = String(z.rank);
+          btn.dataset.zoneX = z.x.toFixed(3);
+          btn.dataset.zoneY = z.y.toFixed(3);
           btn.className = 'px-2.5 py-1 rounded-xl bg-slate-900 hover:bg-sky-500/30 border border-sky-400/70 text-white font-black text-[11px] shadow transition flex items-center gap-1';
-          btn.innerHTML = `<span class="px-1.5 py-0.2 rounded bg-amber-400 text-slate-950 font-black text-[10px]">${z.zoneLetter}</span><span>Pick ${z.label}</span>`;
+          btn.innerHTML = `<span class="px-1.5 py-0.2 rounded bg-amber-400 text-slate-950 font-black text-[10px]">${z.zoneLetter}</span><span>Pick ${z.label} (${z.spotLabel})</span>`;
           btn.addEventListener('click', () => handleSelectTapZone(z, scen));
           bar.appendChild(btn);
         });
@@ -7357,6 +7384,8 @@
           const btn = document.createElement('button');
           btn.type = 'button';
           btn.dataset.playerTargetId = tm.id;
+          btn.dataset.playerX = tm.x.toFixed(3);
+          btn.dataset.playerY = tm.y.toFixed(3);
           btn.className = 'px-2.5 py-1 rounded-xl bg-slate-900 hover:bg-emerald-500/30 border border-emerald-400/60 text-white font-black text-[11px] shadow transition';
           btn.textContent = `🏒 Pass to #${tm.label}`;
           btn.addEventListener('click', () => {
@@ -7401,7 +7430,6 @@
           const btn = document.createElement('button');
           btn.type = 'button';
           btn.dataset.tacticalChoiceIdx = String(idx);
-          btn.dataset.tacticalCorrect = ch.correct ? '1' : '0';
           btn.className = 'px-2.5 py-1.5 rounded-xl bg-slate-900/95 hover:bg-sky-900/80 border border-amber-400/60 text-left text-[11px] font-bold text-white shadow transition max-w-full sm:max-w-[310px] whitespace-normal leading-tight';
           btn.innerHTML = `<span class="text-amber-300 font-black mr-1">⚡ ${idx + 1}.</span><span>${ch.text}</span>`;
           btn.title = ch.text;
@@ -8141,11 +8169,14 @@
         return d;
       });
 
+      clone.mirroredY = mirrorY;
       if (mirrorY) {
         clone.title = swapDirectionalTerms(clone.title);
         clone.subtitle = swapDirectionalTerms(clone.subtitle);
         clone.voicePrompt = swapDirectionalTerms(clone.voicePrompt);
         clone.briefing = swapDirectionalTerms(clone.briefing);
+        if (clone.coach_bob_prompt) clone.coach_bob_prompt = swapDirectionalTerms(clone.coach_bob_prompt);
+        if (clone.prompt8U) clone.prompt8U = swapDirectionalTerms(clone.prompt8U);
         if (Array.isArray(clone.readChoices)) {
           clone.readChoices = clone.readChoices.map(rc => ({
             ...rc,
@@ -17196,6 +17227,9 @@
     }
     window.syncBoardDigestToSupabase = syncBoardDigestToSupabase;
 
+    const GOOGLE_APPS_SCRIPT_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbw0z3iKOaLEMF0GZvb2hlyZDnP9oCpudpHrubTti99RFMdi8sDqsJR5dnEMRlDEmcZ_/exec';
+    window.GOOGLE_APPS_SCRIPT_WEBHOOK_URL = GOOGLE_APPS_SCRIPT_WEBHOOK_URL;
+
     async function dispatchFounderDigestEmail(triggerMailto = false) {
       SoundFX.playGoalHorn();
       const greenLit = BOARD_30_IDEA_DIGEST.filter(i => i.status === 'green_lit' || i.status === 'queued_for_builder');
@@ -17218,23 +17252,57 @@
         ...vetoed.map(i => `• [${i.id}] Seat ${i.seatNumber}: ${i.title} (${i.vetoReason || ''})`)
       ];
       const fullDigestText = bodyLines.join('\n');
+      const htmlBody = `<div style="font-family:Inter,Arial,sans-serif;background:#0f172a;color:#f8fafc;padding:20px;border-radius:12px;"><h2>🔔 ${subject}</h2><pre style="white-space:pre-wrap;font-family:inherit;color:#e2e8f0;">${fullDigestText}</pre></div>`;
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(fullDigestText).catch(() => {});
+      }
+
+      let gmailWebhookResult = 'dispatched';
+      try {
+        const gRes = await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
+          method: 'POST',
+          redirect: 'follow',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            subject,
+            htmlBody,
+            recipients: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com']
+          })
+        });
+        gmailWebhookResult = gRes.ok ? (await gRes.text()).trim() || 'SENT' : `HTTP ${gRes.status}`;
+      } catch (e) {
+        try {
+          await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            credentials: 'include',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({
+              subject,
+              htmlBody,
+              recipients: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com']
+            })
+          });
+          gmailWebhookResult = 'SENT (no-cors)';
+        } catch (e2) {
+          gmailWebhookResult = 'offline';
+        }
       }
 
       if (typeof PuckSenseCloud !== 'undefined' && PuckSenseCloud.postAgentInboxFlag) {
         await PuckSenseCloud.postAgentInboxFlag({
           created_by: 'Founder-Email-Dispatcher',
           source_role: 'board_digest_email',
-          scenario_id: 'EMAIL-DIGEST-V82',
+          scenario_id: 'EMAIL-DIGEST-V83',
           age_division: 'ALL',
           category: 'board_digest',
           status: 'open',
-          summary: `📧 Dispatched 30-Idea Board Digest Email to danebekkedahl@gmail.com & evanbekk@gmail.com`,
+          summary: `📧 Dispatched 30-Idea Board Digest Email to danebekkedahl@gmail.com & evanbekk@gmail.com (${gmailWebhookResult})`,
           details: {
             recipients: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com'],
             subject,
+            gmailWebhookResult,
             dispatchedAt: new Date().toISOString()
           }
         });
@@ -17242,7 +17310,7 @@
 
       const toast = document.getElementById('founderDigestEmailToast');
       if (toast) {
-        toast.textContent = `📧 30-Idea Digest queued & formatted for danebekkedahl@gmail.com & evanbekk@gmail.com (copied to clipboard + logged to Supabase)!`;
+        toast.textContent = `📧 30-Idea Digest dispatched via Gmail Webhook (${gmailWebhookResult}) to danebekkedahl@gmail.com & evanbekk@gmail.com + logged to Supabase!`;
         toast.classList.remove('hidden');
       }
 
@@ -17253,6 +17321,7 @@
       return {
         recipients: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com'],
         subject,
+        gmailWebhookResult,
         totalIdeas: BOARD_30_IDEA_DIGEST.length
       };
     }
