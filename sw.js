@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tactix-hockey-v7.9';
+const CACHE_NAME = 'tactix-hockey-v8.0';
 const ASSETS = [
   './',
   './index.html',

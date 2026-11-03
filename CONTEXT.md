@@ -1,6 +1,6 @@
 # CONTEXT.md — Tactix Hockey Fast-Map & Architecture Index
 
-> **Purpose:** Lightweight (~100-line) architectural index for **TACTIX HOCKEY — PLAY. LEARN. DOMINATE.** so all agents (`Main App Code Page`, `Playtest-Agent`, `Council-Agent`, and `8-Seat Board`) can locate Supabase tables, DOM containers/modals, and core functions in `<1 second`.
+> **Purpose:** Lightweight (~100-line) architectural index for **TACTIX HOCKEY — PLAY. LEARN. DOMINATE.** so all agents (`Main App Code Page`, `Playtest-Agent`, `Council-Agent`, and `9-Seat Board`) can locate Supabase tables, DOM containers/modals, and core functions in `<1 second`.
 
 ---
 
@@ -19,6 +19,10 @@ All frontend calls use publishable anon key `sb_publishable_73207-0o-_PJEGLgeiZS
    - Columns: `bucket_code` (PK — 15 buckets: `basics_support`, `f1_f2_f3_roles`, `dzone_house`, `offsides_rules`, `breakout_d_to_d`, `rush_attack`, `forecheck_systems`, `powerplay_5v4`, `penaltykill_4v5`, `deception_prescan`, `oz_cycle_scissors`, `nz_regroup_hinge`, `dz_box_plus_one`, `goalie_screen_rebound`, `faceoff_oz_win_play`), `title`, `pillar_key`, `min_age_division`, `prohibited_divisions`.
 6. **`public.tactix_scenarios`** (`PuckSenseCloud.fetchCloudScenarios()`, `normalizeCloudScenarioRow()`):
    - Columns: `scenario_key` (PK — **360 QC-approved rows**, 24 per bucket), `bucket_code`, `title`, `age_division`, `allowed_divisions`, `tier_level` (`Rec, B, A, AA, AAA`), `situation_label`, `ice_zone` (`OZ, NZ, DZ`), `target_position` (`C, LW, RW, D, G`), `question_style` (`tap_zone, tap_player, tactical_choice, drag_skater, spot_and_fix`), `coach_bob_prompt`, `scenario_payload` (JSONB), `qc_approved`.
+7. **`public.tactix_video_channels`** (`PuckSenseCloud.fetchVideoChannels()`):
+   - Columns: `channel_key` (PK — **16 Trusted Channels** across Tier 1 Whiteboard/Drill Creators, Tier 2 NHL/NCAA Telestrator Analysts, Tier 3 Official NHL Broadcasts), `channel_name`, `youtube_handle`, `tier_category`, `primary_styles`, `target_divisions`, `trust_score`, `active`.
+8. **`public.tactix_video_library`** (`PuckSenseCloud.fetchCloudVideoLibrary()`, `getMatchingVideoClipsForScenario()`):
+   - Columns: `video_key` (PK — **39 QC-approved segments** across all 15 buckets, `>= 2` per bucket, `0` blacklisted IDs), `youtube_video_id`, `channel_key`, `channel_name`, `title`, `bucket_code`, `secondary_buckets`, `allowed_divisions` (`8U` strictly `5v5`), `tier_levels`, `positions`, `situation_tag`, `ice_zone`, `clip_style` (`whiteboard_diagram`, `telestrator_breakdown`, `nhl_live_play`), `start_sec`, `end_sec` (`23s–140s` full-concept teaching windows), `coach_bob_takeaway`, `film_quiz_prompt`, `film_quiz_choices` (JSONB), `embed_verified`, `qc_approved`.
 
 ---
 
@@ -30,17 +34,19 @@ All frontend calls use publishable anon key `sb_publishable_73207-0o-_PJEGLgeiZS
   - `#coachBobPopup` (`#coachBobAvatarImg`, `#coachCornerFloating`, `#coachBobRoleCalloutBadge`, `#coachBobSituationTag`, `#btnDismissCoachBob`) + `#btnCallCoachBob`.
   - `#tacticalActionDock` (`#dockGroupPreScan`, `#dockGroupDeception`, `#dockGroupComm`, `#dockRoleReadBar`, `#btnOpenRoleGuideModal`) + `#roleGuidePopover`.
   - `#spotMistakeBanner` (2-Step Spot & Fix), `#onIceFeedbackBanner` (`#btnOnIceNextPlay`, `#btnOnIceWatchVideo`, `#btnContrastiveReplay`).
-- **Analytics, Pro Lab, Shop, Trophy & Team Portals:**
+- **Analytics, Pro Lab, Shop, Trophy, Film Room & Team Portals:**
   - `#reportModal` (6-Slice Well-Rounded 100% Balance Pie `#hockeyIqPieSvg`, `#wellRoundedBalanceBadge`, `#positionSpecificIqGrid`, `#ageScaledSelfEvalBox`, `#pieSliceDrilldownDrawer`, `#btnFormulatePipPlan`).
   - `#upgradeModal` (Pro Custom Lesson Builder: `#selectCustomAge`, `#selectCustomManpower`, `#selectCustomSystem` [15 buckets], `#selectCustomPosition` [5 positions]).
   - `#teamManagerModal` (`#teamPortalCoachView`: `#coachRosterSeatCounterBadge`, `#btnModalSendInvite`, `#teamModalLeaderboardList` with `.btn-kick-roster-member`, `#selectCoachWeeklyFocus`, `#btnApprovePushCoachLesson`, `#coachComplianceAlertTable`; `#teamPortalPlayerView`: `#playerCoachInboxCard`, `#playerViewTeamLeaderboardList`, `#playerViewCustomLessonLockBanner`, `#teamCoOpCupBox`).
-  - `#proShopModal` (`#shop3dAvatarSvgWrap`, `#proShopItemsGrid`), `#trophyRoomModal` (`#trophyRoom3dCupSvgWrap`, `#trophyRoomCupsGrid`), `#videoExampleModal` (`#filmStudyQuizBox`).
+  - `#proShopModal` (`#shop3dAvatarSvgWrap`, `#proShopItemsGrid`), `#trophyRoomModal` (`#trophyRoom3dCupSvgWrap`, `#trophyRoomCupsGrid`).
+  - `#videoExampleModal` (`#videoModalChannelBadge`, `#videoClipStyleBadge`, `#videoClipCounterBadge`, `#btnCycleConceptVideoClip`, `#btnVideoRewind10s`, `#btnReplay12sClip`, `#btnVideoLaunchNativeTelestrator`, `#videoCoachBobTakeawayBox`, `#filmStudyQuizBox`).
 
 ---
 
 ## 3. Core Functions in `index.html` & Scripts
-- **Cloud & Filtering:** `PuckSenseCloud` (`normalizeCloudScenarioRow`, `ingestCloudScenarioRows`), `isScenarioAllowedForAge()`, `enforceAdmPromptWordLimit()`, `getFilteredScenarios()`, `getCurrentScenario()`, `buildPermutedScenario()`.
+- **Cloud & Filtering:** `PuckSenseCloud` (`normalizeCloudScenarioRow`, `ingestCloudScenarioRows`, `fetchVideoChannels`, `fetchCloudVideoLibrary`), `isScenarioAllowedForAge()`, `enforceAdmPromptWordLimit()`, `getFilteredScenarios()`, `getCurrentScenario()`, `buildPermutedScenario()`.
+- **Cloud Video Library & Film Room:** `getScenarioCanonicalBucketCode()`, `getMatchingVideoClipsForScenario()`, `renderVideoSegmentInModal()`, `openConceptVideoModal()`, `cycleConceptVideoClip()`, `rewindConceptVideo10s()`, `replayConceptVideoSegment()`, `launchCoachBobNativeTelestratorFromVideo()`.
 - **Teaching Strategy & Coach Bob:** `showCoachBobPopup()`, `hideCoachBobPopup()`, `setCoachBobAnimationState()`, `getCueFirstHighlightTarget()`, `triggerCueFirstHighlight()`, `triggerContrastiveGoodBadReplay()`, `renderMultiFormatControlsBar()`.
 - **Roles, Canvas & Grading:** `computeDynamicProximityRoles()` (`🐂 F1 Bull / 🦊 F2 Fox / 🦅 F3 Eagle / 🛡️ D1 / 🏰 D2`), `drawRink()`, `drawPovRink()`, `checkDraggedPosition()`, `resolveAttempt()`, `recordPlayResult()`.
 - **Analytics & Team Portal:** `renderHockeyIqPieChart()`, `computePositionSpecificIqRatings()`, `buildAgeScaledSelfEvaluation()`, `openPieSliceDrilldown()`, `formulateHockeyIqPipPlan()`, `renderTeamManagerModal()`, `kickRosterPlayer()`, `approveAndPushCoachLessonPlan()`.
-- **Automation & Deploy Scripts:** `generate-tactix-bank.js` (3-Bot Scenario Factory -> 360 cloud rows), `deep_playtest_audit.js` (8-Seat & 5-Persona Playwright Suite), `deploy-github-pages.js` (Pre-commit security scanner + GitHub Pages publisher).
+- **Automation & Deploy Scripts:** `generate-tactix-bank.js` (3-Bot Scenario Factory -> 360 cloud rows), `harvest-tactix-videos.js` (Seat 9 Video Harvester -> 16 channels & 39 verified clips), `deep_playtest_audit.js` (9-Seat & 5-Persona Playwright Suite), `deploy-github-pages.js` (Pre-commit security scanner + GitHub Pages publisher).

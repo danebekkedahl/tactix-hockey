@@ -237,3 +237,18 @@ Every `RUN NIGHTLY AUTOPILOT` pass runs an active Playwright field inspection in
 6. **Seat 6 — Dedicated Head Coach & Association Portal Tester** (Tests Coach Login -> Add/Kick Roster Seat Controls -> Line Builder -> Weekly Assignment Push -> Player Inbox -> Coach Practice Scouting Alerts end-to-end and reports a dedicated Coach Portal Scorecard).
 7. **Seat 7 — App Store, Conversion & Growth Strategist** (`PLAY. LEARN. DOMINATE.`, Free-Download Portal Gate, Partner Association Banner, and Tactix Pro `PIP` + Custom Lesson Builder upsell).
 8. **Seat 8 — Principal Full-Stack App & `<canvas>` Graphics Engineer** (Canvas rendering polish, 3D POV camera, 60fps smoothness, `CONTEXT.md` fast-map, and pre-deploy security checks in `deploy-github-pages.js`).
+
+## 20. Cloud Video Library (`public.tactix_video_library`), Multi-Channel NHL/Coaching Harvester (`harvest-tactix-videos.js`) & Seat 9 Video Auditor
+1. **16-Channel 3-Tier Trusted Network (`public.tactix_video_channels`):**
+   - **Tier 1 (Youth & Foundational Whiteboard):** *Evolution Hockey*, *IceHockeySystems / Denis Savard*, *Coach Matt*, *Morgan Park / Coach John*, *Minnesota Hockey*, *How To Hockey*, *Coach Steve Hockey*.
+   - **Tier 2 (NCAA / Pro Telestrator Film Lab):** *Hockey Players Club / Topher Scott*, *Along The Ice*, *NESN / Billy Jaffe*, *Mitch Giguere*, *Deep Sea Hockey*, *Coach Enio / Kevin Bieksa*, *Wally Kozak*.
+   - **Tier 3 (Official NHL Live Game Film):** *St. Louis Blues*, *Official NHL*.
+2. **Multi-Tagged Full-Concept Video Segments (`public.tactix_video_library`):**
+   - Stores **38+ transcript-verified, multi-tagged video segments across all 15 Concept Buckets** (`>= 2` segments per bucket), tagged by `bucket_code`, `allowed_divisions[]` (`8U` strictly `5v5` with 0 offsides/PK/PP/3v3), `tier_levels[]` (`Rec -> B -> A -> AA -> AAA`), `positions[]` (`C, LW, RW, D, G`), `dynamic_roles[]` (`F1, F2, F3, D1, D2`), and `clip_style` (`whiteboard_diagram` served first to `8U–10U Rec/B` players vs. `telestrator_breakdown` and `nhl_live_play` served first to `12U–18U A/AA/AAA` players).
+   - **Full-Concept Teaching Windows (`start_sec` to `end_sec`, `23s–140s`):** Never cuts off a teaching video mid-play at 12 seconds!
+   - **Permanent Blacklist:** Permanently blocks music-only or unverified clips (`bSgfwvhIT7E`).
+3. **Interactive Film-Room Controls inside `#videoExampleModal`:**
+   - **`🔄 Watch Another Clip for This Concept (Clip 1 of N)`** (`#btnCycleConceptVideoClip` & `#videoClipCounterBadge`): Cycles through all tagged Whiteboard, Telestrator, and Live NHL clips in the active bucket.
+   - **`⏪ Rewind 10s`** (`#btnVideoRewind10s`), **`🔄 Replay Segment`** (`#btnReplay12sClip`), and **`📋 Coach Bob 60fps Native Telestrator`** (`#btnVideoLaunchNativeTelestrator`, closing the modal and animating the play directly on our `<canvas>` rink).
+4. **Seat 9 — Automated Video Harvester & Film-Room QC Auditor (`harvest-tactix-videos.js`):**
+   - Added to the `RUN NIGHTLY AUTOPILOT` pipeline so every nightly pass audits all YouTube IDs via official `oEmbed` (`HTTP 200`), blocks any music-only or unverified clip, verifies `>= 2` clips per bucket across all 15 buckets, and syncs `public.tactix_video_library`.
