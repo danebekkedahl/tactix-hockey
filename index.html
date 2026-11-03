@@ -781,7 +781,7 @@
                 <div class="flex flex-wrap items-center justify-between gap-1.5 border-b border-slate-800 pb-1.5 mb-1.5">
                   <div class="flex flex-wrap items-center gap-1 min-w-0">
                     <span id="cornerCoachTitle" class="text-[11px] font-black text-amber-300 whitespace-nowrap">🧢 Coach Bob</span>
-                    <span id="coachBobRoleCalloutBadge" class="px-1.5 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 text-amber-300 text-[9px] font-black whitespace-nowrap">YOU = 🐂 F1 Bull</span>
+                    <span id="coachBobRoleCalloutBadge" class="px-1.5 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 text-amber-300 text-[9px] font-black whitespace-nowrap">YOU = F1</span>
                     <span id="coachBobSituationTag" class="px-1.5 py-0.5 rounded bg-sky-500/20 border border-sky-400/40 text-sky-300 text-[9px] font-black whitespace-nowrap">5v5 • OZ</span>
                   </div>
                   <div class="flex items-center gap-1 shrink-0">
@@ -804,34 +804,34 @@
               </div>
             </div>
 
-            <!-- ℹ️ F1-F3 / D1-D2 DYNAMIC PROXIMITY ROLE GUIDE POPOVER ("THE BULL, FOX & EAGLE" SYSTEM) -->
+            <!-- ℹ️ F1-F3 / D1-D2 DYNAMIC PROXIMITY ROLE GUIDE POPOVER (Clean Default + Custom Role Mapper) -->
             <div id="roleGuidePopover" style="background: rgba(2, 6, 23, 0.97);" class="hidden absolute bottom-20 left-1/2 -translate-x-1/2 z-30 w-[330px] sm:w-[460px] bg-slate-950 border-2 border-amber-400 rounded-2xl p-3.5 shadow-2xl backdrop-blur-md text-left">
               <div class="flex items-center justify-between gap-2 mb-2 border-b border-slate-800 pb-1.5">
                 <div>
                   <span class="text-[10px] font-black uppercase tracking-wider text-amber-300 block">🏒 Dynamic Proximity Roles (Sorted by Distance to Puck)</span>
-                  <h4 class="text-xs sm:text-sm font-black text-white">🐂 The Bull (F1) • 🦊 The Fox (F2) • 🦅 The Eagle (F3) • 🛡️ D1 • 🏰 D2</h4>
+                  <h4 id="roleGuidePopoverHeadline" class="text-xs sm:text-sm font-black text-white">F1 • F2 • F3 • D1 • D2</h4>
                 </div>
                 <button id="btnCloseRoleGuidePopover" type="button" class="px-2 py-0.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-black">✕</button>
               </div>
               <p class="text-[11px] text-slate-300 leading-snug mb-2">
-                In hockey, <strong class="text-amber-300">F1 / F2 / F3</strong> and <strong class="text-sky-300">D1 / D2</strong> are based on <strong>who is closest to the puck right now</strong>—not fixed lineup positions (<code class="text-sky-200">LW/C/RW</code>). Whenever the puck moves, roles swap automatically!
+                In hockey, <strong id="roleGuideIntroF" class="text-amber-300">F1 / F2 / F3</strong> and <strong id="roleGuideIntroD" class="text-sky-300">D1 / D2</strong> are based on <strong>who is closest to the puck right now</strong>—not fixed lineup positions (<code class="text-sky-200">LW/C/RW</code>). Whenever the puck moves, roles swap automatically!
               </p>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-[10px] mb-2">
                 <div class="p-1.5 rounded-lg bg-slate-900 border border-amber-400/40">
-                  <div class="font-black text-amber-300">🐂 F1 — First Forward ("The Bull")</div>
-                  <div class="text-slate-300"><strong>Closest forward to puck.</strong> Charges the puck carrier with stick-on-puck angle to force a rushed play.</div>
+                  <div id="roleGuideCardF1" class="font-black text-amber-300">F1 — First Forward (Closest)</div>
+                  <div class="text-slate-300"><strong>Closest forward to puck.</strong> Angles the puck carrier with stick-on-puck to force a rushed play.</div>
                 </div>
                 <div class="p-1.5 rounded-lg bg-slate-900 border border-sky-400/40">
-                  <div class="font-black text-sky-300">🦊 F2 — Second Forward ("The Fox")</div>
-                  <div class="text-slate-300"><strong>2nd-closest forward.</strong> Reads F1's angle, seals the wall outlet, and pounces on turnovers.</div>
+                  <div id="roleGuideCardF2" class="font-black text-sky-300">F2 — Second Forward (Support)</div>
+                  <div class="text-slate-300"><strong>2nd-closest forward.</strong> Reads the angling lane, seals the wall outlet, and jumps on turnovers.</div>
                 </div>
                 <div class="p-1.5 rounded-lg bg-slate-900 border border-emerald-400/40">
-                  <div class="font-black text-emerald-300">🦅 F3 — Third Forward ("The Eagle")</div>
-                  <div class="text-slate-300"><strong>Furthest forward from puck.</strong> Soars high in the slot as the safety valve against odd-man rushes.</div>
+                  <div id="roleGuideCardF3" class="font-black text-emerald-300">F3 — Third Forward (High Slot)</div>
+                  <div class="text-slate-300"><strong>Furthest forward from puck.</strong> Holds high in the slot as the safety valve against odd-man rushes.</div>
                 </div>
                 <div class="p-1.5 rounded-lg bg-slate-900 border border-indigo-400/40">
-                  <div class="font-black text-indigo-300">🛡️ D1 (Challenge) & 🏰 D2 (House)</div>
-                  <div class="text-slate-300"><strong>D1 (Closest D)</strong> challenges corner/wall; <strong>D2 (Furthest D)</strong> stays central to <strong>Protect the House</strong>.</div>
+                  <div id="roleGuideCardD" class="font-black text-indigo-300">D1 (Challenge) &amp; D2 (House)</div>
+                  <div class="text-slate-300"><strong>Closest D</strong> challenges corner/wall; <strong>Furthest D</strong> stays central to <strong>Protect the House</strong>.</div>
                 </div>
               </div>
               <svg viewBox="0 0 360 92" class="w-full h-20 rounded-xl bg-slate-900 border border-slate-800">
@@ -842,15 +842,15 @@
                 <circle cx="312" cy="22" r="5" fill="#0f172a"/>
                 <text x="312" y="13" fill="#0f172a" font-size="7.5" font-weight="900" text-anchor="middle">PUCK</text>
                 <circle cx="294" cy="26" r="10" fill="#f59e0b" stroke="#0f172a" stroke-width="1.5"/>
-                <text x="294" y="29" fill="#0f172a" font-size="7.5" font-weight="900" text-anchor="middle">🐂F1</text>
+                <text id="roleGuideSvgF1" x="294" y="29" fill="#0f172a" font-size="7.5" font-weight="900" text-anchor="middle">F1</text>
                 <circle cx="272" cy="58" r="10" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
-                <text x="272" y="61" fill="#ffffff" font-size="7.5" font-weight="900" text-anchor="middle">🦊F2</text>
+                <text id="roleGuideSvgF2" x="272" y="61" fill="#ffffff" font-size="7.5" font-weight="900" text-anchor="middle">F2</text>
                 <circle cx="222" cy="46" r="10" fill="#10b981" stroke="#ffffff" stroke-width="1.5"/>
-                <text x="222" y="49" fill="#ffffff" font-size="7.5" font-weight="900" text-anchor="middle">🦅F3</text>
+                <text id="roleGuideSvgF3" x="222" y="49" fill="#ffffff" font-size="7.5" font-weight="900" text-anchor="middle">F3</text>
                 <circle cx="144" cy="22" r="10" fill="#6366f1" stroke="#ffffff" stroke-width="1.5"/>
-                <text x="144" y="25" fill="#ffffff" font-size="7.5" font-weight="900" text-anchor="middle">🛡️D1</text>
+                <text id="roleGuideSvgD1" x="144" y="25" fill="#ffffff" font-size="7.5" font-weight="900" text-anchor="middle">D1</text>
                 <circle cx="148" cy="64" r="10" fill="#8b5cf6" stroke="#ffffff" stroke-width="1.5"/>
-                <text x="148" y="67" fill="#ffffff" font-size="7.5" font-weight="900" text-anchor="middle">🏰D2</text>
+                <text id="roleGuideSvgD2" x="148" y="67" fill="#ffffff" font-size="7.5" font-weight="900" text-anchor="middle">D2</text>
               </svg>
             </div>
 
@@ -881,12 +881,12 @@
               <!-- Dynamic Proximity Role Selector ("Identify Your Role / Who Am I?" +5 IQ Bonus + 1-Tap Guide) -->
               <div id="dockRoleReadBar" class="flex flex-wrap items-center justify-center gap-1 pt-0.5 border-t border-slate-800/90">
                 <span class="text-[9px] font-black uppercase tracking-wider text-amber-300 mr-0.5">Who Am I? (+5 IQ):</span>
-                <button type="button" data-role-pick="F1" class="role-read-btn px-1.5 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 border border-amber-400/50 text-amber-200 font-extrabold text-[9px] transition" title="F1 — The Bull (Closest Forward: Pressure)">🐂 F1 (Bull)</button>
-                <button type="button" data-role-pick="F2" class="role-read-btn px-1.5 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 border border-sky-400/50 text-sky-200 font-extrabold text-[9px] transition" title="F2 — The Fox (2nd Forward: Support/Turnover)">🦊 F2 (Fox)</button>
-                <button type="button" data-role-pick="F3" class="role-read-btn px-1.5 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 border border-emerald-400/50 text-emerald-200 font-extrabold text-[9px] transition" title="F3 — The Eagle (3rd Forward: High Slot Safety)">🦅 F3 (Eagle)</button>
-                <button type="button" data-role-pick="D1" class="role-read-btn px-1.5 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 border border-indigo-400/50 text-indigo-200 font-extrabold text-[9px] transition" title="D1 — Closest Defenseman (Strong-Side / Challenge)">🛡️ D1 (Challenge)</button>
-                <button type="button" data-role-pick="D2" class="role-read-btn px-1.5 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 border border-purple-400/50 text-purple-200 font-extrabold text-[9px] transition" title="D2 — 2nd Defenseman (Protect the House)">🏰 D2 (House)</button>
-                <button id="btnOpenRoleGuideModal" type="button" class="px-1.5 py-0.5 rounded-md bg-amber-400/20 hover:bg-amber-400/30 border border-amber-400/60 text-amber-300 font-black text-[9px] transition" title="Open Tactix Hockey Bull, Fox & Eagle F1-F3 / D1-D2 Guide">ℹ️ F1-F3 / D1-D2 Guide</button>
+                <button type="button" data-role-pick="F1" class="role-read-btn px-2 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 border border-amber-400/50 text-amber-200 font-extrabold text-[9px] transition" title="F1 — Closest Forward (Angle / Pressure)">F1</button>
+                <button type="button" data-role-pick="F2" class="role-read-btn px-2 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 border border-sky-400/50 text-sky-200 font-extrabold text-[9px] transition" title="F2 — 2nd Forward (Support / Turnover)">F2</button>
+                <button type="button" data-role-pick="F3" class="role-read-btn px-2 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 border border-emerald-400/50 text-emerald-200 font-extrabold text-[9px] transition" title="F3 — 3rd Forward (High Slot Safety)">F3</button>
+                <button type="button" data-role-pick="D1" class="role-read-btn px-2 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 border border-indigo-400/50 text-indigo-200 font-extrabold text-[9px] transition" title="D1 — Closest Defenseman (Strong-Side / Challenge)">D1</button>
+                <button type="button" data-role-pick="D2" class="role-read-btn px-2 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 border border-purple-400/50 text-purple-200 font-extrabold text-[9px] transition" title="D2 — 2nd Defenseman (Protect the House)">D2</button>
+                <button id="btnOpenRoleGuideModal" type="button" class="px-1.5 py-0.5 rounded-md bg-amber-400/20 hover:bg-amber-400/30 border border-amber-400/60 text-amber-300 font-black text-[9px] transition" title="Open Dynamic Proximity Role Guide">ℹ️ Role Guide</button>
               </div>
               <div id="dockStatusToast" class="hidden text-[10px] font-extrabold text-emerald-300 text-center px-2"></div>
             </div>
@@ -1847,22 +1847,22 @@
             <select id="selectCustomSystem" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
               <option value="all">Full Mix (All 15 Concept Buckets & 360 Cloud Scenarios)</option>
               <option value="basics_support">1. 🏒 Puck Support & Open-Ice Spacing (basics_support)</option>
-              <option value="f1_f2_f3_roles">2. 🐂🦊🦅 Dynamic F1 Bull / F2 Fox / F3 Eagle Roles (f1_f2_f3_roles)</option>
-              <option value="dzone_house">3. 🏰 D-Zone Protect the House & D1/D2 Splits (dzone_house)</option>
+              <option value="f1_f2_f3_roles">2. 🏒 Dynamic F1 / F2 / F3 Forward Proximity Roles (f1_f2_f3_roles)</option>
+              <option value="dzone_house">3. 🏒 D-Zone Protect the House & D1 / D2 Splits (dzone_house)</option>
               <option value="offsides_rules">4. 📏 Blue-Line Offsides, Tag-Up & Zone Entry Timing (offsides_rules)</option>
               <option value="breakout_d_to_d">5. 🔄 Breakout Wall Support, Center Curl & D-to-D Swing (breakout_d_to_d)</option>
               <option value="rush_attack">6. ⚡ Odd-Man Rushes (2v1, 3v2 High Trailer & Middle Drive) (rush_attack)</option>
-              <option value="forecheck_systems">7. 🐂 2-1-2 & 1-2-2 Forecheck Angling & F3 Reload (forecheck_systems)</option>
+              <option value="forecheck_systems">7. 🏒 2-1-2 & 1-2-2 Forecheck Angling & F3 Reload (forecheck_systems)</option>
               <option value="powerplay_5v4">8. 🔥 5-on-4 Power Play Umbrella & Bumper Support (powerplay_5v4)</option>
-              <option value="penaltykill_4v5">9. 🛡️ 4-on-5 Penalty Kill Box, Diamond & Clear Lanes (penaltykill_4v5)</option>
+              <option value="penaltykill_4v5">9. 🔥 4-on-5 Penalty Kill Box, Diamond & Clear Lanes (penaltykill_4v5)</option>
               <option value="deception_prescan">10. 👀 Pre-Scan Shoulder Checks, Look-Offs & Puck Protection (deception_prescan)</option>
               <option value="oz_cycle_scissors">11. 🔄 OZ Low-to-High Cycle, Scissor Switch & D-Pinch Backfill (oz_cycle_scissors)</option>
               <option value="nz_regroup_hinge">12. ⚡ NZ Regroup, D-to-D Hinge & Weak-Side Slash (nz_regroup_hinge)</option>
-              <option value="dz_box_plus_one">13. 🏰 D-Zone Box+1 Low-Slot Lock & Strong-Side Seal (dz_box_plus_one)</option>
+              <option value="dz_box_plus_one">13. 🏒 D-Zone Box+1 Low-Slot Lock & Strong-Side Seal (dz_box_plus_one)</option>
               <option value="goalie_screen_rebound">14. 🥅 Goalie Sightline Box-Out, Stick Lift & Rebound Clear (goalie_screen_rebound)</option>
               <option value="faceoff_oz_win_play">15. 🏒 OZ & DZ Faceoff Alignment & Win Set-Plays (faceoff_oz_win_play)</option>
-              <option value="role_f1f2f3">🐂🦊🦅 F1 Bull / F2 Fox / F3 Eagle Rotation (Legacy Filter)</option>
-              <option value="role_d1d2">🛡️🏰 D1 Challenge / D2 Protect the House (Legacy Filter)</option>
+              <option value="role_f1f2f3">🏒 F1 / F2 / F3 Forward Proximity Rotation (Legacy Filter)</option>
+              <option value="role_d1d2">🏒 D1 Challenge / D2 Protect the House (Legacy Filter)</option>
               <option value="forecheck">2-1-2 & 1-2-2 Forecheck / Dump & Chase F3 Support</option>
               <option value="breakout">D-to-D Breakout, Hashmarks Wall & Center Curl</option>
               <option value="house">D-Zone Coverage (Protect The House, Box+1, Net-Side)</option>
@@ -2100,9 +2100,38 @@
       </div>
 
       <!-- ================================================================= -->
-      <!-- SUB-VIEW A: 🧑‍💼 COACH LOGIN (Roster & Line Builder, Lesson Push & Compliance Alerts) -->
+      <!-- SUB-VIEW A: 🧑‍💼 COACH LOGIN (Roster & Line Builder, 5 Multi-Level Coach Customizations, Lesson Push & Compliance Alerts) -->
       <!-- ================================================================= -->
       <div id="teamPortalCoachView" class="space-y-3 my-3">
+        <!-- 0. 4-Level Coaching Perspective Switcher (Seat 6 Multi-Level Coaching Panel) -->
+        <div id="coachLevelPerspectiveSelector" class="bg-slate-950 border border-cyan-500/40 rounded-xl p-3 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <span class="text-[11px] font-black uppercase tracking-wider text-cyan-300">🏒 Multi-Level Coach Portal Mode (8U Volunteer → 18U/Jr → Association Director)</span>
+              <p class="text-[10px] text-slate-400">One-tap presets configure role terminology, playbook systems, homework targeting, jersey colors &amp; coaching pace for your level.</p>
+            </div>
+            <span id="activeCoachLevelBadge" class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-200 text-[10px] font-black whitespace-nowrap">Level B: 12U/14U AA/AAA Travel</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+            <button type="button" data-coach-level="level_a_8u10u" class="coach-level-btn px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-left transition">
+              <div class="text-[10px] font-black text-emerald-300">Level A • 8U/10U Youth</div>
+              <div class="text-[9px] text-slate-400">Relaxed Hints • Co-Op Cup</div>
+            </button>
+            <button type="button" data-coach-level="level_b_12u14u" class="coach-level-btn px-2.5 py-1.5 rounded-xl bg-cyan-500/20 border border-cyan-400 text-left transition">
+              <div class="text-[10px] font-black text-cyan-200">Level B • 12U/14U Travel</div>
+              <div class="text-[9px] text-slate-300">Playbook • Fwd vs D Homework</div>
+            </button>
+            <button type="button" data-coach-level="level_c_16u18u" class="coach-level-btn px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-left transition">
+              <div class="text-[10px] font-black text-amber-300">Level C • 16U/18U HS &amp; Jr</div>
+              <div class="text-[9px] text-slate-400">Special Teams • Pro Speed</div>
+            </button>
+            <button type="button" data-coach-level="level_d_director" class="coach-level-btn px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-left transition">
+              <div class="text-[10px] font-black text-purple-300">Level D • Assoc. Director</div>
+              <div class="text-[9px] text-slate-400">ASSOC-MINOT / FOOTHILLS</div>
+            </button>
+          </div>
+        </div>
+
         <!-- 1. Roster & Line Builder (Lines 1-4, D-Pairs 1-3, Goalies + 22-Seat Cap & Add/Kick Seat Controls) -->
         <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5 space-y-2.5">
           <div class="flex flex-wrap items-center justify-between gap-2">
@@ -2143,40 +2172,195 @@
           <div id="teamModalInviteToast" class="hidden text-xs font-bold text-emerald-400"></div>
         </div>
 
-        <!-- 2. Weekly Lesson Plan Generator & AI Prompt -->
+        <!-- 1B. THE 5 MULTI-LEVEL COACH PORTAL CUSTOMIZATIONS (Role Mapper, Team Playbook, Group Targeting, Jersey Colors & Pace Override) -->
+        <div id="coachMultiLevelCustomizationsBox" class="bg-slate-950 border-2 border-indigo-500/50 rounded-xl p-3.5 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
+            <div>
+              <span class="text-xs font-black uppercase tracking-wider text-indigo-300">⚙️ Coach Team Customizations (Role Mapper, System Playbook, Jersey Colors &amp; Pace)</span>
+              <p class="text-[10px] text-slate-400">Out-of-the-box tokens &amp; prompts use clean <code class="text-amber-300">F1, F2, F3, D1, D2</code>. Customize below to swap whole-word labels cleanly across the ice &amp; Coach Bob!</p>
+            </div>
+            <span id="roleMapLivePreviewText" class="px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-300 text-[10px] font-black whitespace-nowrap">Active Labels: F1 • F2 • F3 • D1 • D2</span>
+          </div>
+
+          <!-- Customization #1: Custom Role Terminology Panel (5 Inputs + 1-Tap Presets) -->
+          <div id="coachRoleTerminologyPanel" class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 space-y-2">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="text-[11px] font-black text-amber-300">🏷️ 1. Custom Role Terminology Mapper (Single-Label Whole-Word Swap)</span>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <button id="btnPresetRoleStandard" type="button" class="px-2.5 py-1 rounded-lg bg-sky-500/25 hover:bg-sky-500/40 border border-sky-400/60 text-sky-200 text-[10px] font-black transition">
+                  Standard (F1–F3 / D1–D2)
+                </button>
+                <button id="btnPresetRoleAnimal" type="button" class="px-2.5 py-1 rounded-lg bg-amber-500/25 hover:bg-amber-500/40 border border-amber-400/60 text-amber-200 text-[10px] font-black transition">
+                  Youth Animal (Bull / Fox / Eagle)
+                </button>
+                <button id="btnPresetRolePro" type="button" class="px-2.5 py-1 rounded-lg bg-emerald-500/25 hover:bg-emerald-500/40 border border-emerald-400/60 text-emerald-200 text-[10px] font-black transition">
+                  Pro Tactical (Hound / Stalker / High)
+                </button>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+              <div>
+                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">1st Fwd (Base: F1)</label>
+                <input id="inputRoleMapF1" type="text" value="F1" maxlength="14" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-amber-400/50 text-xs font-black text-amber-300" />
+              </div>
+              <div>
+                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">2nd Fwd (Base: F2)</label>
+                <input id="inputRoleMapF2" type="text" value="F2" maxlength="14" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-sky-400/50 text-xs font-black text-sky-300" />
+              </div>
+              <div>
+                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">3rd Fwd (Base: F3)</label>
+                <input id="inputRoleMapF3" type="text" value="F3" maxlength="14" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-emerald-400/50 text-xs font-black text-emerald-300" />
+              </div>
+              <div>
+                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">1st Def (Base: D1)</label>
+                <input id="inputRoleMapD1" type="text" value="D1" maxlength="14" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-indigo-400/50 text-xs font-black text-indigo-300" />
+              </div>
+              <div>
+                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">2nd Def (Base: D2)</label>
+                <input id="inputRoleMapD2" type="text" value="D2" maxlength="14" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-purple-400/50 text-xs font-black text-purple-300" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Customization #2: Team System Playbook Selector ("Coach Our System") -->
+          <div id="coachTeamSystemPlaybookPanel" class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 space-y-2">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="text-[11px] font-black text-sky-300">📋 2. Team System Playbook Selector ("Coach Our System")</span>
+              <span id="activePlaybookSummaryBadge" class="text-[10px] font-extrabold text-emerald-300">2-1-2 Aggressive • Protect the House • D-to-D Over</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-5 gap-2">
+              <div>
+                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">Forecheck System</label>
+                <select id="selectTeamSysForecheck" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                  <option value="2-1-2 Aggressive">2-1-2 Aggressive</option>
+                  <option value="1-2-2 Trap">1-2-2 Trap</option>
+                  <option value="LW Lock">LW Lock</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">D-Zone Coverage</label>
+                <select id="selectTeamSysDZone" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                  <option value="Protect the House">Protect the House</option>
+                  <option value="Box+1">Box+1</option>
+                  <option value="Overload">Overload</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">Primary Breakout</label>
+                <select id="selectTeamSysBreakout" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                  <option value="D-to-D Over">D-to-D Over</option>
+                  <option value="Up Wall">Up Wall</option>
+                  <option value="Wheel">Wheel</option>
+                  <option value="Reverse">Reverse</option>
+                  <option value="Rim">Rim</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">5v4 Power Play</label>
+                <select id="selectTeamSysPP" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                  <option value="1-3-1 Umbrella">1-3-1 Umbrella</option>
+                  <option value="Overload">Overload</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">4v5 Penalty Kill</label>
+                <select id="selectTeamSysPK" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                  <option value="Box">Box</option>
+                  <option value="Diamond">Diamond</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Customization #4: Team Jersey Color Customizer & Coaching Pace Override -->
+          <div id="coachJerseyAndPacePanel" class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 space-y-2">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="text-[11px] font-black text-emerald-300">🎽 4. Team Jersey Colors (Rendered on Ice) &amp; Coaching Pace Override</span>
+              <div class="flex items-center gap-1.5">
+                <button type="button" data-jersey-preset="#0284c7,#fbbf24" class="btn-team-jersey-preset px-2 py-0.5 rounded bg-sky-600 text-white text-[9px] font-black border border-amber-300">Wolves Blue/Gold</button>
+                <button type="button" data-jersey-preset="#ea580c,#f8fafc" class="btn-team-jersey-preset px-2 py-0.5 rounded bg-orange-600 text-white text-[9px] font-black border border-white">Flyers Orange</button>
+                <button type="button" data-jersey-preset="#dc2626,#fde047" class="btn-team-jersey-preset px-2 py-0.5 rounded bg-red-600 text-white text-[9px] font-black border border-yellow-300">Crimson/Gold</button>
+                <button type="button" data-jersey-preset="#059669,#f8fafc" class="btn-team-jersey-preset px-2 py-0.5 rounded bg-emerald-600 text-white text-[9px] font-black border border-white">Emerald/White</button>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <div class="flex items-center gap-2 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5">
+                <input id="inputTeamPrimaryColor" type="color" value="#0284c7" class="w-7 h-7 rounded cursor-pointer bg-transparent border-0" />
+                <div>
+                  <div class="text-[10px] font-black text-white">Primary Jersey Color</div>
+                  <div id="teamPrimaryColorHexText" class="text-[9px] text-sky-300 font-bold">#0284c7</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5">
+                <input id="inputTeamSecondaryColor" type="color" value="#fbbf24" class="w-7 h-7 rounded cursor-pointer bg-transparent border-0" />
+                <div>
+                  <div class="text-[10px] font-black text-white">Secondary Trim Color</div>
+                  <div id="teamSecondaryColorHexText" class="text-[9px] text-amber-300 font-bold">#fbbf24</div>
+                </div>
+              </div>
+              <div>
+                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">⏱️ Coaching Pace Override</label>
+                <select id="selectTeamCoachingPace" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                  <option value="default">Default Age-Scaled</option>
+                  <option value="relaxed_no_clock">8U/10U Relaxed (Visual Hints ON / No Clock Pressure)</option>
+                  <option value="pro_speed_no_hints">AAA/Jr Pro Speed (Tight Clocks / Zero Hints)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+            <span id="coachCustomizationsSavedToast" class="text-[11px] font-extrabold text-emerald-400">Ready to apply across all on-ice badges, Coach Bob prompts &amp; cloud team settings.</span>
+            <button id="btnSaveCoachCustomizations" type="button" class="px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 text-slate-950 font-black text-xs shadow transition">
+              💾 Save &amp; Sync Coach Customizations to Team
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Weekly Lesson Plan Generator, Line/Position-Group Homework Targeting & AI Prompt -->
         <div class="bg-slate-950 border border-amber-400/40 rounded-xl p-3.5 space-y-2.5">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <span class="text-xs font-black uppercase tracking-wider text-amber-300">🧠 2. Weekly Lesson Plan Generator & Coach Approval Gate</span>
+            <span class="text-xs font-black uppercase tracking-wider text-amber-300">🧠 2. Weekly Lesson Plan Generator &amp; Position-Group Homework Targeting</span>
             <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-black">Stage 4 QA Verified</span>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <div>
               <label class="text-[10px] font-bold text-slate-400 uppercase block mb-1">Weekly Priority Preset</label>
               <select id="selectCoachWeeklyFocus" class="w-full px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
-                <option value="breakout">Breakouts: Behind-the-Net D-to-D Swing & Wall Outlets</option>
-                <option value="basics_support">1. 🏒 Puck Support & Open-Ice Spacing (basics_support)</option>
-                <option value="f1_f2_f3_roles">2. 🐂🦊🦅 Dynamic F1 Bull / F2 Fox / F3 Eagle Roles (f1_f2_f3_roles)</option>
-                <option value="dzone_house">3. 🏰 D-Zone Protect the House & D1/D2 Splits (dzone_house)</option>
-                <option value="offsides_rules">4. 📏 Blue-Line Offsides, Tag-Up & Zone Entry Timing (offsides_rules)</option>
-                <option value="breakout_d_to_d">5. 🔄 Breakout Wall Support, Center Curl & D-to-D Swing (breakout_d_to_d)</option>
-                <option value="rush_attack">6. ⚡ Odd-Man Rushes (2v1, 3v2 High Trailer & Middle Drive) (rush_attack)</option>
-                <option value="forecheck_systems">7. 🐂 2-1-2 & 1-2-2 Forecheck Angling & F3 Reload (forecheck_systems)</option>
-                <option value="powerplay_5v4">8. 🔥 5-on-4 Power Play Umbrella & Bumper Support (powerplay_5v4)</option>
-                <option value="penaltykill_4v5">9. 🛡️ 4-on-5 Penalty Kill Box, Diamond & Clear Lanes (penaltykill_4v5)</option>
-                <option value="deception_prescan">10. 👀 Pre-Scan Shoulder Checks, Look-Offs & Puck Protection (deception_prescan)</option>
-                <option value="oz_cycle_scissors">11. 🔄 OZ Cycle, Scissor Switch & D-Pinch Backfill (oz_cycle_scissors)</option>
-                <option value="nz_regroup_hinge">12. ⚡ NZ Regroup, D-to-D Hinge & Weak-Side Slash (nz_regroup_hinge)</option>
-                <option value="dz_box_plus_one">13. 🏰 D-Zone Box+1 Low-Slot Lock & Strong-Side Seal (dz_box_plus_one)</option>
-                <option value="goalie_screen_rebound">14. 🥅 Goalie Sightline Box-Out, Stick Lift & Rebound Clear (goalie_screen_rebound)</option>
-                <option value="faceoff_oz_win_play">15. 🏒 OZ & DZ Faceoff Alignment & Win Set-Plays (faceoff_oz_win_play)</option>
-                <option value="role_f1f2f3">🐂🦊🦅 F1 Bull / F2 Fox / F3 Eagle Rotation</option>
-                <option value="role_d1d2">🛡️🏰 D1 Challenge / D2 Protect the House</option>
-                <option value="defense_d">🛡️ Defenseman Gap, Slides & Box-Out (D)</option>
-                <option value="goalie_g">🥅 Goalie Crease Angles, Screens & Rims (G)</option>
+                <option value="breakout">Breakouts: Behind-the-Net D-to-D Swing &amp; Wall Outlets</option>
+                <option value="basics_support">1. 🏒 Puck Support &amp; Open-Ice Spacing (basics_support)</option>
+                <option value="f1_f2_f3_roles">2. 🏒 Dynamic F1 / F2 / F3 Forward Proximity Roles (f1_f2_f3_roles)</option>
+                <option value="dzone_house">3. 🏒 D-Zone Protect the House &amp; D1 / D2 Splits (dzone_house)</option>
+                <option value="offsides_rules">4. 📏 Blue-Line Offsides, Tag-Up &amp; Zone Entry Timing (offsides_rules)</option>
+                <option value="breakout_d_to_d">5. 🔄 Breakout Wall Support, Center Curl &amp; D-to-D Swing (breakout_d_to_d)</option>
+                <option value="rush_attack">6. ⚡ Odd-Man Rushes (2v1, 3v2 High Trailer &amp; Middle Drive) (rush_attack)</option>
+                <option value="forecheck_systems">7. 🏒 2-1-2 &amp; 1-2-2 Forecheck Angling &amp; F3 Reload (forecheck_systems)</option>
+                <option value="powerplay_5v4">8. 🔥 5-on-4 Power Play Umbrella &amp; Bumper Support (powerplay_5v4)</option>
+                <option value="penaltykill_4v5">9. 🔥 4-on-5 Penalty Kill Box, Diamond &amp; Clear Lanes (penaltykill_4v5)</option>
+                <option value="deception_prescan">10. 👀 Pre-Scan Shoulder Checks, Look-Offs &amp; Puck Protection (deception_prescan)</option>
+                <option value="oz_cycle_scissors">11. 🔄 OZ Cycle, Scissor Switch &amp; D-Pinch Backfill (oz_cycle_scissors)</option>
+                <option value="nz_regroup_hinge">12. ⚡ NZ Regroup, D-to-D Hinge &amp; Weak-Side Slash (nz_regroup_hinge)</option>
+                <option value="dz_box_plus_one">13. 🏒 D-Zone Box+1 Low-Slot Lock &amp; Strong-Side Seal (dz_box_plus_one)</option>
+                <option value="goalie_screen_rebound">14. 🥅 Goalie Sightline Box-Out, Stick Lift &amp; Rebound Clear (goalie_screen_rebound)</option>
+                <option value="faceoff_oz_win_play">15. 🏒 OZ &amp; DZ Faceoff Alignment &amp; Win Set-Plays (faceoff_oz_win_play)</option>
+                <option value="role_f1f2f3">🏒 F1 / F2 / F3 Forward Proximity Rotation</option>
+                <option value="role_d1d2">🏒 D1 Challenge / D2 Protect the House</option>
+                <option value="defense_d">🏒 Defenseman Gap, Slides &amp; Box-Out (D)</option>
+                <option value="goalie_g">🥅 Goalie Crease Angles, Screens &amp; Rims (G)</option>
                 <option value="house">Defense + Penalty Kill + Box+1 House Coverage</option>
                 <option value="forecheck">2-1-2 Forecheck + F3 High-Slot Support</option>
                 <option value="spacing">Offensive Zone Possession + Attack Triangles</option>
-                <option value="transition">Special Teams: 5v4 Umbrella PP & 3v3 Transition</option>
+                <option value="transition">Special Teams: 5v4 Umbrella PP &amp; 3v3 Transition</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-[10px] font-bold text-amber-300 uppercase block mb-1">🎯 3. Line- &amp; Position-Group Homework Target</label>
+              <select id="selectCoachHomeworkTargetGroup" class="w-full px-2.5 py-2 rounded-xl bg-slate-900 border border-amber-400/50 text-xs font-bold text-amber-200">
+                <option value="all">Whole Team (All Lines &amp; Units)</option>
+                <option value="forwards">Forwards Only (Lines 1–4)</option>
+                <option value="defensemen">Defensemen Only (D-Pairs 1–3)</option>
+                <option value="centers">Centers Only (Faceoffs &amp; Low Support)</option>
+                <option value="goalies">Goalies Only (Crease Angles &amp; Rims)</option>
               </select>
             </div>
             <div>
@@ -2185,9 +2369,9 @@
             </div>
           </div>
           <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
-            <span class="text-[11px] text-slate-400">Pushes a verified 10-play assignment to every rostered player's inbox.</span>
+            <span class="text-[11px] text-slate-400">Pushes a verified 10-play assignment to the targeted position group's Player Inbox.</span>
             <button id="btnApprovePushCoachLesson" type="button" class="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-300 hover:to-teal-400 text-slate-950 font-black text-xs shadow transition">
-              ✅ Approve & Push Lesson Plan to Player Inboxes
+              ✅ Approve &amp; Push Lesson Plan to Player Inboxes
             </button>
           </div>
           <div id="coachPushLessonToast" class="hidden text-xs font-extrabold text-emerald-400 bg-emerald-950/50 border border-emerald-500/40 rounded-lg px-3 py-1.5"></div>
@@ -2196,7 +2380,7 @@
         <!-- 3. Real-Time Team Compliance & Scouting Alert Table -->
         <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5 space-y-2">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-black uppercase tracking-wider text-sky-300">🚨 3. Real-Time Team Compliance & Per-Player Scouting Alerts</span>
+            <span class="text-xs font-black uppercase tracking-wider text-sky-300">🚨 3. Real-Time Team Compliance &amp; Per-Player Scouting Alerts</span>
             <span class="text-[10px] font-bold text-slate-400">1-Click Remedial Drill Push</span>
           </div>
           <div id="coachComplianceAlertTable" class="space-y-2"></div>
@@ -2213,7 +2397,7 @@
         <div class="bg-slate-950 border-2 border-rose-500/40 rounded-xl p-3 space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-2">
-              <span class="text-xs font-black uppercase tracking-wider text-rose-300">📡 Live Agent & Founder Inbox (Supabase Cloud)</span>
+              <span class="text-xs font-black uppercase tracking-wider text-rose-300">📡 Live Agent &amp; Founder Inbox (Supabase Cloud)</span>
               <span id="agentInboxCountBadge" class="px-2 py-0.5 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-300 text-[10px] font-black">0 Flags</span>
             </div>
             <div class="flex items-center gap-1.5">
@@ -2257,10 +2441,14 @@
         <!-- 📬 New Weekly Assignment from Coach Inbox Card -->
         <div id="playerCoachInboxCard" class="bg-gradient-to-br from-slate-950 via-sky-950/40 to-slate-950 border-2 border-amber-400/70 rounded-2xl p-4 space-y-2.5 shadow-xl">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <span class="px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-wider">📬 New Weekly Assignment from Coach</span>
+            <div class="flex flex-wrap items-center gap-1.5">
+              <span class="px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-wider">📬 New Weekly Assignment from Coach</span>
+              <span id="playerInboxTargetGroupBadge" class="px-2 py-0.5 rounded-full bg-indigo-500/25 border border-indigo-400/50 text-indigo-200 text-[10px] font-black">🎯 Whole Team</span>
+              <span id="playerInboxPlaybookBadge" class="px-2 py-0.5 rounded-full bg-sky-500/20 border border-sky-400/40 text-sky-200 text-[10px] font-black">📋 2-1-2 • D-to-D Over</span>
+            </div>
             <span id="playerInboxStatusBadge" class="text-[11px] font-extrabold text-emerald-300">Assigned by Coach Dane • 10 Drills (+100 Team Cup Pts)</span>
           </div>
-          <h4 id="playerInboxAssignmentTitle" class="text-sm sm:text-base font-black text-white">Weekly Focus: Behind-the-Net D-to-D Swing & Wall Outlets</h4>
+          <h4 id="playerInboxAssignmentTitle" class="text-sm sm:text-base font-black text-white">Weekly Focus: Behind-the-Net D-to-D Swing &amp; Wall Outlets</h4>
           <p id="playerInboxAssignmentDesc" class="text-xs text-slate-200 leading-relaxed">"Our D-men are struggling with behind-the-net D-to-D swing passes under forecheck pressure—complete this 10-play series before Tuesday practice!"</p>
           <div id="playerRemedialInboxAlert" class="bg-rose-950/50 border border-rose-500/40 rounded-xl p-2.5 text-xs text-amber-200 font-semibold">
             📌 <strong>Personal Coach Note:</strong> Includes 2 bonus remedial permutations on shoulder pre-scanning before D-to-D rim passes!
@@ -3285,7 +3473,7 @@
         clip_style: 'whiteboard_diagram',
         start_sec: 12,
         end_sec: 112,
-        coach_bob_takeaway: 'Never bunch up with 3 players in the same corner! Build a 3-player Attack Triangle: F1 Bull on puck, F2 Fox board support, F3 Eagle high slot.',
+        coach_bob_takeaway: 'Never bunch up with 3 players in the same corner! Build a 3-player Attack Triangle: F1 on puck, F2 board support, F3 high slot.',
         film_quiz_question: 'In Coach John\'s whiteboard diagram, where do F2 and F3 position when F1 battles in the corner?',
         film_quiz_options: [
           'Form an Attack Triangle: F2 supports the wall outlet and F3 holds the high slot',
@@ -3396,7 +3584,7 @@
         clip_style: 'whiteboard_diagram',
         start_sec: 10,
         end_sec: 120,
-        coach_bob_takeaway: 'Use your body between the defender and the puck along the boards, then bump the puck off the wall into space for F2 Fox curling behind you!',
+        coach_bob_takeaway: 'Use your body between the defender and the puck along the boards, then bump the puck off the wall into space for F2 curling behind you!',
         film_quiz_question: 'When cycling the puck down the boards, where should F1 place the pass for F2?',
         film_quiz_options: [
           'Banked softly off the boards into quiet space behind F1 so F2 can skate onto it with speed',
@@ -3418,7 +3606,7 @@
         clip_style: 'telestrator_breakdown',
         start_sec: 10,
         end_sec: 150,
-        coach_bob_takeaway: 'Whenever a defenseman activates down the wall in the cycle, F3 Eagle MUST rotate back to the blue line to prevent a 2-on-1 breakaway!',
+        coach_bob_takeaway: 'Whenever a defenseman activates down the wall in the cycle, F3 MUST rotate back to the blue line to prevent a 2-on-1 breakaway!',
         film_quiz_question: 'In Billy Jaffe\'s telestrator breakdown, what is F3\'s #1 job when a defenseman pinches down the wall?',
         film_quiz_options: [
           'Rotate high to backfill the defenseman\'s point position at the blue line',
@@ -3620,7 +3808,7 @@
         clip_style: 'telestrator_breakdown',
         start_sec: 75,
         end_sec: 138,
-        coach_bob_takeaway: 'When F1 Bull takes away the strong-side wall, D1 uses the net as a pick and snaps a crisp D-to-D pass to D2 on the weak side!',
+        coach_bob_takeaway: 'When F1 takes away the strong-side wall, D1 uses the net as a pick and snaps a crisp D-to-D pass to D2 on the weak side!',
         film_quiz_question: 'When the strong-side forechecker (F1) seals off the strong-side boards, what is D1\'s best breakout read?',
         film_quiz_options: [
           'Use the net for protection and pass D-to-D ("Over") to D2 on the wide-open weak side',
@@ -3744,7 +3932,7 @@
       {
         clip_key: 'f1_f2_f3_giguere_bruins_1',
         video_id: 'wtZnJEHIzoQ',
-        title: 'Mitch Giguere: Boston Bruins F1 Bull / F2 Fox / F3 Eagle Forecheck Turnover & Goal',
+        title: 'Mitch Giguere: Boston Bruins F1 / F2 / F3 Forecheck Turnover & Goal',
         channel_name: 'Mitch Giguere',
         bucket_code: 'f1_f2_f3_roles',
         allowed_divisions: ['8U', '10U', '12U', '14U', '16U', '18U'],
@@ -3754,10 +3942,10 @@
         clip_style: 'telestrator_breakdown',
         start_sec: 1,
         end_sec: 28,
-        coach_bob_takeaway: '🐂 F1 Bull angles the D with stick-on-puck, 🦊 F2 Fox jumps the wall pass for the turnover, and 🦅 F3 Eagle cashes in from the High Slot!',
+        coach_bob_takeaway: 'F1 angles the D with stick-on-puck, F2 jumps the wall pass for the turnover, and F3 cashes in from the High Slot!',
         film_quiz_question: 'In Mitch Giguere\'s Boston Bruins telestrator clip, how do F1, F2, and F3 work together to score?',
         film_quiz_options: [
-          'F1 Bull forces a hurried rim, F2 Fox intercepts on the wall, and F3 Eagle stays high in the slot for the goal',
+          'F1 forces a hurried rim, F2 intercepts on the wall, and F3 stays high in the slot for the goal',
           'All three forwards stand behind the opponent\'s net'
         ],
         film_quiz_answer_idx: 0,
@@ -3766,7 +3954,7 @@
       {
         clip_key: 'f1_f2_f3_coach_john_roles_2',
         video_id: 'ho6ptUwrsOU',
-        title: 'Coach John: F1 Bull, F2 Fox & F3 Eagle Dynamic Forward Proximity Roles',
+        title: 'Coach John: F1, F2 & F3 Dynamic Forward Proximity Roles',
         channel_name: 'Morgan Park / Coach John',
         bucket_code: 'f1_f2_f3_roles',
         allowed_divisions: ['8U', '10U', '12U', '14U'],
@@ -3777,7 +3965,7 @@
         start_sec: 35,
         end_sec: 132,
         coach_bob_takeaway: 'F1, F2, and F3 are determined by who arrives FIRST, SECOND, and THIRD to the zone—not just whether you are listed as LW, C, or RW!',
-        film_quiz_question: 'Who becomes "🐂 F1 (The Bull)" when your line dumps the puck into the offensive corner?',
+        film_quiz_question: 'Who becomes F1 when your line dumps the puck into the offensive corner?',
         film_quiz_options: [
           'Whichever forward is closest to the puck first—they charge in to angle the defenseman',
           'Only the Left Wing is ever allowed to be F1'
@@ -4170,7 +4358,7 @@
         end: 28,
         startSec: 1,
         endSec: 28,
-        tags: ['Full 27s Telestrator (0:01–0:28)', 'Forecheck 2-1-2 & 1-2-2', '🐂 F1 Bull Angle', '🦊 F2 Fox Pinch'],
+        tags: ['Full 27s Telestrator (0:01–0:28)', 'Forecheck 2-1-2 & 1-2-2', 'F1 Angle', 'F2 Pinch'],
         url: 'https://www.youtube.com/watch?v=wtZnJEHIzoQ&t=1s'
       },
       transition: {
@@ -4220,7 +4408,7 @@
       forecheck:             { label: 'Forecheck & Backcheck',           icon: '🦅', color: 'orange' },
       transition:            { label: 'Special Teams & 3v3',             icon: '🔄', color: 'rose' },
       basics_support:        { label: 'Puck Support & Spacing',          icon: '🏒', color: 'sky' },
-      f1_f2_f3_roles:        { label: '🐂 Bull / 🦊 Fox / 🦅 Eagle',     icon: '🐂', color: 'amber' },
+      f1_f2_f3_roles:        { label: 'Dynamic F1 / F2 / F3 Roles',      icon: '🏒', color: 'amber' },
       dzone_house:           { label: 'D1 Corner & D2 House',            icon: '🛡️', color: 'emerald' },
       offsides_rules:        { label: 'Blue Line & Offsides Rules',      icon: '🚨', color: 'sky' },
       breakout_d_to_d:       { label: 'D-to-D & Wall Breakouts',         icon: '🚀', color: 'sky' },
@@ -4863,7 +5051,7 @@
         title: '2-1-2 Forecheck: F1 Angles, YOU (F2) Seal the Wall!',
         subtitle: 'Teammate #14 (F1) is angling their defenseman behind the net—jump to seal the strong-side boards!',
         voicePrompt: '2-1-2 Forecheck! Teammate number 14 is F1 angling their defenseman out from behind the net toward the top boards. As F2, move onto the strong-side hashmarks wall to trap the rim pass!',
-        briefing: 'In a 2-1-2 ("Bull-Fox-Eagle") forecheck, F1 (#14 — The Bull) angles the puck-carrier D1 toward one side while F3 (#19 — The Eagle) stays high in the middle. As F2 (#9 — The Fox), move to the strong-side hashmarks wall to intercept their rim/outlet pass!',
+        briefing: 'In a 2-1-2 forecheck, F1 (#14) angles the puck-carrier D1 toward one side while F3 (#19) stays high in the middle. As F2 (#9), move to the strong-side hashmarks wall to intercept their rim/outlet pass!',
         goldenRule: 'On the forecheck: F1 angles the puck carrier, F2 seals the boards outlet, and F3 stays high in the middle!',
         zone: 'offense',
         youStart: { x: 0.68, y: 0.36 },
@@ -5876,6 +6064,27 @@
                   ...state.coachWeeklyAssignment,
                   ...latestAssign
                 };
+                if (latestAssign.coach_customizations && typeof latestAssign.coach_customizations === 'object') {
+                  const cc = latestAssign.coach_customizations;
+                  if (cc.roleLabelMap && typeof cc.roleLabelMap === 'object') {
+                    state.roleLabelMap = { F1: 'F1', F2: 'F2', F3: 'F3', D1: 'D1', D2: 'D2', ...cc.roleLabelMap };
+                  }
+                  if (cc.teamPlaybookSystems && typeof cc.teamPlaybookSystems === 'object') {
+                    state.teamPlaybookSystems = { ...state.teamPlaybookSystems, ...cc.teamPlaybookSystems };
+                  }
+                  if (cc.teamJerseyColors && typeof cc.teamJerseyColors === 'object') {
+                    state.teamJerseyColors = { ...state.teamJerseyColors, ...cc.teamJerseyColors };
+                  }
+                  if (cc.teamCoachingPace) {
+                    state.teamCoachingPace = cc.teamCoachingPace;
+                  }
+                  if (cc.activeCoachLevel) {
+                    state.activeCoachLevel = cc.activeCoachLevel;
+                  }
+                  if (typeof refreshAllRoleLabelUI === 'function') {
+                    refreshAllRoleLabelUI();
+                  }
+                }
               }
             }
             this.online = true;
@@ -5897,13 +6106,30 @@
           age: p.ageGroup || '10U',
           iq_score: p.iqScore || 100
         }));
+        const assignmentWithCustomizations = {
+          ...(state.coachWeeklyAssignment || { focus: 'breakout', focusLabel: '🚀 Breakouts & Regroups' }),
+          coach_customizations: {
+            roleLabelMap: state.roleLabelMap || { F1: 'F1', F2: 'F2', F3: 'F3', D1: 'D1', D2: 'D2' },
+            teamPlaybookSystems: state.teamPlaybookSystems || {
+              forecheck: '2-1-2 Aggressive',
+              dzone: 'Protect the House',
+              breakout: 'D-to-D Over',
+              pp: '1-3-1 Umbrella',
+              pk: 'Box'
+            },
+            targetGroup: (state.coachWeeklyAssignment && state.coachWeeklyAssignment.targetGroup) || 'all',
+            teamJerseyColors: state.teamJerseyColors || { primary: '#0284c7', secondary: '#fbbf24' },
+            teamCoachingPace: state.teamCoachingPace || 'default',
+            activeCoachLevel: state.activeCoachLevel || 'level_b_12u14u'
+          }
+        };
         const payload = {
           team_name: state.teamName || 'PuckSense Select 3v3',
           team_code: code,
           age_division: '10U',
           coach_name: state.coachName || 'Coach Dane & Coach Evan',
           roster: rosterSummary,
-          weekly_assignments: state.coachWeeklyAssignment ? [state.coachWeeklyAssignment] : [],
+          weekly_assignments: [assignmentWithCustomizations],
           coop_trophy_points: Number(state.coopTrophyPoints) || 120,
           updated_at: new Date().toISOString()
         };
@@ -6446,11 +6672,12 @@
 
     function enforceAdmPromptWordLimit(rawText, ageGroup, scen) {
       const age = ageGroup || '12U';
+      const mapFn = typeof applyRoleLabelMap === 'function' ? applyRoleLabelMap : (s => s);
       if (age === '8U') {
         if (scen && scen.prompt8U) {
           const pWords = String(scen.prompt8U).trim().split(/\s+/);
-          if (pWords.length <= 14) return String(scen.prompt8U).trim();
-          return pWords.slice(0, 14).join(' ') + '!';
+          const out = pWords.length <= 14 ? String(scen.prompt8U).trim() : (pWords.slice(0, 14).join(' ') + '!');
+          return mapFn(out);
         }
         // Use ultra-crisp 8U Coach Bob prompt (<= 14 words)
         const short8U = {
@@ -6464,22 +6691,22 @@
           'breakout-2': 'Swing #9 low and slow below the circle for the outlet!',
           'rush-1': '2-on-1 rush! Skate #9 wide to the far post with stick down!',
           'rush-2': 'D1 slid to cover #14! Tap the Goal Net to shoot!',
-          'forecheck-1': 'You are F1 The Bull 🐂! Angle R1 toward the corner boards!',
-          'forecheck-212': 'F1 The Bull angles low! Skate #9 (F2 Fox) to seal the wall!',
+          'forecheck-1': 'You are F1! Angle R1 toward the corner boards!',
+          'forecheck-212': 'F1 angles low! Skate #9 (F2) to seal the wall!',
           'backcheck-1': 'Sprint #9 straight back through the middle gut to cover R3!',
           'd-net-front': 'You are D2 in the House! Tie up R2 in front!',
           'goalie-square-angle': 'Step out to the top of your crease square to the puck!'
         };
-        if (scen && short8U[scen.id]) return short8U[scen.id];
+        if (scen && short8U[scen.id]) return mapFn(short8U[scen.id]);
         if (scen && scen.coach_bob_prompt) {
           const words = scen.coach_bob_prompt.trim().split(/\s+/);
-          if (words.length <= 14) return scen.coach_bob_prompt.trim();
-          return words.slice(0, 14).join(' ') + '!';
+          const out = words.length <= 14 ? scen.coach_bob_prompt.trim() : (words.slice(0, 14).join(' ') + '!');
+          return mapFn(out);
         }
         const words = String(rawText || '').trim().split(/\s+/);
-        return words.slice(0, 14).join(' ');
+        return mapFn(words.slice(0, 14).join(' '));
       }
-      return rawText;
+      return mapFn(rawText);
     }
     window.enforceAdmPromptWordLimit = enforceAdmPromptWordLimit;
 
@@ -6539,11 +6766,8 @@
       if (bobRoleBadge) {
         const dynRoles = typeof computeDynamicProximityRoles === 'function' ? computeDynamicProximityRoles(scen) : { youTargetRole: 'F1' };
         const roleKey = (dynRoles && (dynRoles.youTargetRole || dynRoles.youCurrentRole)) || 'F1';
-        const roleMeta = (typeof DYNAMIC_ROLE_META !== 'undefined' && DYNAMIC_ROLE_META[roleKey]) || { badge: '🐂 F1', animal: 'The Bull' };
-        const shortAnimal = (roleMeta.animal || '').replace(/^The\s+/i, '');
-        bobRoleBadge.textContent = ['F1', 'F2', 'F3'].includes(roleKey)
-          ? `YOU = ${roleMeta.badge} ${shortAnimal}`
-          : `YOU = ${roleMeta.badge}`;
+        const mappedLbl = typeof getMappedRoleLabel === 'function' ? getMappedRoleLabel(roleKey) : roleKey;
+        bobRoleBadge.textContent = `YOU = ${mappedLbl}`;
       }
     }
     window.updateSituationContextBanner = updateSituationContextBanner;
@@ -6592,17 +6816,18 @@
       popup.classList.add('translate-y-0', 'opacity-100');
       const dock = document.getElementById('tacticalActionDock');
       if (dock) dock.classList.add('opacity-0', 'pointer-events-none');
+      const mapFn = typeof applyRoleLabelMap === 'function' ? applyRoleLabelMap : (s => s);
       if (opts.title) {
         const tEl = document.getElementById('cornerBubbleQuestionTitle');
-        if (tEl) tEl.textContent = opts.title;
+        if (tEl) tEl.textContent = mapFn(opts.title);
       }
       if (opts.prompt) {
         const pEl = document.getElementById('cornerShortPrompt');
-        if (pEl) pEl.textContent = opts.prompt;
+        if (pEl) pEl.textContent = mapFn(opts.prompt);
       }
       if (opts.rule) {
         const rEl = document.getElementById('cornerBubbleGoldenRule');
-        if (rEl) rEl.textContent = opts.rule;
+        if (rEl) rEl.textContent = mapFn(opts.rule);
       }
       const autoHideMs = typeof opts.autoHideMs === 'number' ? opts.autoHideMs : 6200;
       if (autoHideMs > 0) {
@@ -7531,74 +7756,204 @@
     }
 
     // =========================================================================
-    // DYNAMIC PROXIMITY ROLES ENGINE (F1/F2/F3 & D1/D2 — "THE BULL, FOX & EAGLE" SYSTEM)
-    // Computes real-time proximity roles sorted by Euclidean distance to the puck:
-    //   Forwards:   🐂 F1 (Bull — Closest) -> 🦊 F2 (Fox — 2nd) -> 🦅 F3 (Eagle — Furthest / High Slot Safety)
-    //   Defensemen: 🛡️ D1 (1st D — Challenge / Strong-Side) -> 🏰 D2 (2nd D — Protect the House)
+    // DYNAMIC PROXIMITY ROLES ENGINE (CLEAN F1/F2/F3 & D1/D2 BASE + SINGLE-LABEL CUSTOM ROLE MAPPER)
+    // Out-of-the-box default: strictly clean F1, F2, F3, D1, D2 (no animal emojis or double-labels).
+    // When a coach or Pro subscriber customizes role names (e.g., F1 -> "Bull"), applyRoleLabelMap(text)
+    // performs a single-label swap so on-ice badges, buttons, and Coach Bob prompts ONLY display "Bull".
     // =========================================================================
+    state.roleLabelMap = state.roleLabelMap || { F1: 'F1', F2: 'F2', F3: 'F3', D1: 'D1', D2: 'D2' };
+    state.teamPlaybookSystems = state.teamPlaybookSystems || {
+      forecheck: '2-1-2 Aggressive',
+      dzone: 'Protect the House',
+      breakout: 'D-to-D Over',
+      pp: '1-3-1 Umbrella',
+      pk: 'Box'
+    };
+    state.teamJerseyColors = state.teamJerseyColors || { primary: '#0284c7', secondary: '#fbbf24' };
+    state.teamCoachingPace = state.teamCoachingPace || 'default';
+    state.activeCoachLevel = state.activeCoachLevel || 'level_b_12u14u';
+
+    function cleanBaseRoleString(str) {
+      if (typeof str !== 'string' || !str) return str;
+      return str
+        .replace(/\u{1F402}\s*F1\s*(?:The\s+)?Bull/giu, 'F1')
+        .replace(/\u{1F98A}\s*F2\s*(?:The\s+)?Fox/giu, 'F2')
+        .replace(/\u{1F985}\s*F3\s*(?:The\s+)?Eagle/giu, 'F3')
+        .replace(/\u{1F43A}\s*F1\s*(?:The\s+)?Wolf/giu, 'F1')
+        .replace(/\u{1F985}\s*F3\s*(?:The\s+)?Hawk/giu, 'F3')
+        .replace(/F1\s*(?:—|-)?\s*(?:The\s+)?Bull\s*(?:\u{1F402})?/giu, 'F1')
+        .replace(/F2\s*(?:—|-)?\s*(?:The\s+)?Fox\s*(?:\u{1F98A})?/giu, 'F2')
+        .replace(/F3\s*(?:—|-)?\s*(?:The\s+)?Eagle\s*(?:\u{1F985})?/giu, 'F3')
+        .replace(/F1\s+Bull/giu, 'F1')
+        .replace(/F2\s+Fox/giu, 'F2')
+        .replace(/F3\s+Eagle/giu, 'F3')
+        .replace(/\u{1F402}\s*F1/giu, 'F1')
+        .replace(/\u{1F98A}\s*F2/giu, 'F2')
+        .replace(/\u{1F985}\s*F3/giu, 'F3')
+        .replace(/\u{1F43A}\s*F1/giu, 'F1')
+        .replace(/\u{1F6E1}\uFE0F?\s*D1/giu, 'D1')
+        .replace(/\u{1F3F0}\s*D2/giu, 'D2')
+        .replace(/\bThe\s+Bull's\b/giu, "F1's")
+        .replace(/\bThe\s+Fox's\b/giu, "F2's")
+        .replace(/\bThe\s+Eagle's\b/giu, "F3's")
+        .replace(/\bThe\s+Bull\b/giu, 'F1')
+        .replace(/\bThe\s+Fox\b/giu, 'F2')
+        .replace(/\bThe\s+Eagle\b/giu, 'F3')
+        .replace(/(?:\u{1F402}|\u{1F98A}|\u{1F985}|\u{1F6E1}\uFE0F?|\u{1F3F0}|\u{1F43A})\s*/gu, '')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+    }
+    window.cleanBaseRoleString = cleanBaseRoleString;
+
+    function getMappedRoleLabel(roleCode) {
+      const code = String(roleCode || 'F1').toUpperCase().trim();
+      const map = (typeof state !== 'undefined' && state && state.roleLabelMap) || { F1: 'F1', F2: 'F2', F3: 'F3', D1: 'D1', D2: 'D2' };
+      const custom = map[code];
+      if (custom && String(custom).trim()) {
+        return String(custom).trim();
+      }
+      return code;
+    }
+    window.getMappedRoleLabel = getMappedRoleLabel;
+
+    function applyRoleLabelMap(text, customMap = null) {
+      if (typeof text !== 'string' || !text) return text;
+      const map = customMap || (typeof state !== 'undefined' && state && state.roleLabelMap) || { F1: 'F1', F2: 'F2', F3: 'F3', D1: 'D1', D2: 'D2' };
+      const normalized = cleanBaseRoleString(text);
+      return normalized.replace(/\b(F1|F2|F3|D1|D2)\b/g, (match) => {
+        const replacement = map[match];
+        return (replacement && String(replacement).trim()) ? String(replacement).trim() : match;
+      });
+    }
+    window.applyRoleLabelMap = applyRoleLabelMap;
+
     const DYNAMIC_ROLE_META = {
       F1: {
         code: 'F1',
-        badge: '🐂 F1',
-        animal: 'The Bull',
-        title: '🐂 F1 — First Forward (The Bull)',
+        badge: 'F1',
+        animal: 'First Forward',
+        title: 'F1 — First Forward (Angle & Pressure)',
         color: '#f59e0b',
         border: '#fbbf24',
-        desc8U: 'You are F1 The Bull 🐂 (closest forward to the puck)! Charge the puck carrier with your stick in the lane to force a rushed play!',
-        desc12U: 'Dynamic Role Read: F1 — The Bull (1st Forward). As the closest forward to the puck, angle the carrier stick-on-puck to take away time and space.'
+        desc8U: 'You are F1 (closest forward to the puck)! Skate an angle with your stick in the lane to force a rushed play!',
+        desc12U: 'Dynamic Role Read: F1 (1st Forward). As the closest forward to the puck, angle the carrier stick-on-puck to take away time and space.'
       },
       F2: {
         code: 'F2',
-        badge: '🦊 F2',
-        animal: 'The Fox',
-        title: '🦊 F2 — Second Forward (The Fox)',
+        badge: 'F2',
+        animal: 'Second Forward',
+        title: 'F2 — Second Forward (Read & Seal)',
         color: '#0284c7',
         border: '#38bdf8',
-        desc8U: 'You are F2 The Fox 🦊 (second-closest forward)! Read The Bull\'s angle, seal the boards outlet, and pounce on the loose puck!',
-        desc12U: 'Dynamic Role Read: F2 — The Fox (2nd Forward). Read F1\'s angling lane, seal the strong-side wall or secondary outlet, and jump on the forced turnover.'
+        desc8U: 'You are F2 (second-closest forward)! Read F1\'s angle, seal the boards outlet, and pounce on the loose puck!',
+        desc12U: 'Dynamic Role Read: F2 (2nd Forward). Read F1\'s angling lane, seal the strong-side wall or secondary outlet, and jump on the forced turnover.'
       },
       F3: {
         code: 'F3',
-        badge: '🦅 F3',
-        animal: 'The Eagle',
-        title: '🦅 F3 — Third Forward (The Eagle)',
+        badge: 'F3',
+        animal: 'Third Forward',
+        title: 'F3 — Third Forward (High Slot Safety)',
         color: '#059669',
         border: '#34d399',
-        desc8U: 'Two teammates are already battling low as F1 The Bull 🐂 and F2 The Fox 🦊—that makes YOU F3 The Eagle 🦅 soaring high in the slot!',
-        desc12U: 'Dynamic Role Read: F3 — The Eagle (3rd Forward / High Reload). Soar high in the offensive slot above the hashmarks as the safety valve against odd-man rushes.'
+        desc8U: 'Two teammates are already battling low as F1 and F2—that makes YOU F3 holding high in the slot!',
+        desc12U: 'Dynamic Role Read: F3 (3rd Forward / High Reload). Hold high in the offensive slot above the hashmarks as the safety valve against odd-man rushes.'
       },
       D1: {
         code: 'D1',
-        badge: '🛡️ D1',
-        animal: 'Strong-Side D1',
-        title: '🛡️ D1 — First Defenseman (Challenge / Wall)',
+        badge: 'D1',
+        animal: 'Strong-Side Defenseman',
+        title: 'D1 — First Defenseman (Challenge / Wall)',
         color: '#4f46e5',
         border: '#818cf8',
-        desc8U: 'You are D1 🛡️ (closest defenseman to the puck)! Hold the strong-side blue line wall or angle the puck carrier in the corner!',
+        desc8U: 'You are D1 (closest defenseman to the puck)! Hold the strong-side blue line wall or angle the puck carrier in the corner!',
         desc12U: 'Dynamic Role Read: D1 (Closest Defenseman). Challenge the puck carrier with tight gap/stick-on-puck in the corner or hold the strong-side blue line.'
       },
       D2: {
         code: 'D2',
-        badge: '🏰 D2',
-        animal: 'Protect the House D2',
-        title: '🏰 D2 — Second Defenseman (Protect the House)',
+        badge: 'D2',
+        animal: 'Net-Front Defenseman',
+        title: 'D2 — Second Defenseman (Protect the House)',
         color: '#7c3aed',
         border: '#c084fc',
-        desc8U: 'Your D-partner (D1 🛡️) is challenging in the corner—slide to the net-front slot as D2 to Protect the House 🏰!',
+        desc8U: 'Your D-partner (D1) is challenging in the corner—slide to the net-front slot as D2 to Protect the House!',
         desc12U: 'Dynamic Role Read: D2 (Weak-Side / Net-Front Defenseman). While D1 challenges the puck, anchor the net-front House to box out sticks and deny royal-road seams.'
       },
       G: {
         code: 'G',
-        badge: '🥅 G',
+        badge: 'G',
         animal: 'Goalie Quarterback',
-        title: '🥅 G — Crease Quarterback',
+        title: 'G — Crease Quarterback',
         color: '#0d9488',
         border: '#2dd4bf',
-        desc8U: 'You are Goalie 🥅 G at the top of your blue paint—stay square to the puck and call out outlets for your defensemen!',
+        desc8U: 'You are Goalie G at the top of your blue paint—stay square to the puck and call out outlets for your defensemen!',
         desc12U: 'Dynamic Role Read: Goalie Quarterback (G). Hold top-of-crease depth square to the shooter and direct D1/D2 on rims.'
       }
     };
     window.DYNAMIC_ROLE_META = DYNAMIC_ROLE_META;
+
+    function refreshAllRoleLabelUI() {
+      const map = state.roleLabelMap || { F1: 'F1', F2: 'F2', F3: 'F3', D1: 'D1', D2: 'D2' };
+      // 1. Update Who Am I? Role-Read Buttons (#dockRoleReadBar)
+      document.querySelectorAll('.role-read-btn').forEach(btn => {
+        const code = btn.dataset.rolePick;
+        if (code && map[code]) {
+          btn.textContent = map[code];
+        }
+      });
+      // 2. Update Role Guide Popover SVG & Cards
+      ['F1', 'F2', 'F3', 'D1', 'D2'].forEach(code => {
+        const svgEl = document.getElementById('roleGuideSvg' + code);
+        if (svgEl) svgEl.textContent = map[code] || code;
+        const inpEl = document.getElementById('inputRoleMap' + code);
+        if (inpEl && document.activeElement !== inpEl) inpEl.value = map[code] || code;
+      });
+      const cardF1 = document.getElementById('roleGuideCardF1');
+      if (cardF1) cardF1.textContent = `${map.F1 || 'F1'} — Closest Forward`;
+      const cardF2 = document.getElementById('roleGuideCardF2');
+      if (cardF2) cardF2.textContent = `${map.F2 || 'F2'} — 2nd Forward`;
+      const cardF3 = document.getElementById('roleGuideCardF3');
+      if (cardF3) cardF3.textContent = `${map.F3 || 'F3'} — High Slot Reload`;
+      const cardD = document.getElementById('roleGuideCardD');
+      if (cardD) cardD.textContent = `${map.D1 || 'D1'} & ${map.D2 || 'D2'}`;
+      const headlineEl = document.getElementById('roleGuidePopoverHeadline');
+      if (headlineEl) {
+        headlineEl.textContent = `🏒 ${map.F1}/${map.F2}/${map.F3} & ${map.D1}/${map.D2} = Distance to the Puck!`;
+      }
+      // 3. Update Live Preview Text in Coach Portal
+      const previewEl = document.getElementById('roleMapLivePreviewText');
+      if (previewEl) {
+        previewEl.textContent = applyRoleLabelMap('You are F1! Angle R1 toward the corner boards while F2 seals the wall and F3 holds the high slot!', map);
+      }
+      // 4. Refresh active scenario banner, prompts, and canvas
+      const scen = typeof getCurrentScenario === 'function' ? getCurrentScenario() : null;
+      if (scen) {
+        if (typeof updateSituationContextBanner === 'function') updateSituationContextBanner(scen);
+        const cornerPrompt = document.getElementById('cornerShortPrompt');
+        if (cornerPrompt && cornerPrompt.textContent) {
+          const prof = typeof getActiveProfile === 'function' ? getActiveProfile() : { ageGroup: '12U' };
+          const rawP = prof.ageGroup === '8U' ? enforceAdmPromptWordLimit(scen.subtitle, '8U', scen) : scen.subtitle;
+          cornerPrompt.textContent = applyRoleLabelMap(rawP, map);
+        }
+        const subEl = document.getElementById('scenarioSubtitle');
+        if (subEl) subEl.textContent = applyRoleLabelMap(scen.subtitle || '', map);
+      }
+      if (typeof drawRink === 'function') drawRink();
+    }
+    window.refreshAllRoleLabelUI = refreshAllRoleLabelUI;
+
+    function setRoleLabelMap(newMap = {}) {
+      state.roleLabelMap = {
+        F1: (newMap.F1 && String(newMap.F1).trim()) || 'F1',
+        F2: (newMap.F2 && String(newMap.F2).trim()) || 'F2',
+        F3: (newMap.F3 && String(newMap.F3).trim()) || 'F3',
+        D1: (newMap.D1 && String(newMap.D1).trim()) || 'D1',
+        D2: (newMap.D2 && String(newMap.D2).trim()) || 'D2'
+      };
+      refreshAllRoleLabelUI();
+      if (typeof saveProgress === 'function') saveProgress();
+      return state.roleLabelMap;
+    }
+    window.setRoleLabelMap = setRoleLabelMap;
 
     function classifySkaterTrack(skater, scen, isYou) {
       if (isYou) {
@@ -7614,6 +7969,18 @@
         return 'D';
       }
       return 'F';
+    }
+
+    function buildMappedRoleMeta(code) {
+      const base = DYNAMIC_ROLE_META[code] || DYNAMIC_ROLE_META.F1;
+      const mappedBadge = getMappedRoleLabel(base.code);
+      return {
+        ...base,
+        badge: mappedBadge,
+        title: applyRoleLabelMap(base.title),
+        desc8U: applyRoleLabelMap(base.desc8U),
+        desc12U: applyRoleLabelMap(base.desc12U)
+      };
     }
 
     function computeDynamicProximityRoles(scenario, puckPos, youOverridePos) {
@@ -7661,7 +8028,6 @@
         // Balance unit tracks so a 5-skater unit has at most 2 Defensemen and 3 Forwards
         const defList = unit.filter(u => u.track === 'D');
         if (defList.length > 2) {
-          // Keep YOU (if D) and the defenseman closest to blue-line/net as D; reclassify extra as F
           defList.slice(2).forEach(extra => { extra.track = 'F'; });
         }
         const fwdList = unit.filter(u => u.track === 'F');
@@ -7685,7 +8051,7 @@
         const fCodes = ['F1', 'F2', 'F3'];
         forwards.forEach((f, idx) => {
           const code = fCodes[Math.min(2, idx)];
-          const meta = DYNAMIC_ROLE_META[code];
+          const meta = buildMappedRoleMeta(code);
           mapById[f.id] = {
             ...meta,
             rank: idx + 1,
@@ -7698,7 +8064,7 @@
         const dCodes = ['D1', 'D2'];
         defensemen.forEach((d, idx) => {
           const code = dCodes[Math.min(1, idx)];
-          const meta = DYNAMIC_ROLE_META[code];
+          const meta = buildMappedRoleMeta(code);
           mapById[d.id] = {
             ...meta,
             rank: idx + 1,
@@ -7709,7 +8075,7 @@
         });
 
         goalies.forEach(g => {
-          const meta = DYNAMIC_ROLE_META.G;
+          const meta = buildMappedRoleMeta('G');
           mapById[g.id] = {
             ...meta,
             rank: 1,
@@ -7737,7 +8103,7 @@
         .sort((a, b) => a.dist - b.dist);
 
       oppSorted.forEach((d, idx) => {
-        const oppBadge = idx === 0 ? '🛡️ D1' : (idx === 1 ? '🏰 D2' : `OPP F${idx - 1}`);
+        const oppBadge = idx === 0 ? getMappedRoleLabel('D1') : (idx === 1 ? getMappedRoleLabel('D2') : `OPP F${idx - 1}`);
         defendersById[d.id] = {
           code: idx === 0 ? 'D1' : (idx === 1 ? 'D2' : `F${idx - 1}`),
           badge: oppBadge,
@@ -7746,9 +8112,9 @@
         };
       });
 
-      const youRoleObj = currentAssignment.mapById.YOU || DYNAMIC_ROLE_META.F1;
+      const youRoleObj = currentAssignment.mapById.YOU || buildMappedRoleMeta('F1');
       const youTargetObj = scen.targetDynamicRole && DYNAMIC_ROLE_META[scen.targetDynamicRole]
-        ? { ...DYNAMIC_ROLE_META[scen.targetDynamicRole], dist: (targetAssignment.mapById.YOU || youRoleObj).dist }
+        ? { ...buildMappedRoleMeta(scen.targetDynamicRole), dist: (targetAssignment.mapById.YOU || youRoleObj).dist }
         : (targetAssignment.mapById.YOU || youRoleObj);
 
       return {
@@ -7777,11 +8143,11 @@
     function getAgeScaledRolePromptSuffix(scen, prof) {
       const age = (prof && prof.ageGroup) || '12U';
       const roles = computeDynamicProximityRoles(scen, null, scen.targetSpot || scen.youStart);
-      const targetRole = roles.youTargetRoleObj || roles.youRole || DYNAMIC_ROLE_META.F1;
+      const targetRole = roles.youTargetRoleObj || roles.youRole || buildMappedRoleMeta('F1');
       if (age === '8U' || age === '10U') {
-        return ` ${targetRole.desc8U}`;
+        return ` ${applyRoleLabelMap(targetRole.desc8U)}`;
       }
-      return ` ${targetRole.desc12U} Watch how F1/F2/F3 and D1/D2 badges dynamically swap as the puck moves!`;
+      return ` ${applyRoleLabelMap(targetRole.desc12U)} Watch how ${applyRoleLabelMap('F1/F2/F3 and D1/D2')} badges dynamically swap as the puck moves!`;
     }
     window.getAgeScaledRolePromptSuffix = getAgeScaledRolePromptSuffix;
 
@@ -8370,7 +8736,7 @@
       state.selectedRoleRead = pickedRole;
       if (isMatch) {
         SoundFX.playGoalHorn();
-        const roleMeta = DYNAMIC_ROLE_META[pickedRole] || DYNAMIC_ROLE_META[targRole] || DYNAMIC_ROLE_META.F1;
+        const roleMeta = buildMappedRoleMeta(pickedRole || targRole || 'F1');
         let bonusMsg = '';
         if (!state.roleReadAwardedThisPlay) {
           state.roleReadAwardedThisPlay = true;
@@ -8383,13 +8749,13 @@
           bonusMsg = ' (+5 Role-Read IQ & +$5 PuckBucks!)';
         }
         const coachExplain = (age === '8U' || age === '10U') ? roleMeta.desc8U : roleMeta.desc12U;
-        showDockToast(`✅ Spot-On Role Read: ${roleMeta.badge} (${roleMeta.animal})${bonusMsg} — ${coachExplain}`);
+        showDockToast(`✅ Spot-On Role Read: ${roleMeta.badge}${bonusMsg} — ${coachExplain}`);
         CoachVoice.speak(`Spot on! You identified your dynamic proximity role as ${roleMeta.title}! ${coachExplain}`, `🏒 Coach Bob (${roleMeta.badge} Role Read +5 IQ)`, false);
       } else {
         SoundFX.playBuzzer();
-        const rightMeta = DYNAMIC_ROLE_META[targRole] || DYNAMIC_ROLE_META[curRole] || DYNAMIC_ROLE_META.F1;
+        const rightMeta = buildMappedRoleMeta(targRole || curRole || 'F1');
         const hintExplain = (age === '8U' || age === '10U') ? rightMeta.desc8U : rightMeta.desc12U;
-        showDockToast(`🧢 Check your distance to the puck! On this play YOU (#9) are ${rightMeta.badge} (${rightMeta.animal}) — tap ${rightMeta.badge} for +5 IQ!`);
+        showDockToast(`🧢 Check your distance to the puck! On this play YOU (#9) are ${rightMeta.badge} — tap ${rightMeta.badge} for +5 IQ!`);
         CoachVoice.speak(`Look at your distance to the puck compared to your teammates! On this play you are ${rightMeta.title}. ${hintExplain}`, '🧢 Coach Bob (Proximity Role Check)', false);
       }
       updateRoleReadBarUI(scen);
@@ -8688,12 +9054,23 @@
       const scen = getCurrentScenario();
       const prof = getActiveProfile();
       const ageCfg = AGE_TIER_CONFIG[prof.ageGroup] || AGE_TIER_CONFIG['12U'];
+      const coachPace = state.teamCoachingPace || 'default';
 
-      // Seat 2 & Seat 3: Cue-First Visual Highlighting defaults ON for Rec/B/A tiers and fades to on-demand for AA/AAA tiers!
+      // Seat 2 & Seat 3 + Coach Portal Pace Override:
+      // Cue-First Visual Highlighting defaults ON for Rec/B/A tiers and fades to on-demand for AA/AAA tiers
+      // unless overridden by Coach Portal Pace ('relaxed_no_clock' vs 'pro_speed_no_hints').
       const curTier = getSkillTierForCityStop(state.currentCityIdx || 0);
       const isProFadedTier = (curTier && (curTier.code === 'AA' || curTier.code === 'AAA')) && prof.ageGroup !== '8U';
       state.cueFirstTarget = getCueFirstHighlightTarget(scen, prof);
-      state.cueFirstHighlightActive = !isProFadedTier;
+      if (coachPace === 'relaxed_no_clock') {
+        state.cueFirstHighlightActive = true;
+        state.showHint = true;
+      } else if (coachPace === 'pro_speed_no_hints') {
+        state.cueFirstHighlightActive = false;
+        state.hintsRemaining = 0;
+      } else {
+        state.cueFirstHighlightActive = !isProFadedTier;
+      }
       updateCueFirstBadgeUI();
 
       // Pre-Scan Shoulder-Check Window: active while puck is in transit on breakout/transition drills for 10U+
@@ -8764,34 +9141,36 @@
       document.getElementById('scenarioTitle').textContent = state.overtimeRedemptionActive
         ? `🚨 3v3 OT Redemption: ${scen.title}`
         : scen.title;
-      // Age-scaled reading lengths + Dynamic Proximity Role (Wolf/Fox/Hawk & D1/D2) coaching cue
-      const rawBriefing = scen.briefing || '';
+      // Age-scaled reading lengths + Dynamic Proximity Role (F1/F2/F3 & D1/D2 + Custom Role Map) coaching cue
+      const rawBriefing = applyRoleLabelMap(scen.briefing || '');
       const briefingSentences = rawBriefing.match(/[^.!?]+[.!?]+/g) || [rawBriefing];
       const maxSents = ageCfg.maxPromptSentences || 2;
       const roleCueSuffix = getAgeScaledRolePromptSuffix(scen, prof);
       const baseBriefing = prof.ageGroup === '8U'
-        ? (scen.subtitle || briefingSentences[briefingSentences.length - 1] || rawBriefing).trim()
+        ? applyRoleLabelMap((scen.subtitle || briefingSentences[briefingSentences.length - 1] || rawBriefing).trim())
         : briefingSentences.slice(0, maxSents).join(' ').trim();
-      const ageScaledBriefing = `${baseBriefing}${roleCueSuffix}`;
-      document.getElementById('scenarioSubtitle').textContent = scen.subtitle;
+      const ageScaledBriefing = applyRoleLabelMap(`${baseBriefing}${roleCueSuffix}`);
+      const mappedSubtitle = applyRoleLabelMap(scen.subtitle || '');
+      const mappedRule = applyRoleLabelMap(scen.goldenRule || '');
+      document.getElementById('scenarioSubtitle').textContent = mappedSubtitle;
       document.getElementById('scenarioBriefing').textContent = ageScaledBriefing;
-      document.getElementById('goldenRuleText').textContent = scen.goldenRule;
+      document.getElementById('goldenRuleText').textContent = mappedRule;
       document.getElementById('drillCounter').textContent = state.overtimeRedemptionActive ? 'OT / 10' : `Q${state.seriesQuestionNum} / 10`;
 
-      const concisePrompt = is8U
+      const concisePrompt = applyRoleLabelMap(is8U
         ? enforceAdmPromptWordLimit(scen.subtitle, '8U', scen)
-        : scen.subtitle;
+        : scen.subtitle);
       const sitLabel = getScenarioSituationLabel(scen, prof.ageGroup);
       const zoneInfo = getScenarioIceZoneCode(scen);
 
       const cornerPrompt = document.getElementById('cornerShortPrompt');
       if (cornerPrompt) cornerPrompt.textContent = concisePrompt;
       const cornerPopupTitle = document.getElementById('cornerBubbleQuestionTitle');
-      if (cornerPopupTitle) cornerPopupTitle.textContent = `📍 ${city.name} • Q${state.seriesQuestionNum}/10: ${scen.title}`;
+      if (cornerPopupTitle) cornerPopupTitle.textContent = applyRoleLabelMap(`📍 ${city.name} • Q${state.seriesQuestionNum}/10: ${scen.title}`);
       const cornerPopupBody = document.getElementById('cornerBubbleFullText');
       if (cornerPopupBody) cornerPopupBody.textContent = `${concisePrompt} — ${ageScaledBriefing}`;
       const cornerPopupRule = document.getElementById('cornerBubbleGoldenRule');
-      if (cornerPopupRule) cornerPopupRule.textContent = `⭐ Golden Rule: ${scen.goldenRule}`;
+      if (cornerPopupRule) cornerPopupRule.textContent = `⭐ Golden Rule: ${mappedRule}`;
       const ribbonQ = document.getElementById('ribbonQBadge');
       if (ribbonQ) ribbonQ.textContent = state.overtimeRedemptionActive ? `OT (+${qPts}p)` : `Q${state.seriesQuestionNum}/10 (${qPts}p)`;
 
@@ -8848,11 +9227,12 @@
       }
 
       // Timed Decision-Making Questions: Coach clarifies it's timed first + 3, 2, 1 countdown after explanation finishes!
+      // Respects Coach Portal Pace Override ('relaxed_no_clock' disables clock; 'pro_speed_no_hints' forces tight 4.5s clock)
       let isTimedPlay = false;
-      if (state.mode === 'position' && (scen.mechanic === 'pass_decision' || scen.mechanic === 'pov')) {
-        if (prof.ageGroup !== '8U' && ageCfg.clockSecs > 0 && (state.seriesQuestionNum >= 5 || state.currentCityIdx >= 4 || scen.mechanic === 'pass_decision' || scen.mechanic === 'pov')) {
+      if (coachPace !== 'relaxed_no_clock' && state.mode === 'position' && (scen.mechanic === 'pass_decision' || scen.mechanic === 'pov' || coachPace === 'pro_speed_no_hints')) {
+        if ((prof.ageGroup !== '8U' || coachPace === 'pro_speed_no_hints') && (ageCfg.clockSecs > 0 || coachPace === 'pro_speed_no_hints') && (state.seriesQuestionNum >= 5 || state.currentCityIdx >= 4 || scen.mechanic === 'pass_decision' || scen.mechanic === 'pov' || coachPace === 'pro_speed_no_hints')) {
           isTimedPlay = true;
-          const totalSecs = ageCfg.clockSecs;
+          const totalSecs = coachPace === 'pro_speed_no_hints' ? 4.5 : ageCfg.clockSecs;
           if (!aiDemoActive) {
             prepareTimedScenarioWithCountdown(scen, totalSecs, autoSpeak);
           }
@@ -9095,12 +9475,17 @@
         return rInfo ? rInfo.badge : '';
       };
 
+      const teamColor = (state.teamJerseyColors && state.teamJerseyColors.primary) || '#0284c7';
+      const d1Mapped = getMappedRoleLabel('D1');
+      const d2Mapped = getMappedRoleLabel('D2');
+      const f1Mapped = getMappedRoleLabel('F1');
+      const f3Mapped = getMappedRoleLabel('F3');
       if (scen.mechanic === 'position') {
         // Render teammates & defenders for context + 3 Tactical Lane Target Rings (A, B, C) so 3D POV is a real 3-way read!
-        draw3dPovSkater(ctx, W * 0.72, H * 0.54, W, H, '#e11d48', d0.label, isDefZone ? 'Puck Carrier (🛡️ D1)' : 'Defender (🛡️ D1)', false, false, '🛡️ D1');
-        draw3dPovSkater(ctx, W * 0.30, H * 0.50, W, H, '#0284c7', fmtLbl(t0.label), t0.role || 'Teammate', false, false, tmBadge(t0, 'T1'));
+        draw3dPovSkater(ctx, W * 0.72, H * 0.54, W, H, '#e11d48', d0.label, isDefZone ? `Puck Carrier (${d1Mapped})` : `Defender (${d1Mapped})`, false, false, d1Mapped);
+        draw3dPovSkater(ctx, W * 0.30, H * 0.50, W, H, teamColor, fmtLbl(t0.label), t0.role || 'Teammate', false, false, tmBadge(t0, 'T1'));
 
-        const youTargBadge = (povRoles.youTargetRoleObj && povRoles.youTargetRoleObj.badge) || povRoles.youRole.badge || '🦅 F3';
+        const youTargBadge = (povRoles.youTargetRoleObj && povRoles.youTargetRoleObj.badge) || povRoles.youRole.badge || f3Mapped;
         const laneOptions = [
           { x: W * 0.22, y: H * 0.56, label: 'LANE A: WIDE BOARDS', isSweet: false },
           { x: W * 0.46, y: H * 0.58, label: isDefZone ? `LANE B: PROTECT HOUSE (${youTargBadge} #9)` : `LANE B: HIGH SLOT / POINT (${youTargBadge} #9)`, isSweet: true },
@@ -9126,17 +9511,17 @@
         // Pass / Shoot Decision Mode in 3D POV
         const profPov = getActiveProfile();
         const showPovRole = (profPov.ageGroup === '8U' || state.animPhase === 'done' || state.showHint);
-        draw3dPovSkater(ctx, W * 0.66, H * 0.56, W, H, '#0284c7', fmtLbl(t1.label), showPovRole ? (t1.role || 'Tied Up Net-Front') : '', false, false, tmBadge(t1, 'T2'));
-        draw3dPovSkater(ctx, W * 0.69, H * 0.58, W, H, '#e11d48', d0.label, showPovRole ? `Covering ${fmtLbl(t1.label)}` : '', false, false, '🛡️ D1');
+        draw3dPovSkater(ctx, W * 0.66, H * 0.56, W, H, teamColor, fmtLbl(t1.label), showPovRole ? (t1.role || 'Tied Up Net-Front') : '', false, false, tmBadge(t1, 'T2'));
+        draw3dPovSkater(ctx, W * 0.69, H * 0.58, W, H, '#e11d48', d0.label, showPovRole ? `Covering ${fmtLbl(t1.label)}` : '', false, false, d1Mapped);
 
-        draw3dPovSkater(ctx, W * 0.22, H * 0.49, W, H, '#0284c7', fmtLbl(t2.label), showPovRole ? (t2.role || 'Point (Covered)') : '', false, false, tmBadge(t2, 'T3'));
-        draw3dPovSkater(ctx, W * 0.26, H * 0.52, W, H, '#e11d48', d1.label, showPovRole ? `Covering ${fmtLbl(t2.label)}` : '', false, false, '🏰 D2');
+        draw3dPovSkater(ctx, W * 0.22, H * 0.49, W, H, teamColor, fmtLbl(t2.label), showPovRole ? (t2.role || 'Point (Covered)') : '', false, false, tmBadge(t2, 'T3'));
+        draw3dPovSkater(ctx, W * 0.26, H * 0.52, W, H, '#e11d48', d1.label, showPovRole ? `Covering ${fmtLbl(t2.label)}` : '', false, false, d2Mapped);
 
         if (isShootTarget) {
-          draw3dPovSkater(ctx, W * 0.46, H * 0.58, W, H, '#0284c7', fmtLbl(t0.label), showPovRole ? (t0.role || 'Covered by D1') : '', false, false, tmBadge(t0, 'T1'));
+          draw3dPovSkater(ctx, W * 0.46, H * 0.58, W, H, teamColor, fmtLbl(t0.label), showPovRole ? (t0.role || 'Covered by D1') : '', false, false, tmBadge(t0, 'T1'));
         } else {
           const openLbl = fmtLbl(t0.label);
-          draw3dPovSkater(ctx, W * 0.46, H * 0.58, W, H, '#0284c7', openLbl, showPovRole ? `TAP TO PASS (${openLbl})` : '', highlightOpen, true, tmBadge(t0, 'T1'));
+          draw3dPovSkater(ctx, W * 0.46, H * 0.58, W, H, teamColor, openLbl, showPovRole ? `TAP TO PASS (${openLbl})` : '', highlightOpen, true, tmBadge(t0, 'T1'));
         }
       }
 
@@ -9169,7 +9554,7 @@
       ctx.stroke();
 
       // Banner with live YOU (#9) dynamic proximity role pill
-      const youPovRoleBadge = (povRoles.youRole && povRoles.youRole.badge) || '🐺 F1';
+      const youPovRoleBadge = (povRoles.youRole && povRoles.youRole.badge) || f1Mapped;
       ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
       ctx.fillRect(W * 0.12, H * 0.03, W * 0.76, H * 0.08);
       ctx.fillStyle = '#38bdf8';
@@ -9642,7 +10027,8 @@
         const faceAng = Math.atan2(holderPt.y - pt.y, holderPt.x - pt.x);
         const isOpenTarget = !(t.role || '').toLowerCase().includes('covered') && !(t.role || '').toLowerCase().includes('tied');
         const tmRoleObj = liveRoles.byId[t.id];
-        drawSkaterToken(ctx, pt.x, pt.y, W, '#0284c7', '#ffffff', lbl, false, scen.mechanic === 'pass_decision' && !conceptMastered, showRole ? t.role : '', {
+        const tmJerseyPrimary = (state.teamJerseyColors && state.teamJerseyColors.primary) || '#0284c7';
+        drawSkaterToken(ctx, pt.x, pt.y, W, tmJerseyPrimary, '#ffffff', lbl, false, scen.mechanic === 'pass_decision' && !conceptMastered, showRole ? applyRoleLabelMap(t.role || '') : '', {
           facingAngle: faceAng,
           headAngleDeg: (faceAng * 180) / Math.PI,
           stickSide: t.stickSide || (i % 2 === 0 ? 'left' : 'right'),
@@ -9891,7 +10277,7 @@
         stickSide: (prof.hand || 'Left').toLowerCase() === 'right' ? 'right' : 'left',
         isPrimaryDefender: false,
         stickOnIce: true,
-        dynamicRoleBadge: youRoleObj ? youRoleObj.badge : '🐺 F1',
+        dynamicRoleBadge: youRoleObj ? youRoleObj.badge : getMappedRoleLabel('F1'),
         dynamicRoleColor: youRoleObj ? youRoleObj.border : '#fbbf24'
       });
 
@@ -10025,7 +10411,7 @@
       ctx.textBaseline = 'middle';
       ctx.fillText(label, x, y);
 
-      // Dynamic Proximity Role Pill Badge (🐺 F1, 🦊 F2, 🦅 F3, 🛡️ D1, 🏰 D2) placed cleanly above-right of token rim so center number stays 100% clear!
+      // Dynamic Proximity Role Pill Badge (F1, F2, F3, D1, D2 or Coach Custom Mapped Label) placed cleanly above-right of token rim so center number stays 100% clear!
       const dynBadge = anatomicalOpts && anatomicalOpts.dynamicRoleBadge;
       if (dynBadge) {
         const badgeFontPx = Math.max(8, Math.floor(W * 0.0092));
@@ -10718,10 +11104,11 @@
       });
 
       const youPt = normToCanvas(state.liveYou.x, state.liveYou.y, W, H, zone);
+      const liveTeamColor = (state.teamJerseyColors && state.teamJerseyColors.primary) || '#0284c7';
       state.liveTeammates.forEach(tm => {
         const pt = normToCanvas(tm.x, tm.y, W, H, zone);
         const tmRole = liveRoles.byId[tm.id];
-        drawSkaterToken(ctx, pt.x, pt.y, W, '#0284c7', '#ffffff', '#' + tm.label, false, false, '', {
+        drawSkaterToken(ctx, pt.x, pt.y, W, liveTeamColor, '#ffffff', '#' + tm.label, false, false, '', {
           dynamicRoleBadge: tmRole ? tmRole.badge : '',
           dynamicRoleColor: tmRole ? tmRole.border : '#38bdf8'
         });
@@ -10729,7 +11116,7 @@
 
       const youRole = liveRoles.byId.YOU;
       drawSkaterToken(ctx, youPt.x, youPt.y, W, '#f59e0b', '#0f172a', 'YOU #9', true, false, '', {
-        dynamicRoleBadge: youRole ? youRole.badge : '🐂 F1',
+        dynamicRoleBadge: youRole ? youRole.badge : getMappedRoleLabel('F1'),
         dynamicRoleColor: youRole ? youRole.border : '#fbbf24'
       });
       const puckPt = normToCanvas(state.livePuck.x, state.livePuck.y, W, H, zone);
@@ -10883,6 +11270,9 @@
       const titleEl = document.getElementById('feedbackTitle');
       const bodyEl = document.getElementById('feedbackBody');
       const ptsEl = document.getElementById('feedbackPoints');
+      const mapFn = typeof applyRoleLabelMap === 'function' ? applyRoleLabelMap : (s => s);
+      const mappedTitle = mapFn(title);
+      const mappedBody = mapFn(body);
 
       card.classList.remove('hidden', 'bg-emerald-950/70', 'border-emerald-500/50', 'bg-rose-950/70', 'border-rose-500/50');
       if (isSuccess) {
@@ -10894,8 +11284,8 @@
         titleEl.className = 'text-sm font-black text-amber-300';
         ptsEl.className = 'text-xs font-extrabold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300';
       }
-      titleEl.textContent = title;
-      bodyEl.textContent = body;
+      titleEl.textContent = mappedTitle;
+      bodyEl.textContent = mappedBody;
       ptsEl.textContent = badgeText;
 
       // Also display the Clean On-Ice Feedback Banner at the bottom of the full-screen ice sheet!
@@ -10909,16 +11299,16 @@
         onIceBanner.classList.remove('hidden', 'border-emerald-400', 'border-amber-400');
         onIceBanner.classList.add(isSuccess ? 'border-emerald-400' : 'border-amber-400');
         onIceTitle.className = isSuccess ? 'text-xs sm:text-sm font-black text-emerald-300' : 'text-xs sm:text-sm font-black text-amber-300';
-        onIceTitle.textContent = title;
+        onIceTitle.textContent = mappedTitle;
         if (onIceBadge) {
           onIceBadge.className = isSuccess
             ? 'text-[10px] font-black px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/40'
             : 'text-[10px] font-black px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/40';
           onIceBadge.textContent = badgeText;
         }
-        onIceBody.textContent = body;
+        onIceBody.textContent = mappedBody;
         if (onIceRule && scen) {
-          onIceRule.textContent = `⭐ Golden Rule: ${scen.goldenRule}`;
+          onIceRule.textContent = `⭐ Golden Rule: ${mapFn(scen.goldenRule || '')}`;
         }
       }
     }
@@ -11268,7 +11658,10 @@
           status: isCurrentActive ? 'Active Skater 🏒' : 'Family / Roster ✅'
         };
       });
-      (state.invitedTeammates || []).forEach(tm => {
+      (state.invitedTeammates || []).forEach((tm, idx) => {
+        if (!tm.id) {
+          tm.id = tm.login_key || ('tm_' + String(tm.name || idx).toLowerCase().replace(/[^a-z0-9]+/g, '_'));
+        }
         if (!list.some(x => x.name.toLowerCase() === tm.name.toLowerCase())) {
           ensureProfileAvatarDefaults(tm);
           list.push({ ...tm, isLocalProfile: false, isActive: false });
@@ -12100,17 +12493,141 @@
     }
 
     // =========================================================================
-    // TEAM MANAGER, ROSTER & COACH INVITE MODAL (COACH LOGIN + PLAYER LOGIN)
+    // TEAM MANAGER, ROSTER & COACH INVITE MODAL (COACH LOGIN + PLAYER LOGIN + 4-LEVEL CUSTOMIZATIONS)
     // =========================================================================
     state.teamPortalSubView = 'coach';
     state.coachWeeklyAssignment = {
       focus: 'breakout',
       focusLabel: '🚀 Breakouts & Regroups (Winger Hashmarks / D-to-D / Wheel)',
+      targetGroup: 'all',
+      targetGroupLabel: '👥 Whole Team (All Lines & D-Pairs)',
       prompt: 'Our D-men are struggling with behind-the-net D-to-D swing passes under F1 pressure—drill weak-side escapes and low-and-slow Center curls.',
       coachName: 'Coach Dane',
       teamName: 'Minot Wolves 10U AA',
       timestamp: 'Assigned Today'
     };
+
+    const COACH_LEVEL_PERSPECTIVE_META = {
+      level_a_8u10u: {
+        code: 'level_a_8u10u',
+        badge: 'Level A: 8U/10U Volunteer Coach',
+        desc: 'Level A (8U/10U Youth Volunteer): Simplicity-first setup, optional Bull/Fox/Eagle role presets, Relaxed Hints (No Clock Pressure) toggle, and Team Co-Op Stanley Cup goals.',
+        pace: 'relaxed_no_clock',
+        targetGroup: 'all',
+        focus: 'spacing'
+      },
+      level_b_12u14u: {
+        code: 'level_b_12u14u',
+        badge: 'Level B: 12U/14U AA/AAA Travel Coach',
+        desc: 'Level B (12U/14U AA/AAA Travel): Team System Playbook alignment (2-1-2 Forecheck, Protect the House, D-to-D Over), position-group homework (Forwards vs D), and practice scouting alerts.',
+        pace: 'default',
+        targetGroup: 'defensemen',
+        focus: 'breakout'
+      },
+      level_c_16u18u: {
+        code: 'level_c_16u18u',
+        badge: 'Level C: 16U/18U HS / Junior Coach',
+        desc: 'Level C (16U/18U High School / Junior): Special teams (1-3-1 Umbrella PP & Box/Diamond PK), NZ regroups, AAA/Jr Pro-Speed clock overrides (4.5s / 0 Hints), and film-study depth.',
+        pace: 'pro_speed_no_hints',
+        targetGroup: 'forwards',
+        focus: 'forecheck'
+      },
+      level_d_director: {
+        code: 'level_d_director',
+        badge: 'Level D: Association Hockey Director (ASSOC-MINOT / ASSOC-FOOTHILLS)',
+        desc: 'Level D (Association Hockey Director): Multi-team association oversight (ASSOC-MINOT / ASSOC-FOOTHILLS), 22-seat roster management, and standardized ADM progression.',
+        pace: 'default',
+        targetGroup: 'all',
+        focus: 'house'
+      }
+    };
+    window.COACH_LEVEL_PERSPECTIVE_META = COACH_LEVEL_PERSPECTIVE_META;
+
+    function applyCoachLevelPreset(levelCode) {
+      const meta = COACH_LEVEL_PERSPECTIVE_META[levelCode] || COACH_LEVEL_PERSPECTIVE_META.level_b_12u14u;
+      state.activeCoachLevel = meta.code;
+      state.teamCoachingPace = meta.pace;
+      const badgeEl = document.getElementById('activeCoachLevelBadge');
+      if (badgeEl) badgeEl.textContent = meta.badge;
+      const descEl = document.getElementById('coachLevelPerspectiveDesc');
+      if (descEl) descEl.textContent = meta.desc;
+      document.querySelectorAll('.coach-level-btn').forEach(btn => {
+        const isAct = btn.dataset.coachLevel === meta.code;
+        btn.className = isAct
+          ? 'coach-level-btn px-2.5 py-1.5 rounded-lg bg-cyan-500 text-slate-950 font-black text-[10px] shadow transition text-left'
+          : 'coach-level-btn px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-[10px] transition text-left';
+      });
+      const paceSel = document.getElementById('selectTeamCoachingPace');
+      if (paceSel) paceSel.value = meta.pace;
+      const groupSel = document.getElementById('selectCoachHomeworkTargetGroup');
+      if (groupSel) groupSel.value = meta.targetGroup;
+      const focusSel = document.getElementById('selectCoachWeeklyFocus');
+      if (focusSel) focusSel.value = meta.focus;
+      return meta;
+    }
+    window.applyCoachLevelPreset = applyCoachLevelPreset;
+
+    function saveAndSyncCoachCustomizations() {
+      SoundFX.playGoalHorn();
+      const f1In = document.getElementById('inputRoleMapF1');
+      const f2In = document.getElementById('inputRoleMapF2');
+      const f3In = document.getElementById('inputRoleMapF3');
+      const d1In = document.getElementById('inputRoleMapD1');
+      const d2In = document.getElementById('inputRoleMapD2');
+      setRoleLabelMap({
+        F1: f1In ? f1In.value : 'F1',
+        F2: f2In ? f2In.value : 'F2',
+        F3: f3In ? f3In.value : 'F3',
+        D1: d1In ? d1In.value : 'D1',
+        D2: d2In ? d2In.value : 'D2'
+      });
+
+      const fcSel = document.getElementById('selectTeamSysForecheck');
+      const dzSel = document.getElementById('selectTeamSysDZone');
+      const boSel = document.getElementById('selectTeamSysBreakout');
+      const ppSel = document.getElementById('selectTeamSysPP');
+      const pkSel = document.getElementById('selectTeamSysPK');
+      state.teamPlaybookSystems = {
+        forecheck: fcSel ? fcSel.value : '2-1-2 Aggressive',
+        dzone: dzSel ? dzSel.value : 'Protect the House',
+        breakout: boSel ? boSel.value : 'D-to-D Over',
+        pp: ppSel ? ppSel.value : '1-3-1 Umbrella',
+        pk: pkSel ? pkSel.value : 'Box'
+      };
+      const pbSummary = `${state.teamPlaybookSystems.forecheck} • ${state.teamPlaybookSystems.dzone} • ${state.teamPlaybookSystems.breakout}`;
+      const pbBadge = document.getElementById('activePlaybookSummaryBadge');
+      if (pbBadge) pbBadge.textContent = pbSummary;
+
+      const primCol = document.getElementById('inputTeamPrimaryColor');
+      const secCol = document.getElementById('inputTeamSecondaryColor');
+      state.teamJerseyColors = {
+        primary: (primCol && primCol.value) || '#0284c7',
+        secondary: (secCol && secCol.value) || '#fbbf24'
+      };
+
+      const paceSel = document.getElementById('selectTeamCoachingPace');
+      state.teamCoachingPace = (paceSel && paceSel.value) || 'default';
+
+      if (typeof PuckSenseCloud !== 'undefined' && PuckSenseCloud.upsertTeam) {
+        PuckSenseCloud.upsertTeam(state.teamCode || 'PUCK99').catch(() => {});
+      }
+      saveProgress();
+      drawRink();
+      renderTeamManagerModal();
+      const toast = document.getElementById('coachCustomizationsSavedToast');
+      if (toast) {
+        const mapStr = `F1=${state.roleLabelMap.F1}, F2=${state.roleLabelMap.F2}, F3=${state.roleLabelMap.F3}, D1=${state.roleLabelMap.D1}, D2=${state.roleLabelMap.D2}`;
+        toast.textContent = `✅ Saved & synced to Supabase (${state.teamCode || 'PUCK99'}): Roles [${mapStr}] • Playbook [${pbSummary}] • Pace [${state.teamCoachingPace}]!`;
+        toast.classList.remove('hidden');
+      }
+      return {
+        roleLabelMap: state.roleLabelMap,
+        teamPlaybookSystems: state.teamPlaybookSystems,
+        teamJerseyColors: state.teamJerseyColors,
+        teamCoachingPace: state.teamCoachingPace
+      };
+    }
+    window.saveAndSyncCoachCustomizations = saveAndSyncCoachCustomizations;
 
     function switchTeamPortalSubView(subView) {
       state.teamPortalSubView = subView === 'player' ? 'player' : 'coach';
@@ -12137,11 +12654,16 @@
     function approveAndPushCoachLessonPlan() {
       SoundFX.playGoalHorn();
       const selEl = document.getElementById('selectCoachWeeklyFocus');
+      const groupEl = document.getElementById('selectCoachHomeworkTargetGroup');
       const promptEl = document.getElementById('inputCoachAiLessonPrompt');
       const focusVal = selEl ? selEl.value : 'breakout';
       const focusLabel = selEl && selEl.options[selEl.selectedIndex]
         ? selEl.options[selEl.selectedIndex].text
         : '🚀 Breakouts & Regroups';
+      const targetGroup = groupEl ? groupEl.value : 'all';
+      const targetGroupLabel = groupEl && groupEl.options[groupEl.selectedIndex]
+        ? groupEl.options[groupEl.selectedIndex].text
+        : '👥 Whole Team (All Lines & D-Pairs)';
       const customPrompt = (promptEl && promptEl.value.trim())
         ? promptEl.value.trim()
         : 'Our D-men are struggling with behind-the-net D-to-D swing passes under F1 pressure—drill weak-side escapes and low-and-slow Center curls.';
@@ -12149,7 +12671,9 @@
       state.coachWeeklyAssignment = {
         focus: focusVal,
         focusLabel,
-        prompt: customPrompt,
+        targetGroup,
+        targetGroupLabel,
+        prompt: applyRoleLabelMap(customPrompt),
         coachName: state.coachName || 'Coach Dane & Coach Evan',
         teamName: state.teamName || 'PuckSense Select 3v3',
         timestamp: 'Pushed Just Now ✅'
@@ -12160,7 +12684,7 @@
       }
       const toast = document.getElementById('coachPushLessonToast');
       if (toast) {
-        toast.textContent = `✅ Approved & pushed "${focusLabel}" (10-Drill Series) to all ${getAllGroupParticipants().length} Player Inboxes & synced to Supabase (PUCK99)!`;
+        toast.textContent = `✅ Approved & pushed "${focusLabel}" (${targetGroupLabel}) to Player Inboxes & synced to Supabase (${state.teamCode || 'PUCK99'})!`;
         toast.classList.remove('hidden');
       }
       renderTeamManagerModal();
@@ -12209,12 +12733,15 @@
     const MAX_TEAM_ROSTER_SEATS = 22;
 
     function getActiveTeamRosterMembers() {
-      const kickedSet = new Set(state.kickedRosterIds || []);
+      if (!Array.isArray(state.kickedRosterIds)) state.kickedRosterIds = [];
+      const kickedSet = new Set(state.kickedRosterIds);
       const filtered = getAllGroupParticipants().filter(m => !kickedSet.has(m.id));
-      if (filtered.length > MAX_TEAM_ROSTER_SEATS && Array.isArray(state.invitedTeammates)) {
-        const overflow = filtered.length - MAX_TEAM_ROSTER_SEATS;
-        state.invitedTeammates.splice(Math.max(0, state.invitedTeammates.length - overflow), overflow);
-        return getAllGroupParticipants().filter(m => !kickedSet.has(m.id)).slice(0, MAX_TEAM_ROSTER_SEATS);
+      if (filtered.length > MAX_TEAM_ROSTER_SEATS) {
+        filtered.slice(MAX_TEAM_ROSTER_SEATS).forEach(extra => {
+          if (extra && extra.id && !state.kickedRosterIds.includes(extra.id)) {
+            state.kickedRosterIds.push(extra.id);
+          }
+        });
       }
       return filtered.slice(0, MAX_TEAM_ROSTER_SEATS);
     }
@@ -12223,11 +12750,13 @@
     function kickRosterPlayer(memberId) {
       if (!memberId) return false;
       SoundFX.playTap();
+      getActiveTeamRosterMembers();
       if (!Array.isArray(state.kickedRosterIds)) state.kickedRosterIds = [];
-      if (Array.isArray(state.invitedTeammates) && state.invitedTeammates.some(t => t.id === memberId)) {
-        state.invitedTeammates = state.invitedTeammates.filter(t => t.id !== memberId);
-      } else if (!state.kickedRosterIds.includes(memberId)) {
+      if (!state.kickedRosterIds.includes(memberId)) {
         state.kickedRosterIds.push(memberId);
+      }
+      if (Array.isArray(state.invitedTeammates)) {
+        state.invitedTeammates = state.invitedTeammates.filter(t => t.id !== memberId);
       }
       saveProgress();
       renderTeamManagerModal();
@@ -12382,6 +12911,8 @@
       const inbTitle = document.getElementById('playerInboxAssignmentTitle');
       const inbPrompt = document.getElementById('playerInboxAssignmentDesc') || document.getElementById('playerInboxAssignmentPrompt');
       const inbBadge = document.getElementById('playerInboxStatusBadge');
+      const inbTargetGroup = document.getElementById('playerInboxTargetGroupBadge');
+      const inbPlaybook = document.getElementById('playerInboxPlaybookBadge');
       const curProf = getActiveProfile();
       const hasRemedial = Array.isArray(curProf.remedialInbox) && curProf.remedialInbox.length > 0;
       if (inbTitle) {
@@ -12390,10 +12921,25 @@
           : `🎯 ${assign.focusLabel || 'Breakouts & Regroups'} (10-Drill Series)`;
       }
       if (inbPrompt) {
-        inbPrompt.textContent = `Coach Note: "${assign.prompt || 'Eyes up before retrieving the rim! Scan defender hips and hit the weak-side outlet.'}"`;
+        inbPrompt.textContent = `Coach Note: "${applyRoleLabelMap(assign.prompt || 'Eyes up before retrieving the rim! Scan defender hips and hit the weak-side outlet.')}"`;
       }
       if (inbBadge) {
         inbBadge.textContent = assign.timestamp || 'Assigned Today';
+      }
+      if (inbTargetGroup) {
+        inbTargetGroup.textContent = `🎯 Target Group: ${assign.targetGroupLabel || 'Whole Team'}`;
+      }
+      if (inbPlaybook) {
+        const pb = state.teamPlaybookSystems || { forecheck: '2-1-2 Aggressive', dzone: 'Protect the House', breakout: 'D-to-D Over' };
+        inbPlaybook.textContent = `📋 Team System: ${pb.forecheck} • ${pb.dzone} • ${pb.breakout}`;
+      }
+      // Sync Role Map inputs & Playbook Summary badge inside Coach View
+      if (typeof refreshAllRoleLabelUI === 'function') {
+        refreshAllRoleLabelUI();
+      }
+      const pbBadge = document.getElementById('activePlaybookSummaryBadge');
+      if (pbBadge && state.teamPlaybookSystems) {
+        pbBadge.textContent = `${state.teamPlaybookSystems.forecheck} • ${state.teamPlaybookSystems.dzone} • ${state.teamPlaybookSystems.breakout}`;
       }
 
       // Populate 8U/10U Team Co-Op Stanley Cup Progress Bar
@@ -12889,6 +13435,62 @@
     if (approveCoachBtn) approveCoachBtn.addEventListener('click', approveAndPushCoachLessonPlan);
     const launchAssignBtn = document.getElementById('btnLaunchCoachAssignment');
     if (launchAssignBtn) launchAssignBtn.addEventListener('click', launchCoachAssignment);
+
+    // 5 Multi-Level Coach Portal Customization Listeners (Role Map Presets, Playbook Systems, Jersey Colors, Pace & 4-Level Perspective Switcher)
+    const presetStdBtn = document.getElementById('btnPresetRoleStandard');
+    if (presetStdBtn) {
+      presetStdBtn.addEventListener('click', () => {
+        SoundFX.playTap();
+        setRoleLabelMap({ F1: 'F1', F2: 'F2', F3: 'F3', D1: 'D1', D2: 'D2' });
+      });
+    }
+    const presetAnimalBtn = document.getElementById('btnPresetRoleAnimal');
+    if (presetAnimalBtn) {
+      presetAnimalBtn.addEventListener('click', () => {
+        SoundFX.playTap();
+        setRoleLabelMap({ F1: 'Bull', F2: 'Fox', F3: 'Eagle', D1: 'D1', D2: 'D2' });
+      });
+    }
+    const presetProBtn = document.getElementById('btnPresetRolePro');
+    if (presetProBtn) {
+      presetProBtn.addEventListener('click', () => {
+        SoundFX.playTap();
+        setRoleLabelMap({ F1: 'Pressure', F2: 'Seal', F3: 'High', D1: 'Strong-D', D2: 'House-D' });
+      });
+    }
+    ['F1', 'F2', 'F3', 'D1', 'D2'].forEach(code => {
+      const inp = document.getElementById('inputRoleMap' + code);
+      if (inp) {
+        inp.addEventListener('input', () => {
+          const nextMap = { ...(state.roleLabelMap || { F1: 'F1', F2: 'F2', F3: 'F3', D1: 'D1', D2: 'D2' }) };
+          nextMap[code] = inp.value.trim() || code;
+          setRoleLabelMap(nextMap);
+        });
+      }
+    });
+    document.querySelectorAll('.coach-level-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        SoundFX.playTap();
+        applyCoachLevelPreset(btn.dataset.coachLevel);
+      });
+    });
+    document.querySelectorAll('.btn-team-jersey-preset').forEach(btn => {
+      btn.addEventListener('click', () => {
+        SoundFX.playTap();
+        const prim = btn.dataset.teamPrimary || '#0284c7';
+        const sec = btn.dataset.teamSecondary || '#fbbf24';
+        const pIn = document.getElementById('inputTeamPrimaryColor');
+        const sIn = document.getElementById('inputTeamSecondaryColor');
+        if (pIn) pIn.value = prim;
+        if (sIn) sIn.value = sec;
+        state.teamJerseyColors = { primary: prim, secondary: sec };
+        drawRink();
+      });
+    });
+    const saveCoachCustBtn = document.getElementById('btnSaveCoachCustomizations');
+    if (saveCoachCustBtn) {
+      saveCoachCustBtn.addEventListener('click', saveAndSyncCoachCustomizations);
+    }
     const unlockPersonalProFromTeamBtn = document.getElementById('btnPlayerViewUnlockPersonalPro');
     if (unlockPersonalProFromTeamBtn) {
       unlockPersonalProFromTeamBtn.addEventListener('click', () => {
@@ -14819,19 +15421,19 @@
       const code = (codeInput && codeInput.value.trim().toUpperCase()) || 'PUCK99';
       const toast = document.getElementById('sandboxLoginFeedbackToast');
       const assocPreset = PARTNER_ASSOCIATION_PRESETS[code];
+      const teamRow = await PuckSenseCloud.fetchTeamByCode(code);
       if (assocPreset) {
-        state.teamName = assocPreset.team_name;
+        state.teamName = (teamRow && teamRow.team_name) || assocPreset.team_name;
         state.teamCode = assocPreset.team_code;
-        state.coachName = assocPreset.coach_name;
-        state.teamTrophyPoints = assocPreset.coop_trophy_points;
+        state.coachName = (teamRow && teamRow.coach_name) || assocPreset.coach_name;
+        state.teamTrophyPoints = (teamRow && teamRow.coop_trophy_points) || assocPreset.coop_trophy_points;
         if (toast && showToast) {
           toast.classList.remove('hidden');
-          toast.textContent = `🤝 Synced Partner Association "${assocPreset.team_name}" (${assocPreset.team_code}) • ${assocPreset.discount_label} • ${assocPreset.seats} Coach Seats Active!`;
+          toast.textContent = `🤝 Synced Partner Association "${state.teamName}" (${assocPreset.team_code}) • ${assocPreset.discount_label} • ${assocPreset.seats} Coach Seats Active!`;
         }
         renderNhlTourMap();
-        return assocPreset;
+        return teamRow || assocPreset;
       }
-      const teamRow = await PuckSenseCloud.fetchTeamByCode(code);
       if (toast && showToast) {
         toast.classList.remove('hidden');
         if (teamRow) {

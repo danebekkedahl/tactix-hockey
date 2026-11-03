@@ -39,9 +39,9 @@
             <h1 class="text-base sm:text-lg font-black tracking-tight text-white">TACTIX <span class="text-sky-400">HOCKEY</span></h1>
             <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-widest shadow">PLAY. LEARN. DOMINATE.</span>
             <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-400/40 text-[10px] font-black uppercase tracking-wider">HOCKEY IQ & STRATEGY PLATFORM</span>
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">v8.0 Nightly Auto-Pilot • 360 Cloud Scenarios (15 Buckets) • 39 Cloud Video Clips (16 Channels) • 9-Seat Board</span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">v8.1 Nightly Auto-Pilot • Clean F1–F3 / D1–D2 + Role Mapper • 5 Coach Customizations • 9-Seat Continuous-Improvement Board</span>
           </div>
-          <p class="text-xs text-slate-400">Animated Coach Bob Reflex Pop-Up • Mathseeds Tiers (Rec → B → A → AA → AAA) • 360 Tagged Cloud Scenarios + 39 Verified Video Clips • Partner Association 50% Coach Discount</p>
+          <p class="text-xs text-slate-400">Clean F1, F2, F3, D1, D2 Base Default + Single-Label Custom Role Mapper • 4-Level Coach Portal Customizations • 360 Cloud Scenarios + 39 Verified Video Clips</p>
         </div>
       </div>
       <div class="flex items-center gap-2">
@@ -194,52 +194,52 @@
     </section>
 
     <!-- =================================================================== -->
-    <!-- SECTION 7: DYNAMIC PROXIMITY ROLES (F1/F2/F3 & D1/D2 — BULL/FOX/EAGLE) -->
+    <!-- SECTION 7: DYNAMIC PROXIMITY ROLES (CLEAN F1/F2/F3 & D1/D2 + CUSTOM ROLE MAPPER) -->
     <!-- =================================================================== -->
     <section class="glass-card rounded-2xl p-5 border-amber-500/40 shadow-2xl space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
         <div>
-          <span class="text-[11px] font-black uppercase tracking-widest text-amber-300 block">🐂🦊🦅 Section 7 • Real-Time Proximity Role Engine</span>
-          <h3 class="text-lg font-black text-white">Dynamic Proximity Roles: <code>F1 / F2 / F3</code> ("The Bull, Fox & Eagle") & <code>D1 / D2</code></h3>
-          <p class="text-xs text-slate-300">Sorted every frame by Euclidean distance <code>Math.hypot(skater.x - puck.x, skater.y - puck.y)</code> across 2D Rink, 3D POV, and Live Shift modes.</p>
+          <span class="text-[11px] font-black uppercase tracking-widest text-amber-300 block">🏒 Section 7 • Clean Base Default + Single-Label Custom Role Mapper (`applyRoleLabelMap`)</span>
+          <h3 class="text-lg font-black text-white">Dynamic Proximity Roles: Clean <code>F1, F2, F3, D1, D2</code> Base + 1-Tap Coach Role Presets</h3>
+          <p class="text-xs text-slate-300">Out-of-the-box tokens, buttons, and Coach Bob prompts display strictly clean <code>F1, F2, F3, D1, D2</code>. When a coach customizes role names (e.g. <code>F1 → "Bull"</code>), <code>applyRoleLabelMap(text)</code> swaps whole-word <code>\bF1\b</code> so it <strong>ONLY</strong> outputs <code>"Bull"</code> (never <code>"F1 Bull"</code>).</p>
         </div>
         <span class="px-3 py-1 rounded-xl bg-amber-500/20 border border-amber-400/50 text-amber-300 text-xs font-black">+5 Role-Read IQ Bonus Active</span>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs">
         <div class="p-3 rounded-xl bg-slate-950/90 border border-amber-400/40">
-          <div class="font-black text-amber-300 text-sm mb-1">🐂 F1 — The Bull</div>
-          <div class="text-[11px] text-slate-300"><strong>Closest Forward to Puck:</strong> Charges in to apply direct stick-on-puck angle pressure and force a rushed board play.</div>
+          <div class="font-black text-amber-300 text-sm mb-1">F1 — First Forward</div>
+          <div class="text-[11px] text-slate-300"><strong>Closest Forward to Puck:</strong> Angles the puck carrier stick-on-puck to take away time and space. (Optional Youth Preset: <code>Bull</code>)</div>
         </div>
         <div class="p-3 rounded-xl bg-slate-950/90 border border-sky-400/40">
-          <div class="font-black text-sky-300 text-sm mb-1">🦊 F2 — The Fox</div>
-          <div class="text-[11px] text-slate-300"><strong>2nd-Closest Forward:</strong> Reads the Bull's angle, seals the strong-side wall or outlet, and pounces on forced turnovers.</div>
+          <div class="font-black text-sky-300 text-sm mb-1">F2 — Second Forward</div>
+          <div class="text-[11px] text-slate-300"><strong>2nd-Closest Forward:</strong> Reads F1's angle, seals the strong-side wall or outlet, and jumps on turnovers. (Optional Youth Preset: <code>Fox</code>)</div>
         </div>
         <div class="p-3 rounded-xl bg-slate-950/90 border border-emerald-400/40">
-          <div class="font-black text-emerald-300 text-sm mb-1">🦅 F3 — The Eagle</div>
-          <div class="text-[11px] text-slate-300"><strong>Furthest Forward from Puck:</strong> Soars high in the slot above the circles as the safety valve against odd-man rushes.</div>
+          <div class="font-black text-emerald-300 text-sm mb-1">F3 — Third Forward</div>
+          <div class="text-[11px] text-slate-300"><strong>Furthest Forward from Puck:</strong> Holds high in the slot above the circles as the safety valve against odd-man rushes. (Optional Youth Preset: <code>Eagle</code>)</div>
         </div>
         <div class="p-3 rounded-xl bg-slate-950/90 border border-indigo-400/40">
-          <div class="font-black text-indigo-300 text-sm mb-1">🛡️ D1 — First D</div>
+          <div class="font-black text-indigo-300 text-sm mb-1">D1 — First Defenseman</div>
           <div class="text-[11px] text-slate-300"><strong>Closest Defenseman:</strong> Holds strong-side blue line wall on offense; challenges the puck carrier in the corner/gap on defense.</div>
         </div>
         <div class="p-3 rounded-xl bg-slate-950/90 border border-purple-400/40">
-          <div class="font-black text-purple-300 text-sm mb-1">🏰 D2 — Protect House</div>
+          <div class="font-black text-purple-300 text-sm mb-1">D2 — Second Defenseman</div>
           <div class="text-[11px] text-slate-300"><strong>Furthest Defenseman:</strong> Anchors the net-front slot to <strong>Protect the House</strong> on defense, or hinges middle point on offense.</div>
         </div>
       </div>
     </section>
 
     <!-- =================================================================== -->
-    <!-- SECTION 8: 9-SEAT PROFESSIONAL INDUSTRY, TEACHING, ENGINEERING & VIDEO QC BOARD -->
+    <!-- SECTION 8: 9-SEAT CONTINUOUS-IMPROVEMENT BOARD (NO PASS / FAIL)     -->
     <!-- =================================================================== -->
     <section id="industryBoardSection" class="glass-card rounded-2xl p-5 border-sky-500/40 shadow-2xl space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
         <div>
-          <span class="text-[11px] font-black uppercase tracking-widest text-sky-300 block">🏛️ Section 8 • 4-Stage Nightly Auto-Pilot (`RUN NIGHTLY AUTOPILOT`) &amp; 9-Seat Board Governance</span>
-          <h3 class="text-lg sm:text-xl font-black text-white">9-Seat Professional Industry, Teaching Strategy, Engineering &amp; Video QC Board Status</h3>
-          <p class="text-xs text-slate-300">Type <strong>"RUN NIGHTLY AUTOPILOT"</strong> (or <strong>"RUN MASTER PIPELINE"</strong>) in <code>Main App Code Page</code> to execute the 5-Persona &amp; 9-Seat Deep Playtest Suite (`deep_playtest_audit.js`) + Multi-Channel Video Harvester (`harvest-tactix-videos.js`) end-to-end.</p>
+          <span class="text-[11px] font-black uppercase tracking-widest text-sky-300 block">🏛️ Section 8 • 4-Stage Nightly Auto-Pilot (`RUN NIGHTLY AUTOPILOT`) &amp; 9-Seat Continuous-Improvement Board</span>
+          <h3 class="text-lg sm:text-xl font-black text-white">9-Seat Professional Industry, Teaching Strategy, 4-Level Coach Panel, Engineering &amp; Video QC Board</h3>
+          <p class="text-xs text-slate-300">Rubber-stamp badges are permanently replaced by four structured sections per seat: <strong>(A) What Was Observed Live</strong>, <strong>(B) What Can Be Better</strong>, <strong>(C) 3 Concrete Better Options for Coach Dane &amp; Coach Evan</strong>, and <strong>(D) Live Code/Database Edit Shipped in This Run</strong>.</p>
         </div>
-        <span class="px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-xs font-black">✅ Stage 1–4 Complete • 9/9 Seats PASS • 39 Cloud Video Clips • 0 Issues</span>
+        <span class="px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-xs font-black">🔄 Stage 1–4 Complete • 9 Continuous-Improvement Reviews • 360 Clean Scenarios • 39 Video Clips</span>
       </div>
 
       <!-- 4-Stage Master Sequence Bar -->
@@ -250,161 +250,159 @@
             <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[9px] font-black">✓ Complete</span>
           </div>
           <div class="font-bold text-white">5 Personas × 4 Viewports (`deep_playtest_audit.js`)</div>
-          <div class="text-[11px] text-slate-400 mt-0.5">Inspected Persona 1 (`8U`), Persona 2 (`12U–14U`), Persona 3 (`16U–18U Pro`), Persona 4 (`Team Portal`), and Persona 5 (`Pixel/Overlap Inspector` on `390x844`, `768x1024`, `1024x768`, `1280x800`).</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Inspected Persona 1 (`8U`), Persona 2 (`12U–14U` + Clean `F1–F3/D1–D2` &amp; `applyRoleLabelMap`), Persona 3 (`16U–18U Pro`), Persona 4 (`4-Level Coach Portal`), and Persona 5 (`Pixel/Overlap Inspector`).</div>
         </div>
         <div class="p-3 rounded-xl bg-slate-950/90 border border-amber-400/40">
           <div class="flex items-center justify-between mb-1">
-            <span class="font-black text-amber-300 uppercase text-[10px]">Stage 2 • 8-Seat Board Review</span>
+            <span class="font-black text-amber-300 uppercase text-[10px]">Stage 2 • 9-Seat Board Review</span>
             <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[9px] font-black">✓ Complete</span>
           </div>
-          <div class="font-bold text-white">8-Seat Industry, Teaching &amp; Engineering Board</div>
-          <div class="text-[11px] text-slate-400 mt-0.5">Includes <strong>Seat 2 (Master Hockey Educator &amp; Instructional Designer)</strong>, <strong>Seat 6 (Dedicated Coach Portal Tester)</strong>, and <strong>Seat 8 (Principal Engineer)</strong>.</div>
+          <div class="font-bold text-white">9-Seat Continuous-Improvement Board</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Every seat outputs `(A) Observed`, `(B) What Can Be Better`, `(C) 3 Concrete Options`, and `(D) Live Edit Shipped`, including <strong>Seat 6 (4-Level Coaching Panel Playtester)</strong>.</div>
         </div>
         <div class="p-3 rounded-xl bg-slate-950/90 border border-sky-400/40">
           <div class="flex items-center justify-between mb-1">
-            <span class="font-black text-sky-300 uppercase text-[10px]">Stage 3 • 3-Bot Factory</span>
+            <span class="font-black text-sky-300 uppercase text-[10px]">Stage 3 • 3-Bot Factory + Video Harvester</span>
             <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[9px] font-black">✓ Complete</span>
           </div>
-          <div class="font-bold text-white">360-Scenario Cloud Expansion</div>
-          <div class="text-[11px] text-slate-400 mt-0.5">Ran Bot #1 (ADM Guardrails) → Bot #2 (Generator) → Bot #3 (QA Verifier): uploaded <code>360/360</code> approved scenarios across all 15 buckets (`24` per bucket).</div>
+          <div class="font-bold text-white">360 Clean Scenarios + 39 Video Segments</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Uploaded `360/360` clean `F1–F3 / D1–D2` scenarios across all 15 buckets (`generate-tactix-bank.js`) and `39/39` verified segments across 16 channels (`harvest-tactix-videos.js`).</div>
         </div>
         <div class="p-3 rounded-xl bg-slate-950/90 border border-emerald-400/40">
           <div class="flex items-center justify-between mb-1">
-            <span class="font-black text-emerald-300 uppercase text-[10px]">Stage 4 • Ship &amp; Resolve</span>
+            <span class="font-black text-emerald-300 uppercase text-[10px]">Stage 4 • Ship &amp; Deploy</span>
             <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[9px] font-black">✓ Complete</span>
           </div>
-          <div class="font-bold text-white">Build Sections 15–19, Verify (8/8 Seats) &amp; Deploy</div>
-          <div class="text-[11px] text-slate-400 mt-0.5">Shipped Cue-First Highlighting, Contrastive Replay, Position-Specific IQ, 100% Balance Pie, Age-Scaled Self-Eval, and 22-Seat Coach Kick/Add Controls.</div>
+          <div class="font-bold text-white">Build Section 21, Sync &amp; Deploy Live</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Shipped Clean `F1–F3 / D1–D2` Default, Single-Label `applyRoleLabelMap`, 5 Multi-Level Coach Customizations, and 4-Level Coach Perspective Switcher.</div>
         </div>
       </div>
 
-      <!-- 8-Seat Industry, Teaching Strategy & Engineering Board Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs pt-2">
-        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-amber-500/40 flex flex-col justify-between space-y-2">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-1">
-              <span class="text-[10px] font-black uppercase tracking-wider text-amber-300">🏒 Seat 1 • Systems Director</span>
-              <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[9px] font-black">✅ PASS</span>
-            </div>
-            <div class="font-black text-white text-sm">IIHF / USA Hockey &amp; Hockey Canada Systems Director</div>
-            <p class="text-[11px] text-slate-400 mt-1"><strong>Charter:</strong> Playbook accuracy, <code>🐂 F1 Bull / 🦊 F2 Fox / 🦅 F3 Eagle</code> &amp; <code>D1/D2</code> rotations, 1st/2nd/3rd Choice Consensus Optimal zones, and <code>8U</code> ADM compliance.</p>
+      <!-- 9-Seat Continuous-Improvement Board Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs pt-2">
+        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-amber-500/40 space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-amber-300">🏒 Seat 1 • Systems Director</span>
+            <span class="px-2 py-0.5 rounded bg-amber-500/20 border border-amber-400/40 text-amber-200 text-[9px] font-black">🔄 Continuous Upgrade</span>
           </div>
-          <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-slate-200">
-            <strong class="text-amber-300">Verified:</strong> 360 Cloud Scenarios across 15 buckets (`24` each) &amp; all 5 positions (`C, LW, RW, D, G`) with 0 ADM violations.
-          </div>
-        </div>
-
-        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-cyan-500/40 flex flex-col justify-between space-y-2">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-1">
-              <span class="text-[10px] font-black uppercase tracking-wider text-cyan-300">🎓 Seat 2 • Instructional Design</span>
-              <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[9px] font-black">✅ PASS</span>
-            </div>
-            <div class="font-black text-white text-sm">Master Hockey Educator &amp; Instructional Designer</div>
-            <p class="text-[11px] text-slate-400 mt-1"><strong>Charter:</strong> Propose 3 concrete teaching strategies every run so players learn <em>why</em> a play works and transfer habits to real ice.</p>
-          </div>
-          <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-slate-200">
-            <strong class="text-cyan-300">Shipped #1 Teaching Strategy:</strong> <strong>Cue-First Visual Highlighting (`#btnCueFirstHighlight`)</strong> + <strong>Contrastive Good-vs-Bad Read Replay (`#btnContrastiveReplay`)</strong> live on `#rinkCanvas`.
+          <div class="font-black text-white text-sm">NCAA D1 / AAA &amp; USA Hockey Systems Director</div>
+          <p class="text-[11px] text-slate-300"><strong>(A) Observed:</strong> 360 cloud scenarios across 15 buckets default to strictly clean <code>F1, F2, F3, D1, D2</code>; <code>applyRoleLabelMap</code> swaps <code>F1→"Bull"</code> as a single label with 0 double-labels.</p>
+          <p class="text-[11px] text-slate-300"><strong>(B) What Can Be Better:</strong> Dynamically sort team homework drills to match the coach's selected <code>state.teamPlaybookSystems</code>.</p>
+          <p class="text-[11px] text-slate-400"><strong>(C) 3 Options:</strong> (1) System-Playbook drill sorting; (2) Weak-side D2 stick-lift timing window; (3) Off-puck F3 high-slot apex mirror.</p>
+          <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-emerald-300">
+            <strong>(D) Shipped:</strong> Stripped all combined animal double-labels across <code>index.html</code>, <code>generate-tactix-bank.js</code> &amp; 360 cloud rows + shipped <code>applyRoleLabelMap(text)</code>.
           </div>
         </div>
 
-        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-sky-500/40 flex flex-col justify-between space-y-2">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-1">
-              <span class="text-[10px] font-black uppercase tracking-wider text-sky-300">🧠 Seat 3 • Pediatric Cognitive</span>
-              <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[9px] font-black">✅ PASS</span>
-            </div>
-            <div class="font-black text-white text-sm">Pediatric Cognitive &amp; Age-Scaling Specialist</div>
-            <p class="text-[11px] text-slate-400 mt-1"><strong>Charter:</strong> Enforce <code>&lt;= 14-word</code> prompts and 1-sentence upbeat self-evaluations for <code>8U/10U</code> vs. deep AAA film-room analysis for <code>14U–18U</code>, plus fading training wheels (`Rec → AAA`).</p>
+        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-cyan-500/40 space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-cyan-300">🎓 Seat 2 • Instructional Design</span>
+            <span class="px-2 py-0.5 rounded bg-cyan-500/20 border border-cyan-400/40 text-cyan-200 text-[9px] font-black">🔄 Continuous Upgrade</span>
           </div>
-          <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-slate-200">
-            <strong class="text-sky-300">Verified:</strong> <code>8U</code> Self-Eval = <code>13 words</code>; <code>18U</code> Film-Room Self-Eval = <code>46 words</code>; Cue-First training wheels auto-fade on <code>AA/AAA</code> stops.
-          </div>
-        </div>
-
-        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-emerald-500/40 flex flex-col justify-between space-y-2">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-1">
-              <span class="text-[10px] font-black uppercase tracking-wider text-emerald-300">🏆 Seat 4 • Game Retention</span>
-              <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[9px] font-black">✅ PASS</span>
-            </div>
-            <div class="font-black text-white text-sm">Mobile Game Retention &amp; Gamification Architect</div>
-            <p class="text-[11px] text-slate-400 mt-1"><strong>Charter:</strong> Mathseeds 5-tier map progression, Coach Bob 3-state animations, Pro Shop gear economy, and 3D Trophy Room Prestige runs.</p>
-          </div>
-          <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-slate-200">
-            <strong class="text-emerald-300">Verified:</strong> 0ms Coach Bob `.coach-bob-state-mistake` shake &amp; `.coach-bob-state-celebrate` bounce, 360° Avatar spin, and 6 Age-Tier Stanley Cups.
+          <div class="font-black text-white text-sm">Master Instructional Designer &amp; Teaching Strategist</div>
+          <p class="text-[11px] text-slate-300"><strong>(A) Observed:</strong> Cue-First Visual Highlighting defaults ON for Rec/B/A and fades on AA/AAA; Contrastive Good-vs-Bad Read Replay animates side-by-side vectors.</p>
+          <p class="text-[11px] text-slate-300"><strong>(B) What Can Be Better:</strong> Adapt visual hints and decision clocks to the coach's selected team pace override.</p>
+          <p class="text-[11px] text-slate-400"><strong>(C) 3 Options:</strong> (1) Coach Pace-Aware Scaffolding; (2) 3-Play Micro-Arc Progression; (3) Post-play "Why Did D1 Bite?" freeze callout.</p>
+          <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-emerald-300">
+            <strong>(D) Shipped:</strong> Wired <code>state.teamCoachingPace</code> (<code>default</code>, <code>relaxed_no_clock</code>, <code>pro_speed_no_hints</code>) directly into <code>loadScenario()</code>.
           </div>
         </div>
 
-        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-purple-500/40 flex flex-col justify-between space-y-2">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-1">
-              <span class="text-[10px] font-black uppercase tracking-wider text-purple-300">📱 Seat 5 • Touch UX Lead</span>
-              <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[9px] font-black">✅ PASS</span>
-            </div>
-            <div class="font-black text-white text-sm">Touch UX &amp; Anti-Clutter Lead</div>
-            <p class="text-[11px] text-slate-400 mt-1"><strong>Charter:</strong> Zero-scroll rink gameplay, scrollable pop-up modals (`max-h-[90vh] overflow-y-auto`), zero HUD overlaps, and zero clipped text across all 4 viewports.</p>
+        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-sky-500/40 space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-sky-300">🧠 Seat 3 • Pediatric Cognitive</span>
+            <span class="px-2 py-0.5 rounded bg-sky-500/20 border border-sky-400/40 text-sky-200 text-[9px] font-black">🔄 Continuous Upgrade</span>
           </div>
-          <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-slate-200">
-            <strong class="text-purple-300">Verified:</strong> `0` HUD overlaps, `0` out-of-viewport elements, and `0` clipped text across `390x844`, `768x1024`, `1024x768`, and `1280x800`.
-          </div>
-        </div>
-
-        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-rose-500/40 flex flex-col justify-between space-y-2">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-1">
-              <span class="text-[10px] font-black uppercase tracking-wider text-rose-300">🧢 Seat 6 • Coach Portal Tester</span>
-              <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[9px] font-black">✅ PASS</span>
-            </div>
-            <div class="font-black text-white text-sm">Dedicated Head Coach &amp; Association Portal Tester</div>
-            <p class="text-[11px] text-slate-400 mt-1"><strong>Charter:</strong> Hands-on test of Coach Login → Add/Kick Roster Seat Controls (`22-Seat Cap`) → Line Builder → Weekly Assignment Push → Player Inbox &amp; Leaderboard Visibility Boundary.</p>
-          </div>
-          <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-slate-200">
-            <strong class="text-rose-300">Dedicated Coach Portal Scorecard:</strong> Kick (`22→21`), Add (`21→22`), 22-Seat Cap overflow block, and Player View Leaderboard privacy boundary all verified `100% PASS`.
+          <div class="font-black text-white text-sm">Pediatric Cognitive &amp; Age-Scaling Specialist (`8U–18U`)</div>
+          <p class="text-[11px] text-slate-300"><strong>(A) Observed:</strong> <code>8U</code> Self-Eval = <code>13 words</code> (<code>&lt;= 14 words</code>); <code>18U</code> Film-Room Self-Eval = <code>46 words</code>; Cue-First training wheels auto-fade on <code>AA/AAA</code>.</p>
+          <p class="text-[11px] text-slate-300"><strong>(B) What Can Be Better:</strong> Give <code>8U/10U</code> volunteer coaches 1-tap presets to toggle between Standard (<code>F1–F3</code>) and Youth Animal (<code>Bull/Fox/Eagle</code>) labels.</p>
+          <p class="text-[11px] text-slate-400"><strong>(C) 3 Options:</strong> (1) 1-Tap Youth Animal vs. Standard Role Presets; (2) Audio-first icon badges for 8U; (3) Adaptive spaced-repetition cooldown.</p>
+          <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-emerald-300">
+            <strong>(D) Shipped:</strong> Normalized all <code>8U–18U</code> prompts in <code>enforceAdmPromptWordLimit()</code> through <code>applyRoleLabelMap()</code>.
           </div>
         </div>
 
-        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-amber-400/40 flex flex-col justify-between space-y-2">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-1">
-              <span class="text-[10px] font-black uppercase tracking-wider text-amber-300">💎 Seat 7 • Growth Strategist</span>
-              <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[9px] font-black">✅ PASS</span>
-            </div>
-            <div class="font-black text-white text-sm">App Store, Conversion &amp; Growth Strategist</div>
-            <p class="text-[11px] text-slate-400 mt-1"><strong>Charter:</strong> <code>PLAY. LEARN. DOMINATE.</code> branding, Position-Specific &amp; Cross-Position IQ Ratings, 100% Well-Rounded Balance Pie (`&lt;10%` flag), and Team-to-Pro conversion.</p>
+        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-emerald-500/40 space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-300">🏆 Seat 4 • Game Retention</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-200 text-[9px] font-black">🔄 Continuous Upgrade</span>
           </div>
-          <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-slate-200">
-            <strong class="text-amber-300">Verified:</strong> 5-Unit Cross-Position IQ Cards (`LW 5v4 PP = 88` vs. `RW = 72`) + 1-click `🎓 Study Role` + Triple-B 100% Balance badge live in `#reportModal`.
-          </div>
-        </div>
-
-        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-indigo-500/50 flex flex-col justify-between space-y-2">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-1">
-              <span class="text-[10px] font-black uppercase tracking-wider text-indigo-300">📐 Seat 8 • Principal Engineer</span>
-              <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[9px] font-black">✅ PASS</span>
-            </div>
-            <div class="font-black text-white text-sm">Principal Full-Stack, Supabase &amp; <code>&lt;canvas&gt;</code> Engineer</div>
-            <p class="text-[11px] text-slate-400 mt-1"><strong>Charter:</strong> Audit 2D/3D <code>&lt;canvas&gt;</code> rendering, Supabase cloud sync, <code>CONTEXT.md</code> fast-index, and <code>deploy-github-pages.js</code> pre-commit security guardrails.</p>
-          </div>
-          <div class="p-2 rounded-lg bg-slate-900/90 border border-indigo-500/30 text-[11px] text-slate-200">
-            <strong class="text-indigo-300">Verified:</strong> `CONTEXT.md` indexed, `runPreCommitSecurityGuardrail()` active blocking `.tactix_gh_token`/`.env`/`service_role`, and `0` console/page errors.
+          <div class="font-black text-white text-sm">Hit Mobile Game &amp; EdTech Retention Designer</div>
+          <p class="text-[11px] text-slate-300"><strong>(A) Observed:</strong> Mathseeds 5-tier map, Coach Bob 3-state Reflex animations, 360° Avatar spin, and 6 Age-Tier Stanley Cups.</p>
+          <p class="text-[11px] text-slate-300"><strong>(B) What Can Be Better:</strong> Render the coach's custom team jersey colors on every teammate token on the ice sheet.</p>
+          <p class="text-[11px] text-slate-400"><strong>(C) 3 Options:</strong> (1) Live on-ice team jersey color rendering; (2) Position-group homework streak bonus; (3) Team color banner in Locker Room.</p>
+          <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-emerald-300">
+            <strong>(D) Shipped:</strong> Wired <code>state.teamJerseyColors</code> into 2D Rink, 3D POV, and Live Shift teammate tokens + 4 quick-tap color presets.
           </div>
         </div>
 
-        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-emerald-400/50 flex flex-col justify-between space-y-2 md:col-span-2 lg:col-span-4">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div>
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-[10px] font-black uppercase tracking-wider text-emerald-300">🎬 Seat 9 • Video Harvester &amp; Film-Room QC Auditor</span>
-                <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[9px] font-black">✅ PASS (39 Verified Clips • 16 Trusted Channels)</span>
-              </div>
-              <div class="font-black text-white text-sm">Automated Video Harvester &amp; Film-Room QC Auditor (<code>harvest-tactix-videos.js</code> → <code>public.tactix_video_library</code>)</div>
-              <p class="text-[11px] text-slate-400 mt-1"><strong>Charter:</strong> Harvest &amp; verify YouTube coaching/NHL clips across 16 trusted channels via YouTube oEmbed (<code>HTTP 200</code>), enforce full-concept teaching windows (<code>23s–140s</code>, no 12s cutoff), permanently blacklist <code>bSgfwvhIT7E</code>, prioritize <code>whiteboard_diagram</code> for <code>8U/10U Rec/B</code> vs. <code>telestrator_breakdown / nhl_live_play</code> for <code>12U–18U A/AA/AAA</code>, and verify <code>🔄 Watch Another Clip (Clip 1 of N)</code> + <code>📋 Coach Bob 60fps Native Telestrator</code>.</p>
-            </div>
+        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-purple-500/40 space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-purple-300">📱 Seat 5 • Touch UX Lead</span>
+            <span class="px-2 py-0.5 rounded bg-purple-500/20 border border-purple-400/40 text-purple-200 text-[9px] font-black">🔄 Continuous Upgrade</span>
           </div>
-          <div class="p-2 rounded-lg bg-slate-900/90 border border-emerald-500/30 text-[11px] text-slate-200">
-            <strong class="text-emerald-300">Verified:</strong> <code>16/16</code> Channels in <code>public.tactix_video_channels</code> • <code>39/39</code> QC-Approved Segments across all 15 buckets (<code>&gt;= 2</code> per bucket) in <code>public.tactix_video_library</code> • <code>0</code> blacklisted IDs • Multi-Clip Cycling &amp; Native Telestrator handoff verified <code>100% PASS</code>.
+          <div class="font-black text-white text-sm">Native iPad / Phone Touch UX &amp; Anti-Clutter Architect</div>
+          <p class="text-[11px] text-slate-300"><strong>(A) Observed:</strong> `0` HUD overlaps, `0` out-of-viewport elements, and `0` clipped text across all 4 viewports; clean <code>F1–F3/D1–D2</code> pills cut button width by ~38%.</p>
+          <p class="text-[11px] text-slate-300"><strong>(B) What Can Be Better:</strong> Organize the 5 Coach Portal Customizations in a compact 2-column responsive grid.</p>
+          <p class="text-[11px] text-slate-400"><strong>(C) 3 Options:</strong> (1) 2-column Coach Customization grid; (2) 12-char role pill truncation guard; (3) Sticky Save &amp; Sync action bar.</p>
+          <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-emerald-300">
+            <strong>(D) Shipped:</strong> Built responsive 2-column <code>#coachMultiLevelCustomizationsBox</code> with <code>maxlength="12"</code> role inputs.
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-rose-500/40 space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-rose-300">🧢 Seat 6 • 4-Level Coach Panel</span>
+            <span class="px-2 py-0.5 rounded bg-rose-500/20 border border-rose-400/40 text-rose-200 text-[9px] font-black">🔄 Continuous Upgrade</span>
+          </div>
+          <div class="font-black text-white text-sm">4-Level Coaching Panel Playtester (`Level A..D`)</div>
+          <p class="text-[11px] text-slate-300"><strong>(A) Observed:</strong> Playtested <code>Level A (8U/10U Volunteer)</code>, <code>Level B (12U/14U AA/AAA Travel)</code>, <code>Level C (16U/18U HS/Jr)</code>, and <code>Level D (Association Director: ASSOC-MINOT &amp; ASSOC-FOOTHILLS)</code> + 22-Seat Kick/Add.</p>
+          <p class="text-[11px] text-slate-300"><strong>(B) What Can Be Better:</strong> Highlight targeted position groups directly in the Compliance &amp; Scouting Alert table.</p>
+          <p class="text-[11px] text-slate-400"><strong>(C) 3 Options:</strong> (1) Target-Group filter pill in Compliance Table; (2) Printable 1-page System Poster; (3) Association multi-team switcher.</p>
+          <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-emerald-300">
+            <strong>(D) Shipped:</strong> Built 4-Level Perspective Switcher + all 5 Multi-Level Coach Portal Customizations synced to <code>public.pucksense_teams</code>.
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-amber-400/40 space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-amber-300">💎 Seat 7 • Growth Strategist</span>
+            <span class="px-2 py-0.5 rounded bg-amber-500/20 border border-amber-400/40 text-amber-200 text-[9px] font-black">🔄 Continuous Upgrade</span>
+          </div>
+          <div class="font-black text-white text-sm">App Store, Conversion &amp; Growth Strategist</div>
+          <p class="text-[11px] text-slate-300"><strong>(A) Observed:</strong> 5-Unit Cross-Position IQ Cards + 100% Well-Rounded Balance Pie + 50% Partner Association Banner.</p>
+          <p class="text-[11px] text-slate-300"><strong>(B) What Can Be Better:</strong> Surface the coach's active Playbook &amp; Target Group badges inside the Player Homework Inbox.</p>
+          <p class="text-[11px] text-slate-400"><strong>(C) 3 Options:</strong> (1) Playbook-synced Player Inbox badges; (2) 1-click SMS invite template; (3) Association bulk-quote calculator.</p>
+          <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-emerald-300">
+            <strong>(D) Shipped:</strong> Added <code>#playerInboxTargetGroupBadge</code> and <code>#playerInboxPlaybookBadge</code> inside <code>#playerCoachInboxCard</code>.
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-indigo-500/50 space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-indigo-300">📐 Seat 8 • Principal Engineer</span>
+            <span class="px-2 py-0.5 rounded bg-indigo-500/20 border border-indigo-400/40 text-indigo-200 text-[9px] font-black">🔄 Continuous Upgrade</span>
+          </div>
+          <div class="font-black text-white text-sm">Principal Full-Stack, Supabase &amp; <code>&lt;canvas&gt;</code> Engineer</div>
+          <p class="text-[11px] text-slate-300"><strong>(A) Observed:</strong> `0` console/page errors, 60fps 2D/3D <code>&lt;canvas&gt;</code>, <code>CONTEXT.md</code> fast-index, and pre-commit security guardrails active.</p>
+          <p class="text-[11px] text-slate-300"><strong>(B) What Can Be Better:</strong> Sync <code>coach_customizations</code> in <code>public.pucksense_teams.weekly_assignments</code> across all team codes.</p>
+          <p class="text-[11px] text-slate-400"><strong>(C) 3 Options:</strong> (1) Cloud sync for <code>coach_customizations</code>; (2) Unicode-safe regex sanitizer; (3) Bump <code>sw.js</code> cache to <code>v8.1</code>.</p>
+          <div class="p-2 rounded-lg bg-slate-900/90 border border-indigo-500/30 text-[11px] text-emerald-300">
+            <strong>(D) Shipped:</strong> Synced <code>coach_customizations</code> to <code>PUCK99</code>, <code>ASSOC-MINOT</code>, and <code>ASSOC-FOOTHILLS</code> in live Supabase.
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950/95 border border-emerald-400/50 space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-300">🎬 Seat 9 • Video QC Auditor</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-200 text-[9px] font-black">🔄 Continuous Upgrade</span>
+          </div>
+          <div class="font-black text-white text-sm">Automated Video Harvester &amp; Film-Room QC Auditor</div>
+          <p class="text-[11px] text-slate-300"><strong>(A) Observed:</strong> <code>39/39</code> verified segments across <code>16</code> channels &amp; all 15 buckets (<code>&gt;= 2</code>/bucket), <code>0</code> blacklisted IDs, full <code>23s–140s</code> teaching windows.</p>
+          <p class="text-[11px] text-slate-300"><strong>(B) What Can Be Better:</strong> Ensure all Film Room takeaways use clean <code>F1, F2, F3, D1, D2</code> base terminology.</p>
+          <p class="text-[11px] text-slate-400"><strong>(C) 3 Options:</strong> (1) Role-mapped Film Room takeaways; (2) Coach Playbook video filter; (3) Coach-pinned Clip of the Week.</p>
+          <div class="p-2 rounded-lg bg-slate-900/90 border border-emerald-500/30 text-[11px] text-emerald-300">
+            <strong>(D) Shipped:</strong> Cleaned all <code>DEFAULT_CLOUD_VIDEO_LIBRARY</code> &amp; <code>CONCEPT_VIDEOS</code> takeaways to base <code>F1–F3 / D1–D2</code>.
           </div>
         </div>
       </div>

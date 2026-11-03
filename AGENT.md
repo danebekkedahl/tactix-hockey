@@ -178,11 +178,19 @@ Then open **`http://localhost:8080`** in Chrome, Safari, Edge, or your Antigravi
 
 ## 7. Single-Trigger Master Pipeline (`RUN MASTER PIPELINE` / `RUN NIGHTLY AUTOPILOT`) & 9-Seat Professional Industry, Teaching Strategy, Video QC & Engineering Board
 
-### 7.1 The 9-Seat Professional Industry, Teaching Strategy, Video QC & Engineering Board Charter
+### 7.1 The 9-Seat Professional Industry, Teaching Strategy, Video QC & Engineering Board Charter (Strict Continuous-Improvement Format — `PASS / FAIL` Permanently Banned)
+> [!IMPORTANT]
+> **`PASS / FAIL` Permanently Banned Across All 9 Council Seats:**
+> Rubber-stamp `PASS / FAIL` badges are permanently banned across `AGENT.md`, `deep_playtest_audit.js`, `PLAYTEST_REPORT.md`, `LEARNING_COUNCIL_REPORT.md`, and `report.html`. On every `RUN NIGHTLY AUTOPILOT` or `RUN MASTER PIPELINE` pass, every Seat (Seats 1–9) **MUST** output four structured continuous-improvement sections:
+> - **(A) What Was Observed Live**
+> - **(B) What Can Be Better**
+> - **(C) 3 Concrete Better Options for Coach Dane & Coach Evan**
+> - **(D) Live Code/Database Edit Shipped in This Run**
+
 Whenever a Council Audit, **`RUN MASTER PIPELINE`**, or **`RUN NIGHTLY AUTOPILOT`** executes, run an active Playwright field inspection in Chrome (`deep_playtest_audit.js`) and evaluate `index.html` across all **9 Dedicated Seats**:
 
 1. **Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director:**
-   - Focus: On-ice geometry, `🐂 F1 Bull / 🦊 F2 Fox / 🦅 F3 Eagle` & `🛡️ D1 / 🏰 D2` rotations, `1st/2nd/3rd Choice` consensus zones (`100% Gold / 80% Silver / 60% Bronze`), Position-Specific & Cross-Position IQ Ratings, and strict `8U` ADM guardrails.
+   - Focus: On-ice geometry, clean out-of-the-box `F1, F2, F3, D1, D2` base defaults + `applyRoleLabelMap(text)` single-label custom role swaps (verifying setting `F1 -> "Bull"` outputs ONLY `"Bull"` and never `"F1 Bull"`), `1st/2nd/3rd Choice` consensus zones (`100% Gold / 80% Silver / 60% Bronze`), Position-Specific & Cross-Position IQ Ratings, and strict `8U` ADM guardrails.
 2. **Seat 2 — Master Instructional Designer & Sports Teaching Strategist:**
    - Focus: Critiques *how* we teach and proposes **3 concrete, better teaching strategies on every pass**—such as `Cue-First Visual Highlighting` (`👀 Look Here First`), `Teach -> Guided Read -> Blind Game-Speed Test` micro-arcs, and `Contrastive Good-vs-Bad Read` ghost replays—building the #1 upgrade directly into `index.html`.
 3. **Seat 3 — Pediatric Cognitive & Age-Scaling Specialist (`8U–18U`):**
@@ -191,14 +199,18 @@ Whenever a Council Audit, **`RUN MASTER PIPELINE`**, or **`RUN NIGHTLY AUTOPILOT
    - Focus: Mathseeds map progression (`Rec -> B -> A -> AA -> AAA`), Coach Bob Reflex pop-up animations (`Talking`, `Mistake`, `Celebrate`), streak juice, Pro Shop swag unlocks, and 3D Trophy Room Prestige Cups.
 5. **Seat 5 — Native iPad / Phone Touch UX & Anti-Clutter Architect:**
    - Focus: Phone `390x844`, iPad Portrait `768x1024`, iPad Landscape `1024x768`, and Desktop `1280x800` anti-clutter, zero overlapping HUD boxes, zero clipped text, and scrollable modal ergonomics (`max-height: 92dvh; overflow-y: auto;` with sticky action buttons).
-6. **Seat 6 — Dedicated Head Coach & Association Portal Tester:**
-   - Focus: Tests `Coach Login` -> Add/Kick Roster Seat Controls (`20/22 Seats`) -> Line Builder -> Weekly Assignment Push -> `Player Login` Inbox & Shared Team Leaderboard (verifying the visibility boundary that hides teammates' private diagnostic weaknesses and locks Custom Lesson Builder to personal Pro) -> Coach Practice Scouting Alerts end-to-end and reports a dedicated **Coach Portal Scorecard**.
+6. **Seat 6 — 4-Level Coaching Panel Playtester (`Level A: 8U/10U Volunteer`, `Level B: 12U/14U AA/AAA Travel`, `Level C: 16U/18U HS/Jr`, `Level D: Association Director`):**
+   - Focus: Playtests and critiques `Team Portal -> Coach Login` (`#teamManagerModal` & `public.pucksense_teams`) across **4 distinct coaching levels**:
+     - **Level A (`8U/10U` Youth Volunteer Coach):** Simplicity, 1-tap `Standard (F1–F3 / D1–D2)` vs. `Youth Animal (Bull / Fox / Eagle)` role presets, `8U/10U Relaxed (Visual Hints ON / No Clock Pressure)` pace toggle, and Team Co-Op Stanley Cup goals.
+     - **Level B (`12U/14U` AA/AAA Travel Coach):** Team System Playbook alignment (*Forecheck*: `2-1-2 Aggressive` | `1-2-2 Trap` | `LW Lock`; *D-Zone*: `Protect the House` | `Box+1` | `Overload`; *Breakout*: `Up Wall` | `D-to-D Over` | `Wheel` | `Reverse` | `Rim`), Line- & Position-Group Homework Targeting (`Forwards Only` vs. `Defensemen Only`), and Practice Scouting Alerts.
+     - **Level C (`16U/18U` High School / Junior Coach):** Special teams (*5v4 PP*: `1-3-1 Umbrella` | `Overload`; *4v5 PK*: `Box` | `Diamond`), NZ regroups, `AAA/Jr Pro Speed (Tight 4.5s Clocks / Zero Hints)` overrides, and film-study depth.
+     - **Level D (`Association Hockey Director` — `ASSOC-MINOT`, `ASSOC-FOOTHILLS`):** Multi-team association oversight, 22-seat roster cap (`Add` & `👢 Kick`), team jersey color customizer, and Player Login visibility boundaries.
 7. **Seat 7 — App Store, Conversion & Growth Strategist:**
    - Focus: `PLAY. LEARN. DOMINATE.`, Free-Download Portal Gate, Partner Association Banner (`50% Partner Logo Discount`), 3-Audience Social Media Engine, and Tactix Pro (`Well-Rounded 100% Balance Pie`, `PIP`, and Custom Lesson Builder) upsell.
 8. **Seat 8 — Principal Full-Stack App & `<canvas>` Graphics Engineer:**
    - Focus: Canvas rendering polish, 3D POV camera, 60fps smoothness, `CONTEXT.md` fast-map maintenance, and pre-deploy security checks in `deploy-github-pages.js` (blocking `.tactix_gh_token`, `.env`, and secret/`service_role` keys).
 9. **Seat 9 — Automated Video Harvester & Film-Room QC Auditor (`harvest-tactix-videos.js`):**
-   - Focus: Audits our 16-Channel Trusted Network (`public.tactix_video_channels`) and 38+ multi-tagged segments (`public.tactix_video_library`) across all 15 Concept Buckets via YouTube `oEmbed` (`HTTP 200`), permanently blocks music-only/unverified clips (`bSgfwvhIT7E`), enforces full-concept teaching windows (`23s–140s`, never cutting off at 12s), verifies age/tier style sorting (`whiteboard_diagram` first for `8U–10U Rec/B` vs. `telestrator_breakdown` / `nhl_live_play` first for `12U–18U A/AA/AAA`), and tests `#videoExampleModal` multi-clip cycling (`#btnCycleConceptVideoClip`), `⏪ Rewind 10s` (`#btnVideoRewind10s`), `🔄 Replay Segment`, and `📋 Coach Bob 60fps Native Telestrator` (`#btnVideoLaunchNativeTelestrator`).
+   - Focus: Audits our 16-Channel Trusted Network (`public.tactix_video_channels`) and 39+ multi-tagged segments (`public.tactix_video_library`) across all 15 Concept Buckets via YouTube `oEmbed` (`HTTP 200`), permanently blocks music-only/unverified clips (`bSgfwvhIT7E`), enforces full-concept teaching windows (`23s–140s`, never cutting off at 12s), verifies age/tier style sorting (`whiteboard_diagram` first for `8U–10U Rec/B` vs. `telestrator_breakdown` / `nhl_live_play` first for `12U–18U A/AA/AAA`), and tests `#videoExampleModal` multi-clip cycling (`#btnCycleConceptVideoClip`), `⏪ Rewind 10s` (`#btnVideoRewind10s`), `🔄 Replay Segment`, and `📋 Coach Bob 60fps Native Telestrator` (`#btnVideoLaunchNativeTelestrator`).
 
 ### 7.2 Single-Trigger Master Sequence (`RUN MASTER PIPELINE`)
 Whenever the user types **"RUN MASTER PIPELINE"** inside `Main App Code Page`, automatically execute all **4 Stages** in sequence without making the user switch chat tabs:
@@ -218,16 +230,16 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
 - **STAGE 1 — Autonomous 5-Persona & 9-Seat Deep Playtest Suite (`deep_playtest_audit.js`):**
   1. Launch headless Chrome via `& "C:\Users\Dane\AppData\Local\Programs\nodejs\node-v22.14.0-win-x64\node.exe" deep_playtest_audit.js` against `http://localhost:8080/index.html?bot=1` covering **5 Personas**, **9 Seats**, and **4 Viewports** (`390x844` Phone, `768x1024` iPad Portrait, `1024x768` iPad Landscape, `1280x800` Desktop):
      - **Persona 1 (`8U` Kid & Parent Flow):** Test the 5-Step Wizard, intentionally miss a drill twice to verify Coach Bob's `.coach-bob-state-mistake` shake + 2-attempt hint cap, complete a `1st Choice Gold` and `2nd Choice Silver` read, test the 360° 3D Avatar spin + Pro Shop category tabs/equipping, and inspect `#trophyRoomModal`.
-     - **Persona 2 (`12U–14U` Multi-Mode & Tactical Dock Flow):** Switch live between `🎮 2D Rink`, `🥽 3D POV`, and `📋 Chalkboard` mid-drill, click every button in `#tacticalActionDock` (`👀 Pre-Scan`, `🎭 Deception`, `🛡️ Protect`, `📣 Callout`, plus `🐂 F1 Bull / 🦊 F2 Fox / 🦅 F3 Eagle / 🛡️ D1 / 🏰 D2` role-read buttons), test Q5 Active Film Study & Seat 9 multi-clip cycling, and test 2-Step `Spot the Mistake`.
+     - **Persona 2 (`12U–14U` Multi-Mode & Tactical Dock Flow):** Switch live between `🎮 2D Rink`, `🥽 3D POV`, and `📋 Chalkboard` mid-drill, click every button in `#tacticalActionDock` (`👀 Pre-Scan`, `🎭 Deception`, `🛡️ Protect`, `📣 Callout`, plus clean `F1 / F2 / F3 / D1 / D2` role-read buttons and custom `applyRoleLabelMap` single-label swaps), test Q5 Active Film Study & Seat 9 multi-clip cycling, and test 2-Step `Spot the Mistake`.
      - **Persona 3 (`16U–18U` Pro Subscriber Flow):** Open the 6-Slice Interactive Performance Pie Chart, click the lowest slice, trigger **⚡ Formulate Hockey IQ Improvement Plan (PIP)**, and test **🛠️ Create My Own Lesson** across all 15 concept buckets and all 5 positions (`C, LW, RW, D, G`).
-     - **Persona 4 (`Team & Association Portal` End-to-End Flow):** Test `PUCK99` and `ASSOC-MINOT` (`🧑‍💼 Coach Login` Roster Line Builder -> Add/Kick Roster Seat Controls -> create & approve a Weekly Lesson Plan -> switch to `🏒 Player Login` -> verify the assignment appears in the player's inbox and launches cleanly -> verify Coach Scouting Alerts update).
+     - **Persona 4 (`Team & Association Portal` End-to-End + 4-Level Coaching Panel Flow):** Test `PUCK99`, `ASSOC-MINOT`, and `ASSOC-FOOTHILLS` across all 4 Coaching Levels (`Level A: 8U/10U Volunteer`, `Level B: 12U/14U AA/AAA Travel`, `Level C: 16U/18U HS/Jr`, `Level D: Association Director`), test all 5 Multi-Level Coach Portal Customizations (Custom Role Terminology Panel + `applyRoleLabelMap`, Team System Playbook Selector, Line/Position-Group Homework Targeting, Team Jersey Color Customizer, and Coaching Pace Override), Add/Kick Roster Seat Controls (`22-Seat Cap`), and Player Login Inbox & visibility boundaries.
      - **Persona 5 (Automated Pixel, Overlap & Graphics Inspector):** Across all 4 viewports (`390x844` Phone, `768x1024` iPad Portrait, `1024x768` iPad Landscape, `1280x800` Desktop), run a DOM & `<canvas>` geometry audit (`getBoundingClientRect()`) detecting any overlapping UI boxes, clipped text (`scrollWidth > clientWidth`), buttons outside the viewport, broken images/icons, or canvas rendering glitches.
-  2. Save telemetry to `deep_playtest_telemetry.json`, write the full audit to `PLAYTEST_REPORT.md`, and `POST` any discovered bugs or friction points to `public.pucksense_agent_inbox` (`https://jrusjgpfcnptozfehcrv.supabase.co/rest/v1/pucksense_agent_inbox` using apikey `sb_publishable_73207-0o-_PJEGLgeiZSog__PwUgTxX`).
+  2. Save telemetry to `deep_playtest_telemetry.json`, write the full audit to `PLAYTEST_REPORT.md` (using the 4-part continuous-improvement format with zero `PASS / FAIL` badges), and `POST` any discovered bugs or friction points to `public.pucksense_agent_inbox` (`https://jrusjgpfcnptozfehcrv.supabase.co/rest/v1/pucksense_agent_inbox` using apikey `sb_publishable_73207-0o-_PJEGLgeiZSog__PwUgTxX`).
 
 - **STAGE 2 — 9-Seat Professional Industry, Teaching Strategy, Video QC & Engineering Board Review (`Council-Agent`):**
   Immediately after Stage 1 finishes:
   1. Fetch all open / `in_council_review` rows from `public.pucksense_agent_inbox` (including any Founder `🚩 Flag Drill` notes from Coach Dane or Coach Evan) and read `PLAYTEST_REPORT.md`, `deep_playtest_telemetry.json`, and `FOUNDER_VISION_NOTES.md`.
-  2. Evaluate the app from all **9 Industry, Teaching Strategy, Video QC & Engineering Seats** (Seats 1–9 above).
+  2. Evaluate the app from all **9 Industry, Teaching Strategy, Video QC & Engineering Seats** (Seats 1–9 above), outputting strictly **(A) What Was Observed Live**, **(B) What Can Be Better**, **(C) 3 Concrete Better Options for Coach Dane & Coach Evan**, and **(D) Live Code/Database Edit Shipped in This Run** for every seat (zero `PASS / FAIL` badges).
   3. Write two clear sections in `LEARNING_COUNCIL_REPORT.md`:
      - **Part A — Scenario Bank & Cloud Video Library Expansion Spec:** Define tactical concept buckets, permutations, and video segments to expand/tune our Supabase bank (`public.tactix_scenarios` & `public.tactix_video_library`).
      - **Part B — UI, UX, Teaching Strategy, Video Film-Room & `<canvas>` Graphics Polish Spec:** Define the top fixes and exact CSS/DOM/code prescriptions from Seats 1–9.
@@ -235,14 +247,14 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
 
 - **STAGE 3 — 3-Bot Scenario Factory (`generate-tactix-bank.js`) & Seat 9 Multi-Channel Video Harvester (`harvest-tactix-videos.js`):**
   Immediately after Stage 2 finishes:
-  1. Update `generate-tactix-bank.js` with any new tactical concept buckets or scenario tuning from Stage 2 Part A (**360+ total cloud scenarios** across 15 buckets and `Rec -> B -> A -> AA -> AAA`).
+  1. Update `generate-tactix-bank.js` with any new tactical concept buckets or scenario tuning from Stage 2 Part A (**360+ total cloud scenarios** across 15 buckets and `Rec -> B -> A -> AA -> AAA` with clean `F1, F2, F3, D1, D2` role labels).
   2. Run **Bot #1 (`Curriculum & ADM Guardrail Bot`)** -> **Bot #2 (`Scenario Permutation Generator`)** -> **Bot #3 (`Strict QA & Geometry Verifier`)** via `& "C:\Users\Dane\AppData\Local\Programs\nodejs\node-v22.14.0-win-x64\node.exe" generate-tactix-bank.js` and upload all approved scenarios (`qc_approved = true`) to `public.tactix_scenarios`.
-  3. Run **Seat 9 Multi-Channel Video Harvester (`harvest-tactix-videos.js`)** via `& "C:\Users\Dane\AppData\Local\Programs\nodejs\node-v22.14.0-win-x64\node.exe" harvest-tactix-videos.js` to audit all clips via YouTube `oEmbed` (`HTTP 200`), block any music-only or unverified clip (`bSgfwvhIT7E`), and sync `public.tactix_video_channels` (16 channels) & `public.tactix_video_library` (38+ verified segments across all 15 buckets).
+  3. Run **Seat 9 Multi-Channel Video Harvester (`harvest-tactix-videos.js`)** via `& "C:\Users\Dane\AppData\Local\Programs\nodejs\node-v22.14.0-win-x64\node.exe" harvest-tactix-videos.js` to audit all clips via YouTube `oEmbed` (`HTTP 200`), block any music-only or unverified clip (`bSgfwvhIT7E`), and sync `public.tactix_video_channels` (16 channels) & `public.tactix_video_library` (39+ verified segments across all 15 buckets).
 
 - **STAGE 4 — Main App Code Build, Verification & Live GitHub Pages Deploy:**
   Immediately after Stage 3 finishes:
-  1. Implement the Stage 2 Part B UI/UX/engineering/canvas/video fixes in `index.html` and ensure `index.html` seamlessly ingests all **360+ cloud scenarios** from `public.tactix_scenarios` and **38+ verified video segments** from `public.tactix_video_library`.
-  2. Re-run `deep_playtest_audit.js` on `http://localhost:8080/index.html?bot=1` to verify `0` console errors, `0` failed audit checks, `9/9` Seats PASS, and `0` friction/layout issues across all 5 Personas and all 4 Viewports.
+  1. Implement the Stage 2 Part B UI/UX/engineering/canvas/video fixes in `index.html` and ensure `index.html` seamlessly ingests all **360+ cloud scenarios** from `public.tactix_scenarios` and **39+ verified video segments** from `public.tactix_video_library`.
+  2. Re-run `deep_playtest_audit.js` on `http://localhost:8080/index.html?bot=1` to verify `0` console errors, `0` failed audit checks, all 9 Seats reporting structured `(A)–(D)` continuous-improvement reviews, and `0` friction/layout issues across all 5 Personas and all 4 Viewports.
   3. `PATCH` all fixed items in `public.pucksense_agent_inbox` to `status: 'resolved'` and update `report.html`.
   4. Sync all updated files across both `C:\Users\Dane\Documents\Hockey-IQ-App\` and `c:\Users\Dane\.gemini\antigravity\scratch\pucksense\`, then run `& "C:\Users\Dane\AppData\Local\Programs\nodejs\node-v22.14.0-win-x64\node.exe" deploy-github-pages.js` so the live build at **`https://danebekkedahl.github.io/tactix-hockey/`** is updated automatically.
 
