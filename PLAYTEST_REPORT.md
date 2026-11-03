@@ -1,10 +1,11 @@
-# 🏒 TACTIX HOCKEY — STAGE 1: STRICT BLIND 30-DRILL PLAYTEST & 10-SEAT FOUNDER VISION WALK-THROUGH (`PLAYTEST_REPORT.md`)
+# 🏒 TACTIX HOCKEY — STAGE 1: STRICT BLIND 30-DRILL PLAYTEST, ROLLING 30-LEVEL LEDGER & 10-SEAT SCREENSHOT AUDIT (`PLAYTEST_REPORT.md`)
 
-**Playtest Engine:** `deep_playtest_audit.js` (`Strict Blind Playtester v8.4` — Zero Answer-Key Peeking)  
+**Playtest Engine:** `deep_playtest_audit.js` (`Strict Blind Playtester v8.5` — Zero Answer-Key Peeking + Rolling Coverage Ledger)  
+**Step A Co-Founder Approval Gate Check:** `{"statusChecked":"approved_by_founder","approvedItemsCount":0,"zeroUnapprovedMutationsEnforced":true}`  
 **Self-Audit Source Verification:** `{"verified":true,"forbiddenTokensChecked":7,"violationsFound":0}` (`0` references to `targetSpot`, `targetZone`, `targetZones`, `consensus_zones`, `correctIdx`, `isCorrect`, or `correctTargetId` anywhere in executable playtest code)  
 **DOM Spoiler Attribute Audit:** `data-zone-rank = 0`, `data-tactical-correct = 0` (Zero answer-key leaks in DOM)  
-**30-Drill Blind Playtest Result:** **`30 / 30` Drills Solved (`29 / 30` Gold 1st Choice + `1 / 30` Silver 2nd Choice = `100%` Pass Rate, `0` Unresolved Prompt-vs-Scoring Discrepancies)**  
-**Live Gmail Webhook Dispatch (`send-board-digest.js`):** **`HTTP 200 "SENT"`** via `https://script.google.com/macros/s/AKfycbw0z3iKOaLEMF0GZvb2hlyZDnP9oCpudpHrubTti99RFMdi8sDqsJR5dnEMRlDEmcZ_/exec` to `danebekkedahl@gmail.com` and `evanbekk@gmail.com`
+**30-Drill Blind Playtest Result:** **`30 / 30` Drills Solved (`30 / 30` Gold 1st Choice = `100%` Gold Pass Rate, `0` Discrepancies)**  
+**Step B Rolling Coverage Ledger (`playtest_coverage_ledger.json`):** `30/30` Age×Talent Levels, `32/32` NHL Cities (`Rec -> AAA Cup Finals -> Prestige Season II`), `360/360` Cloud Scenarios, `6/6` Off-Ice Portals, & `10/10` Live Playwright Screenshots (`assets/audit-screenshots/seat1-...png` .. `seat10-...png`)
 
 ---
 

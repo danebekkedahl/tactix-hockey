@@ -248,15 +248,20 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
 - **STAGE 3 — 3-Bot Scenario Factory (`generate-tactix-bank.js`) & Seat 9 Multi-Channel Video Harvester (`harvest-tactix-videos.js`):**
   Immediately after Stage 2 finishes:
   1. Run `& "C:\Users\Dane\AppData\Local\Programs\nodejs\node-v22.14.0-win-x64\node.exe" generate-tactix-bank.js` to verify and sync all **360+ clean `F1, F2, F3, D1, D2` cloud scenarios** (`qc_approved = true`, zero hardcoded `"Zone A"` strings, off-puck scenarios never assigned `tap_player`) to `public.tactix_scenarios`.
-  2. Run `& "C:\Users\Dane\AppData\Local\Programs\nodejs\node-v22.14.0-win-x64\node.exe" harvest-tactix-videos.js` to verify and sync `public.tactix_video_channels` (16 channels) & `public.tactix_video_library` (39+ verified segments across all 15 buckets).
+  2. Run `& "C:\Users\Dane\AppData\Local\Programs\nodejs\node-v22.14.0-win-x64\node.exe" harvest-tactix-videos.js` to poll public YouTube RSS feeds (`https://www.youtube.com/feeds/videos.xml?channel_id=...`) across our 16 whitelisted NHL and coaching channels, verify `oEmbed` HTTP 200, and sync `public.tactix_video_channels` (16 channels) & `public.tactix_video_library` (51+ verified segments across all 15 buckets).
 
-- **STAGE 4 — Main App Code Build, Live Gmail Webhook Dispatch (`send-board-digest.js`), Verification & Live GitHub Pages Deploy:**
-  Immediately after Stage 3 finishes:
-  1. Implement the 3 Green-Lit Pod Winner upgrades (plus any `Founder-Override` queued items) in `index.html`.
-  2. Run `& "C:\Users\Dane\AppData\Local\Programs\nodejs\node-v22.14.0-win-x64\node.exe" send-board-digest.js` to generate `FOUNDER_EMAIL_DIGEST_LATEST.html`, post the structured 30-Idea Digest (`category: 'board_digest'`) to `public.pucksense_agent_inbox`, and dispatch the live HTML email via `GOOGLE_APPS_SCRIPT_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbw0z3iKOaLEMF0GZvb2hlyZDnP9oCpudpHrubTti99RFMdi8sDqsJR5dnEMRlDEmcZ_/exec'` (`HTTP 200 "SENT"`) to **Coach Dane (`danebekkedahl@gmail.com`)** and **Coach Evan (`evanbekk@gmail.com`)**.
-  3. Re-run `deep_playtest_audit.js` on `http://localhost:8080/index.html?bot=1` to verify `30/30` blind drills solved, `0` unresolved Prompt-vs-Scoring Discrepancies, `0` console errors, and all 10 Seats reporting structured `(A)–(D)` continuous-improvement reviews.
-  4. `PATCH` all fixed items in `public.pucksense_agent_inbox` to `status: 'resolved'` and update `report.html`.
-  5. Sync all updated files across both `C:\Users\Dane\Documents\Hockey-IQ-App\` and `c:\Users\Dane\.gemini\antigravity\scratch\pucksense\`, then run `& "C:\Users\Dane\AppData\Local\Programs\nodejs\node-v22.14.0-win-x64\node.exe" deploy-github-pages.js` so the live build at **`https://danebekkedahl.github.io/tactix-hockey/`** is updated automatically.
+- **STAGE 4 — Co-Founder Approval Gate Enforcement, Live Screenshot Deployment & 6-Field Digest Dispatch (`send-board-digest.js`):**
+  Immediately after Stage 3 finishes (enforcing **Section 23: The Co-Founder Advisory Charter**):
+  1. **Step A — Strict Co-Founder Approval Gate (Build ONLY What Dane & Evan Approve):**
+     - Query `public.pucksense_agent_inbox?status=eq.approved_by_founder`.
+     - **Zero Unapproved UI/Gameplay Mutations:** Do **NOT** automatically mutate `index.html` with new unapproved UI, buttons, or gameplay features! Only build items explicitly marked `status: 'approved_by_founder'` by Coach Dane or Coach Evan (plus critical bug/geometry fixes caught during blind playtesting).
+  2. **Step B — Rolling 30-Level / 32-City / 360-Scenario / 6-Portal Blind Playtest & Live Screenshot Capture (`deep_playtest_audit.js`):**
+     - Update `playtest_coverage_ledger.json` across all **30 Age × Talent Levels (`8U–18U` × `Rec / B / A / AA / AAA`)**, all **32 NHL Cities**, all **360 Cloud Scenarios**, and all **6 Off-Ice Feature Areas**.
+     - Capture **10 live Playwright screenshots** into `assets/audit-screenshots/seat1-...png` .. `seat10-...png` showing the exact screens and drills critiqued by Seats 1–10.
+  3. **Step C — Deploy Screenshots to GitHub Pages & Dispatch Ranked `#1–#30` 6-Field Email Digest (`deploy-github-pages.js` + `send-board-digest.js`):**
+     - Sync all updated files across both `C:\Users\Dane\Documents\Hockey-IQ-App\` and `c:\Users\Dane\.gemini\antigravity\scratch\pucksense\`, then run `& "C:\Users\Dane\AppData\Local\Programs\nodejs\node-v22.14.0-win-x64\node.exe" deploy-github-pages.js` so `assets/audit-screenshots/*.png`, `playtest_coverage_ledger.json`, and `report.html` are live at **`https://danebekkedahl.github.io/tactix-hockey/`**.
+     - Run `& "C:\Users\Dane\AppData\Local\Programs\nodejs\node-v22.14.0-win-x64\node.exe" send-board-digest.js` to save all 30 proposals with `status: 'awaiting_founder_approval'` (ranked `#1 Highest Priority` to `#30` with the Top 3 Board Priorities highlighted at the top, candid co-founder pushback, all 6 mandatory fields, embedded `<img src="https://danebekkedahl.github.io/tactix-hockey/assets/audit-screenshots/...">` screenshots, and 1-click `[✅ Approve for Next Build]` / `[❌ Reject]` links) and dispatch the HTML email to `danebekkedahl@gmail.com` and `evanbekk@gmail.com`.
+
 
 
 

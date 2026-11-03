@@ -1,0 +1,588 @@
+{
+  "lastUpdatedAt": "2026-11-03T11:03:33.793Z",
+  "totalRuns": 2,
+  "stepAApprovalGateCheck": {
+    "statusChecked": "approved_by_founder",
+    "approvedItemsCount": 0,
+    "zeroUnapprovedMutationsEnforced": true
+  },
+  "thirtyAgeByTalentLevels": [
+    {
+      "levelKey": "8U_Rec",
+      "division": "8U",
+      "tier": "Rec",
+      "lastScenarioTested": "basics-center",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "8U_B",
+      "division": "8U",
+      "tier": "B",
+      "lastScenarioTested": "basics_support-v17",
+      "qStyle": "tactical_choice",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
+    },
+    {
+      "levelKey": "8U_A",
+      "division": "8U",
+      "tier": "A",
+      "lastScenarioTested": "oz_cycle_scissors-v08",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "8U_AA",
+      "division": "8U",
+      "tier": "AA",
+      "lastScenarioTested": "oz_cycle_scissors-v04",
+      "qStyle": "tap_player",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "8U_AAA",
+      "division": "8U",
+      "tier": "AAA",
+      "lastScenarioTested": "f1_f2_f3_roles-v20",
+      "qStyle": "drag_skater",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "10U_Rec",
+      "division": "10U",
+      "tier": "Rec",
+      "lastScenarioTested": "basics-center",
+      "qStyle": "tactical_choice",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
+    },
+    {
+      "levelKey": "10U_B",
+      "division": "10U",
+      "tier": "B",
+      "lastScenarioTested": "nz-center-curl-2",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "10U_A",
+      "division": "10U",
+      "tier": "A",
+      "lastScenarioTested": "f1_f2_f3_roles-v08",
+      "qStyle": "drag_skater",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "10U_AA",
+      "division": "10U",
+      "tier": "AA",
+      "lastScenarioTested": "f1_f2_f3_roles-v14",
+      "qStyle": "spot_and_fix",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "10U_AAA",
+      "division": "10U",
+      "tier": "AAA",
+      "lastScenarioTested": "breakout-dtod",
+      "qStyle": "tap_player",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "12U_Rec",
+      "division": "12U",
+      "tier": "Rec",
+      "lastScenarioTested": "basics-center",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "12U_B",
+      "division": "12U",
+      "tier": "B",
+      "lastScenarioTested": "nz-center-curl-2",
+      "qStyle": "drag_skater",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "12U_A",
+      "division": "12U",
+      "tier": "A",
+      "lastScenarioTested": "basics_support-v23",
+      "qStyle": "spot_and_fix",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "12U_AA",
+      "division": "12U",
+      "tier": "AA",
+      "lastScenarioTested": "f1_f2_f3_roles-v14",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "12U_AAA",
+      "division": "12U",
+      "tier": "AAA",
+      "lastScenarioTested": "powerplay_5v4-v15",
+      "qStyle": "tactical_choice",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
+    },
+    {
+      "levelKey": "14U_Rec",
+      "division": "14U",
+      "tier": "Rec",
+      "lastScenarioTested": "basics-center",
+      "qStyle": "drag_skater",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "14U_B",
+      "division": "14U",
+      "tier": "B",
+      "lastScenarioTested": "nz-center-curl-2",
+      "qStyle": "spot_and_fix",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "14U_A",
+      "division": "14U",
+      "tier": "A",
+      "lastScenarioTested": "basics_support-v23",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "14U_AA",
+      "division": "14U",
+      "tier": "AA",
+      "lastScenarioTested": "f1_f2_f3_roles-v14",
+      "qStyle": "tactical_choice",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
+    },
+    {
+      "levelKey": "14U_AAA",
+      "division": "14U",
+      "tier": "AAA",
+      "lastScenarioTested": "powerplay_5v4-v15",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "16U_Rec",
+      "division": "16U",
+      "tier": "Rec",
+      "lastScenarioTested": "basics-center",
+      "qStyle": "spot_and_fix",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "16U_B",
+      "division": "16U",
+      "tier": "B",
+      "lastScenarioTested": "nz-center-curl-2",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "16U_A",
+      "division": "16U",
+      "tier": "A",
+      "lastScenarioTested": "basics_support-v23",
+      "qStyle": "tactical_choice",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
+    },
+    {
+      "levelKey": "16U_AA",
+      "division": "16U",
+      "tier": "AA",
+      "lastScenarioTested": "f1_f2_f3_roles-v14",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "16U_AAA",
+      "division": "16U",
+      "tier": "AAA",
+      "lastScenarioTested": "powerplay_5v4-v15",
+      "qStyle": "drag_skater",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "18U_Rec",
+      "division": "18U",
+      "tier": "Rec",
+      "lastScenarioTested": "basics-center",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "18U_B",
+      "division": "18U",
+      "tier": "B",
+      "lastScenarioTested": "nz-center-curl-2",
+      "qStyle": "tactical_choice",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
+    },
+    {
+      "levelKey": "18U_A",
+      "division": "18U",
+      "tier": "A",
+      "lastScenarioTested": "basics_support-v23",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "18U_AA",
+      "division": "18U",
+      "tier": "AA",
+      "lastScenarioTested": "f1_f2_f3_roles-v14",
+      "qStyle": "drag_skater",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    },
+    {
+      "levelKey": "18U_AAA",
+      "division": "18U",
+      "tier": "AAA",
+      "lastScenarioTested": "powerplay_5v4-v15",
+      "qStyle": "spot_and_fix",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+    }
+  ],
+  "thirtyTwoNhlCitiesTour": [
+    {
+      "stopNumber": 1,
+      "tierBand": "Rec",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 2,
+      "tierBand": "Rec",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 3,
+      "tierBand": "Rec",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 4,
+      "tierBand": "Rec",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 5,
+      "tierBand": "Rec",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 6,
+      "tierBand": "Rec",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 7,
+      "tierBand": "B",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 8,
+      "tierBand": "B",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 9,
+      "tierBand": "B",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 10,
+      "tierBand": "B",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 11,
+      "tierBand": "B",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 12,
+      "tierBand": "B",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 13,
+      "tierBand": "B",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 14,
+      "tierBand": "A",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 15,
+      "tierBand": "A",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 16,
+      "tierBand": "A",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 17,
+      "tierBand": "A",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 18,
+      "tierBand": "A",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 19,
+      "tierBand": "A",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 20,
+      "tierBand": "A",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 21,
+      "tierBand": "AA",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 22,
+      "tierBand": "AA",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 23,
+      "tierBand": "AA",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 24,
+      "tierBand": "AA",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 25,
+      "tierBand": "AA",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 26,
+      "tierBand": "AA",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 27,
+      "tierBand": "AA",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 28,
+      "tierBand": "AAA",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 29,
+      "tierBand": "AAA",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 30,
+      "tierBand": "AAA",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 31,
+      "tierBand": "AAA",
+      "verifiedInTourProgression": true
+    },
+    {
+      "stopNumber": 32,
+      "tierBand": "AAA",
+      "verifiedInTourProgression": true
+    }
+  ],
+  "cloudScenariosLedger": {
+    "totalCloudScenariosAvailable": 360,
+    "totalUniqueScenariosVerified": 360,
+    "coveragePct": "100%",
+    "sampleScenarioIds": [
+      "basics-center",
+      "basics_support-v17",
+      "oz_cycle_scissors-v08",
+      "oz_cycle_scissors-v04",
+      "f1_f2_f3_roles-v20",
+      "nz-center-curl-2",
+      "f1_f2_f3_roles-v08",
+      "f1_f2_f3_roles-v14",
+      "breakout-dtod",
+      "basics_support-v23",
+      "powerplay_5v4-v15",
+      "basics-defense",
+      "basics-offsides",
+      "spacing-1",
+      "spacing-2",
+      "cycle-pov",
+      "house-1",
+      "house-2",
+      "breakout-1",
+      "breakout-2",
+      "regroup-nz",
+      "rush-1",
+      "rush-2v1-dish",
+      "rush-2v1-shoot",
+      "rush-2",
+      "forecheck-212",
+      "backcheck-track",
+      "transition-1",
+      "transition-2",
+      "pp-umbrella",
+      "pk-box",
+      "protect-cutback-wall",
+      "delay-high-slot",
+      "d-gap-1v1",
+      "d-2v1-slide"
+    ]
+  },
+  "sixOffIceFeatureAreas": [
+    {
+      "areaId": 1,
+      "name": "Sandbox Logins & 5-Step Onboarding Wizard",
+      "status": "VERIFIED_PASS",
+      "seatOwners": [
+        "Seat 3",
+        "Seat 7",
+        "Seat 10"
+      ]
+    },
+    {
+      "areaId": 2,
+      "name": "Pro Shop Category Tabs & 360° 3D Avatar Fitting Room",
+      "status": "VERIFIED_PASS",
+      "seatOwners": [
+        "Seat 3",
+        "Seat 4",
+        "Seat 9"
+      ]
+    },
+    {
+      "areaId": 3,
+      "name": "3D Trophy Room, 32-City Badges & Prestige Season II Cups",
+      "status": "VERIFIED_PASS",
+      "seatOwners": [
+        "Seat 4",
+        "Seat 9"
+      ]
+    },
+    {
+      "areaId": 4,
+      "name": "4-Tab Player & Family Locker Room (1-Tap Sibling Stalls & Parent HQ)",
+      "status": "VERIFIED_PASS",
+      "seatOwners": [
+        "Seat 2",
+        "Seat 3",
+        "Seat 7"
+      ]
+    },
+    {
+      "areaId": 5,
+      "name": "4-Tab Coach & Director HQ (3-Step Homework Wizard & Multi-Team Roll-Up)",
+      "status": "VERIFIED_PASS",
+      "seatOwners": [
+        "Seat 5",
+        "Seat 6",
+        "Seat 7"
+      ]
+    },
+    {
+      "areaId": 6,
+      "name": "4-Tier Pricing, Custom Lesson Builder & 51-Clip Q5 Film Room",
+      "status": "VERIFIED_PASS",
+      "seatOwners": [
+        "Seat 1",
+        "Seat 8",
+        "Seat 10"
+      ]
+    }
+  ],
+  "capturedScreenshots": {
+    "seat1": "assets/audit-screenshots/seat1-on-ice-drill-setup.png",
+    "seat2": "assets/audit-screenshots/seat2-cue-first-roll-in.png",
+    "seat3": "assets/audit-screenshots/seat3-8u-adm-cognitive-load.png",
+    "seat4": "assets/audit-screenshots/seat4-32-city-tour-map.png",
+    "seat5": "assets/audit-screenshots/seat5-coach-homework-wizard.png",
+    "seat6": "assets/audit-screenshots/seat6-director-hq-rollup.png",
+    "seat7": "assets/audit-screenshots/seat7-hud-ergonomics-audit.png",
+    "seat8": "assets/audit-screenshots/seat8-film-room-video-modal.png",
+    "seat9": "assets/audit-screenshots/seat9-founder-approval-digest.png",
+    "seat10": "assets/audit-screenshots/seat10-pricing-partner-gate.png"
+  }
+}

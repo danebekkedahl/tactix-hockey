@@ -79,3 +79,36 @@
   - **(B) What Can Be Better:** Keep the 1-Click 50% Partner Club Activation Link (`#btnCopyDirectorPartnerDiscountLink`) front and center in Director HQ.
   - **(C) 3 Concrete Options:** `S10-A` (1-Click 50% Partner Club Activation Link — Shipped), `S10-B` (QR Code Poster Generator), `S10-C` (Tournament Weekend Trial Pass).
   - **(D) Live Code/Database Edit Shipped:** Verified all 4 pricing tiers and partner discount links in `deep_playtest_audit.js`.
+
+---
+
+## Part C — Section 23 Co-Founder Advisory Charter: Moving Plays vs. Static Setups & Ranked `#1–#30` 6-Field Proposals (`status: 'awaiting_founder_approval'`)
+
+### 1. Special Co-Founder Board Evaluation (Seats 1, 2, 3 & 4 Consensus): Moving Plays vs. Static Setups Across `8U–18U` & `Rec–AAA`
+- **8U & 10U (`Rec / B`) — Calm Static Default + Optional `[▶️ Watch 2s Lead-In]` Button:**
+  - *Candid Reasoning (Seats 2 & 3):* Automatic motion on load causes 6–10 year olds to "puck-watch" the moving dot instead of scanning the Attack Triangle or The House. Start calm and static with a 1.0s pulsing gold `"YOU #9"` halo so kids orient which net they attack first.
+- **10U (`A / AA / AAA`) & 12U (`Rec / B`) — `1.5s` Guided Slow-Roll (`0.65x` Speed) → Auto-Freeze at Decision Point:**
+  - *Candid Reasoning (Seat 2):* Bridges static chalkboards to live hockey by showing direction of travel (who is curling vs. sealing the wall) without overwhelming working memory.
+- **12U (`A / AA / AAA`) & 14U–18U (`All Tiers`) — `2.0s` Full-Speed Pre-Snap Motion Roll-In → Crisp "Skate-Stop Freeze":**
+  - *Candid Reasoning (Seats 1 & 4):* At travel/HS/AAA speeds, closing speed and gap momentum ARE the read. A dead static snapshot hides whether D1's gap is tight or loose.
+
+### 2. Top 3 Recommended Board Priorities (Awaiting Dane & Evan's 1-Click Approval)
+1. **Rank `#1` (`S1-A` — Seat 1 Systems Director):** *2.0-Second Pre-Read Motion Roll-In Before Decision Freeze for 12U–18U (A/AA/AAA)*
+   - **Target Scope:** `12U–18U (A / AA / AAA)` • On-Ice Rush, Breakout, Forecheck & Cycle Drills
+   - **Candid Critique:** Dropping a 14U–18U AA/AAA player into a frozen static snapshot strips out closing velocity and gap momentum.
+   - **Cross-Impact:** Kids (`12U–18U`), Coaches (Seat 5), Seat 2, Seat 4, Seat 9 (`<canvas>` 60fps interpolation).
+   - **Live Screenshot:** `https://danebekkedahl.github.io/tactix-hockey/assets/audit-screenshots/seat1-on-ice-drill-setup.png`
+   - **Approval Control:** `[✅ Approve for Next Build]` / `[❌ Reject]` in `report.html#founder-approval-board` and `#founderDigestModal`.
+2. **Rank `#2` (`S2-A` — Seat 2 Instructional Designer):** *Tier-Scaled Motion Policy: Static Default + `[▶️ Watch 2s Lead-In]` for 8U/10U Rec–B vs. Auto Roll-In for 12U+ A–AAA*
+   - **Target Scope:** All Divisions `8U–18U (Rec -> AAA)`
+   - **Candid Critique:** One-size-fits-all auto-motion overwhelms 8U/10U beginners and triggers puck-watching; motion must scale by age and tier.
+   - **Cross-Impact:** Protects 8U/10U Kids & Parents (Seat 3), satisfies Travel/AAA Coaches (Seat 1 & Seat 5), keeps HUD clean (Seat 7).
+   - **Live Screenshot:** `https://danebekkedahl.github.io/tactix-hockey/assets/audit-screenshots/seat2-cue-first-roll-in.png`
+   - **Approval Control:** `[✅ Approve for Next Build]` / `[❌ Reject]` in `report.html#founder-approval-board` and `#founderDigestModal`.
+3. **Rank `#3` (`S5-A` — Seat 5 Team Head Coach Playtester):** *Coach-Pinned Film Clip + 3-Scenario Practice Pack in Weekly Homework Push*
+   - **Target Scope:** Coach Portal Tab 2 + Player Login Inbox (`10U–18U` Teams)
+   - **Candid Critique:** Players currently jump into a homework drill cold without seeing the 45s NHL/whiteboard film clip until Question 5. Real coaches teach "Film First, Then Rep It."
+   - **Cross-Impact:** Coaches (Seat 5), Players (Seat 1 & Seat 2), Parents (Seat 3), Seat 8 (51-clip Film Room library).
+   - **Live Screenshot:** `https://danebekkedahl.github.io/tactix-hockey/assets/audit-screenshots/seat5-coach-homework-wizard.png`
+   - **Approval Control:** `[✅ Approve for Next Build]` / `[❌ Reject]` in `report.html#founder-approval-board` and `#founderDigestModal`.
+
