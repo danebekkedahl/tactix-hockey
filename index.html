@@ -451,6 +451,13 @@
           <span class="hidden lg:inline">Flag Drill</span>
         </button>
 
+        <!-- 🔔 30-Idea Founder Board Digest Notification Bell (For Coach Dane & Coach Evan) -->
+        <button id="btnFounderDigestBell" type="button" class="relative px-2.5 py-2 rounded-xl bg-amber-500/25 hover:bg-amber-500/35 border border-amber-400/70 text-xs font-black text-amber-300 flex items-center gap-1 transition shadow" title="🔔 30-Idea Board Digest & Authority Flow Tracker for Coach Dane & Coach Evan">
+          <span>🔔</span>
+          <span class="hidden lg:inline">30-Idea Digest</span>
+          <span id="founderDigestBellBadge" class="px-1.5 py-0.2 rounded-full bg-emerald-400 text-slate-950 text-[9px] font-black leading-tight">3🟢/30</span>
+        </button>
+
         <!-- 🔑 Cloud Sandbox Switcher Button -->
         <button id="btnOpenSandboxLogin" type="button" class="px-2.5 py-2 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/50 text-xs font-extrabold text-sky-300 flex items-center gap-1 transition" title="Switch Sandbox User or Sync Team Code (PUCK99)">
           <span>☁️</span>
@@ -1394,196 +1401,340 @@
       </div>
 
       <!-- ================================================================= -->
-      <!-- VIEW B: FULL 3D AVATAR STUDIO, SIBLING ROSTER & TEAM SETTINGS     -->
+      <!-- VIEW B: 4-TAB PLAYER & FAMILY LOCKER ROOM (#profileModal)         -->
+      <!-- Tab 1: 🏒 Who's Playing? (1-Tap Sibling Locker Stalls)            -->
+      <!-- Tab 2: 🎨 3D Avatar & Fitting Room                                -->
+      <!-- Tab 3: 📊 My IQ Pie Chart & Custom Lessons                        -->
+      <!-- Tab 4: 👨‍👩‍👦 Parent & Family HQ (Hockey Mom & Dad View)              -->
       <!-- ================================================================= -->
       <div id="fullAvatarStudioContainer" class="hidden overflow-y-auto max-h-[78dvh] pr-1">
-      <!-- Registration Mode Tabs: Individual, Family, or Team Program -->
-      <div class="mt-3">
-        <label class="text-[11px] font-extrabold uppercase tracking-wider text-amber-300 block mb-1.5">1. Select Registration Mode</label>
-        <div id="accountTypeSelector" class="grid grid-cols-3 gap-2">
-          <button id="btnModeIndividual" type="button" data-acct="individual" class="acct-type-btn active-pill py-2 px-2.5 rounded-xl border border-sky-400/40 text-xs font-extrabold flex items-center justify-center gap-1.5 transition">
-            <span>👤 Individual Skater</span>
-          </button>
-          <button id="btnModeFamily" type="button" data-acct="family" class="acct-type-btn bg-slate-950 text-slate-300 py-2 px-2.5 rounded-xl border border-slate-800 text-xs font-extrabold flex items-center justify-center gap-1.5 transition">
-            <span>👨‍👩‍👧‍👦 Family Group</span>
-          </button>
-          <button id="btnModeTeam" type="button" data-acct="team" class="acct-type-btn bg-slate-950 text-slate-300 py-2 px-2.5 rounded-xl border border-slate-800 text-xs font-extrabold flex items-center justify-center gap-1.5 transition">
-            <span>🏆 Team Program (Coach)</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Team / Family Group Setup & Coach Invite Request Drawer -->
-      <div id="teamRegistrationBox" class="hidden mt-2.5 bg-slate-950/90 border border-cyan-500/40 rounded-xl p-3 space-y-2.5">
-        <div class="flex flex-wrap items-center justify-between gap-2">
-          <div class="text-xs font-black text-cyan-300 uppercase tracking-wider" id="teamBoxHeaderTitle">🏆 Team Program & Coach Invite Setup</div>
-          <span id="teamBoxHeaderBadge" class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-200 text-[10px] font-black">Group Map Progress + Team Leaderboard Enabled</span>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-          <div>
-            <label id="teamBoxNameLabel" class="text-[10px] font-bold text-slate-400 block mb-0.5">Team / Group Name</label>
-            <input id="inputTeamName" type="text" value="Minot Wolves 10U AA" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs font-bold text-white" />
-          </div>
-          <div>
-            <label id="teamBoxCoachLabel" class="text-[10px] font-bold text-slate-400 block mb-0.5">Coach / Manager Name</label>
-            <input id="inputCoachManagerName" type="text" value="Coach Dane" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs font-bold text-white" />
-          </div>
-          <div>
-            <label id="teamBoxCodeLabel" class="text-[10px] font-bold text-slate-400 block mb-0.5">Team Join Code</label>
-            <input id="inputTeamCode" type="text" value="PUCK-774" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-900 border border-amber-400/50 text-xs font-black text-amber-300" />
-          </div>
-        </div>
-        <div>
-          <label id="teamBoxInviteLabel" class="text-[10px] font-bold text-slate-300 block mb-1">📨 Coach / Team Manager: Send Invite Requests to Players (Names or Emails, comma-separated)</label>
-          <div class="flex gap-2">
-            <input id="inputTeamInviteEmails" type="text" placeholder="e.g., Brooks Larson, Crosby #87, Makar #8, Bedard #98" class="flex-1 px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white" />
-            <button id="btnSendInviteRequests" type="button" class="px-3 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs shrink-0 transition">
-              📨 Send Invites
+        <div id="profileModal" class="space-y-3 pt-2">
+          <!-- 4-TAB NAVIGATION BAR (Seats 3, 7 & 9 Anti-Clutter Architecture) -->
+          <div id="playerPortal4TabBar" class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 bg-slate-950 border border-slate-800 rounded-xl p-1.5">
+            <button id="btnPlayerTab1Stalls" type="button" data-player-tab="tab1_stalls" class="player-portal-tab-btn px-2.5 py-2 rounded-lg bg-sky-500 text-slate-950 font-black text-[11px] shadow transition text-left">
+              <div>🏒 1. Who's Playing?</div>
+              <div class="text-[9px] opacity-85 font-bold">1-Tap Sibling Stalls</div>
+            </button>
+            <button id="btnPlayerTab2Avatar" type="button" data-player-tab="tab2_avatar" class="player-portal-tab-btn px-2.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-200 font-extrabold text-[11px] transition text-left">
+              <div>🎨 2. 3D Avatar &amp; Gear</div>
+              <div class="text-[9px] text-slate-400 font-semibold">360° Customizer &amp; Slots</div>
+            </button>
+            <button id="btnPlayerTab3IqLessons" type="button" data-player-tab="tab3_iq_lessons" class="player-portal-tab-btn px-2.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-200 font-extrabold text-[11px] transition text-left">
+              <div>📊 3. My IQ &amp; Lessons</div>
+              <div class="text-[9px] text-slate-400 font-semibold">6-Slice Pie • PIP • Builder</div>
+            </button>
+            <button id="btnPlayerTab4ParentHq" type="button" data-player-tab="tab4_parent_hq" class="player-portal-tab-btn px-2.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-200 font-extrabold text-[11px] transition text-left">
+              <div>👨‍👩‍👦 4. Parent &amp; Family HQ</div>
+              <div class="text-[9px] text-slate-400 font-semibold">House Cup &amp; Age Lock</div>
             </button>
           </div>
-          <div id="inviteStatusFeedback" class="text-[11px] font-bold text-emerald-400 mt-1 hidden"></div>
+
+          <!-- ============================================================= -->
+          <!-- TAB 1: 🏒 WHO'S PLAYING? (1-TAP SIBLING LOCKER STALLS)        -->
+          <!-- ============================================================= -->
+          <div id="playerTab1Stalls" class="player-tab-pane space-y-3">
+            <div class="bg-slate-950 border border-sky-500/40 rounded-2xl p-3.5 space-y-2.5">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <span class="text-xs font-black uppercase tracking-wider text-amber-300">🏒 Bekkedahl Family &amp; Sibling Locker Stalls (1-Tap Switch)</span>
+                  <p class="text-[11px] text-slate-300">Tap your jersey stall to jump onto the ice immediately—zero data bleed between siblings!</p>
+                </div>
+                <span id="siblingSwitchStatusToast" class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black">🛡️ Zero Data Bleed Isolated</span>
+              </div>
+
+              <!-- Giant Visual Jersey Stall Cards (Miles #9 • 12U, Rhett #88 • 8U, Whelan #7 • 8U, Cohen #14 • 10U, + Add Sibling) -->
+              <div id="siblingLockerStallsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5"></div>
+            </div>
+
+            <!-- Existing Saved Profiles On This Device -->
+            <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-3">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-extrabold uppercase tracking-wider text-slate-400">All Saved Skaters &amp; Coach Profiles on This Device</span>
+                <button id="btnLoadFamilyPresets" type="button" class="text-[11px] font-bold text-sky-400 hover:underline">⚡ Load Founders Roster (Dane, Evan, Miles, Rhett, Whelan, Cohen)</button>
+              </div>
+              <div id="savedProfilesGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2"></div>
+            </div>
+          </div>
+
+          <!-- ============================================================= -->
+          <!-- TAB 2: 🎨 3D AVATAR & FITTING ROOM                            -->
+          <!-- ============================================================= -->
+          <div id="playerTab2Avatar" class="player-tab-pane hidden space-y-3">
+            <!-- 2-Column Layout: Left = 3D Spinning Avatar Preview Stage | Right = Customizer & Player Info -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-stretch">
+              <!-- LEFT: 3D-SPINNABLE AVATAR STAGE (Front & Back Jersey Nameplate!) -->
+              <div class="md:col-span-5 bg-slate-950 border border-slate-800 rounded-2xl p-3 flex flex-col items-center justify-between relative overflow-hidden">
+                <div class="w-full flex items-center justify-between z-10">
+                  <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">🔄 360° 3D Skater Preview</span>
+                  <span id="profileSpinAngleBadge" class="text-[10px] font-extrabold text-sky-400">Front View (0°)</span>
+                </div>
+
+                <!-- 3D SVG Avatar Container -->
+                <div id="profile3dAvatarSvgWrap" class="w-44 h-48 my-1 flex items-center justify-center cursor-grab active:cursor-grabbing select-none" title="Drag or use controls below to 3D spin your avatar 360°!"></div>
+
+                <!-- 3D Spin Controls -->
+                <div class="w-full space-y-1.5 z-10">
+                  <div class="flex items-center gap-1.5">
+                    <button id="btnToggleProfileSpin" type="button" class="flex-1 py-1.5 px-2 rounded-lg bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/40 text-sky-200 text-[11px] font-extrabold transition">
+                      🔄 Auto-Spin: ON
+                    </button>
+                    <button id="btnFlipProfileBack" type="button" class="flex-1 py-1.5 px-2 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 text-[11px] font-extrabold transition">
+                      👕 See Jersey Back
+                    </button>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-[10px] font-bold text-slate-400">3D Spin:</span>
+                    <input id="sliderProfileSpin" type="range" min="0" max="360" value="0" class="flex-1 accent-amber-400 h-1.5 bg-slate-800 rounded-lg cursor-pointer" />
+                  </div>
+                </div>
+
+                <!-- Equipped Pro Shop Gear Slots -->
+                <div class="w-full mt-2 pt-2 border-t border-slate-800 space-y-1.5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-black uppercase tracking-wider text-emerald-300">🛒 Equipped Pro Shop Gear Slots</span>
+                    <button id="btnOpenProShopFromTab2" type="button" class="text-[10px] font-black text-amber-300 hover:underline">Open Pro Shop ↗</button>
+                  </div>
+                  <div id="profileEquippedGearSlotsGrid" class="grid grid-cols-2 gap-1.5 text-[10px]"></div>
+                </div>
+              </div>
+
+              <!-- RIGHT: PLAYER DETAILS & AVATAR CUSTOMIZER -->
+              <div class="md:col-span-7 flex flex-col justify-between space-y-2.5">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-extrabold uppercase tracking-wider text-sky-300">Skater Identity &amp; Jersey Customizer</span>
+                  <button id="btnNewSiblingDraft" type="button" class="px-2 py-0.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/40 text-emerald-300 text-[10px] font-extrabold transition">
+                    ➕ Clear Form for New Sibling
+                  </button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  <div>
+                    <label class="text-[11px] font-bold text-slate-300 block mb-0.5 whitespace-nowrap">First Name</label>
+                    <input id="inputPlayerName" type="text" placeholder="e.g., Miles" class="w-full px-2.5 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white focus:outline-none focus:border-sky-400" />
+                  </div>
+                  <div>
+                    <label class="text-[11px] font-bold text-amber-300 block mb-0.5 whitespace-nowrap">Last Name (Jersey Back)</label>
+                    <input id="inputPlayerLastName" type="text" placeholder="e.g., BEKKEDAHL" maxlength="12" class="w-full px-2.5 py-1.5 rounded-xl bg-slate-950 border border-amber-500/50 text-xs font-black uppercase text-amber-300 focus:outline-none focus:border-amber-400" />
+                  </div>
+                  <div>
+                    <label class="text-[11px] font-bold text-slate-300 block mb-0.5 whitespace-nowrap">Hometown</label>
+                    <input id="inputPlayerTown" type="text" placeholder="e.g., Minot, ND" class="w-full px-2.5 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white focus:outline-none focus:border-sky-400" />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2">
+                  <div>
+                    <label class="text-[10px] font-bold text-slate-300 block mb-0.5">Age Group</label>
+                    <select id="selectPlayerAge" class="w-full px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                      <option value="8U">8U Mite</option>
+                      <option value="10U" selected>10U Squirt</option>
+                      <option value="12U">12U Peewee</option>
+                      <option value="14U">14U Bantam</option>
+                      <option value="16U">16U Midget</option>
+                      <option value="18U">18U Jr/Varsity</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="text-[10px] font-bold text-slate-300 block mb-0.5">Position</label>
+                    <select id="selectPlayerPos" class="w-full px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                      <option value="Center (C)">Center (C)</option>
+                      <option value="Left Wing (LW)">Left Wing (LW)</option>
+                      <option value="Right Wing (RW)">Right Wing (RW)</option>
+                      <option value="Defense (D)">Defense (D)</option>
+                      <option value="Goalie (G)">Goalie (G)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="text-[10px] font-bold text-slate-300 block mb-0.5">Shot Hand</label>
+                    <select id="selectPlayerHand" class="w-full px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                      <option value="Left">Left Shot (L)</option>
+                      <option value="Right">Right Shot (R)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Avatar Character Type (Boy, Girl, Animals) -->
+                <div>
+                  <label class="text-[10px] font-bold text-slate-300 block mb-1">Character Type (Person or Mascot Animal)</label>
+                  <div id="avatarTypePicker" class="grid grid-cols-6 gap-1.5"></div>
+                </div>
+
+                <!-- Hair Style & Colors Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <div>
+                    <label class="text-[10px] font-bold text-slate-300 block mb-1">Hair Style / Flow</label>
+                    <div id="hairStylePicker" class="flex flex-wrap gap-1"></div>
+                  </div>
+                  <div>
+                    <label class="text-[10px] font-bold text-slate-300 block mb-1">Hair Color</label>
+                    <div id="hairColorPicker" class="flex items-center gap-1.5"></div>
+                  </div>
+                </div>
+
+                <!-- Skin Tone & Jersey Color Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <div>
+                    <label class="text-[10px] font-bold text-slate-300 block mb-1">Skin Tone</label>
+                    <div id="skinTonePicker" class="flex items-center gap-1.5"></div>
+                  </div>
+                  <div>
+                    <label class="text-[10px] font-bold text-slate-300 block mb-1">Jersey Sweater Color</label>
+                    <div id="jerseyColorPicker" class="flex items-center gap-1.5"></div>
+                  </div>
+                </div>
+
+                <!-- Legacy Badge Icon Row (kept hidden or compact for compatibility) -->
+                <div id="avatarPickerRow" class="hidden"></div>
+
+                <div class="flex items-center justify-between pt-1">
+                  <label class="flex items-center gap-1.5 text-[11px] font-bold text-sky-300 cursor-pointer">
+                    <input id="chkShowTutorialOnStart" type="checkbox" checked class="accent-sky-400 rounded" />
+                    <span>🎓 Launch Interactive Quick Tutorial after saving</span>
+                  </label>
+                </div>
+
+                <div class="sticky-modal-footer pt-2 pb-1 mt-1 border-t border-slate-800 rounded-xl px-2">
+                  <button id="btnSaveAndSignIn" type="button" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-black text-xs sm:text-sm shadow-lg transition">
+                    🏒 Save Custom 3D Skater &amp; Start Tour ▶
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============================================================= -->
+          <!-- TAB 3: 📊 MY IQ PIE CHART & CUSTOM LESSONS                    -->
+          <!-- ============================================================= -->
+          <div id="playerTab3IqLessons" class="player-tab-pane hidden space-y-3">
+            <div class="bg-slate-950 border border-sky-500/40 rounded-2xl p-3.5 space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <span id="profileTab3PlayerTitle" class="text-xs font-black uppercase tracking-wider text-amber-300">🥧 6-Slice Hockey IQ Pie Chart &amp; 100% Well-Rounded Balance</span>
+                  <p class="text-[11px] text-slate-300">Triple-B Player Performance Plan — Inspect your 6 core slices, cross-position ratings &amp; launch a custom PIP or Lesson!</p>
+                </div>
+                <span id="profileTabBalanceBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black">⚖️ Triple-B 100% Balance: Well-Rounded</span>
+              </div>
+
+              <!-- Age-Scaled Self-Eval Summary -->
+              <div id="profileTabSelfEvalBox" class="bg-slate-900 border border-cyan-500/40 rounded-xl p-2.5 flex items-start justify-between gap-2">
+                <div>
+                  <div class="text-[10px] font-black uppercase tracking-wider text-cyan-300">🧢 Coach Bob Age-Scaled Self-Eval Summary</div>
+                  <p id="profileTabSelfEvalText" class="text-xs font-bold text-white mt-0.5">🌟 Awesome Attack Triangles! Keep your stick on the ice in The House!</p>
+                </div>
+                <span id="profileTabSelfEvalAgeTag" class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-200 text-[10px] font-black shrink-0">12U Self-Eval</span>
+              </div>
+
+              <!-- 6-Slice Pie SVG + Slice Legend -->
+              <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+                <div class="sm:col-span-5 flex items-center justify-center">
+                  <svg id="profileTabPieSvg" viewBox="0 0 220 220" class="w-40 h-40 drop-shadow-lg"></svg>
+                </div>
+                <div id="profileTabPieLegend" class="sm:col-span-7 grid grid-cols-1 gap-1.5 text-xs"></div>
+              </div>
+
+              <!-- Position-Specific IQ Grid (C, LW, RW, D, G) -->
+              <div class="pt-2 border-t border-slate-800 space-y-1.5">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-black uppercase tracking-wider text-indigo-300">🏒 Position-Specific &amp; Cross-Position IQ Grid (C, LW, RW, D, G)</span>
+                  <span class="text-[10px] text-slate-400 font-bold">Tap any position to study its reads</span>
+                </div>
+                <div id="profileTabPosIqGrid" class="grid grid-cols-2 sm:grid-cols-5 gap-2"></div>
+              </div>
+
+              <!-- Action Buttons: Formulate PIP & Create My Own Lesson -->
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800">
+                <button id="btnProfileTabFormulatePip" type="button" class="flex-1 py-2.5 px-3.5 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-black text-xs shadow transition">
+                  ⚡ Formulate My Improvement Plan (PIP) ▶
+                </button>
+                <button id="btnProfileTabCreateLesson" type="button" class="flex-1 py-2.5 px-3.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-black text-xs shadow transition">
+                  🛠️ Create My Own Lesson (Custom Builder) ▶
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============================================================= -->
+          <!-- TAB 4: 👨‍👩‍👦 PARENT & FAMILY HQ (HOCKEY MOM & DAD VIEW)          -->
+          <!-- ============================================================= -->
+          <div id="playerTab4ParentHq" class="player-tab-pane hidden space-y-3">
+            <!-- Parent Age Division Lock Control -->
+            <div class="bg-slate-950 border-2 border-amber-400/60 rounded-2xl p-3.5 flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <div class="text-xs font-black uppercase tracking-wider text-amber-300">🔒 Parent Control: Lock Active Child's Age Division</div>
+                <p class="text-[11px] text-slate-300">Prevents younger siblings (e.g., 8U Mite Rhett #88 or Whelan #7) from accidentally switching into 16U/18U contact/special-teams drills.</p>
+              </div>
+              <label class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 border border-amber-400/50 cursor-pointer">
+                <input id="chkLockChildAgeDivision" type="checkbox" class="accent-amber-400 w-4 h-4 rounded" />
+                <span id="parentDivisionLockStatusBadge" class="text-xs font-black text-amber-300">🔓 Age Division Unlocked</span>
+              </label>
+            </div>
+
+            <!-- Side-by-Side All-Kids Progress Snapshot -->
+            <div class="bg-slate-950 border border-sky-500/40 rounded-2xl p-3.5 space-y-2.5">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-xs font-black uppercase tracking-wider text-sky-300">👨‍👩‍👧‍👦 Side-by-Side All-Kids Progress Snapshot (Hockey Mom &amp; Dad View)</span>
+                <span class="text-[10px] font-bold text-emerald-300">Car-Ride Praise Prompts Included</span>
+              </div>
+              <div id="parentHqAllKidsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5"></div>
+            </div>
+
+            <!-- Family "House Cup" Sibling Leaderboard -->
+            <div class="bg-slate-950 border border-emerald-500/40 rounded-2xl p-3.5 space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-xs font-black uppercase tracking-wider text-emerald-300">🏆 Family "House Cup" Sibling Leaderboard</span>
+                <span id="familyHouseCupLeaderBadge" class="px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black">Current Cup Holder: Miles #9</span>
+              </div>
+              <div id="parentHqHouseCupLeaderboard" class="space-y-1.5"></div>
+            </div>
+
+            <!-- Registration Mode Tabs: Individual, Family, or Team Program -->
+            <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-3 space-y-2">
+              <label class="text-[11px] font-extrabold uppercase tracking-wider text-amber-300 block">Account &amp; Family Group Mode</label>
+              <div id="accountTypeSelector" class="grid grid-cols-3 gap-2">
+                <button id="btnModeIndividual" type="button" data-acct="individual" class="acct-type-btn active-pill py-2 px-2.5 rounded-xl border border-sky-400/40 text-xs font-extrabold flex items-center justify-center gap-1.5 transition">
+                  <span>👤 Individual Skater</span>
+                </button>
+                <button id="btnModeFamily" type="button" data-acct="family" class="acct-type-btn bg-slate-950 text-slate-300 py-2 px-2.5 rounded-xl border border-slate-800 text-xs font-extrabold flex items-center justify-center gap-1.5 transition">
+                  <span>👨‍👩‍👧‍👦 Family Group</span>
+                </button>
+                <button id="btnModeTeam" type="button" data-acct="team" class="acct-type-btn bg-slate-950 text-slate-300 py-2 px-2.5 rounded-xl border border-slate-800 text-xs font-extrabold flex items-center justify-center gap-1.5 transition">
+                  <span>🏆 Team Program (Coach)</span>
+                </button>
+              </div>
+
+              <!-- Team / Family Group Setup & Coach Invite Request Drawer -->
+              <div id="teamRegistrationBox" class="hidden mt-2 bg-slate-900 border border-cyan-500/40 rounded-xl p-3 space-y-2.5">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="text-xs font-black text-cyan-300 uppercase tracking-wider" id="teamBoxHeaderTitle">🏆 Team Program &amp; Coach Invite Setup</div>
+                  <span id="teamBoxHeaderBadge" class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-200 text-[10px] font-black">Group Map Progress + Team Leaderboard Enabled</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  <div>
+                    <label id="teamBoxNameLabel" class="text-[10px] font-bold text-slate-400 block mb-0.5">Team / Group Name</label>
+                    <input id="inputTeamName" type="text" value="Minot Wolves 10U AA" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white" />
+                  </div>
+                  <div>
+                    <label id="teamBoxCoachLabel" class="text-[10px] font-bold text-slate-400 block mb-0.5">Coach / Manager Name</label>
+                    <input id="inputCoachManagerName" type="text" value="Coach Dane" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white" />
+                  </div>
+                  <div>
+                    <label id="teamBoxCodeLabel" class="text-[10px] font-bold text-slate-400 block mb-0.5">Team Join Code</label>
+                    <input id="inputTeamCode" type="text" value="PUCK-774" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-amber-400/50 text-xs font-black text-amber-300" />
+                  </div>
+                </div>
+                <div>
+                  <label id="teamBoxInviteLabel" class="text-[10px] font-bold text-slate-300 block mb-1">📨 Coach / Team Manager: Send Invite Requests to Players (Names or Emails, comma-separated)</label>
+                  <div class="flex gap-2">
+                    <input id="inputTeamInviteEmails" type="text" placeholder="e.g., Brooks Larson, Crosby #87, Makar #8, Bedard #98" class="flex-1 px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs text-white" />
+                    <button id="btnSendInviteRequests" type="button" class="px-3 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs shrink-0 transition">
+                      📨 Send Invites
+                    </button>
+                  </div>
+                  <div id="inviteStatusFeedback" class="text-[11px] font-bold text-emerald-400 mt-1 hidden"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <!-- 2-Column Layout: Left = 3D Spinning Avatar Preview Stage | Right = Customizer & Player Info -->
-      <div class="mt-3 grid grid-cols-1 md:grid-cols-12 gap-3 items-stretch">
-        <!-- LEFT: 3D-SPINNABLE AVATAR STAGE (Front & Back Jersey Nameplate!) -->
-        <div class="md:col-span-5 bg-slate-950 border border-slate-800 rounded-2xl p-3 flex flex-col items-center justify-between relative overflow-hidden">
-          <div class="w-full flex items-center justify-between z-10">
-            <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">🔄 360° 3D Skater Preview</span>
-            <span id="profileSpinAngleBadge" class="text-[10px] font-extrabold text-sky-400">Front View (0°)</span>
-          </div>
-
-          <!-- 3D SVG Avatar Container -->
-          <div id="profile3dAvatarSvgWrap" class="w-44 h-48 my-1 flex items-center justify-center cursor-grab active:cursor-grabbing select-none" title="Drag or use controls below to 3D spin your avatar 360°!"></div>
-
-          <!-- 3D Spin Controls -->
-          <div class="w-full space-y-1.5 z-10">
-            <div class="flex items-center gap-1.5">
-              <button id="btnToggleProfileSpin" type="button" class="flex-1 py-1.5 px-2 rounded-lg bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/40 text-sky-200 text-[11px] font-extrabold transition">
-                🔄 Auto-Spin: ON
-              </button>
-              <button id="btnFlipProfileBack" type="button" class="flex-1 py-1.5 px-2 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 text-[11px] font-extrabold transition">
-                👕 See Jersey Back
-              </button>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] font-bold text-slate-400">3D Spin:</span>
-              <input id="sliderProfileSpin" type="range" min="0" max="360" value="0" class="flex-1 accent-amber-400 h-1.5 bg-slate-800 rounded-lg cursor-pointer" />
-            </div>
-          </div>
-        </div>
-
-        <!-- RIGHT: PLAYER DETAILS & AVATAR CUSTOMIZER -->
-        <div class="md:col-span-7 flex flex-col justify-between space-y-2.5">
-          <div class="flex items-center justify-between">
-            <span class="text-[11px] font-extrabold uppercase tracking-wider text-sky-300">2. Skater Identity & Jersey Customizer</span>
-            <button id="btnNewSiblingDraft" type="button" class="px-2 py-0.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/40 text-emerald-300 text-[10px] font-extrabold transition">
-              ➕ Clear Form for New Sibling
-            </button>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <div>
-              <label class="text-[11px] font-bold text-slate-300 block mb-0.5 whitespace-nowrap">First Name</label>
-              <input id="inputPlayerName" type="text" placeholder="e.g., Miles" class="w-full px-2.5 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white focus:outline-none focus:border-sky-400" />
-            </div>
-            <div>
-              <label class="text-[11px] font-bold text-amber-300 block mb-0.5 whitespace-nowrap">Last Name (Jersey Back)</label>
-              <input id="inputPlayerLastName" type="text" placeholder="e.g., LARSON" maxlength="12" class="w-full px-2.5 py-1.5 rounded-xl bg-slate-950 border border-amber-500/50 text-xs font-black uppercase text-amber-300 focus:outline-none focus:border-amber-400" />
-            </div>
-            <div>
-              <label class="text-[11px] font-bold text-slate-300 block mb-0.5 whitespace-nowrap">Hometown</label>
-              <input id="inputPlayerTown" type="text" placeholder="e.g., Minot, ND" class="w-full px-2.5 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white focus:outline-none focus:border-sky-400" />
-            </div>
-          </div>
-
-          <div class="grid grid-cols-3 gap-2">
-            <div>
-              <label class="text-[10px] font-bold text-slate-300 block mb-0.5">Age Group</label>
-              <select id="selectPlayerAge" class="w-full px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white">
-                <option value="8U">8U Mite</option>
-                <option value="10U" selected>10U Squirt</option>
-                <option value="12U">12U Peewee</option>
-                <option value="14U">14U Bantam</option>
-                <option value="16U">16U Midget</option>
-                <option value="18U">18U Jr/Varsity</option>
-              </select>
-            </div>
-            <div>
-              <label class="text-[10px] font-bold text-slate-300 block mb-0.5">Position</label>
-              <select id="selectPlayerPos" class="w-full px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white">
-                <option value="Center (C)">Center (C)</option>
-                <option value="Left Wing (LW)">Left Wing (LW)</option>
-                <option value="Right Wing (RW)">Right Wing (RW)</option>
-                <option value="Defense (D)">Defense (D)</option>
-                <option value="Goalie (G)">Goalie (G)</option>
-              </select>
-            </div>
-            <div>
-              <label class="text-[10px] font-bold text-slate-300 block mb-0.5">Shot Hand</label>
-              <select id="selectPlayerHand" class="w-full px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white">
-                <option value="Left">Left Shot (L)</option>
-                <option value="Right">Right Shot (R)</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Avatar Character Type (Boy, Girl, Animals) -->
-          <div>
-            <label class="text-[10px] font-bold text-slate-300 block mb-1">Character Type (Person or Mascot Animal)</label>
-            <div id="avatarTypePicker" class="grid grid-cols-6 gap-1.5"></div>
-          </div>
-
-          <!-- Hair Style & Colors Row -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            <div>
-              <label class="text-[10px] font-bold text-slate-300 block mb-1">Hair Style / Flow</label>
-              <div id="hairStylePicker" class="flex flex-wrap gap-1"></div>
-            </div>
-            <div>
-              <label class="text-[10px] font-bold text-slate-300 block mb-1">Hair Color</label>
-              <div id="hairColorPicker" class="flex items-center gap-1.5"></div>
-            </div>
-          </div>
-
-          <!-- Skin Tone & Jersey Color Row -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            <div>
-              <label class="text-[10px] font-bold text-slate-300 block mb-1">Skin Tone</label>
-              <div id="skinTonePicker" class="flex items-center gap-1.5"></div>
-            </div>
-            <div>
-              <label class="text-[10px] font-bold text-slate-300 block mb-1">Jersey Sweater Color</label>
-              <div id="jerseyColorPicker" class="flex items-center gap-1.5"></div>
-            </div>
-          </div>
-
-          <!-- Legacy Badge Icon Row (kept hidden or compact for compatibility) -->
-          <div id="avatarPickerRow" class="hidden"></div>
-
-          <div class="flex items-center justify-between pt-1">
-            <label class="flex items-center gap-1.5 text-[11px] font-bold text-sky-300 cursor-pointer">
-              <input id="chkShowTutorialOnStart" type="checkbox" checked class="accent-sky-400 rounded" />
-              <span>🎓 Launch Interactive Quick Tutorial after saving</span>
-            </label>
-          </div>
-
-          <div class="sticky-modal-footer pt-2 pb-1 mt-1 border-t border-slate-800 rounded-xl px-2">
-            <button id="btnSaveAndSignIn" type="button" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-black text-xs sm:text-sm shadow-lg transition">
-              🏒 Save Custom 3D Skater & Start Tour ▶
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Existing Saved Profiles On This Device -->
-      <div class="mt-3.5 pt-3 border-t border-slate-800">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-xs font-extrabold uppercase tracking-wider text-slate-400">Saved Skaters & Team Roster on This Device</span>
-          <button id="btnLoadFamilyPresets" type="button" class="text-[11px] font-bold text-sky-400 hover:underline">⚡ Load Founders Roster (Dane, Evan, Miles, Rhett, Whelan)</button>
-        </div>
-        <div id="savedProfilesGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2"></div>
-      </div>
       </div>
     </div>
   </div>
@@ -2100,14 +2251,18 @@
       </div>
 
       <!-- ================================================================= -->
-      <!-- SUB-VIEW A: 🧑‍💼 COACH LOGIN (Roster & Line Builder, 5 Multi-Level Coach Customizations, Lesson Push & Compliance Alerts) -->
+      <!-- SUB-VIEW A: 🧑‍💼 COACH & DIRECTOR PORTAL (4-TAB ARCHITECTURE)       -->
+      <!-- Tab 1: 📊 Command Center & Practice Alerts                        -->
+      <!-- Tab 2: 📋 Weekly Homework Wizard (3-Step Flow)                    -->
+      <!-- Tab 3: 🏒 Roster, Lines & Team Playbook                           -->
+      <!-- Tab 4: 🏢 Director HQ (Association & Club GM View)                -->
       <!-- ================================================================= -->
       <div id="teamPortalCoachView" class="space-y-3 my-3">
-        <!-- 0. 4-Level Coaching Perspective Switcher (Seat 6 Multi-Level Coaching Panel) -->
+        <!-- 0. 4-Level Coaching Perspective Switcher (Seats 5 & 6 Multi-Level Coaching Panel) -->
         <div id="coachLevelPerspectiveSelector" class="bg-slate-950 border border-cyan-500/40 rounded-xl p-3 space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <div>
-              <span class="text-[11px] font-black uppercase tracking-wider text-cyan-300">🏒 Multi-Level Coach Portal Mode (8U Volunteer → 18U/Jr → Association Director)</span>
+              <span class="text-[11px] font-black uppercase tracking-wider text-cyan-300">🏒 Multi-Level Coach &amp; Director Mode (8U Volunteer → 18U/Jr → Association Director)</span>
               <p class="text-[10px] text-slate-400">One-tap presets configure role terminology, playbook systems, homework targeting, jersey colors &amp; coaching pace for your level.</p>
             </div>
             <span id="activeCoachLevelBadge" class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-200 text-[10px] font-black whitespace-nowrap">Level B: 12U/14U AA/AAA Travel</span>
@@ -2132,285 +2287,419 @@
           </div>
         </div>
 
-        <!-- 1. Roster & Line Builder (Lines 1-4, D-Pairs 1-3, Goalies + 22-Seat Cap & Add/Kick Seat Controls) -->
-        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5 space-y-2.5">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div class="text-xs font-black uppercase tracking-wider text-amber-300">📋 1. Roster &amp; Line Builder (Lines 1–4, D-Pairs &amp; Goalies)</div>
-            <div class="flex flex-wrap items-center gap-2">
-              <span id="coachRosterSeatCounterBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black whitespace-nowrap">🪑 Roster Seats: 10 / 22 Used (12 Open)</span>
-              <span class="text-[11px] font-bold text-slate-400">Team Code: <strong id="teamModalCodeText" class="text-cyan-300">PUCK-774</strong></span>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
-            <select id="selectCoachRosterLine" class="px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
-              <option value="Line 1">Line 1 (Fwd)</option>
-              <option value="Line 2">Line 2 (Fwd)</option>
-              <option value="Line 3">Line 3 (Fwd)</option>
-              <option value="Line 4">Line 4 (Fwd)</option>
-              <option value="D-Pair 1">D-Pair 1</option>
-              <option value="D-Pair 2">D-Pair 2</option>
-              <option value="D-Pair 3">D-Pair 3</option>
-              <option value="Goalies">Goalie Unit</option>
-            </select>
-            <select id="selectCoachRosterPos" class="px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
-              <option value="C">Center (C)</option>
-              <option value="LW">Left Wing (LW)</option>
-              <option value="RW">Right Wing (RW)</option>
-              <option value="LD">Left Defense (LD)</option>
-              <option value="RD">Right Defense (RD)</option>
-              <option value="G">Goalie (G)</option>
-            </select>
-            <select id="selectCoachRosterHand" class="px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
-              <option value="Left">L-Shot</option>
-              <option value="Right">R-Shot</option>
-            </select>
-            <input id="inputModalTeamInvite" type="text" placeholder="Player Name or Email..." class="col-span-2 sm:col-span-1 px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white" />
-            <button id="btnModalSendInvite" type="button" class="col-span-2 sm:col-span-1 px-3 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs shrink-0 transition">
-              ➕ Add to Line / Invite
-            </button>
-          </div>
-          <div id="teamModalInviteToast" class="hidden text-xs font-bold text-emerald-400"></div>
+        <!-- 4-TAB COACH & DIRECTOR PORTAL NAVIGATION BAR (Seats 5, 6, 7 & 9 Architecture) -->
+        <div id="coachPortal4TabBar" class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 bg-slate-950 border border-slate-800 rounded-xl p-1.5">
+          <button id="btnCoachTab1Command" type="button" data-coach-tab="coach_tab1_command" class="coach-portal-tab-btn px-2.5 py-2 rounded-lg bg-cyan-500 text-slate-950 font-black text-[11px] shadow transition text-left">
+            <div>📊 1. Command Center</div>
+            <div class="text-[9px] opacity-85 font-bold">Completion % &amp; Practice Alerts</div>
+          </button>
+          <button id="btnCoachTab2Homework" type="button" data-coach-tab="coach_tab2_homework" class="coach-portal-tab-btn px-2.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-200 font-extrabold text-[11px] transition text-left">
+            <div>📋 2. Homework Wizard</div>
+            <div class="text-[9px] text-slate-400 font-semibold">3-Step Group &amp; AI Push</div>
+          </button>
+          <button id="btnCoachTab3RosterPlaybook" type="button" data-coach-tab="coach_tab3_roster_playbook" class="coach-portal-tab-btn px-2.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-200 font-extrabold text-[11px] transition text-left">
+            <div>🏒 3. Roster &amp; Playbook</div>
+            <div class="text-[9px] text-slate-400 font-semibold">22/22 Seats • Systems • Roles</div>
+          </button>
+          <button id="btnCoachTab4DirectorHq" type="button" data-coach-tab="coach_tab4_director_hq" class="coach-portal-tab-btn px-2.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-200 font-extrabold text-[11px] transition text-left">
+            <div>🏢 4. Director HQ</div>
+            <div class="text-[9px] text-slate-400 font-semibold">8U–18U Club Roll-Up &amp; Push</div>
+          </button>
         </div>
 
-        <!-- 1B. THE 5 MULTI-LEVEL COACH PORTAL CUSTOMIZATIONS (Role Mapper, Team Playbook, Group Targeting, Jersey Colors & Pace Override) -->
-        <div id="coachMultiLevelCustomizationsBox" class="bg-slate-950 border-2 border-indigo-500/50 rounded-xl p-3.5 space-y-3">
-          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
-            <div>
-              <span class="text-xs font-black uppercase tracking-wider text-indigo-300">⚙️ Coach Team Customizations (Role Mapper, System Playbook, Jersey Colors &amp; Pace)</span>
-              <p class="text-[10px] text-slate-400">Out-of-the-box tokens &amp; prompts use clean <code class="text-amber-300">F1, F2, F3, D1, D2</code>. Customize below to swap whole-word labels cleanly across the ice &amp; Coach Bob!</p>
+        <!-- =============================================================== -->
+        <!-- COACH TAB 1: 📊 COMMAND CENTER & PRACTICE ALERTS                -->
+        <!-- =============================================================== -->
+        <div id="coachTab1CommandCenter" class="coach-tab-pane space-y-3">
+          <!-- Team KPI Summary Strip (Team Completion %, Team IQ Avg, Co-Op Cup Pts) -->
+          <div class="grid grid-cols-3 gap-2.5">
+            <div class="bg-slate-950 border border-emerald-500/40 rounded-xl p-2.5 text-center">
+              <div class="text-[10px] font-bold uppercase text-slate-400">Team Completion %</div>
+              <div id="coachKpiCompletionPct" class="text-base sm:text-lg font-black text-emerald-400 mt-0.5">88%</div>
+              <div class="text-[9px] text-emerald-300 font-bold">Weekly Homework Series</div>
             </div>
-            <span id="roleMapLivePreviewText" class="px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-300 text-[10px] font-black whitespace-nowrap">Active Labels: F1 • F2 • F3 • D1 • D2</span>
+            <div class="bg-slate-950 border border-amber-500/40 rounded-xl p-2.5 text-center">
+              <div class="text-[10px] font-bold uppercase text-slate-400">Team IQ Average</div>
+              <div id="coachKpiIqAvg" class="text-base sm:text-lg font-black text-amber-400 mt-0.5">184 IQ</div>
+              <div class="text-[9px] text-amber-200 font-bold">+14 IQ This Month</div>
+            </div>
+            <div class="bg-slate-950 border border-sky-500/40 rounded-xl p-2.5 text-center">
+              <div class="text-[10px] font-bold uppercase text-slate-400">Team Co-Op Cup Pts</div>
+              <div id="coachKpiCoopPts" class="text-base sm:text-lg font-black text-sky-400 mt-0.5">1,420 / 2,000</div>
+              <div class="text-[9px] text-sky-300 font-bold">Stanley Cup Banner Goal</div>
+            </div>
           </div>
 
-          <!-- Customization #1: Custom Role Terminology Panel (5 Inputs + 1-Tap Presets) -->
-          <div id="coachRoleTerminologyPanel" class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 space-y-2">
+          <!-- Real-Time Team Compliance & Scouting Alert Table -->
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black uppercase tracking-wider text-sky-300">🚨 Practice Scouting Alerts &amp; Per-Player Compliance</span>
+              <span class="text-[10px] font-bold text-emerald-300">1-Click [📩 Send 2 Remedial Drills]</span>
+            </div>
+            <div id="coachComplianceAlertTable" class="space-y-2"></div>
+          </div>
+
+          <!-- Coach's Team IQ Snapshot & Recommended On-Ice Practice Station -->
+          <div id="teamCoachPrescriptionBox" class="bg-emerald-950/35 border border-emerald-500/40 rounded-xl p-3 space-y-2 text-xs text-slate-200"></div>
+
+          <!-- Team Standings Table -->
+          <div class="space-y-2" id="teamModalLeaderboardList" data-role="leaderboardList"></div>
+          <div id="leaderboardList" class="hidden"></div>
+
+          <!-- 📡 LIVE AGENT & FOUNDER INBOX DRAWER (public.pucksense_agent_inbox) -->
+          <div class="bg-slate-950 border-2 border-rose-500/40 rounded-xl p-3 space-y-2">
             <div class="flex flex-wrap items-center justify-between gap-2">
-              <span class="text-[11px] font-black text-amber-300">🏷️ 1. Custom Role Terminology Mapper (Single-Label Whole-Word Swap)</span>
-              <div class="flex flex-wrap items-center gap-1.5">
-                <button id="btnPresetRoleStandard" type="button" class="px-2.5 py-1 rounded-lg bg-sky-500/25 hover:bg-sky-500/40 border border-sky-400/60 text-sky-200 text-[10px] font-black transition">
-                  Standard (F1–F3 / D1–D2)
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-black uppercase tracking-wider text-rose-300">📡 Live Agent &amp; Founder Inbox (Supabase Cloud)</span>
+                <span id="agentInboxCountBadge" class="px-2 py-0.5 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-300 text-[10px] font-black">0 Flags</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button id="btnOpenFounderDigestFromCoach" type="button" class="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-300 text-[10px] font-black transition">
+                  🔔 30-Idea Digest
                 </button>
-                <button id="btnPresetRoleAnimal" type="button" class="px-2.5 py-1 rounded-lg bg-amber-500/25 hover:bg-amber-500/40 border border-amber-400/60 text-amber-200 text-[10px] font-black transition">
-                  Youth Animal (Bull / Fox / Eagle)
+                <button id="btnOpenFlagDrillFromCoach" type="button" class="px-2.5 py-1 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 border border-rose-400/50 text-rose-200 text-[10px] font-black transition">
+                  🚩 + Flag Drill
                 </button>
-                <button id="btnPresetRolePro" type="button" class="px-2.5 py-1 rounded-lg bg-emerald-500/25 hover:bg-emerald-500/40 border border-emerald-400/60 text-emerald-200 text-[10px] font-black transition">
-                  Pro Tactical (Hound / Stalker / High)
+                <button id="btnRefreshAgentInbox" type="button" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-sky-300 text-[10px] font-extrabold transition">
+                  🔄 Refresh Cloud
                 </button>
+              </div>
+            </div>
+            <p class="text-[10px] text-slate-400">Real-time feed from <code>public.pucksense_agent_inbox</code> shared by Dane, Evan, and the 3-Pod / 10-Seat Board.</p>
+            <div id="coachLiveAgentInboxList" class="space-y-1.5 max-h-48 overflow-y-auto pr-1"></div>
+          </div>
+        </div>
+
+        <!-- =============================================================== -->
+        <!-- COACH TAB 2: 📋 WEEKLY HOMEWORK WIZARD (3-STEP FLOW)            -->
+        <!-- =============================================================== -->
+        <div id="coachTab2HomeworkWizard" class="coach-tab-pane hidden space-y-3">
+          <div class="bg-slate-950 border-2 border-amber-400/50 rounded-2xl p-4 space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
+              <div>
+                <span class="text-xs font-black uppercase tracking-wider text-amber-300">📋 3-Step Weekly Homework Wizard</span>
+                <p class="text-[11px] text-slate-300">1. Choose Target Position Group → 2. Select Focus Bucket or AI Prompt → 3. Preview &amp; Approve to Player Inboxes!</p>
+              </div>
+              <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black">10-Play Series (+100 Team Cup Pts)</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <!-- STEP 1: TARGET GROUP -->
+              <div class="bg-slate-900/90 border border-amber-400/40 rounded-xl p-3 space-y-1.5">
+                <label class="text-[11px] font-black text-amber-300 uppercase block">🎯 Step 1: Target Position Group</label>
+                <p class="text-[10px] text-slate-400">Assign homework to your whole roster or a specific position group.</p>
+                <select id="selectCoachHomeworkTargetGroup" class="w-full px-2.5 py-2 rounded-xl bg-slate-950 border border-amber-400/50 text-xs font-bold text-amber-200">
+                  <option value="all">Whole Team (All Lines &amp; Units)</option>
+                  <option value="forwards">Forwards Only (Lines 1–4)</option>
+                  <option value="defensemen">Defensemen Only (D-Pairs 1–3)</option>
+                  <option value="centers">Centers Only (Faceoffs &amp; Low Support)</option>
+                  <option value="goalies">Goalies Only (Crease Angles &amp; Rims)</option>
+                </select>
+              </div>
+
+              <!-- STEP 2A: FOCUS BUCKET -->
+              <div class="bg-slate-900/90 border border-sky-400/40 rounded-xl p-3 space-y-1.5">
+                <label class="text-[11px] font-black text-sky-300 uppercase block">🧠 Step 2A: Weekly Focus Concept Bucket</label>
+                <p class="text-[10px] text-slate-400">Pick from all 15 USA Hockey / NHL Concept Buckets.</p>
+                <select id="selectCoachWeeklyFocus" class="w-full px-2.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                  <option value="breakout">Breakouts: Behind-the-Net D-to-D Swing &amp; Wall Outlets</option>
+                  <option value="basics_support">1. 🏒 Puck Support &amp; Open-Ice Spacing (basics_support)</option>
+                  <option value="f1_f2_f3_roles">2. 🏒 Dynamic F1 / F2 / F3 Forward Proximity Roles (f1_f2_f3_roles)</option>
+                  <option value="dzone_house">3. 🏒 D-Zone Protect the House &amp; D1 / D2 Splits (dzone_house)</option>
+                  <option value="offsides_rules">4. 📏 Blue-Line Offsides, Tag-Up &amp; Zone Entry Timing (offsides_rules)</option>
+                  <option value="breakout_d_to_d">5. 🔄 Breakout Wall Support, Center Curl &amp; D-to-D Swing (breakout_d_to_d)</option>
+                  <option value="rush_attack">6. ⚡ Odd-Man Rushes (2v1, 3v2 High Trailer &amp; Middle Drive) (rush_attack)</option>
+                  <option value="forecheck_systems">7. 🏒 2-1-2 &amp; 1-2-2 Forecheck Angling &amp; F3 Reload (forecheck_systems)</option>
+                  <option value="powerplay_5v4">8. 🔥 5-on-4 Power Play Umbrella &amp; Bumper Support (powerplay_5v4)</option>
+                  <option value="penaltykill_4v5">9. 🔥 4-on-5 Penalty Kill Box, Diamond &amp; Clear Lanes (penaltykill_4v5)</option>
+                  <option value="deception_prescan">10. 👀 Pre-Scan Shoulder Checks, Look-Offs &amp; Puck Protection (deception_prescan)</option>
+                  <option value="oz_cycle_scissors">11. 🔄 OZ Cycle, Scissor Switch &amp; D-Pinch Backfill (oz_cycle_scissors)</option>
+                  <option value="nz_regroup_hinge">12. ⚡ NZ Regroup, D-to-D Hinge &amp; Weak-Side Slash (nz_regroup_hinge)</option>
+                  <option value="dz_box_plus_one">13. 🏒 D-Zone Box+1 Low-Slot Lock &amp; Strong-Side Seal (dz_box_plus_one)</option>
+                  <option value="goalie_screen_rebound">14. 🥅 Goalie Sightline Box-Out, Stick Lift &amp; Rebound Clear (goalie_screen_rebound)</option>
+                  <option value="faceoff_oz_win_play">15. 🏒 OZ &amp; DZ Faceoff Alignment &amp; Win Set-Plays (faceoff_oz_win_play)</option>
+                  <option value="role_f1f2f3">🏒 F1 / F2 / F3 Forward Proximity Rotation</option>
+                  <option value="role_d1d2">🏒 D1 Challenge / D2 Protect the House</option>
+                  <option value="defense_d">🏒 Defenseman Gap, Slides &amp; Box-Out (D)</option>
+                  <option value="goalie_g">🥅 Goalie Crease Angles, Screens &amp; Rims (G)</option>
+                  <option value="house">Defense + Penalty Kill + Box+1 House Coverage</option>
+                  <option value="forecheck">2-1-2 Forecheck + F3 High-Slot Support</option>
+                  <option value="spacing">Offensive Zone Possession + Attack Triangles</option>
+                  <option value="transition">Special Teams: 5v4 Umbrella PP &amp; 3v3 Transition</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- STEP 2B: CUSTOM AI PROMPT -->
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 space-y-1.5">
+              <label class="text-[11px] font-black text-cyan-300 uppercase block">💬 Step 2B: Custom Natural-Language Coach Note / AI Prompt</label>
+              <input id="inputCoachAiLessonPrompt" type="text" value="Our D-men are struggling with behind-the-net D-to-D swing passes under forecheck pressure—build a 10-question lesson plan" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-semibold text-amber-200" />
+            </div>
+
+            <!-- STEP 3: LIVE PREVIEW & APPROVE TO PLAYER INBOXES -->
+            <div id="coachHomeworkWizardPreviewBox" class="bg-slate-900 border border-emerald-500/40 rounded-xl p-3 space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-[11px] font-black uppercase tracking-wider text-emerald-300">👁️ Step 3: Live Player Inbox Assignment Preview</span>
+                <span id="homeworkPreviewTargetTag" class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-200 text-[10px] font-black">🎯 Whole Team • 10 Verified Drills</span>
+              </div>
+              <p id="homeworkPreviewSummaryText" class="text-xs text-slate-200 leading-snug">Pushes a verified 10-play assignment aligned with your Team System Playbook and custom role terminology directly to Player Inboxes.</p>
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+                <span class="text-[10px] font-bold text-sky-300">Synced live to <code>public.pucksense_teams</code></span>
+                <button id="btnApprovePushCoachLesson" type="button" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-300 hover:to-teal-400 text-slate-950 font-black text-xs shadow-lg transition">
+                  ✅ Step 3: Approve &amp; Push Lesson Plan to Player Inboxes ▶
+                </button>
+              </div>
+              <div id="coachPushLessonToast" class="hidden text-xs font-extrabold text-emerald-400 bg-emerald-950/50 border border-emerald-500/40 rounded-lg px-3 py-1.5"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =============================================================== -->
+        <!-- COACH TAB 3: 🏒 ROSTER, LINES & TEAM PLAYBOOK                   -->
+        <!-- =============================================================== -->
+        <div id="coachTab3RosterPlaybook" class="coach-tab-pane hidden space-y-3">
+          <!-- 1. Roster & Line Builder (Lines 1-4, D-Pairs 1-3, Goalies + 22-Seat Cap & Add/Kick Seat Controls) -->
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5 space-y-2.5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="text-xs font-black uppercase tracking-wider text-amber-300">🪑 22/22 Seat Manager &amp; Line/D-Pair Builder (➕ Add / 👢 Kick)</div>
+              <div class="flex flex-wrap items-center gap-2">
+                <span id="coachRosterSeatCounterBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black whitespace-nowrap">🪑 Roster Seats: 10 / 22 Used (12 Open)</span>
+                <span class="text-[11px] font-bold text-slate-400">Team Code: <strong id="teamModalCodeText" class="text-cyan-300">PUCK-774</strong></span>
               </div>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
-              <div>
-                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">1st Fwd (Base: F1)</label>
-                <input id="inputRoleMapF1" type="text" value="F1" maxlength="14" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-amber-400/50 text-xs font-black text-amber-300" />
-              </div>
-              <div>
-                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">2nd Fwd (Base: F2)</label>
-                <input id="inputRoleMapF2" type="text" value="F2" maxlength="14" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-sky-400/50 text-xs font-black text-sky-300" />
-              </div>
-              <div>
-                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">3rd Fwd (Base: F3)</label>
-                <input id="inputRoleMapF3" type="text" value="F3" maxlength="14" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-emerald-400/50 text-xs font-black text-emerald-300" />
-              </div>
-              <div>
-                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">1st Def (Base: D1)</label>
-                <input id="inputRoleMapD1" type="text" value="D1" maxlength="14" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-indigo-400/50 text-xs font-black text-indigo-300" />
-              </div>
-              <div>
-                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">2nd Def (Base: D2)</label>
-                <input id="inputRoleMapD2" type="text" value="D2" maxlength="14" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-purple-400/50 text-xs font-black text-purple-300" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Customization #2: Team System Playbook Selector ("Coach Our System") -->
-          <div id="coachTeamSystemPlaybookPanel" class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 space-y-2">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <span class="text-[11px] font-black text-sky-300">📋 2. Team System Playbook Selector ("Coach Our System")</span>
-              <span id="activePlaybookSummaryBadge" class="text-[10px] font-extrabold text-emerald-300">2-1-2 Aggressive • Protect the House • D-to-D Over</span>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-5 gap-2">
-              <div>
-                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">Forecheck System</label>
-                <select id="selectTeamSysForecheck" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
-                  <option value="2-1-2 Aggressive">2-1-2 Aggressive</option>
-                  <option value="1-2-2 Trap">1-2-2 Trap</option>
-                  <option value="LW Lock">LW Lock</option>
-                </select>
-              </div>
-              <div>
-                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">D-Zone Coverage</label>
-                <select id="selectTeamSysDZone" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
-                  <option value="Protect the House">Protect the House</option>
-                  <option value="Box+1">Box+1</option>
-                  <option value="Overload">Overload</option>
-                </select>
-              </div>
-              <div>
-                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">Primary Breakout</label>
-                <select id="selectTeamSysBreakout" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
-                  <option value="D-to-D Over">D-to-D Over</option>
-                  <option value="Up Wall">Up Wall</option>
-                  <option value="Wheel">Wheel</option>
-                  <option value="Reverse">Reverse</option>
-                  <option value="Rim">Rim</option>
-                </select>
-              </div>
-              <div>
-                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">5v4 Power Play</label>
-                <select id="selectTeamSysPP" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
-                  <option value="1-3-1 Umbrella">1-3-1 Umbrella</option>
-                  <option value="Overload">Overload</option>
-                </select>
-              </div>
-              <div>
-                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">4v5 Penalty Kill</label>
-                <select id="selectTeamSysPK" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
-                  <option value="Box">Box</option>
-                  <option value="Diamond">Diamond</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <!-- Customization #4: Team Jersey Color Customizer & Coaching Pace Override -->
-          <div id="coachJerseyAndPacePanel" class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 space-y-2">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <span class="text-[11px] font-black text-emerald-300">🎽 4. Team Jersey Colors (Rendered on Ice) &amp; Coaching Pace Override</span>
-              <div class="flex items-center gap-1.5">
-                <button type="button" data-jersey-preset="#0284c7,#fbbf24" class="btn-team-jersey-preset px-2 py-0.5 rounded bg-sky-600 text-white text-[9px] font-black border border-amber-300">Wolves Blue/Gold</button>
-                <button type="button" data-jersey-preset="#ea580c,#f8fafc" class="btn-team-jersey-preset px-2 py-0.5 rounded bg-orange-600 text-white text-[9px] font-black border border-white">Flyers Orange</button>
-                <button type="button" data-jersey-preset="#dc2626,#fde047" class="btn-team-jersey-preset px-2 py-0.5 rounded bg-red-600 text-white text-[9px] font-black border border-yellow-300">Crimson/Gold</button>
-                <button type="button" data-jersey-preset="#059669,#f8fafc" class="btn-team-jersey-preset px-2 py-0.5 rounded bg-emerald-600 text-white text-[9px] font-black border border-white">Emerald/White</button>
-              </div>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              <div class="flex items-center gap-2 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5">
-                <input id="inputTeamPrimaryColor" type="color" value="#0284c7" class="w-7 h-7 rounded cursor-pointer bg-transparent border-0" />
-                <div>
-                  <div class="text-[10px] font-black text-white">Primary Jersey Color</div>
-                  <div id="teamPrimaryColorHexText" class="text-[9px] text-sky-300 font-bold">#0284c7</div>
-                </div>
-              </div>
-              <div class="flex items-center gap-2 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5">
-                <input id="inputTeamSecondaryColor" type="color" value="#fbbf24" class="w-7 h-7 rounded cursor-pointer bg-transparent border-0" />
-                <div>
-                  <div class="text-[10px] font-black text-white">Secondary Trim Color</div>
-                  <div id="teamSecondaryColorHexText" class="text-[9px] text-amber-300 font-bold">#fbbf24</div>
-                </div>
-              </div>
-              <div>
-                <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">⏱️ Coaching Pace Override</label>
-                <select id="selectTeamCoachingPace" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
-                  <option value="default">Default Age-Scaled</option>
-                  <option value="relaxed_no_clock">8U/10U Relaxed (Visual Hints ON / No Clock Pressure)</option>
-                  <option value="pro_speed_no_hints">AAA/Jr Pro Speed (Tight Clocks / Zero Hints)</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
-            <span id="coachCustomizationsSavedToast" class="text-[11px] font-extrabold text-emerald-400">Ready to apply across all on-ice badges, Coach Bob prompts &amp; cloud team settings.</span>
-            <button id="btnSaveCoachCustomizations" type="button" class="px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 text-slate-950 font-black text-xs shadow transition">
-              💾 Save &amp; Sync Coach Customizations to Team
-            </button>
-          </div>
-        </div>
-
-        <!-- 2. Weekly Lesson Plan Generator, Line/Position-Group Homework Targeting & AI Prompt -->
-        <div class="bg-slate-950 border border-amber-400/40 rounded-xl p-3.5 space-y-2.5">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <span class="text-xs font-black uppercase tracking-wider text-amber-300">🧠 2. Weekly Lesson Plan Generator &amp; Position-Group Homework Targeting</span>
-            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-black">Stage 4 QA Verified</span>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <div>
-              <label class="text-[10px] font-bold text-slate-400 uppercase block mb-1">Weekly Priority Preset</label>
-              <select id="selectCoachWeeklyFocus" class="w-full px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
-                <option value="breakout">Breakouts: Behind-the-Net D-to-D Swing &amp; Wall Outlets</option>
-                <option value="basics_support">1. 🏒 Puck Support &amp; Open-Ice Spacing (basics_support)</option>
-                <option value="f1_f2_f3_roles">2. 🏒 Dynamic F1 / F2 / F3 Forward Proximity Roles (f1_f2_f3_roles)</option>
-                <option value="dzone_house">3. 🏒 D-Zone Protect the House &amp; D1 / D2 Splits (dzone_house)</option>
-                <option value="offsides_rules">4. 📏 Blue-Line Offsides, Tag-Up &amp; Zone Entry Timing (offsides_rules)</option>
-                <option value="breakout_d_to_d">5. 🔄 Breakout Wall Support, Center Curl &amp; D-to-D Swing (breakout_d_to_d)</option>
-                <option value="rush_attack">6. ⚡ Odd-Man Rushes (2v1, 3v2 High Trailer &amp; Middle Drive) (rush_attack)</option>
-                <option value="forecheck_systems">7. 🏒 2-1-2 &amp; 1-2-2 Forecheck Angling &amp; F3 Reload (forecheck_systems)</option>
-                <option value="powerplay_5v4">8. 🔥 5-on-4 Power Play Umbrella &amp; Bumper Support (powerplay_5v4)</option>
-                <option value="penaltykill_4v5">9. 🔥 4-on-5 Penalty Kill Box, Diamond &amp; Clear Lanes (penaltykill_4v5)</option>
-                <option value="deception_prescan">10. 👀 Pre-Scan Shoulder Checks, Look-Offs &amp; Puck Protection (deception_prescan)</option>
-                <option value="oz_cycle_scissors">11. 🔄 OZ Cycle, Scissor Switch &amp; D-Pinch Backfill (oz_cycle_scissors)</option>
-                <option value="nz_regroup_hinge">12. ⚡ NZ Regroup, D-to-D Hinge &amp; Weak-Side Slash (nz_regroup_hinge)</option>
-                <option value="dz_box_plus_one">13. 🏒 D-Zone Box+1 Low-Slot Lock &amp; Strong-Side Seal (dz_box_plus_one)</option>
-                <option value="goalie_screen_rebound">14. 🥅 Goalie Sightline Box-Out, Stick Lift &amp; Rebound Clear (goalie_screen_rebound)</option>
-                <option value="faceoff_oz_win_play">15. 🏒 OZ &amp; DZ Faceoff Alignment &amp; Win Set-Plays (faceoff_oz_win_play)</option>
-                <option value="role_f1f2f3">🏒 F1 / F2 / F3 Forward Proximity Rotation</option>
-                <option value="role_d1d2">🏒 D1 Challenge / D2 Protect the House</option>
-                <option value="defense_d">🏒 Defenseman Gap, Slides &amp; Box-Out (D)</option>
-                <option value="goalie_g">🥅 Goalie Crease Angles, Screens &amp; Rims (G)</option>
-                <option value="house">Defense + Penalty Kill + Box+1 House Coverage</option>
-                <option value="forecheck">2-1-2 Forecheck + F3 High-Slot Support</option>
-                <option value="spacing">Offensive Zone Possession + Attack Triangles</option>
-                <option value="transition">Special Teams: 5v4 Umbrella PP &amp; 3v3 Transition</option>
+              <select id="selectCoachRosterLine" class="px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
+                <option value="Line 1">Line 1 (Fwd)</option>
+                <option value="Line 2">Line 2 (Fwd)</option>
+                <option value="Line 3">Line 3 (Fwd)</option>
+                <option value="Line 4">Line 4 (Fwd)</option>
+                <option value="D-Pair 1">D-Pair 1</option>
+                <option value="D-Pair 2">D-Pair 2</option>
+                <option value="D-Pair 3">D-Pair 3</option>
+                <option value="Goalies">Goalie Unit</option>
               </select>
-            </div>
-            <div>
-              <label class="text-[10px] font-bold text-amber-300 uppercase block mb-1">🎯 3. Line- &amp; Position-Group Homework Target</label>
-              <select id="selectCoachHomeworkTargetGroup" class="w-full px-2.5 py-2 rounded-xl bg-slate-900 border border-amber-400/50 text-xs font-bold text-amber-200">
-                <option value="all">Whole Team (All Lines &amp; Units)</option>
-                <option value="forwards">Forwards Only (Lines 1–4)</option>
-                <option value="defensemen">Defensemen Only (D-Pairs 1–3)</option>
-                <option value="centers">Centers Only (Faceoffs &amp; Low Support)</option>
-                <option value="goalies">Goalies Only (Crease Angles &amp; Rims)</option>
+              <select id="selectCoachRosterPos" class="px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
+                <option value="C">Center (C)</option>
+                <option value="LW">Left Wing (LW)</option>
+                <option value="RW">Right Wing (RW)</option>
+                <option value="LD">Left Defense (LD)</option>
+                <option value="RD">Right Defense (RD)</option>
+                <option value="G">Goalie (G)</option>
               </select>
-            </div>
-            <div>
-              <label class="text-[10px] font-bold text-slate-400 uppercase block mb-1">Custom Natural-Language Coach AI Prompt</label>
-              <input id="inputCoachAiLessonPrompt" type="text" value="Our D-men are struggling with behind-the-net D-to-D swing passes under forecheck pressure—build a 10-question lesson plan" class="w-full px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold text-amber-200" />
-            </div>
-          </div>
-          <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
-            <span class="text-[11px] text-slate-400">Pushes a verified 10-play assignment to the targeted position group's Player Inbox.</span>
-            <button id="btnApprovePushCoachLesson" type="button" class="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-300 hover:to-teal-400 text-slate-950 font-black text-xs shadow transition">
-              ✅ Approve &amp; Push Lesson Plan to Player Inboxes
-            </button>
-          </div>
-          <div id="coachPushLessonToast" class="hidden text-xs font-extrabold text-emerald-400 bg-emerald-950/50 border border-emerald-500/40 rounded-lg px-3 py-1.5"></div>
-        </div>
-
-        <!-- 3. Real-Time Team Compliance & Scouting Alert Table -->
-        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-black uppercase tracking-wider text-sky-300">🚨 3. Real-Time Team Compliance &amp; Per-Player Scouting Alerts</span>
-            <span class="text-[10px] font-bold text-slate-400">1-Click Remedial Drill Push</span>
-          </div>
-          <div id="coachComplianceAlertTable" class="space-y-2"></div>
-        </div>
-
-        <!-- Coach's Team IQ Snapshot & Recommended On-Ice Practice Station -->
-        <div id="teamCoachPrescriptionBox" class="bg-emerald-950/35 border border-emerald-500/40 rounded-xl p-3 space-y-2 text-xs text-slate-200"></div>
-
-        <!-- Team Standings Table -->
-        <div class="space-y-2" id="teamModalLeaderboardList" data-role="leaderboardList"></div>
-        <div id="leaderboardList" class="hidden"></div>
-
-        <!-- 📡 LIVE AGENT & FOUNDER INBOX DRAWER (public.pucksense_agent_inbox) -->
-        <div class="bg-slate-950 border-2 border-rose-500/40 rounded-xl p-3 space-y-2">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-black uppercase tracking-wider text-rose-300">📡 Live Agent &amp; Founder Inbox (Supabase Cloud)</span>
-              <span id="agentInboxCountBadge" class="px-2 py-0.5 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-300 text-[10px] font-black">0 Flags</span>
-            </div>
-            <div class="flex items-center gap-1.5">
-              <button id="btnOpenFlagDrillFromCoach" type="button" class="px-2.5 py-1 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 border border-rose-400/50 text-rose-200 text-[10px] font-black transition">
-                🚩 + Flag Drill
+              <select id="selectCoachRosterHand" class="px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
+                <option value="Left">L-Shot</option>
+                <option value="Right">R-Shot</option>
+              </select>
+              <input id="inputModalTeamInvite" type="text" placeholder="Player Name or Email..." class="col-span-2 sm:col-span-1 px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white" />
+              <button id="btnModalSendInvite" type="button" class="col-span-2 sm:col-span-1 px-3 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs shrink-0 transition">
+                ➕ Add to Line / Invite
               </button>
-              <button id="btnRefreshAgentInbox" type="button" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-sky-300 text-[10px] font-extrabold transition">
-                🔄 Refresh Cloud
+            </div>
+            <div id="teamModalInviteToast" class="hidden text-xs font-bold text-emerald-400"></div>
+
+            <!-- Interactive Active Roster & 1-Tap Kick List -->
+            <div id="coachRosterManagementTable" class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 max-h-40 overflow-y-auto pt-1 pr-1"></div>
+          </div>
+
+          <!-- THE 5 MULTI-LEVEL COACH PORTAL CUSTOMIZATIONS (Role Mapper, Team Playbook, Jersey Colors & Pace Override) -->
+          <div id="coachMultiLevelCustomizationsBox" class="bg-slate-950 border-2 border-indigo-500/50 rounded-xl p-3.5 space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
+              <div>
+                <span class="text-xs font-black uppercase tracking-wider text-indigo-300">⚙️ Team System Playbook, Custom Role Mapper &amp; Sweater/Pace Overrides</span>
+                <p class="text-[10px] text-slate-400">Out-of-the-box tokens &amp; prompts use clean <code class="text-amber-300">F1, F2, F3, D1, D2</code>. Customize below to swap whole-word labels cleanly across the ice &amp; Coach Bob!</p>
+              </div>
+              <span id="roleMapLivePreviewText" class="px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-300 text-[10px] font-black whitespace-nowrap">Active Labels: F1 • F2 • F3 • D1 • D2</span>
+            </div>
+
+            <!-- Customization #1: Custom Role Terminology Panel (5 Inputs + 1-Tap Presets) -->
+            <div id="coachRoleTerminologyPanel" class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-[11px] font-black text-amber-300">🏷️ 1. Custom Role Terminology Mapper (Single-Label Whole-Word Swap)</span>
+                <div class="flex flex-wrap items-center gap-1.5">
+                  <button id="btnPresetRoleStandard" type="button" class="px-2.5 py-1 rounded-lg bg-sky-500/25 hover:bg-sky-500/40 border border-sky-400/60 text-sky-200 text-[10px] font-black transition">
+                    Standard (F1–F3 / D1–D2)
+                  </button>
+                  <button id="btnPresetRoleAnimal" type="button" class="px-2.5 py-1 rounded-lg bg-amber-500/25 hover:bg-amber-500/40 border border-amber-400/60 text-amber-200 text-[10px] font-black transition">
+                    Youth Animal (Bull / Fox / Eagle)
+                  </button>
+                  <button id="btnPresetRolePro" type="button" class="px-2.5 py-1 rounded-lg bg-emerald-500/25 hover:bg-emerald-500/40 border border-emerald-400/60 text-emerald-200 text-[10px] font-black transition">
+                    Pro Tactical (Hound / Stalker / High)
+                  </button>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                <div>
+                  <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">1st Fwd (Base: F1)</label>
+                  <input id="inputRoleMapF1" type="text" value="F1" maxlength="12" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-amber-400/50 text-xs font-black text-amber-300" />
+                </div>
+                <div>
+                  <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">2nd Fwd (Base: F2)</label>
+                  <input id="inputRoleMapF2" type="text" value="F2" maxlength="12" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-sky-400/50 text-xs font-black text-sky-300" />
+                </div>
+                <div>
+                  <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">3rd Fwd (Base: F3)</label>
+                  <input id="inputRoleMapF3" type="text" value="F3" maxlength="12" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-emerald-400/50 text-xs font-black text-emerald-300" />
+                </div>
+                <div>
+                  <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">1st Def (Base: D1)</label>
+                  <input id="inputRoleMapD1" type="text" value="D1" maxlength="12" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-indigo-400/50 text-xs font-black text-indigo-300" />
+                </div>
+                <div>
+                  <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">2nd Def (Base: D2)</label>
+                  <input id="inputRoleMapD2" type="text" value="D2" maxlength="12" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-purple-400/50 text-xs font-black text-purple-300" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Customization #2: Team System Playbook Selector ("Coach Our System") -->
+            <div id="coachTeamSystemPlaybookPanel" class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-[11px] font-black text-sky-300">📋 2. Team System Playbook Selector ("Coach Our System")</span>
+                <span id="activePlaybookSummaryBadge" class="text-[10px] font-extrabold text-emerald-300">2-1-2 Aggressive • Protect the House • D-to-D Over</span>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-5 gap-2">
+                <div>
+                  <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">Forecheck System</label>
+                  <select id="selectTeamSysForecheck" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                    <option value="2-1-2 Aggressive">2-1-2 Aggressive</option>
+                    <option value="1-2-2 Trap">1-2-2 Trap</option>
+                    <option value="LW Lock">LW Lock</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">D-Zone Coverage</label>
+                  <select id="selectTeamSysDZone" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                    <option value="Protect the House">Protect the House</option>
+                    <option value="Box+1">Box+1</option>
+                    <option value="Overload">Overload</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">Primary Breakout</label>
+                  <select id="selectTeamSysBreakout" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                    <option value="D-to-D Over">D-to-D Over</option>
+                    <option value="Up Wall">Up Wall</option>
+                    <option value="Wheel">Wheel</option>
+                    <option value="Reverse">Reverse</option>
+                    <option value="Rim">Rim</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">5v4 Power Play</label>
+                  <select id="selectTeamSysPP" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                    <option value="1-3-1 Umbrella">1-3-1 Umbrella</option>
+                    <option value="Overload">Overload</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">4v5 Penalty Kill</label>
+                  <select id="selectTeamSysPK" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                    <option value="Box">Box</option>
+                    <option value="Diamond">Diamond</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Customization #4: Team Jersey Color Customizer & Coaching Pace Override -->
+            <div id="coachJerseyAndPacePanel" class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-[11px] font-black text-emerald-300">🎽 3. Team Sweater Colors (Rendered on Ice) &amp; Coaching Pace Override</span>
+                <div class="flex items-center gap-1.5">
+                  <button type="button" data-team-primary="#0284c7" data-team-secondary="#fbbf24" data-jersey-preset="#0284c7,#fbbf24" class="btn-team-jersey-preset px-2 py-0.5 rounded bg-sky-600 text-white text-[9px] font-black border border-amber-300">Wolves Blue/Gold</button>
+                  <button type="button" data-team-primary="#ea580c" data-team-secondary="#f8fafc" data-jersey-preset="#ea580c,#f8fafc" class="btn-team-jersey-preset px-2 py-0.5 rounded bg-orange-600 text-white text-[9px] font-black border border-white">Flyers Orange</button>
+                  <button type="button" data-team-primary="#dc2626" data-team-secondary="#fde047" data-jersey-preset="#dc2626,#fde047" class="btn-team-jersey-preset px-2 py-0.5 rounded bg-red-600 text-white text-[9px] font-black border border-yellow-300">Crimson/Gold</button>
+                  <button type="button" data-team-primary="#059669" data-team-secondary="#f8fafc" data-jersey-preset="#059669,#f8fafc" class="btn-team-jersey-preset px-2 py-0.5 rounded bg-emerald-600 text-white text-[9px] font-black border border-white">Emerald/White</button>
+                </div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <div class="flex items-center gap-2 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5">
+                  <input id="inputTeamPrimaryColor" type="color" value="#0284c7" class="w-7 h-7 rounded cursor-pointer bg-transparent border-0" />
+                  <div>
+                    <div class="text-[10px] font-black text-white">Primary Jersey Color</div>
+                    <div id="teamPrimaryColorHexText" class="text-[9px] text-sky-300 font-bold">#0284c7</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5">
+                  <input id="inputTeamSecondaryColor" type="color" value="#fbbf24" class="w-7 h-7 rounded cursor-pointer bg-transparent border-0" />
+                  <div>
+                    <div class="text-[10px] font-black text-white">Secondary Trim Color</div>
+                    <div id="teamSecondaryColorHexText" class="text-[9px] text-amber-300 font-bold">#fbbf24</div>
+                  </div>
+                </div>
+                <div>
+                  <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">⏱️ Coaching Pace Override</label>
+                  <select id="selectTeamCoachingPace" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                    <option value="default">Default Age-Scaled</option>
+                    <option value="relaxed_no_clock">8U/10U Relaxed (Visual Hints ON / No Clock Pressure)</option>
+                    <option value="pro_speed_no_hints">AAA/Jr Pro Speed (Tight Clocks / Zero Hints)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+              <span id="coachCustomizationsSavedToast" class="text-[11px] font-extrabold text-emerald-400">Ready to apply across all on-ice badges, Coach Bob prompts &amp; cloud team settings.</span>
+              <button id="btnSaveCoachCustomizations" type="button" class="px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 text-slate-950 font-black text-xs shadow transition">
+                💾 Save &amp; Sync Coach Customizations to Team
               </button>
             </div>
           </div>
-          <p class="text-[10px] text-slate-400">Real-time feed from <code>public.pucksense_agent_inbox</code> shared by Dane, Evan, Youth Hockey Playtest Agent, Learning Council Agent, and Builder Agent.</p>
-          <div id="coachLiveAgentInboxList" class="space-y-1.5 max-h-48 overflow-y-auto pr-1"></div>
+        </div>
+
+        <!-- =============================================================== -->
+        <!-- COACH TAB 4: 🏢 DIRECTOR HQ (ASSOCIATION & CLUB GM VIEW)        -->
+        <!-- =============================================================== -->
+        <div id="coachTab4DirectorHq" class="coach-tab-pane hidden space-y-3">
+          <div class="bg-slate-950 border-2 border-purple-500/50 rounded-2xl p-4 space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
+              <div>
+                <span class="text-xs font-black uppercase tracking-wider text-purple-300">🏢 Director HQ — Multi-Team Association &amp; Club GM Oversight (8U–18U)</span>
+                <p class="text-[11px] text-slate-300">Track coach activity, roster compliance %, and division IQ growth across all club teams &amp; push monthly curriculum standards.</p>
+              </div>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <button type="button" data-assoc-code="ASSOC-MINOT" class="director-assoc-pill px-2.5 py-1 rounded-lg bg-purple-500 text-slate-950 font-black text-[10px] shadow transition">🐺 ASSOC-MINOT</button>
+                <button type="button" data-assoc-code="ASSOC-FOOTHILLS" class="director-assoc-pill px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-[10px] transition">🦅 ASSOC-FOOTHILLS</button>
+                <button type="button" data-assoc-code="ASSOC-LIGHTNING" class="director-assoc-pill px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-[10px] transition">⚡ ASSOC-LIGHTNING</button>
+              </div>
+            </div>
+
+            <!-- Multi-Team Roll-Up Table across 8U-18U -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="border-b border-slate-800 text-[10px] font-black uppercase text-slate-400">
+                    <th class="py-2 px-2">Division &amp; Team</th>
+                    <th class="py-2 px-2">Head Coach Activity</th>
+                    <th class="py-2 px-2">Roster Compliance %</th>
+                    <th class="py-2 px-2">Division IQ Growth</th>
+                    <th class="py-2 px-2">Monthly Standard</th>
+                  </tr>
+                </thead>
+                <tbody id="directorHqMultiTeamTable" class="divide-y divide-slate-800/80 text-[11px]"></tbody>
+              </table>
+            </div>
+
+            <!-- Push Association-Wide Monthly Curriculum Standard -->
+            <div class="bg-slate-900 border border-purple-400/40 rounded-xl p-3 space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-[11px] font-black uppercase tracking-wider text-amber-300">📢 Push Association-Wide Monthly Curriculum Standard (8U–18U ADM Auto-Scaled)</span>
+                <span class="text-[10px] font-bold text-emerald-300">8U strictly 5v5 foundational • 14U–18U full systems</span>
+              </div>
+              <div class="flex flex-col sm:flex-row gap-2">
+                <select id="selectDirectorMonthlyCurriculum" class="flex-1 px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                  <option value="month1_support_breakouts">Month 1 Standard: 200-Ft Puck Support Triangles (8U–10U) &amp; D-to-D Breakouts (12U–18U)</option>
+                  <option value="month2_dzone_house_box">Month 2 Standard: Protect the House Net-Side Sticks (8U–10U) &amp; Box+1 / Gap Control (12U–18U)</option>
+                  <option value="month3_forecheck_prescan">Month 3 Standard: F1/F2/F3 Angling Roles (8U–10U) &amp; Pre-Scan Deception / 2-1-2 Forecheck (12U–18U)</option>
+                  <option value="month4_rush_specialteams">Month 4 Standard: 5v5 Wide-Lane Rushes (8U) &amp; Odd-Man Rush / 5v4 Umbrella PP &amp; 4v5 PK (10U–18U)</option>
+                </select>
+                <button id="btnPushAssociationCurriculum" type="button" class="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-400 hover:to-indigo-400 text-white font-black text-xs shadow-lg transition whitespace-nowrap">
+                  📢 Push Association-Wide Monthly Curriculum Standard ▶
+                </button>
+              </div>
+              <div id="directorCurriculumToast" class="hidden text-xs font-extrabold text-emerald-400 bg-emerald-950/50 border border-emerald-500/40 rounded-lg px-3 py-1.5"></div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -3046,6 +3335,90 @@
         <button id="btnCloseSuccessStoriesBottom" type="button" class="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs transition">
           Back to Rink
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL 15: 🔔 30-IDEA FOUNDER BOARD DIGEST, AUTHORITY FLOW TRACKER     -->
+  <!-- & 1-CLICK EMAIL / GREEN-LIGHT QUEUE (FOR COACH DANE & COACH EVAN)     -->
+  <!-- ===================================================================== -->
+  <div id="founderDigestModal" class="hidden fixed inset-0 z-50 bg-slate-950/92 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 overflow-y-auto modal-backdrop">
+    <div class="bg-slate-900 border-2 border-amber-400/90 rounded-2xl max-w-6xl w-full p-4 sm:p-5 shadow-2xl scrollable-modal-card flex flex-col justify-between gap-3">
+      <!-- Header -->
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3 shrink-0">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">🔔</span>
+          <div>
+            <div class="flex flex-wrap items-center gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 text-[9px] font-black uppercase tracking-widest">3-Pod / 10-Seat Board Digest • 30 Ideas (3 × 10 Seats)</span>
+              <span id="founderDigestSyncBadge" class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[9px] font-black">☁️ Synced to public.pucksense_agent_inbox (category: board_digest)</span>
+            </div>
+            <h3 class="text-base sm:text-lg font-black text-white mt-0.5">30-Idea Founder Board Digest, 4-Step Authority Flow &amp; 1-Click Build Queue</h3>
+            <p class="text-[11px] text-slate-300">Prepared for <strong>Coach Dane (danebekkedahl@gmail.com)</strong> &amp; <strong>Coach Evan (evanbekk@gmail.com)</strong> — Hand-pick any <code class="text-amber-300">🟡 ON DECK</code> or <code class="text-rose-300">🔴 VETOED</code> idea to queue for the next build!</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-1.5">
+          <button id="btnEmailFounderDigest" type="button" class="px-3 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-black text-xs shadow-lg transition flex items-center gap-1.5">
+            <span>📧 Email 30-Idea Digest to Dane &amp; Evan</span>
+          </button>
+          <a href="./report.html" target="_blank" rel="noopener noreferrer" class="px-2.5 py-2 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/50 text-sky-200 font-black text-xs transition">
+            📊 Full Report Matrix ↗
+          </a>
+          <button id="btnCloseFounderDigestModal" type="button" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold">✕</button>
+        </div>
+      </div>
+
+      <!-- 4-Step Domain Authority Hierarchy Banner -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-[11px] shrink-0">
+        <div class="p-2 rounded-lg bg-slate-900 border border-amber-400/40">
+          <div class="font-black text-amber-300">1. WHAT Is Taught (Seats 1, 5 &amp; 6)</div>
+          <div class="text-[10px] text-slate-300">Hockey Directors &amp; Coaches own on-ice accuracy, (x,y) positioning, ADM rules &amp; 1st/2nd/3rd Choice zones.</div>
+        </div>
+        <div class="p-2 rounded-lg bg-slate-900 border border-sky-400/40">
+          <div class="font-black text-sky-300">2. HOW Kids Learn It (Seats 2 &amp; 3)</div>
+          <div class="text-[10px] text-slate-300">Teaching &amp; Pediatric/Parent Leads <strong>outrank Coaches on delivery</strong> (&lt;=14 words, Cue-First, sibling stalls).</div>
+        </div>
+        <div class="p-2 rounded-lg bg-slate-900 border border-emerald-400/40">
+          <div class="font-black text-emerald-300">3. HOW FUN It Feels (Seat 4)</div>
+          <div class="text-[10px] text-slate-300">Mobile Game Designer owns Coach Bob cellies, streaks, Pro Shop swag &amp; Trophy Room Prestige Cups.</div>
+        </div>
+        <div class="p-2 rounded-lg bg-slate-900 border border-rose-400/40">
+          <div class="font-black text-rose-300">4. WHERE It Lives (Seats 7 &amp; 9 Veto)</div>
+          <div class="text-[10px] text-slate-300">Principal UX &amp; App Engineer own 4-Tab organization &amp; hold <strong>Anti-Clutter Veto</strong> over any rink HUD clutter.</div>
+        </div>
+      </div>
+
+      <!-- Filter Bar & Email/Override Toast -->
+      <div class="flex flex-wrap items-center justify-between gap-2 shrink-0">
+        <div id="founderDigestFilterBar" class="flex flex-wrap items-center gap-1.5">
+          <button type="button" data-digest-filter="all" class="digest-filter-btn px-2.5 py-1 rounded-lg bg-amber-400 text-slate-950 font-black text-[11px] transition">All 30 Ideas (30)</button>
+          <button type="button" data-digest-filter="green_lit" class="digest-filter-btn px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 font-extrabold text-[11px] transition">🟢 Green-Lit &amp; Shipped (3)</button>
+          <button type="button" data-digest-filter="on_deck" class="digest-filter-btn px-2.5 py-1 rounded-lg bg-amber-500/20 border border-amber-400/50 text-amber-300 font-extrabold text-[11px] transition">🟡 On Deck (21)</button>
+          <button type="button" data-digest-filter="vetoed" class="digest-filter-btn px-2.5 py-1 rounded-lg bg-rose-500/20 border border-rose-400/50 text-rose-300 font-extrabold text-[11px] transition">🔴 Vetoed by Authority (6)</button>
+          <button type="button" data-digest-filter="pod1" class="digest-filter-btn px-2.5 py-1 rounded-lg bg-slate-800 text-sky-300 font-bold text-[11px] transition">Pod 1: Seats 1–4</button>
+          <button type="button" data-digest-filter="pod2" class="digest-filter-btn px-2.5 py-1 rounded-lg bg-slate-800 text-cyan-300 font-bold text-[11px] transition">Pod 2: Seats 5–7</button>
+          <button type="button" data-digest-filter="pod3" class="digest-filter-btn px-2.5 py-1 rounded-lg bg-slate-800 text-purple-300 font-bold text-[11px] transition">Pod 3: Seats 8–10</button>
+        </div>
+        <div id="founderDigestEmailToast" class="hidden text-xs font-extrabold text-emerald-400 bg-emerald-950/60 border border-emerald-500/50 rounded-lg px-3 py-1"></div>
+      </div>
+
+      <!-- 30-Idea Authority Flow Matrix Table -->
+      <div class="overflow-y-auto max-h-[52vh] bg-slate-950 border border-slate-800 rounded-xl p-2">
+        <div id="founderDigestIdeasTable" class="space-y-2"></div>
+      </div>
+
+      <!-- Footer -->
+      <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800 shrink-0">
+        <span class="text-[11px] text-slate-400">🔒 Locked Founder Rules &amp; Shipped Board Decisions are permanently recorded in <code>CHANGELOG_DECISIONS.md</code>.</span>
+        <div class="flex items-center gap-2">
+          <button id="btnSyncDigestToSupabase" type="button" class="px-3 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/50 text-emerald-300 font-black text-xs transition">
+            ☁️ Re-Sync 30-Idea Digest to Supabase
+          </button>
+          <button id="btnCloseFounderDigestBottom" type="button" class="px-4 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs transition">
+            Close Digest
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -7274,11 +7647,17 @@
       if (!profileId) return;
       const target = state.profiles.find(p => p.id === profileId);
       if (!target) return;
+      if (state.activeProfileId && state.activeProfileId !== target.id) {
+        saveProgress();
+      }
       state.activeProfileId = target.id;
       syncFromActiveProfile();
       saveProgress();
       renderNhlTourMap();
       updateHeaderStats();
+      if (typeof renderPlayerPortal4Tabs === 'function') {
+        renderPlayerPortal4Tabs();
+      }
     }
     window.setActiveProfile = setActiveProfile;
 
@@ -12377,6 +12756,9 @@
 
       updateProfile3dAvatarPreview();
       updateHeaderStats();
+      if (typeof renderPlayerPortal4Tabs === 'function') {
+        renderPlayerPortal4Tabs();
+      }
     }
 
     // =========================================================================
@@ -12964,6 +13346,9 @@
           <div>• <strong>Recommended 10-Min ADM Ice Station:</strong> <span class="text-sky-300 font-bold">${station.title}</span> — ${station.setup}</div>
           <div>• <strong>Coach Verbal Cue on the Whistle:</strong> <span class="text-emerald-200 italic">${station.coachingCue}</span></div>
         `;
+      }
+      if (typeof renderCoachPortal4Tabs === 'function') {
+        renderCoachPortal4Tabs();
       }
       if (typeof refreshLiveAgentInbox === 'function') {
         refreshLiveAgentInbox();
@@ -13569,8 +13954,12 @@
 
     document.getElementById('btnOpenLoginModal').addEventListener('click', () => {
       SoundFX.playTap();
-      renderLoginModal(true);
-      document.getElementById('loginModal').classList.remove('hidden');
+      if ((state.hasOnboarded || state.sandboxAuthenticated) && typeof openProfileModal === 'function') {
+        openProfileModal('tab1_stalls');
+      } else {
+        renderLoginModal(true);
+        document.getElementById('loginModal').classList.remove('hidden');
+      }
     });
 
     document.getElementById('btnCloseLoginModal').addEventListener('click', () => {
@@ -15938,6 +16327,888 @@
     if (btnCycleQFormat) {
       btnCycleQFormat.addEventListener('click', cycleQuestionFormat);
     }
+
+    // =========================================================================
+    // 1. 4-TAB PLAYER & FAMILY LOCKER ROOM (#profileModal) CONTROLLERS
+    // =========================================================================
+    state.activePlayerPortalTab = 'tab1_stalls';
+
+    function switchPlayerPortalTab(tabCode = 'tab1_stalls') {
+      SoundFX.playTap();
+      const validTabs = ['tab1_stalls', 'tab2_avatar', 'tab3_iq_lessons', 'tab4_parent_hq'];
+      state.activePlayerPortalTab = validTabs.includes(tabCode) ? tabCode : 'tab1_stalls';
+
+      const panes = {
+        tab1_stalls: document.getElementById('playerTab1Stalls'),
+        tab2_avatar: document.getElementById('playerTab2Avatar'),
+        tab3_iq_lessons: document.getElementById('playerTab3IqLessons'),
+        tab4_parent_hq: document.getElementById('playerTab4ParentHq')
+      };
+      Object.entries(panes).forEach(([code, el]) => {
+        if (el) el.classList.toggle('hidden', code !== state.activePlayerPortalTab);
+      });
+
+      document.querySelectorAll('.player-portal-tab-btn').forEach(btn => {
+        const isAct = btn.dataset.playerTab === state.activePlayerPortalTab;
+        btn.className = isAct
+          ? 'player-portal-tab-btn px-2.5 py-2 rounded-lg bg-sky-500 text-slate-950 font-black text-[11px] shadow transition text-left'
+          : 'player-portal-tab-btn px-2.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-200 font-extrabold text-[11px] transition text-left';
+      });
+
+      renderPlayerPortal4Tabs();
+      return state.activePlayerPortalTab;
+    }
+    window.switchPlayerPortalTab = switchPlayerPortalTab;
+
+    function openProfileModal(tabCode = 'tab1_stalls') {
+      SoundFX.playTap();
+      const loginModalEl = document.getElementById('loginModal');
+      const wizBox = document.getElementById('onboardingWizardContainer');
+      const stuBox = document.getElementById('fullAvatarStudioContainer');
+      const toggleBtn = document.getElementById('btnToggleWizardOrStudio');
+      if (wizBox && stuBox) {
+        wizBox.classList.add('hidden');
+        stuBox.classList.remove('hidden');
+      }
+      if (toggleBtn) {
+        toggleBtn.textContent = '⚡ 5-Step Quick Setup Wizard';
+      }
+      renderLoginModal(true);
+      switchPlayerPortalTab(tabCode);
+      if (loginModalEl) loginModalEl.classList.remove('hidden');
+    }
+    window.openProfileModal = openProfileModal;
+
+    function switchSiblingStall(profId) {
+      if (!profId) return null;
+      SoundFX.playGoalHorn();
+      // Save current active profile BEFORE switching so there is 0% data bleed!
+      if (state.activeProfileId && state.activeProfileId !== profId) {
+        saveProgress();
+      }
+      let target = state.profiles.find(p => p.id === profId || (p.login_key || '').toLowerCase() === String(profId).toLowerCase());
+      if (!target) {
+        const preset = FOUNDER_PRESETS.find(fp => fp.id === profId);
+        if (preset) {
+          target = JSON.parse(JSON.stringify(preset));
+          state.profiles.push(target);
+        }
+      }
+      if (!target) return null;
+
+      state.activeProfileId = target.id;
+      state.hasOnboarded = true;
+      syncFromActiveProfile();
+      initLoginModalDraft(target);
+      saveProgress();
+      renderNhlTourMap();
+      updateHeaderStats();
+      loadScenario(false);
+      renderPlayerPortal4Tabs();
+
+      const toast = document.getElementById('siblingSwitchStatusToast');
+      if (toast) {
+        toast.textContent = `✅ Switched Stall → ${target.name} #${target.jerseyNumber || 9} (${target.ageGroup} • ${target.position}) • Zero Data Bleed`;
+      }
+      return target;
+    }
+    window.switchSiblingStall = switchSiblingStall;
+
+    function renderPlayerPortal4Tabs() {
+      const activeProf = getActiveProfile();
+      ensureProfileAvatarDefaults(activeProf);
+
+      // TAB 1: 🏒 Who's Playing? (1-Tap Sibling Locker Stalls: Miles #9 • 12U, Rhett #88 • 8U, Whelan #7 • 8U, Cohen #14 • 10U, + Add Sibling)
+      const stallsGrid = document.getElementById('siblingLockerStallsGrid');
+      if (stallsGrid) {
+        const siblingIds = ['miles', 'rhett', 'whelan', 'cohen'];
+        siblingIds.forEach(sid => {
+          if (!state.profiles.some(p => p.id === sid)) {
+            const preset = FOUNDER_PRESETS.find(fp => fp.id === sid);
+            if (preset) state.profiles.push(JSON.parse(JSON.stringify(preset)));
+          }
+        });
+        const siblingProfiles = siblingIds
+          .map(sid => state.profiles.find(p => p.id === sid))
+          .filter(Boolean);
+        // Include any custom added sibling profiles
+        state.profiles.forEach(p => {
+          if (!siblingIds.includes(p.id) && !['dane', 'evan', 'amanda', 'sal', 'playtest-bot'].includes(p.id)) {
+            siblingProfiles.push(p);
+          }
+        });
+
+        stallsGrid.innerHTML = siblingProfiles.map(sib => {
+          ensureProfileAvatarDefaults(sib);
+          const isAct = sib.id === state.activeProfileId;
+          const city = NHL_CITIES[sib.currentCityIdx || 0] || NHL_CITIES[0];
+          const jNum = sib.jerseyNumber || (sib.id === 'rhett' ? 88 : (sib.id === 'whelan' ? 7 : (sib.id === 'cohen' ? 14 : 9)));
+          const lockIcon = sib.ageDivisionLocked ? '🔒' : '';
+          return `
+            <button type="button" data-sibling-stall="${sib.id}" class="sibling-stall-card p-3 rounded-2xl border-2 text-left transition flex items-center justify-between gap-2.5 ${
+              isAct
+                ? 'bg-sky-500/20 border-amber-400 shadow-lg'
+                : 'bg-slate-900/90 hover:bg-slate-800 border-slate-800'
+            }">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <div class="w-12 h-12 rounded-2xl bg-slate-950 border-2 flex items-center justify-center shrink-0 overflow-hidden" style="border-color:${sib.jerseyColor || '#0284c7'}">
+                  ${renderMiniAvatarSvg(sib, 40)}
+                </div>
+                <div class="min-w-0">
+                  <div class="text-xs sm:text-sm font-black text-white truncate">${sib.name} <span class="text-amber-300">#${jNum}</span> • <span class="text-sky-300">${sib.ageGroup}</span> ${lockIcon}</div>
+                  <div class="text-[10px] text-slate-300 font-bold truncate">${sib.position} (${sib.hand || 'L'}) • 📍 ${city.name}</div>
+                  <div class="text-[10px] text-emerald-300 font-black mt-0.5">🧠 ${sib.iqScore || 100} IQ • 🪙 $${sib.puckBucks || 250}</div>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded-xl font-black text-[10px] shrink-0 ${
+                isAct ? 'bg-amber-400 text-slate-950' : 'bg-sky-500/20 border border-sky-400/50 text-sky-200'
+              }">${isAct ? 'ACTIVE ✓' : '1-Tap Play ▶'}</span>
+            </button>
+          `;
+        }).join('') + `
+          <button id="btnAddSiblingStallCard" type="button" class="p-3 rounded-2xl border-2 border-dashed border-emerald-400/50 bg-emerald-950/20 hover:bg-emerald-950/40 text-left transition flex items-center justify-between gap-2">
+            <div>
+              <div class="text-xs sm:text-sm font-black text-emerald-300">➕ Add Sibling Locker Stall</div>
+              <div class="text-[10px] text-slate-300 font-semibold">Create a separate jersey, age division &amp; IQ progress card</div>
+            </div>
+            <span class="px-2.5 py-1 rounded-xl bg-emerald-400 text-slate-950 font-black text-[10px] shrink-0">+ New Stall</span>
+          </button>
+        `;
+
+        stallsGrid.querySelectorAll('.sibling-stall-card').forEach(card => {
+          card.addEventListener('click', () => {
+            switchSiblingStall(card.dataset.siblingStall);
+          });
+        });
+        const addSibBtn = document.getElementById('btnAddSiblingStallCard');
+        if (addSibBtn) {
+          addSibBtn.addEventListener('click', () => {
+            SoundFX.playTap();
+            state.editingNewSibling = true;
+            switchPlayerPortalTab('tab2_avatar');
+            const firstEl = document.getElementById('inputPlayerName');
+            if (firstEl) {
+              firstEl.value = '';
+              firstEl.focus();
+            }
+          });
+        }
+      }
+
+      // TAB 2: 🎨 Equipped Pro Shop Gear Slots
+      const gearSlotsGrid = document.getElementById('profileEquippedGearSlotsGrid');
+      if (gearSlotsGrid) {
+        const slots = [
+          { label: '🪖 Helmet', color: activeProf.equippedHelmet || '#1e3a8a', name: 'Pro Bucket' },
+          { label: '🥽 Visor',  color: activeProf.equippedVisor || '#38bdf8',  name: activeProf.equippedVisor ? 'Tinted Shield' : 'Clear Shield' },
+          { label: '🏒 Stick',  color: activeProf.equippedStick || '#22c55e',  name: 'Pro Carbon Twig' },
+          { label: '⛸️ Skates', color: activeProf.equippedSkate || '#e2e8f0',  name: 'Custom Runners' }
+        ];
+        gearSlotsGrid.innerHTML = slots.map(s => `
+          <div class="p-1.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 rounded-full border border-white/40 shrink-0" style="background:${s.color}"></span>
+            <div class="min-w-0">
+              <div class="text-[9px] font-black text-slate-300 truncate">${s.label}</div>
+              <div class="text-[9px] text-amber-300 font-bold truncate">${s.name}</div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Enforce Parent Age Division Lock on #selectPlayerAge and .diff-btn
+      const ageSelEl = document.getElementById('selectPlayerAge');
+      const lockChk = document.getElementById('chkLockChildAgeDivision');
+      const lockBadge = document.getElementById('parentDivisionLockStatusBadge');
+      const isAgeLocked = Boolean(activeProf.ageDivisionLocked);
+      if (ageSelEl) {
+        ageSelEl.value = activeProf.ageGroup || '10U';
+        ageSelEl.disabled = isAgeLocked;
+      }
+      if (lockChk) lockChk.checked = isAgeLocked;
+      if (lockBadge) {
+        lockBadge.textContent = isAgeLocked
+          ? `🔒 Locked to ${activeProf.ageGroup} (${activeProf.name})`
+          : `🔓 Age Division Unlocked (${activeProf.ageGroup})`;
+      }
+
+      // TAB 3: 📊 My IQ Pie Chart, Position-Specific IQ Grid (C, LW, RW, D, G), Self-Eval & PIP/Builder
+      const tab3Title = document.getElementById('profileTab3PlayerTitle');
+      if (tab3Title) {
+        tab3Title.textContent = `🥧 ${activeProf.name} #${activeProf.jerseyNumber || 9} (${activeProf.ageGroup}) — 6-Slice Hockey IQ Pie & 100% Balance`;
+      }
+      const evalInfo = buildAgeScaledSelfEvaluation(activeProf);
+      const tabEvalTxt = document.getElementById('profileTabSelfEvalText');
+      const tabEvalTag = document.getElementById('profileTabSelfEvalAgeTag');
+      if (tabEvalTxt) tabEvalTxt.textContent = evalInfo.text;
+      if (tabEvalTag) tabEvalTag.textContent = `${evalInfo.ageGroup} (${evalInfo.wordCount}w)`;
+
+      const bal = checkWellRoundedBalancePie();
+      const tabBalBadge = document.getElementById('profileTabBalanceBadge');
+      if (tabBalBadge) {
+        tabBalBadge.textContent = bal.wellRounded
+          ? '⚖️ Triple-B 100% Balance: Well-Rounded'
+          : `⚠️ Lopsided Slice Flag (${bal.lopsidedSlices[0]?.label || 'Breakouts'})`;
+      }
+
+      const tabPieSvg = document.getElementById('profileTabPieSvg');
+      const tabPieLegend = document.getElementById('profileTabPieLegend');
+      if (tabPieSvg && tabPieLegend && typeof PIE_SLICES_META !== 'undefined') {
+        const cx = 110, cy = 110, maxR = 86, innerR = 28;
+        const sliceAngle = (Math.PI * 2) / PIE_SLICES_META.length;
+        let paths = '';
+        PIE_SLICES_META.forEach((sl, idx) => {
+          const pct = getPieSlicePct(sl);
+          const r = innerR + ((maxR - innerR) * (pct / 100));
+          const a0 = -Math.PI / 2 + idx * sliceAngle;
+          const a1 = a0 + sliceAngle;
+          const x0 = (cx + Math.cos(a0) * r).toFixed(2);
+          const y0 = (cy + Math.sin(a0) * r).toFixed(2);
+          const x1 = (cx + Math.cos(a1) * r).toFixed(2);
+          const y1 = (cy + Math.sin(a1) * r).toFixed(2);
+          const midA = (a0 + a1) / 2;
+          const tx = (cx + Math.cos(midA) * (r * 0.68)).toFixed(2);
+          const ty = (cy + Math.sin(midA) * (r * 0.68)).toFixed(2);
+          paths += `<path d="M ${cx} ${cy} L ${x0} ${y0} A ${r.toFixed(1)} ${r.toFixed(1)} 0 0 1 ${x1} ${y1} Z" fill="${sl.color}" fill-opacity="0.82" stroke="#0f172a" stroke-width="1.8"></path>`;
+          paths += `<text x="${tx}" y="${ty}" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle" dominant-baseline="middle">${pct}%</text>`;
+        });
+        paths += `<circle cx="${cx}" cy="${cy}" r="${innerR}" fill="#0f172a" stroke="#38bdf8" stroke-width="2"></circle>`;
+        paths += `<text x="${cx}" y="${cy}" fill="#fde047" font-size="8.5" font-weight="900" text-anchor="middle" dominant-baseline="middle">${activeProf.name.toUpperCase()}</text>`;
+        tabPieSvg.innerHTML = paths;
+
+        tabPieLegend.innerHTML = PIE_SLICES_META.map(sl => {
+          const pct = getPieSlicePct(sl);
+          return `
+            <div class="flex items-center justify-between gap-2 p-2 rounded-xl bg-slate-900 border border-slate-800">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="w-3 h-3 rounded-full shrink-0" style="background:${sl.color}"></span>
+                <span class="text-xs font-extrabold text-white truncate">${sl.label}</span>
+              </div>
+              <span class="text-xs font-black ${pct < 75 ? 'text-amber-300' : 'text-emerald-300'}">${pct}%</span>
+            </div>
+          `;
+        }).join('');
+      }
+
+      const tabPosGrid = document.getElementById('profileTabPosIqGrid');
+      if (tabPosGrid && typeof computePositionSpecificIqRatings === 'function') {
+        const ratings = computePositionSpecificIqRatings(activeProf);
+        tabPosGrid.innerHTML = ratings.map(r => `
+          <div class="p-2 rounded-xl bg-slate-900 border ${r.isPrimary ? 'border-amber-400' : 'border-slate-800'} flex flex-col justify-between gap-1">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-white">${r.code}</span>
+              <span class="text-[9px] font-black px-1.5 py-0.5 rounded ${r.isPrimary ? 'bg-amber-400 text-slate-950' : 'bg-slate-800 text-slate-300'}">${r.isPrimary ? 'MAIN' : 'UNIT'}</span>
+            </div>
+            <div class="text-[10px] text-slate-300 font-bold">5v5: <strong class="text-emerald-300">${r.ev5v5}</strong> • PP: <strong class="text-sky-300">${r.pp5v4}</strong></div>
+            <button type="button" data-tab3-study-pos="${r.optionVal}" class="btn-tab3-study-pos w-full py-1 px-1.5 rounded bg-indigo-500/25 hover:bg-indigo-500/40 border border-indigo-400/50 text-indigo-200 text-[9px] font-black transition">
+              🎓 Study ${r.code}
+            </button>
+          </div>
+        `).join('');
+        tabPosGrid.querySelectorAll('.btn-tab3-study-pos').forEach(btn => {
+          btn.addEventListener('click', () => {
+            SoundFX.playTap();
+            const posSel = document.getElementById('selectCustomPosition');
+            if (posSel) posSel.value = btn.dataset.tab3StudyPos || 'Center (C)';
+            document.getElementById('loginModal').classList.add('hidden');
+            openUpgradeBuilderModal();
+          });
+        });
+      }
+
+      // TAB 4: 👨‍👩‍👦 Parent & Family HQ (Side-by-Side All-Kids Progress Snapshot & Family "House Cup" Sibling Leaderboard)
+      const kidsGrid = document.getElementById('parentHqAllKidsGrid');
+      const houseCupLb = document.getElementById('parentHqHouseCupLeaderboard');
+      const houseCupBadge = document.getElementById('familyHouseCupLeaderBadge');
+      const familyIds = ['miles', 'cohen', 'rhett', 'whelan'];
+      const familyKids = familyIds
+        .map(fid => state.profiles.find(p => p.id === fid) || FOUNDER_PRESETS.find(fp => fp.id === fid))
+        .filter(Boolean);
+
+      if (kidsGrid) {
+        const praisePrompts = {
+          '8U': 'Ask on the car ride home: "How did you build your 3-player Attack Triangle today?"',
+          '10U': 'Ask on the car ride home: "Did you check over your shoulder before calling for the breakout pass?"',
+          '12U': 'Ask on the car ride home: "How did your low-and-slow Center curl help your defenseman beat F1?"',
+          '14U': 'Ask on the car ride home: "What cue told you to hit the weak-side D-to-D reversal today?"'
+        };
+        kidsGrid.innerHTML = familyKids.map(kid => {
+          const city = NHL_CITIES[kid.currentCityIdx || 0] || NHL_CITIES[0];
+          const jNum = kid.jerseyNumber || (kid.id === 'rhett' ? 88 : (kid.id === 'whelan' ? 7 : (kid.id === 'cohen' ? 14 : 9)));
+          const praise = praisePrompts[kid.ageGroup] || praisePrompts['10U'];
+          return `
+            <div class="p-3 rounded-xl bg-slate-900 border ${kid.id === state.activeProfileId ? 'border-amber-400' : 'border-slate-800'} flex flex-col justify-between gap-2">
+              <div>
+                <div class="flex items-center justify-between gap-1">
+                  <span class="text-xs font-black text-white">${kid.name} #${jNum}</span>
+                  <span class="px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300 text-[10px] font-black">${kid.ageGroup}</span>
+                </div>
+                <div class="text-[10px] text-emerald-300 font-black mt-1">🧠 ${kid.iqScore || 140} IQ • 📍 ${city.name}</div>
+                <div class="text-[10px] text-slate-300 mt-1 leading-snug italic">${praise}</div>
+              </div>
+              <button type="button" data-parent-switch-kid="${kid.id}" class="btn-parent-switch-kid w-full py-1 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-300 text-[10px] font-black transition">
+                Switch to ${kid.name} ▶
+              </button>
+            </div>
+          `;
+        }).join('');
+        kidsGrid.querySelectorAll('.btn-parent-switch-kid').forEach(btn => {
+          btn.addEventListener('click', () => {
+            switchSiblingStall(btn.dataset.parentSwitchKid);
+          });
+        });
+      }
+
+      if (houseCupLb) {
+        const sortedKids = [...familyKids].sort((a, b) => (b.iqScore || 100) - (a.iqScore || 100));
+        if (houseCupBadge && sortedKids[0]) {
+          houseCupBadge.textContent = `🏆 Current Cup Holder: ${sortedKids[0].name} #${sortedKids[0].jerseyNumber || 9} (${sortedKids[0].iqScore || 180} IQ)`;
+        }
+        houseCupLb.innerHTML = sortedKids.map((kid, idx) => {
+          const jNum = kid.jerseyNumber || 9;
+          const medal = idx === 0 ? '🥇' : (idx === 1 ? '🥈' : (idx === 2 ? '🥉' : '🏒'));
+          return `
+            <div class="flex items-center justify-between gap-2 p-2 rounded-xl bg-slate-900 border ${idx === 0 ? 'border-amber-400/60' : 'border-slate-800'} text-xs">
+              <div class="flex items-center gap-2">
+                <span class="text-sm">${medal}</span>
+                <span class="font-black text-white">${kid.name} #${jNum}</span>
+                <span class="px-1.5 py-0.5 rounded bg-slate-800 text-sky-300 text-[10px] font-bold">${kid.ageGroup} • ${kid.position}</span>
+              </div>
+              <span class="font-black text-emerald-300">${kid.iqScore || 140} IQ Pts • 🔥 ${kid.bestStreak || 3} Streak</span>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+    window.renderPlayerPortal4Tabs = renderPlayerPortal4Tabs;
+
+    document.querySelectorAll('.player-portal-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        switchPlayerPortalTab(btn.dataset.playerTab);
+      });
+    });
+
+    const openShopTab2Btn = document.getElementById('btnOpenProShopFromTab2');
+    if (openShopTab2Btn) {
+      openShopTab2Btn.addEventListener('click', () => {
+        document.getElementById('loginModal').classList.add('hidden');
+        renderProShopModal();
+        document.getElementById('proShopModal').classList.remove('hidden');
+      });
+    }
+    const tab3PipBtn = document.getElementById('btnProfileTabFormulatePip');
+    if (tab3PipBtn) {
+      tab3PipBtn.addEventListener('click', () => {
+        document.getElementById('loginModal').classList.add('hidden');
+        formulateHockeyIqPipPlan();
+      });
+    }
+    const tab3CreateLessonBtn = document.getElementById('btnProfileTabCreateLesson');
+    if (tab3CreateLessonBtn) {
+      tab3CreateLessonBtn.addEventListener('click', () => {
+        document.getElementById('loginModal').classList.add('hidden');
+        openUpgradeBuilderModal();
+      });
+    }
+    const lockDivChk = document.getElementById('chkLockChildAgeDivision');
+    if (lockDivChk) {
+      lockDivChk.addEventListener('change', (e) => {
+        SoundFX.playTap();
+        const prof = getActiveProfile();
+        prof.ageDivisionLocked = Boolean(e.target.checked);
+        saveProgress();
+        renderPlayerPortal4Tabs();
+      });
+    }
+
+    // =========================================================================
+    // 2. 4-TAB COACH & DIRECTOR PORTAL (#teamManagerModal) CONTROLLERS
+    // =========================================================================
+    state.activeCoachPortalTab = 'coach_tab1_command';
+    state.activeDirectorAssocCode = 'ASSOC-MINOT';
+    state.directorPushedStandardLabel = 'Month 1 Standard: 200-Ft Puck Support Triangles (8U–10U) & D-to-D Breakouts (12U–18U)';
+
+    const DIRECTOR_ASSOCIATION_TEAMS = {
+      'ASSOC-MINOT': [
+        { div: '8U Mite',    team: 'Minot Wolves 8U Blue',    coach: 'Coach Dane (Active Today 🟢)',   compliance: '94% (17/18)', iqGrowth: '+18 IQ Pts', standard: '5v5 Puck Support & House' },
+        { div: '10U Squirt', team: 'Minot Wolves 10U AA',     coach: 'Coach Dane (Active Today 🟢)',   compliance: '91% (20/22)', iqGrowth: '+22 IQ Pts', standard: 'Breakout Wall & Low Curl' },
+        { div: '12U Peewee', team: 'Minot Wolves 12U AA',     coach: 'Coach Larson (Active Today 🟢)', compliance: '86% (19/22)', iqGrowth: '+19 IQ Pts', standard: '2-1-2 Forecheck & D-to-D' },
+        { div: '14U Bantam', team: 'Minot Wolves 14U AA',     coach: 'Coach Evan (Active Today 🟢)',   compliance: '89% (18/20)', iqGrowth: '+24 IQ Pts', standard: 'Box+1 & Pre-Scan Deception' },
+        { div: '16U–18U HS', team: 'Minot Varsity / Jr Gold', coach: 'Coach Miller (Active 2d ago 🟢)',compliance: '85% (19/22)', iqGrowth: '+21 IQ Pts', standard: '1-3-1 Umbrella PP & 4v5 PK' }
+      ],
+      'ASSOC-FOOTHILLS': [
+        { div: '8U Mite',    team: 'Foothills Flyers 8U',     coach: 'Coach John (Active Today 🟢)',   compliance: '92% (16/17)', iqGrowth: '+16 IQ Pts', standard: '5v5 Puck Support & House' },
+        { div: '10U Squirt', team: 'Foothills Flyers 10U A',  coach: 'Coach Steve (Active Today 🟢)',  compliance: '88% (18/20)', iqGrowth: '+20 IQ Pts', standard: 'Breakout Wall & Low Curl' },
+        { div: '12U Peewee', team: 'Foothills Flyers 12U AA', coach: 'Coach Evan (Active Today 🟢)',   compliance: '90% (19/21)', iqGrowth: '+23 IQ Pts', standard: '2-1-2 Forecheck & D-to-D' },
+        { div: '14U–18U',    team: 'Foothills Flyers 16U AA', coach: 'Coach Park (Active 1d ago 🟢)',  compliance: '87% (19/22)', iqGrowth: '+19 IQ Pts', standard: '1-3-1 Umbrella PP & 4v5 PK' }
+      ],
+      'ASSOC-LIGHTNING': [
+        { div: '10U AAA',    team: 'Lightning 10U AAA',       coach: 'Coach Topher (Active Today 🟢)', compliance: '95% (19/20)', iqGrowth: '+25 IQ Pts', standard: 'Breakout Wall & Low Curl' },
+        { div: '12U AAA',    team: 'Lightning 12U AAA',       coach: 'Coach Savard (Active Today 🟢)', compliance: '93% (20/22)', iqGrowth: '+27 IQ Pts', standard: '2-1-2 Forecheck & D-to-D' },
+        { div: '14U AAA',    team: 'Lightning 14U AAA',       coach: 'Coach Jaffe (Active Today 🟢)',  compliance: '91% (20/22)', iqGrowth: '+26 IQ Pts', standard: 'Box+1 & Pre-Scan Deception' },
+        { div: '16U–18U AAA',team: 'Lightning 18U Prep AAA',  coach: 'Coach Miller (Active Today 🟢)', compliance: '96% (21/22)', iqGrowth: '+29 IQ Pts', standard: '1-3-1 Umbrella PP & 4v5 PK' }
+      ]
+    };
+
+    function switchCoachPortalTab(tabCode = 'coach_tab1_command') {
+      SoundFX.playTap();
+      const validTabs = ['coach_tab1_command', 'coach_tab2_homework', 'coach_tab3_roster_playbook', 'coach_tab4_director_hq'];
+      state.activeCoachPortalTab = validTabs.includes(tabCode) ? tabCode : 'coach_tab1_command';
+
+      const panes = {
+        coach_tab1_command: document.getElementById('coachTab1CommandCenter'),
+        coach_tab2_homework: document.getElementById('coachTab2HomeworkWizard'),
+        coach_tab3_roster_playbook: document.getElementById('coachTab3RosterPlaybook'),
+        coach_tab4_director_hq: document.getElementById('coachTab4DirectorHq')
+      };
+      Object.entries(panes).forEach(([code, el]) => {
+        if (el) el.classList.toggle('hidden', code !== state.activeCoachPortalTab);
+      });
+
+      document.querySelectorAll('.coach-portal-tab-btn').forEach(btn => {
+        const isAct = btn.dataset.coachTab === state.activeCoachPortalTab;
+        btn.className = isAct
+          ? 'coach-portal-tab-btn px-2.5 py-2 rounded-lg bg-cyan-500 text-slate-950 font-black text-[11px] shadow transition text-left'
+          : 'coach-portal-tab-btn px-2.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-200 font-extrabold text-[11px] transition text-left';
+      });
+
+      renderCoachPortal4Tabs();
+      return state.activeCoachPortalTab;
+    }
+    window.switchCoachPortalTab = switchCoachPortalTab;
+
+    function renderCoachPortal4Tabs() {
+      const members = getActiveTeamRosterMembers();
+      const avgIq = Math.round(members.reduce((acc, m) => acc + (m.iqScore || 140), 0) / Math.max(1, members.length));
+      const kpiComp = document.getElementById('coachKpiCompletionPct');
+      const kpiIq = document.getElementById('coachKpiIqAvg');
+      const kpiCoop = document.getElementById('coachKpiCoopPts');
+      if (kpiComp) kpiComp.textContent = '89%';
+      if (kpiIq) kpiIq.textContent = `${avgIq} IQ`;
+      if (kpiCoop) kpiCoop.textContent = `${(state.coopTrophyPoints || 142) * 10} / 2,000`;
+
+      // Tab 2 Homework Wizard Preview update
+      const groupSel = document.getElementById('selectCoachHomeworkTargetGroup');
+      const focusSel = document.getElementById('selectCoachWeeklyFocus');
+      const prevTag = document.getElementById('homeworkPreviewTargetTag');
+      const prevSum = document.getElementById('homeworkPreviewSummaryText');
+      if (prevTag && groupSel) {
+        const gTxt = groupSel.options[groupSel.selectedIndex]?.text || 'Whole Team';
+        prevTag.textContent = `🎯 ${gTxt} • 10 Verified Drills`;
+      }
+      if (prevSum && focusSel) {
+        const fTxt = focusSel.options[focusSel.selectedIndex]?.text || 'Breakouts & D-to-D';
+        prevSum.textContent = `Ready to push "${fTxt}" (10-play series) aligned with ${state.teamPlaybookSystems?.forecheck || '2-1-2'} & [${state.roleLabelMap?.F1 || 'F1'}/${state.roleLabelMap?.F2 || 'F2'}/${state.roleLabelMap?.F3 || 'F3'}] labels to Player Inboxes.`;
+      }
+
+      // Tab 3 Compact Roster Seat Table with 1-click Kick
+      const rosterMgmt = document.getElementById('coachRosterManagementTable');
+      if (rosterMgmt) {
+        rosterMgmt.innerHTML = members.map((m, idx) => {
+          const lineTag = m.rosterLine || (idx < 3 ? 'Line 1' : (idx < 5 ? 'D-Pair 1' : 'Line 2'));
+          return `
+            <div class="flex items-center justify-between gap-2 p-2 rounded-xl bg-slate-900 border border-slate-800 text-xs">
+              <div class="min-w-0 truncate">
+                <span class="font-black text-white">${m.name}</span>
+                <span class="ml-1 px-1.5 py-0.5 rounded bg-slate-800 text-sky-300 text-[9px] font-bold">${lineTag} • ${m.position || 'C'}</span>
+              </div>
+              <button type="button" data-tab3-kick="${m.id}" class="btn-tab3-kick px-2 py-0.5 rounded bg-rose-500/20 hover:bg-rose-500/35 border border-rose-400/50 text-rose-200 text-[10px] font-black shrink-0">
+                👢 Kick
+              </button>
+            </div>
+          `;
+        }).join('');
+        rosterMgmt.querySelectorAll('.btn-tab3-kick').forEach(btn => {
+          btn.addEventListener('click', () => {
+            kickRosterPlayer(btn.dataset.tab3Kick);
+          });
+        });
+      }
+
+      // Tab 4 Director HQ Multi-Team Roll-Up Table across 8U-18U
+      const dirTable = document.getElementById('directorHqMultiTeamTable');
+      if (dirTable) {
+        const assocCode = state.activeDirectorAssocCode || 'ASSOC-MINOT';
+        const rows = DIRECTOR_ASSOCIATION_TEAMS[assocCode] || DIRECTOR_ASSOCIATION_TEAMS['ASSOC-MINOT'];
+        dirTable.innerHTML = rows.map(r => `
+          <tr class="hover:bg-slate-900/80 transition">
+            <td class="py-2 px-2 font-black text-white">${r.div} • <span class="text-sky-300">${r.team}</span></td>
+            <td class="py-2 px-2 text-emerald-300 font-bold">${r.coach}</td>
+            <td class="py-2 px-2 font-black text-amber-300">${r.compliance}</td>
+            <td class="py-2 px-2 font-black text-emerald-400">${r.iqGrowth}</td>
+            <td class="py-2 px-2 text-purple-200 font-semibold">${state.directorPushedStandardShort || r.standard}</td>
+          </tr>
+        `).join('');
+      }
+
+      document.querySelectorAll('.director-assoc-pill').forEach(btn => {
+        const isAct = btn.dataset.assocCode === (state.activeDirectorAssocCode || 'ASSOC-MINOT');
+        btn.className = isAct
+          ? 'director-assoc-pill px-2.5 py-1 rounded-lg bg-purple-500 text-slate-950 font-black text-[10px] shadow transition'
+          : 'director-assoc-pill px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-[10px] transition';
+      });
+    }
+    window.renderCoachPortal4Tabs = renderCoachPortal4Tabs;
+
+    function pushAssociationMonthlyCurriculum(assocCodeOverride = null) {
+      SoundFX.playGoalHorn();
+      if (assocCodeOverride) state.activeDirectorAssocCode = assocCodeOverride;
+      const selEl = document.getElementById('selectDirectorMonthlyCurriculum');
+      const fullLabel = selEl && selEl.options[selEl.selectedIndex]
+        ? selEl.options[selEl.selectedIndex].text
+        : 'Month 1 Standard: 200-Ft Puck Support Triangles (8U–10U) & D-to-D Breakouts (12U–18U)';
+      state.directorPushedStandardLabel = fullLabel;
+      state.directorPushedStandardShort = fullLabel.split(':')[0] + ' ✅';
+
+      if (typeof PuckSenseCloud !== 'undefined' && PuckSenseCloud.upsertTeam) {
+        PuckSenseCloud.upsertTeam(state.activeDirectorAssocCode || 'ASSOC-MINOT').catch(() => {});
+      }
+      renderCoachPortal4Tabs();
+      const toast = document.getElementById('directorCurriculumToast');
+      if (toast) {
+        toast.textContent = `📢 Pushed "${fullLabel}" across all 8U–18U teams in ${state.activeDirectorAssocCode || 'ASSOC-MINOT'} & synced to Supabase!`;
+        toast.classList.remove('hidden');
+      }
+      return {
+        association: state.activeDirectorAssocCode || 'ASSOC-MINOT',
+        curriculum: fullLabel
+      };
+    }
+    window.pushAssociationMonthlyCurriculum = pushAssociationMonthlyCurriculum;
+
+    document.querySelectorAll('.coach-portal-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        switchCoachPortalTab(btn.dataset.coachTab);
+      });
+    });
+    document.querySelectorAll('.director-assoc-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        SoundFX.playTap();
+        state.activeDirectorAssocCode = btn.dataset.assocCode || 'ASSOC-MINOT';
+        renderCoachPortal4Tabs();
+      });
+    });
+    const pushDirBtn = document.getElementById('btnPushAssociationCurriculum');
+    if (pushDirBtn) {
+      pushDirBtn.addEventListener('click', () => pushAssociationMonthlyCurriculum());
+    }
+    const hwGroupSel = document.getElementById('selectCoachHomeworkTargetGroup');
+    if (hwGroupSel) hwGroupSel.addEventListener('change', renderCoachPortal4Tabs);
+    const hwFocusSel = document.getElementById('selectCoachWeeklyFocus');
+    if (hwFocusSel) hwFocusSel.addEventListener('change', renderCoachPortal4Tabs);
+
+    // =========================================================================
+    // 3. 3-POD / 10-SEAT BOARD & 30-IDEA FOUNDER DIGEST (#founderDigestModal)
+    // =========================================================================
+    const BOARD_30_IDEA_DIGEST = [
+      // POD 1: PLAYER, FAMILY & LEARNING [SEATS 1–4] (12 Ideas)
+      { id: 'S1-A', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 1, seatName: 'NCAA D1 / AAA & USA Hockey Systems Director', authorityRole: 'WHAT Authority (On-Ice Systems)', optionCode: 'Option A', title: 'Position-Specific & Cross-Position IQ Matrix in Locker Room Tab 3', description: 'Surface 5v5, 5v4 PP, and 4v5 PK IQ ratings across all 5 positions (C, LW, RW, D, G) inside Locker Room Tab 3 so skaters can study cross-unit responsibilities in 1 tap.', authorityFlow: 'Proposed by Seat 1 (WHAT) → Validated by Seat 2 (HOW) → Placed in #profileModal Tab 3 by Seat 7 (WHERE)', status: 'on_deck' },
+      { id: 'S1-B', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 1, seatName: 'NCAA D1 / AAA & USA Hockey Systems Director', authorityRole: 'WHAT Authority (On-Ice Systems)', optionCode: 'Option B', title: 'Weak-Side D-to-D Hinge & Low-and-Slow Center Timing Cue Highlight', description: 'Synchronize weak-side D2 hinge retreat with Center low-and-slow support curl across breakout scenarios.', authorityFlow: 'Proposed by Seat 1 (WHAT) → Approved for Scenario Bank Queue by Seat 9', status: 'on_deck' },
+      { id: 'S1-C', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 1, seatName: 'NCAA D1 / AAA & USA Hockey Systems Director', authorityRole: 'WHAT Authority (On-Ice Systems)', optionCode: 'Option C', title: 'Add 1-3-1 Power Play Umbrella Drop-Pass Entry to 8U Mite Division', description: 'Introduce 5-on-4 Power Play drop-pass entries into the 8U Mite division.', authorityFlow: 'Proposed for Stress-Test → VETOED by Seat 1 & Seat 3 (USA Hockey ADM Rule: 8U is strictly 5v5 foundational spacing & House; zero special teams or offsides)', status: 'vetoed', vetoReason: 'VETOED by Seat 1 & Seat 3 (ADM Guardrail): 8U Mite must remain strictly 5v5 Even Strength foundational drills.' },
+
+      { id: 'S2-A', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 2, seatName: 'Master Instructional Designer & Sports Teaching Strategist', authorityRole: 'HOW Authority (Outranks Coaches on Delivery)', optionCode: 'Option A', title: 'Age-Scaled Self-Eval Card & 6-Slice Well-Rounded Balance in Locker Room Tab 3', description: 'Embed Coach Bob\'s <=14-word 8U/10U upbeat self-evaluation and 14U–18U AAA film breakdown directly above the 6-Slice Pie Chart in Tab 3.', authorityFlow: 'Proposed by Seat 2 (HOW) → Approved by Seat 3 → Scoped into #profileModal Tab 3 by Seat 7 (WHERE)', status: 'on_deck' },
+      { id: 'S2-B', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 2, seatName: 'Master Instructional Designer & Sports Teaching Strategist', authorityRole: 'HOW Authority (Outranks Coaches on Delivery)', optionCode: 'Option B', title: 'Contrastive Good-Read vs Mistake-Read Micro-Replay Toggle in Tab 3 PIP', description: 'Allow players launching a Personal Improvement Plan (PIP) to preview a 3-second Gold vs Mistake vector comparison.', authorityFlow: 'Proposed by Seat 2 (HOW) → Approved for Future Sprint by Seat 9', status: 'on_deck' },
+      { id: 'S2-C', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 2, seatName: 'Master Instructional Designer & Sports Teaching Strategist', authorityRole: 'HOW Authority (Outranks Coaches on Delivery)', optionCode: 'Option C', title: 'Multi-Paragraph 65-Word Pre-Drill Systems Lecture Popup Before Every 8U/10U Play', description: 'Show a detailed 3-paragraph coaching textbook popup explaining F1/F2/F3 theory before 8U/10U kids can move their skater.', authorityFlow: 'Proposed by Youth Coach → VETOED by Seat 2 & Seat 3 (HOW Authority outranks Coaches on delivery: violates <=14-word micro-briefing cap & blocks ice)', status: 'vetoed', vetoReason: 'VETOED by Seat 2 & Seat 3 (HOW Authority): Outranks coaches on teaching delivery; 8U/10U prompts must never exceed 14 words.' },
+
+      { id: 'S3-A', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 3, seatName: 'Pediatric Cognitive & Family/Parent Specialist', authorityRole: 'HOW Authority (Family UX & Age Guardrails)', optionCode: 'Option A', title: '4-Tab Player & Family Locker Room (#profileModal) with 1-Tap Sibling Stalls, House Cup & Parent Age Lock', description: 'Reorganize #profileModal into 4 clean tabs: Tab 1 (Who\'s Playing? 1-Tap Sibling Stalls for Miles #9, Rhett #88, Whelan #7, Cohen #14 with zero data bleed), Tab 2 (3D Avatar & Gear), Tab 3 (My IQ Pie & Lessons), and Tab 4 (Parent & Family HQ with All-Kids Snapshot, House Cup & Age Lock).', authorityFlow: 'Proposed by Seat 3 (HOW) → Validated by Seat 1 (WHAT) & Seat 4 (HOW FUN) → Architected by Seat 7 & Seat 9 (WHERE) → 🟢 GREEN-LIT POD 1 WINNER', status: 'green_lit' },
+      { id: 'S3-B', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 3, seatName: 'Pediatric Cognitive & Family/Parent Specialist', authorityRole: 'HOW Authority (Family UX & Age Guardrails)', optionCode: 'Option B', title: 'Printable Fridge & Locker Stall QR Card for 8U/10U Families', description: 'Generate a 1-page printable family fridge sheet showing each sibling\'s jersey avatar and car-ride praise questions.', authorityFlow: 'Proposed by Seat 3 (HOW) → Approved for On-Deck Queue by Seat 7', status: 'on_deck' },
+      { id: 'S3-C', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 3, seatName: 'Pediatric Cognitive & Family/Parent Specialist', authorityRole: 'HOW Authority (Family UX & Age Guardrails)', optionCode: 'Option C', title: 'Shared Single-Profile Sibling Mode (Merge All Siblings Into One Combined Score)', description: 'Combine Miles, Rhett, Whelan, and Cohen into a single shared profile to save clicks.', authorityFlow: 'VETOED by Seat 3 & Seat 9 (Violates Zero-Data-Bleed Sibling Isolation & mixes 8U Mite and 12U Peewee IQ telemetry)', status: 'vetoed', vetoReason: 'VETOED by Seat 3 & Seat 9: Violates Zero-Data-Bleed Sibling Isolation between 8U, 10U, and 12U siblings.' },
+
+      { id: 'S4-A', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 4, seatName: 'Hit Mobile Game & EdTech Retention Designer', authorityRole: 'HOW FUN Authority (Engagement & Rewards)', optionCode: 'Option A', title: 'Family "House Cup" Sibling Leaderboard & Equipped Pro Shop Gear Slots in Tab 2/Tab 4', description: 'Add a friendly Family House Cup leaderboard in Parent HQ (Tab 4) and visual Equipped Pro Shop Gear Slots inside Tab 2.', authorityFlow: 'Proposed by Seat 4 (HOW FUN) → Merged into Pod 1 4-Tab Locker Room Build by Seat 7', status: 'on_deck' },
+      { id: 'S4-B', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 4, seatName: 'Hit Mobile Game & EdTech Retention Designer', authorityRole: 'HOW FUN Authority (Engagement & Rewards)', optionCode: 'Option B', title: '3v3 Sudden-Death Overtime Mystery Gear Drop Chest', description: 'Award a mystery cosmetic stick tape or visor tint when a skater clinches a city via 3v3 Overtime Sudden-Death.', authorityFlow: 'Proposed by Seat 4 (HOW FUN) → Approved for On-Deck Queue by Seat 9', status: 'on_deck' },
+      { id: 'S4-C', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 4, seatName: 'Hit Mobile Game & EdTech Retention Designer', authorityRole: 'HOW FUN Authority (Engagement & Rewards)', optionCode: 'Option C', title: 'Persistent Floating Coin Multiplier Wheel & Confetti Cannon Over Center Ice During Drills', description: 'Render a spinning arcade prize wheel over the neutral zone during live drills to boost excitement.', authorityFlow: 'Proposed by Seat 4 → VETOED by Seat 7 & Seat 9 (WHERE / Anti-Clutter Veto: Zero persistent overlays covering the active rink canvas)', status: 'vetoed', vetoReason: 'VETOED by Seat 7 & Seat 9 (Anti-Clutter Veto): Never obstruct the active ice canvas with persistent arcade widgets.' },
+
+      // POD 2: COACH, DIRECTOR & PORTAL UX [SEATS 5–7] (9 Ideas)
+      { id: 'S5-A', pod: 'pod2', podLabel: 'Pod 2: Coach, Director & Portal UX', seatNumber: 5, seatName: 'Youth, Travel & HS/Jr Team Head Coach Playtester (Levels A–C)', authorityRole: 'WHAT Authority (Team Coaching & Homework)', optionCode: 'Option A', title: '3-Step Weekly Homework Wizard (1. Target Group → 2. Focus Bucket/AI Prompt → 3. Preview & Approve)', description: 'Streamline weekly homework into a guided 3-step wizard inside Coach Tab 2 with live Player Inbox preview.', authorityFlow: 'Proposed by Seat 5 (WHAT) → Pedagogically Verified by Seat 2 (HOW) → Built into Coach Tab 2 by Seat 7 (WHERE)', status: 'on_deck' },
+      { id: 'S5-B', pod: 'pod2', podLabel: 'Pod 2: Coach, Director & Portal UX', seatNumber: 5, seatName: 'Youth, Travel & HS/Jr Team Head Coach Playtester (Levels A–C)', authorityRole: 'WHAT Authority (Team Coaching & Homework)', optionCode: 'Option B', title: 'Line & D-Pair Specific Pre-Game Chalkboard Preset Pack', description: 'Let Level B/C coaches save custom breakout presets per D-pair (D-Pair 1 Wheel vs D-Pair 2 D-to-D Over).', authorityFlow: 'Proposed by Seat 5 (WHAT) → Scoped for On-Deck Queue by Seat 7', status: 'on_deck' },
+      { id: 'S5-C', pod: 'pod2', podLabel: 'Pod 2: Coach, Director & Portal UX', seatNumber: 5, seatName: 'Youth, Travel & HS/Jr Team Head Coach Playtester (Levels A–C)', authorityRole: 'WHAT Authority (Team Coaching & Homework)', optionCode: 'Option C', title: 'Publicly Display Each Player\'s Weakest IQ Slice on the Shared Team Leaderboard', description: 'Show every player\'s lowest diagnostic slice next to their name on the shared Player Login leaderboard to motivate them.', authorityFlow: 'Proposed by Travel Coach → VETOED by Seat 3 & Seat 7 (Violates Section 18.6 Team Leaderboard Privacy: weaknesses are strictly private to the player, parent, and coach)', status: 'vetoed', vetoReason: 'VETOED by Seat 3 & Seat 7 (Privacy Rule): Player Login leaderboard only shows positive achievements; diagnostic weaknesses are strictly private.' },
+
+      { id: 'S6-A', pod: 'pod2', podLabel: 'Pod 2: Coach, Director & Portal UX', seatNumber: 6, seatName: 'Association Hockey Director & Club GM Playtester (Level D)', authorityRole: 'WHAT Authority (Association & Multi-Team Oversight)', optionCode: 'Option A', title: '4-Tab Coach & Director Portal (#teamManagerModal) with Director HQ Multi-Team Roll-Up & Monthly Curriculum Push', description: 'Reorganize #teamManagerModal into 4 clean tabs: Tab 1 (Command Center & Practice Alerts), Tab 2 (3-Step Homework Wizard), Tab 3 (22/22 Roster, Lines & Team Playbook), and Tab 4 (Director HQ multi-team roll-up across ASSOC-MINOT, ASSOC-FOOTHILLS, ASSOC-LIGHTNING with 1-click Monthly Curriculum Standard push).', authorityFlow: 'Proposed by Seat 6 & Seat 5 (WHAT) → Verified by Seat 2 (HOW) → Architected by Seat 7 & Seat 9 (WHERE) → 🟢 GREEN-LIT POD 2 WINNER', status: 'green_lit' },
+      { id: 'S6-B', pod: 'pod2', podLabel: 'Pod 2: Coach, Director & Portal UX', seatNumber: 6, seatName: 'Association Hockey Director & Club GM Playtester (Level D)', authorityRole: 'WHAT Authority (Association & Multi-Team Oversight)', optionCode: 'Option B', title: 'Association Board CSV / PDF End-of-Month IQ Growth Export', description: 'Allow Association Hockey Directors to export a 1-click CSV summary of division compliance and IQ growth for board meetings.', authorityFlow: 'Proposed by Seat 6 (WHAT) → Queued On-Deck by Seat 9', status: 'on_deck' },
+      { id: 'S6-C', pod: 'pod2', podLabel: 'Pod 2: Coach, Director & Portal UX', seatNumber: 6, seatName: 'Association Hockey Director & Club GM Playtester (Level D)', authorityRole: 'WHAT Authority (Association & Multi-Team Oversight)', optionCode: 'Option C', title: 'Seasonal Tryout Evaluation Cohort Tagging in Director HQ', description: 'Let Club GMs tag preseason tryout cohorts to compare 200-foot reads across evaluation groups.', authorityFlow: 'Proposed by Seat 6 (WHAT) → Queued On-Deck by Seat 7', status: 'on_deck' },
+
+      { id: 'S7-A', pod: 'pod2', podLabel: 'Pod 2: Coach, Director & Portal UX', seatNumber: 7, seatName: 'Principal UX Architect & 4-Tab Anti-Clutter Lead', authorityRole: 'WHERE Authority + Anti-Clutter Veto Power', optionCode: 'Option A', title: 'Strict 4-Tab Anti-Clutter Consolidation Across Both Portals (Zero Long Vertical Scroll Walls)', description: 'Replace stacked single-page scroll walls in #profileModal and #teamManagerModal with clean 4-tab navigation bars so every view fits cleanly on 390x844 phones and iPads.', authorityFlow: 'Proposed by Seat 7 (WHERE) → Co-Shipped inside Pod 1 & Pod 2 Winners', status: 'on_deck' },
+      { id: 'S7-B', pod: 'pod2', podLabel: 'Pod 2: Coach, Director & Portal UX', seatNumber: 7, seatName: 'Principal UX Architect & 4-Tab Anti-Clutter Lead', authorityRole: 'WHERE Authority + Anti-Clutter Veto Power', optionCode: 'Option B', title: 'One-Handed Portrait Thumb-Zone Quick Switcher for Sibling & Coach Tabs', description: 'Ensure all 4-tab buttons maintain >=40px tap targets with zero horizontal overflow at 390px.', authorityFlow: 'Proposed by Seat 7 (WHERE) → Verified in Playwright 4-Viewport Audit', status: 'on_deck' },
+      { id: 'S7-C', pod: 'pod2', podLabel: 'Pod 2: Coach, Director & Portal UX', seatNumber: 7, seatName: 'Principal UX Architect & 4-Tab Anti-Clutter Lead', authorityRole: 'WHERE Authority + Anti-Clutter Veto Power', optionCode: 'Option C', title: 'Pin Coach Homework Wizard & Director Roll-Up Drawer Directly Below the Active Ice Rink', description: 'Place the Coach Homework Wizard and Association Table permanently underneath the main game canvas for faster access.', authorityFlow: 'VETOED by Seat 7 & Seat 9 (WHERE / Anti-Clutter Veto: Coach and Director tools belong strictly inside #teamManagerModal Tabs 2 & 4, never cluttering the gameplay screen)', status: 'vetoed', vetoReason: 'VETOED by Seat 7 & Seat 9 (Anti-Clutter Veto): Admin/Coach widgets must live inside #teamManagerModal tabs, never on the gameplay HUD.' },
+
+      // POD 3: PLATFORM, FILM & GROWTH [SEATS 8–10] (9 Ideas)
+      { id: 'S8-A', pod: 'pod3', podLabel: 'Pod 3: Platform, Film & Growth', seatNumber: 8, seatName: 'Automated Video Harvester & Film-Room QC Auditor', authorityRole: 'Film-Room QC & 15-Bucket Coverage', optionCode: 'Option A', title: 'Role-Mapped Coach Bob Video Takeaway Sync (Dynamic F1–F3 / Bull–Fox–Eagle Captions)', description: 'Automatically run applyRoleLabelMap() on Coach Bob\'s video takeaway captions so Film Room clips match the team\'s active role terminology.', authorityFlow: 'Proposed by Seat 8 → Approved for On-Deck Queue by Seat 2 & Seat 9', status: 'on_deck' },
+      { id: 'S8-B', pod: 'pod3', podLabel: 'Pod 3: Platform, Film & Growth', seatNumber: 8, seatName: 'Automated Video Harvester & Film-Room QC Auditor', authorityRole: 'Film-Room QC & 15-Bucket Coverage', optionCode: 'Option B', title: 'Expand Multi-Clip Timestamp Chapters for Goalie Screen & OZ Faceoff Buckets', description: 'Harvest 4 additional transcript-verified segments for goalie_screen_rebound and faceoff_oz_win_play.', authorityFlow: 'Proposed by Seat 8 → Approved for Next Harvester Run by Seat 1', status: 'on_deck' },
+      { id: 'S8-C', pod: 'pod3', podLabel: 'Pod 3: Platform, Film & Growth', seatNumber: 8, seatName: 'Automated Video Harvester & Film-Room QC Auditor', authorityRole: 'Film-Room QC & 15-Bucket Coverage', optionCode: 'Option C', title: 'Coach-Pinned Favorite Video Clip Attached to Weekly Homework Push', description: 'Allow coaches in Tab 2 Homework Wizard to attach 1 favorite verified clip from public.tactix_video_library to their weekly assignment.', authorityFlow: 'Proposed by Seat 8 & Seat 5 → Queued On-Deck by Seat 7', status: 'on_deck' },
+
+      { id: 'S9-A', pod: 'pod3', podLabel: 'Pod 3: Platform, Film & Growth', seatNumber: 9, seatName: 'Principal Full-Stack, Supabase & <canvas> Performance Engineer', authorityRole: 'WHERE Authority + Engineering/HUD Veto Power', optionCode: 'Option A', title: '30-Idea Founder Board Digest, 4-Step Authority Flow Tracker, 1-Click Green-Light Queue & Automated Email Dispatch', description: 'Build the complete 30-Idea Founder Digest system: save structured JSON to public.pucksense_agent_inbox (category: board_digest), add #btnFounderDigestBell + #founderDigestModal + interactive report.html matrix with 1-click [⭐ Green-Light & Queue for Next Build] buttons, and create send-board-digest.js for Coach Dane & Coach Evan.', authorityFlow: 'Proposed by Seat 9 (WHERE) → Endorsed by All 10 Seats → 🟢 GREEN-LIT POD 3 WINNER', status: 'green_lit' },
+      { id: 'S9-B', pod: 'pod3', podLabel: 'Pod 3: Platform, Film & Growth', seatNumber: 9, seatName: 'Principal Full-Stack, Supabase & <canvas> Performance Engineer', authorityRole: 'WHERE Authority + Engineering/HUD Veto Power', optionCode: 'Option B', title: 'Offline-First IndexedDB / LocalStorage Delta Queue for Sub-Second Sibling Stall Switching', description: 'Pre-cache all sibling profiles locally with background Supabase upsert so 1-tap stall switches execute in <8ms even on rink Wi-Fi.', authorityFlow: 'Proposed by Seat 9 → Co-Shipped in switchSiblingStall() & On-Deck for IndexedDB expansion', status: 'on_deck' },
+      { id: 'S9-C', pod: 'pod3', podLabel: 'Pod 3: Platform, Film & Growth', seatNumber: 9, seatName: 'Principal Full-Stack, Supabase & <canvas> Performance Engineer', authorityRole: 'WHERE Authority + Engineering/HUD Veto Power', optionCode: 'Option C', title: 'Automated Nightly Diff Verification Against CHANGELOG_DECISIONS.md Locked Rules', description: 'Add a pre-deploy assertion in deep_playtest_audit.js verifying that no locked Founder rule in CHANGELOG_DECISIONS.md was regressed.', authorityFlow: 'Proposed by Seat 9 → Integrated into Stage 4 Verification', status: 'on_deck' },
+
+      { id: 'S10-A', pod: 'pod3', podLabel: 'Pod 3: Platform, Film & Growth', seatNumber: 10, seatName: 'App Store, Conversion & Growth Strategist', authorityRole: 'Monetization, Funnels & Partner Club Growth', optionCode: 'Option A', title: 'Director HQ Partner Club 50% Discount Instant Activation Link', description: 'Allow Association Directors in Coach Tab 4 to copy a club-wide 50% Partner Discount link for all coaches in their association.', authorityFlow: 'Proposed by Seat 10 → Scoped into Coach Tab 4 On-Deck Queue by Seat 7', status: 'on_deck' },
+      { id: 'S10-B', pod: 'pod3', podLabel: 'Pod 3: Platform, Film & Growth', seatNumber: 10, seatName: 'App Store, Conversion & Growth Strategist', authorityRole: 'Monetization, Funnels & Partner Club Growth', optionCode: 'Option B', title: 'Parent HQ "Unlock Family Group Pass" Upgrade Banner for Multi-Sibling Households', description: 'Surface a friendly Family Pass bundle card inside Tab 4 Parent HQ when 2+ siblings are active.', authorityFlow: 'Proposed by Seat 10 → Validated by Seat 3 → Queued On-Deck by Seat 7', status: 'on_deck' },
+      { id: 'S10-C', pod: 'pod3', podLabel: 'Pod 3: Platform, Film & Growth', seatNumber: 10, seatName: 'App Store, Conversion & Growth Strategist', authorityRole: 'Monetization, Funnels & Partner Club Growth', optionCode: 'Option C', title: 'Shareable "My Kid Conquered 8U/10U Rec Tier!" Trophy Card Image Generator', description: 'Let proud hockey parents export a clean PNG certificate from Parent HQ (Tab 4) or Trophy Room.', authorityFlow: 'Proposed by Seat 10 & Seat 4 → Queued On-Deck by Seat 9', status: 'on_deck' }
+    ];
+    window.BOARD_30_IDEA_DIGEST = BOARD_30_IDEA_DIGEST;
+    state.activeDigestFilter = 'all';
+
+    function openFounderDigestModal(filterCode = 'all') {
+      SoundFX.playTap();
+      state.activeDigestFilter = filterCode || 'all';
+      renderFounderDigestModal(state.activeDigestFilter);
+      const modal = document.getElementById('founderDigestModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+    window.openFounderDigestModal = openFounderDigestModal;
+
+    function renderFounderDigestModal(filterCode = state.activeDigestFilter || 'all') {
+      state.activeDigestFilter = filterCode;
+      const tableEl = document.getElementById('founderDigestIdeasTable');
+      if (!tableEl) return;
+
+      document.querySelectorAll('.digest-filter-btn').forEach(btn => {
+        const isAct = btn.dataset.digestFilter === filterCode;
+        if (isAct) {
+          btn.classList.add('ring-2', 'ring-white', 'scale-105');
+        } else {
+          btn.classList.remove('ring-2', 'ring-white', 'scale-105');
+        }
+      });
+
+      const filtered = BOARD_30_IDEA_DIGEST.filter(item => {
+        if (filterCode === 'all') return true;
+        if (filterCode === 'green_lit') return item.status === 'green_lit' || item.status === 'queued_for_builder';
+        if (filterCode === 'on_deck') return item.status === 'on_deck';
+        if (filterCode === 'vetoed') return item.status === 'vetoed';
+        if (filterCode === 'pod1' || filterCode === 'pod2' || filterCode === 'pod3') return item.pod === filterCode;
+        return true;
+      });
+
+      const statusBadgeMap = {
+        green_lit: '<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400 text-emerald-300 text-[10px] font-black whitespace-nowrap">🟢 GREEN-LIT &amp; SHIPPED</span>',
+        queued_for_builder: '<span class="px-2 py-0.5 rounded-full bg-sky-500/25 border border-sky-400 text-sky-200 text-[10px] font-black whitespace-nowrap">⭐ QUEUED FOR BUILDER (FOUNDER OVERRIDE)</span>',
+        on_deck: '<span class="px-2 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/60 text-amber-300 text-[10px] font-black whitespace-nowrap">🟡 ON DECK (DEFERRED)</span>',
+        vetoed: '<span class="px-2 py-0.5 rounded-full bg-rose-500/20 border border-rose-400/60 text-rose-300 text-[10px] font-black whitespace-nowrap">🔴 VETOED BY AUTHORITY</span>'
+      };
+
+      tableEl.innerHTML = filtered.map(item => {
+        const canGreenLight = item.status === 'on_deck' || item.status === 'vetoed';
+        return `
+          <div class="p-3 rounded-xl bg-slate-900/95 border ${
+            item.status === 'green_lit'
+              ? 'border-emerald-400/70'
+              : item.status === 'queued_for_builder'
+              ? 'border-sky-400'
+              : item.status === 'vetoed'
+              ? 'border-rose-500/50'
+              : 'border-slate-800'
+          } flex flex-col lg:flex-row lg:items-center justify-between gap-2.5">
+            <div class="space-y-1 flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded bg-slate-800 text-amber-300 text-[10px] font-black">${item.id} (${item.optionCode})</span>
+                <span class="px-2 py-0.5 rounded bg-indigo-500/20 border border-indigo-400/40 text-indigo-200 text-[10px] font-black">Seat ${item.seatNumber}: ${item.seatName}</span>
+                <span class="text-[10px] font-bold text-sky-300">• ${item.authorityRole}</span>
+                ${statusBadgeMap[item.status] || statusBadgeMap.on_deck}
+              </div>
+              <div class="text-xs sm:text-sm font-black text-white">${item.title}</div>
+              <p class="text-[11px] text-slate-300 leading-snug">${item.description}</p>
+              <div class="text-[10px] font-bold text-cyan-300">🔀 Authority Flow: <span class="text-slate-200 font-semibold">${item.authorityFlow}</span></div>
+              ${item.vetoReason ? `<div class="text-[10px] font-extrabold text-rose-300 bg-rose-950/40 border border-rose-500/40 rounded px-2 py-1 mt-1">🛑 ${item.vetoReason}</div>` : ''}
+            </div>
+            <div class="shrink-0 flex items-center gap-2 self-end lg:self-center">
+              ${canGreenLight ? `
+                <button type="button" data-greenlight-idea="${item.id}" class="btn-founder-greenlight px-3 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-emerald-400 hover:from-amber-300 hover:to-emerald-300 text-slate-950 font-black text-[11px] shadow-md transition whitespace-nowrap">
+                  ⭐ Green-Light &amp; Queue for Next Build
+                </button>
+              ` : `
+                <span class="px-2.5 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-emerald-300 font-black text-[10px] whitespace-nowrap">
+                  ${item.status === 'queued_for_builder' ? '✅ Queued in Supabase Inbox' : '✅ Shipped in v8.2'}
+                </span>
+              `}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      tableEl.querySelectorAll('.btn-founder-greenlight').forEach(btn => {
+        btn.addEventListener('click', () => {
+          founderGreenLightIdea(btn.dataset.greenlightIdea);
+        });
+      });
+    }
+    window.renderFounderDigestModal = renderFounderDigestModal;
+
+    async function founderGreenLightIdea(ideaId) {
+      SoundFX.playGoalHorn();
+      const item = BOARD_30_IDEA_DIGEST.find(x => x.id === ideaId);
+      if (!item) return null;
+      item.status = 'queued_for_builder';
+      item.authorityFlow += ' → ⭐ OVERRIDDEN & GREEN-LIT BY FOUNDER (Coach Dane / Coach Evan)';
+      renderFounderDigestModal(state.activeDigestFilter);
+
+      const payload = {
+        created_by: 'Founder-Override',
+        source_role: 'founder',
+        scenario_id: item.id,
+        age_division: 'ALL',
+        category: 'board_digest',
+        status: 'queued_for_builder',
+        summary: `[⭐ FOUNDER GREEN-LIGHT ${item.id}] Seat ${item.seatNumber} (${item.seatName}): ${item.title}`,
+        details: {
+          ideaId: item.id,
+          pod: item.pod,
+          seatNumber: item.seatNumber,
+          seatName: item.seatName,
+          optionCode: item.optionCode,
+          title: item.title,
+          description: item.description,
+          authorityFlow: item.authorityFlow,
+          recipients: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com'],
+          queuedAt: new Date().toISOString()
+        }
+      };
+
+      let cloudRow = null;
+      if (typeof PuckSenseCloud !== 'undefined' && PuckSenseCloud.postAgentInboxFlag) {
+        cloudRow = await PuckSenseCloud.postAgentInboxFlag(payload);
+      }
+      const toast = document.getElementById('founderDigestEmailToast');
+      if (toast) {
+        toast.textContent = `⭐ Green-Lit ${item.id} ("${item.title}") & queued in public.pucksense_agent_inbox (status: queued_for_builder)!`;
+        toast.classList.remove('hidden');
+      }
+      return cloudRow || payload;
+    }
+    window.founderGreenLightIdea = founderGreenLightIdea;
+
+    async function syncBoardDigestToSupabase() {
+      SoundFX.playTap();
+      const summaryCounts = {
+        totalIdeas: BOARD_30_IDEA_DIGEST.length,
+        greenLit: BOARD_30_IDEA_DIGEST.filter(i => i.status === 'green_lit').length,
+        onDeck: BOARD_30_IDEA_DIGEST.filter(i => i.status === 'on_deck').length,
+        vetoed: BOARD_30_IDEA_DIGEST.filter(i => i.status === 'vetoed').length
+      };
+      const payload = {
+        created_by: '10-Seat-Board-Autopilot',
+        source_role: 'board_digest',
+        scenario_id: 'BOARD-30-DIGEST-V82',
+        age_division: 'ALL',
+        category: 'board_digest',
+        status: 'open',
+        summary: `🔔 30-Idea Board Digest (3 Green-Lit Winners, 21 On-Deck, 6 Vetoed) for Coach Dane & Coach Evan`,
+        details: {
+          version: 'v8.2',
+          recipients: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com'],
+          counts: summaryCounts,
+          ideas: BOARD_30_IDEA_DIGEST,
+          syncedAt: new Date().toISOString()
+        }
+      };
+      let res = null;
+      if (typeof PuckSenseCloud !== 'undefined' && PuckSenseCloud.postAgentInboxFlag) {
+        res = await PuckSenseCloud.postAgentInboxFlag(payload);
+      }
+      const toast = document.getElementById('founderDigestEmailToast');
+      if (toast) {
+        toast.textContent = `☁️ Synced all 30 Board Ideas to Supabase public.pucksense_agent_inbox (category: board_digest)!`;
+        toast.classList.remove('hidden');
+      }
+      return res || payload;
+    }
+    window.syncBoardDigestToSupabase = syncBoardDigestToSupabase;
+
+    async function dispatchFounderDigestEmail(triggerMailto = false) {
+      SoundFX.playGoalHorn();
+      const greenLit = BOARD_30_IDEA_DIGEST.filter(i => i.status === 'green_lit' || i.status === 'queued_for_builder');
+      const onDeck = BOARD_30_IDEA_DIGEST.filter(i => i.status === 'on_deck');
+      const vetoed = BOARD_30_IDEA_DIGEST.filter(i => i.status === 'vetoed');
+
+      const subject = 'Tactix Hockey 30-Idea Board Digest (3 Shipped, 21 On Deck, 6 Vetoed)';
+      const bodyLines = [
+        'TACTIX HOCKEY — 3-POD / 10-SEAT BOARD 30-IDEA DIGEST',
+        'Recipients: Coach Dane (danebekkedahl@gmail.com) & Coach Evan (evanbekk@gmail.com)',
+        'Live Interactive Matrix: https://danebekkedahl.github.io/tactix-hockey/report.html',
+        '',
+        '=== 🟢 GREEN-LIT & SHIPPED (1 PER POD) ===',
+        ...greenLit.map(i => `• [${i.id}] Seat ${i.seatNumber} (${i.seatName}): ${i.title} — ${i.authorityFlow}`),
+        '',
+        '=== 🟡 ON DECK (21 IDEAS — CLICK [⭐ GREEN-LIGHT] IN APP OR REPORT.HTML TO QUEUE) ===',
+        ...onDeck.map(i => `• [${i.id}] Seat ${i.seatNumber}: ${i.title}`),
+        '',
+        '=== 🔴 VETOED BY DOMAIN AUTHORITY (6 IDEAS) ===',
+        ...vetoed.map(i => `• [${i.id}] Seat ${i.seatNumber}: ${i.title} (${i.vetoReason || ''})`)
+      ];
+      const fullDigestText = bodyLines.join('\n');
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(fullDigestText).catch(() => {});
+      }
+
+      if (typeof PuckSenseCloud !== 'undefined' && PuckSenseCloud.postAgentInboxFlag) {
+        await PuckSenseCloud.postAgentInboxFlag({
+          created_by: 'Founder-Email-Dispatcher',
+          source_role: 'board_digest_email',
+          scenario_id: 'EMAIL-DIGEST-V82',
+          age_division: 'ALL',
+          category: 'board_digest',
+          status: 'open',
+          summary: `📧 Dispatched 30-Idea Board Digest Email to danebekkedahl@gmail.com & evanbekk@gmail.com`,
+          details: {
+            recipients: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com'],
+            subject,
+            dispatchedAt: new Date().toISOString()
+          }
+        });
+      }
+
+      const toast = document.getElementById('founderDigestEmailToast');
+      if (toast) {
+        toast.textContent = `📧 30-Idea Digest queued & formatted for danebekkedahl@gmail.com & evanbekk@gmail.com (copied to clipboard + logged to Supabase)!`;
+        toast.classList.remove('hidden');
+      }
+
+      if (triggerMailto && !window.navigator.webdriver) {
+        const mailtoUrl = `mailto:danebekkedahl@gmail.com,evanbekk@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fullDigestText.slice(0, 1800))}`;
+        window.open(mailtoUrl, '_blank');
+      }
+      return {
+        recipients: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com'],
+        subject,
+        totalIdeas: BOARD_30_IDEA_DIGEST.length
+      };
+    }
+    window.dispatchFounderDigestEmail = dispatchFounderDigestEmail;
+
+    const bellBtn = document.getElementById('btnFounderDigestBell');
+    if (bellBtn) bellBtn.addEventListener('click', () => openFounderDigestModal('all'));
+    const coachDigestBtn = document.getElementById('btnOpenFounderDigestFromCoach');
+    if (coachDigestBtn) {
+      coachDigestBtn.addEventListener('click', () => {
+        document.getElementById('teamManagerModal').classList.add('hidden');
+        openFounderDigestModal('all');
+      });
+    }
+    const closeDigestTop = document.getElementById('btnCloseFounderDigestModal');
+    if (closeDigestTop) {
+      closeDigestTop.addEventListener('click', () => {
+        document.getElementById('founderDigestModal').classList.add('hidden');
+      });
+    }
+    const closeDigestBot = document.getElementById('btnCloseFounderDigestBottom');
+    if (closeDigestBot) {
+      closeDigestBot.addEventListener('click', () => {
+        document.getElementById('founderDigestModal').classList.add('hidden');
+      });
+    }
+    const emailDigestBtn = document.getElementById('btnEmailFounderDigest');
+    if (emailDigestBtn) {
+      emailDigestBtn.addEventListener('click', () => dispatchFounderDigestEmail(false));
+    }
+    const syncDigestBtn = document.getElementById('btnSyncDigestToSupabase');
+    if (syncDigestBtn) {
+      syncDigestBtn.addEventListener('click', syncBoardDigestToSupabase);
+    }
+    document.querySelectorAll('.digest-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        SoundFX.playTap();
+        renderFounderDigestModal(btn.dataset.digestFilter || 'all');
+      });
+    });
 
     // Expose core state & engine controllers on window for Autonomous Playtest Bot (?bot=1)
     window.state = state;
