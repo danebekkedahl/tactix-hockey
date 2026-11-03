@@ -696,6 +696,9 @@
                 <button id="btnCycleQuestionFormat" type="button" class="px-2 py-0.5 rounded-full bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/60 text-amber-300 text-[10px] font-black transition whitespace-nowrap" title="Tap to switch interactive question format (Tap Zone A/B/C, Tap Player, Tactical Choice Cards, Drag Skater, Spot & Fix)">
                   <span id="questionStyleBadge">🎯 Tap Zone A/B/C</span>
                 </button>
+                <button id="btnCueFirstHighlight" type="button" class="px-2 py-0.5 rounded-full bg-cyan-500/25 hover:bg-cyan-500/40 border border-cyan-400/70 text-cyan-200 text-[10px] font-black transition whitespace-nowrap" title="Seat 2 Teaching Strategy: Highlight the primary on-ice cue (defender stick angle or open triangle seam) BEFORE making your read!">
+                  <span id="cueFirstBadgeText">👀 Cue-First Read</span>
+                </button>
               </div>
               <!-- 🎮 MULTI-FORMAT QUESTION ACTION BAR (Renders Zone A/B/C Buttons, Teammate Tap Pills, or Tactical Action Cards!) -->
               <div id="multiFormatControlsBar" class="hidden relative pointer-events-auto flex flex-wrap items-center justify-center gap-1.5 bg-slate-950/92 border border-amber-400/70 rounded-2xl px-2.5 py-1.5 shadow-2xl backdrop-blur-md max-w-full"></div>
@@ -907,11 +910,14 @@
               </div>
               <p id="onIceFeedbackBody" class="text-xs text-slate-200 leading-snug mb-1.5"></p>
               <div id="onIceGoldenRule" class="text-[10px] font-bold text-amber-300 bg-slate-900/90 border border-slate-800 rounded-lg px-2 py-1 mb-2"></div>
-              <div class="flex items-center gap-2">
-                <button id="btnOnIceNextPlay" type="button" class="flex-1 py-1.5 px-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs transition">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <button id="btnOnIceNextPlay" type="button" class="flex-1 py-1.5 px-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs transition whitespace-nowrap">
                   Next Play ▶
                 </button>
-                <button id="btnOnIceWatchVideo" type="button" class="py-1.5 px-3 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/50 text-sky-200 font-extrabold text-xs transition">
+                <button id="btnContrastiveReplay" type="button" class="py-1.5 px-2.5 rounded-xl bg-rose-500/20 hover:bg-rose-500/35 border border-rose-400/60 text-rose-200 font-extrabold text-[11px] transition whitespace-nowrap" title="Compare the common youth mistake path vs. the 1st Choice Gold read side-by-side on the ice!">
+                  🔄 Good vs. Bad
+                </button>
+                <button id="btnOnIceWatchVideo" type="button" class="py-1.5 px-2.5 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/50 text-sky-200 font-extrabold text-[11px] transition whitespace-nowrap">
                   📺 Video Clip
                 </button>
               </div>
@@ -1662,16 +1668,28 @@
         </div>
       </div>
 
-      <!-- Interactive 6-Slice Hockey IQ Performance Pie Chart (FOUNDER_VISION_NOTES Section 6) -->
+      <!-- Interactive 6-Slice Hockey IQ Performance Pie Chart (FOUNDER_VISION_NOTES Section 6 & Section 15) -->
       <div id="hockeyIqPieChartContainer" class="bg-slate-950 border border-sky-500/40 rounded-xl p-3.5 mb-3 space-y-2.5">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div>
-            <span class="text-[11px] font-black uppercase tracking-wider text-amber-300">🥧 Interactive Hockey IQ Performance Pie Chart</span>
-            <p class="text-[10px] text-slate-400">Tap any slice to inspect missed concepts & formulate a custom Hockey IQ Improvement Plan (PIP)!</p>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-[11px] font-black uppercase tracking-wider text-amber-300">🥧 Interactive Hockey IQ Performance Pie Chart</span>
+              <span id="wellRoundedBalanceBadge" class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black whitespace-nowrap">⚖️ 100% Balance: Well-Rounded</span>
+            </div>
+            <p class="text-[10px] text-slate-400">Triple-B Player Performance Plan — Tap any slice to inspect missed concepts &amp; formulate a custom PIP!</p>
           </div>
-          <button id="btnToggleProPieEval" type="button" class="px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black transition">
+          <button id="btnToggleProPieEval" type="button" class="px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black transition whitespace-nowrap">
             🔓 Pro Interactive Eval: ON
           </button>
+        </div>
+
+        <!-- Age-Scaled Self-Evaluation Box (Section 15.3: <=14 words upbeat for 8U/10U vs. Deep Film-Room Breakdown for 14U-18U) -->
+        <div id="ageScaledSelfEvalBox" class="bg-slate-900/90 border border-cyan-500/40 rounded-xl p-2.5 flex items-start justify-between gap-2">
+          <div class="space-y-0.5">
+            <div id="ageScaledSelfEvalHeader" class="text-[10px] font-black uppercase tracking-wider text-cyan-300">🧢 Coach Bob Self-Evaluation (Age-Scaled)</div>
+            <p id="ageScaledSelfEvalText" class="text-xs font-bold text-white leading-snug">🌟 Great triangles and net-front sticks! Keep scanning before the pass arrives!</p>
+          </div>
+          <span id="ageScaledSelfEvalTierTag" class="px-2 py-0.5 rounded bg-cyan-500/20 border border-cyan-400/40 text-cyan-200 text-[10px] font-black whitespace-nowrap shrink-0">10U Self-Eval</span>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
@@ -1695,6 +1713,18 @@
             </button>
           </div>
         </div>
+      </div>
+
+      <!-- Position-Specific & Cross-Position Hockey IQ Ratings (FOUNDER_VISION_NOTES Section 15.1) -->
+      <div id="positionSpecificIqSection" class="bg-slate-950 border border-indigo-500/40 rounded-xl p-3 mb-3 space-y-2">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <span class="text-[11px] font-black uppercase tracking-wider text-indigo-300">🏒 Position-Specific &amp; Cross-Position Hockey IQ Ratings</span>
+            <p class="text-[10px] text-slate-400">Study your primary role or cross-train another position on your 5-man unit (e.g., LW studying RW, C, LD, or RD responsibilities)!</p>
+          </div>
+          <span id="crossPosSummaryBadge" class="px-2 py-0.5 rounded-full bg-indigo-500/20 border border-indigo-400/40 text-indigo-200 text-[10px] font-black whitespace-nowrap">5-Unit Cross-IQ</span>
+        </div>
+        <div id="positionSpecificIqGrid" class="grid grid-cols-1 sm:grid-cols-5 gap-2"></div>
       </div>
 
       <!-- 5-Pillar Hockey IQ Breakdown + 3 Core Habit Meters -->
@@ -2046,11 +2076,14 @@
       <!-- SUB-VIEW A: 🧑‍💼 COACH LOGIN (Roster & Line Builder, Lesson Push & Compliance Alerts) -->
       <!-- ================================================================= -->
       <div id="teamPortalCoachView" class="space-y-3 my-3">
-        <!-- 1. Roster & Line Builder (Lines 1-4, D-Pairs 1-3, Goalies) -->
+        <!-- 1. Roster & Line Builder (Lines 1-4, D-Pairs 1-3, Goalies + 22-Seat Cap & Add/Kick Seat Controls) -->
         <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5 space-y-2.5">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <div class="text-xs font-black uppercase tracking-wider text-amber-300">📋 1. Roster & Line Builder (Lines 1–4, D-Pairs & Goalies)</div>
-            <span class="text-[11px] font-bold text-slate-400">Team Code: <strong id="teamModalCodeText" class="text-cyan-300">PUCK-774</strong></span>
+            <div class="text-xs font-black uppercase tracking-wider text-amber-300">📋 1. Roster &amp; Line Builder (Lines 1–4, D-Pairs &amp; Goalies)</div>
+            <div class="flex flex-wrap items-center gap-2">
+              <span id="coachRosterSeatCounterBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black whitespace-nowrap">🪑 Roster Seats: 10 / 22 Used (12 Open)</span>
+              <span class="text-[11px] font-bold text-slate-400">Team Code: <strong id="teamModalCodeText" class="text-cyan-300">PUCK-774</strong></span>
+            </div>
           </div>
           <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
             <select id="selectCoachRosterLine" class="px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
@@ -2222,6 +2255,27 @@
             <div id="teamCoOpCupProgressBar" class="h-full rounded-full bg-gradient-to-r from-sky-400 via-emerald-400 to-amber-400 transition-all duration-500" style="width: 71%"></div>
           </div>
           <p class="text-[11px] text-slate-300">Every rostered player's completed drills add points toward unlocking our shared <strong>Minot Wolves Team Stanley Cup Banner</strong>!</p>
+        </div>
+
+        <!-- 🏅 Shared Team Leaderboard & Standings (Player Login View — Section 17.1 Visibility Boundary: No private teammate diagnostics exposed!) -->
+        <div id="playerViewTeamLeaderboardSection" class="bg-slate-950 border border-sky-500/40 rounded-xl p-3.5 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="text-xs font-black uppercase tracking-wider text-sky-300">🏅 Team Leaderboard &amp; Roster Standings (Player View)</span>
+            <span class="px-2 py-0.5 rounded-full bg-sky-500/20 border border-sky-400/40 text-sky-200 text-[10px] font-black whitespace-nowrap">🔒 Private Scouting Hidden</span>
+          </div>
+          <p class="text-[11px] text-slate-400">See how your teammates rank on the 32-Team NHL Tour! (Only Coaches can view individual diagnostic weaknesses or push remedial packs.)</p>
+          <div id="playerViewTeamLeaderboardList" class="space-y-1.5 max-h-40 overflow-y-auto pr-1"></div>
+        </div>
+
+        <!-- 🔒 Team Portal vs. Personal Player Portal Permission Boundary Banner (Section 17.1) -->
+        <div id="playerViewCustomLessonLockBanner" class="bg-amber-950/35 border border-amber-500/50 rounded-xl p-3 flex flex-wrap items-center justify-between gap-2">
+          <div class="space-y-0.5">
+            <div class="text-xs font-black text-amber-300">🔒 Want "🛠️ Create My Own Lesson" &amp; Personal 6-Slice Self-Evaluation?</div>
+            <p class="text-[11px] text-slate-300">Your Team Portal seat includes free Coach Weekly Assignments &amp; Team Standings. Unlock your personal <strong>Player Portal + Tactix Pro</strong> to build custom self-directed lessons anytime!</p>
+          </div>
+          <button id="btnPlayerViewUnlockPersonalPro" type="button" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-black text-xs shadow transition whitespace-nowrap">
+            ⚡ Open Personal Pro Builder ▶
+          </button>
         </div>
       </div>
 
@@ -7452,6 +7506,138 @@
       drawRink();
     }
 
+    // =========================================================================
+    // SEAT 2 TEACHING STRATEGY #1: CUE-FIRST VISUAL HIGHLIGHTING & CONTRASTIVE GOOD-VS-BAD READ REPLAY
+    // =========================================================================
+    function getCueFirstHighlightTarget(scen, prof) {
+      if (!scen) return { x: 0.5, y: 0.5, label: 'D1', cueText: '👀 CUE FIRST: Scan the primary defender stick angle!' };
+      const d0 = (scen.defenders && scen.defenders[0]) || { id: 'D1', label: 'D1', x: 0.55, y: 0.45 };
+      const t0 = (scen.teammates && scen.teammates[0]) || { id: 'T1', label: '14', x: 0.72, y: 0.30 };
+      const is8UOr10U = (prof && (prof.ageGroup === '8U' || prof.ageGroup === '10U'));
+      if (scen.mechanic === 'pass_decision' || scen.concept === 'rush') {
+        return {
+          x: d0.x,
+          y: d0.y,
+          secondaryX: t0.x,
+          secondaryY: t0.y,
+          label: d0.label || 'D1',
+          cueText: is8UOr10U
+            ? `👀 CUE FIRST: Watch ${d0.label || 'D1'}'s stick before you pass!`
+            : `👀 CUE FIRST: Read ${d0.label || 'D1'}'s stick & hips to expose the seam to #${t0.label || '14'}!`
+        };
+      }
+      if (scen.zone === 'defense' || scen.concept === 'house') {
+        return {
+          x: d0.x,
+          y: d0.y,
+          secondaryX: scen.targetSpot ? scen.targetSpot.x : 0.24,
+          secondaryY: scen.targetSpot ? scen.targetSpot.y : 0.50,
+          label: d0.label || 'R1',
+          cueText: is8UOr10U
+            ? '👀 CUE FIRST: Spot the puck and protect The House!'
+            : `👀 CUE FIRST: Read ${d0.label || 'R1'}'s stick angle & lock Down Low / Net-Side!`
+        };
+      }
+      return {
+        x: t0.x,
+        y: t0.y,
+        secondaryX: d0.x,
+        secondaryY: d0.y,
+        label: '#' + (t0.label || '14'),
+        cueText: is8UOr10U
+          ? `👀 CUE FIRST: Look at #${t0.label || '14'} to form a triangle!`
+          : `👀 CUE FIRST: Scan #${t0.label || '14'} & ${d0.label || 'D1'}'s gap to build your Attack Triangle!`
+      };
+    }
+    window.getCueFirstHighlightTarget = getCueFirstHighlightTarget;
+
+    function updateCueFirstBadgeUI() {
+      const badgeEl = document.getElementById('cueFirstBadgeText');
+      const btnEl = document.getElementById('btnCueFirstHighlight');
+      if (!badgeEl) return;
+      const tier = getSkillTierForCityStop(state.currentCityIdx || 0);
+      const isFadedProTier = (tier && (tier.code === 'AA' || tier.code === 'AAA'));
+      if (state.cueFirstHighlightActive) {
+        badgeEl.textContent = '👀 Cue-First: ON';
+        if (btnEl) btnEl.classList.add('border-cyan-300', 'bg-cyan-500/35');
+      } else {
+        badgeEl.textContent = isFadedProTier ? '👀 Cue-First (AA/AAA Faded)' : '👀 Cue-First Read';
+        if (btnEl) btnEl.classList.remove('border-cyan-300', 'bg-cyan-500/35');
+      }
+    }
+
+    function triggerCueFirstHighlight(forceState = null) {
+      const scen = getCurrentScenario();
+      const prof = getActiveProfile();
+      SoundFX.playTap();
+      state.cueFirstTarget = getCueFirstHighlightTarget(scen, prof);
+      if (typeof forceState === 'boolean') {
+        state.cueFirstHighlightActive = forceState;
+      } else {
+        state.cueFirstHighlightActive = !state.cueFirstHighlightActive;
+      }
+      updateCueFirstBadgeUI();
+      if (state.cueFirstHighlightActive && state.cueFirstTarget) {
+        showDockToast(state.cueFirstTarget.cueText);
+      }
+      drawRink();
+      return state.cueFirstTarget;
+    }
+    window.triggerCueFirstHighlight = triggerCueFirstHighlight;
+
+    function getContrastiveMistakeSpot(scen) {
+      if (state.mistakeBadSpot) return state.mistakeBadSpot;
+      const t0 = (scen && scen.teammates && scen.teammates[0]) || { x: 0.75, y: 0.25 };
+      const d0 = (scen && scen.defenders && scen.defenders[0]) || { x: 0.55, y: 0.48 };
+      if (scen && scen.mechanic === 'pass_decision') {
+        const coveredTm = (scen.teammates && scen.teammates[1]) || d0;
+        return {
+          x: Math.min(0.90, Math.max(0.10, coveredTm.x)),
+          y: Math.min(0.88, Math.max(0.12, coveredTm.y)),
+          reason: '❌ BAD READ: Forcing pass into defender stick!'
+        };
+      }
+      if (scen && scen.zone === 'defense') {
+        return {
+          x: Math.min(0.46, Math.max(0.10, d0.x - 0.03)),
+          y: Math.min(0.88, Math.max(0.12, d0.y < 0.5 ? 0.16 : 0.84)),
+          reason: '❌ BAD READ: Chasing wide & leaving The House open!'
+        };
+      }
+      return {
+        x: Math.min(0.90, Math.max(0.12, t0.x - 0.02)),
+        y: Math.min(0.88, Math.max(0.12, t0.y + 0.02)),
+        reason: '❌ BAD READ: Bunching next to teammate!'
+      };
+    }
+    window.getContrastiveMistakeSpot = getContrastiveMistakeSpot;
+
+    function triggerContrastiveGoodBadReplay() {
+      const scen = getCurrentScenario();
+      if (!scen) return;
+      SoundFX.playTap();
+      state.contrastiveReplayActive = true;
+      state.contrastiveProgress = 0;
+      const startTs = performance.now();
+      const dur = 850;
+      function stepContrast(now) {
+        if (!state.contrastiveReplayActive) return;
+        state.contrastiveProgress = Math.min(1, (now - startTs) / dur);
+        drawRink();
+        if (state.contrastiveProgress < 1) {
+          requestAnimationFrame(stepContrast);
+        }
+      }
+      requestAnimationFrame(stepContrast);
+      showDockToast('🔄 Contrastive Replay: Comparing ❌ Youth Mistake vs. ✅ 1st Choice Gold Read!');
+      return {
+        active: true,
+        badSpot: getContrastiveMistakeSpot(scen),
+        goldSpot: scen.targetSpot
+      };
+    }
+    window.triggerContrastiveGoodBadReplay = triggerContrastiveGoodBadReplay;
+
     function loadScenario(autoSpeak = true) {
       stopTimers();
       state.liveRunning = false;
@@ -7466,6 +7652,8 @@
       state.commRipple = null;
       state.roleReadAwardedThisPlay = false;
       state.selectedRoleRead = null;
+      state.contrastiveReplayActive = false;
+      state.contrastiveProgress = 0;
       const roleGuidePop = document.getElementById('roleGuidePopover');
       if (roleGuidePop) roleGuidePop.classList.add('hidden');
       document.getElementById('goalLampsOverlay').classList.add('hidden');
@@ -7479,6 +7667,13 @@
       const scen = getCurrentScenario();
       const prof = getActiveProfile();
       const ageCfg = AGE_TIER_CONFIG[prof.ageGroup] || AGE_TIER_CONFIG['12U'];
+
+      // Seat 2 & Seat 3: Cue-First Visual Highlighting defaults ON for Rec/B/A tiers and fades to on-demand for AA/AAA tiers!
+      const curTier = getSkillTierForCityStop(state.currentCityIdx || 0);
+      const isProFadedTier = (curTier && (curTier.code === 'AA' || curTier.code === 'AAA')) && prof.ageGroup !== '8U';
+      state.cueFirstTarget = getCueFirstHighlightTarget(scen, prof);
+      state.cueFirstHighlightActive = !isProFadedTier;
+      updateCueFirstBadgeUI();
 
       // Pre-Scan Shoulder-Check Window: active while puck is in transit on breakout/transition drills for 10U+
       const shouldStartInPreScanWindow = (
@@ -8552,6 +8747,111 @@
         ctx.setLineDash([4, 3]);
         ctx.stroke();
         ctx.setLineDash([]);
+        ctx.restore();
+      }
+
+      // 👀 SEAT 2 TEACHING STRATEGY #1A: CUE-FIRST VISUAL HIGHLIGHTING (Teaches *what cue to look at* before moving!)
+      if (state.cueFirstHighlightActive && state.cueFirstTarget && !state.questionAnswered && state.mistakePhase === 'none') {
+        const cuePt = normToCanvas(state.cueFirstTarget.x, state.cueFirstTarget.y, W, H, zone);
+        const cueR = Math.max(22, W * 0.032);
+        ctx.save();
+        // Sightline vector from YOU #9 to the primary visual cue
+        ctx.beginPath();
+        ctx.moveTo(youPt.x, youPt.y);
+        ctx.lineTo(cuePt.x, cuePt.y);
+        ctx.setLineDash([5, 4]);
+        ctx.lineWidth = 2.4;
+        ctx.strokeStyle = 'rgba(6, 182, 212, 0.85)';
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Pulsing Cyan Target Reticle around the Cue
+        ctx.beginPath();
+        ctx.arc(cuePt.x, cuePt.y, cueR, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(6, 182, 212, 0.16)';
+        ctx.fill();
+        ctx.lineWidth = 2.6;
+        ctx.strokeStyle = '#06b6d4';
+        ctx.stroke();
+
+        // Compact Cue Callout Pill
+        const cueTxt = state.cueFirstTarget.cueText || '👀 CUE FIRST: Scan defender stick!';
+        ctx.font = `900 ${Math.max(9, Math.floor(W * 0.0105))}px Inter`;
+        const pillW = Math.min(W * 0.72, ctx.measureText(cueTxt).width + 16);
+        const pillH = 20;
+        const px = Math.max(pillW / 2 + 12, Math.min(W - pillW / 2 - 12, cuePt.x));
+        const py = cuePt.y > H * 0.68 ? (cuePt.y - cueR - 14) : (cuePt.y + cueR + 14);
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.92)';
+        ctx.strokeStyle = '#22d3ee';
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        ctx.roundRect(px - pillW / 2, py - pillH / 2, pillW, pillH, 6);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#67e8f9';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(cueTxt, px, py);
+        ctx.restore();
+      }
+
+      // 🔄 SEAT 2 TEACHING STRATEGY #1B: CONTRASTIVE GOOD-VS-BAD READ REPLAY (Side-by-side Youth Mistake vs. 1st Choice Gold Path)
+      if (state.contrastiveReplayActive || (!state.readSuccess && state.animPhase === 'done')) {
+        const startNorm = scen.youStart || { x: 0.45, y: 0.50 };
+        const startPt = normToCanvas(startNorm.x, startNorm.y, W, H, zone);
+        const badSpot = getContrastiveMistakeSpot(scen);
+        const badPt = normToCanvas(badSpot.x, badSpot.y, W, H, zone);
+        const openTm = (scen.teammates && scen.teammates[0]) || scen.targetSpot || startNorm;
+        const goldNorm = scen.mechanic === 'pass_decision' ? openTm : (scen.targetSpot || openTm);
+        const goldPt = normToCanvas(goldNorm.x, goldNorm.y, W, H, zone);
+        const prog = state.contrastiveReplayActive ? (state.contrastiveProgress || 1) : 1;
+        const curBadX = startPt.x + (badPt.x - startPt.x) * prog;
+        const curBadY = startPt.y + (badPt.y - startPt.y) * prog;
+        const curGoldX = startPt.x + (goldPt.x - startPt.x) * prog;
+        const curGoldY = startPt.y + (goldPt.y - startPt.y) * prog;
+
+        ctx.save();
+        // 1. Red Dashed Common Youth Mistake Vector & Ghost Badge
+        ctx.beginPath();
+        ctx.moveTo(startPt.x, startPt.y);
+        ctx.lineTo(curBadX, curBadY);
+        ctx.setLineDash([6, 4]);
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = 'rgba(225, 29, 72, 0.88)';
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.beginPath();
+        ctx.arc(curBadX, curBadY, Math.max(16, W * 0.022), 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(225, 29, 72, 0.25)';
+        ctx.fill();
+        ctx.lineWidth = 2.2;
+        ctx.strokeStyle = '#e11d48';
+        ctx.stroke();
+
+        ctx.font = `900 ${Math.max(8, Math.floor(W * 0.0095))}px Inter`;
+        ctx.fillStyle = '#9f1239';
+        ctx.textAlign = 'center';
+        ctx.fillText(badSpot.reason || '❌ BAD READ (Covered)', Math.max(80, Math.min(W - 80, curBadX)), curBadY - Math.max(20, W * 0.025));
+
+        // 2. Emerald Solid 1st Choice Gold Read Vector & Badge
+        ctx.beginPath();
+        ctx.moveTo(startPt.x, startPt.y);
+        ctx.lineTo(curGoldX, curGoldY);
+        ctx.lineWidth = 3.5;
+        ctx.strokeStyle = 'rgba(16, 185, 129, 0.95)';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(curGoldX, curGoldY, Math.max(18, W * 0.024), 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(16, 185, 129, 0.25)';
+        ctx.fill();
+        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = '#10b981';
+        ctx.stroke();
+
+        ctx.fillStyle = '#065f46';
+        ctx.fillText('✅ 1ST CHOICE GOLD READ', Math.max(80, Math.min(W - 80, curGoldX)), curGoldY + Math.max(24, W * 0.028));
         ctx.restore();
       }
 
@@ -10879,6 +11179,60 @@
     }
     window.launchCoachAssignment = launchCoachAssignment;
 
+    const MAX_TEAM_ROSTER_SEATS = 22;
+
+    function getActiveTeamRosterMembers() {
+      const kickedSet = new Set(state.kickedRosterIds || []);
+      return getAllGroupParticipants().filter(m => !kickedSet.has(m.id));
+    }
+    window.getActiveTeamRosterMembers = getActiveTeamRosterMembers;
+
+    function kickRosterPlayer(memberId) {
+      if (!memberId) return false;
+      SoundFX.playTap();
+      if (!Array.isArray(state.kickedRosterIds)) state.kickedRosterIds = [];
+      if (Array.isArray(state.invitedTeammates) && state.invitedTeammates.some(t => t.id === memberId)) {
+        state.invitedTeammates = state.invitedTeammates.filter(t => t.id !== memberId);
+      } else if (!state.kickedRosterIds.includes(memberId)) {
+        state.kickedRosterIds.push(memberId);
+      }
+      saveProgress();
+      renderTeamManagerModal();
+      const toast = document.getElementById('teamModalInviteToast');
+      if (toast) {
+        const remaining = getActiveTeamRosterMembers().length;
+        toast.textContent = `👢 Removed skater from active roster. ${remaining} / ${MAX_TEAM_ROSTER_SEATS} Roster Seats Used (${Math.max(0, MAX_TEAM_ROSTER_SEATS - remaining)} Open).`;
+        toast.classList.remove('hidden');
+      }
+      return true;
+    }
+    window.kickRosterPlayer = kickRosterPlayer;
+
+    function addCoachRosterPlayer(nameOrEmail, line = 'Line 1', pos = 'C', hand = 'Left') {
+      const currentMembers = getActiveTeamRosterMembers();
+      if (currentMembers.length >= MAX_TEAM_ROSTER_SEATS) {
+        SoundFX.playBuzzer();
+        const toast = document.getElementById('teamModalInviteToast');
+        if (toast) {
+          toast.textContent = `⚠️ Roster Seat Cap Reached (${MAX_TEAM_ROSTER_SEATS}/${MAX_TEAM_ROSTER_SEATS} Seats Used)! Kick an inactive player first to free a seat.`;
+          toast.classList.remove('hidden');
+        }
+        return null;
+      }
+      sendCoachTeamInvites(nameOrEmail || 'New Skater', 'teamModalInviteToast');
+      if (Array.isArray(state.invitedTeammates) && state.invitedTeammates.length > 0) {
+        const latest = state.invitedTeammates[state.invitedTeammates.length - 1];
+        latest.rosterLine = line;
+        latest.position = pos;
+        latest.hand = hand;
+        saveProgress();
+        renderTeamManagerModal();
+        return latest;
+      }
+      return null;
+    }
+    window.addCoachRosterPlayer = addCoachRosterPlayer;
+
     function openTeamManagerModal() {
       SoundFX.playTap();
       renderTeamManagerModal();
@@ -10893,7 +11247,15 @@
 
       const listEl = document.getElementById('teamModalLeaderboardList');
       if (!listEl) return;
-      const members = getAllGroupParticipants();
+      const members = getActiveTeamRosterMembers();
+
+      // Update Coach 22-Seat Cap Counter Badge (#coachRosterSeatCounterBadge)
+      const seatBadge = document.getElementById('coachRosterSeatCounterBadge');
+      if (seatBadge) {
+        const openSeats = Math.max(0, MAX_TEAM_ROSTER_SEATS - members.length);
+        seatBadge.textContent = `🪑 Roster Seats: ${members.length} / ${MAX_TEAM_ROSTER_SEATS} Used (${openSeats} Open)`;
+      }
+
       listEl.innerHTML = members.map((m, idx) => {
         const city = NHL_CITIES[m.currentCityIdx || 0] || NHL_CITIES[0];
         const isPending = m.status && m.status.includes('Pending');
@@ -10908,13 +11270,42 @@
                 <div class="text-[10px] text-slate-400">${m.ageGroup || '10U'} • ${m.position || 'C'} (${m.hand || 'L'}) • 📍 Stop #${(m.currentCityIdx || 0) + 1}: ${city.name}</div>
               </div>
             </div>
-            <div class="flex items-center gap-2">
-              <span class="px-2 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 font-black text-xs">${m.iqScore || 100} IQ</span>
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold ${isPending ? 'bg-amber-500/20 text-amber-300 border border-amber-400/40' : 'bg-cyan-500/20 text-cyan-300 border border-cyan-400/40'}">${m.status || 'Active 🟢'}</span>
+            <div class="flex items-center gap-1.5">
+              <span class="px-2 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 font-black text-xs whitespace-nowrap">${m.iqScore || 100} IQ</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold whitespace-nowrap ${isPending ? 'bg-amber-500/20 text-amber-300 border border-amber-400/40' : 'bg-cyan-500/20 text-cyan-300 border border-cyan-400/40'}">${m.status || 'Active 🟢'}</span>
+              <button type="button" data-kick-member="${m.id}" class="btn-kick-roster-member px-2 py-0.5 rounded-lg bg-rose-500/20 hover:bg-rose-500/35 border border-rose-400/50 text-rose-200 text-[10px] font-black transition whitespace-nowrap" title="Remove player from team roster and free up 1 of your 22 roster seats">
+                👢 Kick
+              </button>
             </div>
           </div>
         `;
       }).join('');
+
+      listEl.querySelectorAll('.btn-kick-roster-member').forEach(btn => {
+        btn.addEventListener('click', () => {
+          kickRosterPlayer(btn.dataset.kickMember);
+        });
+      });
+
+      // Populate Shared Team Leaderboard inside Player Login View (#playerViewTeamLeaderboardList — Strictly NO private teammate diagnostic weaknesses exposed!)
+      const playerLbList = document.getElementById('playerViewTeamLeaderboardList');
+      if (playerLbList) {
+        playerLbList.innerHTML = members.map((m, idx) => {
+          const city = NHL_CITIES[m.currentCityIdx || 0] || NHL_CITIES[0];
+          const lineTag = m.rosterLine || (idx < 3 ? 'Line 1' : (idx < 5 ? 'D-Pair 1' : 'Line 2'));
+          return `
+            <div class="flex items-center justify-between gap-2 p-2 rounded-xl bg-slate-900/90 border ${m.isActive ? 'border-amber-400/60' : 'border-slate-800'} text-xs">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="w-5 font-black ${idx === 0 ? 'text-amber-400' : 'text-slate-400'}">#${idx + 1}</span>
+                <span class="font-black text-white">${m.name} #9</span>
+                <span class="px-1.5 py-0.5 rounded bg-slate-800 text-sky-300 text-[9px] font-bold whitespace-nowrap">${lineTag}</span>
+                <span class="text-[10px] text-slate-400 hidden sm:inline">• 📍 Stop #${(m.currentCityIdx || 0) + 1}: ${city.name}</span>
+              </div>
+              <span class="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 font-black text-[11px] whitespace-nowrap">${m.iqScore || 100} IQ Pts</span>
+            </div>
+          `;
+        }).join('');
+      }
 
       // Populate Real-Time Team Compliance & Scouting Alert Table (#coachComplianceAlertTable)
       const compTable = document.getElementById('coachComplianceAlertTable');
@@ -11182,6 +11573,18 @@
       onIceNextBtn.addEventListener('click', () => {
         SoundFX.playTap();
         advanceSeriesOrRegenerate();
+      });
+    }
+    const cueFirstBtn = document.getElementById('btnCueFirstHighlight');
+    if (cueFirstBtn) {
+      cueFirstBtn.addEventListener('click', () => {
+        triggerCueFirstHighlight();
+      });
+    }
+    const contrastiveBtn = document.getElementById('btnContrastiveReplay');
+    if (contrastiveBtn) {
+      contrastiveBtn.addEventListener('click', () => {
+        triggerContrastiveGoodBadReplay();
       });
     }
     const onIceVidBtn = document.getElementById('btnOnIceWatchVideo');
@@ -11453,6 +11856,14 @@
     if (approveCoachBtn) approveCoachBtn.addEventListener('click', approveAndPushCoachLessonPlan);
     const launchAssignBtn = document.getElementById('btnLaunchCoachAssignment');
     if (launchAssignBtn) launchAssignBtn.addEventListener('click', launchCoachAssignment);
+    const unlockPersonalProFromTeamBtn = document.getElementById('btnPlayerViewUnlockPersonalPro');
+    if (unlockPersonalProFromTeamBtn) {
+      unlockPersonalProFromTeamBtn.addEventListener('click', () => {
+        SoundFX.playTap();
+        document.getElementById('teamManagerModal').classList.add('hidden');
+        openUpgradeBuilderModal();
+      });
+    }
     const rosterSelEl = document.getElementById('selectTeamRosterPlayer');
     if (rosterSelEl) {
       rosterSelEl.addEventListener('change', (e) => {
@@ -11473,15 +11884,12 @@
       const lineSel = document.getElementById('selectCoachRosterLine');
       const posSel = document.getElementById('selectCoachRosterPos');
       const handSel = document.getElementById('selectCoachRosterHand');
-      sendCoachTeamInvites(val, 'teamModalInviteToast');
-      if (Array.isArray(state.invitedTeammates) && state.invitedTeammates.length > 0) {
-        const latest = state.invitedTeammates[state.invitedTeammates.length - 1];
-        if (lineSel) latest.rosterLine = lineSel.value;
-        if (posSel) latest.position = posSel.value;
-        if (handSel) latest.hand = handSel.value;
-        saveProgress();
-        renderTeamManagerModal();
-      }
+      addCoachRosterPlayer(
+        val || 'Logan K.',
+        lineSel ? lineSel.value : 'Line 1',
+        posSel ? posSel.value : 'C',
+        handSel ? handSel.value : 'Left'
+      );
       document.getElementById('inputModalTeamInvite').value = '';
     });
     document.getElementById('btnToggleMapGroupProgress').addEventListener('click', () => {
@@ -12432,7 +12840,149 @@
           selectPieChartSlice(btn.dataset.pieLegend);
         });
       });
+
+      // Update Section 15.2 Well-Rounded 100% Balance Pie Badge & Section 15.3 Age-Scaled Self-Eval
+      const prof = getActiveProfile();
+      updateWellRoundedAndSelfEvalUI(prof);
     }
+
+    // =========================================================================
+    // SECTION 15: POSITION-SPECIFIC IQ RATINGS, 100% WELL-ROUNDED BALANCE PIE & AGE-SCALED SELF-EVAL
+    // =========================================================================
+    function checkWellRoundedBalancePie() {
+      const rawPcts = PIE_SLICES_META.map(sl => ({ key: sl.key, label: sl.label, pct: getPieSlicePct(sl) }));
+      const total = rawPcts.reduce((acc, s) => acc + s.pct, 0) || 1;
+      const shares = rawPcts.map(s => ({
+        ...s,
+        sharePct: Number(((s.pct / total) * 100).toFixed(1))
+      }));
+      const lopsided = shares.filter(s => s.sharePct < 10.0 || s.pct < 55);
+      return {
+        wellRounded: lopsided.length === 0,
+        lopsidedSlices: lopsided,
+        shares
+      };
+    }
+    window.checkWellRoundedBalancePie = checkWellRoundedBalancePie;
+
+    function buildAgeScaledSelfEvaluation(prof) {
+      const p = prof || getActiveProfile() || {};
+      const age = p.ageGroup || '10U';
+      const balance = checkWellRoundedBalancePie();
+      const sorted = [...balance.shares].sort((a, b) => a.pct - b.pct);
+      const weakest = sorted[0] || { label: 'Breakout & Regroup', pct: 68 };
+      const strongest = sorted[sorted.length - 1] || { label: 'Zone Possession', pct: 88 };
+
+      if (age === '8U' || age === '10U') {
+        // Section 15.3: 8U & 10U self-evaluations use big icons and NEVER exceed 1 short, upbeat sentence (<= 14 words)!
+        const shortText = '🌟 Awesome Attack Triangles! Keep your stick on the ice in The House!';
+        return {
+          ageGroup: age,
+          wordCount: shortText.trim().split(/\s+/).length,
+          header: `🌟 ${age} Kid-Friendly Self-Eval (1 Upbeat Sentence)`,
+          text: shortText
+        };
+      }
+      if (age === '12U') {
+        const medText = `🏒 Strong ${strongest.label} (${strongest.pct}%). Next step: scan defender hips earlier on ${weakest.label} (${weakest.pct}%) before calling for the pass.`;
+        return {
+          ageGroup: age,
+          wordCount: medText.trim().split(/\s+/).length,
+          header: `📋 ${age} Peewee Tactical Self-Evaluation`,
+          text: medText
+        };
+      }
+      // Section 15.3: 14U–18U evaluations deliver deep AAA/Junior film-room breakdowns tailored to historical trends
+      const deepText = `🎬 ${age} AAA/Junior Film-Room Breakdown: Elite ${strongest.label} execution (${strongest.pct}% consensus optimal reads, F3 high-slot rotation intact). Primary deficiency trend flagged in ${weakest.label} (${weakest.pct}%): pre-scan shoulder checks must occur 0.8s prior to puck retrieval to disguise weak-side D-to-D reversals and Royal Road seam entries.`;
+      return {
+        ageGroup: age,
+        wordCount: deepText.trim().split(/\s+/).length,
+        header: `🎥 ${age} AAA / Junior Film-Room Self-Evaluation`,
+        text: deepText
+      };
+    }
+    window.buildAgeScaledSelfEvaluation = buildAgeScaledSelfEvaluation;
+
+    function computePositionSpecificIqRatings(prof) {
+      const p = prof || getActiveProfile() || {};
+      const primaryPos = (p.position || 'Center (C)').toUpperCase();
+      const baseIq = Math.max(68, Math.min(96, Math.round((state.iqScore || 100) / 1.5)));
+      const positions = [
+        { code: 'C',  label: 'Center (C)',        optionVal: 'Center (C)',       ev5v5: 88, pp5v4: 85, pk4v5: 84, note: 'Low-and-slow breakout curl & D-Zone House support' },
+        { code: 'LW', label: 'Left Wing (LW)',    optionVal: 'Left Wing (LW)',   ev5v5: 86, pp5v4: 84, pk4v5: 79, note: 'Strong-side hashmarks wall & high-slot triangle flank' },
+        { code: 'RW', label: 'Right Wing (RW)',   optionVal: 'Right Wing (RW)',  ev5v5: 81, pp5v4: 68, pk4v5: 77, note: 'Weak-side stretch slash & Royal Road one-timer seam' },
+        { code: 'D',  label: 'Defense (LD / RD)', optionVal: 'Defense (LD/RD)',  ev5v5: 83, pp5v4: 86, pk4v5: 85, note: 'Umbrella QB, gap control & behind-the-net D-to-D' },
+        { code: 'G',  label: 'Goalie (G)',        optionVal: 'Goalie (G)',       ev5v5: 80, pp5v4: 78, pk4v5: 82, note: 'Top-of-crease angle depth & trapezoid rim communication' }
+      ];
+      return positions.map((pos, idx) => {
+        const isPrimary = primaryPos.includes(`(${pos.code}`) || primaryPos.startsWith(pos.code);
+        const boost = isPrimary ? 6 : 0;
+        const delta = Math.round((baseIq - 80) * 0.25);
+        return {
+          ...pos,
+          isPrimary,
+          ev5v5: Math.min(99, Math.max(58, pos.ev5v5 + boost + delta - idx)),
+          pp5v4: Math.min(99, Math.max(55, pos.pp5v4 + boost + delta)),
+          pk4v5: Math.min(99, Math.max(55, pos.pk4v5 + boost + delta))
+        };
+      });
+    }
+    window.computePositionSpecificIqRatings = computePositionSpecificIqRatings;
+
+    function updateWellRoundedAndSelfEvalUI(prof) {
+      const p = prof || getActiveProfile();
+      const bal = checkWellRoundedBalancePie();
+      const balBadge = document.getElementById('wellRoundedBalanceBadge');
+      if (balBadge) {
+        if (bal.wellRounded) {
+          balBadge.className = 'px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black whitespace-nowrap';
+          balBadge.textContent = '⚖️ Triple-B 100% Balance: Well-Rounded';
+        } else {
+          const lopName = bal.lopsidedSlices[0]?.label || 'Slice';
+          balBadge.className = 'px-2 py-0.5 rounded-full bg-rose-500/20 border border-rose-400/60 text-rose-300 text-[10px] font-black whitespace-nowrap';
+          balBadge.textContent = `⚠️ Lopsided Balance (<10% Flag: ${lopName})`;
+        }
+      }
+
+      const evalInfo = buildAgeScaledSelfEvaluation(p);
+      const hdrEl = document.getElementById('ageScaledSelfEvalHeader');
+      const txtEl = document.getElementById('ageScaledSelfEvalText');
+      const tagEl = document.getElementById('ageScaledSelfEvalTierTag');
+      if (hdrEl) hdrEl.textContent = evalInfo.header;
+      if (txtEl) txtEl.textContent = evalInfo.text;
+      if (tagEl) tagEl.textContent = `${evalInfo.ageGroup} (${evalInfo.wordCount}w)`;
+
+      const posGrid = document.getElementById('positionSpecificIqGrid');
+      if (posGrid) {
+        const ratings = computePositionSpecificIqRatings(p);
+        posGrid.innerHTML = ratings.map(r => `
+          <div class="p-2.5 rounded-xl bg-slate-900/90 border ${r.isPrimary ? 'border-amber-400/70' : 'border-slate-800'} flex flex-col justify-between gap-1.5">
+            <div>
+              <div class="flex items-center justify-between gap-1">
+                <span class="text-xs font-black text-white">${r.code}</span>
+                <span class="px-1.5 py-0.5 rounded text-[9px] font-black ${r.isPrimary ? 'bg-amber-400 text-slate-950' : 'bg-slate-800 text-slate-300'}">${r.isPrimary ? 'PRIMARY' : 'CROSS-UNIT'}</span>
+              </div>
+              <div class="text-[10px] text-slate-300 font-bold mt-1">5v5 IQ: <strong class="text-emerald-300">${r.ev5v5}</strong></div>
+              <div class="text-[10px] text-slate-300 font-bold">5v4 PP: <strong class="${r.pp5v4 < 75 ? 'text-amber-300' : 'text-sky-300'}">${r.pp5v4}</strong> • PK: <strong class="text-cyan-300">${r.pk4v5}</strong></div>
+            </div>
+            <button type="button" data-study-pos="${r.optionVal}" class="btn-study-cross-pos w-full py-1 px-2 rounded-lg bg-indigo-500/25 hover:bg-indigo-500/40 border border-indigo-400/50 text-indigo-200 text-[10px] font-black transition whitespace-nowrap">
+              🎓 Study ${r.code}
+            </button>
+          </div>
+        `).join('');
+        posGrid.querySelectorAll('.btn-study-cross-pos').forEach(btn => {
+          btn.addEventListener('click', () => {
+            SoundFX.playTap();
+            const targetPos = btn.dataset.studyPos || 'Right Wing (RW)';
+            const posSel = document.getElementById('selectCustomPosition');
+            if (posSel) posSel.value = targetPos;
+            document.getElementById('reportModal').classList.add('hidden');
+            openUpgradeBuilderModal();
+          });
+        });
+      }
+    }
+    window.updateWellRoundedAndSelfEvalUI = updateWellRoundedAndSelfEvalUI;
 
     function selectPieChartSlice(sliceKey) {
       state.selectedPieSliceKey = sliceKey || 'breakout';

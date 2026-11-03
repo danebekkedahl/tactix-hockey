@@ -204,3 +204,36 @@ The standalone Node curriculum generator (`generate-tactix-bank.js`) executes a 
 
 
 
+---
+
+## 15. Position-Specific IQ Ratings, Well-Rounded 100% Balance & Age-Scaled Self-Eval (Dictation 1 Additions)
+1. **Position-Specific & Cross-Position Hockey IQ Ratings:** Track and display a player's Hockey IQ rating per position AND per situation (e.g., "5v4 Power Play IQ as LW = 84" vs. "as RW = 68"), allowing players in the Custom Lesson Builder to study another position on their unit (LW studying RW, C, LD, or RD responsibilities).
+2. **The "Well-Rounded Player" 100% Balance Pie ("Triple-B Player Performance Plan"):** Frame the Player Performance Pie Chart around a 100% Well-Rounded Hockey Player Balance, visually flagging lopsided `<10%` slices.
+3. **Age-Scaled Self-Evaluation Language (`8U` vs. `16U/18U`):** `8U` & `10U` self-evaluations use big icons and never exceed 1 short, upbeat sentence; `14U–18U` evaluations deliver deep AAA/Junior film-room breakdowns tailored to the player's historical trends.
+
+## 16. Expanded Playbook Harvester Sources & The 24–48x Multi-Variable Permutation Matrix (Dictation 2 Additions)
+1. **Full Spectrum of Verified Coaching Sources for Bot 1 (`Harvester`):** Scour official diagrams and lesson plans across USA Hockey ADM (Learn-to-Play through 18U), Youth Club & Tier 1 AAA, High School 5A, Junior A & Junior B (USHL, NAHL, BCHL), NCAA D1, D2 & D3, Semi-Pro, and Pro systems.
+2. **The 6-Lever Permutation Matrix:** Multiply each Concept Bucket across: (1) Age Division (`8U–18U` with strict ADM guardrails), (2) Within-Division Skill Tier (`Rec -> B -> A -> AA -> AAA`), (3) Position & Dynamic Role (`C, LW, RW, LD, RD, G` + `🐂 F1 Bull, 🦊 F2 Fox, 🦅 F3 Eagle, 🛡️ D1, 🏰 D2`), (4) Ice Zone & Surface (`OZ / NZ / DZ` + `Full Ice vs. Half Ice` + `Left/Right Mirroring`), (5) Manpower (`5v5, 4v4, 3v3 OT, 5v4 PP, 4v5 PK`), and (6) Interactive Question Format (`tap_zone, tap_player, tactical_choice, drag_skater, spot_and_fix`).
+
+## 17. Granular Team Portal Permissions, Roster Seat Controls & Modal Scroll Ergonomics (Dictation 3 Additions)
+1. **Coach Roster Seat Controls ("Add / Kick Players" Up to ~20–22 Seat Cap):** Coaches in `Team Portal -> Coach Login` can add, edit, or remove ("kick in and out") players on their team roster up to their team seat limit.
+2. **Visibility Boundary Between `Team Portal (Player View)` and `Coach Portal (Coach View)`:**
+   - In `Team Portal -> Player Login`: Players see the shared Team Leaderboard & Co-Op Trophy progress plus their own Coach Weekly Assignment Inbox, cannot view teammates' private diagnostic weaknesses, and cannot use "Create My Own Lesson" unless they unlock their personal `Player Portal` + `Tactix Pro`.
+   - In `Team Portal -> Coach Login`: Only the Coach sees per-player diagnostic analytics, missed question logs, and Practice Scouting Alerts with 1-click remedial homework assignment.
+3. **Scrollable Modals with Sticky Action Buttons:** Lock scrolling (`overflow: hidden`) on the background rink canvas during active play, while allowing smooth vertical scrolling (`overflow-y: auto; max-height: 92dvh`) with sticky bottom action buttons (`position: sticky; bottom: 0`) on Sign-In, Profile, Locker Room, and all modals.
+
+## 18. 3-Audience Automated Social Media Engine, Real-Kid Hybrid Videos & Companion Website (Dictation 3 Additions)
+1. **Three Targeted Social Media Tracks:** (1) `8U–10U` Youth & Parents (Coach Bob animations + real clips of Miles, Rhett, Whelan, Cohen, and youth teams on iPads and on the ice), (2) `12U–18U` Competitive Players ("What's Your Play?" quizzes & gifted Pro accounts), and (3) Youth Coaches & Association Directors (30-second Weekly Assignment demos + 50% Partner Logo Discount `$49.99/yr` & `$499–$999/yr` Association Multi-Coach Bundles).
+2. **Real-Footage + AI Polish Rule:** Film real youth players and coaches using the app and executing plays on the ice, using AI strictly to add broadcast telestrator overlays and studio polish rather than generic artificial AI skating clips.
+3. **Companion Marketing Website & Reviews / Success Stories Hub:** Feature the Partner Association Logo Banner (*Minot Wolves*, *Foothills Flyers*, *Lightning AAA*), Team Success Stories, and Association signup.
+
+## 19. The 8-Seat Professional Industry, Teaching Strategy & Engineering Board
+Every `RUN NIGHTLY AUTOPILOT` pass runs an active Playwright field inspection in Chrome across 8 dedicated seats:
+1. **Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director** (On-ice geometry, `Bull/Fox/Eagle` & `D1/D2`, `1st/2nd/3rd Choice` consensus zones, strict `8U` ADM guardrails).
+2. **Seat 2 — Master Instructional Designer & Sports Teaching Strategist** (Critiques *how* we teach and proposes 3 concrete, better teaching strategies on every pass—such as Cue-First Eye-Tracking Highlights, `Teach -> Guided Read -> Blind Game-Speed Test` micro-arcs, and Contrastive Good-vs-Bad Read replays—building the #1 upgrade into `index.html`).
+3. **Seat 3 — Pediatric Cognitive & Age-Scaling Specialist (`8U–18U`)** (Reading load `<= 14 words` for `8U`, age-scaled self-eval tone, fading training wheels across `Rec -> AAA`, and spaced repetition).
+4. **Seat 4 — Hit Mobile Game & EdTech Retention Designer** (Mathseeds map, Coach Bob Reflex pop-ups, streak juice, Pro Shop swag, 3D Trophy Room Prestige Cups).
+5. **Seat 5 — Native iPad / Phone Touch UX & Anti-Clutter Architect** (Phone `390x844`, iPad Portrait `768x1024`, iPad Landscape `1024x768`, Desktop `1280x800` anti-clutter and scrollable modal ergonomics).
+6. **Seat 6 — Dedicated Head Coach & Association Portal Tester** (Tests Coach Login -> Add/Kick Roster Seat Controls -> Line Builder -> Weekly Assignment Push -> Player Inbox -> Coach Practice Scouting Alerts end-to-end and reports a dedicated Coach Portal Scorecard).
+7. **Seat 7 — App Store, Conversion & Growth Strategist** (`PLAY. LEARN. DOMINATE.`, Free-Download Portal Gate, Partner Association Banner, and Tactix Pro `PIP` + Custom Lesson Builder upsell).
+8. **Seat 8 — Principal Full-Stack App & `<canvas>` Graphics Engineer** (Canvas rendering polish, 3D POV camera, 60fps smoothness, `CONTEXT.md` fast-map, and pre-deploy security checks in `deploy-github-pages.js`).

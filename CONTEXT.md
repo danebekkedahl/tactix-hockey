@@ -1,0 +1,46 @@
+# CONTEXT.md — Tactix Hockey Fast-Map & Architecture Index
+
+> **Purpose:** Lightweight (~100-line) architectural index for **TACTIX HOCKEY — PLAY. LEARN. DOMINATE.** so all agents (`Main App Code Page`, `Playtest-Agent`, `Council-Agent`, and `8-Seat Board`) can locate Supabase tables, DOM containers/modals, and core functions in `<1 second`.
+
+---
+
+## 1. Supabase Cloud Tables (`https://jrusjgpfcnptozfehcrv.supabase.co/rest/v1`)
+All frontend calls use publishable anon key `sb_publishable_73207-0o-_PJEGLgeiZSog__PwUgTxX` (never stage or expose `service_role` or `.tactix_gh_token`).
+
+1. **`public.pucksense_profiles`** (`PuckSenseCloud.fetchProfiles()`, `upsertProfile(prof)`):
+   - Columns: `id` (PK, e.g. `dane`, `evan`, `miles`, `rhett`, `whelan`, `cohen`, `amanda`, `sal`), `name`, `last_name`, `age_group` (`8U..18U`), `position` (`C, LW, RW, D, G`), `hand`, `pin_code`, `iq_score`, `puck_bucks`, `streak`, `best_streak`, `current_city_idx`, `unlocked_city_idx`, `avatar_config` (JSONB), `pillar_stats` (JSONB), `concept_stats` (JSONB).
+2. **`public.pucksense_teams`** (`PuckSenseCloud.fetchTeam(code)`, `upsertTeam(code)`):
+   - Columns: `team_code` (PK, e.g. `PUCK99`, `ASSOC-MINOT`, `WOLVES-12U`), `team_name`, `coach_name`, `weekly_focus`, `weekly_prompt`, `coop_trophy_points`, `roster_json` (JSONB, max 22-seat cap).
+3. **`public.pucksense_agent_inbox`** (`PuckSenseCloud.fetchAgentInbox()`, `postAgentInboxItem()`, `updateAgentInboxStatus()`):
+   - Columns: `id` (UUID PK), `created_by` (`Dane`, `Evan`, `Playtest-Agent`, `Council-Agent`), `scenario_id`, `category` (`drill_flag`, `playtest_audit`, `council_spec`, `builder_fixed`), `status` (`open`, `in_council_review`, `queued_for_builder`, `resolved`), `summary`, `details` (JSONB), `created_at`.
+4. **`public.tactix_adm_guidelines`** (`PuckSenseCloud.fetchAdmGuidelines()`):
+   - Columns: `age_division` (PK: `8U, 10U, 12U, 14U, 16U, 18U`), `division_title`, `allowed_situations`, `prohibited_concepts` (`8U` blocks offsides, 5v4 PP, 4v5 PK, unannounced 3v3), `max_prompt_words` (`8U <= 14 words`), `coach_bob_tone`.
+5. **`public.tactix_concept_buckets`** (`PuckSenseCloud.fetchConceptBuckets()`):
+   - Columns: `bucket_code` (PK — 15 buckets: `basics_support`, `f1_f2_f3_roles`, `dzone_house`, `offsides_rules`, `breakout_d_to_d`, `rush_attack`, `forecheck_systems`, `powerplay_5v4`, `penaltykill_4v5`, `deception_prescan`, `oz_cycle_scissors`, `nz_regroup_hinge`, `dz_box_plus_one`, `goalie_screen_rebound`, `faceoff_oz_win_play`), `title`, `pillar_key`, `min_age_division`, `prohibited_divisions`.
+6. **`public.tactix_scenarios`** (`PuckSenseCloud.fetchCloudScenarios()`, `normalizeCloudScenarioRow()`):
+   - Columns: `scenario_key` (PK — **360 QC-approved rows**, 24 per bucket), `bucket_code`, `title`, `age_division`, `allowed_divisions`, `tier_level` (`Rec, B, A, AA, AAA`), `situation_label`, `ice_zone` (`OZ, NZ, DZ`), `target_position` (`C, LW, RW, D, G`), `question_style` (`tap_zone, tap_player, tactical_choice, drag_skater, spot_and_fix`), `coach_bob_prompt`, `scenario_payload` (JSONB), `qc_approved`.
+
+---
+
+## 2. Key DOM Containers & Modals in `index.html`
+- **Gate & Onboarding:** `#sandboxLoginModal` (Free-Download 2-Portal Gate + Partner Logo Banner + 4-Tier Pricing `#pricingComparisonModal` + Reviews `#reviewsSuccessModal`), `#loginModal` (5-Step Skater & 360° 3D Avatar Wizard), `#cityIntroModal`, `#tutorialModal`.
+- **Full-Viewport Rink Arena (`body.in-game-clean-mode`):**
+  - `#rinkRowLayout` -> `#rinkCanvasContainer` (`#rinkCanvas`) + `#rightActionRibbon` (`#btnRibbonCheckPos`, `#btnRibbonNext`, `#btnRibbonMistakeMode`, `#btnRibbonVideo`, `#btnRibbonHint`, `#btnRibbonReset`, `#btnRibbonPov`, `#btnRibbonFullscreen`, `#btnRibbonGuides`, `#btnRibbonFlagDrill`).
+  - `#topRinkHudStack` (Zero-overlap vertical flex stack): `#situationContextBanner` (`#situationBannerText`, `#situationTierPill`, `#btnCycleQuestionFormat`, `#btnCueFirstHighlight`) + `#multiFormatControlsBar`.
+  - `#coachBobPopup` (`#coachBobAvatarImg`, `#coachCornerFloating`, `#coachBobRoleCalloutBadge`, `#coachBobSituationTag`, `#btnDismissCoachBob`) + `#btnCallCoachBob`.
+  - `#tacticalActionDock` (`#dockGroupPreScan`, `#dockGroupDeception`, `#dockGroupComm`, `#dockRoleReadBar`, `#btnOpenRoleGuideModal`) + `#roleGuidePopover`.
+  - `#spotMistakeBanner` (2-Step Spot & Fix), `#onIceFeedbackBanner` (`#btnOnIceNextPlay`, `#btnOnIceWatchVideo`, `#btnContrastiveReplay`).
+- **Analytics, Pro Lab, Shop, Trophy & Team Portals:**
+  - `#reportModal` (6-Slice Well-Rounded 100% Balance Pie `#hockeyIqPieSvg`, `#wellRoundedBalanceBadge`, `#positionSpecificIqGrid`, `#ageScaledSelfEvalBox`, `#pieSliceDrilldownDrawer`, `#btnFormulatePipPlan`).
+  - `#upgradeModal` (Pro Custom Lesson Builder: `#selectCustomAge`, `#selectCustomManpower`, `#selectCustomSystem` [15 buckets], `#selectCustomPosition` [5 positions]).
+  - `#teamManagerModal` (`#teamPortalCoachView`: `#coachRosterSeatCounterBadge`, `#btnModalSendInvite`, `#teamModalLeaderboardList` with `.btn-kick-roster-member`, `#selectCoachWeeklyFocus`, `#btnApprovePushCoachLesson`, `#coachComplianceAlertTable`; `#teamPortalPlayerView`: `#playerCoachInboxCard`, `#playerViewTeamLeaderboardList`, `#playerViewCustomLessonLockBanner`, `#teamCoOpCupBox`).
+  - `#proShopModal` (`#shop3dAvatarSvgWrap`, `#proShopItemsGrid`), `#trophyRoomModal` (`#trophyRoom3dCupSvgWrap`, `#trophyRoomCupsGrid`), `#videoExampleModal` (`#filmStudyQuizBox`).
+
+---
+
+## 3. Core Functions in `index.html` & Scripts
+- **Cloud & Filtering:** `PuckSenseCloud` (`normalizeCloudScenarioRow`, `ingestCloudScenarioRows`), `isScenarioAllowedForAge()`, `enforceAdmPromptWordLimit()`, `getFilteredScenarios()`, `getCurrentScenario()`, `buildPermutedScenario()`.
+- **Teaching Strategy & Coach Bob:** `showCoachBobPopup()`, `hideCoachBobPopup()`, `setCoachBobAnimationState()`, `getCueFirstHighlightTarget()`, `triggerCueFirstHighlight()`, `triggerContrastiveGoodBadReplay()`, `renderMultiFormatControlsBar()`.
+- **Roles, Canvas & Grading:** `computeDynamicProximityRoles()` (`🐂 F1 Bull / 🦊 F2 Fox / 🦅 F3 Eagle / 🛡️ D1 / 🏰 D2`), `drawRink()`, `drawPovRink()`, `checkDraggedPosition()`, `resolveAttempt()`, `recordPlayResult()`.
+- **Analytics & Team Portal:** `renderHockeyIqPieChart()`, `computePositionSpecificIqRatings()`, `buildAgeScaledSelfEvaluation()`, `openPieSliceDrilldown()`, `formulateHockeyIqPipPlan()`, `renderTeamManagerModal()`, `kickRosterPlayer()`, `approveAndPushCoachLessonPlan()`.
+- **Automation & Deploy Scripts:** `generate-tactix-bank.js` (3-Bot Scenario Factory -> 360 cloud rows), `deep_playtest_audit.js` (8-Seat & 5-Persona Playwright Suite), `deploy-github-pages.js` (Pre-commit security scanner + GitHub Pages publisher).

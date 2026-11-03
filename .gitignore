@@ -1,0 +1,9 @@
+# Tactix Hockey — Security & Credential Ignore Rules
+.tactix_gh_token
+**/.tactix_gh_token
+.env
+.env.*
+*.pem
+*.key
+*service_role*
+node_modules/

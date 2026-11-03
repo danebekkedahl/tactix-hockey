@@ -2,12 +2,12 @@
 **Project Name:** TACTIX HOCKEY — PLAY. LEARN. DOMINATE. (`HOCKEY IQ & STRATEGY PLATFORM` with Coach Bob)  
 **Live GitHub Pages Deployment (Free & Unlimited Deploys):** `https://danebekkedahl.github.io/tactix-hockey/` (Report: `https://danebekkedahl.github.io/tactix-hockey/report.html`)  
 **Local Dev Server:** `http://localhost:8080`  
-**Architecture:** Self-Contained Single-Page Web Application + Installable PWA (`index.html`, `report.html`, `assets/tactix-logo.png`, `assets/coach-bob.png`, `manifest.json`, `sw.js`, `deploy-github-pages.js`)
+**Architecture:** Self-Contained Single-Page Web Application + Installable PWA (`index.html`, `report.html`, `CONTEXT.md`, `assets/tactix-logo.png`, `assets/coach-bob.png`, `manifest.json`, `sw.js`, `deploy-github-pages.js`)
 
 > [!IMPORTANT]
-> **Mandatory Multi-Agent Reading Rule & Single-Trigger Pipelines (`RUN NIGHTLY AUTOPILOT` & `RUN MASTER PIPELINE`):**
-> 1. All Antigravity agents (`Main App Code Page`, `PuckSense IQ Learning Council Report`, and `Youth Hockey Playtest Report`) **MUST** read `FOUNDER_VISION_NOTES.md` alongside `LEARNING_COUNCIL_REPORT.md` and `PLAYTEST_REPORT.md` before planning, auditing, or modifying `index.html`.
-> 2. Whenever the user types **`RUN NIGHTLY AUTOPILOT`** (or **`RUN MASTER PIPELINE`**) inside `Main App Code Page`, the agent **MUST** automatically execute all 4 stages from start to finish without pausing for confirmation between stages (Stage 1: Autonomous 6-Division Playtest Bot `Playtest-Agent`; Stage 2: 6-Seat Professional Industry Board Review `Council-Agent`; Stage 3: 3-Bot Scenario Factory Expansion `generate-tactix-bank.js`; Stage 4: Main App Code Build, Verification & Live GitHub Pages Deploy to `https://danebekkedahl.github.io/tactix-hockey/`). See **Section 7.2 & Section 7.3** below for the full specification.
+> **Mandatory Multi-Agent Reading Rule, `CONTEXT.md` Fast-Map & Single-Trigger Pipelines (`RUN NIGHTLY AUTOPILOT` & `RUN MASTER PIPELINE`):**
+> 1. **Read `CONTEXT.md` First:** All Antigravity agents (`Main App Code Page`, `PuckSense IQ Learning Council Report`, and `Youth Hockey Playtest Report`) **MUST** read `CONTEXT.md` (the ~100-line architectural index of all 6 Supabase tables, DOM IDs, and core functions) alongside `FOUNDER_VISION_NOTES.md`, `LEARNING_COUNCIL_REPORT.md`, and `PLAYTEST_REPORT.md` before planning, auditing, or modifying `index.html`.
+> 2. Whenever the user types **`RUN NIGHTLY AUTOPILOT`** (or **`RUN MASTER PIPELINE`**) inside `Main App Code Page`, the agent **MUST** automatically execute all 4 stages from start to finish without pausing for confirmation between stages (Stage 1: Autonomous 5-Persona & 8-Seat Field Playtest Bot `deep_playtest_audit.js`; Stage 2: 8-Seat Professional Industry, Teaching Strategy & Engineering Board Review `Council-Agent`; Stage 3: 3-Bot Scenario Factory Expansion `generate-tactix-bank.js`; Stage 4: Main App Code Build, Verification & Live GitHub Pages Deploy to `https://danebekkedahl.github.io/tactix-hockey/`). See **Section 7.1–7.3** below for the full specification.
 
 ---
 
@@ -172,25 +172,27 @@ Then open **`http://localhost:8080`** in Chrome, Safari, Edge, or your Antigravi
 
 ---
 
-## 7. Single-Trigger Master Pipeline (`RUN MASTER PIPELINE` / `RUN NIGHTLY AUTOPILOT`) & 7-Seat Professional Industry & Engineering Board
+## 7. Single-Trigger Master Pipeline (`RUN MASTER PIPELINE` / `RUN NIGHTLY AUTOPILOT`) & 8-Seat Professional Industry, Teaching Strategy & Engineering Board
 
-### 7.1 The 7-Seat Professional Industry & Engineering Board Charter
-Whenever a Council Audit, **`RUN MASTER PIPELINE`**, or **`RUN NIGHTLY AUTOPILOT`** executes, evaluate `index.html` and propose concrete, high-impact upgrades across all **7 Industry & Engineering Seats**:
+### 7.1 The 8-Seat Professional Industry, Teaching Strategy & Engineering Board Charter
+Whenever a Council Audit, **`RUN MASTER PIPELINE`**, or **`RUN NIGHTLY AUTOPILOT`** executes, run an active Playwright field inspection in Chrome (`deep_playtest_audit.js`) and evaluate `index.html` across all **8 Dedicated Seats**:
 
 1. **Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director:**
-   - Focus: Authentic playbooks, Graded 1st/2nd/3rd Choice Consensus Zones (`100% Gold / 80% Silver / 60% Bronze` — "The Miles vs. Rhett Rule"), Dynamic Proximity Roles (`🐂 F1 Bull / 🦊 F2 Fox / 🦅 F3 Eagle` & `🛡️ D1 / 🏰 D2` rotations), and position-specific Forward, Defenseman, and Goalie reads.
-2. **Seat 2 — Pediatric Sports Psychologist & Cognitive Scientist:**
-   - Focus: 6-division scaling (`8U`, `10U`, `12U`, `14U`, `16U`, `18U`), 1-sentence simplicity (`<= 14 words`) for `8U`, fading visual indicators as mastery increases, and automatic spaced-repetition remediation when a player misses a concept twice.
-3. **Seat 3 — Mobile Game & EdTech Retention Designer:**
-   - Focus: 3D Trophy Room Prestige Stanley Cups across age tiers, streak rewards, Pro Shop swag unlocks (`+$ PuckBucks`), and `8U/10U` Team Co-Op goals (`coop_trophy_points`).
-4. **Seat 4 — Native iPad / Phone Touch UX Architect:**
-   - Focus: Thumb ergonomics, Landscape/Portrait rotation across 8-inch to 16-inch tablets and phones, scrollable modals (`max-height: 92dvh; overflow-y: auto;`) with sticky action buttons, and zero clipped text.
-5. **Seat 5 — Youth Hockey Coach & Association Director Liaison:**
-   - Focus: 30-second Coach Weekly Assignment workflow (`#teamManagerModal`, Team Codes `PUCK99` & `ASSOC-MINOT`), roster line builder, player inbox compliance tracking, and actionable practice scouting alerts.
-6. **Seat 6 — App Store & Subscription Product Strategist:**
-   - Focus: Clear value separation between the **Free 3-Drill Sampler**, **`$4.99` Base Game** (32-City Tour, 6 Age Tiers, Trophy Room, Pro Shop), **`$9.99` Pro Upgrade** (Interactive 6-Slice IQ Pie Chart + PIP Remedial Drills + Custom Lesson Builder), and **Team / Association Portal Licensing** (`PUCK99` / `ASSOC-MINOT`).
-7. **Seat 7 — Principal Full-Stack App & `<canvas>` Graphics Engineer:**
-   - Focus: Analyze Persona 5's automated pixel/bounding-box telemetry (`getBoundingClientRect()`, `scrollWidth > clientWidth`, `<canvas>` 2D & 3D POV pixel sampling) across all 4 viewports (`390x844` Phone, `768x1024` iPad Portrait, `1024x768` iPad Landscape, `1280x800` Desktop) and prescribe exact code, CSS, and `<canvas>` rendering fixes in **Part B** of `LEARNING_COUNCIL_REPORT.md` to eliminate any UI overlaps, text clipping, or responsive overflow.
+   - Focus: On-ice geometry, `🐂 F1 Bull / 🦊 F2 Fox / 🦅 F3 Eagle` & `🛡️ D1 / 🏰 D2` rotations, `1st/2nd/3rd Choice` consensus zones (`100% Gold / 80% Silver / 60% Bronze`), Position-Specific & Cross-Position IQ Ratings, and strict `8U` ADM guardrails.
+2. **Seat 2 — Master Instructional Designer & Sports Teaching Strategist:**
+   - Focus: Critiques *how* we teach and proposes **3 concrete, better teaching strategies on every pass**—such as `Cue-First Visual Highlighting` (`👀 Look Here First`), `Teach -> Guided Read -> Blind Game-Speed Test` micro-arcs, and `Contrastive Good-vs-Bad Read` ghost replays—building the #1 upgrade directly into `index.html`.
+3. **Seat 3 — Pediatric Cognitive & Age-Scaling Specialist (`8U–18U`):**
+   - Focus: Reading load `<= 14 words` for `8U`, age-scaled self-evaluation tone (`<= 14-word` upbeat summary with big icons for `8U` vs. deep AAA/Junior film-room breakdowns for `14U–18U`), fading training wheels across `Rec -> AAA`, and automatic spaced-repetition remediation.
+4. **Seat 4 — Hit Mobile Game & EdTech Retention Designer:**
+   - Focus: Mathseeds map progression (`Rec -> B -> A -> AA -> AAA`), Coach Bob Reflex pop-up animations (`Talking`, `Mistake`, `Celebrate`), streak juice, Pro Shop swag unlocks, and 3D Trophy Room Prestige Cups.
+5. **Seat 5 — Native iPad / Phone Touch UX & Anti-Clutter Architect:**
+   - Focus: Phone `390x844`, iPad Portrait `768x1024`, iPad Landscape `1024x768`, and Desktop `1280x800` anti-clutter, zero overlapping HUD boxes, zero clipped text, and scrollable modal ergonomics (`max-height: 92dvh; overflow-y: auto;` with sticky action buttons).
+6. **Seat 6 — Dedicated Head Coach & Association Portal Tester:**
+   - Focus: Tests `Coach Login` -> Add/Kick Roster Seat Controls (`20/22 Seats`) -> Line Builder -> Weekly Assignment Push -> `Player Login` Inbox & Shared Team Leaderboard (verifying the visibility boundary that hides teammates' private diagnostic weaknesses and locks Custom Lesson Builder to personal Pro) -> Coach Practice Scouting Alerts end-to-end and reports a dedicated **Coach Portal Scorecard**.
+7. **Seat 7 — App Store, Conversion & Growth Strategist:**
+   - Focus: `PLAY. LEARN. DOMINATE.`, Free-Download Portal Gate, Partner Association Banner (`50% Partner Logo Discount`), 3-Audience Social Media Engine, and Tactix Pro (`Well-Rounded 100% Balance Pie`, `PIP`, and Custom Lesson Builder) upsell.
+8. **Seat 8 — Principal Full-Stack App & `<canvas>` Graphics Engineer:**
+   - Focus: Canvas rendering polish, 3D POV camera, 60fps smoothness, `CONTEXT.md` fast-map maintenance, and pre-deploy security checks in `deploy-github-pages.js` (blocking `.tactix_gh_token`, `.env`, and secret/`service_role` keys).
 
 ### 7.2 Single-Trigger Master Sequence (`RUN MASTER PIPELINE`)
 Whenever the user types **"RUN MASTER PIPELINE"** inside `Main App Code Page`, automatically execute all **4 Stages** in sequence without making the user switch chat tabs:

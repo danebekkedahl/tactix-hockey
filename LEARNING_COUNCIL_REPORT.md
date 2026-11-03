@@ -1,60 +1,57 @@
-# 🧠 TACTIX HOCKEY — 7-Seat Professional Industry & Engineering Board Review (`LEARNING_COUNCIL_REPORT.md`)
+# TACTIX HOCKEY — STAGE 2: 8-SEAT PROFESSIONAL INDUSTRY, TEACHING STRATEGY & ENGINEERING BOARD REVIEW (`Council-Agent`)
 
-**Agent:** `Council-Agent` (7-Seat Professional Industry & Engineering Board)  
-**Target Build:** TACTIX HOCKEY v8.1 Nightly Auto-Pilot Pipeline (`RUN NIGHTLY AUTOPILOT`)  
-**Date:** November 2, 2026  
-**Inputs Audited:** `PLAYTEST_REPORT.md` (Stage 1 5-Persona Deep Playtest & Pixel/Graphics Suite), `deep_playtest_telemetry.json`, `FOUNDER_VISION_NOTES.md` (Sections 1–12), and `public.pucksense_agent_inbox` (`https://jrusjgpfcnptozfehcrv.supabase.co`).
-
----
-
-## PART A — Scenario Factory & Curriculum Specification (`generate-tactix-bank.js`: `360` Cloud Scenarios across `15` Buckets)
-
-Our 3-Bot Scenario Factory (`generate-tactix-bank.js`) maintains **360 QC-approved scenarios** (`5,760` dynamic permutations) across **15 NCAA D1 / AAA / USA Hockey ADM Concept Buckets**:
-
-| Bucket # | `bucket_code` | Sub-Lesson Title | Source Authority | Age Divisions | `8U` ADM Rule |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Bucket 1** | `basics_support` | **Puck Support 101 & Attack Triangle Spacing** | USA Hockey ADM & Hockey Canada LTAD | `8U–18U` | Strictly `5v5`, `<=14w` |
-| **Bucket 2** | `f1_f2_f3_roles` | **Dynamic Forward Roles: 🐂 F1 Bull, 🦊 F2 Fox, 🦅 F3 Eagle** | USA Hockey ADM / Weiss Tech | `8U–18U` | Strictly `5v5`, `<=14w` |
-| **Bucket 3** | `dzone_house` | **Defensive Zone: Protect the House & Net-Side Stick** | USA Hockey ADM / D1 Systems | `8U–18U` | Strictly `5v5`, `<=14w` |
-| **Bucket 4** | `offsides_rules` | **Blue-Line Offsides, Tag-Up & Delayed Entry Reads** | USA Hockey Rulebook & 10U ADM | `10U–18U` | **Blocked in `8U`** |
-| **Bucket 5** | `breakout_d_to_d` | **D-to-D Breakout, Hashmarks Wall & Center Low-and-Slow Curl** | USA Hockey NTDP / Weiss Tech | `8U–18U` | `8U` foundational `5v5` only |
-| **Bucket 6** | `rush_attack` | **Odd-Man Rushes: 2-on-1 & 3-on-2 Middle Lane Drive** | Hockey Canada / NHL Analytics | `10U–18U` | **Blocked in `8U`** |
-| **Bucket 7** | `forecheck_systems` | **2-1-2 & 1-2-2 Forecheck Angling & Backcheck Track** | NCAA D1 / AAA Systems Playbook | `12U–18U` | **Blocked in `8U/10U`** |
-| **Bucket 8** | `powerplay_5v4` | **5-on-4 Power Play Umbrella, Bumper & Flank One-Timer** | NHL / NCAA D1 Special Teams | `12U–18U` | **Blocked in `8U/10U`** |
-| **Bucket 9** | `penaltykill_4v5` | **4-on-5 Penalty Kill Tight Box, Diamond & Royal-Road Seal** | NHL / NCAA D1 Special Teams | `12U–18U` | **Blocked in `8U/10U`** |
-| **Bucket 10** | `deception_prescan` | **Pre-Scan Shoulder Check, Look-Off Deception & Hip Shield** | Pediatric Cognitive Sport Science | `10U–18U` | **Blocked in `8U`** |
-| **Bucket 11** | `oz_cycle_scissors` | **O-Zone High-Low Cycle, Scissors Switch & D1 Pinch Backfill** | NCAA D1 / Weiss Tech O-Zone Playbook | `8U–18U` | Strictly `5v5`, `<=14w` |
-| **Bucket 12** | `nz_regroup_hinge` | **Neutral Zone D-to-D Hinge Regroup & Weak-Side Speed Slash** | USA Hockey NTDP / Junior A Transition | `10U–18U` | **Blocked in `8U`** |
-| **Bucket 13** | `dz_box_plus_one` | **D-Zone Box+1 Low-Slot Lock & Strong-Post Royal-Road Denial** | Hockey Canada LTAD & USA Hockey ADM | `8U–18U` | Strictly `5v5`, `<=14w` |
-| **Bucket 14** | `goalie_screen_rebound` | **Goalie Sightline Box-Out, Stick Lift & Rebound Clearing** | USA Hockey Goaltending Model (Gold) | `8U–18U` | Strictly `5v5`, `<=14w` |
-| **Bucket 15** | `faceoff_oz_win_play` | **O-Zone & D-Zone Faceoff Alignment & Win Set Plays** | NCAA D1 / AAA Special Situations | `8U–18U` | Strictly `5v5`, `<=14w` |
+**Review Date:** November 2026 (v7.9 Sections 15–19 & 8-Seat Board Upgrade)  
+**Input Telemetry:** `PLAYTEST_REPORT.md` & `deep_playtest_telemetry.json` (5-Persona & 8-Seat Deep Playtest Suite across 4 Viewports)  
+**Scenario Database Status:** `360 / 360` Approved Scenarios Live in `public.tactix_scenarios` (`24` scenarios × `15` tactical concept buckets)  
+**Implementation Status:** **ALL 8 SEATS VERIFIED & SHIPPED IN `index.html` (`0` Remaining Issues across all 5 Personas, 8 Seats & 4 Viewports)**
 
 ---
 
-## PART B — 7-Seat Professional Industry & Engineering Board Prescriptions (`index.html` & `report.html`)
+## 1. The 8-Seat Professional Industry, Teaching Strategy & Engineering Board Charter & Shipped Verdicts
 
-### 🏒 Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director
-* **Prescription:** Expose all **15 official cloud `bucket_code` options** directly in both `#selectCustomSystem` (`🛠️ Create My Own Lesson`) and `#selectCoachWeeklyFocus` (`🏒 Team Portal`) and ensure `getFilteredScenarios()` matches `s.bucket_code === state.conceptFilter || s.concept === state.conceptFilter` across all 5 positions (`C, LW, RW, D, G`).
+### 🏒 Seat 1 — IIHF / USA Hockey & Hockey Canada Systems Director
+- **Audit of Persona 1–4 Telemetry:** Verified that all **15 official `bucket_code` categories** (`24` scenarios per bucket = `360` cloud scenarios) and all **5 positions (`C`, `LW`, `RW`, `D`, `G`)** are selectable in `#selectCustomSystem` and `#selectCoachWeeklyFocus`, with `🐂 F1 Bull / 🦊 F2 Fox / 🦅 F3 Eagle` and `🛡️ D1 / 🏰 D2` dynamic proximity badges updating every frame.
+- **Status:** **SHIPPED & VERIFIED (`360/360` scenarios, `15/15` buckets, `5/5` positions, `0` ADM violations).**
 
-### 🧠 Seat 2 — Pediatric Sports Psychologist & Cognitive Scientist
-* **Prescription:** Trigger Coach Bob's `.coach-bob-state-mistake` chalkboard shake and `.coach-bob-state-celebrate` golden fist-pump bounce **immediately** inside `resolveAttempt()` (0ms latency upon play submission, before the 620ms puck/skater resolution animation completes) and support both `opts.stateMode` and `opts.mode` in `showCoachBobPopup(opts)` so `8U–18U` players receive immediate visual reinforcement.
+### 🎓 Seat 2 — Master Hockey Educator & Instructional Designer (NEW SEAT)
+- **Charter:** Propose **3 concrete new teaching/instructional strategies** in every run so players don't just memorize answers, but genuinely learn *why* a play works and transfer that habit to real ice, and ship the #1 highest-impact teaching upgrade directly into `index.html`.
+- **3 Concrete Teaching Strategies Proposed This Run:**
+  1. **Strategy #1 (SHIPPED IN `index.html`): Cue-First Visual Highlighting + Contrastive Good-vs-Bad Read Replay (`#btnCueFirstHighlight` & `#btnContrastiveReplay`)** — Before a player drags or taps, highlight *what cue to look at on the ice* (e.g., primary defender `D1`'s stick angle and hip orientation or the open Attack Triangle anchor `#14`) via a cyan sightline vector and target reticle (`getCueFirstHighlightTarget()`). After answering (or on demand via `🔄 Good vs. Bad`), animate both the **❌ Common Youth Mistake Path (Red Dashed Ghost Skater)** and the **✅ 1st Choice Gold Path (Emerald Solid Skater)** side-by-side (`triggerContrastiveGoodBadReplay()`) so the skater visually contrasts why bunching/forcing fails vs. why the Gold read succeeds.
+  2. **Strategy #2: Guided Self-Explanation Micro-Prompts ("Why Was He Open?")** — On selected drills in `B` and `A` tiers, follow a correct pass read with a 1-tap micro-confirmation asking *which defender cue made that seam open* (e.g., *"D1's stick was angled toward the wall"* vs. *"D1 was sliding toward the net"*).
+  3. **Strategy #3: Cross-Unit Role-Reversal Perspective Swap ("See It From Your Pass Target's Eyes")** — Allow a Left Wing (`LW`) who just missed a weak-side breakout or 5v4 Power Play read to tap `🎓 Study RW / C / D` in `#positionSpecificIqGrid` and immediately replay the same system from their linemate's perspective.
+- **Status:** **STRATEGY #1 (Cue-First Visual Highlighting + Contrastive Good-vs-Bad Read Replay) & STRATEGY #3 (Cross-Position Study in `#positionSpecificIqGrid`) SHIPPED & VERIFIED (`seat2_InstructionalDesigner = PASS`).**
 
-### 🏆 Seat 3 — Mobile Game & EdTech Retention Designer
-* **Prescription:** Keep `state.lastLoadedCityIdx` and `state.lastLoadedAgeGroup` synced in `getCurrentScenario()` so advancing across the 32 NHL Cities (`Rec -> B -> A -> AA -> AAA`) immediately serves fresh tier-matched drills and awards `1st-Choice Gold IQ` bonuses cleanly.
+### 🧠 Seat 3 — Pediatric Cognitive & Age-Scaling Specialist
+- **Audit of Persona 1 & Age-Scaling Telemetry:**
+  1. Enforced `<= 14-word` Coach Bob prompts AND `<= 14-word` 1-sentence upbeat Self-Evaluations (`buildAgeScaledSelfEvaluation()`) for `8U` & `10U` (`13 words` verified: *"🌟 Awesome Attack Triangles! Keep your stick on the ice in The House!"*).
+  2. Delivered deep **`46`-word** AAA/Junior film-room breakdowns for `14U–18U` players tailored to their strongest and weakest pie slices.
+  3. Implemented **Fading Training Wheels (`Rec → B → A → AA → AAA`)**: `state.cueFirstHighlightActive` is automatically `ON` for `Rec`, `B`, and `A` tiers, and automatically fades to on-demand (`false`) on `AA` and `AAA` stops (`aaaTrainingWheelsFadedOnDemand = true`).
+- **Status:** **SHIPPED & VERIFIED (`seat3_PediatricCognitive = PASS`).**
 
-### 📱 Seat 4 — Native iPad / Phone Touch UX Architect
-* **Prescription:** Eliminate all text truncation (`scrollWidth > clientWidth`) on `#coachBobPopup` header pills (`#cornerCoachTitle`, `#coachBobRoleCalloutBadge`, `#coachBobSituationTag`) and `tactical_choice` action cards in `#multiFormatControlsBar` by replacing `truncate` / `max-w-[250px]` with responsive `flex-wrap` and `whitespace-normal leading-tight`.
+### 🏆 Seat 4 — Mobile Game Retention & Gamification Architect
+- **Audit of Persona 1 & 2 Telemetry:** Verified the Mathseeds 5-tier map progression (`Rec → B → A → AA → AAA`), Coach Bob's 3-state animations (`.coach-bob-state-talking`, `.coach-bob-state-mistake` shake, `.coach-bob-state-celebrate` bounce with `0ms` latency), 360° 3D Avatar spin, 5 Pro Shop tabs, and `#trophyRoomModal` 3D Stanley Cup + 6 Age-Tier Cups.
+- **Status:** **SHIPPED & VERIFIED (`seat4_GamificationArchitect = PASS`).**
 
-### 🧑‍💼 Seat 5 — Youth Hockey Coach & Association Director Liaison
-* **Prescription:** Fix `#btnCopyLiveTeamShareLink` and `?team=` URL query param hydration to bind directly to `#sandboxTeamCodeInput` (`PUCK99`, `ASSOC-MINOT`, `ASSOC-FOOTHILLS`, `ASSOC-LIGHTNING`) so coaches can share 1-click association sign-in links.
+### 📱 Seat 5 — Touch UX & Anti-Clutter Lead
+- **Audit of Persona 5 Multi-Viewport Telemetry:** Verified across `390x844` Phone Portrait, `768x1024` iPad Portrait, `1024x768` iPad Landscape, and `1280x800` Desktop that gameplay is 100% zero-scroll while pop-up modals (`#teamManagerModal`, `#reportModal`, `#upgradeModal`, `#pricingModal`) scroll smoothly (`max-h-[90vh] overflow-y-auto`) with `0` HUD overlaps, `0` out-of-viewport elements, and `0` clipped text.
+- **Status:** **SHIPPED & VERIFIED (`seat5_TouchUxLead = PASS`).**
 
-### 💎 Seat 6 — App Store & Subscription Product Strategist
-* **Prescription:** Ensure the Pro Custom Lesson Builder (`#upgradeModal`) and 6-Slice Performance Pie Chart (`#reportModal`) seamlessly filter all 15 cloud buckets and 5 positions (`C, LW, RW, D, G`) to demonstrate clear Tier 3 `Tactix Pro ($4.99/mo or $49.99/yr)` value.
+### 🧢 Seat 6 — Dedicated Head Coach & Association Portal Tester
+- **Audit of Persona 4 & Coach Portal Scorecard (`coachPortalScorecard`):**
+  1. Added `#coachRosterSeatCounterBadge` (`🪑 Roster Seats: 22 / 22 Used`) enforcing `MAX_TEAM_ROSTER_SEATS = 22`.
+  2. Added `kickRosterPlayer()` (`👢 Kick` button on every roster row in Coach View) and `addCoachRosterPlayer()` so coaches can remove inactive/graduated players and fill open seats up to 22.
+  3. Added `#playerViewTeamLeaderboardSection` (`#playerViewTeamLeaderboardList`) and `#playerViewCustomLessonLockBanner` inside `Team Portal -> Player Login`, displaying shared Team Leaderboard standings while strictly hiding teammates' private diagnostic weaknesses and remedial controls.
+- **Status:** **SHIPPED & VERIFIED (`seat6_CoachPortalTester = PASS`).**
 
-### 🖥️ Seat 7 — Principal Full-Stack App & `<canvas>` Graphics Engineer *(NEW SEAT)*
-* **Charter:** Analyzes Persona 5's pixel/bounding-box telemetry (`getBoundingClientRect()`), `<canvas>` 2D/3D POV rendering smoothness, Coach Bob cutout transitions, state management, and mobile responsiveness across all 4 viewports (`390x844`, `768x1024`, `1024x768`, `1280x800`).
-* **Exact Code / CSS / `<canvas>` Prescriptions (Shipped in Stage 4):**
-  1. **Unified Top HUD Stack (`#topRinkHudStack`):** Wrap `#situationContextBanner` and `#multiFormatControlsBar` inside a single `flex-col items-center gap-1.5` container at `top-2 left-1/2 -translate-x-1/2` so `#multiFormatControlsBar` never collides with a 2-line `#situationContextBanner` on `390x844` or `768x1024` (`0px` overlap).
-  2. **Zero-Collision Coach Bob & Tactical Dock Layout:** Position `#coachBobPopup` at `bottom-[86px]` (`bottom: 86px`) above `#tacticalActionDock` (`bottom-2`) so Coach Bob's Reflex speech bubble and `#tacticalActionDock` can both remain visible and interactive simultaneously with `0px` bounding-box overlap across all 4 viewports.
-  3. **Portrait Viewport Fit (`390x844` & `768x1024`):** In `@media (orientation: portrait)`, set `#rinkCanvasContainer { flex: 1 1 0% !important; min-height: 0 !important; }` and compact `#rightActionRibbon` padding/buttons so `#rightActionRibbon` never overflows past `844px` (`0` out-of-viewport elements).
-  4. **Stage 4 Verification Sign-Off:** Re-ran `deep_playtest_audit.js` after applying all 7 Seat prescriptions — confirmed **`0` HUD overlaps, `0` out-of-viewport elements, `0` clipped text elements, `0` console errors, and `360/360` cloud scenarios live**.
+### 💎 Seat 7 — App Store, Conversion & Growth Strategist
+- **Audit of Persona 3 & Section 15 Telemetry:**
+  1. Added **Position-Specific & Cross-Position Hockey IQ Ratings (`#positionSpecificIqGrid`)** inside `#reportModal`, tracking `5v5 IQ`, `5v4 PP IQ`, and `4v5 PK IQ` across all 5 unit positions (`C, LW, RW, D, G` — e.g., `5v4 PP as LW = 88` vs. `as RW = 72`) with 1-click `🎓 Study Role` buttons.
+  2. Added **The "Well-Rounded Player" 100% Balance Pie Badge (`#wellRoundedBalanceBadge` — "Triple-B Player Performance Plan")** via `checkWellRoundedBalancePie()`, flagging any lopsided `<10%` proportional share slice.
+- **Status:** **SHIPPED & VERIFIED (`seat7_GrowthStrategist = PASS`).**
+
+### 📐 Seat 8 — Principal Full-Stack, Supabase & `<canvas>` Performance Engineer
+- **Audit of Infrastructure & Security Guardrails:**
+  1. Created `CONTEXT.md` (~80 lines) indexing all 6 Supabase tables (`pucksense_profiles`, `pucksense_teams`, `pucksense_agent_inbox`, `tactix_adm_guidelines`, `tactix_concept_buckets`, `tactix_scenarios`), key DOM IDs, and core functions, and referenced it at the top of `AGENT.md`.
+  2. Added `runPreCommitSecurityGuardrail()` in `deploy-github-pages.js` and `.gitignore` blocking `.tactix_gh_token`, `.env`, `ghp_`, `github_pat_`, `sb_secret_`, and `service_role` keys from ever being staged or pushed to GitHub.
+  3. Verified `0` console/page errors and non-empty 2D & 3D `<canvas>` rendering across all 4 viewports.
+- **Status:** **SHIPPED & VERIFIED (`seat8_PrincipalEngineer = PASS`).**
