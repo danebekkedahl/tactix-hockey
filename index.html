@@ -1672,8 +1672,14 @@
             <div class="bg-slate-950 border border-sky-500/40 rounded-2xl p-3.5 space-y-2.5">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <span class="text-xs font-black uppercase tracking-wider text-sky-300">👨‍👩‍👧‍👦 Side-by-Side All-Kids Progress Snapshot (Hockey Mom &amp; Dad View)</span>
-                <span class="text-[10px] font-bold text-emerald-300">Car-Ride Praise Prompts Included</span>
+                <div class="flex flex-wrap items-center gap-1.5">
+                  <span class="text-[10px] font-bold text-emerald-300">Car-Ride Praise Prompts Included</span>
+                  <button id="btnCopyFamilyCarRideSheet" type="button" class="px-2.5 py-1 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-[10px] shadow transition">
+                    📋 Copy Family Fridge &amp; Car-Ride Sheet
+                  </button>
+                </div>
               </div>
+              <div id="familyCarRideCopyToast" class="hidden text-[11px] font-extrabold text-emerald-300 bg-emerald-950/60 border border-emerald-500/40 rounded-lg px-2.5 py-1.5"></div>
               <div id="parentHqAllKidsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5"></div>
             </div>
 
@@ -2430,10 +2436,23 @@
               </div>
             </div>
 
-            <!-- STEP 2B: CUSTOM AI PROMPT -->
-            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 space-y-1.5">
-              <label class="text-[11px] font-black text-cyan-300 uppercase block">💬 Step 2B: Custom Natural-Language Coach Note / AI Prompt</label>
-              <input id="inputCoachAiLessonPrompt" type="text" value="Our D-men are struggling with behind-the-net D-to-D swing passes under forecheck pressure—build a 10-question lesson plan" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-semibold text-amber-200" />
+            <!-- STEP 2B: CUSTOM AI PROMPT & STEP 2C: COACH-PINNED VIDEO CLIP OF THE WEEK -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 space-y-1.5">
+                <label class="text-[11px] font-black text-cyan-300 uppercase block">💬 Step 2B: Custom Natural-Language Coach Note / AI Prompt</label>
+                <input id="inputCoachAiLessonPrompt" type="text" value="Our D-men are struggling with behind-the-net D-to-D swing passes under forecheck pressure—build a 10-question lesson plan" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-semibold text-amber-200" />
+              </div>
+              <div class="bg-slate-900/90 border border-emerald-400/40 rounded-xl p-3 space-y-1.5">
+                <label class="text-[11px] font-black text-emerald-300 uppercase block">🎬 Step 2C: Attach Coach-Pinned Video Clip of the Week</label>
+                <select id="selectCoachPinnedVideoClip" class="w-full px-2.5 py-2 rounded-xl bg-slate-950 border border-emerald-400/50 text-xs font-bold text-emerald-200">
+                  <option value="breakout_d_to_d">📺 Evolution Hockey: Simple Breakouts All Positions (D-to-D &amp; Wall)</option>
+                  <option value="dzone_house">📺 Denis Savard: D-Zone Protect the House &amp; Net-Front Sticks</option>
+                  <option value="f1_f2_f3_roles">📺 Mitch Giguere: 2-1-2 Forecheck F1 Angle, F2 Wall &amp; F3 High Slot</option>
+                  <option value="oz_cycle_scissors">📺 Billy Jaffe / NESN: Offensive Zone Cycle &amp; Scissor Support</option>
+                  <option value="rush_attack">📺 Wally Kozak: 3-on-2 Odd-Man Rush Wide Drive &amp; High Trailer</option>
+                  <option value="faceoff_oz_win_play">📺 Kevin Bieksa &amp; Coach Steve: OZ Faceoff Win Set-Plays</option>
+                </select>
+              </div>
             </div>
 
             <!-- STEP 3: LIVE PREVIEW & APPROVE TO PLAYER INBOXES -->
@@ -2696,6 +2715,9 @@
                 <button id="btnPushAssociationCurriculum" type="button" class="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-400 hover:to-indigo-400 text-white font-black text-xs shadow-lg transition whitespace-nowrap">
                   📢 Push Association-Wide Monthly Curriculum Standard ▶
                 </button>
+                <button id="btnCopyDirectorPartnerDiscountLink" type="button" class="px-3.5 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs shadow-lg transition whitespace-nowrap">
+                  💎 Copy 50% Partner Club Link
+                </button>
               </div>
               <div id="directorCurriculumToast" class="hidden text-xs font-extrabold text-emerald-400 bg-emerald-950/50 border border-emerald-500/40 rounded-lg px-3 py-1.5"></div>
             </div>
@@ -2742,7 +2764,10 @@
           <div id="playerRemedialInboxAlert" class="bg-rose-950/50 border border-rose-500/40 rounded-xl p-2.5 text-xs text-amber-200 font-semibold">
             📌 <strong>Personal Coach Note:</strong> Includes 2 bonus remedial permutations on shoulder pre-scanning before D-to-D rim passes!
           </div>
-          <div class="pt-1 flex justify-end">
+          <div class="pt-1 flex flex-wrap items-center justify-end gap-2">
+            <button id="btnWatchCoachPinnedClip" type="button" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/60 text-emerald-200 font-black text-xs shadow transition">
+              📺 Watch Coach's Pinned Video Clip
+            </button>
             <button id="btnLaunchCoachAssignment" type="button" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-black text-xs sm:text-sm shadow-lg transition">
               🚀 Launch Coach Assignment Now (Drop the Puck) ▶
             </button>
@@ -16890,6 +16915,65 @@
     const pushDirBtn = document.getElementById('btnPushAssociationCurriculum');
     if (pushDirBtn) {
       pushDirBtn.addEventListener('click', () => pushAssociationMonthlyCurriculum());
+    }
+    const copyPartnerLinkBtn = document.getElementById('btnCopyDirectorPartnerDiscountLink');
+    if (copyPartnerLinkBtn) {
+      copyPartnerLinkBtn.addEventListener('click', () => {
+        SoundFX.playGoalHorn();
+        const assoc = state.activeDirectorAssocCode || 'ASSOC-MINOT';
+        const partnerUrl = `https://danebekkedahl.github.io/tactix-hockey/?partner=${encodeURIComponent(assoc)}&discount=50`;
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(partnerUrl).catch(() => {});
+          }
+        } catch (e) {}
+        const toast = document.getElementById('directorCurriculumToast');
+        if (toast) {
+          toast.textContent = `💎 Copied 50% Partner Club Activation Link for ${assoc}: ${partnerUrl}`;
+          toast.classList.remove('hidden');
+        }
+      });
+    }
+    const copyCarRideBtn = document.getElementById('btnCopyFamilyCarRideSheet');
+    if (copyCarRideBtn) {
+      copyCarRideBtn.addEventListener('click', () => {
+        SoundFX.playGoalHorn();
+        const sheetText = [
+          '🏒 TACTIX HOCKEY — FAMILY FRIDGE & CAR-RIDE PRAISE SHEET',
+          '• Miles #9 (12U): Ask "How did your low-and-slow Center curl help your defenseman beat F1?"',
+          '• Cohen #14 (10U): Ask "Did you check over your shoulder before calling for the breakout pass?"',
+          '• Rhett #88 (8U): Ask "How did you build your 3-player Attack Triangle today?"',
+          '• Whelan #7 (8U): Ask "How did you protect The House with your stick on the ice today?"'
+        ].join('\n');
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(sheetText).catch(() => {});
+          }
+        } catch (e) {}
+        const toast = document.getElementById('familyCarRideCopyToast');
+        if (toast) {
+          toast.textContent = '📋 Copied 4-Sibling Fridge & Car-Ride Praise Sheet (Miles #9, Cohen #14, Rhett #88, Whelan #7) to clipboard!';
+          toast.classList.remove('hidden');
+        }
+      });
+    }
+    const watchPinnedClipBtn = document.getElementById('btnWatchCoachPinnedClip');
+    if (watchPinnedClipBtn) {
+      watchPinnedClipBtn.addEventListener('click', () => {
+        SoundFX.playTap();
+        const pinnedSel = document.getElementById('selectCoachPinnedVideoClip');
+        const bucketCode = (pinnedSel && pinnedSel.value) || state.coachPinnedClipBucket || 'breakout_d_to_d';
+        const teamModalEl = document.getElementById('teamManagerModal');
+        if (teamModalEl) teamModalEl.classList.add('hidden');
+        openConceptVideoModal(bucketCode);
+      });
+    }
+    const pinnedClipSel = document.getElementById('selectCoachPinnedVideoClip');
+    if (pinnedClipSel) {
+      pinnedClipSel.addEventListener('change', (e) => {
+        state.coachPinnedClipBucket = e.target.value || 'breakout_d_to_d';
+        renderCoachPortal4Tabs();
+      });
     }
     const hwGroupSel = document.getElementById('selectCoachHomeworkTargetGroup');
     if (hwGroupSel) hwGroupSel.addEventListener('change', renderCoachPortal4Tabs);
