@@ -768,6 +768,7 @@
                 <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-1.5 mb-1.5">
                   <div class="flex items-center gap-1.5 min-w-0">
                     <span id="cornerCoachTitle" class="text-[11px] font-black text-amber-300 truncate">🧢 Coach Bob</span>
+                    <span id="coachBobRoleCalloutBadge" class="px-1.5 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 text-amber-300 text-[9px] font-black truncate">YOU = 🐂 F1 Bull</span>
                     <span id="coachBobSituationTag" class="px-1.5 py-0.5 rounded bg-sky-500/20 border border-sky-400/40 text-sky-300 text-[9px] font-black truncate">5v5 • OZ</span>
                   </div>
                   <div class="flex items-center gap-1 shrink-0">
@@ -1780,9 +1781,14 @@
           <div>
             <label class="text-[11px] font-bold text-slate-300 block mb-1">3. Specific Tactical Focus</label>
             <select id="selectCustomSystem" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
-              <option value="all">Full Mix (All Systems & Situations)</option>
+              <option value="all">Full Mix (All 15 Concept Buckets & 360 Cloud Scenarios)</option>
               <option value="role_f1f2f3">🐂🦊🦅 F1 Bull / F2 Fox / F3 Eagle Rotation</option>
               <option value="role_d1d2">🛡️🏰 D1 Challenge / D2 Protect the House</option>
+              <option value="oz_cycle_scissors">🔄 OZ Low-to-High Cycle, Scissor Switch & D-Pinch Backfill</option>
+              <option value="nz_regroup_hinge">⚡ NZ Regroup, D-to-D Hinge & Weak-Side Slash (10U+)</option>
+              <option value="dz_box_plus_one">🏰 D-Zone Box+1 Low-Slot Lock & Strong-Side Seal</option>
+              <option value="goalie_screen_rebound">🥅 Goalie Sightline Box-Out, Stick Lift & Rebound Clear</option>
+              <option value="faceoff_oz_win_play">🏒 OZ & DZ Faceoff Alignment & Win Set-Plays</option>
               <option value="forecheck">2-1-2 & 1-2-2 Forecheck / Dump & Chase F3 Support</option>
               <option value="breakout">D-to-D Breakout, Hashmarks Wall & Center Curl</option>
               <option value="house">D-Zone Coverage (Protect The House, Box+1, Net-Side)</option>
@@ -2073,6 +2079,11 @@
                 <option value="breakout">Breakouts: Behind-the-Net D-to-D Swing & Wall Outlets</option>
                 <option value="role_f1f2f3">🐂🦊🦅 F1 Bull / F2 Fox / F3 Eagle Rotation</option>
                 <option value="role_d1d2">🛡️🏰 D1 Challenge / D2 Protect the House</option>
+                <option value="oz_cycle_scissors">🔄 OZ Cycle, Scissor Switch & D-Pinch Backfill</option>
+                <option value="nz_regroup_hinge">⚡ NZ Regroup, D-to-D Hinge & Weak-Side Slash (10U+)</option>
+                <option value="dz_box_plus_one">🏰 D-Zone Box+1 Low-Slot Lock & Strong-Side Seal</option>
+                <option value="goalie_screen_rebound">🥅 Goalie Sightline Box-Out, Stick Lift & Rebound Clear</option>
+                <option value="faceoff_oz_win_play">🏒 OZ & DZ Faceoff Alignment & Win Set-Plays</option>
                 <option value="defense_d">🛡️ Defenseman Gap, Slides & Box-Out (D)</option>
                 <option value="goalie_g">🥅 Goalie Crease Angles, Screens & Rims (G)</option>
                 <option value="house">Defense + Penalty Kill + Box+1 House Coverage</option>
@@ -2455,9 +2466,14 @@
         </div>
 
         <div class="flex flex-wrap items-center justify-between gap-2 pt-1.5 border-t border-slate-800/80">
-          <button id="btnAgentAutoLoginBot" type="button" class="px-3 py-2 rounded-xl bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-400/50 text-indigo-200 font-extrabold text-xs flex items-center gap-1.5 transition" title="Autonomous login for Playwright / Antigravity Playtest Agent">
-            <span>🤖</span><span>Agent Auto-Login (playtest-bot)</span>
-          </button>
+          <div class="flex flex-wrap items-center gap-1.5">
+            <button id="btnAgentAutoLoginBot" type="button" class="px-3 py-2 rounded-xl bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-400/50 text-indigo-200 font-extrabold text-xs flex items-center gap-1.5 transition" title="Autonomous login for Playwright / Antigravity Playtest Agent">
+              <span>🤖</span><span>Agent Auto-Login (playtest-bot)</span>
+            </button>
+            <button id="btnCopyLiveTeamShareLink" type="button" class="px-3 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/50 text-cyan-200 font-extrabold text-xs flex items-center gap-1.5 transition" title="Copy 1-Click Shareable Team/Family Link with Active Team Code">
+              <span>📋</span><span>Share Live Team Link</span>
+            </button>
+          </div>
           <button id="btnSandboxSubmitLogin" type="button" class="flex-1 sm:flex-initial px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 via-sky-400 to-blue-500 hover:from-emerald-300 hover:to-sky-300 text-slate-950 font-black text-xs sm:text-sm shadow-xl transition">
             🔓 Sign In & Drop the Puck ▶
           </button>
@@ -2603,7 +2619,7 @@
               <li>✅ <strong>Interactive 6-Slice Pie Chart</strong> Drill-Down by Concept</li>
               <li>✅ <strong>AI Hockey IQ Improvement Plan (PIP)</strong> Custom Remedial Queue</li>
               <li>✅ <strong>🛠️ Create My Own Lesson</strong> Custom Builder (Study Any Position/System)</li>
-              <li>✅ Full 240+ Tagged Cloud Scenario Library</li>
+              <li>✅ Full 360+ Tagged Cloud Scenario Library (15 Core Buckets)</li>
             </ul>
           </div>
           <button type="button" data-select-plan="tactix_pro" class="btn-activate-plan w-full py-2 px-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-black text-xs shadow transition">
@@ -5019,7 +5035,12 @@
           forecheck_systems: 'forecheck',
           powerplay_5v4: 'transition',
           penaltykill_4v5: 'transition',
-          deception_prescan: 'spacing'
+          deception_prescan: 'spacing',
+          oz_cycle_scissors: 'spacing',
+          nz_regroup_hinge: 'breakout',
+          dz_box_plus_one: 'house',
+          goalie_screen_rebound: 'house',
+          faceoff_oz_win_play: 'spacing'
         };
         const mappedConcept = bucketToConcept[bucketCode] || payload.concept || bucketCode || 'spacing';
         const allowedDivs = Array.isArray(row.allowed_divisions)
@@ -5065,6 +5086,7 @@
           ice_zone: row.ice_zone || payload.ice_zone || (payload.zone === 'defense' ? 'DZ' : 'OZ'),
           zone: payload.zone || (row.ice_zone === 'DZ' ? 'defense' : 'offense'),
           target_position: row.target_position || payload.target_position || 'ALL',
+          posRole: row.target_position || payload.target_position || 'ALL',
           question_style: row.question_style || payload.question_style || 'tap_zone',
           coach_bob_prompt: row.coach_bob_prompt || payload.coach_bob_prompt || payload.subtitle || '',
           lockSide: true,
@@ -5150,7 +5172,7 @@
           // Hydrate from localStorage cache first if cloudScenariosCache is empty
           if (!this.cloudScenariosCache.length) {
             try {
-              const cachedRaw = localStorage.getItem('tactix_cloud_scenarios_cache_v1');
+              const cachedRaw = localStorage.getItem('tactix_cloud_scenarios_cache_v2');
               if (cachedRaw) {
                 const parsed = JSON.parse(cachedRaw);
                 if (Array.isArray(parsed) && parsed.length > 0) {
@@ -5177,7 +5199,7 @@
             if (!ageDivision && !tierLevel) {
               this.cloudScenariosCache = rows;
               try {
-                localStorage.setItem('tactix_cloud_scenarios_cache_v1', JSON.stringify(rows));
+                localStorage.setItem('tactix_cloud_scenarios_cache_v2', JSON.stringify(rows));
               } catch (e) {}
             }
             this.ingestCloudScenarioRows(rows);
@@ -5361,10 +5383,10 @@
 
     function getScenarioIceZoneCode(scen) {
       if (!scen) return { code: 'OZ', label: 'Offensive Zone (OZ)' };
-      if (scen.id === 'regroup-nz' || scen.id === 'd-surf-gap') {
+      if (scen.ice_zone === 'NZ' || scen.bucket_code === 'nz_regroup_hinge' || scen.id === 'regroup-nz' || scen.id === 'd-surf-gap') {
         return { code: 'NZ', label: 'Neutral Zone (NZ)' };
       }
-      if (scen.zone === 'defense') {
+      if (scen.ice_zone === 'DZ' || scen.zone === 'defense') {
         return { code: 'DZ', label: 'Defensive Zone (DZ)' };
       }
       return { code: 'OZ', label: 'Offensive Zone (OZ)' };
@@ -5378,8 +5400,8 @@
       if (state.overtimeRedemptionActive || (scen && scen.id === 'transition-1')) {
         return '3-on-3 Open Ice';
       }
-      if (scen && scen.id === 'pp-umbrella') return '5-on-4 Power Play';
-      if (scen && scen.id === 'pk-box') return '4-on-5 Penalty Kill';
+      if (scen && (scen.id === 'pp-umbrella' || scen.situation_type === '5v4_PP' || scen.bucket_code === 'powerplay_5v4')) return '5-on-4 Power Play';
+      if (scen && (scen.id === 'pk-box' || scen.situation_type === '4v5_PK' || scen.bucket_code === 'penaltykill_4v5')) return '4-on-5 Penalty Kill';
       return '5-on-5 Even Strength';
     }
     window.getScenarioSituationLabel = getScenarioSituationLabel;
@@ -5410,6 +5432,16 @@
       const bobSitTag = document.getElementById('coachBobSituationTag');
       if (bobSitTag) {
         bobSitTag.textContent = `${sitLabel} • ${zoneInfo.code}`;
+      }
+      const bobRoleBadge = document.getElementById('coachBobRoleCalloutBadge');
+      if (bobRoleBadge) {
+        const dynRoles = typeof computeDynamicProximityRoles === 'function' ? computeDynamicProximityRoles(scen) : { youTargetRole: 'F1' };
+        const roleKey = (dynRoles && (dynRoles.youTargetRole || dynRoles.youCurrentRole)) || 'F1';
+        const roleMeta = (typeof DYNAMIC_ROLE_META !== 'undefined' && DYNAMIC_ROLE_META[roleKey]) || { badge: '🐂 F1', animal: 'The Bull' };
+        const shortAnimal = (roleMeta.animal || '').replace(/^The\s+/i, '');
+        bobRoleBadge.textContent = ['F1', 'F2', 'F3'].includes(roleKey)
+          ? `YOU = ${roleMeta.badge} ${shortAnimal}`
+          : `YOU = ${roleMeta.badge}`;
       }
     }
     window.updateSituationContextBanner = updateSituationContextBanner;
@@ -6673,10 +6705,10 @@
           return filterAgeSafe(dList.length ? dList : SCENARIOS);
         }
         if (state.conceptFilter === 'goalie_g') {
-          const gList = SCENARIOS.filter(s => (s.id || '').startsWith('goalie-') || (s.positionFocus || '').includes('Goalie') || s.posRole === 'G');
+          const gList = SCENARIOS.filter(s => (s.id || '').startsWith('goalie-') || (s.positionFocus || '').includes('Goalie') || s.posRole === 'G' || s.bucket_code === 'goalie_screen_rebound');
           return filterAgeSafe(gList.length ? gList : SCENARIOS);
         }
-        const list = SCENARIOS.filter(s => s.concept === state.conceptFilter);
+        const list = SCENARIOS.filter(s => s.concept === state.conceptFilter || s.bucket_code === state.conceptFilter);
         return filterAgeSafe(list.length ? list : SCENARIOS);
       }
 
@@ -6750,9 +6782,15 @@
     }
 
     function getCurrentScenario() {
-      if (state.activeScenarioInstance) return state.activeScenarioInstance;
       const prof = getActiveProfile();
-      const is8U = (prof.ageGroup || '12U') === '8U';
+      const activeAgeGroup = prof.ageGroup || '12U';
+      if (state.activeScenarioInstance && (state.lastLoadedCityIdx !== state.currentCityIdx || state.lastLoadedAgeGroup !== activeAgeGroup)) {
+        state.activeScenarioInstance = null;
+      }
+      if (state.activeScenarioInstance) return state.activeScenarioInstance;
+      state.lastLoadedCityIdx = state.currentCityIdx;
+      state.lastLoadedAgeGroup = activeAgeGroup;
+      const is8U = activeAgeGroup === '8U';
       if (state.overtimeRedemptionActive) {
         const otBase = is8U
           ? (SCENARIOS.find(s => s.id === 'rush-1') || SCENARIOS.find(s => s.id === 'spacing-1') || SCENARIOS[0])
@@ -10242,7 +10280,7 @@
           }
         });
         // 2. Check Offensive Point D inside Blue Line (x >= 0.62) for in-zone offense drills
-        if (s.zone === 'offense' && s.id !== 'basics-offsides' && s.id !== 'regroup-nz') {
+        if (s.zone === 'offense' && s.ice_zone !== 'NZ' && s.id !== 'basics-offsides' && s.id !== 'regroup-nz' && s.bucket_code !== 'offsides_rules' && s.bucket_code !== 'nz_regroup_hinge') {
           s.teammates.forEach(t => {
             if ((t.role || '').includes('Point') && t.x < 0.62) {
               issues.push(`[${s.id}] Point D (${t.label}) at x=${t.x} is behind offensive blue line (0.62).`);
@@ -13155,6 +13193,31 @@
         syncTeamCodeFromSandbox(true);
       });
     }
+    const sbCopyTeamShareBtn = document.getElementById('btnCopyLiveTeamShareLink');
+    if (sbCopyTeamShareBtn) {
+      sbCopyTeamShareBtn.addEventListener('click', () => {
+        SoundFX.playTap();
+        const codeInput = document.getElementById('inputSandboxTeamCode');
+        const teamCode = (codeInput && codeInput.value.trim().toUpperCase()) || 'WOLVES-12U';
+        const shareUrl = `https://danebekkedahl.github.io/tactix-hockey/?team=${encodeURIComponent(teamCode)}`;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(shareUrl).catch(() => {});
+        }
+        const toast = document.getElementById('sandboxLoginFeedbackToast');
+        if (toast) {
+          toast.classList.remove('hidden');
+          toast.textContent = `📋 Copied Live Team Share URL: ${shareUrl}`;
+        }
+      });
+    }
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlTeam = urlParams.get('team');
+      if (urlTeam) {
+        const codeInput = document.getElementById('inputSandboxTeamCode');
+        if (codeInput) codeInput.value = urlTeam.trim().toUpperCase();
+      }
+    } catch (e) {}
     const sbBotBtn = document.getElementById('btnAgentAutoLoginBot');
     if (sbBotBtn) {
       sbBotBtn.addEventListener('click', () => {
@@ -13401,6 +13464,14 @@
     if (btnCycleQFormat) {
       btnCycleQFormat.addEventListener('click', cycleQuestionFormat);
     }
+
+    // Expose core state & engine controllers on window for Autonomous Playtest Bot (?bot=1)
+    window.state = state;
+    window.getActiveProfile = getActiveProfile;
+    window.getFilteredScenarios = getFilteredScenarios;
+    window.getCurrentScenario = getCurrentScenario;
+    window.loadScenario = loadScenario;
+    window.drawRink = drawRink;
 
     window.onload = async () => {
       syncFromActiveProfile();

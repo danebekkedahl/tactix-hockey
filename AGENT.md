@@ -5,9 +5,9 @@
 **Architecture:** Self-Contained Single-Page Web Application + Installable PWA (`index.html`, `report.html`, `assets/tactix-logo.png`, `assets/coach-bob.png`, `manifest.json`, `sw.js`, `deploy-github-pages.js`)
 
 > [!IMPORTANT]
-> **Mandatory Multi-Agent Reading Rule & Single-Trigger Master Pipeline (`RUN MASTER PIPELINE`):**
+> **Mandatory Multi-Agent Reading Rule & Single-Trigger Pipelines (`RUN NIGHTLY AUTOPILOT` & `RUN MASTER PIPELINE`):**
 > 1. All Antigravity agents (`Main App Code Page`, `PuckSense IQ Learning Council Report`, and `Youth Hockey Playtest Report`) **MUST** read `FOUNDER_VISION_NOTES.md` alongside `LEARNING_COUNCIL_REPORT.md` and `PLAYTEST_REPORT.md` before planning, auditing, or modifying `index.html`.
-> 2. Whenever the user types **"RUN MASTER PIPELINE"** inside `Main App Code Page`, the agent **MUST** automatically execute all 4 stages in sequence (Stage 1: Fetch Live Flags from `public.pucksense_agent_inbox`; Stage 2: Automated Bot Playtest as `playtest-bot`; Stage 3: 6-Seat Industry Board Review; Stage 4: Build, Verify, Resolve & Deploy to `https://danebekkedahl.github.io/tactix-hockey/`) without requiring the user to switch chat tabs. See **Section 7** below for the full specification.
+> 2. Whenever the user types **`RUN NIGHTLY AUTOPILOT`** (or **`RUN MASTER PIPELINE`**) inside `Main App Code Page`, the agent **MUST** automatically execute all 4 stages from start to finish without pausing for confirmation between stages (Stage 1: Autonomous 6-Division Playtest Bot `Playtest-Agent`; Stage 2: 6-Seat Professional Industry Board Review `Council-Agent`; Stage 3: 3-Bot Scenario Factory Expansion `generate-tactix-bank.js`; Stage 4: Main App Code Build, Verification & Live GitHub Pages Deploy to `https://danebekkedahl.github.io/tactix-hockey/`). See **Section 7.2 & Section 7.3** below for the full specification.
 
 ---
 
@@ -201,5 +201,38 @@ Whenever the user types **"RUN MASTER PIPELINE"** inside `Main App Code Page`, a
   - Synthesize the Founder flags + Playtest findings with **1 high-impact improvement from each of the 6 Industry Seats** (Seats 1–6 above), and post the consolidated Board review summary to `public.pucksense_agent_inbox` (`created_by: 'Council-Agent'`, `category: 'council_spec'`).
 - **Stage 4 — Build, Verify & Deploy (GitHub Pages `danebekkedahl/tactix-hockey`):**
   - Implement the fixes and highest-value 6-Seat upgrades in `index.html`, verify `0` console errors in headless Chrome on `http://localhost:8080`, patch fixed inbox rows in `public.pucksense_agent_inbox` to `status: 'resolved'`, update `report.html` (displaying each Industry Seat's latest recommendation and implementation status), sync both workspaces (`c:\Users\Dane\.gemini\antigravity\scratch\pucksense\` and `C:\Users\Dane\Documents\Hockey-IQ-App\`), and push/deploy live to **`https://danebekkedahl.github.io/tactix-hockey/`** (and `https://danebekkedahl.github.io/tactix-hockey/report.html`) via `node deploy-github-pages.js` while keeping `http://localhost:8080` running locally.
+
+### 7.3 4-Stage Nightly Auto-Pilot Pipeline (`RUN NIGHTLY AUTOPILOT`)
+Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupted **4-Stage Nightly Auto-Pilot Pipeline** from start to finish without pausing for confirmation between stages:
+
+- **STAGE 1 — Autonomous 6-Division Playtest Bot (`Playtest-Agent`):**
+  1. Launch headless Chrome against `http://localhost:8080/index.html?bot=1` as `playtest-bot`.
+  2. Playtest all 6 age divisions (`8U`, `10U`, `12U`, `14U`, `16U`, `18U`) across `Rec -> B -> A -> AA -> AAA`:
+     - Verify `8U` strictly serves only `5-on-5 Even Strength` foundational drills (`0` offsides, `0` PK/PP, `0` unannounced 3v3).
+     - Test **Coach Bob**'s lower-left Reflex pop-up animations (`Talking`, `Mistake`, `Celebrate`) and auto-hide behavior.
+     - Test the `🐂 F1 Bull / 🦊 F2 Fox / 🦅 F3 Eagle / 🛡️ D1 / 🏰 D2` role badges and all 5 question formats (`tap_zone`, `tap_player`, `tactical_choice`, `drag_skater`, `spot_and_fix`).
+  3. Save the full audit to `PLAYTEST_REPORT.md` and `POST` any discovered bugs or friction points to `public.pucksense_agent_inbox` (`https://jrusjgpfcnptozfehcrv.supabase.co/rest/v1/pucksense_agent_inbox` using apikey `sb_publishable_73207-0o-_PJEGLgeiZSog__PwUgTxX`).
+
+- **STAGE 2 — 6-Seat Professional Industry Board Review (`Council-Agent`):**
+  Immediately after Stage 1 finishes:
+  1. Fetch all open / `in_council_review` rows from `public.pucksense_agent_inbox` (including any Founder `🚩 Flag Drill` notes from Coach Dane or Coach Evan) and read `PLAYTEST_REPORT.md` and `FOUNDER_VISION_NOTES.md`.
+  2. Evaluate the app from all **6 Industry Seats** (1. NCAA D1/AAA & USA Hockey Systems Director, 2. Pediatric Sports Psychologist, 3. Mobile Game & EdTech Retention Designer, 4. Native iPad/Phone Touch UX Architect, 5. Youth Hockey Coach & Association Director Liaison, 6. App Store & Subscription Strategist).
+  3. Write two clear sections in `LEARNING_COUNCIL_REPORT.md`:
+     - **Part A — Scenario Bank Expansion Spec:** Define 5 new high-value tactical sub-lessons / concept buckets (e.g. `OZ Cycle & Low-High Scissors`, `Neutral Zone D-to-D Hinge Regroup`, `D-Zone Box+1 Low Hand-Off`, `Goalie Screen Sightline & Rebound Control`, `Faceoff Set Plays & Win-to-Shot`) with `24` permutations each (`120` new scenarios total) to expand our Supabase bank (`public.tactix_scenarios`).
+     - **Part B — UI, UX & Gameplay Polish Spec:** Define the top fixes and feature upgrades from the 6 seats.
+  4. Update/post the specs to `public.pucksense_agent_inbox` with `status: 'queued_for_builder'`.
+
+- **STAGE 3 — 3-Bot Scenario Factory Expansion (`generate-tactix-bank.js`):**
+  Immediately after Stage 2 finishes:
+  1. Update `generate-tactix-bank.js` with the 5 new tactical concept buckets from Stage 2 Part A (`120` new permutations = **360+ total cloud scenarios** across `Rec -> B -> A -> AA -> AAA`).
+  2. Run **Bot #1 (`Curriculum & ADM Guardrail Bot`)** -> **Bot #2 (`Scenario Permutation Generator`)** -> **Bot #3 (`Strict QA & Geometry Verifier`)** via `& "C:\Users\Dane\AppData\Local\Programs\nodejs\node-v22.14.0-win-x64\node.exe" generate-tactix-bank.js` and upload all newly approved scenarios (`qc_approved = true`) to `public.tactix_scenarios`.
+
+- **STAGE 4 — Main App Code Build, Verification & Live GitHub Pages Deploy:**
+  Immediately after Stage 3 finishes:
+  1. Implement the Stage 2 Part B UI/UX/gameplay fixes in `index.html` and ensure `index.html` seamlessly ingests all **360+ cloud scenarios** from `public.tactix_scenarios`.
+  2. Verify with `window.runAutomatedQaAudit()` and headless Chrome on `http://localhost:8080` (`0` console errors, `0` failed audit checks).
+  3. `PATCH` all fixed items in `public.pucksense_agent_inbox` to `status: 'resolved'` and update `report.html`.
+  4. Sync all updated files across both `C:\Users\Dane\Documents\Hockey-IQ-App\` and `c:\Users\Dane\.gemini\antigravity\scratch\pucksense\`, then run `& "C:\Users\Dane\AppData\Local\Programs\nodejs\node-v22.14.0-win-x64\node.exe" deploy-github-pages.js` so the live build at **`https://danebekkedahl.github.io/tactix-hockey/`** is updated automatically.
+
 
 
