@@ -159,7 +159,7 @@ Then open **`http://localhost:8080`** in Chrome, Safari, Edge, or your Antigravi
 ### 6.3 Private Multi-Login Sandbox Gate (`#sandboxLoginModal`) & Autonomous Bot Bypass
 - On launch, `#sandboxLoginModal` presents the zero-scroll **Private Multi-Login Sandbox** (`Player & Family Portal` vs. `Team & Coach Portal (PUCK99)`), quick-tap chips for **Coach Dane (`dane`)**, **Coach Evan (`evan`)**, **Miles (`miles`, 12U)**, **Rhett (`rhett`, 8U)**, **Whelan (`whelan`, 8U)**, **Cohen (`cohen`, 10U)**, **Amanda (`amanda`)**, and **Sal (`sal`)** with default PIN `99`, plus a **➕ New Tester (5-Step Wizard)** button (`#btnSandboxNewTester`) that upserts new testers to `public.pucksense_profiles`.
 - **Autonomous Playtest Bot Login**:
-  - Navigating to `?bot=1` (e.g., `http://localhost:8080/index.html?bot=1` or `https://pucksenseiq.netlify.app/?bot=1`) or clicking **`🤖 Agent Auto-Login (playtest-bot)`** (`#btnAgentAutoLoginBot`) automatically logs in as `playtest-bot` and bypasses `#sandboxLoginModal`.
+  - Navigating to `?bot=1` (e.g., `http://localhost:8080/index.html?bot=1` or `https://danebekkedahl.github.io/tactix-hockey/?bot=1`) or clicking **`🤖 Agent Auto-Login (playtest-bot)`** (`#btnAgentAutoLoginBot`) automatically logs in as `playtest-bot` and bypasses `#sandboxLoginModal`.
 
 ### 6.4 3-Agent Cloud Coordination Workflow (`public.pucksense_agent_inbox`)
 1. **Youth Hockey Playtest Agent (`Playtest-Agent`)**:
