@@ -6,15 +6,15 @@
   <meta name="robots" content="noindex, nofollow" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Tactix Hockey" />
-  <meta name="application-name" content="Tactix Hockey" />
-  <meta name="theme-color" content="#0f172a" />
-  <title>Tactix Hockey — Play. Learn. Dominate. (32-City Road to the Cup)</title>
+  <meta name="apple-mobile-web-app-title" content="SYNAPZ HOCKEY" />
+  <meta name="application-name" content="SYNAPZ HOCKEY" />
+  <meta name="theme-color" content="#0d1829" />
+  <title>SYNAPZ HOCKEY — Play. Learn. Dominate. (32-City Road to the Cup)</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
-  <link rel="shortcut icon" type="image/png" href="assets/tactix-logo.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="icon-192.png" />
+  <link rel="shortcut icon" type="image/png" href="assets/synapz-splash-bg.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -339,14 +339,132 @@
       -webkit-overflow-scrolling: touch !important;
     }
   </style>
+  <style id="synapzThemeStyles">
+    /* =======================================================================
+       SYNAPZ HOCKEY — GLOBAL BRUSHED GUNMETAL, CARBON-FIBER & SYNAPSE CYAN THEME
+       ======================================================================= */
+    :root {
+      --synapz-obsidian: #060b14;
+      --synapz-gunmetal: #0d1829;
+      --synapz-deep-ice: #091322;
+      --synapz-cyan: #00e5ff;
+      --synapz-ice-blue: #38bdf8;
+      --synapz-chrome: #f1f5f9;
+    }
+    body {
+      background:
+        repeating-linear-gradient(135deg, rgba(255,255,255,0.016) 0px, rgba(255,255,255,0.016) 2px, transparent 2px, transparent 8px),
+        linear-gradient(145deg, #060b14 0%, #0d1829 55%, #091322 100%) !important;
+      color: #f1f5f9 !important;
+    }
+    /* When Map View is active, hide the global top header so ONLY the De-Cluttered SYNAPZ Map Header is displayed */
+    body:has(#mapViewSection:not(.hidden)) > header {
+      display: none !important;
+    }
+    header,
+    .synapz-gunmetal-panel,
+    #mapViewSection > div,
+    #gameTopSubheader,
+    #rinkWrapper,
+    #rightActionRibbon,
+    #sandboxLoginModal > div,
+    #loginModal > div,
+    #teamManagerModal > div,
+    #proShopModal > div,
+    #trophyRoomModal > div,
+    #pricingAndPlansModal > div,
+    #successStoriesModal > div,
+    #founderDigestModal > div,
+    #videoExampleModal > div,
+    #cityIntroModal > div,
+    #seriesCompleteModal > div,
+    #flagDrillModal > div,
+    #upgradeModal > div,
+    #reportModal > div {
+      background:
+        repeating-linear-gradient(135deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 2px, transparent 2px, transparent 8px),
+        linear-gradient(145deg, rgba(6, 11, 20, 0.96) 0%, rgba(13, 24, 41, 0.94) 55%, rgba(9, 19, 34, 0.97) 100%) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border: 1px solid rgba(0, 229, 255, 0.45) !important;
+      box-shadow: 0 0 22px rgba(0, 229, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    }
+    .synapz-portal-card,
+    .synapz-cyan-frame,
+    .synapz-cyan-pill,
+    #situationContextBanner,
+    #multiFormatControlsBar {
+      background:
+        repeating-linear-gradient(135deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 2px, transparent 2px, transparent 8px),
+        linear-gradient(145deg, rgba(6, 11, 20, 0.92) 0%, rgba(13, 24, 41, 0.90) 60%, rgba(9, 19, 34, 0.95) 100%) !important;
+      backdrop-filter: blur(16px) !important;
+      border: 1px solid rgba(0, 229, 255, 0.45) !important;
+      box-shadow: 0 0 22px rgba(0, 229, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .synapz-portal-card:hover,
+    .synapz-cyan-pill:hover {
+      border-color: rgba(0, 229, 255, 0.92) !important;
+      box-shadow: 0 0 32px rgba(0, 229, 255, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
+      transform: translateY(-2px);
+    }
+    .synapz-chrome-heading {
+      background: linear-gradient(180deg, #f8fafc 0%, #38bdf8 52%, #00e5ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 14px rgba(0, 229, 255, 0.28));
+    }
+    .synapz-cta-btn,
+    .active-pill {
+      background: linear-gradient(135deg, #00e5ff 0%, #38bdf8 48%, #0284c7 100%) !important;
+      color: #060b14 !important;
+      font-weight: 900 !important;
+      border: 1px solid rgba(186, 230, 253, 0.78) !important;
+      box-shadow: 0 0 22px rgba(0, 229, 255, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.55) !important;
+      transition: transform 0.18s ease, box-shadow 0.18s ease !important;
+    }
+    .synapz-cta-btn:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 0 34px rgba(0, 229, 255, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.75) !important;
+    }
+    @keyframes synapzPulseRing {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 28px rgba(0, 229, 255, 0.55), 0 0 60px rgba(56, 189, 248, 0.25); }
+      50% { transform: scale(1.045); box-shadow: 0 0 48px rgba(0, 229, 255, 0.92), 0 0 92px rgba(56, 189, 248, 0.45); }
+    }
+    .synapz-splash-crest-pulse {
+      animation: synapzPulseRing 1.15s ease-in-out infinite;
+    }
+    @keyframes synapzPuckPulse {
+      0%, 100% { filter: drop-shadow(0 0 8px #00e5ff) drop-shadow(0 0 16px rgba(0, 229, 255, 0.6)); }
+      50% { filter: drop-shadow(0 0 14px #00e5ff) drop-shadow(0 0 28px rgba(0, 229, 255, 0.95)); }
+    }
+    .synapz-3d-puck-marker {
+      animation: synapzPuckPulse 1.4s ease-in-out infinite;
+    }
+  </style>
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#0f172a" />
+  <meta name="theme-color" content="#0d1829" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="TACTIX HOCKEY" />
-  <link rel="apple-touch-icon" href="assets/tactix-logo.png" />
+  <meta name="apple-mobile-web-app-title" content="SYNAPZ HOCKEY" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 </head>
 <body class="min-h-screen flex flex-col">
+
+  <!-- ===================================================================== -->
+  <!-- BETWEEN-SCREEN TRANSITION SPLASH OVERLAY (#synapzTransitionSplash)    -->
+  <!-- ===================================================================== -->
+  <div id="synapzTransitionSplash" class="hidden fixed inset-0 z-[95] flex flex-col items-center justify-center p-4 pointer-events-none transition-opacity duration-300 opacity-0" style="background: radial-gradient(circle at center, rgba(13,24,41,0.97) 0%, rgba(6,11,20,0.99) 100%); backdrop-filter: blur(18px);">
+    <div class="relative flex flex-col items-center gap-4 max-w-md w-full text-center">
+      <div class="relative p-1.5 rounded-3xl border-2 border-cyan-400/85 bg-slate-950/90 synapz-splash-crest-pulse">
+        <img src="assets/synapz-splash-bg.png" alt="SYNAPZ HOCKEY" class="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl object-cover shadow-2xl" />
+      </div>
+      <div class="px-5 py-2 rounded-full border border-cyan-400/75 bg-slate-950/95 shadow-[0_0_26px_rgba(0,229,255,0.4)] flex items-center gap-2.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+        <span id="synapzTransitionStatusText" class="text-xs sm:text-sm font-black uppercase tracking-widest text-cyan-300">⚡ Entering Player Portal...</span>
+      </div>
+    </div>
+  </div>
 
   <!-- ===================================================================== -->
   <!-- TOP APP NAVIGATION HEADER (Map, Profile, PuckBucks, Pro Shop, IQ Card, Study Lab, Settings) -->
@@ -355,14 +473,14 @@
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <!-- Brand + Active Player Profile Button -->
       <div class="flex items-center gap-2">
-        <button id="btnGoHomeMap" type="button" class="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 transition" title="Go to TACTIX HOCKEY 32-Stop Adventure Map">
-          <img src="assets/tactix-logo.png" alt="TACTIX HOCKEY" class="w-9 h-9 rounded-lg object-cover border border-sky-400/50 shadow" />
+        <button id="btnGoHomeMap" type="button" class="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-cyan-400/50 transition" title="Go to SYNAPZ HOCKEY 32-Stop Adventure Map">
+          <img src="assets/synapz-logo.png" alt="SYNAPZ HOCKEY" class="h-9 w-auto max-w-[140px] rounded-lg object-contain border border-cyan-400/60 shadow" />
           <div class="text-left">
             <div class="flex items-center gap-1.5">
-              <span class="text-xs sm:text-sm font-black tracking-tight text-white leading-none">TACTIX HOCKEY</span>
-              <span class="hidden md:inline-block px-1.5 py-0.5 rounded bg-sky-500/20 border border-sky-400/40 text-[8px] font-black uppercase tracking-wider text-sky-300">Hockey IQ & Strategy Platform</span>
+              <span class="text-xs sm:text-sm font-black tracking-tight text-white leading-none synapz-chrome-heading">SYNAPZ HOCKEY</span>
+              <span class="hidden md:inline-block px-1.5 py-0.5 rounded bg-cyan-500/20 border border-cyan-400/40 text-[8px] font-black uppercase tracking-wider text-cyan-300">Hockey IQ & Strategy Platform</span>
             </div>
-            <div class="text-[10px] text-amber-300 font-black tracking-widest uppercase mt-0.5">PLAY. LEARN. DOMINATE.</div>
+            <div class="text-[10px] text-cyan-300 font-black tracking-widest uppercase mt-0.5">PLAY. LEARN. DOMINATE.</div>
           </div>
         </button>
 
@@ -567,91 +685,118 @@
   <!-- VIEW 1: ALL 32 NHL TEAMS — ROAD TO THE STANLEY CUP MAP (USA & CANADA) -->
   <!-- ===================================================================== -->
   <section id="mapViewSection" class="hidden max-w-7xl w-full mx-auto p-3 flex-1 flex flex-col gap-3">
-    <div class="bg-slate-900/95 border border-slate-800 rounded-2xl p-4 shadow-2xl flex flex-col gap-3">
-      <div class="flex flex-wrap items-center justify-between gap-2">
-        <div>
-          <div class="flex flex-wrap items-center gap-1.5">
-            <span class="text-[11px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 shadow">PLAY. LEARN. DOMINATE.</span>
-            <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30">HOCKEY IQ & STRATEGY PLATFORM • Rec → B → A → AA → AAA</span>
-          </div>
-          <h2 class="text-lg sm:text-xl font-black text-white mt-1">Mathseeds-Style Skill Tier Progression & 32-City NHL Tour</h2>
-          <p class="text-xs text-slate-300">Conquer each stop with <strong>80% (440 / 550 IQ Points)</strong> to earn Skill Tier Promotions (<strong>Rec → B → A → AA → AAA Elite</strong>) and unlock Pro Shop gear!</p>
+    <div class="synapz-gunmetal-panel rounded-2xl p-4 shadow-2xl flex flex-col gap-3">
+      <!-- 1. De-Cluttered SYNAPZ Map Header: Logo (Left) • Active Player Cyan Badge (Center) • 3 Gunmetal-Cyan Pills (Right) -->
+      <div id="synapzMapHeaderBar" class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-cyan-500/30">
+        <!-- Left: SYNAPZ HOCKEY Horizontal Wordmark -->
+        <div class="flex items-center gap-2.5">
+          <img src="assets/synapz-logo.png" alt="SYNAPZ HOCKEY — PLAY. LEARN. DOMINATE." class="h-11 sm:h-12 w-auto rounded-xl object-contain border border-cyan-400/60 shadow-[0_0_18px_rgba(0,229,255,0.28)]" />
         </div>
+
+        <!-- Center: Active Player Glowing Cyan Badge -->
+        <button id="synapzActivePlayerMapBadge" type="button" class="synapz-cyan-pill px-4 py-2 rounded-full flex items-center gap-2 text-xs sm:text-sm font-black text-cyan-200 shadow-lg cursor-pointer" title="Tap to open Locker Room & Sibling Stalls">
+          <span id="synapzMapBadgeAvatar">🦅</span>
+          <span id="synapzMapBadgeText" class="tracking-wide text-white">Miles #9 • 12U • Rec Tier</span>
+          <span class="px-2 py-0.5 rounded-full bg-cyan-400/20 border border-cyan-400/50 text-[10px] font-black text-cyan-300" id="synapzMapBadgeIq">100 IQ • $250</span>
+        </button>
+
+        <!-- Right: 3 Sleek Gunmetal-Cyan Pills (🏒 Locker Room, 🛍️ Pro Shop, 🚪 Switch Portal) -->
         <div class="flex flex-wrap items-center gap-2">
-          <button id="btnOpenPricingFromMap" type="button" class="px-3 py-2 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/50 text-emerald-300 font-extrabold text-xs transition flex items-center gap-1.5">
-            <span>💎 Free Download & 4-Tier Plans</span>
+          <button id="btnMapLockerRoom" type="button" class="synapz-cyan-pill px-3.5 py-2 rounded-xl text-xs font-black text-cyan-200 flex items-center gap-1.5">
+            <span>🏒</span><span>Locker Room</span>
           </button>
-          <button id="btnOpenSuccessStoriesFromMap" type="button" class="px-3 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-300 font-extrabold text-xs transition flex items-center gap-1.5">
-            <span>🤝 Partner Teams (Save 50%)</span>
+          <button id="btnMapProShop" type="button" class="synapz-cyan-pill px-3.5 py-2 rounded-xl text-xs font-black text-cyan-200 flex items-center gap-1.5">
+            <span>🛍️</span><span>Pro Shop</span>
           </button>
-          <button id="btnToggleMapGroupProgress" type="button" class="px-3 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/40 text-cyan-200 font-extrabold text-xs transition flex items-center gap-1.5">
-            <span>👥 Team Avatars on Map: ON</span>
-          </button>
-          <button id="btnOpenTeamRosterModal" type="button" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-amber-300 font-extrabold text-xs transition flex items-center gap-1.5">
-            <span>🏆 Team Leaderboard & Invites</span>
-          </button>
-          <button id="btnPlayCurrentCity" type="button" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-black text-xs sm:text-sm shadow-lg transition">
-            🏒 Play Current City Series ▶
+          <button id="btnMapSwitchPortal" type="button" class="synapz-cyan-pill px-3.5 py-2 rounded-xl text-xs font-black text-cyan-200 flex items-center gap-1.5">
+            <span>🚪</span><span>Switch Portal</span>
           </button>
         </div>
       </div>
 
-      <!-- Mathseeds-Style 5-Tier Milestone Progression Bar (Rec -> B -> A -> AA -> AAA) -->
-      <div id="mathseedsTierTrackBar" class="grid grid-cols-2 sm:grid-cols-5 gap-2 bg-slate-950/90 border border-slate-800 rounded-2xl p-2.5"></div>
+      <!-- Mathseeds-Style 5-Tier Milestone Progression Bar (Rec -> B -> A -> AA -> AAA -> 🏆 Stanley Cup) -->
+      <div id="mathseedsTierTrackBar" class="grid grid-cols-2 sm:grid-cols-5 gap-2 bg-slate-950/90 border border-cyan-500/35 rounded-2xl p-2.5"></div>
 
-      <!-- Interactive Cartoon Map of USA & Canada with all 32 NHL Team Stops + Custom Mini Avatars -->
-      <div class="relative w-full bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden p-2" style="aspect-ratio: 16 / 8.5;">
+      <!-- 2. Upgraded Stepping-Stone Stanley Cup Map (#nhlTourMapSvg) -->
+      <div class="relative w-full rounded-2xl border border-cyan-400/45 overflow-hidden p-1.5 shadow-[0_0_30px_rgba(0,229,255,0.16)]" style="aspect-ratio: 16 / 7.2; max-height: 56dvh; background: radial-gradient(circle at 50% 45%, #0d1829 0%, #060b14 100%);">
         <svg id="nhlTourMapSvg" viewBox="0 0 1000 520" class="w-full h-full">
           <defs>
-            <linearGradient id="oceanGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#082f49" />
-              <stop offset="100%" stop-color="#020617" />
+            <linearGradient id="oceanGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#060b14" />
+              <stop offset="55%" stop-color="#0d1829" />
+              <stop offset="100%" stop-color="#050911" />
             </linearGradient>
             <linearGradient id="canadaGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#1e293b" />
-              <stop offset="100%" stop-color="#0f172a" />
+              <stop offset="0%" stop-color="#0f2238" />
+              <stop offset="100%" stop-color="#091526" />
             </linearGradient>
             <linearGradient id="usaGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#1e3a8a" stop-opacity="0.45" />
-              <stop offset="100%" stop-color="#0f172a" stop-opacity="0.85" />
+              <stop offset="0%" stop-color="#0c2644" stop-opacity="0.78" />
+              <stop offset="100%" stop-color="#081322" stop-opacity="0.92" />
             </linearGradient>
+            <linearGradient id="synapzTrailUnlocked" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#00e5ff" />
+              <stop offset="100%" stop-color="#38bdf8" />
+            </linearGradient>
+            <filter id="synapzCyanGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="3.5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
           </defs>
 
           <rect width="1000" height="520" fill="url(#oceanGrad)" rx="16" />
 
+          <!-- Subtle Neural Grid Lines across North America -->
+          <g stroke="rgba(0,229,255,0.06)" stroke-width="1">
+            <line x1="0" y1="130" x2="1000" y2="130" />
+            <line x1="0" y1="260" x2="1000" y2="260" />
+            <line x1="0" y1="390" x2="1000" y2="390" />
+            <line x1="250" y1="0" x2="250" y2="520" />
+            <line x1="500" y1="0" x2="500" y2="520" />
+            <line x1="750" y1="0" x2="750" y2="520" />
+          </g>
+
           <!-- Canada -->
           <path d="M 90 190 L 110 85 L 280 55 L 490 60 L 630 95 L 770 75 L 895 140 L 860 225 L 720 235 L 590 215 L 430 195 L 140 195 Z"
-                fill="url(#canadaGrad)" stroke="#334155" stroke-width="2.5" />
-          <text x="440" y="115" fill="rgba(148,163,184,0.16)" font-size="32" font-weight="900" text-anchor="middle" letter-spacing="8">CANADA</text>
+                fill="url(#canadaGrad)" stroke="rgba(0,229,255,0.32)" stroke-width="2" />
+          <text x="440" y="108" fill="rgba(0,229,255,0.10)" font-size="30" font-weight="900" text-anchor="middle" letter-spacing="10">CANADA • NORTHERN CONFERENCE</text>
 
           <!-- USA -->
           <path d="M 115 195 L 430 195 L 590 215 L 720 235 L 855 225 L 835 315 L 775 395 L 745 465 L 695 455 L 680 405 L 535 420 L 455 465 L 385 405 L 210 385 L 105 315 Z"
-                fill="url(#usaGrad)" stroke="#38bdf8" stroke-opacity="0.4" stroke-width="2.5" />
-          <text x="440" y="340" fill="rgba(56,189,248,0.12)" font-size="34" font-weight="900" text-anchor="middle" letter-spacing="8">UNITED STATES</text>
+                fill="url(#usaGrad)" stroke="rgba(0,229,255,0.48)" stroke-width="2.2" />
+          <text x="440" y="345" fill="rgba(0,229,255,0.09)" font-size="30" font-weight="900" text-anchor="middle" letter-spacing="10">UNITED STATES • ROAD TO THE CUP</text>
 
           <g id="mapRoutesGroup"></g>
+          <g id="mapMilestoneGatesGroup"></g>
           <g id="mapCitiesGroup"></g>
           <g id="mapTeamAvatarsGroup"></g>
         </svg>
       </div>
 
-      <!-- Team / Family Leaderboard & Multi-Participant Map Progress Bar -->
-      <div id="teamLeaderboardBanner" class="bg-slate-950/90 border border-cyan-500/30 rounded-2xl p-3 flex flex-col gap-2">
-        <div class="flex flex-wrap items-center justify-between gap-2">
-          <div class="flex items-center gap-2">
-            <span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-black uppercase tracking-wider" id="mapProgramModeBadge">🏆 Team Program</span>
-            <h3 id="mapTeamTitleDisplay" class="text-xs sm:text-sm font-black text-white">Minot Wolves Youth Hockey — Live Map & Leaderboard</h3>
-          </div>
-          <div class="flex items-center gap-2">
-            <span id="mapTeamInviteCodeBadge" class="text-[11px] font-bold text-slate-400">Team Code: <strong class="text-amber-300">PUCK-774</strong></span>
-            <button id="btnQuickInvitePlayers" type="button" class="px-2.5 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/40 text-cyan-200 text-[11px] font-extrabold transition">📨 Coach Invite Players</button>
-          </div>
-        </div>
-        <div id="mapLeaderboardCards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2"></div>
-      </div>
+      <!-- Single Bold Bottom Launch Bar -->
+      <button id="btnPlayCurrentCity" type="button" class="synapz-cta-btn w-full py-3.5 px-6 rounded-2xl text-sm sm:text-base font-black uppercase tracking-wider shadow-2xl flex items-center justify-center gap-2.5">
+        <span>▶️</span>
+        <span id="btnPlayCurrentCityLabel">DROP THE PUCK — STOP #1: SAN JOSE</span>
+      </button>
 
-      <!-- 32 NHL Cities Grid -->
-      <div id="cityCardsStrip" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2 max-h-64 overflow-y-auto pr-1"></div>
+      <!-- Hidden Legacy Map Elements Preserved for Zero-Error JS Compatibility -->
+      <div class="hidden">
+        <button id="btnOpenPricingFromMap" type="button"></button>
+        <button id="btnOpenSuccessStoriesFromMap" type="button"></button>
+        <button id="btnToggleMapGroupProgress" type="button"></button>
+        <button id="btnOpenTeamRosterModal" type="button"></button>
+        <div id="teamLeaderboardBanner">
+          <span id="mapProgramModeBadge"></span>
+          <h3 id="mapTeamTitleDisplay"></h3>
+          <span id="mapTeamInviteCodeBadge"></span>
+          <button id="btnQuickInvitePlayers" type="button"></button>
+          <div id="mapLeaderboardCards"></div>
+        </div>
+        <div id="cityCardsStrip"></div>
+      </div>
     </div>
   </section>
 
@@ -1244,7 +1389,7 @@
         <!-- STEP 1: PORTAL SELECTION (Player Portal vs. Team Portal) -->
         <div id="wizStep1" class="wiz-step-pane flex-1 flex flex-col justify-center gap-3">
           <div class="text-center mb-1">
-            <h4 class="text-lg sm:text-xl font-black text-white">1. Choose Your PuckSense IQ Portal</h4>
+            <h4 class="text-lg sm:text-xl font-black text-white">1. Choose Your Synapz Hockey Portal</h4>
             <p class="text-xs text-slate-400">Tap a card to advance immediately—no scrolling required.</p>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -1957,11 +2102,11 @@
       <!-- Team Portal Upsell Prompt (Shown when in Free Team Portal Mode) -->
       <div id="teamPortalUpsellBanner" class="hidden mt-3 bg-gradient-to-r from-amber-500/20 via-sky-500/20 to-amber-500/20 border-2 border-amber-400/70 rounded-xl p-3 flex flex-wrap items-center justify-between gap-2">
         <div class="text-xs text-slate-200 leading-snug">
-          <strong class="text-amber-300">🏒 Free Team & Association Portal Active:</strong> Coach-assigned lessons & team standings are 100% free! To build custom personal lessons, unlock <strong>Player Portal ($4.99) + Tactix Pro ($4.99/mo or $49.99/yr — Save $10!)</strong>.
+          <strong class="text-amber-300">🏒 Free Team & Association Portal Active:</strong> Coach-assigned lessons & team standings are 100% free! To build custom personal lessons, unlock <strong>Player Portal ($4.99) + Synapz Pro ($4.99/mo or $49.99/yr — Save $10!)</strong>.
         </div>
         <div class="flex items-center gap-1.5">
           <button id="btnUnlockProFromBuilder" type="button" class="px-3 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-[11px] shadow transition">
-            ⚡ Unlock Tactix Pro (1-Tap Sandbox)
+            ⚡ Unlock Synapz Pro (1-Tap Sandbox)
           </button>
           <button id="btnOpenPricingFromBuilder" type="button" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 text-sky-300 font-black text-[11px] transition">
             💎 4-Tier Pricing
@@ -1972,7 +2117,7 @@
       <!-- Interactive Custom Lesson & System Builder -->
       <div class="my-4 bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-black uppercase tracking-wider text-sky-300">🎯 4-Step Intentional Learning Filter (Tier 3 Tactix Pro)</span>
+          <span class="text-xs font-black uppercase tracking-wider text-sky-300">🎯 4-Step Intentional Learning Filter (Tier 3 Synapz Pro)</span>
           <div class="flex items-center gap-1.5">
             <span id="builderProStatusBadge" class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-black">Unlocked for Testing</span>
             <button id="btnOpenPricingHeaderInBuilder" type="button" class="text-[10px] font-black text-amber-300 hover:underline">💎 View Plans</button>
@@ -2160,7 +2305,7 @@
           <span class="text-2xl">🎓</span>
           <div>
             <span id="tutorialStepBadge" class="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300">Quick Tutorial • Step 1 of 4</span>
-            <h3 id="tutorialSlideTitle" class="text-base sm:text-lg font-black text-white mt-0.5">Welcome to PuckSense IQ Academy!</h3>
+            <h3 id="tutorialSlideTitle" class="text-base sm:text-lg font-black text-white mt-0.5">Welcome to Synapz Hockey Academy!</h3>
           </div>
         </div>
         <button id="btnCloseTutorialModal" type="button" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold">Skip ✕</button>
@@ -2800,7 +2945,7 @@
         <div id="playerViewCustomLessonLockBanner" class="bg-amber-950/35 border border-amber-500/50 rounded-xl p-3 flex flex-wrap items-center justify-between gap-2">
           <div class="space-y-0.5">
             <div class="text-xs font-black text-amber-300">🔒 Want "🛠️ Create My Own Lesson" &amp; Personal 6-Slice Self-Evaluation?</div>
-            <p class="text-[11px] text-slate-300">Your Team Portal seat includes free Coach Weekly Assignments &amp; Team Standings. Unlock your personal <strong>Player Portal + Tactix Pro</strong> to build custom self-directed lessons anytime!</p>
+            <p class="text-[11px] text-slate-300">Your Team Portal seat includes free Coach Weekly Assignments &amp; Team Standings. Unlock your personal <strong>Player Portal + Synapz Pro</strong> to build custom self-directed lessons anytime!</p>
           </div>
           <button id="btnPlayerViewUnlockPersonalPro" type="button" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-black text-xs shadow transition whitespace-nowrap">
             ⚡ Open Personal Pro Builder ▶
@@ -2934,159 +3079,217 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- MODAL 11: PRIVATE MULTI-LOGIN SANDBOX GATE (#sandboxLoginModal)       -->
+  <!-- MODAL 11: CLEAN 2-STEP SYNAPZ HOCKEY START PAGE (#sandboxLoginModal)  -->
   <!-- ===================================================================== -->
   <div id="sandboxLoginModal" class="hidden fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 overflow-y-auto modal-backdrop">
-    <div class="bg-slate-900 border-2 border-sky-500/60 rounded-2xl max-w-2xl w-full p-4 sm:p-5 shadow-2xl scrollable-modal-card flex flex-col justify-between gap-2.5">
-      <!-- Header with Official Slogan (PLAY. LEARN. DOMINATE.) & Sub-Badge -->
-      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2.5 shrink-0">
+    <div class="relative overflow-hidden rounded-3xl max-w-3xl w-full p-5 sm:p-6 shadow-2xl scrollable-modal-card flex flex-col justify-between gap-4" style="background: linear-gradient(160deg, rgba(6,11,20,0.88) 0%, rgba(13,24,41,0.92) 55%, rgba(6,11,20,0.96) 100%), url('assets/synapz-splash-bg.png') center/cover no-repeat;">
+      <!-- Top Hero Brand Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-cyan-400/30 pb-3 shrink-0">
         <div class="flex items-center gap-3">
-          <img src="assets/tactix-logo.png" alt="TACTIX HOCKEY" class="w-12 h-12 rounded-xl object-cover border border-sky-400 shadow-lg" />
+          <img src="assets/synapz-splash-bg.png" alt="SYNAPZ HOCKEY" class="w-14 h-14 rounded-2xl object-cover border-2 border-cyan-400 shadow-[0_0_20px_rgba(0,229,255,0.45)]" />
           <div>
             <div class="flex flex-wrap items-center gap-1.5">
-              <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 text-[9px] font-black uppercase tracking-widest shadow">PLAY. LEARN. DOMINATE.</span>
-              <span class="px-2 py-0.5 rounded bg-sky-500/20 border border-sky-400/40 text-sky-300 text-[9px] font-black uppercase tracking-wider">HOCKEY IQ & STRATEGY PLATFORM</span>
-              <span id="sandboxCloudStatusBadge" class="text-[10px] font-bold text-emerald-300">🟢 Live Cloud Sync</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-cyan-400 text-slate-950 text-[10px] font-black uppercase tracking-widest shadow">PLAY. LEARN. DOMINATE.</span>
+              <span class="px-2 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-200 text-[9px] font-black uppercase tracking-wider">HOCKEY IQ &amp; STRATEGY PLATFORM</span>
+              <span id="sandboxCloudStatusBadge" class="hidden text-[10px] font-bold text-emerald-300">🟢 Live Cloud Sync</span>
             </div>
-            <h2 class="text-base sm:text-lg font-black text-white mt-0.5">TACTIX HOCKEY — Free-Download Portal & Sandbox Gate</h2>
+            <h2 class="text-lg sm:text-xl font-black tracking-tight text-white mt-0.5 synapz-chrome-heading">SYNAPZ HOCKEY — PLAY. LEARN. DOMINATE.</h2>
           </div>
         </div>
-        <div class="flex items-center gap-1.5">
-          <button id="btnOpenPricingFromLogin" type="button" class="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-300 text-[10px] font-black transition">
-            💎 4-Tier Pricing
+        <button id="btnCloseSandboxLoginModal" type="button" class="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-400/40 text-cyan-200 text-xs font-bold" title="Close">✕</button>
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- STEP 1: PORTAL SELECTION SCREEN (ONLY 3 CARDS VISIBLE ON ENTRY!)  -->
+      <!-- ================================================================= -->
+      <div id="sandboxStep1Portals" class="flex flex-col gap-3 py-1">
+        <div class="text-center mb-1">
+          <p class="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-cyan-300">Select Your Portal to Enter the Ice</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+          <!-- Card 1: 🏒 PLAYER PORTAL -->
+          <button id="btnSelectPortalPlayer" type="button" data-portal-card="player" class="synapz-portal-card rounded-2xl p-5 text-left flex flex-col justify-between gap-3 cursor-pointer group">
+            <div class="flex items-center justify-between">
+              <span class="text-3xl">🏒</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-cyan-400/20 border border-cyan-400/60 text-cyan-300 text-[10px] font-black uppercase tracking-wider">32-City Tour</span>
+            </div>
+            <div>
+              <div class="text-base sm:text-lg font-black text-white tracking-wide group-hover:text-cyan-300 transition">🏒 PLAYER PORTAL</div>
+              <p class="text-xs text-slate-300 font-semibold mt-1 leading-relaxed">Road to the Stanley Cup • Play, Learn &amp; Build Your IQ</p>
+            </div>
+            <div class="pt-2 border-t border-cyan-500/25 flex items-center justify-between text-[11px] font-black text-cyan-300">
+              <span>Select Skater Jersey</span>
+              <span>▶</span>
+            </div>
           </button>
-          <button id="btnCloseSandboxLoginModal" type="button" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold" title="Close">✕</button>
+
+          <!-- Card 2: 📋 COACH PORTAL -->
+          <button id="btnSelectPortalCoach" type="button" data-portal-card="coach" class="synapz-portal-card rounded-2xl p-5 text-left flex flex-col justify-between gap-3 cursor-pointer group">
+            <div class="flex items-center justify-between">
+              <span class="text-3xl">📋</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-cyan-400/20 border border-cyan-400/60 text-cyan-300 text-[10px] font-black uppercase tracking-wider">Team &amp; Assoc</span>
+            </div>
+            <div>
+              <div class="text-base sm:text-lg font-black text-white tracking-wide group-hover:text-cyan-300 transition">📋 COACH PORTAL</div>
+              <p class="text-xs text-slate-300 font-semibold mt-1 leading-relaxed">Team Playbooks • Weekly Line Homework • Director HQ</p>
+            </div>
+            <div class="pt-2 border-t border-cyan-500/25 flex items-center justify-between text-[11px] font-black text-cyan-300">
+              <span>Enter Team / Assoc Code</span>
+              <span>▶</span>
+            </div>
+          </button>
+
+          <!-- Card 3: 👨‍👩‍👦 FAMILY PORTAL -->
+          <button id="btnSelectPortalFamily" type="button" data-portal-card="family" class="synapz-portal-card rounded-2xl p-5 text-left flex flex-col justify-between gap-3 cursor-pointer group">
+            <div class="flex items-center justify-between">
+              <span class="text-3xl">👨‍👩‍👦</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-cyan-400/20 border border-cyan-400/60 text-cyan-300 text-[10px] font-black uppercase tracking-wider">Multi-Sibling</span>
+            </div>
+            <div>
+              <div class="text-base sm:text-lg font-black text-white tracking-wide group-hover:text-cyan-300 transition">👨‍👩‍👦 FAMILY PORTAL</div>
+              <p class="text-xs text-slate-300 font-semibold mt-1 leading-relaxed">Parent &amp; Family HQ • Multi-Sibling Stalls • Progress &amp; Plans</p>
+            </div>
+            <div class="pt-2 border-t border-cyan-500/25 flex items-center justify-between text-[11px] font-black text-cyan-300">
+              <span>Parent &amp; Family Sign-In</span>
+              <span>▶</span>
+            </div>
+          </button>
         </div>
       </div>
 
-      <!-- Free-Download Portal Architecture Switcher: Player Portal vs. Free Team/Association Portal -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 bg-slate-950 p-1.5 rounded-xl border border-slate-800 shrink-0">
-        <button id="btnSandboxPortalPlayer" type="button" class="py-2 px-3 rounded-lg bg-sky-500 text-slate-950 font-black text-xs shadow transition flex items-center justify-center gap-1.5">
-          <span>🎮</span><span>Player Portal ($4.99 Base • +$4.99/mo Pro)</span>
-        </button>
-        <button id="btnSandboxPortalTeam" type="button" class="py-2 px-3 rounded-lg text-slate-300 hover:text-white font-bold text-xs transition flex items-center justify-center gap-1.5">
-          <span>🏒</span><span>Team & Association Portal (FREE w/ Code)</span>
-        </button>
-      </div>
+      <!-- ================================================================= -->
+      <!-- STEP 2: PORTAL-SPECIFIC CREDENTIALS SCREEN (HIDDEN ON STEP 1!)    -->
+      <!-- ================================================================= -->
+      <div id="sandboxStep2Credentials" class="hidden flex-col gap-3">
+        <!-- Top Back Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-cyan-500/25">
+          <button id="btnBackToPortalStep1" type="button" class="synapz-cyan-pill px-3.5 py-1.5 rounded-xl text-xs font-black text-cyan-200 flex items-center gap-1.5">
+            <span>⬅️</span><span>Back to Portals</span>
+          </button>
+          <span id="sandboxStep2PortalBadge" class="px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/60 text-xs font-black text-cyan-200 uppercase tracking-wider">🏒 PLAYER PORTAL — Select Your Jersey</span>
+        </div>
 
-      <!-- Quick-Tap Family & Founder Login Chips (1-Tap Auto-Fills PIN 99 & Signs In!) -->
-      <div class="space-y-1.5">
-        <div class="flex flex-wrap items-center justify-between gap-1">
-          <label class="text-[10px] font-black uppercase tracking-wider text-amber-300">⚡ 1. Tap Any Chip for Instant 1-Tap Sign-In (PIN 99)</label>
-          <div class="flex items-center gap-1.5">
-            <button id="btnOpenSuccessStoriesFromLogin" type="button" class="px-2 py-1 rounded-lg bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/50 text-sky-300 text-[10px] font-black transition">
-              🌟 AAA Reviews & Clips
+        <!-- PORTAL A: 🏒 PLAYER PORTAL CREDENTIALS -->
+        <div id="portalCredsPlayer" class="flex flex-col gap-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <label class="text-xs font-black uppercase tracking-wider text-cyan-300">🏒 Select Your Skater Jersey (1-Tap or PIN 99)</label>
+            <button id="btnSandboxNewTester" type="button" class="synapz-cyan-pill px-3 py-1.5 rounded-xl text-xs font-black text-emerald-300">
+              ➕ + New Player (5-Step Wizard)
             </button>
-            <button id="btnSandboxNewTester" type="button" class="px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/50 text-emerald-300 text-[10px] font-black transition">
-              ➕ New Tester (5-Step Wizard)
+          </div>
+          <div id="sandboxLoginChipsGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <button type="button" data-login-key="miles" data-portal-group="player" class="sandbox-chip-btn synapz-cyan-frame p-3 rounded-2xl text-left transition">
+              <div class="text-sm font-black text-white">🦅 Miles #9</div>
+              <div class="text-[11px] text-cyan-300 font-bold mt-0.5">12U • Center (L) • Play ▶</div>
+            </button>
+            <button type="button" data-login-key="rhett" data-portal-group="player" class="sandbox-chip-btn synapz-cyan-frame p-3 rounded-2xl text-left transition">
+              <div class="text-sm font-black text-white">⚡ Rhett #88</div>
+              <div class="text-[11px] text-amber-300 font-bold mt-0.5">8U • Left Wing (L) • Play ▶</div>
+            </button>
+            <button type="button" data-login-key="whelan" data-portal-group="player" class="sandbox-chip-btn synapz-cyan-frame p-3 rounded-2xl text-left transition">
+              <div class="text-sm font-black text-white">🐻 Whelan #7</div>
+              <div class="text-[11px] text-purple-300 font-bold mt-0.5">8U • Right Wing (R) • Play ▶</div>
+            </button>
+            <button type="button" data-login-key="cohen" data-portal-group="player" class="sandbox-chip-btn synapz-cyan-frame p-3 rounded-2xl text-left transition">
+              <div class="text-sm font-black text-white">🏒 Cohen #14</div>
+              <div class="text-[11px] text-emerald-300 font-bold mt-0.5">10U • Center (L) • Play ▶</div>
             </button>
           </div>
         </div>
-        <div id="sandboxLoginChipsGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          <button type="button" data-login-key="dane" class="sandbox-chip-btn p-2 rounded-xl bg-sky-500/20 border-2 border-sky-400 text-left transition">
-            <div class="text-xs font-black text-white">🧑‍💼 Coach Dane</div>
-            <div class="text-[10px] text-sky-300 font-bold">#9 • 12U C • Play ▶</div>
-          </button>
-          <button type="button" data-login-key="evan" class="sandbox-chip-btn p-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition">
-            <div class="text-xs font-black text-white">🧑‍💼 Coach Evan</div>
-            <div class="text-[10px] text-amber-300 font-bold">#19 • 14U C • Play ▶</div>
-          </button>
-          <button type="button" data-login-key="miles" class="sandbox-chip-btn p-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition">
-            <div class="text-xs font-black text-white">🦅 Miles</div>
-            <div class="text-[10px] text-emerald-300 font-bold">#9 • 12U C (L) • Play ▶</div>
-          </button>
-          <button type="button" data-login-key="rhett" class="sandbox-chip-btn p-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition">
-            <div class="text-xs font-black text-white">⚡ Rhett</div>
-            <div class="text-[10px] text-amber-300 font-bold">#88 • 8U LW (L) • Play ▶</div>
-          </button>
-          <button type="button" data-login-key="whelan" class="sandbox-chip-btn p-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition">
-            <div class="text-xs font-black text-white">🐻 Whelan</div>
-            <div class="text-[10px] text-purple-300 font-bold">#7 • 8U RW (R) • Play ▶</div>
-          </button>
-          <button type="button" data-login-key="cohen" class="sandbox-chip-btn p-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition">
-            <div class="text-xs font-black text-white">🏒 Cohen</div>
-            <div class="text-[10px] text-cyan-300 font-bold">#14 • 10U C (L) • Play ▶</div>
-          </button>
-          <button type="button" data-login-key="amanda" class="sandbox-chip-btn p-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition">
-            <div class="text-xs font-black text-white">🌟 Amanda</div>
-            <div class="text-[10px] text-pink-300 font-bold">#11 • 10U LW (L) • Play ▶</div>
-          </button>
-          <button type="button" data-login-key="sal" class="sandbox-chip-btn p-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition">
-            <div class="text-xs font-black text-white">🔥 Sal</div>
-            <div class="text-[10px] text-orange-300 font-bold">#22 • 10U RW (R) • Play ▶</div>
-          </button>
-        </div>
-      </div>
 
-      <!-- 🤝 Partner Associations & AAA Success Stories Crest Banner (Partner & Save 50% on Coach Accounts!) -->
-      <div id="partnerAssociationBanner" class="bg-gradient-to-r from-slate-950 via-sky-950/60 to-slate-950 border border-amber-400/50 rounded-xl p-2.5 flex flex-col gap-1.5">
-        <div class="flex flex-wrap items-center justify-between gap-1">
-          <span class="text-[10px] font-black uppercase tracking-wider text-amber-300">🤝 Partner Associations & AAA Teams • Partner & Save 50% on Coach Accounts ($49.99/yr)</span>
-          <button id="btnBannerOpenSuccessModal" type="button" class="text-[10px] font-black text-sky-300 hover:text-sky-200 underline">
-            Watch Team iPad Clips & Reviews ↗
-          </button>
-        </div>
-        <div class="grid grid-cols-3 gap-1.5 text-[10px]">
-          <button type="button" data-assoc-code="ASSOC-MINOT" class="partner-crest-btn p-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-sky-400/40 flex items-center gap-1.5 text-left transition" title="Load Minot 3v3 Wolves Association Code (ASSOC-MINOT)">
-            <span class="text-base">🐺</span>
-            <div class="min-w-0">
-              <div class="font-black text-white truncate">Minot 3v3 Wolves</div>
-              <div class="text-[9px] text-emerald-300 font-bold truncate">Code: ASSOC-MINOT</div>
-            </div>
-          </button>
-          <button type="button" data-assoc-code="ASSOC-FOOTHILLS" class="partner-crest-btn p-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-amber-400/40 flex items-center gap-1.5 text-left transition" title="Load Foothills Flyers Association Code (ASSOC-FOOTHILLS)">
-            <span class="text-base">🦅</span>
-            <div class="min-w-0">
-              <div class="font-black text-white truncate">Foothills Flyers</div>
-              <div class="text-[9px] text-amber-300 font-bold truncate">Code: ASSOC-FOOTHILLS</div>
-            </div>
-          </button>
-          <button type="button" data-assoc-code="ASSOC-LIGHTNING" class="partner-crest-btn p-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-purple-400/40 flex items-center gap-1.5 text-left transition" title="Load Lightning AAA Association Code (ASSOC-LIGHTNING)">
-            <span class="text-base">⚡</span>
-            <div class="min-w-0">
-              <div class="font-black text-white truncate">Lightning AAA</div>
-              <div class="text-[9px] text-purple-300 font-bold truncate">Code: ASSOC-LIGHTNING</div>
-            </div>
-          </button>
-        </div>
-      </div>
-
-      <div id="sandboxLoginFeedbackToast" class="hidden text-xs font-extrabold px-3 py-2 rounded-xl bg-emerald-500/15 border border-emerald-400/40 text-emerald-300"></div>
-
-      <!-- Sticky Bottom Action Bar (PIN Input, Team/Association Code Sync & Sign-In Button Always Visible!) -->
-      <div class="sticky-modal-footer rounded-xl border border-slate-800 p-3 space-y-2.5 shrink-0">
-        <div class="grid grid-cols-2 sm:grid-cols-12 gap-2 items-end">
-          <div class="col-span-1 sm:col-span-3">
-            <label class="text-[10px] font-bold uppercase text-slate-400 block mb-1">Login Key</label>
-            <input id="sandboxSelectedKeyInput" type="text" value="dane" readonly class="w-full px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-black text-sky-300" />
-          </div>
-          <div class="col-span-1 sm:col-span-2">
-            <label class="text-[10px] font-bold uppercase text-slate-400 block mb-1">PIN (99)</label>
-            <input id="sandboxPinInput" type="password" value="99" placeholder="99" class="w-full px-2.5 py-2 rounded-xl bg-slate-900 border border-amber-400/50 text-xs font-black text-amber-300 text-center" />
-          </div>
-          <div class="col-span-2 sm:col-span-7">
-            <label class="text-[10px] font-bold uppercase text-cyan-300 block mb-1">Free Team / Association Code (PUCK99 • ASSOC-MINOT • ASSOC-FOOTHILLS)</label>
-            <div class="flex gap-1.5">
-              <input id="sandboxTeamCodeInput" type="text" value="PUCK99" placeholder="PUCK99 or ASSOC-MINOT" class="w-full px-2.5 py-2 rounded-xl bg-slate-900 border border-cyan-500/40 text-xs font-black text-cyan-300 uppercase" />
-              <button id="btnSandboxLoadTeamCode" type="button" class="px-3 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs shrink-0 transition">
+        <!-- PORTAL B: 📋 COACH PORTAL CREDENTIALS -->
+        <div id="portalCredsCoach" class="hidden flex-col gap-3">
+          <div class="synapz-cyan-frame rounded-2xl p-3.5 space-y-2.5">
+            <label class="text-xs font-black uppercase tracking-wider text-cyan-300 block">📋 Enter Team or Partner Association Code</label>
+            <div class="flex gap-2">
+              <input id="sandboxTeamCodeInput" type="text" value="PUCK99" placeholder="PUCK99, ASSOC-MINOT, ASSOC-FOOTHILLS, ASSOC-LIGHTNING" class="w-full px-3 py-2.5 rounded-xl bg-slate-950 border border-cyan-400/60 text-sm font-black text-cyan-300 uppercase" />
+              <button id="btnSandboxLoadTeamCode" type="button" class="synapz-cta-btn px-4 py-2.5 rounded-xl text-xs shrink-0">
                 Sync Code
               </button>
             </div>
+            <div id="partnerAssociationBanner" class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+              <button type="button" data-assoc-code="PUCK99" class="partner-crest-btn p-2 rounded-xl bg-slate-950/90 hover:bg-slate-800 border border-cyan-400/50 text-left transition">
+                <div class="text-xs font-black text-white">🏒 Team PUCK99</div>
+                <div class="text-[10px] text-cyan-300 font-bold">Minot Wolves</div>
+              </button>
+              <button type="button" data-assoc-code="ASSOC-MINOT" class="partner-crest-btn p-2 rounded-xl bg-slate-950/90 hover:bg-slate-800 border border-cyan-400/50 text-left transition">
+                <div class="text-xs font-black text-white">🐺 ASSOC-MINOT</div>
+                <div class="text-[10px] text-emerald-300 font-bold">Minot 3v3 Wolves</div>
+              </button>
+              <button type="button" data-assoc-code="ASSOC-FOOTHILLS" class="partner-crest-btn p-2 rounded-xl bg-slate-950/90 hover:bg-slate-800 border border-cyan-400/50 text-left transition">
+                <div class="text-xs font-black text-white">🦅 ASSOC-FOOTHILLS</div>
+                <div class="text-[10px] text-amber-300 font-bold">Foothills Flyers</div>
+              </button>
+              <button type="button" data-assoc-code="ASSOC-LIGHTNING" class="partner-crest-btn p-2 rounded-xl bg-slate-950/90 hover:bg-slate-800 border border-cyan-400/50 text-left transition">
+                <div class="text-xs font-black text-white">⚡ ASSOC-LIGHTNING</div>
+                <div class="text-[10px] text-purple-300 font-bold">Lightning AAA</div>
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <button id="btnCoachPortalDirectorSignIn" type="button" class="synapz-cta-btn py-3.5 px-4 rounded-2xl text-xs sm:text-sm font-black flex items-center justify-center gap-2 shadow-xl">
+              <span>🧑‍💼</span><span>Coach / Director Sign-In (4-Tab HQ) ▶</span>
+            </button>
+            <button id="btnCoachPortalPlayerSignIn" type="button" class="synapz-cyan-pill py-3.5 px-4 rounded-2xl text-xs sm:text-sm font-black text-cyan-200 flex items-center justify-center gap-2 shadow-xl">
+              <span>🏒</span><span>Team Roster Player Sign-In (Homework Inbox) ▶</span>
+            </button>
           </div>
         </div>
 
-        <div class="flex flex-wrap items-center justify-between gap-2 pt-1.5 border-t border-slate-800/80">
-          <div class="flex flex-wrap items-center gap-1.5">
-            <button id="btnAgentAutoLoginBot" type="button" class="px-3 py-2 rounded-xl bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-400/50 text-indigo-200 font-extrabold text-xs flex items-center gap-1.5 transition" title="Autonomous login for Playwright / Antigravity Playtest Agent">
-              <span>🤖</span><span>Agent Auto-Login (playtest-bot)</span>
+        <!-- PORTAL C: 👨‍👩‍👦 FAMILY PORTAL CREDENTIALS -->
+        <div id="portalCredsFamily" class="hidden flex-col gap-3">
+          <label class="text-xs font-black uppercase tracking-wider text-cyan-300">👨‍👩‍👦 Select Parent / Family Account (PIN 99)</label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <button type="button" data-login-key="dane" data-portal-group="family" class="sandbox-chip-btn synapz-cyan-frame p-3 rounded-2xl text-left transition">
+              <div class="text-sm font-black text-white">🧑‍💼 Dane</div>
+              <div class="text-[11px] text-cyan-300 font-bold mt-0.5">Parent &amp; Founder HQ ▶</div>
             </button>
-            <button id="btnCopyLiveTeamShareLink" type="button" class="px-3 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/50 text-cyan-200 font-extrabold text-xs flex items-center gap-1.5 transition" title="Copy 1-Click Shareable Team/Family Link with Active Team Code">
-              <span>📋</span><span>Share Live Team Link</span>
+            <button type="button" data-login-key="evan" data-portal-group="family" class="sandbox-chip-btn synapz-cyan-frame p-3 rounded-2xl text-left transition">
+              <div class="text-sm font-black text-white">🧑‍💼 Evan</div>
+              <div class="text-[11px] text-amber-300 font-bold mt-0.5">Parent &amp; Founder HQ ▶</div>
+            </button>
+            <button type="button" data-login-key="amanda" data-portal-group="family" class="sandbox-chip-btn synapz-cyan-frame p-3 rounded-2xl text-left transition">
+              <div class="text-sm font-black text-white">🌟 Amanda</div>
+              <div class="text-[11px] text-pink-300 font-bold mt-0.5">Family HQ &amp; Stalls ▶</div>
+            </button>
+            <button type="button" data-login-key="sal" data-portal-group="family" class="sandbox-chip-btn synapz-cyan-frame p-3 rounded-2xl text-left transition">
+              <div class="text-sm font-black text-white">🔥 Sal</div>
+              <div class="text-[11px] text-orange-300 font-bold mt-0.5">Family HQ &amp; Stalls ▶</div>
             </button>
           </div>
-          <button id="btnSandboxSubmitLogin" type="button" class="flex-1 sm:flex-initial px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 via-sky-400 to-blue-500 hover:from-emerald-300 hover:to-sky-300 text-slate-950 font-black text-xs sm:text-sm shadow-xl transition">
-            🔓 Sign In & Drop the Puck ▶
-          </button>
+        </div>
+
+        <div id="sandboxLoginFeedbackToast" class="hidden text-xs font-extrabold px-3 py-2 rounded-xl bg-emerald-500/15 border border-emerald-400/40 text-emerald-300"></div>
+
+        <!-- Shared Credentials Footer Bar (Shown on Step 2) -->
+        <div class="synapz-cyan-frame rounded-2xl p-3 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <div>
+              <label class="text-[10px] font-bold uppercase text-slate-400 block mb-0.5">Active Key</label>
+              <input id="sandboxSelectedKeyInput" type="text" value="miles" readonly class="w-28 px-2.5 py-1.5 rounded-xl bg-slate-950 border border-cyan-500/40 text-xs font-black text-cyan-300" />
+            </div>
+            <div>
+              <label class="text-[10px] font-bold uppercase text-slate-400 block mb-0.5">PIN (99)</label>
+              <input id="sandboxPinInput" type="password" value="99" placeholder="99" class="w-20 px-2.5 py-1.5 rounded-xl bg-slate-950 border border-cyan-400/60 text-xs font-black text-cyan-300 text-center" />
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button id="btnSandboxSubmitLogin" type="button" class="synapz-cta-btn px-6 py-2.5 rounded-xl text-xs sm:text-sm font-black shadow-xl">
+              🔓 Sign In &amp; Enter Portal ▶
+            </button>
+          </div>
+        </div>
+
+        <!-- Hidden Legacy Buttons Preserved for Zero-Error Script Compatibility -->
+        <div class="hidden">
+          <button id="btnSandboxPortalPlayer" type="button"></button>
+          <button id="btnSandboxPortalTeam" type="button"></button>
+          <button id="btnOpenPricingFromLogin" type="button"></button>
+          <button id="btnOpenSuccessStoriesFromLogin" type="button"></button>
+          <button id="btnBannerOpenSuccessModal" type="button"></button>
+          <button id="btnAgentAutoLoginBot" type="button"></button>
+          <button id="btnCopyLiveTeamShareLink" type="button"></button>
         </div>
       </div>
     </div>
@@ -3162,20 +3365,20 @@
     <div class="bg-slate-900 border-2 border-amber-400/80 rounded-2xl max-w-4xl w-full p-4 sm:p-5 shadow-2xl scrollable-modal-card flex flex-col justify-between gap-3">
       <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
         <div class="flex items-center gap-3">
-          <img src="assets/tactix-logo.png" alt="TACTIX HOCKEY" class="w-11 h-11 rounded-xl object-cover border border-amber-400 shadow" />
+          <img src="assets/tactix-logo.png" alt="SYNAPZ HOCKEY" class="w-11 h-11 rounded-xl object-cover border border-amber-400 shadow" />
           <div>
             <div class="flex items-center gap-1.5">
               <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 text-[9px] font-black uppercase tracking-widest">PLAY. LEARN. DOMINATE.</span>
               <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[9px] font-black uppercase">Free-Download App Store Architecture</span>
             </div>
-            <h3 class="text-base sm:text-lg font-black text-white mt-0.5">TACTIX HOCKEY — Portal Gate & 4-Tier Membership Plans</h3>
+            <h3 class="text-base sm:text-lg font-black text-white mt-0.5">SYNAPZ HOCKEY — Portal Gate & 4-Tier Membership Plans</h3>
           </div>
         </div>
         <button id="btnClosePricingModal" type="button" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold">✕</button>
       </div>
 
       <p class="text-xs text-slate-300 leading-relaxed bg-slate-950 border border-slate-800 rounded-xl p-3">
-        <strong>How the Free Download Works:</strong> Every player, parent, or coach downloads <strong>TACTIX HOCKEY</strong> for <strong>$0.00 (Free)</strong> and chooses their portal at sign-in—enter a coach/association code for free Team Portal play, or unlock the full 32-Team Road to the Cup and AI Systems Lab!
+        <strong>How the Free Download Works:</strong> Every player, parent, or coach downloads <strong>SYNAPZ HOCKEY</strong> for <strong>$0.00 (Free)</strong> and chooses their portal at sign-in—enter a coach/association code for free Team Portal play, or unlock the full 32-Team Road to the Cup and AI Systems Lab!
       </p>
 
       <!-- 4-Tier Pricing Grid -->
@@ -3216,14 +3419,14 @@
           </button>
         </div>
 
-        <!-- Tier 3: Tactix Pro Subscription ($4.99/mo or $49.99/yr) -->
+        <!-- Tier 3: Synapz Pro Subscription ($4.99/mo or $49.99/yr) -->
         <div class="bg-gradient-to-b from-amber-950/40 to-slate-950 border-2 border-amber-400 rounded-2xl p-3.5 flex flex-col justify-between gap-2.5 shadow-lg">
           <div class="space-y-1.5">
             <div class="flex items-center justify-between">
               <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 text-[9px] font-black uppercase">Tier 3 • Most Popular</span>
               <span class="text-[9px] font-black text-emerald-300">Save $10/yr!</span>
             </div>
-            <h4 class="text-sm font-black text-white">⚡ Tactix Pro Subscription</h4>
+            <h4 class="text-sm font-black text-white">⚡ Synapz Pro Subscription</h4>
             <div class="text-base font-black text-amber-300">$4.99/mo <span class="text-xs text-emerald-300">or $49.99/yr</span></div>
             <ul class="text-[11px] text-slate-200 space-y-1 pt-1">
               <li>✅ <strong>Interactive 6-Slice Pie Chart</strong> Drill-Down by Concept</li>
@@ -3233,7 +3436,7 @@
             </ul>
           </div>
           <button type="button" data-select-plan="tactix_pro" class="btn-activate-plan w-full py-2 px-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-black text-xs shadow transition">
-            Unlock Tactix Pro ▶
+            Unlock Synapz Pro ▶
           </button>
         </div>
 
@@ -3262,7 +3465,7 @@
           🤝 View Partner Teams, AAA Reviews & iPad Training Clips ▶
         </button>
         <button id="btnClosePricingModalBottom" type="button" class="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs transition">
-          Back to TACTIX HOCKEY
+          Back to SYNAPZ HOCKEY
         </button>
       </div>
     </div>
@@ -3684,38 +3887,38 @@
     // Each city requires 80% (440 / 550 IQ Points) and teaches a progressive concept!
     // =========================================================================
     const NHL_CITIES = [
-      { id: 'sanjose',      name: 'San Jose',      team: 'Sharks',            x: 108, y: 306, focus: 'basics',     minIqPct: 80, labelDx: -12, labelDy: 4,   labelAnchor: 'end' },
-      { id: 'anaheim',      name: 'Anaheim',       team: 'Ducks',             x: 142, y: 374, focus: 'basics',     minIqPct: 80, labelDx: 12,  labelDy: 14,  labelAnchor: 'start' },
-      { id: 'losangeles',   name: 'Los Angeles',   team: 'Kings',             x: 120, y: 344, focus: 'spacing',    minIqPct: 80, labelDx: -12, labelDy: 4,   labelAnchor: 'end' },
-      { id: 'seattle',      name: 'Seattle',       team: 'Kraken',            x: 132, y: 205, focus: 'spacing',    minIqPct: 80, labelDx: -12, labelDy: 4,   labelAnchor: 'end' },
-      { id: 'vancouver',    name: 'Vancouver',     team: 'Canucks',           x: 142, y: 170, focus: 'house',      minIqPct: 80, labelDx: -12, labelDy: -6,  labelAnchor: 'end' },
-      { id: 'calgary',      name: 'Calgary',       team: 'Flames',            x: 235, y: 162, focus: 'house',      minIqPct: 80, labelDx: 0,   labelDy: 18,  labelAnchor: 'middle' },
-      { id: 'edmonton',     name: 'Edmonton',      team: 'Oilers',            x: 252, y: 125, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: -13, labelAnchor: 'middle' },
-      { id: 'vegas',        name: 'Las Vegas',     team: 'Golden Knights',    x: 188, y: 332, focus: 'breakout',   minIqPct: 80, labelDx: 12,  labelDy: 5,   labelAnchor: 'start' },
-      { id: 'utah',         name: 'Salt Lake',     team: 'Utah HC',           x: 245, y: 282, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: -13, labelAnchor: 'middle' },
-      { id: 'denver',       name: 'Denver',        team: 'Avalanche',         x: 332, y: 298, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: 18,  labelAnchor: 'middle' },
-      { id: 'dallas',       name: 'Dallas',        team: 'Stars',             x: 445, y: 398, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: 18,  labelAnchor: 'middle' },
-      { id: 'winnipeg',     name: 'Winnipeg',      team: 'Jets',              x: 448, y: 168, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: -13, labelAnchor: 'middle' },
-      { id: 'stpaul',       name: 'St. Paul',      team: 'Wild',              x: 505, y: 232, focus: 'rush',       minIqPct: 80, labelDx: -12, labelDy: 4,   labelAnchor: 'end' },
-      { id: 'stlouis',      name: 'St. Louis',     team: 'Blues',             x: 542, y: 312, focus: 'rush',       minIqPct: 80, labelDx: -12, labelDy: 5,   labelAnchor: 'end' },
-      { id: 'chicago',      name: 'Chicago',       team: 'Blackhawks',        x: 578, y: 268, focus: 'spacing',    minIqPct: 80, labelDx: -12, labelDy: 4,   labelAnchor: 'end' },
-      { id: 'nashville',    name: 'Nashville',     team: 'Predators',         x: 602, y: 348, focus: 'house',      minIqPct: 80, labelDx: 0,   labelDy: 18,  labelAnchor: 'middle' },
-      { id: 'detroit',      name: 'Detroit',       team: 'Red Wings',         x: 642, y: 258, focus: 'forecheck',  minIqPct: 80, labelDx: -10, labelDy: -11, labelAnchor: 'end' },
-      { id: 'columbus',     name: 'Columbus',      team: 'Blue Jackets',      x: 652, y: 294, focus: 'forecheck',  minIqPct: 80, labelDx: -12, labelDy: 6,   labelAnchor: 'end' },
-      { id: 'toronto',      name: 'Toronto',       team: 'Maple Leafs',       x: 690, y: 228, focus: 'forecheck',  minIqPct: 80, labelDx: -12, labelDy: -6,  labelAnchor: 'end' },
-      { id: 'ottawa',       name: 'Ottawa',        team: 'Senators',          x: 730, y: 198, focus: 'forecheck',  minIqPct: 80, labelDx: -10, labelDy: -10, labelAnchor: 'end' },
-      { id: 'montreal',     name: 'Montreal',      team: 'Canadiens',         x: 772, y: 182, focus: 'house',      minIqPct: 80, labelDx: 10,  labelDy: -10, labelAnchor: 'start' },
-      { id: 'boston',       name: 'Boston',        team: 'Bruins',            x: 846, y: 220, focus: 'breakout',   minIqPct: 80, labelDx: 12,  labelDy: -4,  labelAnchor: 'start' },
-      { id: 'buffalo',      name: 'Buffalo',       team: 'Sabres',            x: 714, y: 248, focus: 'breakout',   minIqPct: 80, labelDx: -12, labelDy: 4,   labelAnchor: 'end' },
-      { id: 'nyrangers',    name: 'New York',      team: 'Rangers',           x: 812, y: 248, focus: 'transition', minIqPct: 80, labelDx: 12,  labelDy: -6,  labelAnchor: 'start' },
-      { id: 'nyislanders',  name: 'Long Island',   team: 'Islanders',         x: 836, y: 264, focus: 'transition', minIqPct: 80, labelDx: 12,  labelDy: 5,   labelAnchor: 'start' },
-      { id: 'newjersey',    name: 'New Jersey',    team: 'Devils',            x: 794, y: 272, focus: 'transition', minIqPct: 80, labelDx: 14,  labelDy: 12,  labelAnchor: 'start' },
-      { id: 'philadelphia', name: 'Philadelphia',  team: 'Flyers',            x: 774, y: 292, focus: 'transition', minIqPct: 80, labelDx: 14,  labelDy: 10,  labelAnchor: 'start' },
-      { id: 'pittsburgh',   name: 'Pittsburgh',    team: 'Penguins',          x: 714, y: 284, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: -11, labelAnchor: 'middle' },
-      { id: 'washington',   name: 'Washington',    team: 'Capitals',          x: 754, y: 318, focus: 'spacing',    minIqPct: 80, labelDx: -12, labelDy: 6,   labelAnchor: 'end' },
-      { id: 'carolina',     name: 'Raleigh',       team: 'Hurricanes',        x: 748, y: 356, focus: 'breakout',   minIqPct: 80, labelDx: 12,  labelDy: 5,   labelAnchor: 'start' },
-      { id: 'tampabay',     name: 'Tampa Bay',     team: 'Lightning',         x: 715, y: 432, focus: 'rush',       minIqPct: 80, labelDx: -12, labelDy: 4,   labelAnchor: 'end' },
-      { id: 'florida',      name: 'Florida 🏆',    team: 'Stanley Cup Final', x: 748, y: 458, focus: 'all',        minIqPct: 80, labelDx: 12,  labelDy: 5,   labelAnchor: 'start' }
+      { id: 'sanjose',      name: 'San Jose',      team: 'Sharks',            x: 84,  y: 285, focus: 'basics',     minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'anaheim',      name: 'Anaheim',       team: 'Ducks',             x: 136, y: 416, focus: 'basics',     minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'losangeles',   name: 'Los Angeles',   team: 'Kings',             x: 96,  y: 356, focus: 'spacing',    minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'seattle',      name: 'Seattle',       team: 'Kraken',            x: 112, y: 205, focus: 'spacing',    minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'vancouver',    name: 'Vancouver',     team: 'Canucks',           x: 146, y: 138, focus: 'house',      minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'calgary',      name: 'Calgary',       team: 'Flames',            x: 242, y: 168, focus: 'house',      minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'edmonton',     name: 'Edmonton',      team: 'Oilers',            x: 278, y: 105, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'vegas',        name: 'Las Vegas',     team: 'Golden Knights',    x: 196, y: 342, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'utah',         name: 'Salt Lake',     team: 'Utah HC',           x: 256, y: 274, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'denver',       name: 'Denver',        team: 'Avalanche',         x: 346, y: 298, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'dallas',       name: 'Dallas',        team: 'Stars',             x: 432, y: 418, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'winnipeg',     name: 'Winnipeg',      team: 'Jets',              x: 428, y: 148, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'stpaul',       name: 'St. Paul',      team: 'Wild',              x: 492, y: 218, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'stlouis',      name: 'St. Louis',     team: 'Blues',             x: 522, y: 326, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'chicago',      name: 'Chicago',       team: 'Blackhawks',        x: 568, y: 254, focus: 'spacing',    minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'nashville',    name: 'Nashville',     team: 'Predators',         x: 594, y: 374, focus: 'house',      minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'detroit',      name: 'Detroit',       team: 'Red Wings',         x: 636, y: 226, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'columbus',     name: 'Columbus',      team: 'Blue Jackets',      x: 648, y: 304, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'toronto',      name: 'Toronto',       team: 'Maple Leafs',       x: 696, y: 184, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'ottawa',       name: 'Ottawa',        team: 'Senators',          x: 748, y: 136, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'montreal',     name: 'Montreal',      team: 'Canadiens',         x: 828, y: 122, focus: 'house',      minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'boston',       name: 'Boston',        team: 'Bruins',            x: 916, y: 178, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'buffalo',      name: 'Buffalo',       team: 'Sabres',            x: 738, y: 222, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'nyrangers',    name: 'New York',      team: 'Rangers',           x: 842, y: 224, focus: 'transition', minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'nyislanders',  name: 'Long Island',   team: 'Islanders',         x: 924, y: 248, focus: 'transition', minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'newjersey',    name: 'New Jersey',    team: 'Devils',            x: 856, y: 284, focus: 'transition', minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'philadelphia', name: 'Philadelphia',  team: 'Flyers',            x: 786, y: 318, focus: 'transition', minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'pittsburgh',   name: 'Pittsburgh',    team: 'Penguins',          x: 718, y: 274, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'washington',   name: 'Washington',    team: 'Capitals',          x: 742, y: 358, focus: 'spacing',    minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'carolina',     name: 'Raleigh',       team: 'Hurricanes',        x: 792, y: 404, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'tampabay',     name: 'Tampa Bay',     team: 'Lightning',         x: 696, y: 454, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'florida',      name: 'Florida 🏆',    team: 'Stanley Cup Final', x: 788, y: 478, focus: 'all',        minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' }
     ];
 
     const AVATARS = ['🦅', '🏒', '🛡️', '🥅', '⚡', '🐻', '🔥', '❄️'];
@@ -6122,7 +6325,7 @@
 
       // Registration Mode & Team Program / Family Group State
       accountType: 'team', // 'individual' | 'family' | 'team'
-      teamName: 'PuckSense Select 3v3',
+      teamName: 'Synapz Hockey Select 3v3',
       coachName: 'Coach Dane & Coach Evan',
       teamCode: 'PUCK99',
       showTeamOnMap: true,
@@ -6449,7 +6652,7 @@
           const rows = await res.json();
           if (Array.isArray(rows) && rows.length > 0) {
             const teamRow = rows[0];
-            state.teamName = teamRow.team_name || 'PuckSense Select 3v3';
+            state.teamName = teamRow.team_name || 'Synapz Hockey Select 3v3';
             state.teamCode = teamRow.team_code || 'PUCK99';
             state.coachName = teamRow.coach_name || 'Coach Dane & Coach Evan';
             if (typeof teamRow.coop_trophy_points === 'number') {
@@ -6522,7 +6725,7 @@
           }
         };
         const payload = {
-          team_name: state.teamName || 'PuckSense Select 3v3',
+          team_name: state.teamName || 'Synapz Hockey Select 3v3',
           team_code: code,
           age_division: '10U',
           coach_name: state.coachName || 'Coach Dane & Coach Evan',
@@ -6948,7 +7151,7 @@
     window.SUPABASE_KEY = SUPABASE_KEY;
 
     // =========================================================================
-    // TACTIX HOCKEY UPGRADE 1–4:
+    // SYNAPZ HOCKEY UPGRADE 1–4:
     // 1. Mathseeds-Style 5-Tier Progression (Rec -> B -> A -> AA -> AAA)
     // 2. USA Hockey ADM Age Guardrails (Strict 8U 5v5, Zero Offsides/PK/3v3, <=14-Word Prompts)
     // 3. Coach Bob ExploreLearning Reflex-Style Auto-Hiding Pop-Up (#coachBobPopup)
@@ -12133,20 +12336,59 @@
       return g;
     }
 
+    function build3dPuckMarkerSvg(prof, cx, cy) {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('id', 'active3dPuckMarker');
+      g.setAttribute('class', 'synapz-3d-puck-marker');
+      const jNum = prof.jerseyNumber || (prof.id === 'rhett' ? 88 : (prof.id === 'whelan' ? 7 : (prof.id === 'cohen' ? 14 : 9)));
+      g.innerHTML = `
+        <!-- Pulsing Neural Outer Ring -->
+        <circle cx="${cx}" cy="${cy}" r="18" fill="rgba(0,229,255,0.14)" stroke="#00e5ff" stroke-width="1.6" stroke-dasharray="4 3" />
+        <!-- 3D Hockey Puck Base Cylinder -->
+        <ellipse cx="${cx}" cy="${cy + 4.5}" rx="12.5" ry="6.5" fill="#020617" stroke="#00e5ff" stroke-width="1.5" />
+        <rect x="${cx - 12.5}" y="${cy - 2}" width="25" height="6.5" fill="#091322" />
+        <!-- 3D Hockey Puck Top Bevel -->
+        <ellipse cx="${cx}" cy="${cy - 2}" rx="12.5" ry="6.5" fill="#0d1829" stroke="#00e5ff" stroke-width="2" />
+        <ellipse cx="${cx}" cy="${cy - 2}" rx="8.5" ry="4" fill="rgba(0,229,255,0.22)" stroke="#38bdf8" stroke-width="0.9" />
+        <text x="${cx}" y="${cy + 0.5}" fill="#f8fafc" font-size="7.2" font-weight="900" text-anchor="middle">#${jNum}</text>
+      `;
+      return g;
+    }
+
     function renderNhlTourMap() {
       const routesGroup = document.getElementById('mapRoutesGroup');
+      const gatesGroup = document.getElementById('mapMilestoneGatesGroup');
       const citiesGroup = document.getElementById('mapCitiesGroup');
       const teamAvatarsGroup = document.getElementById('mapTeamAvatarsGroup');
       const cardsStrip = document.getElementById('cityCardsStrip');
-      routesGroup.innerHTML = '';
-      citiesGroup.innerHTML = '';
+      if (routesGroup) routesGroup.innerHTML = '';
+      if (gatesGroup) gatesGroup.innerHTML = '';
+      if (citiesGroup) citiesGroup.innerHTML = '';
       if (teamAvatarsGroup) teamAvatarsGroup.innerHTML = '';
-      cardsStrip.innerHTML = '';
+      if (cardsStrip) cardsStrip.innerHTML = '';
 
       const prof = getActiveProfile();
       const maxUnlockedIdx = Math.max(state.currentCityIdx || 0, prof.unlockedCityIdx || 0);
       renderMathseedsTierTrackBar();
 
+      // Update De-Cluttered Map Header Active Player Badge & Single Bottom Launch Bar
+      const activeTier = getSkillTierForCityStop(state.currentCityIdx || 0);
+      const currentCity = NHL_CITIES[state.currentCityIdx || 0] || NHL_CITIES[0];
+      const jNum = prof.jerseyNumber || (prof.id === 'rhett' ? 88 : (prof.id === 'whelan' ? 7 : (prof.id === 'cohen' ? 14 : 9)));
+      const mapBadgeText = document.getElementById('synapzMapBadgeText');
+      if (mapBadgeText) {
+        mapBadgeText.textContent = `${prof.name} #${jNum} • ${prof.ageGroup || '12U'} • ${activeTier.code} Tier`;
+      }
+      const mapBadgeIq = document.getElementById('synapzMapBadgeIq');
+      if (mapBadgeIq) {
+        mapBadgeIq.textContent = `${prof.iqScore || state.iqScore || 100} IQ • $${prof.puckBucks || state.puckBucks || 250}`;
+      }
+      const playCityLbl = document.getElementById('btnPlayCurrentCityLabel');
+      if (playCityLbl && currentCity) {
+        playCityLbl.textContent = `DROP THE PUCK — STOP #${(state.currentCityIdx || 0) + 1}: ${currentCity.name.toUpperCase()} (${currentCity.team.toUpperCase()})`;
+      }
+
+      // 1. Stepping-Stone Neural-Ice Trail across all 32 NHL Stops
       for (let i = 0; i < NHL_CITIES.length - 1; i++) {
         const c1 = NHL_CITIES[i];
         const c2 = NHL_CITIES[i + 1];
@@ -12156,11 +12398,65 @@
         line.setAttribute('y1', c1.y);
         line.setAttribute('x2', c2.x);
         line.setAttribute('y2', c2.y);
-        line.setAttribute('stroke', unlocked ? '#10b981' : '#334155');
-        line.setAttribute('stroke-width', unlocked ? '3.2' : '1.8');
-        if (!unlocked) line.setAttribute('stroke-dasharray', '4 4');
+        line.setAttribute('stroke', unlocked ? '#00e5ff' : 'rgba(56,189,248,0.26)');
+        line.setAttribute('stroke-width', unlocked ? '3.4' : '1.8');
+        if (unlocked) line.setAttribute('filter', 'url(#synapzCyanGlow)');
+        if (!unlocked) line.setAttribute('stroke-dasharray', '5 5');
         routesGroup.appendChild(line);
       }
+
+      // 2. Glowing Milestone Gates (Rec -> B -> A -> AA -> AAA -> 🏆 Stanley Cup)
+      const milestoneGates = [
+        { idx: 0, label: 'REC GATE', color: '#38bdf8' },
+        { idx: 6, label: 'B TIER GATE', color: '#00e5ff' },
+        { idx: 13, label: 'A TIER GATE', color: '#22d3ee' },
+        { idx: 20, label: 'AA TIER GATE', color: '#a855f7' },
+        { idx: 26, label: 'AAA GATE', color: '#f59e0b' },
+        { idx: 31, label: '🏆 STANLEY CUP', color: '#facc15' }
+      ];
+      if (gatesGroup) {
+        milestoneGates.forEach(mg => {
+          const mc = NHL_CITIES[mg.idx];
+          if (!mc) return;
+          const gateG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+          const gw = mg.label.length * 5.2 + 12;
+          const gx = Math.max(44, Math.min(956, mc.x));
+          const gy = Math.max(24, mc.y - 24);
+          gateG.innerHTML = `
+            <circle cx="${mc.x}" cy="${mc.y}" r="12" fill="none" stroke="${mg.color}" stroke-width="1.4" stroke-dasharray="3 2" opacity="0.85" />
+            <rect x="${gx - gw / 2}" y="${gy - 9}" width="${gw}" height="12" rx="6" fill="#060b14" stroke="${mg.color}" stroke-width="1.2" />
+            <text x="${gx}" y="${gy - 0.5}" fill="${mg.color}" font-size="6.8" font-weight="900" text-anchor="middle" letter-spacing="0.6">${mg.label}</text>
+          `;
+          gatesGroup.appendChild(gateG);
+        });
+      }
+
+      // 3. Deterministic Zero-Overlap City Label Solver + Stepping Stones
+      const placedBoxes = [];
+      // Reserve milestone gate boxes so city labels never collide with gate badges either
+      milestoneGates.forEach(mg => {
+        const mc = NHL_CITIES[mg.idx];
+        if (!mc) return;
+        const gw = mg.label.length * 5.2 + 12;
+        const gx = Math.max(44, Math.min(956, mc.x));
+        const gy = Math.max(24, mc.y - 24);
+        placedBoxes.push({ x1: gx - gw / 2 - 2, y1: gy - 10, x2: gx + gw / 2 + 2, y2: gy + 4 });
+      });
+
+      const candidateOffsets = [
+        { dx: 0, dy: 16 },
+        { dx: 0, dy: -14 },
+        { dx: 34, dy: 4 },
+        { dx: -34, dy: 4 },
+        { dx: 28, dy: 16 },
+        { dx: -28, dy: 16 },
+        { dx: 28, dy: -14 },
+        { dx: -28, dy: -14 },
+        { dx: 0, dy: 27 },
+        { dx: 0, dy: -25 },
+        { dx: 44, dy: 12 },
+        { dx: -44, dy: 12 }
+      ];
 
       NHL_CITIES.forEach((city, idx) => {
         const isCompleted = idx < maxUnlockedIdx && idx !== state.currentCityIdx;
@@ -12173,28 +12469,68 @@
         const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         circle.setAttribute('cx', city.x);
         circle.setAttribute('cy', city.y);
-        circle.setAttribute('r', isCurrent ? '9' : '6');
-        circle.setAttribute('fill', isCurrent ? '#f59e0b' : (isCompleted ? '#10b981' : '#1e293b'));
-        circle.setAttribute('stroke', '#ffffff');
-        circle.setAttribute('stroke-width', '2');
+        circle.setAttribute('r', isCurrent ? '10' : '6');
+        circle.setAttribute('fill', isCurrent ? '#00e5ff' : (isCompleted ? '#10b981' : '#0d1829'));
+        circle.setAttribute('stroke', isCurrent ? '#ffffff' : (isCompleted ? '#6ee7b7' : '#38bdf8'));
+        circle.setAttribute('stroke-width', isCurrent ? '2.4' : '1.6');
         if (isCurrent) circle.setAttribute('class', 'city-node-current');
         g.appendChild(circle);
 
+        const labelStr = `${idx + 1}.${city.name}`;
+        const pillW = Math.round(labelStr.length * 5.0 + 10);
+        const pillH = 12.5;
+
+        let chosenX = city.x;
+        let chosenY = city.y + 16;
+        for (const cand of candidateOffsets) {
+          const cx = Math.max(pillW / 2 + 6, Math.min(994 - pillW / 2, city.x + cand.dx));
+          const cy = Math.max(14, Math.min(510, city.y + cand.dy));
+          const box = {
+            x1: cx - pillW / 2 - 2,
+            y1: cy - 9.5,
+            x2: cx + pillW / 2 + 2,
+            y2: cy + 3.5
+          };
+          const overlapsExistingLabel = placedBoxes.some(b => !(box.x2 < b.x1 || box.x1 > b.x2 || box.y2 < b.y1 || box.y1 > b.y2));
+          const overlapsAnyNode = NHL_CITIES.some(other => {
+            const nx1 = other.x - 7;
+            const ny1 = other.y - 7;
+            const nx2 = other.x + 7;
+            const ny2 = other.y + 7;
+            return !(box.x2 < nx1 || box.x1 > nx2 || box.y2 < ny1 || box.y1 > ny2);
+          });
+          if (!overlapsExistingLabel && !overlapsAnyNode) {
+            chosenX = cx;
+            chosenY = cy;
+            placedBoxes.push(box);
+            break;
+          }
+        }
+
+        const labelBg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        labelBg.setAttribute('x', String(chosenX - pillW / 2));
+        labelBg.setAttribute('y', String(chosenY - 9));
+        labelBg.setAttribute('width', String(pillW));
+        labelBg.setAttribute('height', String(pillH));
+        labelBg.setAttribute('rx', '4');
+        labelBg.setAttribute('fill', isCurrent ? 'rgba(0,229,255,0.22)' : 'rgba(6,11,20,0.88)');
+        labelBg.setAttribute('stroke', isCurrent ? '#00e5ff' : (isCompleted ? 'rgba(16,185,129,0.55)' : 'rgba(56,189,248,0.28)'));
+        labelBg.setAttribute('stroke-width', isCurrent ? '1.3' : '0.8');
+        g.appendChild(labelBg);
+
         const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        const dx = typeof city.labelDx === 'number' ? city.labelDx : 0;
-        const dy = typeof city.labelDy === 'number' ? city.labelDy : 17;
-        txt.setAttribute('x', city.x + dx);
-        txt.setAttribute('y', city.y + dy);
-        txt.setAttribute('fill', isCurrent ? '#fde047' : (isCompleted ? '#6ee7b7' : '#94a3b8'));
-        txt.setAttribute('font-size', isCurrent ? '10.5' : '8.8');
+        txt.setAttribute('x', String(chosenX));
+        txt.setAttribute('y', String(chosenY));
+        txt.setAttribute('fill', isCurrent ? '#ffffff' : (isCompleted ? '#6ee7b7' : '#cbd5e1'));
+        txt.setAttribute('font-size', isCurrent ? '8.6' : '7.8');
         txt.setAttribute('font-weight', '800');
-        txt.setAttribute('text-anchor', city.labelAnchor || 'middle');
-        txt.textContent = `${idx + 1}.${city.name}`;
+        txt.setAttribute('text-anchor', 'middle');
+        txt.textContent = labelStr;
         g.appendChild(txt);
 
-        // Render Mini Custom Avatar Pin on Current City!
+        // Render Pulsing 3D Puck Marker on Current City!
         if (isCurrent) {
-          g.appendChild(buildSvgMiniSkaterPin(prof, city.x, city.y, true, 0));
+          g.appendChild(build3dPuckMarkerSvg(prof, city.x, city.y));
         }
 
         const startCitySeries = () => {
@@ -12226,7 +12562,7 @@
         card.disabled = isLocked;
         card.className = `p-2 rounded-xl border text-left transition ${
           isCurrent
-            ? 'bg-amber-500/20 border-amber-400 text-white shadow'
+            ? 'bg-cyan-500/20 border-cyan-400 text-white shadow'
             : isCompleted
             ? 'bg-emerald-950/50 border-emerald-500/40 text-emerald-200 hover:bg-emerald-900/50'
             : 'bg-slate-950/60 border-slate-800 text-slate-500 cursor-not-allowed'
@@ -12240,22 +12576,10 @@
           <div class="text-[10px] opacity-80 truncate">${city.team} • 80% IQ</div>
         `;
         card.addEventListener('click', startCitySeries);
-        cardsStrip.appendChild(card);
+        if (cardsStrip) cardsStrip.appendChild(card);
       });
 
-      // Render All Group / Team Participants on the Map & Leaderboard Banner!
       const participants = getAllGroupParticipants();
-      const showPins = state.showMapGroupProgress != null ? state.showMapGroupProgress : state.showTeamOnMap;
-      if (showPins && teamAvatarsGroup) {
-        const cityCounts = {};
-        participants.forEach(member => {
-          if (member.id === prof.id) return; // Active skater already drawn prominently
-          const cIdx = Math.min(NHL_CITIES.length - 1, Math.max(0, member.currentCityIdx || 0));
-          cityCounts[cIdx] = (cityCounts[cIdx] || 0) + 1;
-          const c = NHL_CITIES[cIdx];
-          teamAvatarsGroup.appendChild(buildSvgMiniSkaterPin(member, c.x, c.y, false, cityCounts[cIdx]));
-        });
-      }
 
       const modeLabels = {
         individual: '👤 Individual Skater Mode',
@@ -12525,7 +12849,7 @@
 
       if (issues.length === 0) {
         box.innerHTML = `
-          <div class="font-black text-emerald-400">✅ TACTIX HOCKEY AUTOMATED QA, ADM & SEAT 9 VIDEO AUDIT PASSED (0 Issues Found)</div>
+          <div class="font-black text-emerald-400">✅ SYNAPZ HOCKEY AUTOMATED QA, ADM & SEAT 9 VIDEO AUDIT PASSED (0 Issues Found)</div>
           <div>• <strong>${SCENARIOS.length} Tagged Cloud Drills (${SCENARIOS.length * 16} Permutations across C, LW, RW, D, G)</strong> verified: all spoken jersey numbers (#14, #19, #4, #7) and Left/Right directional cues match on-ice tokens 100%.</div>
           <div>• <strong>Seat 9 Cloud Video Library (${vidLib.length} QC-Approved Segments across 15 Buckets & 16 Channels)</strong> verified: 100% YouTube oEmbed HTTP 200, full-concept teaching windows (23s–140s), and <code>bSgfwvhIT7E</code> permanently blacklisted.</div>
           <div>• <strong>USA Hockey ADM 8U Guardrails</strong> verified: strictly 5-on-5 Even Strength (0 Offsides, 0 Penalties/PK/PP, 0 Unannounced 3v3) & <= 14-word Coach Bob prompts.</div>
@@ -13113,7 +13437,7 @@
         targetGroupLabel,
         prompt: applyRoleLabelMap(customPrompt),
         coachName: state.coachName || 'Coach Dane & Coach Evan',
-        teamName: state.teamName || 'PuckSense Select 3v3',
+        teamName: state.teamName || 'Synapz Hockey Select 3v3',
         timestamp: 'Pushed Just Now ✅'
       };
       state.coopTrophyPoints = (Number(state.coopTrophyPoints) || 120) + 15;
@@ -13460,12 +13784,18 @@
     // =========================================================================
     document.getElementById('btnGoHomeMap').addEventListener('click', () => {
       SoundFX.playTap();
-      switchView(state.view === 'map' ? 'game' : 'map');
+      const nextV = state.view === 'map' ? 'game' : 'map';
+      triggerSynapzScreenTransition(nextV === 'map' ? '⚡ Opening Adventure Map...' : '⚡ Flooding the Ice...', () => {
+        switchView(nextV);
+      });
     });
 
     document.getElementById('btnPlayCurrentCity').addEventListener('click', () => {
       SoundFX.playTap();
-      openCityIntroModal(state.currentCityIdx);
+      const currCity = NHL_CITIES[state.currentCityIdx || 0] || NHL_CITIES[0];
+      triggerSynapzScreenTransition(`⚡ Flooding the Ice — Stop #${(state.currentCityIdx || 0) + 1}: ${currCity.name}...`, () => {
+        openCityIntroModal(state.currentCityIdx);
+      });
     });
 
     // Town / City Tactical Intro Modal Listeners
@@ -13495,7 +13825,9 @@
       state.hintsRemaining = 2;
       state.activeScenarioInstance = null;
       document.getElementById('cityIntroModal').classList.add('hidden');
-      switchView('game');
+      triggerSynapzScreenTransition('⚡ Flooding the Ice...', () => {
+        switchView('game');
+      });
     });
 
     // Full-Screen Horizontal Rink Mode Toggle & Full/Half Ice Ribbon Switcher
@@ -14560,7 +14892,7 @@
         upsellBanner.classList.toggle('hidden', !isFreeTeamOnly);
       }
       if (statusBadge) {
-        statusBadge.textContent = isFreeTeamOnly ? '🏒 Team Portal Upsell Prompt' : '⚡ Tactix Pro Unlocked';
+        statusBadge.textContent = isFreeTeamOnly ? '🏒 Team Portal Upsell Prompt' : '⚡ Synapz Pro Unlocked';
       }
       document.getElementById('upgradeModal').classList.remove('hidden');
     }
@@ -15792,15 +16124,102 @@
     document.getElementById('btnWatchAiPlaySeries').addEventListener('click', runLiveAiDemoSeries);
 
     // =========================================================================
-    // PASS 3: PRIVATE MULTI-LOGIN SANDBOX GATE (#sandboxLoginModal) & FLAG DRILL INBOX
+    // PASS 3: SYNAPZ 2-STEP PORTAL GATE (#sandboxLoginModal) & TRANSITION SPLASH
     // =========================================================================
     state.selectedSandboxPortal = 'player';
-    state.selectedSandboxLoginKey = 'dane';
+    state.selectedSandboxLoginKey = 'miles';
+    state.sandboxLoginStep = 1;
 
-    function openSandboxLoginModal() {
+    function triggerSynapzScreenTransition(statusText = '⚡ Flooding the Ice...', callback = null, durationMs = 550) {
+      const splash = document.getElementById('synapzTransitionSplash');
+      const statusEl = document.getElementById('synapzTransitionStatusText');
+      if (statusEl) statusEl.textContent = statusText;
+      if (typeof callback === 'function') {
+        callback();
+      }
+      if (!splash) return;
+      splash.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        splash.classList.remove('opacity-0');
+        splash.classList.add('opacity-100');
+      });
+      if (window._synapzSplashTimer) clearTimeout(window._synapzSplashTimer);
+      window._synapzSplashTimer = setTimeout(() => {
+        splash.classList.remove('opacity-100');
+        splash.classList.add('opacity-0');
+        setTimeout(() => {
+          splash.classList.add('hidden');
+        }, 220);
+      }, durationMs);
+    }
+    window.triggerSynapzScreenTransition = triggerSynapzScreenTransition;
+
+    function showSandboxStep1Portals() {
+      state.sandboxLoginStep = 1;
+      const step1 = document.getElementById('sandboxStep1Portals');
+      const step2 = document.getElementById('sandboxStep2Credentials');
+      if (step1) step1.classList.remove('hidden');
+      if (step2) {
+        step2.classList.add('hidden');
+        step2.classList.remove('flex');
+      }
+    }
+    window.showSandboxStep1Portals = showSandboxStep1Portals;
+
+    function openSandboxPortalStep2(portalType = 'player') {
+      SoundFX.playTap();
+      const norm = String(portalType || 'player').toLowerCase();
+      state.selectedSandboxPortal = norm === 'coach' ? 'team' : norm;
+      state.selectedPortalCardType = norm;
+      state.sandboxLoginStep = 2;
+
+      const step1 = document.getElementById('sandboxStep1Portals');
+      const step2 = document.getElementById('sandboxStep2Credentials');
+      if (step1) step1.classList.add('hidden');
+      if (step2) {
+        step2.classList.remove('hidden');
+        step2.classList.add('flex');
+      }
+
+      const pPlayer = document.getElementById('portalCredsPlayer');
+      const pCoach = document.getElementById('portalCredsCoach');
+      const pFamily = document.getElementById('portalCredsFamily');
+      const badge = document.getElementById('sandboxStep2PortalBadge');
+      const submitBtn = document.getElementById('btnSandboxSubmitLogin');
+
+      if (pPlayer) pPlayer.classList.toggle('hidden', norm !== 'player');
+      if (pCoach) {
+        pCoach.classList.toggle('hidden', norm !== 'coach');
+        pCoach.classList.toggle('flex', norm === 'coach');
+      }
+      if (pFamily) {
+        pFamily.classList.toggle('hidden', norm !== 'family');
+        pFamily.classList.toggle('flex', norm === 'family');
+      }
+
+      if (norm === 'player') {
+        if (badge) badge.textContent = '🏒 PLAYER PORTAL — Select Your Skater Jersey';
+        if (submitBtn) submitBtn.textContent = '🔓 Enter Player Portal & Adventure Map ▶';
+        selectSandboxChip('miles');
+      } else if (norm === 'coach') {
+        if (badge) badge.textContent = '📋 COACH PORTAL — Team Code & Director / Roster Sign-In';
+        if (submitBtn) submitBtn.textContent = '🔓 Open Coach & Director HQ ▶';
+        selectSandboxChip('dane');
+      } else if (norm === 'family') {
+        if (badge) badge.textContent = '👨‍👩‍👦 FAMILY PORTAL — Parent & Family HQ Sign-In';
+        if (submitBtn) submitBtn.textContent = '🔓 Open Parent & Family HQ (Tab 4) ▶';
+        selectSandboxChip('dane');
+      }
+    }
+    window.openSandboxPortalStep2 = openSandboxPortalStep2;
+
+    function openSandboxLoginModal(resetToStep1 = true) {
       SoundFX.playTap();
       const modal = document.getElementById('sandboxLoginModal');
       if (!modal) return;
+      if (resetToStep1) {
+        showSandboxStep1Portals();
+      }
       modal.classList.remove('hidden');
       const statusBadge = document.getElementById('sandboxCloudStatusBadge');
       if (statusBadge) {
@@ -15818,7 +16237,7 @@
 
     function selectSandboxChip(loginKey) {
       SoundFX.playTap();
-      const key = String(loginKey || 'dane').toLowerCase().trim();
+      const key = String(loginKey || 'miles').toLowerCase().trim();
       state.selectedSandboxLoginKey = key;
       const keyInput = document.getElementById('sandboxSelectedKeyInput');
       if (keyInput) keyInput.value = key;
@@ -15827,8 +16246,8 @@
       document.querySelectorAll('.sandbox-chip-btn').forEach(btn => {
         const isSel = btn.dataset.loginKey === key;
         btn.className = isSel
-          ? 'sandbox-chip-btn p-2 rounded-xl bg-sky-500/20 border-2 border-sky-400 text-left transition shadow'
-          : 'sandbox-chip-btn p-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-left transition';
+          ? 'sandbox-chip-btn synapz-cyan-frame p-3 rounded-2xl border-2 border-cyan-400 bg-cyan-500/20 text-left transition shadow-lg'
+          : 'sandbox-chip-btn synapz-cyan-frame p-3 rounded-2xl text-left transition';
       });
     }
     window.selectSandboxChip = selectSandboxChip;
@@ -15892,11 +16311,11 @@
     }
     window.syncTeamCodeFromSandbox = syncTeamCodeFromSandbox;
 
-    async function submitSandboxLogin(overrideKey = null) {
+    async function submitSandboxLogin(overrideKey = null, coachSubMode = null) {
       SoundFX.playGoalHorn();
       const keyInput = document.getElementById('sandboxSelectedKeyInput');
       const pinInput = document.getElementById('sandboxPinInput');
-      const loginKey = String(overrideKey || (keyInput && keyInput.value) || state.selectedSandboxLoginKey || 'dane').toLowerCase().trim();
+      const loginKey = String(overrideKey || (keyInput && keyInput.value) || state.selectedSandboxLoginKey || 'miles').toLowerCase().trim();
       const enteredPin = String((pinInput && pinInput.value) || '99').trim();
 
       const cloudProf = await PuckSenseCloud.fetchProfileByKey(loginKey);
@@ -15932,22 +16351,110 @@
       updateHeaderStats();
       loadScenario(false);
 
-      if (state.selectedSandboxPortal === 'team') {
-        openTeamManagerModal();
+      const portalCard = state.selectedPortalCardType || (state.selectedSandboxPortal === 'team' ? 'coach' : 'player');
+      if (loginKey === 'playtest-bot') {
+        return true;
+      }
+      if (portalCard === 'coach' || state.selectedSandboxPortal === 'team') {
+        const targetCoachTab = coachSubMode === 'roster_homework' ? 'tab2_homework' : 'tab1_playbook';
+        triggerSynapzScreenTransition(
+          coachSubMode === 'roster_homework' ? '⚡ Opening Weekly Coach Assignment Inbox...' : '⚡ Loading Coach & Director HQ...',
+          () => {
+            openTeamManagerModal();
+            if (typeof switchCoachPortalTab === 'function') {
+              switchCoachPortalTab(targetCoachTab);
+            }
+          }
+        );
+      } else if (portalCard === 'family') {
+        triggerSynapzScreenTransition('⚡ Entering Parent & Family HQ...', () => {
+          switchView('map');
+          openProfileModal('tab4_parent_hq');
+        });
+      } else {
+        triggerSynapzScreenTransition('⚡ Entering Player Portal...', () => {
+          switchView('map');
+        });
       }
       return true;
     }
     window.submitSandboxLogin = submitSandboxLogin;
 
     async function triggerAgentAutoLoginBot() {
+      state.selectedPortalCardType = 'player';
+      state.selectedSandboxPortal = 'player';
       selectSandboxChip('playtest-bot');
       await submitSandboxLogin('playtest-bot');
     }
     window.triggerAgentAutoLoginBot = triggerAgentAutoLoginBot;
 
+    // Step 1 -> Step 2 Portal Selection Card Listeners
+    const btnPortalPlayer = document.getElementById('btnSelectPortalPlayer');
+    if (btnPortalPlayer) btnPortalPlayer.addEventListener('click', () => openSandboxPortalStep2('player'));
+    const btnPortalCoach = document.getElementById('btnSelectPortalCoach');
+    if (btnPortalCoach) btnPortalCoach.addEventListener('click', () => openSandboxPortalStep2('coach'));
+    const btnPortalFamily = document.getElementById('btnSelectPortalFamily');
+    if (btnPortalFamily) btnPortalFamily.addEventListener('click', () => openSandboxPortalStep2('family'));
+    const btnBackStep1 = document.getElementById('btnBackToPortalStep1');
+    if (btnBackStep1) btnBackStep1.addEventListener('click', showSandboxStep1Portals);
+
+    // Coach Portal Step 2 Specific Buttons (Coach/Director 4-Tab HQ vs Roster Player Homework Inbox)
+    const btnCoachDirSignIn = document.getElementById('btnCoachPortalDirectorSignIn');
+    if (btnCoachDirSignIn) {
+      btnCoachDirSignIn.addEventListener('click', () => {
+        state.selectedPortalCardType = 'coach';
+        state.selectedSandboxPortal = 'team';
+        submitSandboxLogin('dane', 'director_hq');
+      });
+    }
+    const btnCoachPlrSignIn = document.getElementById('btnCoachPortalPlayerSignIn');
+    if (btnCoachPlrSignIn) {
+      btnCoachPlrSignIn.addEventListener('click', () => {
+        state.selectedPortalCardType = 'coach';
+        state.selectedSandboxPortal = 'team';
+        submitSandboxLogin('miles', 'roster_homework');
+      });
+    }
+
+    // Revamped Adventure Map Header Pills (🏒 Locker Room, 🛍️ Pro Shop, 🚪 Switch Portal, & Active Player Badge)
+    const btnMapLocker = document.getElementById('btnMapLockerRoom');
+    if (btnMapLocker) {
+      btnMapLocker.addEventListener('click', () => {
+        triggerSynapzScreenTransition('⚡ Entering Locker Room...', () => {
+          openProfileModal('tab1_stalls');
+        });
+      });
+    }
+    const btnMapActiveBadge = document.getElementById('synapzActivePlayerMapBadge');
+    if (btnMapActiveBadge) {
+      btnMapActiveBadge.addEventListener('click', () => {
+        openProfileModal('tab1_stalls');
+      });
+    }
+    const btnMapShop = document.getElementById('btnMapProShop');
+    if (btnMapShop) {
+      btnMapShop.addEventListener('click', () => {
+        triggerSynapzScreenTransition('⚡ Opening Pro Gear Shop...', () => {
+          const shopModal = document.getElementById('proShopModal');
+          if (shopModal) {
+            renderProShopModal();
+            shopModal.classList.remove('hidden');
+          }
+        });
+      });
+    }
+    const btnMapSwitchPortal = document.getElementById('btnMapSwitchPortal');
+    if (btnMapSwitchPortal) {
+      btnMapSwitchPortal.addEventListener('click', () => {
+        openSandboxLoginModal(true);
+      });
+    }
+
     document.querySelectorAll('.sandbox-chip-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        const key = btn.dataset.loginKey || 'dane';
+        const key = btn.dataset.loginKey || 'miles';
+        const grp = btn.dataset.portalGroup || state.selectedPortalCardType || 'player';
+        state.selectedPortalCardType = grp;
         const pinInput = document.getElementById('sandboxPinInput');
         if (pinInput) pinInput.value = '99';
         selectSandboxChip(key);
@@ -15959,22 +16466,10 @@
     const sbTeamTab = document.getElementById('btnSandboxPortalTeam');
     if (sbPlayerTab && sbTeamTab) {
       sbPlayerTab.addEventListener('click', () => {
-        SoundFX.playTap();
-        state.selectedSandboxPortal = 'player';
-        state.activeSubscriptionPlan = 'tactix_pro';
-        state.proEvalUnlocked = true;
-        state.accountType = 'family';
-        sbPlayerTab.className = 'py-2 px-3 rounded-lg bg-sky-500 text-slate-950 font-black text-xs shadow transition flex items-center justify-center gap-1.5';
-        sbTeamTab.className = 'py-2 px-3 rounded-lg text-slate-300 hover:text-white font-bold text-xs transition flex items-center justify-center gap-1.5';
+        openSandboxPortalStep2('player');
       });
       sbTeamTab.addEventListener('click', () => {
-        SoundFX.playTap();
-        state.selectedSandboxPortal = 'team';
-        state.activeSubscriptionPlan = 'team_free';
-        state.proEvalUnlocked = false;
-        state.accountType = 'team';
-        sbTeamTab.className = 'py-2 px-3 rounded-lg bg-cyan-400 text-slate-950 font-black text-xs shadow transition flex items-center justify-center gap-1.5';
-        sbPlayerTab.className = 'py-2 px-3 rounded-lg text-slate-300 hover:text-white font-bold text-xs transition flex items-center justify-center gap-1.5';
+        openSandboxPortalStep2('coach');
       });
     }
 
@@ -16012,9 +16507,9 @@
       state.activeSubscriptionPlan = planId || 'tactix_pro';
       const toast = document.getElementById('pricingModalStatusToast');
       const planDescriptions = {
-        team_free: '🏒 Activated Tier 1: Free Team & Association Portal (Coach-Assigned Lessons & Standings Unlocked! Custom Lesson Builder prompts Player Portal + Tactix Pro).',
+        team_free: '🏒 Activated Tier 1: Free Team & Association Portal (Coach-Assigned Lessons & Standings Unlocked! Custom Lesson Builder prompts Player Portal + Synapz Pro).',
         player_base: '🎮 Activated Tier 2: Player Portal Base Game ($4.99 One-Time) — Full 32-Team Road to the Cup, 3D Trophy Room & Read-Only 6-Slice Pie Chart Unlocked!',
-        tactix_pro: '⚡ Activated Tier 3: Tactix Pro ($4.99/mo or $49.99/yr — Save $10!) — Interactive 6-Slice Pie Chart, AI PIP & Custom Lesson Builder 100% Unlocked!',
+        tactix_pro: '⚡ Activated Tier 3: Synapz Pro ($4.99/mo or $49.99/yr — Save $10!) — Interactive 6-Slice Pie Chart, AI PIP & Custom Lesson Builder 100% Unlocked!',
         coach_partner: '🧑‍💼 Activated Tier 4: Coach & Partner Association Plan ($49.99/yr w/ 50% Partner Logo Discount + Association Codes ASSOC-MINOT / ASSOC-FOOTHILLS / ASSOC-LIGHTNING)!'
       };
       if (planId === 'team_free') {
@@ -16970,7 +17465,7 @@
       copyCarRideBtn.addEventListener('click', () => {
         SoundFX.playGoalHorn();
         const sheetText = [
-          '🏒 TACTIX HOCKEY — FAMILY FRIDGE & CAR-RIDE PRAISE SHEET',
+          '🏒 SYNAPZ HOCKEY — FAMILY FRIDGE & CAR-RIDE PRAISE SHEET',
           '• Miles #9 (12U): Ask "How did your low-and-slow Center curl help your defenseman beat F1?"',
           '• Cohen #14 (10U): Ask "Did you check over your shoulder before calling for the breakout pass?"',
           '• Rhett #88 (8U): Ask "How did you build your 3-player Attack Triangle today?"',
@@ -17322,7 +17817,7 @@
         seatLens: 'Seat 10 — App Store, Conversion & Growth Strategist',
         targetScope: '8U–14U Families • Trophy Room (#trophyRoomModal) & Parent HQ (Tab 4)',
         title: 'Shareable "Division & City Tour Certificate" PNG Card for Team Group Chats',
-        description: 'Let players and parents export a clean, privacy-safe Trophy Card PNG (First Name, Jersey #, City Conquered, Gold Read Streak) with a subtle Tactix Hockey watermark for team chats.',
+        description: 'Let players and parents export a clean, privacy-safe Trophy Card PNG (First Name, Jersey #, City Conquered, Gold Read Streak) with a subtle Synapz Hockey watermark for team chats.',
         candidCritique: 'CANDID CRITIQUE ON ORGANIC VIRAL LOOP: When an 8U or 10U kid clinches a division trophy, proud parents want to text a picture to Grandma or the team chat. A clean 1-tap Certificate card turns parent pride into organic team referrals.',
         crossImpact: 'Delights Kids & Parents (Seat 3 & Seat 4), respects child privacy by omitting last names/weaknesses (Seat 3), and drives zero-CAC organic installs (Seat 10).',
         screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat10-pricing-partner-gate.png`,
@@ -17601,9 +18096,9 @@
       const onDeck = BOARD_30_IDEA_DIGEST.filter(i => i.status === 'on_deck');
       const vetoed = BOARD_30_IDEA_DIGEST.filter(i => i.status === 'vetoed');
 
-      const subject = 'Tactix Hockey 30-Idea Board Digest (3 Shipped, 21 On Deck, 6 Vetoed)';
+      const subject = 'Synapz Hockey 30-Idea Board Digest (3 Shipped, 21 On Deck, 6 Vetoed)';
       const bodyLines = [
-        'TACTIX HOCKEY — 3-POD / 10-SEAT BOARD 30-IDEA DIGEST',
+        'SYNAPZ HOCKEY — 3-POD / 10-SEAT BOARD 30-IDEA DIGEST',
         'Recipients: Coach Dane (danebekkedahl@gmail.com) & Coach Evan (evanbekk@gmail.com)',
         'Live Interactive Matrix: https://danebekkedahl.github.io/tactix-hockey/report.html',
         '',

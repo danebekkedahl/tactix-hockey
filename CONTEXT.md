@@ -1,6 +1,6 @@
-# CONTEXT.md — Tactix Hockey Fast-Map & Architecture Index
+# CONTEXT.md — Synapz Hockey Fast-Map & Architecture Index
 
-> **Purpose:** Lightweight (~100-line) architectural index for **TACTIX HOCKEY — PLAY. LEARN. DOMINATE.** so all agents (`Main App Code Page`, `Playtest-Agent`, `Council-Agent`, and `3-Pod / 10-Seat Board`) can locate Supabase tables, DOM containers/modals, and core functions in `<1 second`. Always read alongside `CHANGELOG_DECISIONS.md`.
+> **Purpose:** Lightweight (~100-line) architectural index for **SYNAPZ HOCKEY — PLAY. LEARN. DOMINATE.** so all agents (`Main App Code Page`, `Playtest-Agent`, `Council-Agent`, and `3-Pod / 10-Seat Board`) can locate Supabase tables, DOM containers/modals, and core functions in `<1 second`. Always read alongside `CHANGELOG_DECISIONS.md`.
 
 ---
 

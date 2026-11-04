@@ -1,10 +1,10 @@
-# 🏒 TACTIX HOCKEY — PLAY. LEARN. DOMINATE. | Founder Vision, Product Architecture & Multi-Agent Pipeline (`FOUNDER_VISION_NOTES.md`)
+# 🏒 SYNAPZ HOCKEY — PLAY. LEARN. DOMINATE. | Founder Vision, Product Architecture & Multi-Agent Pipeline (`FOUNDER_VISION_NOTES.md`)
 
 **Official Slogan:** `PLAY. LEARN. DOMINATE.`  
 **Platform Sub-Badge:** `HOCKEY IQ & STRATEGY PLATFORM`  
 **Founders:** Dane Bekkedahl & Evan Bekkedahl  
 **Date:** November 2, 2026  
-**Purpose:** Master architectural specification synthesized from Founder strategy sessions. All Antigravity agents (`Main App Code Page`, `Tactix Hockey Learning Council Report`, and `Youth Hockey Playtest Report`) must treat this document as the authoritative product roadmap alongside `AGENT.md` and `LEARNING_COUNCIL_REPORT.md`.
+**Purpose:** Master architectural specification synthesized from Founder strategy sessions. All Antigravity agents (`Main App Code Page`, `Synapz Hockey Learning Council Report`, and `Youth Hockey Playtest Report`) must treat this document as the authoritative product roadmap alongside `AGENT.md` and `LEARNING_COUNCIL_REPORT.md`.
 
 ## 1. The 4-Agent Curriculum & Quality Control Pipeline (Zero Unchecked AI Content)
 
@@ -68,13 +68,13 @@ Beating all 32 NHL cities is not the end of the game—it is the start of a play
 ### Tier 1: `🏒 Team & Association Portal` (`FREE Entry w/ Team or Association Code`)
 * **Free Download & Entry:** Players enter a coach's Team Code (`PUCK99`) or Partner Association Code (`ASSOC-MINOT`, `ASSOC-FOOTHILLS`, `ASSOC-LIGHTNING`) at the Login Gate (`#sandboxLoginModal`).
 * **Included Free:** Complete coach-assigned weekly lessons (`10-play assignments`) and view live Team Standings & Co-Op Stanley Cup progress.
-* **Custom Lesson Builder Upsell Prompt (`#teamPortalUpsellBanner`):** When a Free Team Portal player taps `🛠️ Create My Own Lesson`, the app displays a clear upsell prompt to unlock the `Player Portal ($4.99)` + `Tactix Pro ($4.99/mo or $49.99/yr)`.
+* **Custom Lesson Builder Upsell Prompt (`#teamPortalUpsellBanner`):** When a Free Team Portal player taps `🛠️ Create My Own Lesson`, the app displays a clear upsell prompt to unlock the `Player Portal ($4.99)` + `Synapz Pro ($4.99/mo or $49.99/yr)`.
 
 ### Tier 2: `🎮 Player Portal — Base Game` (`$4.99 One-Time App Purchase`)
 * Full access to the **32-Team Road to the Stanley Cup** (`Rec -> B -> A -> AA -> AAA`), 3D Avatar Customizer, Pro Gear Shop, Trophy Room, and adaptive age-tier gameplay.
 * Includes the **Read-Only 6-Slice Player Performance Pie Chart**: Shows the player's overall Hockey IQ breakdown across core categories (*Forecheck, Rush & Open Ice, Zone Possession, Breakout & Regroup, Power Play, Penalty Kill*).
 
-### Tier 3: `⚡ Tactix Pro Subscription` (`$4.99/mo` or `$49.99/yr — Save $10!`)
+### Tier 3: `⚡ Synapz Pro Subscription` (`$4.99/mo` or `$49.99/yr — Save $10!`)
 * Tied to the player's existing login so all historical play data carries over immediately upon upgrade.
 * **Interactive 6-Slice Player Performance Pie Chart (Self-Eval & Drill-Down):**
   * Players tap directly on any weak slice of their pie chart (e.g., `10% Power Play IQ` or `15% Forecheck F3 Eagle Support`) to open a detailed breakdown showing:
@@ -88,7 +88,7 @@ Beating all 32 NHL cities is not the end of the game—it is the start of a play
     4. *Position & Handedness:* Play as your own spot (e.g., `Left-Handed Left Wing`) **or** study another position on your line.
 
 ### Tier 4: `🧑‍💼 Coach & Association Plans` (`$99/yr` or **`$49.99/yr` with 50% Partner Logo Discount**; Full Association Licenses **`$499–$999/yr` for 5–20 Coaching Seats**)
-* **Single Team Coach Portal:** `$99/yr` standard, or **`$49.99/yr` (50% OFF Partner Logo Discount)** when a team/association partners with Tactix Hockey to display their crest on the Partner Banner (`#partnerAssociationBanner`).
+* **Single Team Coach Portal:** `$99/yr` standard, or **`$49.99/yr` (50% OFF Partner Logo Discount)** when a team/association partners with Synapz Hockey to display their crest on the Partner Banner (`#partnerAssociationBanner`).
 * **Full Association Licenses (`$499–$999/yr`):** Provides `5–20 coaching seats` with preset Association Codes (`ASSOC-MINOT`, `ASSOC-FOOTHILLS`, `ASSOC-LIGHTNING`).
 * **Partner Association Logo Banner & Success Stories Drawer (`#partnerAssociationBanner` & `#successStoriesModal`):**
   * Showcases partner teams (*Minot 3v3 Wolves*, *Foothills Flyers*, *Lightning AAA*), coach reviews, and real youth/team iPad training clip cards across all **3 Marketing Audiences**:
@@ -129,10 +129,10 @@ In modern hockey systems, **`F1 / F2 / F3`** and **`D1 / D2`** designate a skate
 
 ---
 
-## 8. Rebrand to `TACTIX HOCKEY` (`PLAY. LEARN. DOMINATE.`) & Animated `Coach Bob` (`#coachBobPopup`)
+## 8. Rebrand to `SYNAPZ HOCKEY` (`PLAY. LEARN. DOMINATE.`) & Animated `Coach Bob` (`#coachBobPopup`)
 
-1. **Official Brand Identity (`TACTIX HOCKEY — PLAY. LEARN. DOMINATE.` + Sub-Badge `HOCKEY IQ & STRATEGY PLATFORM`):**
-   * Uses `assets/tactix-logo.png` and prominently displays **`PLAY. LEARN. DOMINATE.`** below the **TACTIX HOCKEY** logo on the Login Gate (`#sandboxLoginModal`), top header (`#btnGoHomeMap`), map dashboard (`#mapViewSection`), and `report.html` (keeping **`HOCKEY IQ & STRATEGY PLATFORM`** as the sub-badge).
+1. **Official Brand Identity (`SYNAPZ HOCKEY — PLAY. LEARN. DOMINATE.` + Sub-Badge `HOCKEY IQ & STRATEGY PLATFORM`):**
+   * Uses `assets/tactix-logo.png` and prominently displays **`PLAY. LEARN. DOMINATE.`** below the **SYNAPZ HOCKEY** logo on the Login Gate (`#sandboxLoginModal`), top header (`#btnGoHomeMap`), map dashboard (`#mapViewSection`), and `report.html` (keeping **`HOCKEY IQ & STRATEGY PLATFORM`** as the sub-badge).
 2. **Multi-State Animated `Coach Bob` (`assets/coach-bob.png`) in the Lower-Left Reflex Pop-Up (`#coachBobPopup`):**
    * Replaces all `"Coach Mack"` references with **`Coach Bob`** (`assets/coach-bob.png`).
    * **3 Animated Pop-Up States (`setCoachBobAnimationState`):**
@@ -178,7 +178,7 @@ In modern hockey systems, **`F1 / F2 / F3`** and **`D1 / D2`** designate a skate
 
 ---
 
-## 12. Tactix Hockey 3-Bot Scenario Factory Pipeline (`generate-tactix-bank.js`)
+## 12. Synapz Hockey 3-Bot Scenario Factory Pipeline (`generate-tactix-bank.js`)
 
 The standalone Node curriculum generator (`generate-tactix-bank.js`) executes a **3-Bot Scenario Factory Pipeline (`Harvester` -> `Bucket Tagger` -> `24x Permutator` + `QC Gatekeeper`)** to populate `public.tactix_adm_guidelines`, `public.tactix_concept_buckets`, and `public.tactix_scenarios`:
 
@@ -218,7 +218,7 @@ The standalone Node curriculum generator (`generate-tactix-bank.js`) executes a 
 ## 17. Granular Team Portal Permissions, Roster Seat Controls & Modal Scroll Ergonomics (Dictation 3 Additions)
 1. **Coach Roster Seat Controls ("Add / Kick Players" Up to ~20–22 Seat Cap):** Coaches in `Team Portal -> Coach Login` can add, edit, or remove ("kick in and out") players on their team roster up to their team seat limit.
 2. **Visibility Boundary Between `Team Portal (Player View)` and `Coach Portal (Coach View)`:**
-   - In `Team Portal -> Player Login`: Players see the shared Team Leaderboard & Co-Op Trophy progress plus their own Coach Weekly Assignment Inbox, cannot view teammates' private diagnostic weaknesses, and cannot use "Create My Own Lesson" unless they unlock their personal `Player Portal` + `Tactix Pro`.
+   - In `Team Portal -> Player Login`: Players see the shared Team Leaderboard & Co-Op Trophy progress plus their own Coach Weekly Assignment Inbox, cannot view teammates' private diagnostic weaknesses, and cannot use "Create My Own Lesson" unless they unlock their personal `Player Portal` + `Synapz Pro`.
    - In `Team Portal -> Coach Login`: Only the Coach sees per-player diagnostic analytics, missed question logs, and Practice Scouting Alerts with 1-click remedial homework assignment.
 3. **Scrollable Modals with Sticky Action Buttons:** Lock scrolling (`overflow: hidden`) on the background rink canvas during active play, while allowing smooth vertical scrolling (`overflow-y: auto; max-height: 92dvh`) with sticky bottom action buttons (`position: sticky; bottom: 0`) on Sign-In, Profile, Locker Room, and all modals.
 
@@ -235,7 +235,7 @@ Every `RUN NIGHTLY AUTOPILOT` pass runs an active Playwright field inspection in
 4. **Seat 4 — Hit Mobile Game & EdTech Retention Designer** (Mathseeds map, Coach Bob Reflex pop-ups, streak juice, Pro Shop swag, 3D Trophy Room Prestige Cups).
 5. **Seat 5 — Native iPad / Phone Touch UX & Anti-Clutter Architect** (Phone `390x844`, iPad Portrait `768x1024`, iPad Landscape `1024x768`, Desktop `1280x800` anti-clutter and scrollable modal ergonomics).
 6. **Seat 6 — Dedicated Head Coach & Association Portal Tester** (Tests Coach Login -> Add/Kick Roster Seat Controls -> Line Builder -> Weekly Assignment Push -> Player Inbox -> Coach Practice Scouting Alerts end-to-end and reports a dedicated Coach Portal Scorecard).
-7. **Seat 7 — App Store, Conversion & Growth Strategist** (`PLAY. LEARN. DOMINATE.`, Free-Download Portal Gate, Partner Association Banner, and Tactix Pro `PIP` + Custom Lesson Builder upsell).
+7. **Seat 7 — App Store, Conversion & Growth Strategist** (`PLAY. LEARN. DOMINATE.`, Free-Download Portal Gate, Partner Association Banner, and Synapz Pro `PIP` + Custom Lesson Builder upsell).
 8. **Seat 8 — Principal Full-Stack App & `<canvas>` Graphics Engineer** (Canvas rendering polish, 3D POV camera, 60fps smoothness, `CONTEXT.md` fast-map, and pre-deploy security checks in `deploy-github-pages.js`).
 
 ## 20. Cloud Video Library (`public.tactix_video_library`), Multi-Channel NHL/Coaching Harvester (`harvest-tactix-videos.js`) & Seat 9 Video Auditor
@@ -298,7 +298,7 @@ Every `RUN NIGHTLY AUTOPILOT` pass runs an active Playwright field inspection in
      - **Step B (Unhurried Blind Playtest Across All 30 Age × Talent Levels & Off-Ice Portals):** Maintain `playtest_coverage_ledger.json` so consecutive runs systematically blind-test all **30 Age × Talent Levels (`8U–18U` × `Rec / B / A / AA / AAA`)**, advance through all **32 NHL Cities** (`Stop 1 Rec -> Stop 32 AAA Cup Finals -> Prestige Season II`), blind-play all **360+ Cloud Scenarios**, and walk through all **6 Off-Ice Feature Areas** (Logins, 5-Step Wizard, Pro Shop, 3D Avatar, Trophy Room, 4-Tab Family HQ, 4-Tab Coach/Director HQ, 4-Tier Pricing, and Film Room).
      - **Step C (Rank, Screenshot & Email Proposals for Approval):** Save all new 10-Seat proposals into `public.pucksense_agent_inbox` with `status: 'awaiting_founder_approval'`, rank them from **`#1 Highest Priority`** to **`#30`** (highlighting the Board's Top 3 Recommended Priorities at the top), and dispatch the email to `danebekkedahl@gmail.com` and `evanbekk@gmail.com`.
 2. **Candid Co-Founder Mindset ("Show Us What Is Wrong With Our Input — No Yes-Men!"):**
-   - Every Seat on the 10-Seat Board acts like an invested, candid co-founder who wants **Tactix Hockey** to succeed—**never** a "yes-man." If any current screen, drill, flow, or previous Founder assumption has a flaw, creates clutter, or falls short for real kids, parents, or coaches, call it out honestly and explain why a better path is needed.
+   - Every Seat on the 10-Seat Board acts like an invested, candid co-founder who wants **Synapz Hockey** to succeed—**never** a "yes-man." If any current screen, drill, flow, or previous Founder assumption has a flaw, creates clutter, or falls short for real kids, parents, or coaches, call it out honestly and explain why a better path is needed.
    - **Moving Plays vs. Static Setups Board Evaluation (Seats 1, 2, 3, and 4):** Seats 1–4 explicitly evaluate and recommend how plays should start on the ice across `8U–18U` and `Rec–AAA`—specifically when skaters/puck should animate in motion for 2 seconds (`2.0s Roll-In -> Freeze at Read`) before freezing at the decision read vs. when a static snapshot (with optional 1-tap `▶️ Watch 2s Lead-In`) is better for learning and cognitive load.
 3. **Mandatory 6-Field Format + Embedded Live Screenshots (`assets/audit-screenshots/*.png`) for Every Recommendation:**
    - Every recommendation in `send-board-digest.js`, `LEARNING_COUNCIL_REPORT.md`, `#founderDigestModal` in `index.html`, and `report.html` (ranked `#1` downward) must include all 6 required fields:

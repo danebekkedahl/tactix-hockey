@@ -1,10 +1,12 @@
-const CACHE_NAME = 'tactix-hockey-v8.3';
+const CACHE_NAME = 'synapz-hockey-v9.1';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './icon-192.png',
   './icon-512.png',
+  './assets/synapz-logo.png',
+  './assets/synapz-splash-bg.png',
   './assets/tactix-logo.png',
   './assets/coach-bob.png'
 ];

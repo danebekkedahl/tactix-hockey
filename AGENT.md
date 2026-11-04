@@ -1,18 +1,18 @@
 # AGENT.md — Antigravity Builder & QA Handoff Specification
-**Project Name:** TACTIX HOCKEY — PLAY. LEARN. DOMINATE. (`HOCKEY IQ & STRATEGY PLATFORM` with Coach Bob)  
+**Project Name:** SYNAPZ HOCKEY — PLAY. LEARN. DOMINATE. (`HOCKEY IQ & STRATEGY PLATFORM` with Coach Bob)  
 **Live GitHub Pages Deployment (Free & Unlimited Deploys):** `https://danebekkedahl.github.io/tactix-hockey/` (Report: `https://danebekkedahl.github.io/tactix-hockey/report.html`)  
 **Local Dev Server:** `http://localhost:8080`  
 **Architecture:** Self-Contained Single-Page Web Application + Installable PWA (`index.html`, `report.html`, `CONTEXT.md`, `assets/tactix-logo.png`, `assets/coach-bob.png`, `manifest.json`, `sw.js`, `deploy-github-pages.js`)
 
 > [!IMPORTANT]
 > **Mandatory Multi-Agent Reading Rule, `CONTEXT.md` Fast-Map, `CHANGELOG_DECISIONS.md` Ledger & Single-Trigger Pipelines (`RUN NIGHTLY AUTOPILOT` & `RUN MASTER PIPELINE`):**
-> 1. **Read `CONTEXT.md` & `CHANGELOG_DECISIONS.md` First:** All Antigravity agents (`Main App Code Page`, `PuckSense IQ Learning Council Report`, and `Youth Hockey Playtest Report`) **MUST** read `CONTEXT.md` (the ~100-line architectural index of all 8 Supabase tables, DOM IDs, and core functions) and `CHANGELOG_DECISIONS.md` (the immutable ledger of locked Founder rules) alongside `FOUNDER_VISION_NOTES.md`, `LEARNING_COUNCIL_REPORT.md`, and `PLAYTEST_REPORT.md` before planning, auditing, or modifying `index.html`.
+> 1. **Read `CONTEXT.md` & `CHANGELOG_DECISIONS.md` First:** All Antigravity agents (`Main App Code Page`, `Synapz Hockey Learning Council Report`, and `Youth Hockey Playtest Report`) **MUST** read `CONTEXT.md` (the ~100-line architectural index of all 8 Supabase tables, DOM IDs, and core functions) and `CHANGELOG_DECISIONS.md` (the immutable ledger of locked Founder rules) alongside `FOUNDER_VISION_NOTES.md`, `LEARNING_COUNCIL_REPORT.md`, and `PLAYTEST_REPORT.md` before planning, auditing, or modifying `index.html`.
 > 2. Whenever the user types **`RUN NIGHTLY AUTOPILOT`** (or **`RUN MASTER PIPELINE`**) inside `Main App Code Page`, the agent **MUST** automatically execute all 4 stages from start to finish without pausing for confirmation between stages (Stage 1: Autonomous 5-Persona & 3-Pod / 10-Seat Field Playtest Bot `deep_playtest_audit.js`; Stage 2: 3-Pod / 10-Seat Board Review `Council-Agent` with the 4-Step Authority Hierarchy & Max 3 Shipped Changes Per Run; Stage 3: 3-Bot Scenario Factory `generate-tactix-bank.js` + Multi-Channel Video Harvester `harvest-tactix-videos.js`; Stage 4: Main App Code Build, Verification, 30-Idea Founder Email Digest `send-board-digest.js`, & Live GitHub Pages Deploy to `https://danebekkedahl.github.io/tactix-hockey/`). See **Section 7.1–7.4** below for the full specification.
 
 ---
 
 ## 1. Project Overview & Target Device Experience
-**PuckSense IQ** is an interactive off-ice cognitive training game and coaching platform designed to build real-world "Hockey IQ" (spatial awareness, puck support, defensive slot protection, breakout reads, forecheck angling, odd-man rush decision-making, and special teams positioning) in youth hockey players across USA Hockey age divisions (`8U Mite`, `10U Squirt`, `12U Peewee`, `14U Bantam`, and `16U/18U`).
+**Synapz Hockey** is an interactive off-ice cognitive training game and coaching platform designed to build real-world "Hockey IQ" (spatial awareness, puck support, defensive slot protection, breakout reads, forecheck angling, odd-man rush decision-making, and special teams positioning) in youth hockey players across USA Hockey age divisions (`8U Mite`, `10U Squirt`, `12U Peewee`, `14U Bantam`, and `16U/18U`).
 
 ### Target Device & UX Layout
 - **Responsive Cross-Device Design (Phones, iPads/Tablets, Laptops/Desktops):**
@@ -146,7 +146,7 @@ Then open **`http://localhost:8080`** in Chrome, Safari, Edge, or your Antigravi
 1. **`public.pucksense_profiles`**:
    - Columns: `id` (`uuid`), `login_key` (`text` unique — `'dane'`, `'evan'`, `'miles'`, `'rhett'`, `'whelan'`, `'cohen'`, `'amanda'`, `'sal'`, `'playtest-bot'`), `pin_code` (`text`, default `'99'`), `display_name` (`text`), `jersey_number` (`text`), `portal_type` (`text`: `'player'` or `'team'`), `role` (`text`: `'player'`, `'coach'`, `'founder'`, `'agent'`), `age_division` (`text`: `'8U'`, `'10U'`, `'12U'`, `'14U'`, `'16U'`, `'18U'`), `stick_hand` (`text`: `'left'` or `'right'`), `primary_position` (`text`: `'C'`, `'LW'`, `'RW'`, `'D'`, `'G'`), `subscription_tier` (`text`: `'base'`, `'pro'`, `'team'`, `'pro_sandbox'`), `iq_score` (`integer`), `coins` (`integer`), `stanley_cups` (`jsonb`), `pie_chart_stats` (`jsonb`: `{"forecheck":65,"rush":70,"possession":60,"breakout":55,"powerplay":50,"penaltykill":60}`), `flagged_deficiencies` (`jsonb`), `profile_state` (`jsonb`), `updated_at` (`timestamptz`).
 2. **`public.pucksense_teams`**:
-   - Columns: `id` (`uuid`), `team_name` (`text` — pre-seeded with `'PuckSense Select 3v3'`), `team_code` (`text` unique — pre-seeded with `'PUCK99'`), `age_division` (`text`), `coach_name` (`text`), `roster` (`jsonb`), `weekly_assignments` (`jsonb`), `coop_trophy_points` (`integer`), `updated_at` (`timestamptz`).
+   - Columns: `id` (`uuid`), `team_name` (`text` — pre-seeded with `'Synapz Hockey Select 3v3'`), `team_code` (`text` unique — pre-seeded with `'PUCK99'`), `age_division` (`text`), `coach_name` (`text`), `roster` (`jsonb`), `weekly_assignments` (`jsonb`), `coop_trophy_points` (`integer`), `updated_at` (`timestamptz`).
 3. **`public.pucksense_agent_inbox`**:
    - Columns: `id` (`uuid`), `created_by` (`text` — `'Dane'`, `'Evan'`, `'Playtest-Agent'`, `'Council-Agent'`), `source_role` (`text`), `scenario_id` (`text`), `age_division` (`text`), `category` (`text` — `'drill_flag'`, `'playtest_audit'`, `'council_spec'`, `'builder_fixed'`), `status` (`text` — `'open'`, `'in_council_review'`, `'queued_for_builder'`, `'resolved'`), `summary` (`text`), `details` (`jsonb`), `created_at` (`timestamptz`).
 4. **`public.tactix_adm_guidelines`**:
@@ -169,7 +169,7 @@ Then open **`http://localhost:8080`** in Chrome, Safari, Edge, or your Antigravi
 1. **Youth Hockey Playtest Agent (`Playtest-Agent`)**:
    - Launches with `?bot=1` or clicks `#btnAgentAutoLoginBot` to authenticate as `playtest-bot`.
    - Fetches open flags from `GET /rest/v1/pucksense_agent_inbox?status=eq.open` and posts automated playtest findings via `POST /rest/v1/pucksense_agent_inbox` (`created_by: 'Playtest-Agent'`, `category: 'playtest_audit'`, `status: 'open'`).
-2. **PuckSense IQ Learning Council Agent (`Council-Agent`)**:
+2. **Synapz Hockey Learning Council Agent (`Council-Agent`)**:
    - Reads open founder/playtest flags from `public.pucksense_agent_inbox` (`status: 'open'` or `'in_council_review'`), evaluates them against USA Hockey ADM & Hockey Canada LTAD standards, and updates/posts pedagogical specs with `category: 'council_spec'` and `status: 'queued_for_builder'`.
 3. **Main App Code Page (`Builder Agent`)**:
    - Queries `public.pucksense_agent_inbox?status=eq.queued_for_builder` (and any `open` flags), implements the code changes in `index.html` and `report.html`, verifies with `window.runAutomatedQaAudit()`, and patches the rows to `status: 'resolved'` (`category: 'builder_fixed'`).
@@ -209,7 +209,7 @@ Then open **`http://localhost:8080`** in Chrome, Safari, Edge, or your Antigravi
   - **Seat 9 — Automated Video Harvester & Film-Room QC Auditor (`harvest-tactix-videos.js`):** Audits our 16-Channel Trusted Network (`public.tactix_video_channels`) and 39+ multi-tagged segments (`public.tactix_video_library`) across all 15 Concept Buckets via YouTube `oEmbed` (`HTTP 200`), permanently blocks music-only/unverified clips (`bSgfwvhIT7E`), enforces full-concept teaching windows (`23s–140s`, never cutting off at 12s), and tests `#videoExampleModal` multi-clip cycling, `⏪ Rewind 10s`, and `📋 Coach Bob 60fps Native Telestrator`.
 - **Pod C — 4-Level Coach Portal, Growth & Engineering (`Seats 6, 7, 8`):**
   - **Seat 6 — 4-Level Coaching Panel Playtester (`Level A: 8U/10U Volunteer`, `Level B: 12U/14U AA/AAA Travel`, `Level C: 16U/18U HS/Jr`, `Level D: Association Director`):** Audits the **4-Tab Coach & Director Portal (`#teamManagerModal`)** — Tab 1 `📊 Team Command Center (At-a-Glance)`, Tab 2 `🎯 Assign Weekly Homework (3-Step Wizard)`, Tab 3 `🧢 Team Playbook, Roles & Roster (22-Seat Cap)`, and Tab 4 `🏛️ Association Director HQ (Level D Only)` (`ASSOC-MINOT`, `ASSOC-FOOTHILLS`, `ASSOC-LIGHTNING` multi-team roll-up table + 1-click Monthly Curriculum Standard push).
-  - **Seat 7 — App Store, Conversion & Growth Strategist:** `PLAY. LEARN. DOMINATE.`, Free-Download Portal Gate, Partner Association Banner (`50% Partner Logo Discount`), 3-Audience Social Media Engine, and Tactix Pro (`Well-Rounded 100% Balance Pie`, `PIP`, and Custom Lesson Builder) upsell.
+  - **Seat 7 — App Store, Conversion & Growth Strategist:** `PLAY. LEARN. DOMINATE.`, Free-Download Portal Gate, Partner Association Banner (`50% Partner Logo Discount`), 3-Audience Social Media Engine, and Synapz Pro (`Well-Rounded 100% Balance Pie`, `PIP`, and Custom Lesson Builder) upsell.
   - **Seat 8 — Principal Full-Stack App & `<canvas>` Graphics Engineer:** Canvas rendering polish, 3D POV camera, 60fps smoothness, `CONTEXT.md` & `CHANGELOG_DECISIONS.md` maintenance, `send-board-digest.js` automation, and pre-deploy security checks in `deploy-github-pages.js`.
 
 ### 7.2 Single-Trigger Master Sequence (`RUN MASTER PIPELINE`)

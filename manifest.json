@@ -1,11 +1,11 @@
 {
-  "name": "Tactix Hockey — Play. Learn. Dominate.",
-  "short_name": "Tactix Hockey",
-  "description": "Tactix Hockey — Play. Learn. Dominate. | Hockey IQ & Strategy Platform",
+  "name": "Synapz Hockey — Play. Learn. Dominate.",
+  "short_name": "Synapz Hockey",
+  "description": "SYNAPZ HOCKEY — Play. Learn. Dominate. | Hockey IQ & Strategy Platform",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#020617",
-  "theme_color": "#0f172a",
+  "background_color": "#060b14",
+  "theme_color": "#0d1829",
   "orientation": "any",
   "icons": [
     {
@@ -21,7 +21,13 @@
       "purpose": "any maskable"
     },
     {
-      "src": "assets/tactix-logo.png",
+      "src": "assets/synapz-splash-bg.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/synapz-logo.png",
       "sizes": "512x279",
       "type": "image/png",
       "purpose": "any"
