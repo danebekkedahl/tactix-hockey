@@ -311,3 +311,23 @@ Every `RUN NIGHTLY AUTOPILOT` pass runs an active Playwright field inspection in
    - `normalizeSynapzState()` in `index.html` safely backfills default fields on older cached `localStorage` / cloud profiles, paired with a pre-save JS syntax verification check (`vm.Script`) in `deploy-github-pages.js`.
    - `deploy-github-pages.js` automatically mirrors and SHA-256 checksum-verifies `c:\Users\Dane\.gemini\antigravity\scratch\pucksense` ↔ `C:\Users\Dane\Documents\Hockey-IQ-App` before pushing to both `https://danebekkedahl.github.io/synapz-hockey/` and `https://danebekkedahl.github.io/tactix-hockey/`.
 
+
+## 24. SYNAPZ HOCKEY Brand Identity, 2-Step Portal Gate, `#synapzTransitionSplash` & Stepping-Stone Adventure Map (`v9.1` Upgrade)
+1. **SYNAPZ HOCKEY (`PLAY. LEARN. DOMINATE.`) Visual Identity:**
+   - Uses `assets/synapz-logo.png`, `assets/synapz-splash-bg.png`, and `assets/coach-bob.png` with a deep gunmetal-navy (`#060b14` -> `#0d1829`) and electric cyan (`#00e5ff`) glassmorphic aesthetic while keeping the active 2D ice rink bright and clean (`#f8fafc`).
+2. **2-Step Portal Selection Gate (`#sandboxStep1Portals` -> `#sandboxStep2Credentials`) & `#synapzTransitionSplash`:**
+   - Step 1 displays only the 3 primary Portal Cards (`🏒 PLAYER PORTAL`, `📋 COACH PORTAL`, `👨‍👩‍👦 FAMILY PORTAL`) with Step 2 credentials strictly hidden on entry (`step2HiddenOnEntry === true`), transitioning smoothly through `#synapzTransitionSplash` into the revved-up Stepping-Stone Adventure Map (`#synapzMapHeaderBar` & `#nhlTourMapSvg`).
+
+
+## 25. The 4-Phase Cross-Seat Collaborative Roundtable & Updated SYNAPZ HOCKEY Nightly Autopilot Protocol (`v9.2` Charter)
+1. **Step 1 — Automated Playwright Audit of the 2-Step `SYNAPZ HOCKEY` Flow & Blind Playtest (`deep_playtest_audit.js`):**
+   - Verifies `#sandboxStep1Portals` (`step2HiddenOnEntry === true`, `assets/synapz-splash-bg.png`, and 3 Portal Cards) -> `#sandboxStep2Credentials` (`⬅️ Back to Portals` and isolated credentials) -> `#synapzTransitionSplash` -> `#synapzMapHeaderBar` & `#nhlTourMapSvg` (Stepping-Stone Stanley Cup trail with zero overlapping city labels, pulsing `#9` puck marker, and bottom `▶️ DROP THE PUCK` bar) -> 30 Blind On-Ice Drills (`0` answer-key peeks).
+   - Captures `screenshots/audit_step1_portals.png`, `screenshots/audit_step2_player_login.png`, `screenshots/audit_coach_portal.png`, `screenshots/audit_family_portal.png`, `screenshots/audit_adventure_map.png`, and `screenshots/audit_on_ice_gameplay.png` alongside `assets/audit-screenshots/seat1-...png` .. `seat10-...png`.
+2. **Step 2 — The 3-Gate Cross-Seat Collaborative Roundtable ("Zero Siloed Ideas"):**
+   - Every single recommendation in the 30-Idea Matrix (`10 Seats × 3 Ideas`) MUST pass 3 Cross-Seat Best-Practice Gates and include `crossSeatCoSign` (`🤝 Cross-Seat Collaboration & Best-Practice Plan`):
+     - **Gate A — Tactical & USA Hockey ADM Review (`Seat 1: NCAA D1/USA Hockey` + `Seat 6: Multi-Level Coach`):** How the hockey specialists refined the idea so it strengthens real on-ice habits (`F1/F2/F3/D1/D2` reads, `8U` ADM compliance, and static vs. 2-second pre-play motion).
+     - **Gate B — Child Cognition, Parent Value & Zero-Clutter UX Review (`Seat 3: Pediatric/Parent` + `Seat 5: Touch UX`):** How the UX and cognitive specialists stripped away any potential screen clutter, text overload, or mobile scroll friction across Phone (`390x844`) and iPad (`768x1024` / `1024x768`).
+     - **Gate C — Clean `<canvas>` & Full-Stack Engineering Plan (`Seat 8: Principal Engineer` + `Seat 10: Blind QA`):** The exact best-practice technical implementation (`60fps` canvas rendering, zero regression to `localStorage` sibling isolation, and clean Supabase sync).
+3. **Step 3 — Top 5 Co-Signed Consensus Priorities & 7-Field Digest (`report.html` & `send-board-digest.js`):**
+   - All 10 Seats vote and collaborate to synthesize the **Top 5 Co-Signed Consensus Priorities** (`TOP_5_COSIGNED_CONSENSUS_PRIORITIES`, ranked `#1` to `#5`), rendered at the top of `https://danebekkedahl.github.io/synapz-hockey/report.html` and the HTML email digest, followed by the full **30-Idea Matrix** with all 7 fields (`Seat & Lens`, `Target Age/Tier`, `Candid Critique & Pushback`, `🤝 Cross-Seat Collaboration & Best-Practice Plan`, `Cross-Impact`, `Live Screenshot`, and `[✅ Approve] / [❌ Reject]` controls) and strict `status = 'awaiting_founder_approval'` governance in `public.pucksense_agent_inbox`.
+

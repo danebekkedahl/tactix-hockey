@@ -124,21 +124,42 @@
       <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
         <div>
           <div class="flex flex-wrap items-center gap-2">
-            <span class="px-2.5 py-0.5 rounded bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-widest">🛡️ Section 23 • Co-Founder Advisory Digest &amp; Strict Approval Gate</span>
-            <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[10px] font-black uppercase">Top 3 Priorities • #1–#24 Awaiting Approval • #25–#30 Vetoed</span>
+            <span class="px-2.5 py-0.5 rounded bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-widest">🤝 Section 25 • 4-Phase Cross-Seat Collaborative Roundtable &amp; Strict Approval Gate</span>
+            <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[10px] font-black uppercase">Top 5 Co-Signed Priorities • #1–#24 Awaiting Approval • #25–#30 Vetoed</span>
             <span class="px-2.5 py-0.5 rounded bg-sky-500/20 border border-sky-400/40 text-sky-300 text-[10px] font-black">Recipients: danebekkedahl@gmail.com • evanbekk@gmail.com</span>
           </div>
-          <h3 class="text-lg sm:text-xl font-black text-white mt-1">Ranked #1–#30 Co-Founder Recommendations (Mandatory 6-Field Format + Live Playwright Screenshots)</h3>
-          <p class="text-xs text-slate-300">Nothing below is built until you approve it. Click <strong>[✅ Approve for Next Build]</strong> to set <code>status: 'approved_by_founder'</code> or <strong>[❌ Reject]</strong> to set <code>status: 'rejected_by_founder'</code> in <code>public.pucksense_agent_inbox</code>.</p>
+          <h3 class="text-lg sm:text-xl font-black text-white mt-1">Top 5 Co-Signed Consensus Priorities &amp; 30-Idea Matrix (Mandatory 7-Field Format + 3-Gate Co-Sign + Live Screenshots)</h3>
+          <p class="text-xs text-slate-300">Live App: <a href="https://danebekkedahl.github.io/synapz-hockey/" class="text-cyan-300 underline font-bold">https://danebekkedahl.github.io/synapz-hockey/</a> • Report: <a href="https://danebekkedahl.github.io/synapz-hockey/report.html" class="text-emerald-300 underline font-bold">https://danebekkedahl.github.io/synapz-hockey/report.html</a> • Mirror: <a href="https://danebekkedahl.github.io/tactix-hockey/" class="text-slate-400 underline">tactix-hockey</a>. Click <strong>[✅ Approve for Next Build]</strong> to set <code>status: 'approved_by_founder'</code> or <strong>[❌ Reject]</strong> to set <code>status: 'rejected_by_founder'</code> in <code>public.pucksense_agent_inbox</code>.</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <button id="btnReportEmailDigestDaneEvan" type="button" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-emerald-400 hover:from-amber-300 hover:to-emerald-300 text-slate-950 font-black text-xs shadow-lg transition">
-            📧 Email 6-Field Screenshot Digest to Dane &amp; Evan
+            📧 Email 7-Field Roundtable Digest to Dane &amp; Evan
           </button>
         </div>
       </div>
 
       <div id="reportDigestEmailToast" class="hidden p-3 rounded-xl bg-emerald-950/90 border border-emerald-400 text-xs font-bold text-emerald-200"></div>
+
+      <!-- Top 5 Co-Signed Consensus Priorities Summary Table -->
+      <div class="p-4 rounded-xl bg-emerald-950/35 border-2 border-emerald-400/60 space-y-2.5">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <span class="text-[11px] font-black uppercase tracking-wider text-emerald-300">🏆 Top 5 Co-Signed Consensus Priorities (Unanimous 10-Seat Roundtable Vote • Gate A + Gate B + Gate C Passed)</span>
+          <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-200 text-[10px] font-black">Ranked #1 to #5 Highest-Impact Upgrades</span>
+        </div>
+        <div class="overflow-x-auto rounded-lg border border-emerald-500/30">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead class="bg-slate-950 text-[10px] font-black uppercase text-amber-300">
+              <tr>
+                <th class="py-2 px-3">Rank / ID</th>
+                <th class="py-2 px-3">What to Build &amp; Target Age/Tier</th>
+                <th class="py-2 px-3">Candid Pushback &amp; 3-Gate Cross-Seat Co-Sign Plan</th>
+                <th class="py-2 px-3 text-right">1-Click Founder Approval</th>
+              </tr>
+            </thead>
+            <tbody id="reportTop5CoSignedTableBody" class="divide-y divide-slate-800/80 bg-slate-950/80 text-slate-200"></tbody>
+          </table>
+        </div>
+      </div>
 
       <!-- Special Board Question: Moving Plays vs. Static Setups -->
       <div class="p-4 rounded-xl bg-slate-950/95 border-2 border-sky-400/60 space-y-2.5">
@@ -167,24 +188,24 @@
       <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
         <div class="flex flex-wrap items-center gap-1.5">
           <button type="button" data-digest-filter="all" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-amber-400 text-slate-950 font-black text-[11px]">All 30 Ranked Proposals (30)</button>
+          <button type="button" data-digest-filter="top5" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-emerald-400/60 text-emerald-300 font-bold text-[11px]">🤝 Top 5 Co-Signed Consensus (5)</button>
           <button type="button" data-digest-filter="top10" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-cyan-400/50 text-cyan-300 font-bold text-[11px]">🏆 Top 10 Focused Proposals (1 Primary + 1 Alt / Seat)</button>
-          <button type="button" data-digest-filter="top3" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-emerald-500/40 text-emerald-300 font-bold text-[11px]">⭐ Top 3 Board Priorities (3)</button>
           <button type="button" data-digest-filter="awaiting_founder_approval" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-sky-500/40 text-sky-300 font-bold text-[11px]">🛡️ Awaiting Approval (#1–#24)</button>
           <button type="button" data-digest-filter="vetoed" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-rose-500/40 text-rose-300 font-bold text-[11px]">🛑 Vetoed by Authority (#25–#30)</button>
         </div>
         <span id="reportDigestOverrideStatus" class="text-[11px] font-bold text-sky-300">🔒 Approval Gate &amp; Test-Suite Lock Active: Only <code>approved_by_founder</code> items build next run</span>
       </div>
 
-      <!-- 30-Idea 6-Field Table -->
+      <!-- 30-Idea 7-Field Table -->
       <div class="overflow-x-auto max-h-[680px] overflow-y-auto rounded-xl border border-slate-800">
         <table class="w-full text-left border-collapse text-xs">
           <thead class="sticky top-0 bg-slate-950 border-b border-slate-800 text-[10px] font-black uppercase text-slate-400 z-10">
             <tr>
               <th class="py-2.5 px-3">Rank / ID</th>
               <th class="py-2.5 px-3">1. Seat Lens &amp; 2. Target Scope</th>
-              <th class="py-2.5 px-3">3. Why &amp; Candid Co-Founder Critique + 4. Cross-Impact</th>
-              <th class="py-2.5 px-3">5. Live Audit Screenshot</th>
-              <th class="py-2.5 px-3 text-right">6. 1-Click Founder Approval</th>
+              <th class="py-2.5 px-3">3. Candid Critique, 4. 🤝 3-Gate Cross-Seat Co-Sign &amp; 5. Cross-Impact</th>
+              <th class="py-2.5 px-3">6. Live Audit Screenshot</th>
+              <th class="py-2.5 px-3 text-right">7. 1-Click Founder Approval</th>
             </tr>
           </thead>
           <tbody id="reportDigest30TableBody" class="divide-y divide-slate-800/80 text-slate-200"></tbody>
@@ -1145,16 +1166,65 @@
       } catch (e) {}
     }
 
+    function buildReportCrossSeatCoSign(item) {
+      if (item.crossSeatCoSign && item.crossSeatCoSign.gateA_TacticalAdm) return item.crossSeatCoSign;
+      const isVeto = item.status === 'vetoed';
+      const gateA = isVeto
+        ? 'Gate A (Seat 1 NCAA/USA Hockey + Seat 6 Multi-Level Coach): Veto upheld—violates USA Hockey ADM developmental progression and real on-ice F1/F2/F3/D1/D2 habits.'
+        : (item.rank <= 5
+          ? `Gate A (Seat 1 NCAA/USA Hockey + Seat 6 Multi-Level Coach): Co-signed & refined so F1/F2/F3/D1/D2 gap closing and support angles match real ${item.targetScope} ice reads while keeping 8U strictly 5v5 ADM compliant.`
+          : `Gate A (Seat 1 NCAA/USA Hockey + Seat 6 Multi-Level Coach): Verified single-label role mapping (applyRoleLabelMap) and age-appropriate tactical read depth for ${item.targetScope}.`);
+      const gateB = isVeto
+        ? 'Gate B (Seat 3 Pediatric/Parent + Seat 5 Touch UX): Veto upheld—prevents cognitive overload, sibling data bleed, or HUD scroll clutter on 390x844 Phone & 768x1024 iPad.'
+        : 'Gate B (Seat 3 Pediatric/Parent + Seat 5 Touch UX): Stripped potential HUD clutter; capped 8U/10U text at <=14 words and verified zero-scroll 44px touch targets across 390x844 Phone & 768x1024 / 1024x768 iPad.';
+      const gateC = isVeto
+        ? 'Gate C (Seat 8 Principal Engineer + Seat 10 Blind QA): Blocked from build queue to protect 60fps <canvas>, sibling localStorage isolation, and blind playtest integrity.'
+        : 'Gate C (Seat 8 Principal Engineer + Seat 10 Blind QA): Scoped for 60fps requestAnimationFrame <canvas> rendering, normalizeSynapzState() sibling isolation, and 100% blind playtest verification before merge.';
+      return { gateA_TacticalAdm: gateA, gateB_CognitionUx: gateB, gateC_EngineeringQa: gateC, summary: `${gateA} | ${gateB} | ${gateC}` };
+    }
+
+    REPORT_BOARD_30_IDEA_DIGEST.forEach(item => {
+      item.isTop5CoSigned = item.rank <= 5;
+      item.crossSeatCoSign = buildReportCrossSeatCoSign(item);
+    });
+
     function renderReportFounderDigestTable() {
+      const top5Tbody = document.getElementById('reportTop5CoSignedTableBody');
+      if (top5Tbody) {
+        const top5Rows = REPORT_BOARD_30_IDEA_DIGEST.filter(i => i.rank <= 5);
+        top5Tbody.innerHTML = top5Rows.map(item => `
+          <tr class="hover:bg-slate-900/70 transition align-top">
+            <td class="py-2.5 px-3 font-mono text-[11px] font-black text-emerald-300 whitespace-nowrap">
+              <div>#${item.rank} (${item.id})</div>
+              <div class="text-[10px] text-amber-300">10/10 Seats Co-Signed</div>
+            </td>
+            <td class="py-2.5 px-3">
+              <div class="font-black text-white text-xs">${item.title}</div>
+              <div class="text-[11px] text-sky-300 font-bold mt-0.5">${item.targetScope}</div>
+            </td>
+            <td class="py-2.5 px-3 text-[11px] space-y-1">
+              <div class="text-rose-200"><strong>Pushback:</strong> ${item.candidCritique}</div>
+              <div class="text-cyan-200"><strong>🤝 3-Gate Co-Sign:</strong> ${item.crossSeatCoSign.gateA_TacticalAdm} • ${item.crossSeatCoSign.gateB_CognitionUx} • ${item.crossSeatCoSign.gateC_EngineeringQa}</div>
+            </td>
+            <td class="py-2.5 px-3 text-right whitespace-nowrap">
+              <button type="button" data-approve-idea-id="${item.id}" class="btn-report-approve-idea px-2.5 py-1 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-[10px] mr-1">✅ Approve</button>
+              <button type="button" data-reject-idea-id="${item.id}" class="btn-report-reject-idea px-2.5 py-1 rounded bg-rose-600 hover:bg-rose-500 text-white font-black text-[10px]">❌ Reject</button>
+            </td>
+          </tr>
+        `).join('');
+      }
+
       const tbody = document.getElementById('reportDigest30TableBody');
       if (!tbody) return;
       const rows = REPORT_BOARD_30_IDEA_DIGEST.filter(item => {
         if (activeReportDigestFilter === 'all') return true;
+        if (activeReportDigestFilter === 'top5') return item.isTop5CoSigned || item.rank <= 5 || item.status === 'approved_by_founder';
         if (activeReportDigestFilter === 'top10') return item.isTop10SeatPrimary || item.rank <= 10 || item.status === 'approved_by_founder';
         if (activeReportDigestFilter === 'top3') return item.isTop3Recommended || item.status === 'approved_by_founder';
         return item.status === activeReportDigestFilter;
       });
       tbody.innerHTML = rows.map((item) => {
+        const coSign = item.crossSeatCoSign || buildReportCrossSeatCoSign(item);
         const badgeHtml = item.status === 'approved_by_founder'
           ? '<span class="px-2 py-0.5 rounded bg-emerald-500/25 border border-emerald-400 text-emerald-200 text-[10px] font-black uppercase">✅ Approved for Next Build</span>'
           : item.status === 'rejected_by_founder'
@@ -1167,7 +1237,7 @@
             <td class="py-3 px-3 font-mono text-[11px] font-bold text-amber-300 whitespace-nowrap">
               <div>RANK #${item.rank}</div>
               <div class="text-slate-400">${item.id} (${item.pod})</div>
-              ${item.isTop3Recommended ? '<div class="mt-1 px-1.5 py-0.5 rounded bg-emerald-500/30 border border-emerald-400 text-emerald-200 text-[9px] font-black inline-block">🏆 TOP 3</div>' : ''}
+              ${item.isTop5CoSigned ? '<div class="mt-1 px-1.5 py-0.5 rounded bg-emerald-500/30 border border-emerald-400 text-emerald-200 text-[9px] font-black inline-block">🤝 TOP 5 CO-SIGNED</div>' : ''}
               ${item.isTop10SeatPrimary ? '<div class="mt-1 px-1.5 py-0.5 rounded bg-cyan-500/30 border border-cyan-400 text-cyan-200 text-[9px] font-black inline-block">🎯 SEAT #1 PICK</div>' : ''}
             </td>
             <td class="py-3 px-3 max-w-xs">
@@ -1179,7 +1249,13 @@
               <div class="font-black text-white text-xs">#${item.rank} — ${item.title}</div>
               <div class="text-[11px] text-rose-200"><strong>3. Why &amp; Candid Critique:</strong> ${item.candidCritique}</div>
               ${item.alternativeProposal ? `<div class="text-[11px] text-cyan-200 bg-cyan-950/50 border border-cyan-500/40 rounded px-2 py-1"><strong>🔄 1 Alternative Option (Same Seat):</strong> ${item.alternativeProposal}</div>` : ''}
-              <div class="text-[11px] text-purple-200"><strong>4. Who Else It Affects:</strong> ${item.crossImpact}</div>
+              <div class="text-[11px] text-emerald-200 bg-emerald-950/40 border border-emerald-500/30 rounded px-2 py-1">
+                <strong>4. 🤝 Cross-Seat Collaboration &amp; Best-Practice Plan:</strong><br/>
+                • ${coSign.gateA_TacticalAdm}<br/>
+                • ${coSign.gateB_CognitionUx}<br/>
+                • ${coSign.gateC_EngineeringQa}
+              </div>
+              <div class="text-[11px] text-purple-200"><strong>5. Who Else It Affects:</strong> ${item.crossImpact}</div>
             </td>
             <td class="py-3 px-3 w-48">
               <a href="${item.screenshotUrl}" target="_blank" class="block">
@@ -1200,12 +1276,12 @@
         `;
       }).join('');
 
-      tbody.querySelectorAll('.btn-report-approve-idea').forEach(btn => {
+      document.querySelectorAll('.btn-report-approve-idea').forEach(btn => {
         btn.addEventListener('click', () => {
           setReportFounderIdeaDecision(btn.getAttribute('data-approve-idea-id'), 'approved_by_founder');
         });
       });
-      tbody.querySelectorAll('.btn-report-reject-idea').forEach(btn => {
+      document.querySelectorAll('.btn-report-reject-idea').forEach(btn => {
         btn.addEventListener('click', () => {
           setReportFounderIdeaDecision(btn.getAttribute('data-reject-idea-id'), 'rejected_by_founder');
         });

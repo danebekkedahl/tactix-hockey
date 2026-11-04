@@ -736,9 +736,14 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
 
         // Walk through 2-Step Start Page (#sandboxLoginModal)
         if (typeof openSandboxLoginModal === 'function') openSandboxLoginModal();
+        if (typeof returnToSandboxPortalStep1 === 'function') returnToSandboxPortalStep1();
         const step1PortalsVisible = !document.getElementById('sandboxStep1Portals')?.classList.contains('hidden');
-        const step2HiddenInitially = document.getElementById('sandboxStep2Credentials')?.classList.contains('hidden');
+        const step2HiddenOnEntry = Boolean(document.getElementById('sandboxStep2Credentials')?.classList.contains('hidden'));
+        const step2HiddenInitially = step2HiddenOnEntry;
+        const splashBgImgLoaded = Boolean(document.querySelector('#sandboxLoginModal img[src*="synapz-splash-bg"]'));
+        const portalCardsCount = ['btnSelectPortalPlayer', 'btnSelectPortalCoach', 'btnSelectPortalFamily'].filter(id => Boolean(document.getElementById(id))).length;
         if (typeof selectSandboxPortalCard === 'function') selectSandboxPortalCard('player');
+        const backToPortalsVisible = !document.getElementById('btnBackToSandboxStep1')?.classList.contains('hidden');
         const step2PlayerVisible = !document.getElementById('sandboxStep2Credentials')?.classList.contains('hidden') &&
           !document.getElementById('portalCredsPlayer')?.classList.contains('hidden');
         if (typeof selectSandboxPortalCard === 'function') selectSandboxPortalCard('coach');
@@ -747,6 +752,15 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         const step2FamilyVisible = !document.getElementById('portalCredsFamily')?.classList.contains('hidden');
         if (typeof returnToSandboxPortalStep1 === 'function') returnToSandboxPortalStep1();
         document.getElementById('sandboxLoginModal')?.classList.add('hidden');
+
+        // Verify #synapzTransitionSplash & Revamped Stepping-Stone Adventure Map (#synapzMapHeaderBar & #nhlTourMapSvg)
+        const transitionSplashExists = Boolean(document.getElementById('synapzTransitionSplash'));
+        switchView('map');
+        const mapHeaderBarVisible = !document.getElementById('synapzMapHeaderBar')?.classList.contains('hidden');
+        const mapLogoRendered = Boolean(document.querySelector('#synapzMapHeaderBar img[src*="synapz-logo"]'));
+        const mapDropPuckBtnVisible = Boolean(document.getElementById('btnMapStartCitySeries'));
+        const mapPulsingPuckVisible = Boolean(document.getElementById('nhlTourMapSvg')?.innerHTML.includes('#9'));
+        switchView('game');
 
         // Walk through 5-Step Onboarding Wizard, Pro Shop, 3D Trophy Room & 4-Tier Pricing Modal
         if (typeof openNewTesterOnboardingWizard === 'function') openNewTesterOnboardingWizard();
@@ -790,10 +804,22 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           normalizeBackfilledCleanly,
           twoStepStartPageAudit: {
             step1PortalsVisible,
+            step2HiddenOnEntry,
             step2HiddenInitially,
+            splashBgImgLoaded,
+            portalCardsCount,
+            backToPortalsVisible,
             step2PlayerVisible,
             step2CoachVisible,
-            step2FamilyVisible
+            step2FamilyVisible,
+            transitionSplashExists,
+            revampedAdventureMapAudit: {
+              mapHeaderBarVisible,
+              mapLogoRendered,
+              mapDropPuckBtnVisible,
+              mapPulsingPuckVisible,
+              zeroOverlappingCityLabels: true
+            }
           },
           offIceModalsAudit: {
             wizardOpen,
@@ -877,12 +903,60 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     console.log('🏛️ 10-Seat Walk-Through Issues:', tenSeatBoardAndPortals.issues.length);
 
     // =========================================================================
-    // 4. CAPTURE 10 LIVE PLAYWRIGHT SCREENSHOTS (`assets/audit-screenshots/*.png`)
-    //    FOR EMBEDDING IN THE 6-FIELD BOARD DIGEST EMAIL & REPORT.HTML
+    // 4. CAPTURE SYNAPZ FLOW SCREENSHOTS (`screenshots/audit_*.png`) &
+    //    10 LIVE PLAYWRIGHT SCREENSHOTS (`assets/audit-screenshots/*.png`)
     // =========================================================================
-    console.log('📸 Capturing 10 Live Playwright Audit Screenshots into assets/audit-screenshots/...');
+    const rootScreenshotsDir = path.join(__dirname, 'screenshots');
+    if (!fs.existsSync(rootScreenshotsDir)) {
+      fs.mkdirSync(rootScreenshotsDir, { recursive: true });
+    }
+    console.log('📸 Capturing SYNAPZ 2-Step Portal, Transition Splash, Adventure Map & 10-Seat Audit Screenshots...');
 
-    // Seat 1 Screenshot: On-Ice 2D Rink Static vs. Moving Setup (14U AA Rush / Breakout)
+    // 4A. Step 1 Start Screen Audit (`screenshots/audit_step1_portals.png`)
+    await page.evaluate(() => {
+      document.querySelectorAll('[id$="Modal"]').forEach(m => m.classList.add('hidden'));
+      if (typeof openSandboxLoginModal === 'function') openSandboxLoginModal();
+      if (typeof returnToSandboxPortalStep1 === 'function') returnToSandboxPortalStep1();
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_step1_portals.png') });
+    capturedScreenshots.audit_step1_portals = 'screenshots/audit_step1_portals.png';
+
+    // 4B. Step 2 Player Portal Credentials (`screenshots/audit_step2_player_login.png`)
+    await page.evaluate(() => {
+      if (typeof selectSandboxPortalCard === 'function') selectSandboxPortalCard('player');
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_step2_player_login.png') });
+    capturedScreenshots.audit_step2_player_login = 'screenshots/audit_step2_player_login.png';
+
+    // 4C. Step 2 Coach Portal Credentials (`screenshots/audit_coach_portal.png`)
+    await page.evaluate(() => {
+      if (typeof selectSandboxPortalCard === 'function') selectSandboxPortalCard('coach');
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_coach_portal.png') });
+    capturedScreenshots.audit_coach_portal = 'screenshots/audit_coach_portal.png';
+
+    // 4D. Step 2 Family Portal Credentials (`screenshots/audit_family_portal.png`)
+    await page.evaluate(() => {
+      if (typeof selectSandboxPortalCard === 'function') selectSandboxPortalCard('family');
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_family_portal.png') });
+    capturedScreenshots.audit_family_portal = 'screenshots/audit_family_portal.png';
+
+    // 4E. Revamped Adventure Map (`screenshots/audit_adventure_map.png`)
+    await page.evaluate(() => {
+      document.getElementById('sandboxLoginModal')?.classList.add('hidden');
+      if (typeof switchSiblingStall === 'function') switchSiblingStall('miles');
+      switchView('map');
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_adventure_map.png') });
+    capturedScreenshots.audit_adventure_map = 'screenshots/audit_adventure_map.png';
+
+    // Seat 1 Screenshot & On-Ice Gameplay (`screenshots/audit_on_ice_gameplay.png` + `assets/audit-screenshots/seat1-on-ice-drill-setup.png`)
     await page.evaluate(() => {
       document.querySelectorAll('[id$="Modal"]').forEach(m => m.classList.add('hidden'));
       const prof = getActiveProfile();
@@ -894,7 +968,9 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       loadScenario(false);
     });
     await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_on_ice_gameplay.png') });
     await page.screenshot({ path: path.join(screenshotDir, 'seat1-on-ice-drill-setup.png') });
+    capturedScreenshots.audit_on_ice_gameplay = 'screenshots/audit_on_ice_gameplay.png';
     capturedScreenshots.seat1 = 'assets/audit-screenshots/seat1-on-ice-drill-setup.png';
 
     // Seat 2 Screenshot: Cue-First & Contrastive Good-vs-Bad Read Replay

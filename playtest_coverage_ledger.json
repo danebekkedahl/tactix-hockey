@@ -1,6 +1,6 @@
 {
-  "lastUpdatedAt": "2026-11-04T02:11:08.533Z",
-  "totalRuns": 3,
+  "lastUpdatedAt": "2026-11-04T03:12:46.669Z",
+  "totalRuns": 4,
   "stepAApprovalGateCheck": {
     "statusChecked": "approved_by_founder",
     "approvedItemsCount": 0,
@@ -575,6 +575,12 @@
     }
   ],
   "capturedScreenshots": {
+    "audit_step1_portals": "screenshots/audit_step1_portals.png",
+    "audit_step2_player_login": "screenshots/audit_step2_player_login.png",
+    "audit_coach_portal": "screenshots/audit_coach_portal.png",
+    "audit_family_portal": "screenshots/audit_family_portal.png",
+    "audit_adventure_map": "screenshots/audit_adventure_map.png",
+    "audit_on_ice_gameplay": "screenshots/audit_on_ice_gameplay.png",
     "seat1": "assets/audit-screenshots/seat1-on-ice-drill-setup.png",
     "seat2": "assets/audit-screenshots/seat2-cue-first-roll-in.png",
     "seat3": "assets/audit-screenshots/seat3-8u-adm-cognitive-load.png",

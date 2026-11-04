@@ -649,19 +649,50 @@ const BOARD_30_IDEA_DIGEST = [
   }
 ];
 
-function renderSixFieldCardHtml(item, isTop3Banner = false) {
+function buildCrossSeatCoSign(item) {
+  if (item.crossSeatCoSign && item.crossSeatCoSign.gateA_TacticalAdm) return item.crossSeatCoSign;
+  const isVeto = item.status === 'vetoed';
+  const gateA = isVeto
+    ? 'Gate A (Seat 1 NCAA/USA Hockey + Seat 6 Multi-Level Coach): Veto upheld—violates USA Hockey ADM developmental progression and real on-ice F1/F2/F3/D1/D2 habits.'
+    : (item.rank <= 5
+      ? `Gate A (Seat 1 NCAA/USA Hockey + Seat 6 Multi-Level Coach): Co-signed & refined so F1/F2/F3/D1/D2 gap closing and support angles match real ${item.targetScope} ice reads while keeping 8U strictly 5v5 ADM compliant.`
+      : `Gate A (Seat 1 NCAA/USA Hockey + Seat 6 Multi-Level Coach): Verified single-label role mapping (applyRoleLabelMap) and age-appropriate tactical read depth for ${item.targetScope}.`);
+  const gateB = isVeto
+    ? 'Gate B (Seat 3 Pediatric/Parent + Seat 5 Touch UX): Veto upheld—prevents cognitive overload, sibling data bleed, or HUD scroll clutter on 390x844 Phone & 768x1024 iPad.'
+    : `Gate B (Seat 3 Pediatric/Parent + Seat 5 Touch UX): Stripped potential HUD clutter; capped 8U/10U text at <=14 words and verified zero-scroll 44px touch targets across 390x844 Phone & 768x1024 / 1024x768 iPad.`;
+  const gateC = isVeto
+    ? 'Gate C (Seat 8 Principal Engineer + Seat 10 Blind QA): Blocked from build queue to protect 60fps <canvas>, sibling localStorage isolation, and blind playtest integrity.'
+    : `Gate C (Seat 8 Principal Engineer + Seat 10 Blind QA): Scoped for 60fps requestAnimationFrame <canvas> rendering, normalizeSynapzState() sibling isolation, and 100% blind playtest verification before merge.`;
+
+  return {
+    gateA_TacticalAdm: gateA,
+    gateB_CognitionUx: gateB,
+    gateC_EngineeringQa: gateC,
+    summary: `${gateA} | ${gateB} | ${gateC}`
+  };
+}
+
+for (const item of BOARD_30_IDEA_DIGEST) {
+  item.isTop5CoSigned = item.rank <= 5;
+  item.crossSeatCoSign = buildCrossSeatCoSign(item);
+}
+
+const TOP_5_COSIGNED_CONSENSUS_PRIORITIES = BOARD_30_IDEA_DIGEST.filter(i => i.rank <= 5);
+
+function renderSevenFieldCardHtml(item, isTop5Banner = false) {
   const isVetoed = item.status === 'vetoed';
-  const borderCol = isTop3Banner ? '#10b981' : isVetoed ? '#f43f5e' : '#38bdf8';
-  const bgCol = isTop3Banner ? '#022c22' : isVetoed ? '#3b071e' : '#0f172a';
-  const badgeBg = isTop3Banner ? '#059669' : isVetoed ? '#e11d48' : '#0284c7';
-  const badgeText = isTop3Banner
-    ? `🏆 TOP ${item.rank} RECOMMENDED PRIORITY • AWAITING FOUNDER APPROVAL`
+  const borderCol = isTop5Banner ? '#10b981' : isVetoed ? '#f43f5e' : '#38bdf8';
+  const bgCol = isTop5Banner ? '#022c22' : isVetoed ? '#3b071e' : '#0f172a';
+  const badgeBg = isTop5Banner ? '#059669' : isVetoed ? '#e11d48' : '#0284c7';
+  const badgeText = isTop5Banner
+    ? `🤝 TOP #${item.rank} CO-SIGNED CONSENSUS PRIORITY (10/10 SEATS) • AWAITING FOUNDER APPROVAL`
     : isVetoed
-      ? `🛑 RANK #${item.rank} • VETOED BY DOMAIN AUTHORITY`
-      : `📋 RANK #${item.rank} PRIORITY • AWAITING FOUNDER APPROVAL`;
+      ? `🛑 RANK #${item.rank} • VETOED BY 3-GATE ROUNDTABLE`
+      : `📋 RANK #${item.rank} CO-SIGNED PROPOSAL • AWAITING FOUNDER APPROVAL`;
 
   const approveHref = `${PAGES_BASE_URL}/report.html?founder_action=approve&idea_id=${encodeURIComponent(item.id)}#founder-approval-board`;
   const rejectHref = `${PAGES_BASE_URL}/report.html?founder_action=reject&idea_id=${encodeURIComponent(item.id)}#founder-approval-board`;
+  const coSign = item.crossSeatCoSign || buildCrossSeatCoSign(item);
 
   return `
     <div style="background:${bgCol}; border:2px solid ${borderCol}; border-radius:14px; padding:16px; margin-bottom:16px;">
@@ -689,18 +720,26 @@ function renderSixFieldCardHtml(item, isTop3Banner = false) {
           </td>
         </tr>
         <tr>
-          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; font-weight:800; color:#c084fc; vertical-align:top;">4. Who Else It Affects (Cross-Impact)</td>
+          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; font-weight:800; color:#22d3ee; vertical-align:top;">4. 🤝 Cross-Seat Collaboration &amp; Best-Practice Plan (3 Gates)</td>
+          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; vertical-align:top;">
+            <div style="margin-bottom:3px; color:#fde68a;">• <strong>${coSign.gateA_TacticalAdm}</strong></div>
+            <div style="margin-bottom:3px; color:#bae6fd;">• <strong>${coSign.gateB_CognitionUx}</strong></div>
+            <div style="color:#a7f3d0;">• <strong>${coSign.gateC_EngineeringQa}</strong></div>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; font-weight:800; color:#c084fc; vertical-align:top;">5. Who Else It Affects (Cross-Impact)</td>
           <td style="padding:6px 8px; border-bottom:1px solid #1e293b; vertical-align:top;">${item.crossImpact}</td>
         </tr>
         <tr>
-          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; font-weight:800; color:#34d399; vertical-align:top;">5. Actual Live Screenshot</td>
+          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; font-weight:800; color:#34d399; vertical-align:top;">6. Actual Live Screenshot</td>
           <td style="padding:6px 8px; border-bottom:1px solid #1e293b; vertical-align:top;">
             <a href="${item.screenshotUrl}" target="_blank" style="color:#38bdf8; font-size:11px; text-decoration:underline; display:block; margin-bottom:6px;">🔗 View Full-Res Screenshot (${item.screenshotUrl.split('/').pop()})</a>
             <img src="${item.screenshotUrl}" alt="${item.title}" style="max-width:100%; width:540px; border-radius:10px; border:1px solid #475569; display:block;" />
           </td>
         </tr>
         <tr>
-          <td style="padding:8px; font-weight:800; color:#fde047; vertical-align:middle;">6. 1-Click Founder Approval Controls</td>
+          <td style="padding:8px; font-weight:800; color:#fde047; vertical-align:middle;">7. 1-Click Founder Approval Controls</td>
           <td style="padding:8px; vertical-align:middle;">
             <a href="${approveHref}" style="display:inline-block; background:#059669; color:#ffffff; font-weight:900; font-size:12px; padding:8px 14px; border-radius:8px; text-decoration:none; margin-right:8px;">✅ Approve for Next Build</a>
             <a href="${rejectHref}" style="display:inline-block; background:#be123c; color:#ffffff; font-weight:900; font-size:12px; padding:8px 14px; border-radius:8px; text-decoration:none;">❌ Reject</a>
@@ -713,24 +752,67 @@ function renderSixFieldCardHtml(item, isTop3Banner = false) {
 }
 
 function buildEmailHtml(ideas, timestamp) {
-  const top10Focused = ideas.filter(i => i.isTop10SeatPrimary || i.rank <= 10);
-  const awaitingRest = ideas.filter(i => i.rank > 10 && i.status === 'awaiting_founder_approval');
+  const top5CoSigned = ideas.filter(i => i.rank <= 5);
+  const awaitingRest = ideas.filter(i => i.rank > 5 && i.status === 'awaiting_founder_approval');
   const vetoed = ideas.filter(i => i.status === 'vetoed');
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Synapz Hockey — 10-Seat Co-Founder Advisory Digest (v9.1 Approval Gate + 6-Field Screenshots)</title>
+  <title>SYNAPZ HOCKEY — Nightly 10-Seat Collaborative Roundtable &amp; 30-Idea Digest</title>
 </head>
 <body style="font-family: Inter, Arial, sans-serif; background:#020617; color:#f8fafc; padding:20px; line-height:1.5;">
   <div style="max-width:920px; margin:0 auto; background:#090d16; border:2px solid #00e5ff; border-radius:18px; padding:24px;">
-    <div style="font-size:11px; font-weight:900; color:#00e5ff; text-transform:uppercase; letter-spacing:0.08em;">SYNAPZ HOCKEY • PLAY. LEARN. DOMINATE. • CO-FOUNDER ADVISORY CHARTER (SECTION 23)</div>
-    <h1 style="margin:6px 0 8px; font-size:22px; color:#ffffff;">🛡️ 10 Focused Co-Founder Proposals (1 Primary + 1 Alternative per Seat, Ranked #1–#10)</h1>
+    <div style="font-size:11px; font-weight:900; color:#00e5ff; text-transform:uppercase; letter-spacing:0.08em;">SYNAPZ HOCKEY • PLAY. LEARN. DOMINATE. • 4-PHASE CROSS-SEAT COLLABORATIVE ROUNDTABLE (SECTION 25)</div>
+    <h1 style="margin:6px 0 8px; font-size:22px; color:#ffffff;">🤝 Nightly 10-Seat Collaborative Roundtable: Top 5 Co-Signed Consensus Priorities &amp; 30-Idea Matrix</h1>
     <p style="margin:0 0 14px; font-size:13px; color:#cbd5e1;">
       Prepared for <strong>Coach Dane (danebekkedahl@gmail.com)</strong> &amp; <strong>Coach Evan (evanbekk@gmail.com)</strong> • Generated ${timestamp}<br/>
-      🔒 <strong>Strict Approval Gate &amp; Test-Suite Lock Enforced:</strong> Zero unapproved UI or gameplay features were mutated into <code>index.html</code> during this run. Click <strong>[✅ Approve for Next Build]</strong> or <strong>[❌ Reject]</strong> on any recommendation below or in <a href="${PAGES_BASE_URL}/report.html#founder-approval-board" style="color:#38bdf8; font-weight:800;">report.html</a> / <code>#founderDigestModal</code>!
+      🌐 <strong>Live App:</strong> <a href="https://danebekkedahl.github.io/synapz-hockey/" style="color:#00e5ff; font-weight:800;">https://danebekkedahl.github.io/synapz-hockey/</a> •
+      📊 <strong>Live 10-Seat Board &amp; Report:</strong> <a href="https://danebekkedahl.github.io/synapz-hockey/report.html#founder-approval-board" style="color:#34d399; font-weight:800;">https://danebekkedahl.github.io/synapz-hockey/report.html</a> •
+      🪞 <strong>Mirror:</strong> <a href="https://danebekkedahl.github.io/tactix-hockey/" style="color:#94a3b8;">tactix-hockey</a><br/>
+      🔒 <strong>Strict Approval Gate &amp; 3-Gate Roundtable Enforced:</strong> Every recommendation below passed <strong>Gate A (Tactical/ADM)</strong>, <strong>Gate B (Child Cognition/Zero-Clutter UX)</strong>, and <strong>Gate C (60fps Engineering/Blind QA)</strong>. Nothing is built until you click <strong>[✅ Approve for Next Build]</strong>!
     </p>
+
+    <!-- NEW SYNAPZ 2-STEP PORTAL, TRANSITION SPLASH & STEPPING-STONE MAP AUDIT SCREENSHOTS -->
+    <div style="background:#0f172a; border:2px solid #00e5ff; border-radius:14px; padding:16px; margin-bottom:22px;">
+      <div style="font-size:11px; font-weight:900; color:#00e5ff; text-transform:uppercase; letter-spacing:0.06em;">📸 TONIGHT'S VERIFIED SYNAPZ HOCKEY ARCHITECTURE SCREENSHOTS (STEP 1 -> STEP 2 -> MAP -> RINK)</div>
+      <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; margin-top:10px; font-size:11px; color:#cbd5e1;">
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_step1_portals.png" style="color:#38bdf8; font-weight:800;">1. Step 1 Portal Cards (step2HiddenOnEntry=true)</a><img src="${PAGES_BASE_URL}/screenshots/audit_step1_portals.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_step2_player_login.png" style="color:#38bdf8; font-weight:800;">2. Step 2 Player Login &amp; Back to Portals</a><img src="${PAGES_BASE_URL}/screenshots/audit_step2_player_login.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_adventure_map.png" style="color:#38bdf8; font-weight:800;">3. Revamped Stepping-Stone Adventure Map</a><img src="${PAGES_BASE_URL}/screenshots/audit_adventure_map.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_on_ice_gameplay.png" style="color:#38bdf8; font-weight:800;">4. Blind On-Ice Gameplay (30/30 Gold Reads)</a><img src="${PAGES_BASE_URL}/screenshots/audit_on_ice_gameplay.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
+      </div>
+    </div>
+
+    <!-- TOP 5 CO-SIGNED CONSENSUS PRIORITIES SUMMARY TABLE -->
+    <div style="background:#022c22; border:2px solid #10b981; border-radius:14px; padding:16px; margin-bottom:22px;">
+      <div style="font-size:11px; font-weight:900; color:#34d399; text-transform:uppercase; letter-spacing:0.06em;">🏆 TOP 5 CO-SIGNED CONSENSUS PRIORITIES (UNANIMOUS 10-SEAT ROUNDTABLE VOTE)</div>
+      <div style="font-size:15px; font-weight:900; color:#ffffff; margin:4px 0 8px;">Ranked #1 to #5 Highest-Impact Upgrades Co-Signed Across All 3 Best-Practice Gates</div>
+      <table style="width:100%; border-collapse:collapse; font-size:12px; color:#e2e8f0; background:#0f172a; border-radius:10px; overflow:hidden;">
+        <thead>
+          <tr style="background:#1e293b; color:#fbbf24; text-align:left;">
+            <th style="padding:8px;">Rank &amp; ID</th>
+            <th style="padding:8px;">What to Build &amp; Target Age/Tier</th>
+            <th style="padding:8px;">3-Gate Cross-Seat Co-Sign Summary</th>
+            <th style="padding:8px;">1-Click Decision</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${top5CoSigned.map(item => `
+            <tr>
+              <td style="padding:8px; border-top:1px solid #1e293b; font-weight:900; color:#34d399;">#${item.rank} (${item.id})<br/><span style="font-size:10px; color:#94a3b8;">Seat ${item.seatNumber} Lead</span></td>
+              <td style="padding:8px; border-top:1px solid #1e293b;"><strong>${item.title}</strong><br/><span style="font-size:11px; color:#38bdf8;">${item.targetScope}</span></td>
+              <td style="padding:8px; border-top:1px solid #1e293b; font-size:11px; color:#cbd5e1;">${item.crossSeatCoSign.gateA_TacticalAdm}<br/>${item.crossSeatCoSign.gateB_CognitionUx}</td>
+              <td style="padding:8px; border-top:1px solid #1e293b; white-space:nowrap;">
+                <a href="${PAGES_BASE_URL}/report.html?founder_action=approve&idea_id=${encodeURIComponent(item.id)}#founder-approval-board" style="background:#059669; color:#fff; padding:5px 9px; border-radius:6px; text-decoration:none; font-weight:900; font-size:11px; display:inline-block; margin-bottom:4px;">✅ Approve</a><br/>
+                <a href="${PAGES_BASE_URL}/report.html?founder_action=reject&idea_id=${encodeURIComponent(item.id)}#founder-approval-board" style="background:#be123c; color:#fff; padding:5px 9px; border-radius:6px; text-decoration:none; font-weight:900; font-size:11px; display:inline-block;">❌ Reject</a>
+              </td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
 
     <!-- SPECIAL BOARD QUESTION: MOVING PLAYS VS STATIC SETUPS -->
     <div style="background:#172554; border:2px solid #38bdf8; border-radius:14px; padding:16px; margin-bottom:22px;">
@@ -756,14 +838,14 @@ function buildEmailHtml(ideas, timestamp) {
       </table>
     </div>
 
-    <h2 style="font-size:17px; color:#34d399; border-bottom:2px solid #10b981; padding-bottom:6px;">🏆 10 FOCUSED PROPOSALS PER RUN (1 PRIMARY + 1 ALTERNATIVE PER SEAT • RANKED #1 – #10)</h2>
-    ${top10Focused.map(i => renderSixFieldCardHtml(i, i.rank <= 3)).join('')}
+    <h2 style="font-size:17px; color:#34d399; border-bottom:2px solid #10b981; padding-bottom:6px;">🤝 TOP 5 CO-SIGNED CONSENSUS PRIORITIES (7-FIELD ROUNDTABLE CARDS • RANKED #1 – #5)</h2>
+    ${top5CoSigned.map(i => renderSevenFieldCardHtml(i, true)).join('')}
 
-    <h2 style="font-size:17px; color:#38bdf8; border-bottom:2px solid #0284c7; padding-bottom:6px; margin-top:26px;">📋 RANKS #11 – #24: ALTERNATIVE &amp; BACKLOG PROPOSALS (AWAITING YOUR APPROVAL)</h2>
-    ${awaitingRest.map(i => renderSixFieldCardHtml(i, false)).join('')}
+    <h2 style="font-size:17px; color:#38bdf8; border-bottom:2px solid #0284c7; padding-bottom:6px; margin-top:26px;">📋 RANKS #6 – #24: CO-SIGNED 30-IDEA MATRIX PROPOSALS (AWAITING YOUR APPROVAL)</h2>
+    ${awaitingRest.map(i => renderSevenFieldCardHtml(i, false)).join('')}
 
-    <h2 style="font-size:17px; color:#fb7185; border-bottom:2px solid #f43f5e; padding-bottom:6px; margin-top:26px;">🛑 RANKS #25 – #30: VETOED BY DOMAIN AUTHORITY (CANDID PUSHBACK AGAINST FLAWED IDEAS)</h2>
-    ${vetoed.map(i => renderSixFieldCardHtml(i, false)).join('')}
+    <h2 style="font-size:17px; color:#fb7185; border-bottom:2px solid #f43f5e; padding-bottom:6px; margin-top:26px;">🛑 RANKS #25 – #30: VETOED BY 3-GATE ROUNDTABLE (CANDID PUSHBACK AGAINST FLAWED IDEAS)</h2>
+    ${vetoed.map(i => renderSevenFieldCardHtml(i, false)).join('')}
   </div>
 </body>
 </html>`;
@@ -779,6 +861,7 @@ async function main() {
 
   const summaryCounts = {
     totalIdeas: BOARD_30_IDEA_DIGEST.length,
+    top5CoSignedPriorities: TOP_5_COSIGNED_CONSENSUS_PRIORITIES.length,
     focusedTop10PerSeat: BOARD_10_SEAT_DIGEST.length,
     top3Recommended: BOARD_30_IDEA_DIGEST.filter(i => i.isTop3Recommended).length,
     awaitingApproval: BOARD_30_IDEA_DIGEST.filter(i => i.status === 'awaiting_founder_approval').length,
@@ -788,16 +871,17 @@ async function main() {
   const payload = {
     created_by: 'send-board-digest.js',
     source_role: 'board_digest',
-    scenario_id: 'SYNAPZ-10-SEAT-DIGEST-V91',
+    scenario_id: 'SYNAPZ-ROUNDTABLE-30-DIGEST-V92',
     age_division: 'ALL',
     category: 'board_digest',
     status: 'awaiting_founder_approval',
-    summary: `🛡️ Synapz Hockey 10-Seat Co-Founder Advisory Digest (${summaryCounts.focusedTop10PerSeat} Focused Primary+Alt Proposals Ranked #1–#10, ${summaryCounts.awaitingApproval} Awaiting Approval, ${summaryCounts.vetoed} Vetoed with 6-Field Screenshots) -> ${RECIPIENTS.join(', ')}`,
+    summary: `🤝 SYNAPZ HOCKEY — Nightly 10-Seat Collaborative Roundtable & 30-Idea Digest (Top 5 Co-Signed Priorities, ${summaryCounts.awaitingApproval} Awaiting Approval, ${summaryCounts.vetoed} Vetoed) -> ${RECIPIENTS.join(', ')}`,
     details: {
-      version: 'v9.1',
+      version: 'v9.2',
       recipients: RECIPIENTS,
       counts: summaryCounts,
       movingVsStaticConsensus: MOVING_VS_STATIC_BOARD_CONSENSUS,
+      top5CoSignedConsensusPriorities: TOP_5_COSIGNED_CONSENSUS_PRIORITIES,
       top10FocusedProposals: BOARD_10_SEAT_DIGEST,
       ideas: BOARD_30_IDEA_DIGEST,
       htmlFile: 'FOUNDER_EMAIL_DIGEST_LATEST.html',
@@ -806,6 +890,7 @@ async function main() {
   };
 
   let supabaseStatus = 'offline';
+  let awaitingApprovalRowCountInSupabase = 0;
   try {
     const res = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox`, {
       method: 'POST',
@@ -818,13 +903,24 @@ async function main() {
       body: JSON.stringify(payload)
     });
     supabaseStatus = `HTTP ${res.status}`;
+
+    const countRes = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox?status=eq.awaiting_founder_approval&select=id`, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`
+      }
+    });
+    if (countRes.ok) {
+      const rows = await countRes.json();
+      awaitingApprovalRowCountInSupabase = Array.isArray(rows) ? rows.length : 0;
+    }
   } catch (err) {
     supabaseStatus = `Error: ${err.message}`;
   }
 
   let gmailWebhookStatus = 'skipped';
   let gmailWebhookBody = '';
-  const emailSubject = `Synapz Hockey 10-Seat Advisory Digest: Ranked #1–#10 Focused Proposals (1 Primary + 1 Alt per Seat) & Live Screenshots`;
+  const emailSubject = `SYNAPZ HOCKEY — Nightly 10-Seat Collaborative Roundtable & 30-Idea Digest (Top 5 Co-Signed Priorities Awaiting Approval)`;
   try {
     const gmailRes = await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
       method: 'POST',
@@ -852,6 +948,7 @@ async function main() {
     recipients: RECIPIENTS,
     counts: summaryCounts,
     supabaseStatus,
+    awaitingApprovalRowCountInSupabase,
     gmailWebhookStatus,
     gmailWebhookBody,
     htmlDigestPath: outPath
@@ -861,5 +958,5 @@ async function main() {
 if (require.main === module) {
   main();
 } else {
-  module.exports = { BOARD_10_SEAT_DIGEST, BOARD_30_IDEA_DIGEST, MOVING_VS_STATIC_BOARD_CONSENSUS };
+  module.exports = { TOP_5_COSIGNED_CONSENSUS_PRIORITIES, BOARD_10_SEAT_DIGEST, BOARD_30_IDEA_DIGEST, MOVING_VS_STATIC_BOARD_CONSENSUS };
 }

@@ -52,7 +52,13 @@ const FILES_TO_DEPLOY = [
   { rel: 'assets/audit-screenshots/seat7-hud-ergonomics-audit.png', encoding: 'base64' },
   { rel: 'assets/audit-screenshots/seat8-film-room-video-modal.png', encoding: 'base64' },
   { rel: 'assets/audit-screenshots/seat9-founder-approval-digest.png', encoding: 'base64' },
-  { rel: 'assets/audit-screenshots/seat10-pricing-partner-gate.png', encoding: 'base64' }
+  { rel: 'assets/audit-screenshots/seat10-pricing-partner-gate.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_step1_portals.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_step2_player_login.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_coach_portal.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_family_portal.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_adventure_map.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_on_ice_gameplay.png', encoding: 'base64' }
 ];
 
 const FORBIDDEN_FILENAMES = new Set([
