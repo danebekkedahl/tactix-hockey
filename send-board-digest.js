@@ -695,60 +695,19 @@ function renderSevenFieldCardHtml(item, isTop5Banner = false) {
   const coSign = item.crossSeatCoSign || buildCrossSeatCoSign(item);
 
   return `
-    <div style="background:${bgCol}; border:2px solid ${borderCol}; border-radius:14px; padding:16px; margin-bottom:16px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
-        <span style="background:${badgeBg}; color:#ffffff; font-size:11px; font-weight:900; padding:4px 10px; border-radius:999px; letter-spacing:0.05em;">${badgeText}</span>
-        <span style="font-size:11px; font-weight:800; color:#fbbf24;">ID: ${item.id} • ${item.podLabel}</span>
-      </div>
-      <div style="font-size:16px; font-weight:900; color:#ffffff; margin-bottom:10px;">#${item.rank} — ${item.title}</div>
-
-      <table style="width:100%; border-collapse:collapse; font-size:12px; color:#e2e8f0; margin-bottom:12px;">
-        <tr>
-          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; width:28%; font-weight:800; color:#38bdf8; vertical-align:top;">1. Agent / Seat &amp; Professional Lens</td>
-          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; vertical-align:top;"><strong>${item.seatLens}</strong><br/><span style="font-size:11px; color:#94a3b8;">Authority Path: ${item.authorityFlow}</span></td>
-        </tr>
-        <tr>
-          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; font-weight:800; color:#fbbf24; vertical-align:top;">2. Target Age Group(s) &amp; Talent Tier(s)</td>
-          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; vertical-align:top;"><strong>${item.targetScope}</strong></td>
-        </tr>
-        <tr>
-          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; font-weight:800; color:#f43f5e; vertical-align:top;">3. Why &amp; Candid Co-Founder Critique</td>
-          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; vertical-align:top;">
-            <div style="margin-bottom:4px;">${item.candidCritique}</div>
-            <div style="color:#a7f3d0;"><strong>What We Propose Building:</strong> ${item.description}</div>
-            ${item.alternativeProposal ? `<div style="margin-top:6px; padding:6px 10px; background:#0c192c; border:1px solid #0284c7; border-radius:8px; color:#bae6fd;"><strong>🔄 1 Alternative Option (Same Seat):</strong> ${item.alternativeProposal}</div>` : ''}
-          </td>
-        </tr>
-        <tr>
-          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; font-weight:800; color:#22d3ee; vertical-align:top;">4. 🤝 Cross-Seat Collaboration &amp; Best-Practice Plan (3 Gates)</td>
-          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; vertical-align:top;">
-            <div style="margin-bottom:3px; color:#fde68a;">• <strong>${coSign.gateA_TacticalAdm}</strong></div>
-            <div style="margin-bottom:3px; color:#bae6fd;">• <strong>${coSign.gateB_CognitionUx}</strong></div>
-            <div style="color:#a7f3d0;">• <strong>${coSign.gateC_EngineeringQa}</strong></div>
-          </td>
-        </tr>
-        <tr>
-          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; font-weight:800; color:#c084fc; vertical-align:top;">5. Who Else It Affects (Cross-Impact)</td>
-          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; vertical-align:top;">${item.crossImpact}</td>
-        </tr>
-        <tr>
-          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; font-weight:800; color:#34d399; vertical-align:top;">6. Actual Live Screenshot</td>
-          <td style="padding:6px 8px; border-bottom:1px solid #1e293b; vertical-align:top;">
-            <a href="${item.screenshotUrl}" target="_blank" style="color:#38bdf8; font-size:11px; text-decoration:underline; display:block; margin-bottom:6px;">🔗 View Full-Res Screenshot (${item.screenshotUrl.split('/').pop()})</a>
-            <img src="${item.screenshotUrl}" alt="${item.title}" style="max-width:100%; width:540px; border-radius:10px; border:1px solid #475569; display:block;" />
-          </td>
-        </tr>
-        <tr>
-          <td style="padding:8px; font-weight:800; color:#fde047; vertical-align:middle;">7. 1-Click Founder Approval Controls</td>
-          <td style="padding:8px; vertical-align:middle;">
-            <a href="${approveHref}" style="display:inline-block; background:#059669; color:#ffffff; font-weight:900; font-size:12px; padding:8px 14px; border-radius:8px; text-decoration:none; margin-right:8px;">✅ Approve for Next Build</a>
-            <a href="${rejectHref}" style="display:inline-block; background:#be123c; color:#ffffff; font-weight:900; font-size:12px; padding:8px 14px; border-radius:8px; text-decoration:none;">❌ Reject</a>
-            <span style="font-size:11px; color:#94a3b8; display:block; margin-top:4px;">Sets <code>status = 'approved_by_founder'</code> or <code>'rejected_by_founder'</code> in Supabase so the next run builds ONLY what Dane &amp; Evan approve.</span>
-          </td>
-        </tr>
-      </table>
-    </div>
-  `;
+<div style="background:${bgCol};border:2px solid ${borderCol};border-radius:12px;padding:12px;margin-bottom:12px;">
+  <div style="margin-bottom:6px;"><span style="background:${badgeBg};color:#fff;font-size:10px;font-weight:900;padding:3px 8px;border-radius:99px;">${badgeText}</span> <span style="font-size:11px;font-weight:800;color:#fbbf24;">ID: ${item.id} • ${item.podLabel}</span></div>
+  <div style="font-size:15px;font-weight:900;color:#fff;margin-bottom:8px;">#${item.rank} — ${item.title}</div>
+  <div style="font-size:12px;color:#e2e8f0;line-height:1.45;">
+    <div style="margin-bottom:4px;"><strong style="color:#38bdf8;">1. Seat &amp; Lens:</strong> ${item.seatLens} <span style="color:#94a3b8;">(${item.authorityFlow})</span></div>
+    <div style="margin-bottom:4px;"><strong style="color:#fbbf24;">2. Target Scope:</strong> ${item.targetScope}</div>
+    <div style="margin-bottom:4px;"><strong style="color:#f43f5e;">3. Candid Critique &amp; Proposal:</strong> ${item.candidCritique} <span style="color:#a7f3d0;"><strong>Build:</strong> ${item.description}</span>${item.alternativeProposal ? ` <span style="color:#bae6fd;"><strong>[Alt: ${item.alternativeProposal}]</strong></span>` : ''}</div>
+    <div style="margin-bottom:4px;padding:6px;background:#091526;border:1px solid #0284c7;border-radius:6px;"><strong style="color:#22d3ee;">4. 🤝 Cross-Seat Collaboration (3 Gates):</strong><br/>• ${coSign.gateA_TacticalAdm}<br/>• ${coSign.gateB_CognitionUx}<br/>• ${coSign.gateC_EngineeringQa}</div>
+    <div style="margin-bottom:6px;"><strong style="color:#c084fc;">5. Cross-Impact:</strong> ${item.crossImpact}</div>
+    <div style="margin-bottom:8px;"><strong style="color:#34d399;">6. Live Screenshot:</strong> <a href="${item.screenshotUrl}" target="_blank" style="color:#38bdf8;">${item.screenshotUrl.split('/').pop()}</a><br/><img src="${item.screenshotUrl}" alt="${item.id}" style="max-width:100%;width:480px;border-radius:8px;border:1px solid #475569;margin-top:4px;display:block;" /></div>
+    <div><strong style="color:#fde047;">7. Founder Approval:</strong> <a href="${approveHref}" style="background:#059669;color:#fff;font-weight:900;font-size:11px;padding:6px 12px;border-radius:6px;text-decoration:none;margin-right:6px;">✅ Approve for Next Build</a> <a href="${rejectHref}" style="background:#be123c;color:#fff;font-weight:900;font-size:11px;padding:6px 12px;border-radius:6px;text-decoration:none;">❌ Reject</a></div>
+  </div>
+</div>`;
 }
 
 function buildEmailHtml(ideas, timestamp) {
@@ -913,6 +872,40 @@ async function main() {
     if (countRes.ok) {
       const rows = await countRes.json();
       awaitingApprovalRowCountInSupabase = Array.isArray(rows) ? rows.length : 0;
+    }
+
+    // Ensure all 24 awaiting_founder_approval proposals from the 30-Idea Matrix are logged in public.pucksense_agent_inbox
+    if (awaitingApprovalRowCountInSupabase < 24) {
+      const proposalRows = BOARD_30_IDEA_DIGEST.filter(i => i.status === 'awaiting_founder_approval').map(item => ({
+        created_by: `Seat-${item.seatNumber}-Roundtable`,
+        source_role: 'council',
+        scenario_id: item.id,
+        age_division: 'ALL',
+        category: 'council_spec',
+        status: 'awaiting_founder_approval',
+        summary: `[Rank #${item.rank} • ${item.id}] ${item.title} (${item.targetScope})`,
+        details: item
+      }));
+      await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox`, {
+        method: 'POST',
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          Prefer: 'return=minimal'
+        },
+        body: JSON.stringify(proposalRows)
+      });
+      const recountRes = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox?status=eq.awaiting_founder_approval&select=id`, {
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`
+        }
+      });
+      if (recountRes.ok) {
+        const rows2 = await recountRes.json();
+        awaitingApprovalRowCountInSupabase = Array.isArray(rows2) ? rows2.length : 0;
+      }
     }
   } catch (err) {
     supabaseStatus = `Error: ${err.message}`;
