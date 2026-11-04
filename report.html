@@ -1125,15 +1125,16 @@
 
     let activeReportDigestFilter = 'all';
 
-    async function setReportFounderIdeaDecision(ideaId, decisionStatus = 'approved_by_founder') {
+    async function setReportFounderIdeaDecision(ideaId, decisionStatus = 'approved_for_build') {
       const item = REPORT_BOARD_30_IDEA_DIGEST.find(x => x.id === ideaId);
       if (!item) return;
       item.status = decisionStatus;
       renderReportFounderDigestTable();
       const toast = document.getElementById('reportDigestEmailToast');
+      const isApproved = decisionStatus === 'approved_for_build' || decisionStatus === 'approved_by_founder';
       if (toast) {
         toast.classList.remove('hidden');
-        toast.textContent = `${decisionStatus === 'approved_by_founder' ? '✅ APPROVED FOR NEXT BUILD' : '❌ REJECTED'}: Rank #${item.rank} (${item.id}) — "${item.title}" synced to Supabase public.pucksense_agent_inbox (status: ${decisionStatus})!`;
+        toast.textContent = `${isApproved ? '✅ APPROVED FOR NEXT BUILD (status: approved_for_build)' : '❌ REJECTED'}: Rank #${item.rank} (${item.id}) — "${item.title}" synced to Supabase public.pucksense_agent_inbox! Next RUN NIGHTLY AUTOPILOT will execute this first.`;
       }
       try {
         await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox`, {
@@ -1146,7 +1147,7 @@
             age_division: 'ALL',
             category: 'board_digest',
             status: decisionStatus,
-            summary: `[${decisionStatus === 'approved_by_founder' ? '✅ FOUNDER APPROVED' : '❌ FOUNDER REJECTED'} #${item.rank} ${item.id}] ${item.title}`,
+            summary: `[${isApproved ? '✅ FOUNDER APPROVED FOR BUILD' : '❌ FOUNDER REJECTED'} #${item.rank} ${item.id}] ${item.title}`,
             details: {
               rank: item.rank,
               idea_id: item.id,
@@ -1165,6 +1166,29 @@
         loadLiveSupabaseDashboard();
       } catch (e) {}
     }
+    window.setReportFounderIdeaDecision = setReportFounderIdeaDecision;
+
+    function openReportExplainProposalModal(ideaId) {
+      const item = REPORT_BOARD_30_IDEA_DIGEST.find(x => x.id === ideaId) || REPORT_BOARD_30_IDEA_DIGEST[0];
+      if (!item) return;
+      const modal = document.getElementById('reportExplainProposalModal');
+      if (!modal) return;
+      document.getElementById('explainModalTitle').textContent = `🔍 Plain-English Breakdown: #${item.rank} (${item.id}) — ${item.title}`;
+      document.getElementById('explainModalWhatsWrong').textContent = item.candidCritique;
+      document.getElementById('explainModalWhatChanges').textContent = `${item.title} (${item.targetScope})${item.alternativeProposal ? ' • ' + item.alternativeProposal : ''}`;
+      document.getElementById('explainModalWhoItHelps').textContent = item.crossImpact;
+      const imgEl = document.getElementById('explainModalScreenshot');
+      if (imgEl) imgEl.src = item.screenshotUrl;
+      const appBtn = document.getElementById('btnExplainModalApprove');
+      if (appBtn) {
+        appBtn.onclick = () => {
+          modal.classList.add('hidden');
+          setReportFounderIdeaDecision(item.id, 'approved_for_build');
+        };
+      }
+      modal.classList.remove('hidden');
+    }
+    window.openReportExplainProposalModal = openReportExplainProposalModal;
 
     function buildReportCrossSeatCoSign(item) {
       if (item.crossSeatCoSign && item.crossSeatCoSign.gateA_TacticalAdm) return item.crossSeatCoSign;
@@ -1207,7 +1231,8 @@
               <div class="text-cyan-200"><strong>🤝 3-Gate Co-Sign:</strong> ${item.crossSeatCoSign.gateA_TacticalAdm} • ${item.crossSeatCoSign.gateB_CognitionUx} • ${item.crossSeatCoSign.gateC_EngineeringQa}</div>
             </td>
             <td class="py-2.5 px-3 text-right whitespace-nowrap">
-              <button type="button" data-approve-idea-id="${item.id}" class="btn-report-approve-idea px-2.5 py-1 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-[10px] mr-1">✅ Approve</button>
+              <button type="button" data-explain-idea-id="${item.id}" class="btn-report-explain-idea px-2.5 py-1 rounded bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-[10px] mr-1">🔍 Explain This to Me</button>
+              <button type="button" data-approve-idea-id="${item.id}" class="btn-report-approve-idea px-2.5 py-1 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-[10px] mr-1">✅ Approve for Next Build</button>
               <button type="button" data-reject-idea-id="${item.id}" class="btn-report-reject-idea px-2.5 py-1 rounded bg-rose-600 hover:bg-rose-500 text-white font-black text-[10px]">❌ Reject</button>
             </td>
           </tr>
@@ -1218,14 +1243,14 @@
       if (!tbody) return;
       const rows = REPORT_BOARD_30_IDEA_DIGEST.filter(item => {
         if (activeReportDigestFilter === 'all') return true;
-        if (activeReportDigestFilter === 'top5') return item.isTop5CoSigned || item.rank <= 5 || item.status === 'approved_by_founder';
-        if (activeReportDigestFilter === 'top10') return item.isTop10SeatPrimary || item.rank <= 10 || item.status === 'approved_by_founder';
-        if (activeReportDigestFilter === 'top3') return item.isTop3Recommended || item.status === 'approved_by_founder';
+        if (activeReportDigestFilter === 'top5') return item.isTop5CoSigned || item.rank <= 5 || item.status === 'approved_for_build' || item.status === 'approved_by_founder';
+        if (activeReportDigestFilter === 'top10') return item.isTop10SeatPrimary || item.rank <= 10 || item.status === 'approved_for_build' || item.status === 'approved_by_founder';
+        if (activeReportDigestFilter === 'top3') return item.isTop3Recommended || item.status === 'approved_for_build' || item.status === 'approved_by_founder';
         return item.status === activeReportDigestFilter;
       });
       tbody.innerHTML = rows.map((item) => {
         const coSign = item.crossSeatCoSign || buildReportCrossSeatCoSign(item);
-        const badgeHtml = item.status === 'approved_by_founder'
+        const badgeHtml = (item.status === 'approved_for_build' || item.status === 'approved_by_founder')
           ? '<span class="px-2 py-0.5 rounded bg-emerald-500/25 border border-emerald-400 text-emerald-200 text-[10px] font-black uppercase">✅ Approved for Next Build</span>'
           : item.status === 'rejected_by_founder'
           ? '<span class="px-2 py-0.5 rounded bg-rose-500/25 border border-rose-400 text-rose-200 text-[10px] font-black uppercase">❌ Rejected by Founder</span>'
@@ -1264,6 +1289,9 @@
             </td>
             <td class="py-3 px-3 text-right whitespace-nowrap">
               <div class="flex flex-col items-end gap-1.5">
+                <button type="button" data-explain-idea-id="${item.id}" class="btn-report-explain-idea px-3 py-1.5 rounded-lg bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black text-[10px] shadow transition">
+                  🔍 Explain This to Me
+                </button>
                 <button type="button" data-approve-idea-id="${item.id}" class="btn-report-approve-idea px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-[10px] shadow transition">
                   ✅ Approve for Next Build
                 </button>
@@ -1276,9 +1304,14 @@
         `;
       }).join('');
 
+      document.querySelectorAll('.btn-report-explain-idea').forEach(btn => {
+        btn.addEventListener('click', () => {
+          openReportExplainProposalModal(btn.getAttribute('data-explain-idea-id'));
+        });
+      });
       document.querySelectorAll('.btn-report-approve-idea').forEach(btn => {
         btn.addEventListener('click', () => {
-          setReportFounderIdeaDecision(btn.getAttribute('data-approve-idea-id'), 'approved_by_founder');
+          setReportFounderIdeaDecision(btn.getAttribute('data-approve-idea-id'), 'approved_for_build');
         });
       });
       document.querySelectorAll('.btn-report-reject-idea').forEach(btn => {
@@ -1361,16 +1394,55 @@
     renderReportFounderDigestTable();
     loadLiveSupabaseDashboard();
 
-    // Handle 1-Click Email Approval Links (?founder_action=approve&idea_id=S1-A)
+    // Handle 1-Click Email Approval / Explain Links (?founder_action=approve|reject|explain&idea_id=S1-A)
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const fAction = urlParams.get('founder_action');
       const fIdeaId = urlParams.get('idea_id');
       if (fAction && fIdeaId) {
-        const decision = fAction === 'reject' ? 'rejected_by_founder' : 'approved_by_founder';
-        setReportFounderIdeaDecision(fIdeaId, decision);
+        if (fAction === 'explain') {
+          openReportExplainProposalModal(fIdeaId);
+        } else {
+          const decision = fAction === 'reject' ? 'rejected_by_founder' : 'approved_for_build';
+          setReportFounderIdeaDecision(fIdeaId, decision);
+        }
       }
     } catch (_) {}
   </script>
+
+  <!-- Plain-English Visual Explanation Modal (`[🔍 Explain This to Me]`) -->
+  <div id="reportExplainProposalModal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="glass-card max-w-2xl w-full rounded-2xl p-5 border-2 border-cyan-400 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+        <h3 id="explainModalTitle" class="text-base sm:text-lg font-black text-white">🔍 Plain-English Proposal Breakdown</h3>
+        <button type="button" onclick="document.getElementById('reportExplainProposalModal').classList.add('hidden')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 text-xs font-black">✕ Close</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div class="p-3 rounded-xl bg-rose-950/40 border border-rose-400/50">
+          <div class="font-black text-rose-300 uppercase mb-1">1. What's Wrong Right Now:</div>
+          <p id="explainModalWhatsWrong" class="text-slate-200 leading-relaxed"></p>
+        </div>
+        <div class="p-3 rounded-xl bg-cyan-950/40 border border-cyan-400/50">
+          <div class="font-black text-cyan-300 uppercase mb-1">2. What Will Change On Screen:</div>
+          <p id="explainModalWhatChanges" class="text-slate-200 leading-relaxed"></p>
+        </div>
+        <div class="p-3 rounded-xl bg-emerald-950/40 border border-emerald-400/50">
+          <div class="font-black text-emerald-300 uppercase mb-1">3. Who It Helps (Kids, Parents, Coaches):</div>
+          <p id="explainModalWhoItHelps" class="text-slate-200 leading-relaxed"></p>
+        </div>
+        <div>
+          <img id="explainModalScreenshot" src="" alt="Proposal Screenshot" class="w-full max-h-56 object-contain rounded-xl border border-slate-700" />
+        </div>
+      </div>
+      <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-800">
+        <button id="btnExplainModalApprove" type="button" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs shadow">
+          ✅ Approve for Next Build
+        </button>
+        <button type="button" onclick="document.getElementById('reportExplainProposalModal').classList.add('hidden')" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-200 font-bold text-xs">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

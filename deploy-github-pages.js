@@ -40,6 +40,15 @@ const FILES_TO_DEPLOY = [
   { rel: 'assets/synapz-splash-bg.png', encoding: 'base64' },
   { rel: 'assets/tactix-logo.png', encoding: 'base64' },
   { rel: 'assets/coach-bob.png', encoding: 'base64' },
+  { rel: 'assets/agents/agent-maya.png', encoding: 'base64' },
+  { rel: 'assets/agents/agent-jalen.png', encoding: 'base64' },
+  { rel: 'assets/agents/agent-chloe.png', encoding: 'base64' },
+  { rel: 'assets/agents/agent-sofia.png', encoding: 'base64' },
+  { rel: 'assets/agents/agent-leo.png', encoding: 'base64' },
+  { rel: 'assets/agents/agent-marcus.png', encoding: 'base64' },
+  { rel: 'assets/agents/agent-priya.png', encoding: 'base64' },
+  { rel: 'assets/agents/agent-ryan.png', encoding: 'base64' },
+  { rel: 'assets/agents/agent-claire.png', encoding: 'base64' },
   { rel: 'apple-touch-icon.png', encoding: 'base64' },
   { rel: 'icon-192.png', encoding: 'base64' },
   { rel: 'icon-512.png', encoding: 'base64' },
@@ -58,7 +67,9 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/audit_coach_portal.png', encoding: 'base64' },
   { rel: 'screenshots/audit_family_portal.png', encoding: 'base64' },
   { rel: 'screenshots/audit_adventure_map.png', encoding: 'base64' },
-  { rel: 'screenshots/audit_on_ice_gameplay.png', encoding: 'base64' }
+  { rel: 'screenshots/audit_on_ice_gameplay.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_rink_lobby.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_player_agent_picker.png', encoding: 'base64' }
 ];
 
 const FORBIDDEN_FILENAMES = new Set([

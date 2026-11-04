@@ -690,6 +690,7 @@ function renderSevenFieldCardHtml(item, isTop5Banner = false) {
       ? `🛑 RANK #${item.rank} • VETOED BY 3-GATE ROUNDTABLE`
       : `📋 RANK #${item.rank} CO-SIGNED PROPOSAL • AWAITING FOUNDER APPROVAL`;
 
+  const explainHref = `${PAGES_BASE_URL}/report.html?founder_action=explain&idea_id=${encodeURIComponent(item.id)}#founder-approval-board`;
   const approveHref = `${PAGES_BASE_URL}/report.html?founder_action=approve&idea_id=${encodeURIComponent(item.id)}#founder-approval-board`;
   const rejectHref = `${PAGES_BASE_URL}/report.html?founder_action=reject&idea_id=${encodeURIComponent(item.id)}#founder-approval-board`;
   const coSign = item.crossSeatCoSign || buildCrossSeatCoSign(item);
@@ -705,7 +706,7 @@ function renderSevenFieldCardHtml(item, isTop5Banner = false) {
     <div style="margin-bottom:4px;padding:6px;background:#091526;border:1px solid #0284c7;border-radius:6px;"><strong style="color:#22d3ee;">4. 🤝 Cross-Seat Collaboration (3 Gates):</strong><br/>• ${coSign.gateA_TacticalAdm}<br/>• ${coSign.gateB_CognitionUx}<br/>• ${coSign.gateC_EngineeringQa}</div>
     <div style="margin-bottom:6px;"><strong style="color:#c084fc;">5. Cross-Impact:</strong> ${item.crossImpact}</div>
     <div style="margin-bottom:8px;"><strong style="color:#34d399;">6. Live Screenshot:</strong> <a href="${item.screenshotUrl}" target="_blank" style="color:#38bdf8;">${item.screenshotUrl.split('/').pop()}</a><br/><img src="${item.screenshotUrl}" alt="${item.id}" style="max-width:100%;width:480px;border-radius:8px;border:1px solid #475569;margin-top:4px;display:block;" /></div>
-    <div><strong style="color:#fde047;">7. Founder Approval:</strong> <a href="${approveHref}" style="background:#059669;color:#fff;font-weight:900;font-size:11px;padding:6px 12px;border-radius:6px;text-decoration:none;margin-right:6px;">✅ Approve for Next Build</a> <a href="${rejectHref}" style="background:#be123c;color:#fff;font-weight:900;font-size:11px;padding:6px 12px;border-radius:6px;text-decoration:none;">❌ Reject</a></div>
+    <div><strong style="color:#fde047;">7. Founder Approval:</strong> <a href="${explainHref}" style="background:#0284c7;color:#fff;font-weight:900;font-size:11px;padding:6px 12px;border-radius:6px;text-decoration:none;margin-right:6px;">🔍 Explain This to Me</a> <a href="${approveHref}" style="background:#059669;color:#fff;font-weight:900;font-size:11px;padding:6px 12px;border-radius:6px;text-decoration:none;margin-right:6px;">✅ Approve for Next Build</a> <a href="${rejectHref}" style="background:#be123c;color:#fff;font-weight:900;font-size:11px;padding:6px 12px;border-radius:6px;text-decoration:none;">❌ Reject</a></div>
   </div>
 </div>`;
 }
@@ -719,28 +720,28 @@ function buildEmailHtml(ideas, timestamp) {
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SYNAPZ HOCKEY — Nightly 10-Seat Collaborative Roundtable &amp; 30-Idea Digest</title>
+  <title>SYNAPZ HOCKEY — Phase 1 Modular Redesign &amp; Nightly 10-Seat Collaborative Roundtable Digest</title>
 </head>
 <body style="font-family: Inter, Arial, sans-serif; background:#020617; color:#f8fafc; padding:20px; line-height:1.5;">
   <div style="max-width:920px; margin:0 auto; background:#090d16; border:2px solid #00e5ff; border-radius:18px; padding:24px;">
-    <div style="font-size:11px; font-weight:900; color:#00e5ff; text-transform:uppercase; letter-spacing:0.08em;">SYNAPZ HOCKEY • PLAY. LEARN. DOMINATE. • 4-PHASE CROSS-SEAT COLLABORATIVE ROUNDTABLE (SECTION 25)</div>
-    <h1 style="margin:6px 0 8px; font-size:22px; color:#ffffff;">🤝 Nightly 10-Seat Collaborative Roundtable: Top 5 Co-Signed Consensus Priorities &amp; 30-Idea Matrix</h1>
+    <div style="font-size:11px; font-weight:900; color:#00e5ff; text-transform:uppercase; letter-spacing:0.08em;">SYNAPZ HOCKEY • PLAY. LEARN. DOMINATE. • PHASE 1 MODULAR REDESIGN + 10-SEAT ROUNDTABLE (SECTIONS 25 &amp; 26)</div>
+    <h1 style="margin:6px 0 8px; font-size:22px; color:#ffffff;">🏒 Phase 1 Modular Redesign Live: 2-Button Entry Gate, 9 Player Agents (Voice Audition), Virtual Rink Lobby &amp; Top 5 Co-Signed Priorities</h1>
     <p style="margin:0 0 14px; font-size:13px; color:#cbd5e1;">
       Prepared for <strong>Coach Dane (danebekkedahl@gmail.com)</strong> &amp; <strong>Coach Evan (evanbekk@gmail.com)</strong> • Generated ${timestamp}<br/>
       🌐 <strong>Live App:</strong> <a href="https://danebekkedahl.github.io/synapz-hockey/" style="color:#00e5ff; font-weight:800;">https://danebekkedahl.github.io/synapz-hockey/</a> •
       📊 <strong>Live 10-Seat Board &amp; Report:</strong> <a href="https://danebekkedahl.github.io/synapz-hockey/report.html#founder-approval-board" style="color:#34d399; font-weight:800;">https://danebekkedahl.github.io/synapz-hockey/report.html</a> •
       🪞 <strong>Mirror:</strong> <a href="https://danebekkedahl.github.io/tactix-hockey/" style="color:#94a3b8;">tactix-hockey</a><br/>
-      🔒 <strong>Strict Approval Gate &amp; 3-Gate Roundtable Enforced:</strong> Every recommendation below passed <strong>Gate A (Tactical/ADM)</strong>, <strong>Gate B (Child Cognition/Zero-Clutter UX)</strong>, and <strong>Gate C (60fps Engineering/Blind QA)</strong>. Nothing is built until you click <strong>[✅ Approve for Next Build]</strong>!
+      🔒 <strong>Strict Approval Gate &amp; 3-Gate Roundtable Enforced:</strong> Click <strong>[🔍 Explain This to Me]</strong> for a plain-English breakdown or <strong>[✅ Approve for Next Build]</strong> to set <code>status = 'approved_for_build'</code> in Supabase!
     </p>
 
-    <!-- NEW SYNAPZ 2-STEP PORTAL, TRANSITION SPLASH & STEPPING-STONE MAP AUDIT SCREENSHOTS -->
+    <!-- PHASE 1 MODULAR REDESIGN SCREENSHOTS -->
     <div style="background:#0f172a; border:2px solid #00e5ff; border-radius:14px; padding:16px; margin-bottom:22px;">
-      <div style="font-size:11px; font-weight:900; color:#00e5ff; text-transform:uppercase; letter-spacing:0.06em;">📸 TONIGHT'S VERIFIED SYNAPZ HOCKEY ARCHITECTURE SCREENSHOTS (STEP 1 -> STEP 2 -> MAP -> RINK)</div>
+      <div style="font-size:11px; font-weight:900; color:#00e5ff; text-transform:uppercase; letter-spacing:0.06em;">📸 PHASE 1 MODULAR REDESIGN SCREENSHOTS (2-BUTTON GATE -> PROFILE PIN LOCK -> RINK LOBBY -> 9 PLAYER AGENTS)</div>
       <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; margin-top:10px; font-size:11px; color:#cbd5e1;">
-        <div><a href="${PAGES_BASE_URL}/screenshots/audit_step1_portals.png" style="color:#38bdf8; font-weight:800;">1. Step 1 Portal Cards (step2HiddenOnEntry=true)</a><img src="${PAGES_BASE_URL}/screenshots/audit_step1_portals.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
-        <div><a href="${PAGES_BASE_URL}/screenshots/audit_step2_player_login.png" style="color:#38bdf8; font-weight:800;">2. Step 2 Player Login &amp; Back to Portals</a><img src="${PAGES_BASE_URL}/screenshots/audit_step2_player_login.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
-        <div><a href="${PAGES_BASE_URL}/screenshots/audit_adventure_map.png" style="color:#38bdf8; font-weight:800;">3. Revamped Stepping-Stone Adventure Map</a><img src="${PAGES_BASE_URL}/screenshots/audit_adventure_map.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
-        <div><a href="${PAGES_BASE_URL}/screenshots/audit_on_ice_gameplay.png" style="color:#38bdf8; font-weight:800;">4. Blind On-Ice Gameplay (30/30 Gold Reads)</a><img src="${PAGES_BASE_URL}/screenshots/audit_on_ice_gameplay.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_step1_portals.png" style="color:#38bdf8; font-weight:800;">1. Strictly 2-Button Entry Gate (Player &amp; Team Portal)</a><img src="${PAGES_BASE_URL}/screenshots/audit_step1_portals.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_step2_player_login.png" style="color:#38bdf8; font-weight:800;">2. Per-Profile Credential Lock &amp; Enter Lobby</a><img src="${PAGES_BASE_URL}/screenshots/audit_step2_player_login.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_rink_lobby.png" style="color:#38bdf8; font-weight:800;">3. Central Hub: Virtual Hockey Rink Lobby (5 Stations)</a><img src="${PAGES_BASE_URL}/screenshots/audit_rink_lobby.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_player_agent_picker.png" style="color:#38bdf8; font-weight:800;">4. 9 Player Agents w/ Pre-Selection Voice Audition</a><img src="${PAGES_BASE_URL}/screenshots/audit_player_agent_picker.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
       </div>
     </div>
 
@@ -764,6 +765,7 @@ function buildEmailHtml(ideas, timestamp) {
               <td style="padding:8px; border-top:1px solid #1e293b;"><strong>${item.title}</strong><br/><span style="font-size:11px; color:#38bdf8;">${item.targetScope}</span></td>
               <td style="padding:8px; border-top:1px solid #1e293b; font-size:11px; color:#cbd5e1;">${item.crossSeatCoSign.gateA_TacticalAdm}<br/>${item.crossSeatCoSign.gateB_CognitionUx}</td>
               <td style="padding:8px; border-top:1px solid #1e293b; white-space:nowrap;">
+                <a href="${PAGES_BASE_URL}/report.html?founder_action=explain&idea_id=${encodeURIComponent(item.id)}#founder-approval-board" style="background:#0284c7; color:#fff; padding:5px 9px; border-radius:6px; text-decoration:none; font-weight:900; font-size:11px; display:inline-block; margin-bottom:4px;">🔍 Explain</a><br/>
                 <a href="${PAGES_BASE_URL}/report.html?founder_action=approve&idea_id=${encodeURIComponent(item.id)}#founder-approval-board" style="background:#059669; color:#fff; padding:5px 9px; border-radius:6px; text-decoration:none; font-weight:900; font-size:11px; display:inline-block; margin-bottom:4px;">✅ Approve</a><br/>
                 <a href="${PAGES_BASE_URL}/report.html?founder_action=reject&idea_id=${encodeURIComponent(item.id)}#founder-approval-board" style="background:#be123c; color:#fff; padding:5px 9px; border-radius:6px; text-decoration:none; font-weight:900; font-size:11px; display:inline-block;">❌ Reject</a>
               </td>

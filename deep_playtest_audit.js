@@ -734,35 +734,77 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         const sampleNormalized = normalizeStateFnExists ? window.normalizeSynapzState({}) : null;
         const normalizeBackfilledCleanly = Boolean(sampleNormalized && sampleNormalized.roleLabelMap && sampleNormalized.roleLabelMap.F1 === 'F1');
 
-        // Walk through 2-Step Start Page (#sandboxLoginModal)
-        if (typeof openSandboxLoginModal === 'function') openSandboxLoginModal();
-        if (typeof returnToSandboxPortalStep1 === 'function') returnToSandboxPortalStep1();
+        // Walk through Phase 1 2-Button Entry Gate (#sandboxLoginModal) & Per-Profile Credential Lock
+        if (typeof openSandboxLoginModal === 'function') openSandboxLoginModal(true);
+        if (typeof showSandboxStep1Portals === 'function') showSandboxStep1Portals();
         const step1PortalsVisible = !document.getElementById('sandboxStep1Portals')?.classList.contains('hidden');
         const step2HiddenOnEntry = Boolean(document.getElementById('sandboxStep2Credentials')?.classList.contains('hidden'));
         const step2HiddenInitially = step2HiddenOnEntry;
         const splashBgImgLoaded = Boolean(document.querySelector('#sandboxLoginModal img[src*="synapz-splash-bg"]'));
-        const portalCardsCount = ['btnSelectPortalPlayer', 'btnSelectPortalCoach', 'btnSelectPortalFamily'].filter(id => Boolean(document.getElementById(id))).length;
-        if (typeof selectSandboxPortalCard === 'function') selectSandboxPortalCard('player');
-        const backToPortalsVisible = !document.getElementById('btnBackToSandboxStep1')?.classList.contains('hidden');
+        const visibleStep1PortalButtons = ['btnSelectPortalPlayer', 'btnSelectPortalCoach'].filter(id => {
+          const el = document.getElementById(id);
+          return Boolean(el && !el.classList.contains('hidden'));
+        }).length;
+        const portalCardsCount = visibleStep1PortalButtons;
+        if (typeof openSandboxPortalStep2 === 'function') openSandboxPortalStep2('player');
+        const backToPortalsVisible = !document.getElementById('btnBackToPortalStep1')?.classList.contains('hidden');
         const step2PlayerVisible = !document.getElementById('sandboxStep2Credentials')?.classList.contains('hidden') &&
           !document.getElementById('portalCredsPlayer')?.classList.contains('hidden');
-        if (typeof selectSandboxPortalCard === 'function') selectSandboxPortalCard('coach');
+        const profileCredentialLockVisible = !document.getElementById('playerProfileCredentialLockBox')?.classList.contains('hidden') &&
+          Boolean(document.getElementById('profilePinLockInput')) &&
+          Boolean(document.getElementById('btnUnlockProfileEnterLobby'));
+        if (typeof openSandboxPortalStep2 === 'function') openSandboxPortalStep2('coach');
         const step2CoachVisible = !document.getElementById('portalCredsCoach')?.classList.contains('hidden');
-        if (typeof selectSandboxPortalCard === 'function') selectSandboxPortalCard('family');
+        if (typeof openSandboxPortalStep2 === 'function') openSandboxPortalStep2('family');
         const step2FamilyVisible = !document.getElementById('portalCredsFamily')?.classList.contains('hidden');
-        if (typeof returnToSandboxPortalStep1 === 'function') returnToSandboxPortalStep1();
+        if (typeof showSandboxStep1Portals === 'function') showSandboxStep1Portals();
         document.getElementById('sandboxLoginModal')?.classList.add('hidden');
+
+        // Verify Phase 1 11-Channel Voice Registry, 9 Player Agents (2-Step Voice Audition), & Virtual Hockey Rink Lobby (5 Stations)
+        const voiceRegistryCount = Object.keys(window.SYNAPZ_VOICE_REGISTRY || {}).length;
+        const playerAgentsCount = (window.SYNAPZ_PLAYER_AGENTS || []).length;
+        if (typeof openPlayerAgentPickerModal === 'function') openPlayerAgentPickerModal();
+        if (typeof selectAgentForAudition === 'function') selectAgentForAudition('agent-jalen', true);
+        const modalStillOpenDuringAudition = !document.getElementById('playerAgentPickerModal')?.classList.contains('hidden');
+        const lastVoicePlayed = window._lastPlayedCharacterVoice || null;
+        if (typeof confirmHireAuditionedAgent === 'function') confirmHireAuditionedAgent();
+        const modalClosedAfterHire = Boolean(document.getElementById('playerAgentPickerModal')?.classList.contains('hidden'));
+        const hiredAgentId = getActiveProfile()?.playerAgentId;
+
+        switchView('lobby');
+        const lobbyVisible = !document.getElementById('synapzRinkLobbySection')?.classList.contains('hidden');
+        const lobbyStationsCount = ['lobbyStationHitTheIce', 'lobbyStationLockerRoom', 'lobbyStationProShop', 'lobbyStationCoachOffice', 'lobbyStationFriendsWall']
+          .filter(id => Boolean(document.getElementById(id))).length;
+        if (typeof startLobbySpotlightTour === 'function') startLobbySpotlightTour();
+        const spotlightTourStarted = Boolean(state.lobbySpotlightActive);
+        if (typeof advanceLobbySpotlightTour === 'function') {
+          for (let s = 0; s < 5; s++) advanceLobbySpotlightTour();
+        }
+        const persistentRedFlagVisible = Boolean(document.getElementById('btnPersistentFounderRedFlag'));
 
         // Verify #synapzTransitionSplash & Revamped Stepping-Stone Adventure Map (#synapzMapHeaderBar & #nhlTourMapSvg)
         const transitionSplashExists = Boolean(document.getElementById('synapzTransitionSplash'));
         switchView('map');
         const mapHeaderBarVisible = !document.getElementById('synapzMapHeaderBar')?.classList.contains('hidden');
         const mapLogoRendered = Boolean(document.querySelector('#synapzMapHeaderBar img[src*="synapz-logo"]'));
-        const mapDropPuckBtnVisible = Boolean(document.getElementById('btnMapStartCitySeries'));
+        const mapDropPuckBtnVisible = Boolean(document.getElementById('btnPlayCurrentCity'));
         const mapPulsingPuckVisible = Boolean(document.getElementById('nhlTourMapSvg')?.innerHTML.includes('#9'));
+        const mapSaveExitLobbyBtn = Boolean(document.getElementById('btnMapSaveExitLobby'));
         switchView('game');
 
-        // Walk through 5-Step Onboarding Wizard, Pro Shop, 3D Trophy Room & 4-Tier Pricing Modal
+        // Walk through Phase 1 Modals (Locker Room, Coach Al's Office, Friends Wall, SafeSport Notifications) + Pro Shop & Pricing
+        if (typeof openSynapzLockerRoomModal === 'function') openSynapzLockerRoomModal();
+        const lockerRoomModalOpen = !document.getElementById('synapzLockerRoomModal')?.classList.contains('hidden');
+        document.getElementById('synapzLockerRoomModal')?.classList.add('hidden');
+
+        if (typeof openSynapzCoachOfficeModal === 'function') openSynapzCoachOfficeModal();
+        const coachAlOfficeOpen = !document.getElementById('synapzCoachOfficeModal')?.classList.contains('hidden');
+        document.getElementById('synapzCoachOfficeModal')?.classList.add('hidden');
+
+        if (typeof openSynapzFriendsWallModal === 'function') openSynapzFriendsWallModal('race');
+        const friendsWallOpen = !document.getElementById('synapzFriendsWallModal')?.classList.contains('hidden');
+        document.getElementById('synapzFriendsWallModal')?.classList.add('hidden');
+
         if (typeof openNewTesterOnboardingWizard === 'function') openNewTesterOnboardingWizard();
         const wizardOpen = !document.getElementById('newTesterOnboardingModal')?.classList.contains('hidden');
         document.getElementById('newTesterOnboardingModal')?.classList.add('hidden');
@@ -770,13 +812,14 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         if (typeof renderProShopModal === 'function') renderProShopModal();
         document.getElementById('proShopModal')?.classList.remove('hidden');
         const proShopOpen = !document.getElementById('proShopModal')?.classList.contains('hidden');
+        const proShopGlovesCount = (window.PRO_SHOP_ITEMS || []).filter(i => i.category === 'Gloves').length;
         document.getElementById('proShopModal')?.classList.add('hidden');
 
         if (typeof openTrophyRoomModal === 'function') openTrophyRoomModal();
         const trophyRoomOpen = !document.getElementById('trophyRoomModal')?.classList.contains('hidden');
         document.getElementById('trophyRoomModal')?.classList.add('hidden');
 
-        if (typeof openPricingAndPlansModal === 'function') openPricingAndPlansModal();
+        if (typeof openPricingModal === 'function') openPricingModal();
         else document.getElementById('pricingAndPlansModal')?.classList.remove('hidden');
         const pricingModalOpen = !document.getElementById('pricingAndPlansModal')?.classList.contains('hidden');
         document.getElementById('pricingAndPlansModal')?.classList.add('hidden');
@@ -802,6 +845,25 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           webhookUrlConfigured,
           normalizeStateFnExists,
           normalizeBackfilledCleanly,
+          phase1ModularRedesignAudit: {
+            visibleStep1PortalButtons,
+            profileCredentialLockVisible,
+            voiceRegistryCount,
+            playerAgentsCount,
+            modalStillOpenDuringAudition,
+            lastVoicePlayed,
+            modalClosedAfterHire,
+            hiredAgentId,
+            lobbyVisible,
+            lobbyStationsCount,
+            spotlightTourStarted,
+            persistentRedFlagVisible,
+            lockerRoomModalOpen,
+            coachAlOfficeOpen,
+            friendsWallOpen,
+            proShopGlovesCount,
+            mapSaveExitLobbyBtn
+          },
           twoStepStartPageAudit: {
             step1PortalsVisible,
             step2HiddenOnEntry,
@@ -915,8 +977,8 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     // 4A. Step 1 Start Screen Audit (`screenshots/audit_step1_portals.png`)
     await page.evaluate(() => {
       document.querySelectorAll('[id$="Modal"]').forEach(m => m.classList.add('hidden'));
-      if (typeof openSandboxLoginModal === 'function') openSandboxLoginModal();
-      if (typeof returnToSandboxPortalStep1 === 'function') returnToSandboxPortalStep1();
+      if (typeof openSandboxLoginModal === 'function') openSandboxLoginModal(true);
+      if (typeof showSandboxStep1Portals === 'function') showSandboxStep1Portals();
     });
     await page.waitForTimeout(250);
     await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_step1_portals.png') });
@@ -924,7 +986,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
 
     // 4B. Step 2 Player Portal Credentials (`screenshots/audit_step2_player_login.png`)
     await page.evaluate(() => {
-      if (typeof selectSandboxPortalCard === 'function') selectSandboxPortalCard('player');
+      if (typeof openSandboxPortalStep2 === 'function') openSandboxPortalStep2('player');
     });
     await page.waitForTimeout(250);
     await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_step2_player_login.png') });
@@ -932,7 +994,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
 
     // 4C. Step 2 Coach Portal Credentials (`screenshots/audit_coach_portal.png`)
     await page.evaluate(() => {
-      if (typeof selectSandboxPortalCard === 'function') selectSandboxPortalCard('coach');
+      if (typeof openSandboxPortalStep2 === 'function') openSandboxPortalStep2('coach');
     });
     await page.waitForTimeout(250);
     await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_coach_portal.png') });
@@ -940,13 +1002,35 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
 
     // 4D. Step 2 Family Portal Credentials (`screenshots/audit_family_portal.png`)
     await page.evaluate(() => {
-      if (typeof selectSandboxPortalCard === 'function') selectSandboxPortalCard('family');
+      if (typeof openSandboxPortalStep2 === 'function') openSandboxPortalStep2('family');
     });
     await page.waitForTimeout(250);
     await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_family_portal.png') });
     capturedScreenshots.audit_family_portal = 'screenshots/audit_family_portal.png';
 
-    // 4E. Revamped Adventure Map (`screenshots/audit_adventure_map.png`)
+    // 4E. Phase 1 Central Hub: Virtual Hockey Rink Lobby (`screenshots/audit_rink_lobby.png`)
+    await page.evaluate(() => {
+      document.getElementById('sandboxLoginModal')?.classList.add('hidden');
+      if (typeof switchSiblingStall === 'function') switchSiblingStall('miles');
+      switchView('lobby');
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_rink_lobby.png') });
+    capturedScreenshots.audit_rink_lobby = 'screenshots/audit_rink_lobby.png';
+
+    // 4F. Phase 1 9 Player Agents Picker w/ Pre-Selection Voice Audition (`screenshots/audit_player_agent_picker.png`)
+    await page.evaluate(() => {
+      if (typeof openPlayerAgentPickerModal === 'function') openPlayerAgentPickerModal();
+      if (typeof selectAgentForAudition === 'function') selectAgentForAudition('agent-jalen', false);
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_player_agent_picker.png') });
+    capturedScreenshots.audit_player_agent_picker = 'screenshots/audit_player_agent_picker.png';
+    await page.evaluate(() => {
+      document.getElementById('playerAgentPickerModal')?.classList.add('hidden');
+    });
+
+    // 4G. Revamped Adventure Map (`screenshots/audit_adventure_map.png`)
     await page.evaluate(() => {
       document.getElementById('sandboxLoginModal')?.classList.add('hidden');
       if (typeof switchSiblingStall === 'function') switchSiblingStall('miles');

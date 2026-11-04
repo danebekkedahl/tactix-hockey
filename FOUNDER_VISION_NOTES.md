@@ -329,5 +329,37 @@ Every `RUN NIGHTLY AUTOPILOT` pass runs an active Playwright field inspection in
      - **Gate B — Child Cognition, Parent Value & Zero-Clutter UX Review (`Seat 3: Pediatric/Parent` + `Seat 5: Touch UX`):** How the UX and cognitive specialists stripped away any potential screen clutter, text overload, or mobile scroll friction across Phone (`390x844`) and iPad (`768x1024` / `1024x768`).
      - **Gate C — Clean `<canvas>` & Full-Stack Engineering Plan (`Seat 8: Principal Engineer` + `Seat 10: Blind QA`):** The exact best-practice technical implementation (`60fps` canvas rendering, zero regression to `localStorage` sibling isolation, and clean Supabase sync).
 3. **Step 3 — Top 5 Co-Signed Consensus Priorities & 7-Field Digest (`report.html` & `send-board-digest.js`):**
-   - All 10 Seats vote and collaborate to synthesize the **Top 5 Co-Signed Consensus Priorities** (`TOP_5_COSIGNED_CONSENSUS_PRIORITIES`, ranked `#1` to `#5`), rendered at the top of `https://danebekkedahl.github.io/synapz-hockey/report.html` and the HTML email digest, followed by the full **30-Idea Matrix** with all 7 fields (`Seat & Lens`, `Target Age/Tier`, `Candid Critique & Pushback`, `🤝 Cross-Seat Collaboration & Best-Practice Plan`, `Cross-Impact`, `Live Screenshot`, and `[✅ Approve] / [❌ Reject]` controls) and strict `status = 'awaiting_founder_approval'` governance in `public.pucksense_agent_inbox`.
+   - All 10 Seats vote and collaborate to synthesize the **Top 5 Co-Signed Consensus Priorities** (`TOP_5_COSIGNED_CONSENSUS_PRIORITIES`, ranked `#1` to `#5`), rendered at the top of `https://danebekkedahl.github.io/synapz-hockey/report.html` and the HTML email digest, followed by the full **30-Idea Matrix** with all 7 fields (`Seat & Lens`, `Target Age/Tier`, `Candid Critique & Pushback`, `🤝 Cross-Seat Collaboration & Best-Practice Plan`, `Cross-Impact`, `Live Screenshot`, and `[🔍 Explain This to Me]` / `[✅ Approve]` / `[❌ Reject]` controls) and strict `status = 'awaiting_founder_approval'` governance in `public.pucksense_agent_inbox`.
+
+
+## 26. 11-04 Modular Redesign, 9 Age-Relatable Player Agents, Per-Profile Login Lock & 6-Phase Rollout Plan (`v9.3` Phase 1)
+1. **Core UX Rule — Extreme Simplicity & Progressive Disclosure:**
+   - **2 to 4 Real, Tactile Buttons Per Screen Max:** Never overwhelm players, parents, or coaches with walls of text or dense control bars. Use progressive disclosure (1 question or 1 focus area per screen) and a **75% realistic / 25% stylized cartoon-edge** visual aesthetic across the entire platform.
+2. **Strictly 2-Button Entry Gate (`Player Portal` & `Team Portal`) + Per-Profile Credential Lock:**
+   - **Step 1 (`#sandboxStep1Portals`):** Shows the centered `SYNAPZ HOCKEY — PLAY. LEARN. DOMINATE.` hero logo over `assets/synapz-splash-bg.png` and **strictly TWO large, tactile Portal Buttons**: **`🏒 PLAYER PORTAL`** (`#btnSelectPortalPlayer`) and **`📋 TEAM PORTAL`** (`#btnSelectPortalCoach`), plus a clean **`💳 View Plans ($4.99 Game vs. Synapz Pro)`** button (`#btnStep1ViewPlans`).
+   - **Step 2 (`#portalCredsPlayer` & `#playerProfileCredentialLockBox`):** Clicking **`🏒 PLAYER PORTAL`** displays the account's Player Profile Cards (up to 3 Player Profiles per `$4.99` Base Game, plus Bekkedahl test profiles `Miles #9`, `Rhett #88`, `Whelan #7`, `Cohen #14`, and `+ Create New Player`). Every Player Profile has its own individual **Profile Credential Lock** (`Enter [Player]'s Login / PIN` + **`🔓 Enter My Rink Lobby`** button, default test PIN `99`) so siblings on a shared family iPad cannot tamper with each other's private gameplay or spend each other's Puck Bucks.
+3. **11-Channel Voice Registry (`window.SYNAPZ_VOICE_REGISTRY`) & 9 Age-Relatable Player Agents With Mandatory Pre-Selection Voice Audition:**
+   - **9 Branded Player Agents in `assets/agents/`:**
+     - `8U–12U Youth Junior Agents`: **Maya** (`agent-maya.png`) & **Jalen** (`agent-jalen.png`)
+     - `10U–14U Teen Agents`: **Chloe** (`agent-chloe.png`), **Sofia** (`agent-sofia.png`) & **Leo** (`agent-leo.png`)
+     - `14U–18U+ Pro Agents`: **Marcus** (`agent-marcus.png`), **Priya** (`agent-priya.png`), **Ryan** (`agent-ryan.png`) & **Claire** (`agent-claire.png`)
+   - **Plus 2 Coaching Channels (`coach-bob` for On-Ice Lessons & `coach-al` for the Coach's Office):** `playCharacterVoice(characterId, clipKey, fallbackText)` checks `assets/audio/voices/<characterId>/<clipKey>.mp3` first and falls back cleanly to a distinctly tuned Web Speech voice profile per character.
+   - **Mandatory 2-Step Voice Audition (`#playerAgentPickerModal`):** Clicking any Agent card highlights their portrait, displays their signature 1-sentence greeting, and **immediately plays their audible 1-sentence voice greeting** with **`🔊 Hear Voice Again`** (`#btnAuditionHearAgentAgain`) and **`✅ Hire [Agent Name] as My Agent`** (`#btnConfirmHirePlayerAgent`) before locking them in.
+4. **Central Hub — The Virtual Hockey Rink Lobby (`#synapzRinkLobbySection`):**
+   - Logging into a player profile transitions via `#synapzTransitionSplash` directly into the **Virtual Hockey Rink Lobby** (`#synapzRinkLobbySection`) with 5 tactile stations:
+     1. **Center Ice Double Doors — `🏒 HIT THE ICE (Road to the Stanley Cup)`** (`#lobbyStationHitTheIce`)
+     2. **Left Doorway — `🎽 LOCKER ROOM (Young Hockey Player Avatar, Gear & Agent)`** (`#lobbyStationLockerRoom` -> `#synapzLockerRoomModal`)
+     3. **Right Doorway — `🛍️ SYNAPZ PRO SHOP (Wall of Gloves, Skates, Sticks & Visors)`** (`#lobbyStationProShop` -> `#proShopModal`)
+     4. **Coach's Doorway — `📋 COACH'S OFFICE & TRAINING ROOM (Guided by Coach Al)`** (`#lobbyStationCoachOffice` -> `#synapzCoachOfficeModal`: 6-Slice Skill Pie Chart + 1-question-per-screen wizard ending in **`⚡ 5-Lesson Quick Tune-Up`** or **`🏒 10-Lesson Full Mastery Plan`**, plus **`🔗 Find / Join My Team`**)
+     5. **Lobby Wall — `🖼️ FRIENDS & FAMILY COMMUNITY WALL (100% SafeSport Read-Only Social + Map Races)`** (`#lobbyStationFriendsWall` -> `#synapzFriendsWallModal`)
+   - **Lower-Left Player Agent Greeter & 5-Step 1-Sentence Quadrant Spotlight Tutorial (`#lobbyActivePlayerAgentWidget`):** Spotlights one station at a time (`Hit the Ice` -> `Locker Room` -> `Pro Shop` -> `Coach's Office` -> `Friends & Family Wall`), speaking strictly 1 concise plain-English sentence per step.
+   - **Universal `💾 Save & Exit to Lobby` + Persistent `🚩 Red Flag` Button:** Every major screen includes `💾 Save & Exit to Lobby`, and `#btnPersistentFounderRedFlag` floats on every screen to log priority founder flags (`status: 'founder_flagged_priority'`) with voice dictation or text notes.
+5. **6-Phase Modular Rollout Roadmap:**
+   - **Phase 1 (Complete):** 2-Button Entry Gate, Per-Profile Login Lock, 9 Age-Relatable Player Agents (with Voice Audition), Virtual Hockey Rink Lobby (5 Stations), SafeSport Notification Bell, Universal Save & Exit to Lobby, Persistent `🚩 Red Flag`, and `[🔍 Explain This to Me]` Digest Wiring.
+   - **Phase 2:** Locker Room 75%-Realistic Young Skater Avatar & Walk-In Pro Shop Gear Walls Deep Dive.
+   - **Phase 3:** Coach Al's Office 6-Slice Skill Pie Chart & 1-Question-Per-Screen Custom Lesson Wizard Deep Dive.
+   - **Phase 4:** Road to the Stanley Cup Map & Friends/Family Map Race Deep Dive.
+   - **Phase 5:** On-Ice Lesson Screen (`Coach Bob`, 2s Pre-Read Motion Roll-In, & Film Room) Deep Dive.
+   - **Phase 6:** Team & Director Portal (`PUCK99`, Line/Playbook Builder, & Association Roll-Up) Deep Dive.
+
 

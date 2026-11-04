@@ -275,6 +275,19 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
 4. **Phase 4 — Dual-Repo GitHub Pages Push & Live Gmail Webhook Dispatch (`deploy-github-pages.js` + `send-board-digest.js`):**
    - Mirrors and SHA-256 checksum-verifies both local folders, publishes to `https://danebekkedahl.github.io/synapz-hockey/` and `https://danebekkedahl.github.io/tactix-hockey/`, and dispatches the live email (`HTTP 200 "SENT"`) to `danebekkedahl@gmail.com` and `evanbekk@gmail.com`.
 
+---
+
+## 26. 11-04 Modular Redesign, 9 Age-Relatable Player Agents, Per-Profile Login Lock & 6-Phase Rollout Plan (`v9.3` Phase 1)
+1. **Extreme Simplicity Rule:** Max 2–4 real, tactile buttons per screen, progressive disclosure (1 question per screen), and a **75% realistic / 25% stylized cartoon-edge** visual aesthetic.
+2. **2-Button Opening Screen (`#sandboxStep1Portals`) & Per-Profile Credential Lock (`#playerProfileCredentialLockBox`):**
+   - Step 1 shows **strictly TWO large Portal Buttons**: **`🏒 PLAYER PORTAL`** (`#btnSelectPortalPlayer`) and **`📋 TEAM PORTAL`** (`#btnSelectPortalCoach`), plus **`💳 View Plans ($4.99 Game vs. Synapz Pro)`** (`#btnStep1ViewPlans`).
+   - Step 2 (`#portalCredsPlayer`) requires unlocking the selected player profile via `#profilePinLockInput` + **`🔓 Enter My Rink Lobby`** (`#btnUnlockProfileEnterLobby`, default test PIN `99`), transitioning via `#synapzTransitionSplash` directly into `#synapzRinkLobbySection`.
+3. **11-Channel Voice Registry (`window.SYNAPZ_VOICE_REGISTRY`) & 9 Player Agents (`assets/agents/agent-*.png`):**
+   - 9 Player Agents (**Maya**, **Jalen**, **Chloe**, **Sofia**, **Leo**, **Marcus**, **Priya**, **Ryan**, **Claire**) + **Coach Bob** (`coach-bob`) + **Coach Al** (`coach-al`) powered by `playCharacterVoice(characterId, clipKey, fallbackText)` and audited in `#playerAgentPickerModal` via mandatory 2-step pre-selection voice audition (`🔊 Hear Voice Again` + `✅ Hire [Agent Name] as My Agent`).
+4. **Central Hub — Virtual Hockey Rink Lobby (`#synapzRinkLobbySection`):**
+   - 5 tactile stations (`#lobbyStationHitTheIce`, `#lobbyStationLockerRoom`, `#lobbyStationProShop`, `#lobbyStationCoachOffice`, `#lobbyStationFriendsWall`), lower-left Player Agent Greeter & 5-Step 1-Sentence Quadrant Spotlight Tutorial (`#lobbyActivePlayerAgentWidget`), SafeSport Notification Bell (`#safeSportNotificationModal`), universal **`💾 Save & Exit to Lobby`**, persistent **`🚩 Red Flag`** (`#btnPersistentFounderRedFlag` -> `status: 'founder_flagged_priority'`), and **`[🔍 Explain This to Me]`** + **`[✅ Approve for Next Build]`** (`status = 'approved_for_build'`) in `report.html` and `send-board-digest.js`.
+
+
 
 
 
