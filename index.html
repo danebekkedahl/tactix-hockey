@@ -106,8 +106,22 @@
     body.in-game-clean-mode #coachCornerWidget,
     body.fullscreen-rink-mode #coachCornerWidget,
     body.in-game-clean-mode #rightPanelDeck,
-    body.fullscreen-rink-mode #rightPanelDeck {
+    body.fullscreen-rink-mode #rightPanelDeck,
+    body.in-game-clean-mode #rightActionRibbon,
+    body.fullscreen-rink-mode #rightActionRibbon,
+    body.in-game-clean-mode #tacticalActionDock,
+    body.fullscreen-rink-mode #tacticalActionDock {
       display: none !important;
+    }
+    body.in-game-clean-mode #multiFormatControlsBar,
+    body.fullscreen-rink-mode #multiFormatControlsBar {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      overflow: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      clip: rect(0, 0, 0, 0) !important;
     }
     body.in-game-clean-mode #gameViewSection,
     body.fullscreen-rink-mode #gameViewSection {
@@ -168,42 +182,18 @@
         width: 100% !important;
         min-height: 0 !important;
       }
-      body.in-game-clean-mode #rightActionRibbon,
-      body.fullscreen-rink-mode #rightActionRibbon {
-        width: 100% !important;
-        height: auto !important;
-        flex: 0 0 auto !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        padding: 4px 6px !important;
-        gap: 4px !important;
-      }
-      body.in-game-clean-mode #rightActionRibbon > div,
-      body.fullscreen-rink-mode #rightActionRibbon > div {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        align-items: center !important;
-        gap: 3px !important;
-        margin: 0 !important;
-        flex: 1 1 auto !important;
-      }
-      body.in-game-clean-mode #rightActionRibbon > div > button,
-      body.fullscreen-rink-mode #rightActionRibbon > div > button {
-        width: auto !important;
-        flex: 1 1 auto !important;
-        padding: 3px 6px !important;
-        font-size: 9px !important;
-      }
-      body.in-game-clean-mode #btnRibbonCheckPos,
-      body.fullscreen-rink-mode #btnRibbonCheckPos {
-        min-height: 34px !important;
-        flex-direction: row !important;
-        padding: 4px 10px !important;
-        flex: 0 0 auto !important;
-      }
+    }
+    .synapz-tactile-3d-btn {
+      box-shadow: 0 4px 0 rgba(2, 6, 23, 0.9), 0 0 18px rgba(0, 229, 255, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+      transition: transform 0.14s ease, box-shadow 0.14s ease, filter 0.14s ease;
+    }
+    .synapz-tactile-3d-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.08);
+    }
+    .synapz-tactile-3d-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 rgba(2, 6, 23, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
     @media (max-width: 920px) and (orientation: landscape) {
       #coachCornerFloating {
@@ -1010,10 +1000,14 @@
                 <span id="situationBannerText" class="text-[11px] sm:text-xs font-black text-white tracking-tight">🏒 5-on-5 Even Strength • Offensive Zone (OZ)</span>
                 <span class="text-slate-600 font-black">•</span>
                 <span id="situationTierPill" class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black uppercase whitespace-nowrap">10U • Rec Tier</span>
-                <button id="btnCycleQuestionFormat" type="button" class="px-2 py-0.5 rounded-full bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/60 text-amber-300 text-[10px] font-black transition whitespace-nowrap" title="Tap to switch interactive question format (Tap Zone A/B/C, Tap Player, Tactical Choice Cards, Drag Skater, Spot & Fix)">
+                <span id="flowFreezeStatusBadge" class="px-2.5 py-0.5 rounded-full bg-cyan-500/25 border border-cyan-400/70 text-cyan-200 text-[10px] font-black uppercase whitespace-nowrap">❄️ FREEZE — MAKE YOUR READ!</span>
+                <button id="btnReplay3sFlow" type="button" class="px-2.5 py-0.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 text-[10px] font-black shadow transition whitespace-nowrap synapz-tactile-3d-btn" title="Watch the 3–4 second moving play develop again before freezing!">
+                  🔄 Replay 3s Flow
+                </button>
+                <button id="btnCycleQuestionFormat" type="button" class="hidden px-2 py-0.5 rounded-full bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/60 text-amber-300 text-[10px] font-black transition whitespace-nowrap">
                   <span id="questionStyleBadge">🎯 Tap Zone A/B/C</span>
                 </button>
-                <button id="btnCueFirstHighlight" type="button" class="px-2 py-0.5 rounded-full bg-cyan-500/25 hover:bg-cyan-500/40 border border-cyan-400/70 text-cyan-200 text-[10px] font-black transition whitespace-nowrap" title="Seat 2 Teaching Strategy: Highlight the primary on-ice cue (defender stick angle or open triangle seam) BEFORE making your read!">
+                <button id="btnCueFirstHighlight" type="button" class="hidden px-2 py-0.5 rounded-full bg-cyan-500/25 hover:bg-cyan-500/40 border border-cyan-400/70 text-cyan-200 text-[10px] font-black transition whitespace-nowrap">
                   <span id="cueFirstBadgeText">👀 Cue-First Read</span>
                 </button>
               </div>
@@ -1103,8 +1097,8 @@
                   </div>
                   <div class="flex items-center gap-1 shrink-0">
                     <button id="btnCornerSpeakBtn" type="button" class="px-2 py-0.5 rounded bg-sky-500/25 hover:bg-sky-500/40 text-sky-200 text-[10px] font-black whitespace-nowrap" title="Replay Coach Bob Voice">🔊</button>
-                    <button id="btnDismissCoachBob" type="button" class="px-2 py-0.5 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-[10px] font-black shadow transition whitespace-nowrap" title="Hide Coach Bob & Play on Full Unobstructed Ice">
-                      Got It / Start Play ▶
+                    <button id="btnDismissCoachBob" type="button" class="px-2.5 py-1 rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 text-[11px] font-black shadow transition whitespace-nowrap synapz-tactile-3d-btn" title="Hide Coach Bob & Play on Full Unobstructed Ice">
+                      🏒 Drop the Puck / Watch Play ▶
                     </button>
                   </div>
                 </div>
@@ -1267,11 +1261,11 @@
             </div>
           </div>
 
-          <!-- RIGHT-SIDE ACTION RIBBON BAR (Clean, Organized, Self-Contained Control Column!) -->
-          <div id="rightActionRibbon" class="w-28 sm:w-32 bg-slate-900/95 border border-slate-800 rounded-xl p-1.5 flex flex-col justify-between gap-1.5 shrink-0 h-full">
+          <!-- RIGHT-SIDE ACTION RIBBON BAR (Hidden during de-cluttered active lessons; kept for legacy listeners) -->
+          <div id="rightActionRibbon" class="hidden w-28 sm:w-32 bg-slate-900/95 border border-slate-800 rounded-xl p-1.5 flex-col justify-between gap-1.5 shrink-0 h-full">
             <!-- Top Nav & Series Score Box -->
             <div class="space-y-1">
-              <button id="btnGameSaveExitLobby" type="button" class="w-full py-1 px-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/35 border border-emerald-400/60 text-emerald-200 font-black text-[9px] flex items-center justify-center gap-0.5 transition" title="Save your progress and return to the Virtual Hockey Rink Lobby">
+              <button id="btnGameSaveExitLobbyRibbon" type="button" class="w-full py-1 px-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/35 border border-emerald-400/60 text-emerald-200 font-black text-[9px] flex items-center justify-center gap-0.5 transition" title="Save your progress and return to the Virtual Hockey Rink Lobby">
                 <span>💾</span><span>Save &amp; Exit to Lobby</span>
               </button>
               <div class="grid grid-cols-2 gap-1">
@@ -1342,6 +1336,51 @@
               </button>
             </div>
           </div>
+        </div>
+
+        <!-- FORMAT 3: DEDICATED HABIT-COMBO DRILL ACTION BAR & 3-CHECK SCORECARD (Shown ONLY when presentationStyle === 'habit_combo') -->
+        <div id="habitComboControlsBar" class="hidden mt-1.5 bg-slate-950/95 border border-amber-400/70 rounded-xl px-3 py-1.5 flex flex-wrap items-center justify-between gap-2 shrink-0">
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded-md bg-amber-500/20 border border-amber-400/50 text-amber-300 text-[10px] font-black uppercase tracking-wider">⚡ Habit-Combo Play</span>
+            <span class="text-xs font-bold text-slate-200 hidden sm:inline">Scan &amp; call out BEFORE making your move on the ice:</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button id="btnHabitComboScanIce" type="button" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-400 to-sky-400 hover:from-amber-300 hover:to-sky-300 text-slate-950 font-black text-xs shadow transition flex items-center gap-1.5 synapz-tactile-3d-btn">
+              <span>👀 Look Over Shoulder (Scan Ice)</span>
+            </button>
+            <button id="btnHabitComboCallOut" type="button" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 font-black text-xs shadow transition flex items-center gap-1.5 synapz-tactile-3d-btn">
+              <span>🗣️ Call Out ("Pass!" / "D-to-D!" / "Boards!")</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3-CHECK HABIT SCORECARD (Revealed when a Habit-Combo play is completed) -->
+        <div id="habitComboScorecardBox" class="hidden mt-1.5 bg-slate-950/95 border-2 border-emerald-400/80 rounded-xl px-3 py-2 flex flex-wrap items-center justify-between gap-2 shrink-0">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-black uppercase tracking-wider text-emerald-300">📋 3-Check Habit Scorecard:</span>
+            <span id="habitComboTotalBadge" class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[11px] font-black">3/3 Pro Habits</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 text-xs font-extrabold">
+            <span id="habitCheck1Scan" class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-300">⬜ 1. Scanned Over Shoulder</span>
+            <span id="habitCheck2Call" class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-300">⬜ 2. Called Out on Ice</span>
+            <span id="habitCheck3Pos" class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-300">⬜ 3. Nailed Tactical Position/Pass</span>
+          </div>
+        </div>
+
+        <!-- STEP 1: STRICT DRILL-TO-DRILL CONSISTENT 4-BUTTON TACTILE BOTTOM BAR ("Only the Ice and Skaters Change") -->
+        <div id="lessonConsistentBottomBar" class="mt-2 pt-2 border-t border-slate-800/90 grid grid-cols-2 sm:grid-cols-4 gap-2 shrink-0">
+          <button id="btnGameSaveExitLobby" type="button" class="py-2.5 px-3 rounded-xl bg-gradient-to-b from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 border-2 border-emerald-400/70 text-emerald-300 font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 synapz-tactile-3d-btn" title="Save your progress and return to the Virtual Hockey Rink Lobby">
+            <span>💾</span><span>Save &amp; Exit to Lobby</span>
+          </button>
+          <button id="btnLessonWatchVideoPopup" type="button" class="py-2.5 px-3 rounded-xl bg-gradient-to-b from-sky-600 to-blue-800 hover:from-sky-500 hover:to-blue-700 border-2 border-sky-300/80 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 synapz-tactile-3d-btn" title="Open pop-up modal with verified NHL/coaching video clip">
+            <span>🎬</span><span>Video Clip</span>
+          </button>
+          <button id="btnLessonMoreInfoPopup" type="button" class="py-2.5 px-3 rounded-xl bg-gradient-to-b from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 border-2 border-amber-200/80 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 synapz-tactile-3d-btn" title="Open a short, plain-language pop-up hint from Coach Bob">
+            <span>💡</span><span>More Info / Hint</span>
+          </button>
+          <button id="btnNextQuestion" type="button" class="py-2.5 px-3 rounded-xl bg-gradient-to-b from-emerald-400 to-teal-600 hover:from-emerald-300 hover:to-teal-500 border-2 border-emerald-200/90 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 synapz-tactile-3d-btn" title="Check your move or advance to the next play">
+            <span>➡️</span><span id="btnNextQuestionLabel">Next Play</span>
+          </button>
         </div>
 
         <!-- =============================================================== -->
@@ -6100,9 +6139,9 @@
         youStart: { x: 0.85, y: 0.20 },
         targetSpot: { x: 0.72, y: 0.22, radius: 0.10 },
         customTargetZones: [
-          { rank: 1, tier: 'Gold',   badge: '🥇 1st Choice Consensus Optimal (100% Gold IQ)', multiplier: 1.0, x: 0.72, y: 0.22, radius: 0.10 },
-          { rank: 2, tier: 'Silver', badge: '🥈 2nd Choice High-Circle Escape Curl (80% Silver IQ)', multiplier: 0.8, x: 0.78, y: 0.35, radius: 0.125 },
-          { rank: 3, tier: 'Bronze', badge: '🥉 3rd Choice Safe Point Cushion (60% Bronze IQ)', multiplier: 0.6, x: 0.66, y: 0.34, radius: 0.13 }
+          { rank: 1, tier: 'Gold',   badge: '🥇 Great Read! Best Play on the Ice (100% Gold IQ)', multiplier: 1.0, x: 0.72, y: 0.22, radius: 0.10 },
+          { rank: 2, tier: 'Silver', badge: '🥈 Good Play! High-Circle Escape Curl (80% Silver IQ)', multiplier: 0.8, x: 0.78, y: 0.35, radius: 0.125 },
+          { rank: 3, tier: 'Bronze', badge: '🥉 Safe Option! Point Support Cushion (60% Bronze IQ)', multiplier: 0.6, x: 0.66, y: 0.34, radius: 0.13 }
         ],
         puckHolder: 'YOU',
         teammates: [
@@ -7666,11 +7705,17 @@
         clearTimeout(coachBobAutoHideTimer);
         coachBobAutoHideTimer = null;
       }
+      const wasVisible = Boolean(state.coachBobVisible);
       state.coachBobVisible = false;
       popup.classList.remove('translate-y-0', 'opacity-100', 'coach-bob-state-talking', 'coach-bob-state-mistake', 'coach-bob-state-celebrate');
       popup.classList.add('translate-y-[130%]', 'opacity-0', 'pointer-events-none');
-      const dock = document.getElementById('tacticalActionDock');
-      if (dock) dock.classList.remove('opacity-0', 'pointer-events-none');
+      // Phase 2 & 3 Format 1: Right after Coach Bob's 1-sentence intro disappears, trigger 3.0-3.5s moving play -> FREEZE!
+      if (wasVisible && !state.questionAnswered && state.activePresentationStyle === 'flow_and_freeze' && state.flowFreezePhase === 'ready') {
+        const scen = typeof getCurrentScenario === 'function' ? getCurrentScenario() : null;
+        if (scen && typeof runLessonFlowAndFreezeAnimation === 'function') {
+          runLessonFlowAndFreezeAnimation(scen, 3200);
+        }
+      }
     }
     window.hideCoachBobPopup = hideCoachBobPopup;
 
@@ -7718,11 +7763,89 @@
     }
     window.describePhysicalRinkLandmark = describePhysicalRinkLandmark;
 
+    function formatPlainLanguageCoachFeedback(scenario, choiceOutcome, division) {
+      const scen = scenario || getCurrentScenario() || {};
+      const prof = (typeof getActiveProfile === 'function' && getActiveProfile()) || {};
+      const div = String(division || prof.ageGroup || '12U').toUpperCase();
+      const isYoung = (div === '8U' || div === '10U');
+
+      let success = true;
+      let mult = 1.0;
+      let rawMsg = '';
+      if (typeof choiceOutcome === 'boolean') {
+        success = choiceOutcome;
+        mult = success ? 1.0 : 0;
+      } else if (typeof choiceOutcome === 'string') {
+        const lower = choiceOutcome.toLowerCase();
+        if (lower === 'miss' || lower === 'fail' || lower === 'incorrect') {
+          success = false;
+          mult = 0;
+        } else if (lower === 'silver') {
+          success = true;
+          mult = 0.8;
+        } else if (lower === 'bronze') {
+          success = true;
+          mult = 0.6;
+        } else {
+          rawMsg = choiceOutcome;
+        }
+      } else if (choiceOutcome && typeof choiceOutcome === 'object') {
+        success = choiceOutcome.success !== undefined ? Boolean(choiceOutcome.success) : (choiceOutcome.multiplier > 0);
+        mult = typeof choiceOutcome.multiplier === 'number' ? choiceOutcome.multiplier : (success ? 1.0 : 0);
+        rawMsg = String(choiceOutcome.message || choiceOutcome.feedback || '');
+      }
+
+      const concept = String(scen.concept || 'spacing').toLowerCase();
+      if (isYoung) {
+        let kidLine = '';
+        if (success && mult >= 0.99) {
+          if (concept === 'offsides') kidLine = 'Great job! You kept both skates onside at the blue line.';
+          else if (concept === 'house') kidLine = 'Awesome job! You protected the house in front of our goalie.';
+          else if (concept === 'breakout') kidLine = 'Great breakout! You skated low and wide for an easy pass.';
+          else if (concept === 'forecheck') kidLine = 'Great angle! You steered the puck carrier toward the side boards.';
+          else if (concept === 'transition') kidLine = 'Nice play! You skated into the open lane on the rush.';
+          else kidLine = 'Great job! You skated to open ice so your teammate can pass.';
+        } else if (success && mult > 0) {
+          kidLine = 'Good play! Check the green circle for an even wider-open spot.';
+        } else {
+          if (concept === 'offsides') kidLine = 'Good try—wait at the blue line until the puck crosses first!';
+          else if (concept === 'house') kidLine = 'Good try—slide between the dots to protect our net!';
+          else kidLine = "Good try—slide into the slot between the dots so you're open!";
+        }
+        // Strictly <= 14 words, 1 plain-English sentence for 8U & 10U
+        const words = kidLine.trim().split(/\s+/);
+        return words.length <= 14 ? kidLine : words.slice(0, 14).join(' ') + '!';
+      }
+
+      // 12U, 14U, 16U, 18U: 1 to 2 natural coaching sentences with authentic hockey terms, zero robotic jargon
+      let base = rawMsg || ((scen.readChoices && scen.readChoices[0] && scen.readChoices[0].feedback) || scen.goldenRule || '');
+      base = base
+        .replace(/1st Choice Consensus Optimal/gi, 'Great Read')
+        .replace(/consensus optimal/gi, 'first-choice')
+        .replace(/sub-optimal tactical selection/gi, 'covered lane')
+        .replace(/great optimization/gi, 'smart hockey read')
+        .trim();
+
+      if (!base) {
+        if (success && mult >= 0.99) {
+          base = `Great read! You found the open high-slot support lane and gave the puck carrier a clean tape-to-tape target.`;
+        } else if (success) {
+          base = `Good secondary support read! Check the primary green circle to create an even cleaner F1/F2 passing angle.`;
+        } else {
+          base = `Coach's adjustment: scan the defender's stick angle first, then slide into the open support seam.`;
+        }
+      }
+
+      const sentences = (base.match(/[^.!?]+[.!?]+/g) || [base]).map(s => s.trim()).filter(Boolean);
+      return sentences.slice(0, 2).join(' ');
+    }
+    window.formatPlainLanguageCoachFeedback = formatPlainLanguageCoachFeedback;
+
     function buildTapZonesForScenario(scen) {
       ensureScenarioConsensusZones(scen);
-      const zGold = (scen.targetZones && scen.targetZones[0]) || { x: scen.targetSpot.x, y: scen.targetSpot.y, radius: 0.095, multiplier: 1.0, badge: '🥇 1st Choice Consensus Optimal (100% Gold IQ)', feedback: (scen.readChoices && scen.readChoices[0] && scen.readChoices[0].feedback) || 'Great read!' };
-      const zSilver = (scen.targetZones && scen.targetZones[1]) || { x: Math.min(0.86, Math.max(0.14, scen.targetSpot.x - 0.09)), y: Math.min(0.84, Math.max(0.16, scen.targetSpot.y + 0.14)), radius: 0.095, multiplier: 0.8, badge: '🥈 2nd Choice Strong Secondary Read (80% Silver IQ)', feedback: 'Strong secondary support read (80% Silver IQ)! Check the Gold 1st Choice spot for an even cleaner lane.' };
-      const zBronze = (scen.targetZones && scen.targetZones[2]) || { x: Math.min(0.86, Math.max(0.14, scen.youStart.x)), y: Math.min(0.84, Math.max(0.16, 1 - scen.targetSpot.y)), radius: 0.095, multiplier: 0.6, badge: '🥉 3rd Choice Safe Option (60% Bronze IQ)', feedback: 'Safe playable position (60% Bronze IQ)! Skating into the Gold 1st Choice zone creates the best passing triangle.' };
+      const zGold = (scen.targetZones && scen.targetZones[0]) || { x: scen.targetSpot.x, y: scen.targetSpot.y, radius: 0.095, multiplier: 1.0, badge: '🥇 Great Read! Best Play on the Ice (100% Gold IQ)', feedback: (scen.readChoices && scen.readChoices[0] && scen.readChoices[0].feedback) || 'Great read!' };
+      const zSilver = (scen.targetZones && scen.targetZones[1]) || { x: Math.min(0.86, Math.max(0.14, scen.targetSpot.x - 0.09)), y: Math.min(0.84, Math.max(0.16, scen.targetSpot.y + 0.14)), radius: 0.095, multiplier: 0.8, badge: '🥈 Good Play! Open Second Option (80% Silver IQ)', feedback: 'Good secondary support read (80% Silver IQ)! Check the green circle for an even cleaner lane.' };
+      const zBronze = (scen.targetZones && scen.targetZones[2]) || { x: Math.min(0.86, Math.max(0.14, scen.youStart.x)), y: Math.min(0.84, Math.max(0.16, 1 - scen.targetSpot.y)), radius: 0.095, multiplier: 0.6, badge: '🥉 Safe Play! Playable Support Spot (60% Bronze IQ)', feedback: 'Safe playable position (60% Bronze IQ)! Skating into the green circle creates the best passing triangle.' };
       const raw = [
         { ...zGold, rank: 1, multiplier: 1.0 },
         { ...zSilver, rank: 2, multiplier: 0.8 },
@@ -7813,9 +7936,9 @@
             const okChoice = scen.readChoices.find(c => c.correct) || scen.readChoices[0];
             const badChoice = scen.readChoices.find(c => !c.correct) || scen.readChoices[1] || okChoice;
             if (isBest) {
-              resolveAttempt(scen, true, okChoice.feedback, 1.0, '🥇 1st Choice Consensus Optimal (100% Gold IQ)');
+              resolveAttempt(scen, true, okChoice.feedback, 1.0, '🥇 Great Read! Best Play on the Ice (100% Gold IQ)');
             } else if (idx === 1) {
-              resolveAttempt(scen, true, 'Secondary outlet completed (80% Silver IQ)! Look for the wide-open primary target next time.', 0.8, '🥈 2nd Choice Secondary Read (80% Silver IQ)');
+              resolveAttempt(scen, true, 'Good secondary outlet (80% Silver IQ)! Look for the wide-open primary target next time.', 0.8, '🥈 Good Play! Open Second Option (80% Silver IQ)');
             } else {
               resolveAttempt(scen, false, badChoice.feedback, 0, '');
             }
@@ -7833,7 +7956,7 @@
             SoundFX.playTap();
             hideCoachBobPopup();
             const okChoice = scen.readChoices.find(c => c.correct) || scen.readChoices[0];
-            resolveAttempt(scen, true, okChoice.feedback, 1.0, '🥇 1st Choice Consensus Optimal (100% Gold IQ)');
+            resolveAttempt(scen, true, okChoice.feedback, 1.0, '🥇 Great Read! Best Play on the Ice (100% Gold IQ)');
           });
           bar.appendChild(netBtn);
         }
@@ -7875,6 +7998,7 @@
       if (state.activeQuestionStyle !== 'tap_zone') return;
       const zones = state.activeTapZones || buildTapZonesForScenario(scen);
       state.activeTapZones = zones;
+      if (['flow_and_freeze', 'static_hover_zones', 'habit_combo'].includes(state.activePresentationStyle)) return;
       ctx.save();
       zones.forEach(z => {
         const pt = normToCanvas(z.x, z.y, W, H, zone);
@@ -8522,22 +8646,22 @@
       const isDefScen = !isGoalieScen && ((scen.positionFocus || '').includes('Defense') || scen.posRole === 'D' || (scen.id || '').startsWith('d-'));
 
       const silverFeedback = isGoalieScen
-        ? `🥈 Strong Secondary Crease Read (80% Silver IQ)! Solid squareness to ${d1.label || 'R1'}'s release point inside the blue paint. Why the 🥇 1st Choice Top-of-Crease Sweet Spot is even stronger: telescoping out to the top edge of the paint cuts down the upper-corner shooting angles by an extra 15%! ${scen.goldenRule}`
+        ? `Good crease position! Push out to the top edge of the blue paint to cut down the shooter's angle even more.`
         : (isDefScen
-            ? `🥈 Strong Secondary Defensive Read (80% Silver IQ)! Good net-side leverage and stick-on-puck awareness against ${d1.label || 'R1'}. Why the 🥇 1st Choice Sweet Spot is even stronger: tightening your inside-out gap into the primary Gold ring seals the royal-road seam and forces ${d1.label || 'R1'} to the perimeter wall! ${scen.goldenRule}`
-            : `🥈 Strong Secondary Read (80% Silver IQ)! Coach Bob likes your instinct—you found open support ice away from ${d1.label || 'D1'}'s stick lane and stayed available as a safe outlet. Why the 🥇 1st Choice Sweet Spot is even stronger: given the puck vector from ${holder === scen.youStart ? 'your tape' : '#' + (holder.label || '14')} and ${d1.label || 'D1'}'s stick angle, sliding into the primary Gold target ring gives a cleaner, one-touch tape-to-tape angle. ${scen.goldenRule}`);
+            ? `Good net-side support! Step a bit tighter into the green circle to seal the passing lane with your stick.`
+            : `Good open support spot! Slide into the green circle next time for an even cleaner passing angle.`);
 
       const bronzeFeedback = isGoalieScen
-        ? `🥉 Safe Goal-Line Option (60% Bronze IQ)! You stayed square between the pipes, but sitting deep on the goal line leaves top-shelf daylight for ${d1.label || 'R1'}. Push to the top edge of the blue crease to take away the net! ${scen.goldenRule}`
+        ? `Safe goal-line spot! Push out to the top of the crease so the shooter sees less net.`
         : (isDefScen
-            ? `🥉 Safe Conservative Cushion (60% Bronze IQ)! You stayed net-side between ${d1.label || 'R1'} and your goalie, but gave up extra gap ice. Step into the primary Gold target ring to close time and space with your stick in the passing lane! ${scen.goldenRule}`
-            : `🥉 Safe Option Read (60% Bronze IQ)! Good discipline staying onside and avoiding defender traffic. Why the 🥇 1st Choice Sweet Spot is stronger: from your safe cushion spot, the pass has to travel farther across ${d1.label || 'D1'}'s reach—pushing into the primary Gold target ring cuts the pass distance in half and attacks the royal road! ${scen.goldenRule}`);
+            ? `Safe defensive spot! Step up into the green circle to close the gap and block the pass.`
+            : `Safe onside spot! Skate into the green circle to give your teammate a closer passing target.`);
 
       scen.targetZones = [
         {
           rank: 1,
           tier: 'Gold',
-          badge: '🥇 1st Choice Consensus Optimal (100% Gold IQ)',
+          badge: '🥇 Great Read! Best Play on the Ice (100% Gold IQ)',
           multiplier: 1.0,
           x: tx,
           y: ty,
@@ -8547,7 +8671,7 @@
         {
           rank: 2,
           tier: 'Silver',
-          badge: (customZ2 && customZ2.badge) || '🥈 2nd Choice Strong Secondary Read (80% Silver IQ)',
+          badge: (customZ2 && customZ2.badge) || '🥈 Good Play! Open Second Option (80% Silver IQ)',
           multiplier: 0.8,
           x: secX,
           y: secY,
@@ -8557,7 +8681,7 @@
         {
           rank: 3,
           tier: 'Bronze',
-          badge: (customZ3 && customZ3.badge) || '🥉 3rd Choice Safe Option (60% Bronze IQ)',
+          badge: (customZ3 && customZ3.badge) || '🥉 Safe Play! Playable Support Spot (60% Bronze IQ)',
           multiplier: 0.6,
           x: brX,
           y: brY,
@@ -9611,37 +9735,15 @@
       const gDec = document.getElementById('dockGroupDeception');
       const gCom = document.getElementById('dockGroupComm');
       const toast = document.getElementById('dockStatusToast');
-      if (!dock || !gPre || !gDec || !gCom) return;
-
-      // Always hide all 3 groups first so they NEVER appear at the same time (Guardrail #1)
-      gPre.classList.add('hidden');
-      gDec.classList.add('hidden');
-      gCom.classList.add('hidden');
-
-      if (state.questionAnswered || state.mode === 'live') {
+      if (dock) {
+        // Phase 2 & 3 De-Cluttered Lesson Screen: persistent top/bottom ribbon bars are removed from standard drills
+        // and replaced by dedicated Habit-Combo Drills (#habitComboControlsBar) when presentationStyle === 'habit_combo'.
         dock.classList.add('hidden');
-        return;
       }
-      dock.classList.remove('hidden');
-
-      const prof = getActiveProfile();
-      const age = prof.ageGroup || '12U';
-      const is12UPlus = age !== '8U' && age !== '10U';
-      const youHasPuck = scen.puckHolder === 'YOU' || scen.mechanic === 'pass_decision';
-
-      if (state.preScanPhase === 'window') {
-        gPre.classList.remove('hidden');
-      } else if (youHasPuck && is12UPlus) {
-        gDec.classList.remove('hidden');
-      } else if (!youHasPuck) {
-        gCom.classList.remove('hidden');
-      } else {
-        // 8U/10U on-puck drill after pre-scan: show Pre-Scan button in completed state or hide
-        gPre.classList.remove('hidden');
-      }
-      if (toast && !state.deceptionActive && !state.holdProtectActive && !state.commRipple && state.preScanPhase !== 'scanned' && !state.roleReadAwardedThisPlay) {
-        toast.classList.add('hidden');
-      }
+      if (gPre) gPre.classList.add('hidden');
+      if (gDec) gDec.classList.add('hidden');
+      if (gCom) gCom.classList.add('hidden');
+      if (toast) toast.classList.add('hidden');
       updateRoleReadBarUI(scen);
     }
 
@@ -9958,8 +10060,253 @@
     }
     window.triggerContrastiveGoodBadReplay = triggerContrastiveGoodBadReplay;
 
+    // =========================================================================
+    // PHASE 2 & 3: THE 3 VARIABLE LESSON FORMATS
+    // 1. 'flow_and_freeze'     — 3.0–3.5s Moving Play -> Freeze Frame + Replay 3s Flow
+    // 2. 'static_hover_zones'  — Stationary Skaters + Interactive Color-Coded Ice Zones
+    // 3. 'habit_combo'         — Dedicated Habit-Combo (Scan Over Shoulder + Call Out + Position)
+    // =========================================================================
+    function getLessonPresentationStyle(scen, prof) {
+      if (state.customPresentationStyleOverride) return state.customPresentationStyleOverride;
+      if (scen && scen.presentationStyle) return scen.presentationStyle;
+      const age = (prof && prof.ageGroup) || '12U';
+      const concept = (scen && scen.concept) || 'spacing';
+      if ((age === '8U' || age === '10U') && (concept === 'house' || concept === 'offsides')) {
+        return 'static_hover_zones';
+      }
+      if (age !== '8U' && (concept === 'breakout' || concept === 'transition') && ((state.seriesQuestionNum || 1) % 3 === 0)) {
+        return 'habit_combo';
+      }
+      return 'flow_and_freeze';
+    }
+    window.getLessonPresentationStyle = getLessonPresentationStyle;
+
+    function buildStaticHoverZones(scen) {
+      if (!scen) return [];
+      ensureScenarioConsensusZones(scen);
+      const isDef = scen.zone === 'defense';
+      const tx = scen.targetSpot ? scen.targetSpot.x : 0.68;
+      const ty = scen.targetSpot ? scen.targetSpot.y : 0.50;
+      const baseDefs = isDef
+        ? [
+            { id: 'left_wing_point',  label: 'Left Point / Left Wing Zone',  xMin: 0.22, xMax: 0.48, yMin: 0.08, yMax: 0.38, color: '#38bdf8', fillRgba: 'rgba(56, 189, 248, 0.16)', hoverRgba: 'rgba(56, 189, 248, 0.38)' },
+            { id: 'right_wing_point', label: 'Right Point / Right Wing Zone', xMin: 0.22, xMax: 0.48, yMin: 0.62, yMax: 0.92, color: '#a855f7', fillRgba: 'rgba(168, 85, 247, 0.16)', hoverRgba: 'rgba(168, 85, 247, 0.38)' },
+            { id: 'house_slot',       label: 'The House / Slot',             xMin: 0.14, xMax: 0.38, yMin: 0.35, yMax: 0.65, color: '#10b981', fillRgba: 'rgba(16, 185, 129, 0.18)', hoverRgba: 'rgba(16, 185, 129, 0.42)' },
+            { id: 'low_corner_net',   label: 'Low Corner / Net Front',       xMin: 0.06, xMax: 0.22, yMin: 0.12, yMax: 0.88, color: '#f59e0b', fillRgba: 'rgba(245, 158, 11, 0.16)', hoverRgba: 'rgba(245, 158, 11, 0.38)' }
+          ]
+        : [
+            { id: 'left_wing_point',  label: 'Left Point / Left Wing Zone',  xMin: 0.50, xMax: 0.76, yMin: 0.08, yMax: 0.38, color: '#38bdf8', fillRgba: 'rgba(56, 189, 248, 0.16)', hoverRgba: 'rgba(56, 189, 248, 0.38)' },
+            { id: 'right_wing_point', label: 'Right Point / Right Wing Zone', xMin: 0.50, xMax: 0.76, yMin: 0.62, yMax: 0.92, color: '#a855f7', fillRgba: 'rgba(168, 85, 247, 0.16)', hoverRgba: 'rgba(168, 85, 247, 0.38)' },
+            { id: 'house_slot',       label: 'The House / Slot',             xMin: 0.62, xMax: 0.86, yMin: 0.35, yMax: 0.65, color: '#10b981', fillRgba: 'rgba(16, 185, 129, 0.18)', hoverRgba: 'rgba(16, 185, 129, 0.42)' },
+            { id: 'low_corner_net',   label: 'Low Corner / Net Front',       xMin: 0.78, xMax: 0.94, yMin: 0.12, yMax: 0.88, color: '#f59e0b', fillRgba: 'rgba(245, 158, 11, 0.16)', hoverRgba: 'rgba(245, 158, 11, 0.38)' }
+          ];
+
+      // Rank zones by proximity to scen.targetSpot so the zone containing/closest to targetSpot is Gold (1.0)
+      const withDist = baseDefs.map(d => {
+        const cx = (d.xMin + d.xMax) * 0.5;
+        const cy = (d.yMin + d.yMax) * 0.5;
+        const inside = (tx >= d.xMin && tx <= d.xMax && ty >= d.yMin && ty <= d.yMax);
+        const dist = inside ? 0 : Math.hypot(tx - cx, ty - cy);
+        return { ...d, cx, cy, dist };
+      });
+      const sortedIds = [...withDist].sort((a, b) => a.dist - b.dist).map(z => z.id);
+      const okChoice = (scen.readChoices && scen.readChoices.find(c => c.correct)) || (scen.readChoices && scen.readChoices[0]) || { feedback: 'Great zone read!' };
+      const badChoice = (scen.readChoices && scen.readChoices.find(c => !c.correct)) || { feedback: 'Good try—slide into the open zone next time!' };
+
+      return withDist.map(z => {
+        const rankIdx = sortedIds.indexOf(z.id);
+        const isGold = rankIdx === 0;
+        const isSilver = rankIdx === 1;
+        return {
+          ...z,
+          shortLabel: z.label,
+          fill: z.fillRgba,
+          hoverFill: z.hoverRgba,
+          x: isGold ? tx : z.cx,
+          y: isGold ? ty : z.cy,
+          multiplier: isGold ? 1.0 : (isSilver ? 0.8 : 0),
+          badge: isGold
+            ? '🥇 Great Read! Best Play on the Ice (100% Gold IQ)'
+            : (isSilver ? '🥈 Good Play! Open Second Option (80% Silver IQ)' : ''),
+          feedback: isGold ? okChoice.feedback : (isSilver ? 'Good secondary zone support!' : badChoice.feedback)
+        };
+      });
+    }
+    window.buildStaticHoverZones = buildStaticHoverZones;
+
+    function handleSelectHoverZone(hz, scen) {
+      if (!hz || !scen || state.questionAnswered) return;
+      SoundFX.playTap();
+      hideCoachBobPopup();
+      state.hoveredHoverZoneId = hz.id;
+      state.youPos = { x: hz.x, y: hz.y };
+      drawRink();
+      resolveAttempt(scen, hz.multiplier > 0, hz.feedback, hz.multiplier, hz.badge);
+    }
+    window.handleSelectHoverZone = handleSelectHoverZone;
+
+    function runLessonFlowAndFreezeAnimation(scen, durationMs = 3200) {
+      const activeScen = scen || getCurrentScenario();
+      if (!activeScen) return;
+      if (state.flowFreezeAnimId) {
+        cancelAnimationFrame(state.flowFreezeAnimId);
+        state.flowFreezeAnimId = null;
+      }
+      state.flowFreezePhase = 'flowing';
+      state.flowFreezeProgress = 0;
+      state.flowFreezeDurationMs = durationMs;
+      const badge = document.getElementById('flowFreezeStatusBadge');
+      if (badge) {
+        badge.textContent = '▶️ 3.2s Moving Play — Watch the Flow...';
+        badge.className = 'px-2.5 py-0.5 rounded-full bg-amber-500/25 border border-amber-400/80 text-amber-200 text-[10px] font-black uppercase whitespace-nowrap';
+      }
+      const startTs = performance.now();
+      function stepFlow(now) {
+        if (state.questionAnswered || state.flowFreezePhase !== 'flowing') {
+          state.flowFreezePhase = 'frozen';
+          state.flowFreezeProgress = 1;
+          if (badge) {
+            badge.textContent = '❄️ FREEZE — MAKE YOUR READ!';
+            badge.className = 'px-2.5 py-0.5 rounded-full bg-cyan-500/25 border border-cyan-400/70 text-cyan-200 text-[10px] font-black uppercase whitespace-nowrap';
+          }
+          drawRink();
+          return;
+        }
+        const elapsed = now - startTs;
+        state.flowFreezeProgress = Math.min(1, elapsed / durationMs);
+        drawRink();
+        if (state.flowFreezeProgress < 1) {
+          state.flowFreezeAnimId = requestAnimationFrame(stepFlow);
+        } else {
+          state.flowFreezeAnimId = null;
+          state.flowFreezePhase = 'frozen';
+          if (badge) {
+            badge.textContent = '❄️ FREEZE — MAKE YOUR READ!';
+            badge.className = 'px-2.5 py-0.5 rounded-full bg-cyan-500/25 border border-cyan-400/70 text-cyan-200 text-[10px] font-black uppercase whitespace-nowrap';
+          }
+          drawRink();
+        }
+      }
+      state.flowFreezeAnimId = requestAnimationFrame(stepFlow);
+    }
+    window.runLessonFlowAndFreezeAnimation = runLessonFlowAndFreezeAnimation;
+
+    function triggerHabitComboScan() {
+      if (state.questionAnswered) return;
+      SoundFX.playGoalHorn();
+      state.habitComboScanned = true;
+      state.preScanPhase = 'scanned';
+      state.preScannedThisPlay = true;
+      const btn = document.getElementById('btnHabitComboScanIce');
+      if (btn) {
+        btn.innerHTML = '<span>☑️ 1. Scanned Over Shoulder!</span>';
+        btn.classList.add('ring-2', 'ring-emerald-300');
+      }
+      drawRink();
+    }
+    window.triggerHabitComboScan = triggerHabitComboScan;
+
+    function triggerHabitComboCallOut() {
+      if (state.questionAnswered) return;
+      SoundFX.playTap();
+      state.habitComboCalledOut = true;
+      state.commRipple = true;
+      const btn = document.getElementById('btnHabitComboCallOut');
+      if (btn) {
+        btn.innerHTML = '<span>☑️ 2. Called Out ("Pass! Boards!")</span>';
+        btn.classList.add('ring-2', 'ring-emerald-300');
+      }
+      const prof = getActiveProfile() || {};
+      if (typeof window.playCharacterVoice === 'function') {
+        window.playCharacterVoice(prof.agentId || 'mason', 'Pass! Hit me in stride on the boards!');
+      }
+      drawRink();
+    }
+    window.triggerHabitComboCallOut = triggerHabitComboCallOut;
+
+    function updateHabitComboScorecardUI(posSuccess) {
+      const box = document.getElementById('habitComboScorecardBox');
+      if (!box) return;
+      if (state.activePresentationStyle !== 'habit_combo') {
+        box.classList.add('hidden');
+        return;
+      }
+      box.classList.remove('hidden');
+      const c1 = Boolean(state.habitComboScanned);
+      const c2 = Boolean(state.habitComboCalledOut);
+      const c3 = Boolean(posSuccess);
+      const count = (c1 ? 1 : 0) + (c2 ? 1 : 0) + (c3 ? 1 : 0);
+      state.lastHabitComboScore = { scanned: c1, calledOut: c2, positionOk: c3, checksPassed: count, totalChecks: 3 };
+
+      const el1 = document.getElementById('habitCheck1Scan');
+      const el2 = document.getElementById('habitCheck2Call');
+      const el3 = document.getElementById('habitCheck3Pos');
+      const badge = document.getElementById('habitComboTotalBadge');
+      if (el1) {
+        el1.textContent = c1 ? '☑️ 1. Scanned Over Shoulder' : '⬜ 1. Scanned Over Shoulder (Missed)';
+        el1.className = c1
+          ? 'px-2.5 py-1 rounded-lg bg-emerald-950/80 border border-emerald-400 text-emerald-300'
+          : 'px-2.5 py-1 rounded-lg bg-slate-900 border border-rose-400/60 text-rose-300';
+      }
+      if (el2) {
+        el2.textContent = c2 ? '☑️ 2. Called Out on Ice' : '⬜ 2. Called Out on Ice (Missed)';
+        el2.className = c2
+          ? 'px-2.5 py-1 rounded-lg bg-emerald-950/80 border border-emerald-400 text-emerald-300'
+          : 'px-2.5 py-1 rounded-lg bg-slate-900 border border-rose-400/60 text-rose-300';
+      }
+      if (el3) {
+        el3.textContent = c3 ? '☑️ 3. Nailed Tactical Position/Pass' : '⬜ 3. Nailed Tactical Position/Pass (Missed)';
+        el3.className = c3
+          ? 'px-2.5 py-1 rounded-lg bg-emerald-950/80 border border-emerald-400 text-emerald-300'
+          : 'px-2.5 py-1 rounded-lg bg-slate-900 border border-rose-400/60 text-rose-300';
+      }
+      if (badge) {
+        badge.textContent = `${count}/3 Pro Habits (${Math.round((count / 3) * 100)}%)`;
+      }
+    }
+    window.updateHabitComboScorecardUI = updateHabitComboScorecardUI;
+
+    function setLessonPresentationStyle(style) {
+      stopTimers();
+      document.getElementById('countdownOverlay')?.classList.add('hidden');
+      document.getElementById('decisionTimerWrap')?.classList.add('hidden');
+      state.customPresentationStyleOverride = style || null;
+      const scen = getCurrentScenario();
+      const prof = getActiveProfile() || {};
+      state.activePresentationStyle = getLessonPresentationStyle(scen, prof);
+      const replayBtn = document.getElementById('btnReplay3sFlow');
+      const flowBadge = document.getElementById('flowFreezeStatusBadge');
+      const habitBar = document.getElementById('habitComboControlsBar');
+      const scoreBox = document.getElementById('habitComboScorecardBox');
+      if (replayBtn) replayBtn.classList.toggle('hidden', state.activePresentationStyle !== 'flow_and_freeze');
+      if (flowBadge) {
+        if (state.activePresentationStyle === 'static_hover_zones') {
+          flowBadge.textContent = '🎯 HOVER & TAP OPEN ICE ZONE';
+        } else if (state.activePresentationStyle === 'habit_combo') {
+          flowBadge.textContent = '⚡ HABIT-COMBO: SCAN + CALL + MOVE';
+        } else {
+          flowBadge.textContent = '❄️ FREEZE — MAKE YOUR READ!';
+        }
+      }
+      if (habitBar) habitBar.classList.toggle('hidden', state.activePresentationStyle !== 'habit_combo');
+      if (scoreBox) scoreBox.classList.add('hidden');
+      if (state.activePresentationStyle === 'static_hover_zones') {
+        state.activeHoverZones = buildStaticHoverZones(scen);
+        state.hoveredHoverZoneId = (state.activeHoverZones[0] && state.activeHoverZones[0].id) || null;
+      } else if (state.activePresentationStyle === 'flow_and_freeze') {
+        runLessonFlowAndFreezeAnimation(scen, 3200);
+      }
+      drawRink();
+      return state.activePresentationStyle;
+    }
+    window.setLessonPresentationStyle = setLessonPresentationStyle;
+
     function loadScenario(autoSpeak = true) {
       stopTimers();
+      if (state.flowFreezeAnimId) {
+        cancelAnimationFrame(state.flowFreezeAnimId);
+        state.flowFreezeAnimId = null;
+      }
       state.liveRunning = false;
       state.animPhase = 'idle';
       state.animProgress = 0;
@@ -9974,6 +10321,9 @@
       state.selectedRoleRead = null;
       state.contrastiveReplayActive = false;
       state.contrastiveProgress = 0;
+      state.habitComboScanned = false;
+      state.habitComboCalledOut = false;
+      state.hoveredHoverZoneId = null;
       const roleGuidePop = document.getElementById('roleGuidePopover');
       if (roleGuidePop) roleGuidePop.classList.add('hidden');
       document.getElementById('goalLampsOverlay').classList.add('hidden');
@@ -9983,11 +10333,44 @@
       if (cornerPopup) cornerPopup.classList.add('hidden');
       const ribbonNext = document.getElementById('btnRibbonNext');
       if (ribbonNext) ribbonNext.classList.add('hidden');
+      const nextBtn = document.getElementById('btnNextQuestion');
+      if (nextBtn) nextBtn.classList.remove('ring-2', 'ring-amber-300');
+      const nextLbl = document.getElementById('btnNextQuestionLabel');
+      if (nextLbl) nextLbl.textContent = 'Next Play';
+      const scanBtn = document.getElementById('btnHabitComboScanIce');
+      if (scanBtn) {
+        scanBtn.innerHTML = '<span>👀 Look Over Shoulder (Scan Ice)</span>';
+        scanBtn.classList.remove('ring-2', 'ring-emerald-300');
+      }
+      const callBtn = document.getElementById('btnHabitComboCallOut');
+      if (callBtn) {
+        callBtn.innerHTML = '<span>🗣️ Call Out ("Pass!" / "D-to-D!" / "Boards!")</span>';
+        callBtn.classList.remove('ring-2', 'ring-emerald-300');
+      }
+      const scoreBox = document.getElementById('habitComboScorecardBox');
+      if (scoreBox) scoreBox.classList.add('hidden');
 
       const scen = getCurrentScenario();
       const prof = getActiveProfile();
       const ageCfg = AGE_TIER_CONFIG[prof.ageGroup] || AGE_TIER_CONFIG['12U'];
       const coachPace = state.teamCoachingPace || 'default';
+
+      state.activePresentationStyle = getLessonPresentationStyle(scen, prof);
+      state.activeHoverZones = buildStaticHoverZones(scen);
+      const replayBtn = document.getElementById('btnReplay3sFlow');
+      const flowBadge = document.getElementById('flowFreezeStatusBadge');
+      const habitBar = document.getElementById('habitComboControlsBar');
+      if (replayBtn) replayBtn.classList.toggle('hidden', state.activePresentationStyle !== 'flow_and_freeze');
+      if (habitBar) habitBar.classList.toggle('hidden', state.activePresentationStyle !== 'habit_combo');
+      if (flowBadge) {
+        if (state.activePresentationStyle === 'static_hover_zones') {
+          flowBadge.textContent = '🎯 HOVER & TAP OPEN ICE ZONE';
+        } else if (state.activePresentationStyle === 'habit_combo') {
+          flowBadge.textContent = '⚡ HABIT-COMBO: SCAN + CALL + MOVE';
+        } else {
+          flowBadge.textContent = '❄️ FREEZE — MAKE YOUR READ!';
+        }
+      }
 
       // Seat 2 & Seat 3 + Coach Portal Pace Override:
       // Cue-First Visual Highlighting defaults ON for Rec/B/A tiers and fades to on-demand for AA/AAA tiers
@@ -10264,6 +10647,8 @@
     }
 
     window.addEventListener('resize', resizeCanvas);
+    window.draw = drawRink;
+    window.drawRink = drawRink;
 
     function drawRink() {
       const W = canvas.width;
@@ -10307,7 +10692,11 @@
       if (state.mode === 'live') {
         drawLiveShiftEntities(ctx, W, H, zone);
       } else {
-        drawMultiFormatTapZones(ctx, W, H, scen, zone);
+        if (state.activePresentationStyle === 'static_hover_zones' && !state.questionAnswered) {
+          drawStaticHoverZones(ctx, W, H, scen, zone);
+        } else {
+          drawMultiFormatTapZones(ctx, W, H, scen, zone);
+        }
         drawScenarioEntities(ctx, W, H, scen, zone);
       }
 
@@ -10651,6 +11040,13 @@
         ctx.restore();
       }
 
+      const faceoffDotRad = Math.max(5.5, Math.round(W * 0.0085));
+      state.faceoffDotRadiusPx = faceoffDotRad;
+      state.faceoffDotDiameterPx = faceoffDotRad * 2;
+      state.skaterBodyRadiusPx = faceoffDotRad * 2.0;
+      state.skaterBodyDiameterPx = (faceoffDotRad * 2) * 2.0;
+      state.skaterToFaceoffDotRatio = Number((state.skaterBodyDiameterPx / state.faceoffDotDiameterPx).toFixed(2));
+
       const circles = [
         { x: 0.20, y: 0.26 },
         { x: 0.20, y: 0.74 },
@@ -10666,8 +11062,8 @@
         ctx.lineWidth = 2;
         ctx.stroke();
         ctx.beginPath();
-        ctx.arc(pt.x, pt.y, Math.max(3, W * 0.005), 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(220, 38, 38, 0.75)';
+        ctx.arc(pt.x, pt.y, faceoffDotRad, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(220, 38, 38, 0.82)';
         ctx.fill();
         ctx.restore();
       });
@@ -10890,19 +11286,98 @@
       ctx.restore();
     }
 
+    function drawStaticHoverZones(ctx, W, H, scen, zone) {
+      const hoverZones = Array.isArray(state.activeHoverZones) && state.activeHoverZones.length
+        ? state.activeHoverZones
+        : buildStaticHoverZones(scen);
+      state.activeHoverZones = hoverZones;
+      ctx.save();
+      hoverZones.forEach((hz, idx) => {
+        const p1 = normToCanvas(hz.xMin, hz.yMin, W, H, zone);
+        const p2 = normToCanvas(hz.xMax, hz.yMax, W, H, zone);
+        const rx = Math.min(p1.x, p2.x);
+        const ry = Math.min(p1.y, p2.y);
+        const rw = Math.max(44, Math.abs(p2.x - p1.x));
+        const rh = Math.max(36, Math.abs(p2.y - p1.y));
+        const isHovered = state.hoveredHoverZoneId === hz.id || (!state.hoveredHoverZoneId && idx === 2);
+
+        ctx.beginPath();
+        ctx.roundRect(rx, ry, rw, rh, 12);
+        ctx.fillStyle = isHovered ? hz.hoverFill : hz.fill;
+        ctx.fill();
+        ctx.lineWidth = isHovered ? 3.5 : 2.2;
+        ctx.setLineDash(isHovered ? [] : [7, 5]);
+        ctx.strokeStyle = hz.color;
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        const pillText = isHovered ? `✨ ${hz.shortLabel} (CLICK TO SELECT)` : `🎯 ${hz.shortLabel}`;
+        ctx.font = `900 ${Math.max(9, Math.floor(W * 0.0105))}px Inter`;
+        const pw = Math.min(rw - 8, ctx.measureText(pillText).width + 16);
+        const ph = 20;
+        const px = rx + rw / 2;
+        const py = ry + 15;
+        ctx.fillStyle = isHovered ? 'rgba(6, 11, 20, 0.96)' : 'rgba(15, 23, 42, 0.88)';
+        ctx.strokeStyle = hz.color;
+        ctx.lineWidth = isHovered ? 2 : 1.4;
+        ctx.beginPath();
+        ctx.roundRect(px - pw / 2, py - ph / 2, pw, ph, 6);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = isHovered ? '#fde047' : '#f8fafc';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(pillText, px, py);
+      });
+      ctx.restore();
+    }
+    window.drawStaticHoverZones = drawStaticHoverZones;
+
     function drawScenarioEntities(ctx, W, H, scen, zone) {
+      state.lastRenderedSkaterTokens = [];
       const numTeammates = scen.specialTeams === '4v5 Penalty Kill Box' ? 3 : (state.skatersPerSide - 1);
       const numDefenders = scen.specialTeams === '5v4 Power Play Umbrella' ? 4 : (scen.specialTeams === '4v5 Penalty Kill Box' ? 5 : state.skatersPerSide);
       const prog = state.animProgress;
-      const holder = getHolderPos(scen);
-      const holderPt = normToCanvas(holder.x, holder.y, W, H, zone);
+      const isFlowFreeze = state.activePresentationStyle === 'flow_and_freeze' && state.preFreezePaths;
+      const flowProg = (isFlowFreeze && state.flowFreezePhase === 'flowing') ? (state.flowFreezeProgress || 0) : 1.0;
 
       let youX = state.youPos.x;
       let youY = state.youPos.y;
-      if (state.mode === 'read' && (state.animPhase === 'resolving' || state.animPhase === 'done') && state.readSuccess) {
+      if (isFlowFreeze && state.flowFreezePhase === 'flowing' && state.preFreezePaths.you) {
+        const py = state.preFreezePaths.you;
+        youX = py.startX + (py.endX - py.startX) * flowProg;
+        youY = py.startY + (py.endY - py.startY) * flowProg;
+      } else if (state.mode === 'read' && (state.animPhase === 'resolving' || state.animPhase === 'done') && state.readSuccess) {
         youX = state.youPos.x + (scen.targetSpot.x - state.youPos.x) * prog;
         youY = state.youPos.y + (scen.targetSpot.y - state.youPos.y) * prog;
       }
+
+      // Draw pre-freeze motion trails during flow_and_freeze so 3-4s moving play paths are crystal clear!
+      if (isFlowFreeze && state.preFreezePaths && state.animPhase === 'idle') {
+        ctx.save();
+        const drawFlowTrail = (pathObj, strokeCol) => {
+          if (!pathObj) return;
+          const sPt = normToCanvas(pathObj.startX, pathObj.startY, W, H, zone);
+          const curX = pathObj.startX + (pathObj.endX - pathObj.startX) * flowProg;
+          const curY = pathObj.startY + (pathObj.endY - pathObj.startY) * flowProg;
+          const ePt = normToCanvas(curX, curY, W, H, zone);
+          ctx.beginPath();
+          ctx.moveTo(sPt.x, sPt.y);
+          ctx.lineTo(ePt.x, ePt.y);
+          ctx.setLineDash([4, 3]);
+          ctx.lineWidth = 2.2;
+          ctx.strokeStyle = strokeCol;
+          ctx.stroke();
+          ctx.setLineDash([]);
+        };
+        drawFlowTrail(state.preFreezePaths.you, 'rgba(245, 158, 11, 0.72)');
+        (state.preFreezePaths.teammates || []).slice(0, numTeammates).forEach(tp => drawFlowTrail(tp, 'rgba(56, 189, 248, 0.62)'));
+        (state.preFreezePaths.defenders || []).slice(0, numDefenders).forEach(dp => drawFlowTrail(dp, 'rgba(225, 29, 72, 0.55)'));
+        ctx.restore();
+      }
+
+      const holder = getHolderPos(scen);
+      const holderPt = normToCanvas(holder.x, holder.y, W, H, zone);
 
       // Compute exact live puck position for this frame so dynamic roles (F1/F2/F3 & D1/D2) swap in real time!
       let puckNorm = { x: state.puckPos.x, y: state.puckPos.y };
@@ -10930,19 +11405,31 @@
 
       for (let i = 0; i < numDefenders && i < scen.defenders.length; i++) {
         const d = scen.defenders[i];
-        const dx = d.x + (state.animPhase !== 'idle' ? Math.sin(prog * Math.PI) * 0.02 : 0);
-        const dy = d.y + (state.animPhase !== 'idle' ? Math.cos(prog * Math.PI) * 0.018 : 0);
+        const dPath = (isFlowFreeze && state.preFreezePaths && state.preFreezePaths.defenders) ? state.preFreezePaths.defenders[i] : null;
+        let dx = d.x + (state.animPhase !== 'idle' ? Math.sin(prog * Math.PI) * 0.02 : 0);
+        let dy = d.y + (state.animPhase !== 'idle' ? Math.cos(prog * Math.PI) * 0.018 : 0);
+        if (dPath && state.flowFreezePhase === 'flowing') {
+          dx = dPath.startX + (dPath.endX - dPath.startX) * flowProg;
+          dy = dPath.startY + (dPath.endY - dPath.startY) * flowProg;
+        }
         const pt = normToCanvas(dx, dy, W, H, zone);
         const baseFaceAng = Math.atan2(holderPt.y - pt.y, holderPt.x - pt.x);
         const deceptionShiftRad = (i === 0 && state.deceptionActive) ? ((22 * Math.PI) / 180) : 0;
         const faceAng = baseFaceAng + deceptionShiftRad;
+        const defHand = (d.handedness || (d.stickSide === 'right' ? 'R' : (d.stickSide === 'left' ? 'L' : (i % 2 === 0 ? 'L' : 'R'))));
+        const defChestLbl = (liveRoles.defendersById && liveRoles.defendersById[d.id] && liveRoles.defendersById[d.id].code) || d.label || `D${i + 1}`;
         // Guardrail #2: ONLY draw translucent red stick-lane denial arc on primary defender (D1, i === 0)!
-        drawSkaterToken(ctx, pt.x, pt.y, W, '#e11d48', '#ffffff', d.label, false, false, '', {
+        drawSkaterToken(ctx, pt.x, pt.y, W, '#e11d48', '#ffffff', defChestLbl, false, false, '', {
+          id: d.id || `D${i + 1}`,
+          headingRad: faceAng,
           facingAngle: faceAng,
           headAngleDeg: (faceAng * 180) / Math.PI + (i === 0 && !state.deceptionActive ? 0 : 18),
-          stickSide: d.stickSide || (i % 2 === 0 ? 'left' : 'right'),
+          handedness: defHand,
+          stickSide: defHand === 'R' ? 'right' : 'left',
           isPrimaryDefender: i === 0,
-          stickOnIce: false
+          stickOnIce: false,
+          hasPuckOnBlade: scen.puckHolder === d.id && state.animPhase === 'idle',
+          chestRoleLabel: defChestLbl
         });
       }
 
@@ -10952,22 +11439,37 @@
       const conceptMastered = conceptSt.attempts >= 2 && (conceptSt.correct / conceptSt.attempts) >= 0.8;
       for (let i = 0; i < numTeammates && i < scen.teammates.length; i++) {
         const t = scen.teammates[i];
-        const pt = normToCanvas(t.x, t.y, W, H, zone);
+        const tPath = (isFlowFreeze && state.preFreezePaths && state.preFreezePaths.teammates) ? state.preFreezePaths.teammates[i] : null;
+        let tx = t.x;
+        let ty = t.y;
+        if (tPath && state.flowFreezePhase === 'flowing') {
+          tx = tPath.startX + (tPath.endX - tPath.startX) * flowProg;
+          ty = tPath.startY + (tPath.endY - tPath.startY) * flowProg;
+        }
+        const pt = normToCanvas(tx, ty, W, H, zone);
         const cleanLbl = String(t.label || '').replace(/^#/, '');
-        const lbl = ['LW', 'RW', 'LD', 'RD'].includes(cleanLbl) ? cleanLbl : ('#' + cleanLbl);
+        const tmRoleObj = liveRoles.byId[t.id];
+        const chestRole = ['LW', 'RW', 'LD', 'RD', 'C'].includes(cleanLbl)
+          ? cleanLbl
+          : ((tmRoleObj && tmRoleObj.badge) || ('#' + cleanLbl));
         // Step 1 Guardrail: Progressive scaffolding hides "OPEN High Slot!" text spoilers on 12U+ or once mastery >= 80%
         const showRole = ((prof.ageGroup === '8U' && !conceptMastered) || state.animPhase === 'done' || state.showHint);
         const faceAng = Math.atan2(holderPt.y - pt.y, holderPt.x - pt.x);
         const isOpenTarget = !(t.role || '').toLowerCase().includes('covered') && !(t.role || '').toLowerCase().includes('tied');
-        const tmRoleObj = liveRoles.byId[t.id];
         const tmJerseyPrimary = (state.teamJerseyColors && state.teamJerseyColors.primary) || '#0284c7';
-        drawSkaterToken(ctx, pt.x, pt.y, W, tmJerseyPrimary, '#ffffff', lbl, false, scen.mechanic === 'pass_decision' && !conceptMastered, showRole ? applyRoleLabelMap(t.role || '') : '', {
+        const tmHand = (t.handedness || (t.stickSide === 'right' ? 'R' : (t.stickSide === 'left' ? 'L' : (i % 2 === 0 ? 'L' : 'R'))));
+        drawSkaterToken(ctx, pt.x, pt.y, W, tmJerseyPrimary, '#ffffff', chestRole, false, scen.mechanic === 'pass_decision' && !conceptMastered, showRole ? applyRoleLabelMap(t.role || '') : '', {
+          id: t.id || `T${i + 1}`,
+          headingRad: faceAng,
           facingAngle: faceAng,
           headAngleDeg: (faceAng * 180) / Math.PI,
-          stickSide: t.stickSide || (i % 2 === 0 ? 'left' : 'right'),
+          handedness: tmHand,
+          stickSide: tmHand === 'R' ? 'right' : 'left',
           isPrimaryDefender: false,
           stickOnIce: isOpenTarget,
-          dynamicRoleBadge: tmRoleObj ? tmRoleObj.badge : '',
+          hasPuckOnBlade: scen.puckHolder === t.id && state.animPhase === 'idle',
+          chestRoleLabel: chestRole,
+          dynamicRoleBadge: `#${cleanLbl}`,
           dynamicRoleColor: tmRoleObj ? tmRoleObj.border : '#38bdf8'
         });
       }
@@ -11199,18 +11701,25 @@
       const youFaceAngle = scen.puckHolder === 'YOU'
         ? Math.atan2(targPtForYou.y - youPt.y, targPtForYou.x - youPt.x)
         : Math.atan2(holderPt.y - youPt.y, holderPt.x - youPt.x);
-      const youHeadAngleDeg = state.preScanPhase === 'scanned'
+      const youHeadAngleDeg = (state.preScanPhase === 'scanned' || state.habitComboScanned)
         ? ((youFaceAngle * 180) / Math.PI + 32)
         : ((youFaceAngle * 180) / Math.PI);
       const youRoleObj = liveRoles.byId.YOU;
+      const youChestRole = youRoleObj ? youRoleObj.badge : getMappedRoleLabel('F1');
+      const youHand = (prof.hand || 'Left').toLowerCase().startsWith('r') ? 'R' : 'L';
       const showYouDragHalo = state.mode === 'position' && scen.mechanic === 'position' && !conceptMastered && (prof.ageGroup === '8U' || prof.ageGroup === '10U' || state.showHint);
-      drawSkaterToken(ctx, youPt.x, youPt.y, W, '#f59e0b', '#0f172a', 'YOU #9', true, showYouDragHalo, '', {
+      drawSkaterToken(ctx, youPt.x, youPt.y, W, '#f59e0b', '#0f172a', youChestRole, true, showYouDragHalo, '', {
+        id: 'YOU',
+        headingRad: youFaceAngle,
         facingAngle: youFaceAngle,
         headAngleDeg: youHeadAngleDeg,
-        stickSide: (prof.hand || 'Left').toLowerCase() === 'right' ? 'right' : 'left',
+        handedness: youHand,
+        stickSide: youHand === 'R' ? 'right' : 'left',
         isPrimaryDefender: false,
         stickOnIce: true,
-        dynamicRoleBadge: youRoleObj ? youRoleObj.badge : getMappedRoleLabel('F1'),
+        hasPuckOnBlade: scen.puckHolder === 'YOU' && state.animPhase === 'idle',
+        chestRoleLabel: youChestRole,
+        dynamicRoleBadge: 'YOU #9',
         dynamicRoleColor: youRoleObj ? youRoleObj.border : '#fbbf24'
       });
 
@@ -11218,19 +11727,52 @@
       drawPuck(ctx, puckPt.x, puckPt.y, W, CoachVoice.activeHighlightPhase === 1);
     }
 
-    function drawSkaterToken(ctx, x, y, W, fill, textColor, label, isYou, showDragHalo, subtitle = '', anatomicalOpts = null) {
-      const r = Math.max(14, W * 0.022);
+    // =========================================================================
+    // STEP 3: TOP-DOWN DIRECTIONAL HOCKEY PLAYER SKATERS AT 2X FACEOFF DOT SIZE
+    // - Proportional 2.0x Faceoff Dot diameter (`skaterBodyDiameterPx = 2.0 * faceoffDotDiameterPx`)
+    // - Directional Shoulders & Helmet oriented along `headingRad`
+    // - Left / Right Hockey Stick & Blade (`handedness: 'L' | 'R'`) + Puck on Carrier's Blade
+    // - High-Contrast Chest Role / Position Label (`LW/RW/C/LD/RD` or `F1/F2/F3/D1/D2`)
+    // =========================================================================
+    function drawTopDownSkaterToken(ctx, x, y, W, fill, textColor, label, isYou, showDragHalo, subtitle = '', anatomicalOpts = null) {
+      const faceoffDotRad = state.faceoffDotRadiusPx || Math.max(5.5, Math.round(W * 0.0085));
+      const r = faceoffDotRad * 2.0; // Strictly 2.0x Faceoff Dot size!
+      state.faceoffDotRadiusPx = faceoffDotRad;
+      state.faceoffDotDiameterPx = faceoffDotRad * 2;
+      state.skaterBodyRadiusPx = r;
+      state.skaterBodyDiameterPx = r * 2;
+      state.skaterToFaceoffDotRatio = Number(((r * 2) / (faceoffDotRad * 2)).toFixed(2));
+
       const prof = getActiveProfile();
-      const faceAng = (anatomicalOpts && typeof anatomicalOpts.facingAngle === 'number') ? anatomicalOpts.facingAngle : 0;
+      const headingRad = (anatomicalOpts && typeof anatomicalOpts.headingRad === 'number')
+        ? anatomicalOpts.headingRad
+        : ((anatomicalOpts && typeof anatomicalOpts.facingAngle === 'number') ? anatomicalOpts.facingAngle : 0);
       const headAngleDeg = (anatomicalOpts && typeof anatomicalOpts.headAngleDeg === 'number')
         ? anatomicalOpts.headAngleDeg
-        : (faceAng * 180) / Math.PI;
+        : (headingRad * 180) / Math.PI;
       const headAngleRad = (headAngleDeg * Math.PI) / 180;
-      const stickSide = (anatomicalOpts && anatomicalOpts.stickSide)
-        ? anatomicalOpts.stickSide
-        : ((isYou && (prof.hand || '').toLowerCase() === 'right') ? 'right' : 'left');
+      const handedness = (anatomicalOpts && (anatomicalOpts.handedness === 'R' || anatomicalOpts.handedness === 'L'))
+        ? anatomicalOpts.handedness
+        : ((anatomicalOpts && anatomicalOpts.stickSide === 'right') || (isYou && (prof.hand || '').toLowerCase().startsWith('r')) ? 'R' : 'L');
       const isPrimaryDef = Boolean(anatomicalOpts && anatomicalOpts.isPrimaryDefender);
       const stickReady = Boolean(anatomicalOpts && anatomicalOpts.stickOnIce);
+      const hasPuckOnBlade = Boolean(anatomicalOpts && anatomicalOpts.hasPuckOnBlade);
+      const chestLabel = String((anatomicalOpts && anatomicalOpts.chestRoleLabel) || label || '').trim();
+
+      if (!Array.isArray(state.lastRenderedSkaterTokens)) state.lastRenderedSkaterTokens = [];
+      state.lastRenderedSkaterTokens.push({
+        id: (anatomicalOpts && anatomicalOpts.id) || (isYou ? 'YOU' : chestLabel),
+        label: chestLabel,
+        x: Number(x.toFixed(1)),
+        y: Number(y.toFixed(1)),
+        headingRad: Number(headingRad.toFixed(3)),
+        handedness,
+        hasPuckOnBlade,
+        faceoffDotDiameterPx: faceoffDotRad * 2,
+        skaterBodyDiameterPx: r * 2,
+        ratioToFaceoffDot: state.skaterToFaceoffDotRatio
+      });
+
       ctx.save();
 
       // Guardrail #2: Translucent red stick-lane denial arc ONLY on primary defender (D1)
@@ -11238,12 +11780,12 @@
         const denyR = r * 2.15;
         ctx.beginPath();
         ctx.moveTo(x, y);
-        ctx.arc(x, y, denyR, faceAng - 0.48, faceAng + 0.48);
+        ctx.arc(x, y, denyR, headingRad - 0.48, headingRad + 0.48);
         ctx.closePath();
         ctx.fillStyle = state.deceptionActive ? 'rgba(245, 158, 11, 0.12)' : 'rgba(225, 29, 72, 0.14)';
         ctx.fill();
         ctx.beginPath();
-        ctx.arc(x, y, denyR, faceAng - 0.48, faceAng + 0.48);
+        ctx.arc(x, y, denyR, headingRad - 0.48, headingRad + 0.48);
         ctx.setLineDash([4, 3]);
         ctx.strokeStyle = state.deceptionActive ? 'rgba(245, 158, 11, 0.65)' : 'rgba(225, 29, 72, 0.55)';
         ctx.lineWidth = 2;
@@ -11253,111 +11795,148 @@
 
       if (isYou) {
         ctx.beginPath();
-        ctx.arc(x, y, r + 6, 0, Math.PI * 2);
-        ctx.fillStyle = prof.equippedSkate ? 'rgba(56, 189, 248, 0.35)' : 'rgba(245, 158, 11, 0.28)';
+        ctx.arc(x, y, r + 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = prof.equippedSkate ? 'rgba(56, 189, 248, 0.30)' : 'rgba(245, 158, 11, 0.26)';
         ctx.fill();
         if (showDragHalo) {
           ctx.setLineDash([4, 3]);
           ctx.strokeStyle = prof.equippedSkate || '#d97706';
-          ctx.lineWidth = 2.5;
+          ctx.lineWidth = 2;
           ctx.stroke();
           ctx.setLineDash([]);
         }
       }
 
-      // Guardrail #2: Clean directional skate toe-caps protruding slightly outside the token rim (never overlapping text)
-      [-0.42, 0.42].forEach(offsetRad => {
-        const sa = faceAng + offsetRad;
-        const sx = x + Math.cos(sa) * (r + 1.5);
-        const sy = y + Math.sin(sa) * (r + 1.5);
+      // 1. Directional Skate Blades & Toe-Caps oriented along headingRad
+      [-0.45, 0.45].forEach(offsetRad => {
+        const sa = headingRad + offsetRad;
+        const sx = x + Math.cos(sa) * (r * 0.96);
+        const sy = y + Math.sin(sa) * (r * 0.96);
         ctx.save();
         ctx.translate(sx, sy);
-        ctx.rotate(faceAng);
+        ctx.rotate(headingRad);
         ctx.fillStyle = '#0f172a';
-        ctx.strokeStyle = '#cbd5e1';
+        ctx.strokeStyle = '#e2e8f0';
         ctx.lineWidth = 1.2;
         ctx.beginPath();
-        ctx.roundRect(-2.5, -2, 6, 4, 1.5);
+        ctx.roundRect(-2.5, -1.8, 6.2, 3.6, 1.4);
         ctx.fill();
         ctx.stroke();
         ctx.restore();
       });
 
-      // Anatomical Rounded Shoulder Pads capsule oriented perpendicular to skating direction
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(faceAng + Math.PI / 2);
-      ctx.beginPath();
-      ctx.roundRect(-(r * 1.14), -(r * 0.72), r * 2.28, r * 1.44, r * 0.68);
-      ctx.fillStyle = fill;
-      ctx.fill();
-      ctx.lineWidth = 1.6;
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.55)';
-      ctx.stroke();
-      ctx.restore();
+      // 2. Top-Down Hockey Stick Shaft, Gloved Hands & Curved Blade ('L' vs 'R' Handedness)
+      const handSign = handedness === 'R' ? 1 : -1;
+      const hipAngle = headingRad + handSign * 1.15;
+      const sx1 = x + Math.cos(hipAngle) * (r * 0.85);
+      const sy1 = y + Math.sin(hipAngle) * (r * 0.85);
+      const reachAngle = headingRad + handSign * 0.26;
+      const sx2 = x + Math.cos(reachAngle) * (r * 1.65);
+      const sy2 = y + Math.sin(reachAngle) * (r * 1.65);
+      const bladeToeAngle = headingRad - handSign * 0.42;
+      const bladeTipX = sx2 + Math.cos(bladeToeAngle) * (r * 0.52);
+      const bladeTipY = sy2 + Math.sin(bladeToeAngle) * (r * 0.52);
 
-      ctx.beginPath();
-      ctx.arc(x, y + 2, r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.28)';
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fillStyle = fill;
-      ctx.fill();
-      ctx.lineWidth = 2.5;
-      ctx.strokeStyle = isYou ? (prof.jerseyColor || '#ffffff') : '#ffffff';
-      ctx.stroke();
-
-      // Guardrail #2: Clean Helmet Visor Gaze band along outer perimeter (uses headAngleDeg to show scanning vs. puck-watching without overlapping text!)
-      ctx.beginPath();
-      ctx.arc(x, y, r - 2, headAngleRad - 0.55, headAngleRad + 0.55);
-      ctx.strokeStyle = isYou && prof.equippedVisor ? prof.equippedVisor : 'rgba(186, 230, 253, 0.92)';
-      ctx.lineWidth = 2.6;
-      ctx.stroke();
-
-      // Custom Stick Shaft & Curved Blade (reflecting stickSide: 'left' | 'right' and active stick-lane angles)
-      const handSign = stickSide === 'right' ? -1 : 1;
-      const stickBaseAngle = faceAng + handSign * 0.48;
-      const sx1 = x + Math.cos(stickBaseAngle) * (r * 0.78);
-      const sy1 = y + Math.sin(stickBaseAngle) * (r * 0.78);
-      const sx2 = x + Math.cos(faceAng + handSign * 0.22) * (r * 1.48);
-      const sy2 = y + Math.sin(faceAng + handSign * 0.22) * (r * 1.48);
-      const bladeTipX = sx2 + Math.cos(faceAng - handSign * 0.35) * (r * 0.36);
-      const bladeTipY = sy2 + Math.sin(faceAng - handSign * 0.35) * (r * 0.36);
       ctx.beginPath();
       ctx.moveTo(sx1, sy1);
       ctx.lineTo(sx2, sy2);
       ctx.lineTo(bladeTipX, bladeTipY);
       ctx.strokeStyle = isYou
         ? (prof.equippedStick && prof.equippedStick !== '#1e293b' ? prof.equippedStick : '#0f172a')
-        : (stickReady ? '#10b981' : (isPrimaryDef ? '#be123c' : '#1e293b'));
-      ctx.lineWidth = isYou && prof.equippedStick !== '#1e293b' ? 4 : 3;
+        : (stickReady ? '#10b981' : (isPrimaryDef ? '#be123c' : '#0f172a'));
+      ctx.lineWidth = isYou ? 3.4 : 2.8;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
       ctx.stroke();
 
-      // Guardrail #2: Jersey number upright (0 deg) and bold in the exact center!
+      // Hockey Glove on Stick Shaft
+      ctx.beginPath();
+      ctx.arc(sx1, sy1, Math.max(2.6, r * 0.20), 0, Math.PI * 2);
+      ctx.fillStyle = isYou ? (prof.equippedGloves || fill) : fill;
+      ctx.fill();
+      ctx.strokeStyle = '#0f172a';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Puck sitting directly in the curve of the puck carrier's blade!
+      if (hasPuckOnBlade) {
+        const puckBladeX = (sx2 + bladeTipX) * 0.5 + Math.cos(headingRad) * 2.5;
+        const puckBladeY = (sy2 + bladeTipY) * 0.5 + Math.sin(headingRad) * 2.5;
+        ctx.beginPath();
+        ctx.arc(puckBladeX, puckBladeY, Math.max(3.8, r * 0.28), 0, Math.PI * 2);
+        ctx.fillStyle = '#020617';
+        ctx.fill();
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+      }
+
+      // 3. Top-Down Directional Hockey Shoulders Capsule (oriented perpendicular to headingRad)
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(headingRad + Math.PI / 2);
+      // Drop shadow under shoulders
+      ctx.beginPath();
+      ctx.roundRect(-(r * 1.0), -(r * 0.66) + 1.5, r * 2.0, r * 1.32, r * 0.62);
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.30)';
+      ctx.fill();
+      // Main Jersey Shoulder Pads
+      ctx.beginPath();
+      ctx.roundRect(-(r * 1.0), -(r * 0.66), r * 2.0, r * 1.32, r * 0.62);
+      ctx.fillStyle = fill;
+      ctx.fill();
+      ctx.lineWidth = 2.0;
+      ctx.strokeStyle = isYou ? '#ffffff' : 'rgba(255, 255, 255, 0.88)';
+      ctx.stroke();
+      // Shoulder Yoke Stripes (Left & Right Shoulder Caps)
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.28)';
+      ctx.beginPath();
+      ctx.roundRect(-(r * 0.92), -(r * 0.42), r * 0.28, r * 0.84, 3);
+      ctx.roundRect(r * 0.64, -(r * 0.42), r * 0.28, r * 0.84, 3);
+      ctx.fill();
+      ctx.restore();
+
+      // 4. Directional Top-Down Helmet & Visor (offset slightly toward headingRad so facing direction is unmistakable)
+      const helmDist = r * 0.44;
+      const hx = x + Math.cos(headAngleRad) * helmDist;
+      const hy = y + Math.sin(headAngleRad) * helmDist;
+      const helmR = Math.max(4.5, r * 0.44);
+      ctx.beginPath();
+      ctx.arc(hx, hy, helmR, 0, Math.PI * 2);
+      ctx.fillStyle = isYou ? (prof.equippedHelmet || '#0f172a') : '#0f172a';
+      ctx.fill();
+      ctx.lineWidth = 1.4;
+      ctx.strokeStyle = '#ffffff';
+      ctx.stroke();
+
+      // Bright Directional Visor Shield on Front Edge of Helmet
+      ctx.beginPath();
+      ctx.arc(hx, hy, helmR + 0.6, headAngleRad - 0.72, headAngleRad + 0.72);
+      ctx.strokeStyle = isYou && prof.equippedVisor ? prof.equippedVisor : '#38bdf8';
+      ctx.lineWidth = 2.4;
+      ctx.stroke();
+
+      // 5. High-Contrast Chest Role / Position Label (LW, RW, C, LD, RD or F1, F2, F3, D1, D2)
       ctx.fillStyle = textColor;
-      ctx.font = `900 ${Math.max(9, Math.floor(r * 0.62))}px Inter`;
+      ctx.font = `900 ${Math.max(8, Math.floor(r * 0.58))}px Inter`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(label, x, y);
+      ctx.fillText(chestLabel, x, y);
 
-      // Dynamic Proximity Role Pill Badge (F1, F2, F3, D1, D2 or Coach Custom Mapped Label) placed cleanly above-right of token rim so center number stays 100% clear!
+      // Compact Secondary Jersey Pill above-right of shoulders so chest role stays 100% clear
       const dynBadge = anatomicalOpts && anatomicalOpts.dynamicRoleBadge;
-      if (dynBadge) {
-        const badgeFontPx = Math.max(8, Math.floor(W * 0.0092));
+      if (dynBadge && dynBadge !== chestLabel) {
+        const badgeFontPx = Math.max(7, Math.floor(W * 0.0085));
         ctx.font = `900 ${badgeFontPx}px Inter`;
-        const bw = ctx.measureText(dynBadge).width + 9;
-        const bh = Math.max(13, badgeFontPx + 4);
-        const bx = x + r * 0.65;
-        const by = y - r - bh * 0.48;
-        ctx.fillStyle = 'rgba(15, 23, 42, 0.94)';
+        const bw = ctx.measureText(dynBadge).width + 8;
+        const bh = Math.max(12, badgeFontPx + 3);
+        const bx = x + r * 0.72;
+        const by = y - r - bh * 0.42;
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.92)';
         ctx.strokeStyle = (anatomicalOpts && anatomicalOpts.dynamicRoleColor) || (isYou ? '#fbbf24' : '#38bdf8');
-        ctx.lineWidth = 1.5;
+        ctx.lineWidth = 1.3;
         ctx.beginPath();
-        ctx.roundRect(bx - bw / 2, by - bh / 2, bw, bh, 5);
+        ctx.roundRect(bx - bw / 2, by - bh / 2, bw, bh, 4);
         ctx.fill();
         ctx.stroke();
         ctx.fillStyle = isYou ? '#fde047' : '#f8fafc';
@@ -11368,12 +11947,17 @@
 
       const finalSub = subtitle || (isYou && prof.lastName ? `${prof.lastName} #9` : '');
       if (finalSub) {
-        ctx.font = `800 ${Math.max(9, Math.floor(W * 0.0105))}px Inter`;
+        ctx.font = `800 ${Math.max(8, Math.floor(W * 0.0098))}px Inter`;
         ctx.fillStyle = '#0f172a';
-        ctx.fillText(finalSub, x, y + r + 11);
+        ctx.fillText(finalSub, x, y + r + 10);
       }
 
       ctx.restore();
+    }
+    window.drawTopDownSkaterToken = drawTopDownSkaterToken;
+
+    function drawSkaterToken(ctx, x, y, W, fill, textColor, label, isYou, showDragHalo, subtitle = '', anatomicalOpts = null) {
+      return drawTopDownSkaterToken(ctx, x, y, W, fill, textColor, label, isYou, showDragHalo, subtitle, anatomicalOpts);
     }
 
     function drawPuck(ctx, x, y, W, neonHighlight = false) {
@@ -11461,7 +12045,7 @@
         if (distToTarget <= (scen.targetSpot.radius + 0.075) || distToOpenTm <= 0.085) {
           window.selectedPassTargetIndex = 0;
           state.tappedPassTargetId = openTm ? openTm.id : (scen.correctTargetId || 'T1');
-          resolveAttempt(scen, true, scen.readChoices[0].feedback, 1.0, '🥇 1st Choice Consensus Optimal (100% Gold IQ)');
+          resolveAttempt(scen, true, scen.readChoices[0].feedback, 1.0, '🥇 Great Read! Best Play on the Ice (100% Gold IQ)');
           return;
         }
         if (Array.isArray(scen.passTargets)) {
@@ -11471,7 +12055,7 @@
               window.selectedPassTargetIndex = i;
               state.tappedPassTargetId = pt.id;
               if (pt.multiplier > 0) {
-                resolveAttempt(scen, true, pt.feedback, pt.multiplier, `🥈 2nd Choice Strong Secondary Read (${Math.round(pt.multiplier * 100)}% Silver IQ)`);
+                resolveAttempt(scen, true, pt.feedback, pt.multiplier, `🥈 Good Play! Open Second Option (${Math.round(pt.multiplier * 100)}% Silver IQ)`);
               } else {
                 resolveAttempt(scen, false, pt.feedback, 0, '');
               }
@@ -11490,8 +12074,17 @@
         return;
       }
 
-      // 3. Standard Off-Puck Positioning Mode (With Multi-Format tap_zone & 2-Step "Spot the Mistake -> Fix the Play" Support!)
+      // 3. Standard Off-Puck Positioning Mode (With Multi-Format tap_zone, static_hover_zones & 2-Step "Spot the Mistake -> Fix the Play" Support!)
       const normTap = canvasToNorm(pos.x, pos.y, canvas.width, canvas.height, scen.zone);
+      if (state.activePresentationStyle === 'static_hover_zones' && Array.isArray(state.activeHoverZones) && state.mistakePhase === 'none') {
+        for (const hz of state.activeHoverZones) {
+          if (normTap.x >= hz.xMin && normTap.x <= hz.xMax && normTap.y >= hz.yMin && normTap.y <= hz.yMax) {
+            state.hoveredHoverZoneId = hz.id;
+            handleSelectHoverZone(hz, scen);
+            return;
+          }
+        }
+      }
       if (state.activeQuestionStyle === 'tap_zone' && Array.isArray(state.activeTapZones) && state.mistakePhase === 'none') {
         for (const z of state.activeTapZones) {
           if (Math.hypot(normTap.x - z.x, normTap.y - z.y) <= (z.radius || 0.11)) {
@@ -11532,14 +12125,37 @@
     });
 
     canvas.addEventListener('pointermove', (e) => {
-      if (!state.isDraggingYou || state.mode !== 'position' || state.questionAnswered || state.pov3dActive) return;
+      if (state.mode !== 'position' || state.questionAnswered || state.pov3dActive) return;
       const pos = getPointerCanvasPos(e);
       const scen = getCurrentScenario();
-      state.youPos = canvasToNorm(pos.x, pos.y, canvas.width, canvas.height, scen.zone);
+      const normPt = canvasToNorm(pos.x, pos.y, canvas.width, canvas.height, scen.zone);
+      if (state.activePresentationStyle === 'static_hover_zones' && Array.isArray(state.activeHoverZones)) {
+        let hitId = null;
+        for (const hz of state.activeHoverZones) {
+          if (normPt.x >= hz.xMin && normPt.x <= hz.xMax && normPt.y >= hz.yMin && normPt.y <= hz.yMax) {
+            hitId = hz.id;
+            break;
+          }
+        }
+        if (state.hoveredHoverZoneId !== hitId) {
+          state.hoveredHoverZoneId = hitId;
+          drawRink();
+        }
+      }
+      if (!state.isDraggingYou) return;
+      state.youPos = normPt;
       drawRink();
     });
 
     window.addEventListener('pointerup', () => {
+      if (state.isDraggingYou && !state.questionAnswered && state.mode === 'position') {
+        state.isDraggingYou = false;
+        const scen = getCurrentScenario();
+        if (scen && scen.youStart && Math.hypot(state.youPos.x - scen.youStart.x, state.youPos.y - scen.youStart.y) > 0.032) {
+          checkDraggedPosition();
+        }
+        return;
+      }
       state.isDraggingYou = false;
     });
 
@@ -11563,7 +12179,7 @@
         if (typeof window.selectedPassTargetIndex === 'number' && Array.isArray(scen.passTargets) && scen.passTargets[window.selectedPassTargetIndex]) {
           const chosen = scen.passTargets[window.selectedPassTargetIndex];
           state.tappedPassTargetId = chosen.id;
-          resolveAttempt(scen, chosen.multiplier > 0, chosen.feedback, chosen.multiplier, chosen.rank === 1 ? '🥇 1st Choice Consensus Optimal (100% Gold IQ)' : (chosen.multiplier > 0 ? '🥈 2nd Choice Strong Secondary Read (80% Silver IQ)' : ''));
+          resolveAttempt(scen, chosen.multiplier > 0, chosen.feedback, chosen.multiplier, chosen.rank === 1 ? '🥇 Great Read! Best Play on the Ice (100% Gold IQ)' : (chosen.multiplier > 0 ? '🥈 Good Play! Open Second Option (80% Silver IQ)' : ''));
           return;
         }
         const distFromStart = Math.hypot(state.youPos.x - scen.youStart.x, state.youPos.y - scen.youStart.y);
@@ -11574,7 +12190,7 @@
         if (distToTarget <= scen.targetSpot.radius + 0.075 || distToOpenTm <= 0.085 || distFromStart < 0.035) {
           window.selectedPassTargetIndex = 0;
           state.tappedPassTargetId = openTm ? openTm.id : (scen.correctTargetId || 'T1');
-          resolveAttempt(scen, true, scen.readChoices[0].feedback, 1.0, '🥇 1st Choice Consensus Optimal (100% Gold IQ)');
+          resolveAttempt(scen, true, scen.readChoices[0].feedback, 1.0, '🥇 Great Read! Best Play on the Ice (100% Gold IQ)');
           return;
         }
         if (Array.isArray(scen.passTargets)) {
@@ -11583,7 +12199,7 @@
             if (Math.hypot(state.youPos.x - pt.x, state.youPos.y - pt.y) <= (pt.radius || 0.088)) {
               window.selectedPassTargetIndex = i;
               state.tappedPassTargetId = pt.id;
-              resolveAttempt(scen, pt.multiplier > 0, pt.feedback, pt.multiplier, pt.multiplier > 0 ? '🥈 2nd Choice Strong Secondary Read (80% Silver IQ)' : '');
+              resolveAttempt(scen, pt.multiplier > 0, pt.feedback, pt.multiplier, pt.multiplier > 0 ? '🥈 Good Play! Open Second Option (80% Silver IQ)' : '');
               return;
             }
           }
@@ -11610,7 +12226,7 @@
       ensureScenarioConsensusZones(scen);
       if (dist <= maxDist && !tooCloseToTeammate) {
         const msg = scen.readChoices.find(c => c.correct).feedback;
-        resolveAttempt(scen, true, msg, 1.0, '🥇 1st Choice Consensus Optimal (100% Gold IQ)');
+        resolveAttempt(scen, true, msg, 1.0, '🥇 Great Read! Best Play on the Ice (100% Gold IQ)');
         return;
       }
 
@@ -11631,8 +12247,8 @@
       }
 
       const failMsg = tooCloseToTeammate
-        ? 'Coach\'s Adjustment: You bunched up right next to your teammate! Look at the green sweet spot ring on the ice—spread out so one defender can\'t guard both of you.'
-        : `Coach's Adjustment: You were outside the consensus support zones! Look at the 🥇 1st Choice Sweet Spot ring on the ice: ${scen.goldenRule}`;
+        ? 'You bunched up right next to your teammate! Spread out into the green circle so one defender cannot guard both of you.'
+        : `You were outside the open support zone! Skate into the green circle on the ice: ${scen.goldenRule}`;
 
       resolveAttempt(scen, false, failMsg, 0, '');
     }
@@ -11640,28 +12256,48 @@
     function resolveAttempt(scen, success, message, consensusMultiplier = null, consensusBadge = '') {
       if (state.questionAnswered) return;
       state.questionAnswered = true; // Lock question so it cannot be repeated to farm points!
+      if (state.flowFreezeAnimId) {
+        cancelAnimationFrame(state.flowFreezeAnimId);
+        state.flowFreezeAnimId = null;
+      }
+      state.flowFreezePhase = 'frozen';
+      state.flowFreezeProgress = 1;
       state.lastConsensusMultiplier = consensusMultiplier != null ? consensusMultiplier : (success ? 1.0 : 0);
-      state.lastConsensusBadge = consensusBadge || (success ? '🥇 1st Choice Consensus Optimal (100% Gold IQ)' : '');
+      state.lastConsensusBadge = consensusBadge || (success ? '🥇 Great Read! Best Play on the Ice (100% Gold IQ)' : '');
+      const prof = getActiveProfile() || {};
+      const plainFeedback = formatPlainLanguageCoachFeedback(
+        scen,
+        { success, message, multiplier: state.lastConsensusMultiplier },
+        prof.ageGroup || '12U'
+      );
+      state.lastPlainLanguageFeedback = plainFeedback;
       stopTimers();
       document.getElementById('decisionTimerWrap').classList.add('hidden');
       updateHintButtonUI();
       updateTacticalActionDock(scen);
       const ribbonNext = document.getElementById('btnRibbonNext');
       if (ribbonNext) ribbonNext.classList.remove('hidden');
+      const nextBtn = document.getElementById('btnNextQuestion');
+      if (nextBtn) nextBtn.classList.add('ring-2', 'ring-amber-300');
+      const nextLbl = document.getElementById('btnNextQuestionLabel');
+      if (nextLbl) nextLbl.textContent = 'Next Play';
+      if (typeof updateHabitComboScorecardUI === 'function') {
+        updateHabitComboScorecardUI(success);
+      }
 
       state.readSuccess = success;
       state.animPhase = 'resolving';
       state.animProgress = 0;
 
-      // Immediately pop up Coach Bob in Mistake or Celebrate state so zero-latency feedback is visible
+      // Immediately pop up Coach Bob in Mistake or Celebrate state with plain-language age-scaled feedback
       showCoachBobPopup({
         stateMode: success ? (state.lastConsensusMultiplier >= 0.99 ? 'celebrate' : 'talking') : 'mistake',
         title: success
           ? (state.lastConsensusBadge || '🚨 High Hockey IQ Read!')
-          : '🧢 Coach Bob Adjustment — Try Again!',
-        prompt: message,
+          : '🧢 Coach Bob Tip — Try This Next Time!',
+        prompt: plainFeedback,
         rule: `💡 Golden Rule: ${scen.goldenRule}`,
-        autoHideMs: success ? 4800 : 7200
+        autoHideMs: success ? 4200 : 6500
       });
 
       if (success) SoundFX.playGoalHorn();
@@ -12093,13 +12729,19 @@
       const mult = (typeof consensusMultiplier === 'number' && consensusMultiplier > 0) ? consensusMultiplier : (isCorrect ? 1.0 : 0);
       const qAwardedPts = Math.round(qMaxPts * mult);
       const tierHeadline = mult >= 0.99
-        ? '🥇 1st Choice Consensus Optimal (100% Gold IQ)'
-        : (mult >= 0.75 ? '🥈 2nd Choice Strong Secondary Read (80% Silver IQ)' : '🥉 3rd Choice Safe Option (60% Bronze IQ)');
+        ? '🥇 Great Read! Best Play on the Ice (100% Gold IQ)'
+        : (mult >= 0.75 ? '🥈 Good Play! Open Second Option (80% Silver IQ)' : '🥉 Safe Play! Playable Support Spot (60% Bronze IQ)');
+      const profForFb = getActiveProfile() || {};
+      const plainMessage = formatPlainLanguageCoachFeedback(
+        scen,
+        { success: isCorrect, message, multiplier: mult },
+        profForFb.ageGroup || '12U'
+      );
 
       if (isCorrect && mult > 0) {
         const speedBonusIq = state.speedBonusActive ? 10 : 0;
         const speedBonusBucks = state.speedBonusActive ? 15 : 0;
-        const proHabitActive = Boolean(state.deceptionActive || state.holdProtectActive);
+        const proHabitActive = Boolean(state.deceptionActive || state.holdProtectActive || (state.activePresentationStyle === 'habit_combo' && state.habitComboScanned && state.habitComboCalledOut));
         const habitBonusIq = proHabitActive ? 10 : 0;
         const habitBonusBucks = proHabitActive ? 15 : 0;
         const totalBonusIq = speedBonusIq + habitBonusIq;
@@ -12128,8 +12770,8 @@
           // Celebration State: Fist-pump / golden glow bounce on a 1st Choice Gold IQ play before sliding smoothly back down out of sight!
           showCoachBobPopup({
             stateMode: 'celebrate',
-            title: `🥇 1st Choice Gold IQ! • Coach Bob Fist-Pump!`,
-            prompt: message,
+            title: `🥇 Gold IQ Play! • Coach Bob Fist-Pump!`,
+            prompt: plainMessage,
             rule: `⭐ Golden Rule: ${scen.goldenRule}`,
             autoHideMs: 2200
           });
@@ -12138,8 +12780,8 @@
         }
         const mfBar = document.getElementById('multiFormatControlsBar');
         if (mfBar) mfBar.classList.add('hidden');
-        showFeedback(true, `${consensusBadge || tierHeadline} (+${qAwardedPts + totalBonusIq} IQ Pts & +$${qAwardedPts + totalBonusBucks})${bonusTag}`, message, `+${qAwardedPts}/${qMaxPts} Pts`);
-        CoachVoice.speak(`${tierHeadline}! You earned ${qAwardedPts} IQ points! ${message}`, '🚨 Coach Bob (Consensus Read!)', false);
+        showFeedback(true, `${consensusBadge || tierHeadline} (+${qAwardedPts + totalBonusIq} IQ Pts & +$${qAwardedPts + totalBonusBucks})${bonusTag}`, plainMessage, `+${qAwardedPts}/${qMaxPts} Pts`);
+        CoachVoice.speak(`${plainMessage}`, '🚨 Coach Bob', false);
       } else {
         state.streak = 0;
         const prof = getActiveProfile();
@@ -12179,16 +12821,16 @@
         const mfBar = document.getElementById('multiFormatControlsBar');
         if (mfBar) mfBar.classList.add('hidden');
         saveProgress();
-        showFeedback(false, `🧢 Coach Bob's Adjustment (0 / ${qMaxPts} Pts on ${state.overtimeRedemptionActive ? '3v3 OT' : 'Q' + state.seriesQuestionNum})`, message, 'Next Play ▶');
+        showFeedback(false, `🧢 Coach Bob Tip (0 / ${qMaxPts} Pts on ${state.overtimeRedemptionActive ? '3v3 OT' : 'Q' + state.seriesQuestionNum})`, plainMessage, 'Next Play ▶');
         // Pop Coach Bob back up in the lower-left corner with Chalkboard Shake/Highlight animation ('mistake' state) when the player misses an attempt!
         showCoachBobPopup({
           stateMode: 'mistake',
-          title: `🧢 Coach Bob's Adjustment • Q${state.seriesQuestionNum}/10`,
-          prompt: message,
+          title: `🧢 Coach Bob Tip • Q${state.seriesQuestionNum}/10`,
+          prompt: plainMessage,
           rule: `⭐ Golden Rule: ${scen.goldenRule}`,
-          autoHideMs: 8000
+          autoHideMs: 6500
         });
-        CoachVoice.speak(message, '🧢 Coach Bob (Coach\'s Adjustment)', true, () => {
+        CoachVoice.speak(plainMessage, '🧢 Coach Bob', true, () => {
           hideCoachBobPopup();
         });
       }
@@ -15856,7 +16498,7 @@
         };
       }
       // Section 15.3: 14U–18U evaluations deliver deep AAA/Junior film-room breakdowns tailored to historical trends
-      const deepText = `🎬 ${age} AAA/Junior Film-Room Breakdown: Elite ${strongest.label} execution (${strongest.pct}% consensus optimal reads, F3 high-slot rotation intact). Primary deficiency trend flagged in ${weakest.label} (${weakest.pct}%): pre-scan shoulder checks must occur 0.8s prior to puck retrieval to disguise weak-side D-to-D reversals and Royal Road seam entries.`;
+      const deepText = `🎬 ${age} AAA/Junior Film-Room Breakdown: Strong ${strongest.label} execution (${strongest.pct}% first-choice reads, F3 high-slot support intact). Next focus area is ${weakest.label} (${weakest.pct}%): check over your shoulder before retrieving the puck to spot the D-to-D reverse or Royal Road seam.`;
       return {
         ageGroup: age,
         wordCount: deepText.trim().split(/\s+/).length,
@@ -19574,7 +20216,51 @@
       // Universal Save & Exit to Lobby buttons on Map, Game, and Pro Shop
       bindClick('btnMapSaveExitLobby', saveAndExitToRinkLobby);
       bindClick('btnGameSaveExitLobby', saveAndExitToRinkLobby);
+      bindClick('btnGameSaveExitLobbyRibbon', saveAndExitToRinkLobby);
       bindClick('btnShopSaveExitLobby', saveAndExitToRinkLobby);
+
+      // Phase 2 & Phase 3 On-Ice Lesson Screen Consistent 4-Button Bottom Bar & Format Controls
+      bindClick('btnLessonWatchVideoPopup', () => {
+        SoundFX.playTap();
+        const scen = getCurrentScenario();
+        if (typeof openFilmRoomModal === 'function') {
+          openFilmRoomModal(scen);
+        }
+      });
+      bindClick('btnLessonMoreInfoPopup', () => {
+        SoundFX.playTap();
+        const scen = getCurrentScenario();
+        const prof = getActiveProfile();
+        if (!state.showHint && state.hintsRemaining > 0 && !state.questionAnswered) {
+          state.hintsRemaining = Math.max(0, state.hintsRemaining - 1);
+          state.showHint = true;
+          updateHintButtonUI();
+          renderSeriesTracker();
+          drawRink();
+        } else {
+          state.showHint = true;
+          drawRink();
+        }
+        const is8U = (prof.ageGroup || '12U') === '8U';
+        const promptTxt = is8U ? enforceAdmPromptWordLimit(scen.subtitle, '8U', scen) : (scen.briefing || scen.subtitle);
+        showCoachBobPopup({
+          title: `💡 Coach Bob Hint & Breakdown • ${scen.title}`,
+          prompt: promptTxt,
+          rule: `⭐ Golden Rule: ${scen.goldenRule}`,
+          autoHideMs: 8500
+        });
+      });
+      bindClick('btnNextQuestion', () => {
+        SoundFX.playTap();
+        advanceSeriesOrRegenerate();
+      });
+      bindClick('btnReplay3sFlow', () => {
+        SoundFX.playTap();
+        const scen = getCurrentScenario();
+        runLessonFlowAndFreezeAnimation(scen, 3200);
+      });
+      bindClick('btnHabitComboScanIce', triggerHabitComboScan);
+      bindClick('btnHabitComboCallOut', triggerHabitComboCallOut);
 
       // Persistent Founder Red Flag
       bindClick('btnPersistentFounderRedFlag', openFounderRedFlagModal);

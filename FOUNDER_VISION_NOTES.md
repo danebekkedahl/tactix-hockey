@@ -354,12 +354,24 @@ Every `RUN NIGHTLY AUTOPILOT` pass runs an active Playwright field inspection in
      5. **Lobby Wall — `🖼️ FRIENDS & FAMILY COMMUNITY WALL (100% SafeSport Read-Only Social + Map Races)`** (`#lobbyStationFriendsWall` -> `#synapzFriendsWallModal`)
    - **Lower-Left Player Agent Greeter & 5-Step 1-Sentence Quadrant Spotlight Tutorial (`#lobbyActivePlayerAgentWidget`):** Spotlights one station at a time (`Hit the Ice` -> `Locker Room` -> `Pro Shop` -> `Coach's Office` -> `Friends & Family Wall`), speaking strictly 1 concise plain-English sentence per step.
    - **Universal `💾 Save & Exit to Lobby` + Persistent `🚩 Red Flag` Button:** Every major screen includes `💾 Save & Exit to Lobby`, and `#btnPersistentFounderRedFlag` floats on every screen to log priority founder flags (`status: 'founder_flagged_priority'`) with voice dictation or text notes.
-5. **6-Phase Modular Rollout Roadmap:**
+5. **Phase 2 & Phase 3 — The On-Ice Lesson Screen Overhaul (`v9.4` Complete):**
+   - **De-Cluttered & Standardized Lesson Screen (`#gameViewSection`):** Removed all in-drill filter chips/dropdowns and persistent action ribbons (`#rightActionRibbon`, `#tacticalActionDock`) from active lessons. Every drill keeps an identical, rock-solid layout with `#lessonConsistentBottomBar` directly below `#rinkCanvas` featuring **strictly 4 consistent, tactile 3D buttons**:
+     1. **`💾 Save & Exit to Lobby`** (`#btnGameSaveExitLobby`)
+     2. **`🎬 Video Clip`** (`#btnLessonWatchVideoPopup`)
+     3. **`💡 More Info / Hint`** (`#btnLessonMoreInfoPopup`)
+     4. **`➡️ Next Play`** (`#btnNextQuestion`)
+   - **Coach Bob 1-Sentence Pop-Up Intro & Plain-Language Feedback Engine:** Coach Bob (`#coachBobPopup`, `assets/coach-bob.png`, `coach-bob` voice channel) pops up in the lower-left quadrant for a brief 1–2 sentence intro before disappearing (`🏒 Drop the Puck / Watch Play` / `#btnDismissCoachBob`) so the rink is 100% unobstructed. Permanently banned robotic jargon (`"First choice consensus optimal"` has `0` occurrences in `index.html`) and wired `window.formatPlainLanguageCoachFeedback(scenario, choiceOutcome, division)` (`<= 14 words` 1-sentence plain English for `8U/10U`; 1–2 natural coaching sentences for `12U–18U`).
+   - **Top-Down Directional Hockey Player Skaters at `2x Faceoff Dot Size` (`drawTopDownSkaterToken`):** Replaced large overlapping circles on `#rinkCanvas` with top-down hockey skater figures whose body diameter is **strictly `2.0x` the rendered red faceoff dot diameter** (`skaterBodyDiameterPx === 2.0 * faceoffDotDiameterPx`, `skaterToFaceoffDotRatio === 2.0`), complete with directional helmet & shoulders (`headingRad`), left/right hockey stick & blade (`'L'` or `'R'`) with puck on the blade when carrying, and clean chest role/position badge (`LW/RW/C/LD/RD` or `F1/F2/F3/D1/D2`).
+   - **3 Variable Lesson Presentation Formats (`setLessonPresentationStyle`):**
+     1. **`flow_and_freeze` (`3–4s Moving Flow -> Freeze & Read`):** Animates 3.0–3.5 seconds of smooth skater and puck movement (`runLessonFlowAndFreezeAnimation`) right after Coach Bob's intro closes, then freezes with **`❄️ FREEZE — MAKE YOUR READ!`** (`#flowFreezeStatusBadge`) and **`🔄 Replay 3s Flow`** (`#btnReplay3sFlow`).
+     2. **`static_hover_zones` (`Static Position & Interactive Hover-Zone Read`):** Draws 4 interactive color-coded ice zones (`Left Point / Left Wing Zone`, `Right Point / Right Wing Zone`, `The House / Slot`, `Low Corner / Net Front`) via `drawStaticHoverZones` that light up on hover/touch and select on click (`handleSelectHoverZone`).
+     3. **`habit_combo` (`Habit-Combo Drills — Scan + Call + Play`):** Displays `#habitComboControlsBar` (`👀 Look Over Shoulder (Scan Ice)` + `🗣️ Call Out ("Pass!" / "D-to-D!" / "Boards!")`) and grades all 3 steps on the **3-Check Habit Scorecard** (`#habitComboScorecardBox`: `1. Scan Ice`, `2. Call Out`, `3. Smart Play`).
+6. **6-Phase Modular Rollout Roadmap:**
    - **Phase 1 (Complete):** 2-Button Entry Gate, Per-Profile Login Lock, 9 Age-Relatable Player Agents (with Voice Audition), Virtual Hockey Rink Lobby (5 Stations), SafeSport Notification Bell, Universal Save & Exit to Lobby, Persistent `🚩 Red Flag`, and `[🔍 Explain This to Me]` Digest Wiring.
-   - **Phase 2:** Locker Room 75%-Realistic Young Skater Avatar & Walk-In Pro Shop Gear Walls Deep Dive.
-   - **Phase 3:** Coach Al's Office 6-Slice Skill Pie Chart & 1-Question-Per-Screen Custom Lesson Wizard Deep Dive.
-   - **Phase 4:** Road to the Stanley Cup Map & Friends/Family Map Race Deep Dive.
-   - **Phase 5:** On-Ice Lesson Screen (`Coach Bob`, 2s Pre-Read Motion Roll-In, & Film Room) Deep Dive.
+   - **Phase 2 & Phase 3 (Complete):** On-Ice Lesson Screen Overhaul — De-Cluttered Lesson Layout (4 Consistent Bottom Buttons), Plain-Language Coach Bob Intro/Feedback (`0` robotic jargon), Top-Down Directional Hockey Player Skaters at `2x Faceoff Dot Size`, and Variable `3–4s Moving Flow -> Freeze` / `Static Hover-Zone` / `Habit-Combo` Lesson Formats.
+   - **Phase 4:** Locker Room 75%-Realistic Young Skater Avatar, Walk-In Pro Shop Gear Walls & Coach Al's Office Deep Dive.
+   - **Phase 5:** Road to the Stanley Cup Map & Friends/Family Map Race Deep Dive.
    - **Phase 6:** Team & Director Portal (`PUCK99`, Line/Playbook Builder, & Association Roll-Up) Deep Dive.
+
 
 

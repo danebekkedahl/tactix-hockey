@@ -599,12 +599,15 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     const hasSendBoardDigestJs = fs.existsSync(path.join(__dirname, 'send-board-digest.js'));
     const deployScriptSrc = fs.readFileSync(path.join(__dirname, 'deploy-github-pages.js'), 'utf8');
     const hasPreCommitSecurityGuardrail = deployScriptSrc.includes('runPreCommitSecurityGuardrail') && deployScriptSrc.includes('FORBIDDEN_FILENAMES');
+    const indexHtmlRawSrc = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
+    const roboticJargonOccurrences = (indexHtmlRawSrc.match(/First choice consensus optimal/gi) || []).length;
 
     const tenSeatBoardAndPortals = await page.evaluate(async ({
       hasContextMdFlag,
       hasChangelogDecisionsMdFlag,
       hasSendBoardDigestJsFlag,
-      hasPreCommitGuardrailFlag
+      hasPreCommitGuardrailFlag,
+      roboticJargonCountFlag
     }) => {
       const seats = {};
       const portals4TabAudit = {};
@@ -835,6 +838,58 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           window.GOOGLE_APPS_SCRIPT_WEBHOOK_URL.includes('AKfycbw0z3iKOaLEMF0GZvb2hlyZDnP9oCpudpHrubTti99RFMdi8sDqsJR5dnEMRlDEmcZ_');
         document.getElementById('founderDigestModal').classList.add('hidden');
 
+        // PHASE 2 & PHASE 3: On-Ice Lesson Screen Overhaul Audit
+        switchView('game');
+        loadScenario(false);
+        const rightRibbonDisplay = getComputedStyle(document.getElementById('rightActionRibbon') || document.body).display;
+        const tacticalDockDisplay = getComputedStyle(document.getElementById('tacticalActionDock') || document.body).display;
+        const inDrillClutterRemoved = rightRibbonDisplay === 'none' && tacticalDockDisplay === 'none';
+        const consistentBottomButtonsIds = ['btnGameSaveExitLobby', 'btnLessonWatchVideoPopup', 'btnLessonMoreInfoPopup', 'btnNextQuestion'];
+        const consistentBottomButtonsCount = consistentBottomButtonsIds.filter(id => {
+          const el = document.getElementById(id);
+          return Boolean(el && getComputedStyle(el).display !== 'none');
+        }).length;
+
+        // Top-Down Directional Skater Figures (2x Faceoff Dot Size)
+        drawRink();
+        const faceoffDotDiameterPx = Number((state.faceoffDotDiameterPx || 0).toFixed(2));
+        const skaterBodyDiameterPx = Number((state.skaterBodyDiameterPx || 0).toFixed(2));
+        const skaterToFaceoffDotRatio = Number((state.skaterToFaceoffDotRatio || 0).toFixed(2));
+        const exact2xFaceoffDotVerified = Math.abs(skaterToFaceoffDotRatio - 2.0) < 0.01 && Math.abs(skaterBodyDiameterPx - 2 * faceoffDotDiameterPx) < 0.05;
+        const renderedSkaters = Array.isArray(state.lastRenderedSkaterTokens) ? state.lastRenderedSkaterTokens : [];
+        const directionalStickAndChestVerified = renderedSkaters.length >= 2 && renderedSkaters.every(s => (s.handedness === 'L' || s.handedness === 'R') && typeof s.headingRad === 'number' && Boolean(s.label || s.roleLabel));
+
+        // Plain-Language Coach Bob Feedback Engine & Zero Robotic Jargon
+        const plainFeedback8USample = typeof window.formatPlainLanguageCoachFeedback === 'function'
+          ? window.formatPlainLanguageCoachFeedback(getCurrentScenario(), true, '8U')
+          : '';
+        const plainFeedback8UWordCount = plainFeedback8USample.trim().split(/\s+/).filter(Boolean).length;
+        const plainFeedback8UUnder14Words = plainFeedback8UWordCount > 0 && plainFeedback8UWordCount <= 14;
+        const zeroRoboticJargonVerified = roboticJargonCountFlag === 0;
+
+        // Variable Lesson Formats: Format 1 (flow_and_freeze), Format 2 (static_hover_zones), Format 3 (habit_combo)
+        if (typeof setLessonPresentationStyle === 'function') setLessonPresentationStyle('flow_and_freeze');
+        const flowAndFreezeActive = state.activePresentationStyle === 'flow_and_freeze' &&
+          !document.getElementById('flowFreezeStatusBadge')?.classList.contains('hidden') &&
+          !document.getElementById('btnReplay3sFlow')?.classList.contains('hidden');
+
+        if (typeof setLessonPresentationStyle === 'function') setLessonPresentationStyle('static_hover_zones');
+        const staticHoverZonesCount = Array.isArray(state.activeHoverZones) ? state.activeHoverZones.length : 0;
+        const firstHoverZoneId = (state.activeHoverZones && state.activeHoverZones[0] && state.activeHoverZones[0].id) || 'zone_house_slot';
+        state.hoveredHoverZoneId = firstHoverZoneId;
+        drawRink();
+        const staticHoverZonesActive = state.activePresentationStyle === 'static_hover_zones' && staticHoverZonesCount === 4 && state.hoveredHoverZoneId === firstHoverZoneId;
+        state.hoveredHoverZoneId = null;
+
+        if (typeof setLessonPresentationStyle === 'function') setLessonPresentationStyle('habit_combo');
+        document.getElementById('btnHabitComboScanIce')?.click();
+        document.getElementById('btnHabitComboCallOut')?.click();
+        if (typeof updateHabitComboScorecardUI === 'function') updateHabitComboScorecardUI(true);
+        const habitComboControlsVisible = !document.getElementById('habitComboControlsBar')?.classList.contains('hidden');
+        const habitComboScorecardVisible = !document.getElementById('habitComboScorecardBox')?.classList.contains('hidden');
+        const habitComboChecksVerified = Boolean(state.habitComboScanned && state.habitComboCalledOut && habitComboControlsVisible && habitComboScorecardVisible);
+        if (typeof setLessonPresentationStyle === 'function') setLessonPresentationStyle('flow_and_freeze');
+
         founderDigestAudit.summary = {
           digestModalOpen,
           totalDigestRows,
@@ -863,6 +918,25 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
             friendsWallOpen,
             proShopGlovesCount,
             mapSaveExitLobbyBtn
+          },
+          phase2And3LessonOverhaulAudit: {
+            inDrillClutterRemoved,
+            consistentBottomButtonsCount,
+            faceoffDotDiameterPx,
+            skaterBodyDiameterPx,
+            skaterToFaceoffDotRatio,
+            exact2xFaceoffDotVerified,
+            renderedSkatersCount: renderedSkaters.length,
+            directionalStickAndChestVerified,
+            zeroRoboticJargonVerified,
+            roboticJargonOccurrences: roboticJargonCountFlag,
+            plainFeedback8USample,
+            plainFeedback8UWordCount,
+            plainFeedback8UUnder14Words,
+            flowAndFreezeActive,
+            staticHoverZonesCount,
+            staticHoverZonesActive,
+            habitComboChecksVerified
           },
           twoStepStartPageAudit: {
             step1PortalsVisible,
@@ -959,7 +1033,8 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       hasContextMdFlag: hasContextMd,
       hasChangelogDecisionsMdFlag: hasChangelogDecisionsMd,
       hasSendBoardDigestJsFlag: hasSendBoardDigestJs,
-      hasPreCommitGuardrailFlag: hasPreCommitSecurityGuardrail
+      hasPreCommitGuardrailFlag: hasPreCommitSecurityGuardrail,
+      roboticJargonCountFlag: roboticJargonOccurrences
     });
 
     console.log('🏛️ 10-Seat Walk-Through Issues:', tenSeatBoardAndPortals.issues.length);
@@ -1040,7 +1115,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_adventure_map.png') });
     capturedScreenshots.audit_adventure_map = 'screenshots/audit_adventure_map.png';
 
-    // Seat 1 Screenshot & On-Ice Gameplay (`screenshots/audit_on_ice_gameplay.png` + `assets/audit-screenshots/seat1-on-ice-drill-setup.png`)
+    // 4H. Phase 2 De-Cluttered On-Ice Lesson Screen w/ Top-Down Directional Skaters (2x Faceoff Dot) & 4 Bottom Buttons (`screenshots/audit_phase2_lesson_screen.png`)
     await page.evaluate(() => {
       document.querySelectorAll('[id$="Modal"]').forEach(m => m.classList.add('hidden'));
       const prof = getActiveProfile();
@@ -1050,12 +1125,47 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       state.activeScenarioInstance = null;
       switchView('game');
       loadScenario(false);
+      if (typeof setLessonPresentationStyle === 'function') setLessonPresentationStyle('flow_and_freeze');
+      if (typeof hideCoachBobPopup === 'function') hideCoachBobPopup();
+      state.flowAndFreezePlaying = false;
+      state.flowAndFreezeProgress = 1.0;
+      drawRink();
     });
     await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_phase2_lesson_screen.png') });
     await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_on_ice_gameplay.png') });
     await page.screenshot({ path: path.join(screenshotDir, 'seat1-on-ice-drill-setup.png') });
+    capturedScreenshots.audit_phase2_lesson_screen = 'screenshots/audit_phase2_lesson_screen.png';
     capturedScreenshots.audit_on_ice_gameplay = 'screenshots/audit_on_ice_gameplay.png';
     capturedScreenshots.seat1 = 'assets/audit-screenshots/seat1-on-ice-drill-setup.png';
+
+    // 4I. Phase 3 Format 2: Static Position & Interactive Hover-Zone Read (`screenshots/audit_phase3_hover_zones.png`)
+    await page.evaluate(() => {
+      if (typeof setLessonPresentationStyle === 'function') setLessonPresentationStyle('static_hover_zones');
+      const hzId = (state.activeHoverZones && state.activeHoverZones[2] && state.activeHoverZones[2].id) || 'zone_house_slot';
+      state.hoveredHoverZoneId = hzId;
+      drawRink();
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_phase3_hover_zones.png') });
+    capturedScreenshots.audit_phase3_hover_zones = 'screenshots/audit_phase3_hover_zones.png';
+
+    // 4J. Phase 3 Format 3: Habit-Combo Drill (`👀 Look Over Shoulder` + `🗣️ Call Out` + 3-Check Habit Scorecard) (`screenshots/audit_phase3_habit_combo.png`)
+    await page.evaluate(() => {
+      state.hoveredHoverZoneId = null;
+      if (typeof setLessonPresentationStyle === 'function') setLessonPresentationStyle('habit_combo');
+      document.getElementById('btnHabitComboScanIce')?.click();
+      document.getElementById('btnHabitComboCallOut')?.click();
+      if (typeof updateHabitComboScorecardUI === 'function') updateHabitComboScorecardUI(true);
+      drawRink();
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_phase3_habit_combo.png') });
+    capturedScreenshots.audit_phase3_habit_combo = 'screenshots/audit_phase3_habit_combo.png';
+
+    await page.evaluate(() => {
+      if (typeof setLessonPresentationStyle === 'function') setLessonPresentationStyle('flow_and_freeze');
+    });
 
     // Seat 2 Screenshot: Cue-First & Contrastive Good-vs-Bad Read Replay
     await page.evaluate(() => {

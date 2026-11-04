@@ -1,6 +1,6 @@
 {
-  "lastUpdatedAt": "2026-11-04T20:40:49.391Z",
-  "totalRuns": 5,
+  "lastUpdatedAt": "2026-11-04T23:35:46.726Z",
+  "totalRuns": 7,
   "stepAApprovalGateCheck": {
     "statusChecked": "approved_by_founder",
     "approvedItemsCount": 0,
@@ -16,7 +16,7 @@
       "qStyle": "tap_zone",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "8U_B",
@@ -36,7 +36,7 @@
       "qStyle": "tap_zone",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "8U_AA",
@@ -46,7 +46,7 @@
       "qStyle": "tap_player",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "8U_AAA",
@@ -56,7 +56,7 @@
       "qStyle": "drag_skater",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "10U_Rec",
@@ -76,7 +76,7 @@
       "qStyle": "tap_zone",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "10U_A",
@@ -86,7 +86,7 @@
       "qStyle": "drag_skater",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "10U_AA",
@@ -96,7 +96,7 @@
       "qStyle": "spot_and_fix",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "10U_AAA",
@@ -106,7 +106,7 @@
       "qStyle": "tap_player",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "12U_Rec",
@@ -116,7 +116,7 @@
       "qStyle": "tap_zone",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "12U_B",
@@ -126,7 +126,7 @@
       "qStyle": "drag_skater",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "12U_A",
@@ -136,7 +136,7 @@
       "qStyle": "spot_and_fix",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "12U_AA",
@@ -146,7 +146,7 @@
       "qStyle": "tap_zone",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "12U_AAA",
@@ -166,7 +166,7 @@
       "qStyle": "drag_skater",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "14U_B",
@@ -176,7 +176,7 @@
       "qStyle": "spot_and_fix",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "14U_A",
@@ -186,7 +186,7 @@
       "qStyle": "tap_zone",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "14U_AA",
@@ -206,7 +206,7 @@
       "qStyle": "tap_zone",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "16U_Rec",
@@ -216,7 +216,7 @@
       "qStyle": "spot_and_fix",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "16U_B",
@@ -226,7 +226,7 @@
       "qStyle": "tap_zone",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "16U_A",
@@ -246,7 +246,7 @@
       "qStyle": "tap_zone",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "16U_AAA",
@@ -256,7 +256,7 @@
       "qStyle": "drag_skater",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "18U_Rec",
@@ -266,7 +266,7 @@
       "qStyle": "tap_zone",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "18U_B",
@@ -286,7 +286,7 @@
       "qStyle": "tap_zone",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "18U_AA",
@@ -296,7 +296,7 @@
       "qStyle": "drag_skater",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "18U_AAA",
@@ -306,7 +306,7 @@
       "qStyle": "spot_and_fix",
       "readSuccess": true,
       "multiplier": 1,
-      "badge": "🥇 1st Choice Consensus Optimal (100% Gold IQ)"
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     }
   ],
   "thirtyTwoNhlCitiesTour": [
@@ -582,8 +582,11 @@
     "audit_rink_lobby": "screenshots/audit_rink_lobby.png",
     "audit_player_agent_picker": "screenshots/audit_player_agent_picker.png",
     "audit_adventure_map": "screenshots/audit_adventure_map.png",
+    "audit_phase2_lesson_screen": "screenshots/audit_phase2_lesson_screen.png",
     "audit_on_ice_gameplay": "screenshots/audit_on_ice_gameplay.png",
     "seat1": "assets/audit-screenshots/seat1-on-ice-drill-setup.png",
+    "audit_phase3_hover_zones": "screenshots/audit_phase3_hover_zones.png",
+    "audit_phase3_habit_combo": "screenshots/audit_phase3_habit_combo.png",
     "seat2": "assets/audit-screenshots/seat2-cue-first-roll-in.png",
     "seat3": "assets/audit-screenshots/seat3-8u-adm-cognitive-load.png",
     "seat4": "assets/audit-screenshots/seat4-32-city-tour-map.png",
