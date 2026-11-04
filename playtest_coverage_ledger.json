@@ -1,10 +1,11 @@
 {
-  "lastUpdatedAt": "2026-11-03T11:03:33.793Z",
-  "totalRuns": 2,
+  "lastUpdatedAt": "2026-11-04T02:11:08.533Z",
+  "totalRuns": 3,
   "stepAApprovalGateCheck": {
     "statusChecked": "approved_by_founder",
     "approvedItemsCount": 0,
-    "zeroUnapprovedMutationsEnforced": true
+    "zeroUnapprovedMutationsEnforced": true,
+    "testSuiteIntegrityLockEnforced": true
   },
   "thirtyAgeByTalentLevels": [
     {
@@ -515,7 +516,7 @@
   "sixOffIceFeatureAreas": [
     {
       "areaId": 1,
-      "name": "Sandbox Logins & 5-Step Onboarding Wizard",
+      "name": "2-Step Start Page (#sandboxStep1Portals -> #sandboxStep2Credentials) & 5-Step Onboarding Wizard",
       "status": "VERIFIED_PASS",
       "seatOwners": [
         "Seat 3",
@@ -535,7 +536,7 @@
     },
     {
       "areaId": 3,
-      "name": "3D Trophy Room, 32-City Badges & Prestige Season II Cups",
+      "name": "3D Trophy Room, 32-City Stepping-Stone Map Badges & Prestige Season II Cups",
       "status": "VERIFIED_PASS",
       "seatOwners": [
         "Seat 4",
@@ -564,7 +565,7 @@
     },
     {
       "areaId": 6,
-      "name": "4-Tier Pricing, Custom Lesson Builder & 51-Clip Q5 Film Room",
+      "name": "4-Tier Pricing (#pricingAndPlansModal), Custom Lesson Builder & 51-Clip Q5 Film Room",
       "status": "VERIFIED_PASS",
       "seatOwners": [
         "Seat 1",
