@@ -19351,7 +19351,7 @@
         status: 'awaiting_founder_approval'
       },
       {
-        rank: 10, isTop3Recommended: false, isTop10SeatPrimary: true, id: 'S10-A', pod: 'pod3', podLabel: 'Pod 3: Platform, Film & Growth', seatNumber: 10,
+        rank: 10, isTop3Recommended: false, isTop10SeatPrimary: true, isTop12SeatPrimary: true, id: 'S10-A', pod: 'pod3', podLabel: 'Pod 3: Platform, Film & Growth', seatNumber: 10,
         seatName: 'App Store, Conversion & Growth Strategist', authorityRole: 'Monetization, Funnels & Partner Club Growth', optionCode: 'Rank #10 (Seat 10 Primary + Alt)',
         seatLens: 'Seat 10 — App Store, Conversion & Growth Strategist',
         targetScope: '4-Tier Pricing Modal (#pricingAndPlansModal) & Coach Tab 4 Director HQ • Partner Associations',
@@ -19366,6 +19366,42 @@
         crossImpact: 'Simplifies onboarding for Parents (Seat 3), helps Association Directors roll out the app in 1 paste (Seat 6), and increases Personal Pro & Team Pro conversions (Seat 10).',
         screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat10-pricing-partner-gate.png`,
         authorityFlow: 'Proposed by Seat 10 → Validated by Seat 6 (Director) → Scoped by Seat 9 (WHERE)',
+        status: 'awaiting_founder_approval'
+      },
+      {
+        rank: 11, isTop3Recommended: false, isTop10SeatPrimary: true, isTop12SeatPrimary: true, id: 'S11-A', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 11,
+        seatName: 'Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist', authorityRole: 'Gate D Visual Consistency (75% Realistic / 25% Cartoon-Edge)', optionCode: 'Rank #11 (Seat 11 Primary + Alt)',
+        seatLens: '🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist (Gate D Visual Consistency)',
+        targetScope: 'Locker Room Avatar (#synapzLockerRoomModal) & Walk-In Pro Shop (#proShopModal) • 8U–18U All Tiers',
+        title: 'Side-by-Side "Current vs. Pro Shop Preview" 75%-Realistic Gear Mirror Inside Walk-In Pro Shop',
+        description: 'Render a live 75%-realistic Young Hockey Player Avatar mirror right beside the 4 Pro Shop Walls so players see any hovered Glove, Stick, Skate, or Visor equipped on their #9 skater before spending their IQ-tied Puck Bucks.',
+        candidCritique: 'CANDID ART DIRECTOR PUSHBACK: Kids love our 4-Wall Pro Shop and 75%-realistic SVG gear cards, but right now you buy a glove or visor on the wall and then walk back to the Locker Room to see how it looks on your skater. Putting a live 75%-realistic fitting mirror beside the wall makes every gear drop irresistible while keeping strictly 4 clean wall buttons.',
+        alternativeProposal: {
+          id: 'S11-B',
+          title: 'Alternative (S11-B): Team-Color Home/Away Sweater Trim Sync Across Top-Down 2x Faceoff-Dot Skaters & Locker Room Avatar',
+          description: 'Automatically sync the Coach\'s Office Team Sweater Colors onto both the Locker Room Young Hockey Player Avatar and the 2x Faceoff-Dot Top-Down Skater shoulders and socks on #rinkCanvas.'
+        },
+        crossImpact: 'Boosts Pro Shop excitement for Kids (Seat 4), maintains strict 2–4 button simplicity (Seat 7), and enforces Gate D 75%-Realistic Visual Consistency (Seat 11).',
+        screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat11-art-director-avatar-shop.png`,
+        authorityFlow: 'Proposed by Seat 11 (Gate D Visual Consistency) → Co-Signed by Seat 4 (HOW FUN) & Seat 7 (WHERE)',
+        status: 'awaiting_founder_approval'
+      },
+      {
+        rank: 12, isTop3Recommended: false, isTop10SeatPrimary: true, isTop12SeatPrimary: true, id: 'S12-A', pod: 'pod3', podLabel: 'Pod 3: Platform, Film & Growth', seatNumber: 12,
+        seatName: 'SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist', authorityRole: 'SafeSport Compliance, Sibling PIN Lock & 11-Channel Voice QA', optionCode: 'Rank #12 (Seat 12 Primary + Alt)',
+        seatLens: '🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist',
+        targetScope: 'Per-Profile PIN Lock (#playerProfileCredentialLockBox), 11-Voice Registry & SafeSport Bell (#safeSportNotificationModal) • All Users',
+        title: 'Parent-Verified "Quick Sibling Switch PIN Prompt" + 1-Tap 11-Voice Audio Health Check in Locker Room',
+        description: 'Require the target sibling\'s 2–4 digit PIN whenever switching between sibling stalls inside the Locker Room (matching the Entry Gate PIN lock) and add a 1-tap "🔊 Test My Agent & Coach Voices" button that verifies all 11 voice channels on iOS/Android mute switches.',
+        candidCritique: 'CANDID SAFESPORT & PRIVACY PUSHBACK: We locked the front door with #playerProfileCredentialLockBox so Rhett (#88) can\'t open Miles\'s (#9) profile from the start screen—but if Miles hands the iPad to Rhett while already inside the Locker Room, switching stalls must also enforce the sibling\'s PIN so zero Puck Bucks or gear loadouts are ever touched without permission!',
+        alternativeProposal: {
+          id: 'S12-B',
+          title: 'Alternative (S12-B): SafeSport Read-Receipt Counter (Zero Direct Replies) in Coach\'s Office Station 4',
+          description: 'Show coaches in Station 4 how many roster players have opened the standardized SafeSport lesson notification ("18/20 Viewed Plan") without allowing any free-text DMs or replies.'
+        },
+        crossImpact: 'Protects Sibling Puck Bucks & Gear privacy for Families (Seat 3 & Seat 12), guarantees audible Agent/Coach greetings on iPads (Seat 2), and upholds 100% SafeSport compliance (Seat 12).',
+        screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat12-safesport-voice-qa.png`,
+        authorityFlow: 'Proposed by Seat 12 (SafeSport & Voice QA) → Validated by Seat 3 (Family) & Seat 9 (Engineering)',
         status: 'awaiting_founder_approval'
       },
       {
@@ -19628,10 +19664,92 @@
         screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat7-hud-ergonomics-audit.png`,
         authorityFlow: 'VETOED by Seat 7 & Seat 9 (WHERE / 4-Tab Anti-Clutter Veto Power)',
         status: 'vetoed', vetoReason: 'VETOED by Seat 7 & Seat 9 (Anti-Clutter Veto): Admin/Coach widgets must live inside #teamManagerModal tabs, never on the gameplay HUD.'
+      },
+      {
+        rank: 31, isTop3Recommended: false, id: 'S11-B', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 11,
+        seatName: 'Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist', authorityRole: 'Gate D Visual Consistency (75% Realistic / 25% Cartoon-Edge)', optionCode: 'Rank #31',
+        seatLens: '🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist (Gate D Visual Consistency)',
+        targetScope: 'Top-Down 2x Faceoff-Dot Skaters (#rinkCanvas) & Locker Room Avatar (#synapzLockerRoomModal)',
+        title: 'Team-Color Home/Away Sweater Trim Sync Across Top-Down 2x Faceoff-Dot Skaters & Locker Room Avatar',
+        description: 'Automatically sync the Coach\'s Office Team Sweater Colors onto both the Locker Room Young Hockey Player Avatar and the 2x Faceoff-Dot Top-Down Skater shoulders and socks on #rinkCanvas.',
+        candidCritique: 'CANDID ART DIRECTOR CRITIQUE: When a player joins Minot Wolves (PUCK99), seeing their exact team sweater trim reflected on both their 75%-realistic Locker Room skater and their 2x Faceoff-Dot on-ice skater unifies the visual world.',
+        crossImpact: 'Strengthens team pride for Players & Coaches (Seat 4 & Seat 5) and enforces Gate D Visual Consistency (Seat 11).',
+        screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat11-art-director-avatar-shop.png`,
+        authorityFlow: 'Proposed by Seat 11 (Gate D) → Co-Signed by Seat 5 (Coach) & Seat 9 (<canvas>)',
+        status: 'awaiting_founder_approval'
+      },
+      {
+        rank: 32, isTop3Recommended: false, id: 'S12-B', pod: 'pod3', podLabel: 'Pod 3: Platform, Film & Growth', seatNumber: 12,
+        seatName: 'SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist', authorityRole: 'SafeSport Compliance, Sibling PIN Lock & 11-Channel Voice QA', optionCode: 'Rank #32',
+        seatLens: '🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist',
+        targetScope: 'Coach\'s Office Station 4 (#coachOfficeStationPane_4) • SafeSport Notification Center',
+        title: 'SafeSport Read-Receipt Counter (Zero Direct Replies) in Coach\'s Office Station 4',
+        description: 'Show coaches in Station 4 how many roster players have opened the standardized SafeSport lesson notification ("18/20 Viewed Plan") without allowing any free-text DMs or replies.',
+        candidCritique: 'CANDID SAFESPORT CRITIQUE: Coaches want to know that their Friday afternoon push alert was seen before Saturday\'s game, while parents demand zero open 1-on-1 messaging. A read-only "18/20 Viewed Plan" counter solves both.',
+        crossImpact: 'Gives Coaches delivery confidence (Seat 5) while maintaining 100% SafeSport compliance (Seat 12 & Seat 3).',
+        screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat12-safesport-voice-qa.png`,
+        authorityFlow: 'Proposed by Seat 12 (SafeSport) → Endorsed by Seat 5 (Coach) & Seat 3 (Family)',
+        status: 'awaiting_founder_approval'
+      },
+      {
+        rank: 33, isTop3Recommended: false, id: 'S11-C', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 11,
+        seatName: 'Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist', authorityRole: 'Gate D Visual Consistency (75% Realistic / 25% Cartoon-Edge)', optionCode: 'Rank #33',
+        seatLens: '🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist (Gate D Visual Consistency)',
+        targetScope: 'Locker Room Avatar (#synapzLockerRoomModal) & Active Rink (#rinkCanvas)',
+        title: '[VETOED] Replace 75%-Realistic Hockey Kid & 2x Faceoff-Dot Skaters With Neon Sci-Fi Robot Mechs',
+        description: 'Proposal to replace the recognizable Young Hockey Player Avatar and top-down hockey skaters with glowing sci-fi robot characters.',
+        candidCritique: 'CANDID CO-FOUNDER PUSHBACK: Coach Dane & Coach Evan explicitly locked our "75% Realistic / 25% Cartoon-Edge" hockey identity! Youth hockey players want to look like real hockey players wearing real 4-roll gloves, tinted visors, and pro carbon sticks—never blocky robots.',
+        crossImpact: 'Protects authentic hockey identity across Locker Room, Pro Shop, and On-Ice Lessons (Seat 11, Seat 1 & Seat 4).',
+        screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat11-art-director-avatar-shop.png`,
+        authorityFlow: 'VETOED by Seat 11 (Gate D Visual Consistency Authority) & Seat 1',
+        status: 'vetoed', vetoReason: 'VETOED by Seat 11 (Gate D Visual Consistency): Violates the locked 75% Realistic / 25% Cartoon-Edge Young Hockey Player visual standard.'
+      },
+      {
+        rank: 34, isTop3Recommended: false, id: 'S12-C', pod: 'pod3', podLabel: 'Pod 3: Platform, Film & Growth', seatNumber: 12,
+        seatName: 'SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist', authorityRole: 'SafeSport Compliance, Sibling PIN Lock & 11-Channel Voice QA', optionCode: 'Rank #34',
+        seatLens: '🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist',
+        targetScope: 'Player Team Roster Hub (#playerTeamRosterHubModal) & Friends Wall (#synapzFriendsWallModal)',
+        title: '[VETOED] Add Open Direct-Message Chat Between Coaches and Youth Players Inside Team Roster Hub',
+        description: 'Proposal to add an unmoderated free-text DM chat box inside #playerTeamRosterHubModal and #synapzFriendsWallModal.',
+        candidCritique: 'CANDID CO-FOUNDER PUSHBACK: Open DM chat between adults and youth players or between unsupervised kids violates USA Hockey SafeSport and COPPA guardrails. All notifications must remain 100% standardized app alerts ("🏒 You have a new lesson plan in Synapz!") and social views must stay 100% read-only.',
+        crossImpact: 'Protects Youth Players, Parents, Coaches, and Associations from SafeSport liability (Seat 12, Seat 3 & Seat 6).',
+        screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat12-safesport-voice-qa.png`,
+        authorityFlow: 'VETOED by Seat 12 (SafeSport Authority) & Seat 3 (Pediatric/Family)',
+        status: 'vetoed', vetoReason: 'VETOED by Seat 12 & Seat 3 (SafeSport Rule): Zero open chat or direct coach-to-kid messaging permitted.'
+      },
+      {
+        rank: 35, isTop3Recommended: false, id: 'S4-D', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 4,
+        seatName: 'Hit Mobile Game & EdTech Retention Designer', authorityRole: 'HOW FUN Authority (Engagement & Rewards)', optionCode: 'Rank #35',
+        seatLens: 'Seat 4 — Hit Mobile Game & EdTech Retention Designer (HOW FUN Authority)',
+        targetScope: 'Walk-In Pro Shop (#proShopModal) • IQ-Tied Puck Bucks Economy',
+        title: '[VETOED] Allow Real-Money Loot Boxes to Bypass IQ-Tied Puck Bucks in Pro Shop',
+        description: 'Proposal to sell randomized mystery gear crates so players can unlock pro sticks without earning Hockey IQ scores.',
+        candidCritique: 'CANDID CO-FOUNDER PUSHBACK: Our Pro Shop economy is strictly tied to Hockey IQ mastery (95% IQ = +95 Puck Bucks) so gear on the ice is earned through real learning, never pay-to-win gambling crates.',
+        crossImpact: 'Preserves Parent trust (Seat 3) and keeps Puck Bucks 100% tied to Hockey IQ (Seat 2 & Seat 4).',
+        screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat4-32-city-tour-map.png`,
+        authorityFlow: 'VETOED by Seat 3 (Parent Trust) & Seat 2 (Instructional Integrity)',
+        status: 'vetoed', vetoReason: 'VETOED by Seat 2 & Seat 3: Puck Bucks must remain 100% earned via Hockey IQ scores, never randomized loot boxes.'
+      },
+      {
+        rank: 36, isTop3Recommended: false, id: 'S1-D', pod: 'pod1', podLabel: 'Pod 1: Player, Family & Learning', seatNumber: 1,
+        seatName: 'NCAA D1 / AAA & USA Hockey Systems Director', authorityRole: 'WHAT Authority (On-Ice Systems)', optionCode: 'Rank #36',
+        seatLens: 'Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director (WHAT Authority)',
+        targetScope: 'Coach\'s Office Station 3 (#coachOfficeStationPane_3) • Opponent Counter-Strategy KB',
+        title: '[VETOED] Send Identical 16U Trap-Break Counter-Strategy Drills to 8U Mite Rosters',
+        description: 'Proposal to push advanced 16U/18U 1-2-2 Neutral Zone Trap counter-drills to 8U Mite teams.',
+        candidCritique: 'CANDID CO-FOUNDER PUSHBACK: An 8U Mite team needs foundational small-area triangle support and quick shoulder scans—never complex 16U neutral-zone trap counters. Counter-plans must always scale by age division (8U–10U vs 12U–14U vs 16U–18U).',
+        crossImpact: 'Protects age-appropriate coaching across 8U–18U (Seat 1, Seat 2 & Seat 5).',
+        screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat1-on-ice-drill-setup.png`,
+        authorityFlow: 'VETOED by Seat 1 (WHAT Authority) & Seat 2 (HOW Authority)',
+        status: 'vetoed', vetoReason: 'VETOED by Seat 1 & Seat 2: Opponent counter-strategies must strictly adapt to the team\'s age division (8U–18U).'
       }
     ];
-    const BOARD_10_SEAT_DIGEST = BOARD_30_IDEA_DIGEST.slice(0, 10);
+    const BOARD_12_SEAT_DIGEST = BOARD_30_IDEA_DIGEST.slice(0, 12);
+    const BOARD_10_SEAT_DIGEST = BOARD_12_SEAT_DIGEST;
+    const BOARD_36_IDEA_DIGEST = BOARD_30_IDEA_DIGEST;
+    window.BOARD_12_SEAT_DIGEST = BOARD_12_SEAT_DIGEST;
     window.BOARD_10_SEAT_DIGEST = BOARD_10_SEAT_DIGEST;
+    window.BOARD_36_IDEA_DIGEST = BOARD_36_IDEA_DIGEST;
     window.BOARD_30_IDEA_DIGEST = BOARD_30_IDEA_DIGEST;
     state.activeDigestFilter = 'all';
 
@@ -20787,7 +20905,7 @@
     async function submitFounderRedFlagPriority() {
       SoundFX.playGoalHorn();
       const noteEl = document.getElementById('founderRedFlagNoteInput');
-      const note = (noteEl && noteEl.value.trim()) || 'Founder flagged screen/drill for priority review.';
+      const note = (noteEl && noteEl.value.trim()) || 'Founder flagged screen/drill for 12-Seat Council review.';
       const scen = getCurrentScenario();
       const payload = {
         created_by: 'Founder-Red-Flag',
@@ -20795,22 +20913,26 @@
         scenario_id: (scen && scen.id) || `SCREEN-${String(state.view || 'lobby').toUpperCase()}`,
         age_division: getActiveProfile()?.ageGroup || '12U',
         category: 'founder_red_flag',
-        status: 'founder_flagged_priority',
+        status: 'flagged_for_council_review',
         summary: `🚩 Founder Priority Flag (${state.view}): ${note}`,
         details: {
           view: state.view,
           activeProfile: getActiveProfile()?.name || 'Miles',
           scenarioTitle: scen?.title || null,
           note,
+          governanceProtocol: '4-Step Red Flag Council Review -> Options A/B -> Final Founder Approval',
           flaggedAt: new Date().toISOString()
         }
       };
+      if (!Array.isArray(state.founderRedFlagsQueue)) state.founderRedFlagsQueue = [];
+      state.founderRedFlagsQueue.unshift(payload);
+      saveProgress();
       if (typeof PuckSenseCloud !== 'undefined' && PuckSenseCloud.postAgentInboxFlag) {
         await PuckSenseCloud.postAgentInboxFlag(payload);
       }
       const toast = document.getElementById('founderRedFlagToast');
       if (toast) {
-        toast.textContent = '🚩 Logged to Supabase (public.pucksense_agent_inbox) with status="founder_flagged_priority"!';
+        toast.textContent = '🚩 Sent to the 12-Seat Council! The Council will review this screen, formulate Best-Practice Options, and send them in your next Nightly Report for your Final Approval before any code is changed.';
         toast.classList.remove('hidden');
       }
       return payload;

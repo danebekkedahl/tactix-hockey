@@ -240,6 +240,7 @@ const BOARD_30_IDEA_DIGEST = [
     rank: 10,
     isTop3Recommended: false,
     isTop10SeatPrimary: true,
+    isTop12SeatPrimary: true,
     id: 'S10-A',
     pod: 'pod3',
     podLabel: 'Pod 3: Platform, Film & Growth',
@@ -255,6 +256,50 @@ const BOARD_30_IDEA_DIGEST = [
     crossImpact: 'Simplifies onboarding for Parents (Seat 3), helps Association Directors roll out the app in 1 paste (Seat 6), and increases Personal Pro & Team Pro conversions (Seat 10).',
     screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat10-pricing-partner-gate.png`,
     authorityFlow: 'Proposed by Seat 10 → Validated by Seat 6 (Director) → Scoped by Seat 9 (WHERE)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 11,
+    isTop3Recommended: false,
+    isTop10SeatPrimary: true,
+    isTop12SeatPrimary: true,
+    id: 'S11-A',
+    pod: 'pod1',
+    podLabel: 'Pod 1: Player, Family & Learning',
+    seatNumber: 11,
+    seatName: 'Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist',
+    authorityRole: 'Gate D Visual Consistency (75% Realistic / 25% Cartoon-Edge)',
+    seatLens: '🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist (Gate D Visual Consistency)',
+    targetScope: 'Locker Room Avatar (#synapzLockerRoomModal) & Walk-In Pro Shop (#proShopModal) • 8U–18U All Tiers',
+    title: 'Side-by-Side "Current vs. Pro Shop Preview" 75%-Realistic Gear Mirror Inside Walk-In Pro Shop',
+    description: 'Render a live 75%-realistic Young Hockey Player Avatar mirror right beside the 4 Pro Shop Walls so players see any hovered Glove, Stick, Skate, or Visor equipped on their #9 skater before spending their IQ-tied Puck Bucks.',
+    alternativeProposal: 'Alternative (S11-B): Team-Color Home/Away Sweater Trim Sync Across Top-Down 2x Faceoff-Dot Skaters & Locker Room Avatar.',
+    candidCritique: 'CANDID ART DIRECTOR PUSHBACK: Kids love our 4-Wall Pro Shop and 75%-realistic SVG gear cards, but right now you buy a glove or visor on the wall and then walk back to the Locker Room to see how it looks on your skater. Putting a live 75%-realistic fitting mirror beside the wall makes every gear drop irresistible while keeping strictly 4 clean wall buttons.',
+    crossImpact: 'Boosts Pro Shop excitement for Kids (Seat 4), maintains strict 2–4 button simplicity (Seat 7), and enforces Gate D 75%-Realistic Visual Consistency (Seat 11).',
+    screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat11-art-director-avatar-shop.png`,
+    authorityFlow: 'Proposed by Seat 11 (Gate D Visual Consistency) → Co-Signed by Seat 4 (HOW FUN) & Seat 7 (WHERE)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 12,
+    isTop3Recommended: false,
+    isTop10SeatPrimary: true,
+    isTop12SeatPrimary: true,
+    id: 'S12-A',
+    pod: 'pod3',
+    podLabel: 'Pod 3: Platform, Film & Growth',
+    seatNumber: 12,
+    seatName: 'SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist',
+    authorityRole: 'SafeSport Compliance, Sibling PIN Lock & 11-Channel Voice QA',
+    seatLens: '🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist',
+    targetScope: 'Per-Profile PIN Lock (#playerProfileCredentialLockBox), 11-Voice Registry & SafeSport Bell (#safeSportNotificationModal) • All Users',
+    title: 'Parent-Verified "Quick Sibling Switch PIN Prompt" + 1-Tap 11-Voice Audio Health Check in Locker Room',
+    description: 'Require the target sibling\'s 2–4 digit PIN whenever switching between sibling stalls inside the Locker Room (matching the Entry Gate PIN lock) and add a 1-tap "🔊 Test My Agent & Coach Voices" button that verifies all 11 voice channels on iOS/Android mute switches.',
+    alternativeProposal: 'Alternative (S12-B): SafeSport Read-Receipt Counter (Zero Direct Replies) in Coach\'s Office Station 4.',
+    candidCritique: 'CANDID SAFESPORT & PRIVACY PUSHBACK: We locked the front door with #playerProfileCredentialLockBox so Rhett (#88) can\'t open Miles\'s (#9) profile from the start screen—but if Miles hands the iPad to Rhett while already inside the Locker Room, switching stalls must also enforce the sibling\'s PIN so zero Puck Bucks or gear loadouts are ever touched without permission!',
+    crossImpact: 'Protects Sibling Puck Bucks & Gear privacy for Families (Seat 3 & Seat 12), guarantees audible Agent/Coach greetings on iPads (Seat 2), and upholds 100% SafeSport compliance (Seat 12).',
+    screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat12-safesport-voice-qa.png`,
+    authorityFlow: 'Proposed by Seat 12 (SafeSport & Voice QA) → Validated by Seat 3 (Family) & Seat 9 (Engineering)',
     status: 'awaiting_founder_approval'
   },
   {
@@ -646,6 +691,155 @@ const BOARD_30_IDEA_DIGEST = [
     authorityFlow: 'VETOED by Seat 7 & Seat 9 (WHERE / 4-Tab Anti-Clutter Veto Power)',
     status: 'vetoed',
     vetoReason: 'VETOED by Seat 7 & Seat 9 (Anti-Clutter Veto): Admin/Coach widgets must live inside #teamManagerModal tabs, never on the gameplay HUD.'
+  },
+  {
+    rank: 31,
+    isTop3Recommended: false,
+    id: 'S11-B',
+    pod: 'pod1',
+    podLabel: 'Pod 1: Player, Family & Learning',
+    seatNumber: 11,
+    seatName: 'Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist',
+    authorityRole: 'Gate D Visual Consistency (75% Realistic / 25% Cartoon-Edge)',
+    seatLens: '🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist (Gate D Visual Consistency)',
+    targetScope: 'Top-Down 2x Faceoff-Dot Skaters (#rinkCanvas) & Locker Room Avatar (#synapzLockerRoomModal)',
+    title: 'Team-Color Home/Away Sweater Trim Sync Across Top-Down 2x Faceoff-Dot Skaters & Locker Room Avatar',
+    description: 'Automatically sync the Coach\'s Office Team Sweater Colors onto both the Locker Room Young Hockey Player Avatar and the 2x Faceoff-Dot Top-Down Skater shoulders and socks on #rinkCanvas.',
+    candidCritique: 'CANDID ART DIRECTOR CRITIQUE: When a player joins Minot Wolves (PUCK99), seeing their exact team sweater trim reflected on both their 75%-realistic Locker Room skater and their 2x Faceoff-Dot on-ice skater unifies the visual world.',
+    crossImpact: 'Strengthens team pride for Players & Coaches (Seat 4 & Seat 5) and enforces Gate D Visual Consistency (Seat 11).',
+    screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat11-art-director-avatar-shop.png`,
+    authorityFlow: 'Proposed by Seat 11 (Gate D) → Co-Signed by Seat 5 (Coach) & Seat 9 (<canvas>)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 32,
+    isTop3Recommended: false,
+    id: 'S12-B',
+    pod: 'pod3',
+    podLabel: 'Pod 3: Platform, Film & Growth',
+    seatNumber: 12,
+    seatName: 'SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist',
+    authorityRole: 'SafeSport Compliance, Sibling PIN Lock & 11-Channel Voice QA',
+    seatLens: '🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist',
+    targetScope: 'Coach\'s Office Station 4 (#coachOfficeStationPane_4) • SafeSport Notification Center',
+    title: 'SafeSport Read-Receipt Counter (Zero Direct Replies) in Coach\'s Office Station 4',
+    description: 'Show coaches in Station 4 how many roster players have opened the standardized SafeSport lesson notification ("18/20 Viewed Plan") without allowing any free-text DMs or replies.',
+    candidCritique: 'CANDID SAFESPORT CRITIQUE: Coaches want to know that their Friday afternoon push alert was seen before Saturday\'s game, while parents demand zero open 1-on-1 messaging. A read-only "18/20 Viewed Plan" counter solves both.',
+    crossImpact: 'Gives Coaches delivery confidence (Seat 5) while maintaining 100% SafeSport compliance (Seat 12 & Seat 3).',
+    screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat12-safesport-voice-qa.png`,
+    authorityFlow: 'Proposed by Seat 12 (SafeSport) → Endorsed by Seat 5 (Coach) & Seat 3 (Family)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 33,
+    isTop3Recommended: false,
+    id: 'S11-C',
+    pod: 'pod1',
+    podLabel: 'Pod 1: Player, Family & Learning',
+    seatNumber: 11,
+    seatName: 'Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist',
+    authorityRole: 'Gate D Visual Consistency (75% Realistic / 25% Cartoon-Edge)',
+    seatLens: '🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist (Gate D Visual Consistency)',
+    targetScope: 'Locker Room Avatar (#synapzLockerRoomModal) & Active Rink (#rinkCanvas)',
+    title: '[VETOED] Replace 75%-Realistic Hockey Kid & 2x Faceoff-Dot Skaters With Neon Sci-Fi Robot Mechs',
+    description: 'Proposal to replace the recognizable Young Hockey Player Avatar and top-down hockey skaters with glowing sci-fi robot characters.',
+    candidCritique: 'CANDID CO-FOUNDER PUSHBACK: Coach Dane & Coach Evan explicitly locked our "75% Realistic / 25% Cartoon-Edge" hockey identity! Youth hockey players want to look like real hockey players wearing real 4-roll gloves, tinted visors, and pro carbon sticks—never blocky robots.',
+    crossImpact: 'Protects authentic hockey identity across Locker Room, Pro Shop, and On-Ice Lessons (Seat 11, Seat 1 & Seat 4).',
+    screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat11-art-director-avatar-shop.png`,
+    authorityFlow: 'VETOED by Seat 11 (Gate D Visual Consistency Authority) & Seat 1',
+    status: 'vetoed',
+    vetoReason: 'VETOED by Seat 11 (Gate D Visual Consistency): Violates the locked 75% Realistic / 25% Cartoon-Edge Young Hockey Player visual standard.'
+  },
+  {
+    rank: 34,
+    isTop3Recommended: false,
+    id: 'S12-C',
+    pod: 'pod3',
+    podLabel: 'Pod 3: Platform, Film & Growth',
+    seatNumber: 12,
+    seatName: 'SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist',
+    authorityRole: 'SafeSport Compliance, Sibling PIN Lock & 11-Channel Voice QA',
+    seatLens: '🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist',
+    targetScope: 'Player Team Roster Hub (#playerTeamRosterHubModal) & Friends Wall (#synapzFriendsWallModal)',
+    title: '[VETOED] Add Open Direct-Message Chat Between Coaches and Youth Players Inside Team Roster Hub',
+    description: 'Proposal to add an unmoderated free-text DM chat box inside #playerTeamRosterHubModal and #synapzFriendsWallModal.',
+    candidCritique: 'CANDID CO-FOUNDER PUSHBACK: Open DM chat between adults and youth players or between unsupervised kids violates USA Hockey SafeSport and COPPA guardrails. All notifications must remain 100% standardized app alerts ("🏒 You have a new lesson plan in Synapz!") and social views must stay 100% read-only.',
+    crossImpact: 'Protects Youth Players, Parents, Coaches, and Associations from SafeSport liability (Seat 12, Seat 3 & Seat 6).',
+    screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat12-safesport-voice-qa.png`,
+    authorityFlow: 'VETOED by Seat 12 (SafeSport Authority) & Seat 3 (Pediatric/Family)',
+    status: 'vetoed',
+    vetoReason: 'VETOED by Seat 12 & Seat 3 (SafeSport Rule): Zero open chat or direct coach-to-kid messaging permitted.'
+  },
+  {
+    rank: 35,
+    isTop3Recommended: false,
+    id: 'S4-D',
+    pod: 'pod1',
+    podLabel: 'Pod 1: Player, Family & Learning',
+    seatNumber: 4,
+    seatName: 'Hit Mobile Game & EdTech Retention Designer',
+    authorityRole: 'HOW FUN Authority (Engagement & Rewards)',
+    seatLens: 'Seat 4 — Hit Mobile Game & EdTech Retention Designer (HOW FUN Authority)',
+    targetScope: 'Walk-In Pro Shop (#proShopModal) • IQ-Tied Puck Bucks Economy',
+    title: '[VETOED] Allow Real-Money Loot Boxes to Bypass IQ-Tied Puck Bucks in Pro Shop',
+    description: 'Proposal to sell randomized mystery gear crates so players can unlock pro sticks without earning Hockey IQ scores.',
+    candidCritique: 'CANDID CO-FOUNDER PUSHBACK: Our Pro Shop economy is strictly tied to Hockey IQ mastery (95% IQ = +95 Puck Bucks) so gear on the ice is earned through real learning, never pay-to-win gambling crates.',
+    crossImpact: 'Preserves Parent trust (Seat 3) and keeps Puck Bucks 100% tied to Hockey IQ (Seat 2 & Seat 4).',
+    screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat4-32-city-tour-map.png`,
+    authorityFlow: 'VETOED by Seat 3 (Parent Trust) & Seat 2 (Instructional Integrity)',
+    status: 'vetoed',
+    vetoReason: 'VETOED by Seat 2 & Seat 3: Puck Bucks must remain 100% earned via Hockey IQ scores, never randomized loot boxes.'
+  },
+  {
+    rank: 36,
+    isTop3Recommended: false,
+    id: 'S1-D',
+    pod: 'pod1',
+    podLabel: 'Pod 1: Player, Family & Learning',
+    seatNumber: 1,
+    seatName: 'NCAA D1 / AAA & USA Hockey Systems Director',
+    authorityRole: 'WHAT Authority (On-Ice Systems)',
+    seatLens: 'Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director (WHAT Authority)',
+    targetScope: 'Coach\'s Office Station 3 (#coachOfficeStationPane_3) • Opponent Counter-Strategy KB',
+    title: '[VETOED] Send Identical 16U Trap-Break Counter-Strategy Drills to 8U Mite Rosters',
+    description: 'Proposal to push advanced 16U/18U 1-2-2 Neutral Zone Trap counter-drills to 8U Mite teams.',
+    candidCritique: 'CANDID CO-FOUNDER PUSHBACK: An 8U Mite team needs foundational small-area triangle support and quick shoulder scans—never complex 16U neutral-zone trap counters. Counter-strategies must always scale by age division (8U–10U vs 12U–14U vs 16U–18U).',
+    crossImpact: 'Protects age-appropriate coaching across 8U–18U (Seat 1, Seat 2 & Seat 5).',
+    screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat1-on-ice-drill-setup.png`,
+    authorityFlow: 'VETOED by Seat 1 (WHAT Authority) & Seat 2 (HOW Authority)',
+    status: 'vetoed',
+    vetoReason: 'VETOED by Seat 1 & Seat 2: Opponent counter-strategies must strictly adapt to the team\'s age division (8U–18U).'
+  }
+];
+
+const SEAT_0_RED_FLAG_COUNCIL_OPTIONS = [
+  {
+    id: 'RF-COUNCIL-REVIEW-01',
+    scenarioId: 'breakout-d-to-d-12u',
+    ageDivision: '12U',
+    flaggedScreen: 'On-Ice Lesson Screen (#gameViewSection • 12U D-to-D Breakout)',
+    founderOriginalNote: 'On 12U D-to-D Breakout drills, let us make sure the weak-side winger outlet and D2 hinge spacing feel crystal clear before the 3s freeze.',
+    liveScreenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_red_flag_council_review.png`,
+    status: 'council_options_ready_awaiting_approval',
+    convenedSpecialists: '🏒 Seat 1 (NCAA D1 / USA Hockey Systems) • 🎓 Seat 2 (Instructional Designer) • 📱 Seat 7 (UX & Anti-Clutter Lead) • 🎨 Seat 11 (Lead Art Director) • 🛡️ Seat 12 (SafeSport & Voice QA)',
+    councilDiagnosis: 'Seats 1, 2, 7, 11 & 12 inspected the 12U D-to-D Breakout screen live in Chrome (see screenshot). During the 3.0s flow-and-freeze lead-in, D1 retrieves the puck under F1 pressure while D2 hinges behind the goal line—if the weak-side winger (RW) and D2 hinge lane are not visually connected before the freeze, 10U/12U players sometimes focus only on F1 and miss the weak-side outlet.',
+    optionA: {
+      optionCode: 'Option A',
+      label: 'Option A (Council\'s Recommended Best-Practice Solution)',
+      title: 'Synchronized Cyan D-to-D Hinge Arc + Weak-Side Outlet Pulse During Final 0.8s of 3s Flow-and-Freeze',
+      coSignedBy: 'Co-Signed by Seat 1 (Systems), Seat 2 (Instructional), Seat 7 (Zero-Clutter UX) & Seat 11 (Art Director)',
+      whyRecommended: 'Draws a clean, subtle dashed cyan passing arc from D1 -> D2 -> Weak-Side Winger during the final 0.8s of the 3-second pre-read motion roll-in and fades it out at the freeze frame—teaching real 5-man unit timing with zero extra buttons or text clutter.',
+      whatItChanges: 'Updates drawRink() in index.html to render a 2px dashed cyan D-to-D-to-Wing timing connector during flow_and_freeze (progress >= 0.72) and adds a 1-sentence Coach Bob cue (<14 words for 8U/10U).'
+    },
+    optionB: {
+      optionCode: 'Option B',
+      label: 'Option B (Alternative Professional Approach)',
+      title: 'Post-Freeze "👀 Peek Weak-Side Outlet" Hover Highlight on D2 & Weak-Side Winger',
+      coSignedBy: 'Alternative Scoped by Seat 3 (Pediatric/Family) & Seat 9 (<canvas> Engineer)',
+      prosAndCons: 'PROS: Keeps the 3-second moving flow 100% unassisted so advanced 14U–18U AA/AAA players read pure skater body language, while letting players hover/tap D2 after the freeze to preview the weak-side passing triangle. CONS: Less proactive for 8U/10U beginners than Option A.',
+      whatItChanges: 'Adds a post-freeze hover halo on D2 and the weak-side winger in index.html without altering the 3-second moving lead-in.'
+    },
+    plainEnglishExplanation: 'PLAIN ENGLISH SUMMARY FOR DANE & EVAN: Zero code was mutated tonight! Option A (Recommended) shows a brief dashed passing line connecting D1, D2, and the open winger right before the play freezes so kids see why D2 hinges behind the net. Option B waits until the play freezes and highlights the open side when the player hovers over D2. Click [✅ Approve Option A] or [✅ Approve Option B] to flip status to "approved_for_build" for the next build!'
   }
 ];
 
@@ -663,12 +857,16 @@ function buildCrossSeatCoSign(item) {
   const gateC = isVeto
     ? 'Gate C (Seat 8 Principal Engineer + Seat 10 Blind QA): Blocked from build queue to protect 60fps <canvas>, sibling localStorage isolation, and blind playtest integrity.'
     : `Gate C (Seat 8 Principal Engineer + Seat 10 Blind QA): Scoped for 60fps requestAnimationFrame <canvas> rendering, normalizeSynapzState() sibling isolation, and 100% blind playtest verification before merge.`;
+  const gateD = isVeto
+    ? 'Gate D (🎨 Seat 11 Art Director + 🛡️ Seat 12 SafeSport/Voice QA): Veto upheld—protects 75%-Realistic / 25%-Cartoon-Edge hockey aesthetic, 100% SafeSport read-only privacy, and 11-Voice Registry integrity.'
+    : `Gate D (🎨 Seat 11 Art Director + 🛡️ Seat 12 SafeSport/Voice QA): Co-signed for 75%-Realistic / 25%-Cartoon-Edge visual consistency, 2x Faceoff-Dot skater clarity, Per-Profile PIN Lock privacy, and 11-Voice audio QA.`;
 
   return {
     gateA_TacticalAdm: gateA,
     gateB_CognitionUx: gateB,
     gateC_EngineeringQa: gateC,
-    summary: `${gateA} | ${gateB} | ${gateC}`
+    gateD_VisualSafeSportQa: gateD,
+    summary: `${gateA} | ${gateB} | ${gateC} | ${gateD}`
   };
 }
 
@@ -678,6 +876,58 @@ for (const item of BOARD_30_IDEA_DIGEST) {
 }
 
 const TOP_5_COSIGNED_CONSENSUS_PRIORITIES = BOARD_30_IDEA_DIGEST.filter(i => i.rank <= 5);
+const BOARD_12_SEAT_DIGEST = BOARD_30_IDEA_DIGEST.filter(i => i.rank <= 12);
+const BOARD_36_IDEA_DIGEST = BOARD_30_IDEA_DIGEST;
+
+function renderRedFlagCouncilOptionsHtml(rf) {
+  const explainUrl = `${PAGES_BASE_URL}/report.html?action=explain_red_flag&id=${encodeURIComponent(rf.id)}#seat0-red-flag-council`;
+  const approveAUrl = `${PAGES_BASE_URL}/report.html?action=approve_option_a&id=${encodeURIComponent(rf.id)}#seat0-red-flag-council`;
+  const approveBUrl = `${PAGES_BASE_URL}/report.html?action=approve_option_b&id=${encodeURIComponent(rf.id)}#seat0-red-flag-council`;
+  const rejectUrl = `${PAGES_BASE_URL}/report.html?action=reject&id=${encodeURIComponent(rf.id)}#seat0-red-flag-council`;
+
+  return `
+<div style="background:#1f0915;border:2px solid #fb7185;border-radius:14px;padding:16px;margin-bottom:14px;">
+  <div style="margin-bottom:8px;">
+    <span style="background:#e11d48;color:#fff;font-size:10px;font-weight:900;padding:3px 9px;border-radius:99px;">🚩 SEAT 0 COUNCIL REVIEW READY • status = 'council_options_ready_awaiting_approval'</span>
+    <span style="font-size:11px;font-weight:800;color:#fda4af;margin-left:6px;">ID: ${rf.id} • Scenario: ${rf.scenarioId} (${rf.ageDivision})</span>
+  </div>
+  <div style="font-size:15px;font-weight:900;color:#ffffff;margin-bottom:8px;">🚩 Founder Note: "${rf.founderOriginalNote}"</div>
+  <div style="font-size:12px;color:#e2e8f0;line-height:1.5;">
+    <div style="margin-bottom:6px;"><strong style="color:#38bdf8;">Convened 12-Seat Specialists:</strong> ${rf.convenedSpecialists}</div>
+    <div style="margin-bottom:8px;"><strong style="color:#fbbf24;">12-Seat Council Multi-Discipline Diagnosis:</strong> ${rf.councilDiagnosis}</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px;">
+      <div style="background:#022c22;border:2px solid #10b981;border-radius:10px;padding:10px;">
+        <div style="font-size:11px;font-weight:900;color:#34d399;text-transform:uppercase;">✅ ${rf.optionA.label}</div>
+        <div style="font-size:13px;font-weight:900;color:#fff;margin:3px 0;">${rf.optionA.title}</div>
+        <div style="font-size:11px;color:#a7f3d0;margin-bottom:4px;"><em>${rf.optionA.coSignedBy}</em></div>
+        <div style="font-size:11px;color:#e2e8f0;margin-bottom:4px;"><strong>Why Co-Signed:</strong> ${rf.optionA.whyRecommended}</div>
+        <div style="font-size:11px;color:#cbd5e1;"><strong>What It Changes:</strong> ${rf.optionA.whatItChanges}</div>
+      </div>
+      <div style="background:#0f172a;border:2px solid #38bdf8;border-radius:10px;padding:10px;">
+        <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">🔄 ${rf.optionB.label}</div>
+        <div style="font-size:13px;font-weight:900;color:#fff;margin:3px 0;">${rf.optionB.title}</div>
+        <div style="font-size:11px;color:#bae6fd;margin-bottom:4px;"><em>${rf.optionB.coSignedBy}</em></div>
+        <div style="font-size:11px;color:#e2e8f0;margin-bottom:4px;"><strong>Pros &amp; Cons:</strong> ${rf.optionB.prosAndCons}</div>
+        <div style="font-size:11px;color:#cbd5e1;"><strong>What It Changes:</strong> ${rf.optionB.whatItChanges}</div>
+      </div>
+    </div>
+    <div style="margin-bottom:8px;padding:8px;background:#091526;border:1px solid #38bdf8;border-radius:8px;font-size:11px;color:#bae6fd;">
+      <strong>🔍 Plain-English Options Summary:</strong> ${rf.plainEnglishExplanation}
+    </div>
+    <div style="margin-bottom:10px;">
+      <strong style="color:#34d399;">Live Council Review Screenshot:</strong> <a href="${rf.liveScreenshotUrl}" target="_blank" style="color:#38bdf8;">audit_red_flag_council_review.png</a><br/>
+      <img src="${rf.liveScreenshotUrl}" alt="${rf.id}" style="max-width:100%;width:480px;border-radius:8px;border:1px solid #fb7185;margin-top:4px;display:block;" />
+    </div>
+    <div>
+      <strong style="color:#fde047;">Step 3 -> Step 4 Final Founder Decision (Zero Code Changed Until You Approve):</strong><br/>
+      <a href="${explainUrl}" style="background:#0284c7;color:#fff;font-weight:900;font-size:11px;padding:7px 12px;border-radius:6px;text-decoration:none;display:inline-block;margin:4px 6px 0 0;">🔍 Explain Options in Plain English</a>
+      <a href="${approveAUrl}" style="background:#059669;color:#fff;font-weight:900;font-size:11px;padding:7px 12px;border-radius:6px;text-decoration:none;display:inline-block;margin:4px 6px 0 0;">✅ Approve Option A (Recommended) for Next Build</a>
+      <a href="${approveBUrl}" style="background:#0d9488;color:#fff;font-weight:900;font-size:11px;padding:7px 12px;border-radius:6px;text-decoration:none;display:inline-block;margin:4px 6px 0 0;">✅ Approve Option B for Next Build</a>
+      <a href="${rejectUrl}" style="background:#be123c;color:#fff;font-weight:900;font-size:11px;padding:7px 12px;border-radius:6px;text-decoration:none;display:inline-block;margin:4px 0 0 0;">❌ Hold / Dismiss</a>
+    </div>
+  </div>
+</div>`;
+}
 
 function renderSevenFieldCardHtml(item, isTop5Banner = false) {
   const isVetoed = item.status === 'vetoed';
@@ -685,9 +935,9 @@ function renderSevenFieldCardHtml(item, isTop5Banner = false) {
   const bgCol = isTop5Banner ? '#022c22' : isVetoed ? '#3b071e' : '#0f172a';
   const badgeBg = isTop5Banner ? '#059669' : isVetoed ? '#e11d48' : '#0284c7';
   const badgeText = isTop5Banner
-    ? `🤝 TOP #${item.rank} CO-SIGNED CONSENSUS PRIORITY (10/10 SEATS) • AWAITING FOUNDER APPROVAL`
+    ? `🤝 TOP #${item.rank} CO-SIGNED CONSENSUS PRIORITY (12/12 SEATS) • AWAITING FOUNDER APPROVAL`
     : isVetoed
-      ? `🛑 RANK #${item.rank} • VETOED BY 3-GATE ROUNDTABLE`
+      ? `🛑 RANK #${item.rank} • VETOED BY 4-GATE ROUNDTABLE`
       : `📋 RANK #${item.rank} CO-SIGNED PROPOSAL • AWAITING FOUNDER APPROVAL`;
 
   const explainHref = `${PAGES_BASE_URL}/report.html?founder_action=explain&idea_id=${encodeURIComponent(item.id)}#founder-approval-board`;
@@ -703,7 +953,7 @@ function renderSevenFieldCardHtml(item, isTop5Banner = false) {
     <div style="margin-bottom:4px;"><strong style="color:#38bdf8;">1. Seat &amp; Lens:</strong> ${item.seatLens} <span style="color:#94a3b8;">(${item.authorityFlow})</span></div>
     <div style="margin-bottom:4px;"><strong style="color:#fbbf24;">2. Target Scope:</strong> ${item.targetScope}</div>
     <div style="margin-bottom:4px;"><strong style="color:#f43f5e;">3. Candid Critique &amp; Proposal:</strong> ${item.candidCritique} <span style="color:#a7f3d0;"><strong>Build:</strong> ${item.description}</span>${item.alternativeProposal ? ` <span style="color:#bae6fd;"><strong>[Alt: ${item.alternativeProposal}]</strong></span>` : ''}</div>
-    <div style="margin-bottom:4px;padding:6px;background:#091526;border:1px solid #0284c7;border-radius:6px;"><strong style="color:#22d3ee;">4. 🤝 Cross-Seat Collaboration (3 Gates):</strong><br/>• ${coSign.gateA_TacticalAdm}<br/>• ${coSign.gateB_CognitionUx}<br/>• ${coSign.gateC_EngineeringQa}</div>
+    <div style="margin-bottom:4px;padding:6px;background:#091526;border:1px solid #0284c7;border-radius:6px;"><strong style="color:#22d3ee;">4. 🤝 Cross-Seat Collaboration (4 Gates):</strong><br/>• ${coSign.gateA_TacticalAdm}<br/>• ${coSign.gateB_CognitionUx}<br/>• ${coSign.gateC_EngineeringQa}<br/>• ${coSign.gateD_VisualSafeSportQa}</div>
     <div style="margin-bottom:6px;"><strong style="color:#c084fc;">5. Cross-Impact:</strong> ${item.crossImpact}</div>
     <div style="margin-bottom:8px;"><strong style="color:#34d399;">6. Live Screenshot:</strong> <a href="${item.screenshotUrl}" target="_blank" style="color:#38bdf8;">${item.screenshotUrl.split('/').pop()}</a><br/><img src="${item.screenshotUrl}" alt="${item.id}" style="max-width:100%;width:480px;border-radius:8px;border:1px solid #475569;margin-top:4px;display:block;" /></div>
     <div><strong style="color:#fde047;">7. Founder Approval:</strong> <a href="${explainHref}" style="background:#0284c7;color:#fff;font-weight:900;font-size:11px;padding:6px 12px;border-radius:6px;text-decoration:none;margin-right:6px;">🔍 Explain This to Me</a> <a href="${approveHref}" style="background:#059669;color:#fff;font-weight:900;font-size:11px;padding:6px 12px;border-radius:6px;text-decoration:none;margin-right:6px;">✅ Approve for Next Build</a> <a href="${rejectHref}" style="background:#be123c;color:#fff;font-weight:900;font-size:11px;padding:6px 12px;border-radius:6px;text-decoration:none;">❌ Reject</a></div>
@@ -720,41 +970,48 @@ function buildEmailHtml(ideas, timestamp) {
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SYNAPZ HOCKEY — Phase 1 Modular Redesign &amp; Nightly 10-Seat Collaborative Roundtable Digest</title>
+  <title>SYNAPZ HOCKEY — Nightly 12-Seat Collaborative Roundtable, Red-Flag Council Options &amp; Top 5 Consensus Digest</title>
 </head>
 <body style="font-family: Inter, Arial, sans-serif; background:#020617; color:#f8fafc; padding:20px; line-height:1.5;">
   <div style="max-width:920px; margin:0 auto; background:#090d16; border:2px solid #00e5ff; border-radius:18px; padding:24px;">
-    <div style="font-size:11px; font-weight:900; color:#00e5ff; text-transform:uppercase; letter-spacing:0.08em;">SYNAPZ HOCKEY • PLAY. LEARN. DOMINATE. • PHASE 1 MODULAR REDESIGN + 10-SEAT ROUNDTABLE (SECTIONS 25 &amp; 26)</div>
-    <h1 style="margin:6px 0 8px; font-size:22px; color:#ffffff;">🏒 Phase 1 Modular Redesign Live: 2-Button Entry Gate, 9 Player Agents (Voice Audition), Virtual Rink Lobby &amp; Top 5 Co-Signed Priorities</h1>
+    <div style="font-size:11px; font-weight:900; color:#00e5ff; text-transform:uppercase; letter-spacing:0.08em;">SYNAPZ HOCKEY • PLAY. LEARN. DOMINATE. • SECTION 27: 12-SEAT BOARD + 🚩 SEAT 0 RED-FLAG COUNCIL OPTIONS PROTOCOL</div>
+    <h1 style="margin:6px 0 8px; font-size:22px; color:#ffffff;">🏒 Nightly 12-Seat Collaborative Roundtable, 🚩 Seat 0 Red-Flag Council Options (Option A vs. Option B) &amp; Top 5 Consensus Digest</h1>
     <p style="margin:0 0 14px; font-size:13px; color:#cbd5e1;">
       Prepared for <strong>Coach Dane (danebekkedahl@gmail.com)</strong> &amp; <strong>Coach Evan (evanbekk@gmail.com)</strong> • Generated ${timestamp}<br/>
       🌐 <strong>Live App:</strong> <a href="https://danebekkedahl.github.io/synapz-hockey/" style="color:#00e5ff; font-weight:800;">https://danebekkedahl.github.io/synapz-hockey/</a> •
-      📊 <strong>Live 10-Seat Board &amp; Report:</strong> <a href="https://danebekkedahl.github.io/synapz-hockey/report.html#founder-approval-board" style="color:#34d399; font-weight:800;">https://danebekkedahl.github.io/synapz-hockey/report.html</a> •
+      📊 <strong>Live 12-Seat Board &amp; Red-Flag Council Report:</strong> <a href="https://danebekkedahl.github.io/synapz-hockey/report.html#seat0-red-flag-council" style="color:#34d399; font-weight:800;">https://danebekkedahl.github.io/synapz-hockey/report.html</a> •
       🪞 <strong>Mirror:</strong> <a href="https://danebekkedahl.github.io/tactix-hockey/" style="color:#94a3b8;">tactix-hockey</a><br/>
-      🔒 <strong>Strict Approval Gate &amp; 3-Gate Roundtable Enforced:</strong> Click <strong>[🔍 Explain This to Me]</strong> for a plain-English breakdown or <strong>[✅ Approve for Next Build]</strong> to set <code>status = 'approved_for_build'</code> in Supabase!
+      🔒 <strong>4-Step Red-Flag Governance &amp; 12-Seat Approval Gate Enforced:</strong> A Founder <code>🚩 Red Flag</code> NEVER changes code without review! Below, <code>Seat 0</code> presents Option A (Recommended) vs. Option B for your Final Approval.
     </p>
 
-    <!-- PHASE 1 MODULAR REDESIGN SCREENSHOTS -->
+    <!-- 🚩 FOUNDER RED FLAGS — 12-SEAT COUNCIL REVIEW & OPTIONS (AWAITING FINAL APPROVAL) -->
+    <div id="seat0-red-flag-council" style="background:#2d0616; border:2px solid #f43f5e; border-radius:14px; padding:16px; margin-bottom:22px;">
+      <div style="font-size:11px; font-weight:900; color:#fda4af; text-transform:uppercase; letter-spacing:0.06em;">🚩 FOUNDER RED FLAGS — 12-SEAT COUNCIL REVIEW &amp; OPTIONS (AWAITING FINAL APPROVAL)</div>
+      <div style="font-size:15px; font-weight:900; color:#ffffff; margin:4px 0 8px;">4-Step Governance: 1. Submit in App (flagged_for_council_review) -> 2. Seat 0 12-Seat Council Options (Option A vs. Option B) -> 3. Sent in Nightly Report -> 4. Built ONLY After You Click Approve Option A or Option B</div>
+      ${SEAT_0_RED_FLAG_COUNCIL_OPTIONS.map(rf => renderRedFlagCouncilOptionsHtml(rf)).join('')}
+    </div>
+
+    <!-- ALL 6 PHASES + SEAT 11 & SEAT 12 LIVE SCREENSHOTS -->
     <div style="background:#0f172a; border:2px solid #00e5ff; border-radius:14px; padding:16px; margin-bottom:22px;">
-      <div style="font-size:11px; font-weight:900; color:#00e5ff; text-transform:uppercase; letter-spacing:0.06em;">📸 PHASE 1 MODULAR REDESIGN SCREENSHOTS (2-BUTTON GATE -> PROFILE PIN LOCK -> RINK LOBBY -> 9 PLAYER AGENTS)</div>
+      <div style="font-size:11px; font-weight:900; color:#00e5ff; text-transform:uppercase; letter-spacing:0.06em;">📸 LIVE PLAYWRIGHT AUDIT SCREENSHOTS (SEAT 0 RED-FLAG REVIEW, SEAT 11 ART DIRECTOR &amp; SEAT 12 SAFESPORT/VOICE QA)</div>
       <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; margin-top:10px; font-size:11px; color:#cbd5e1;">
-        <div><a href="${PAGES_BASE_URL}/screenshots/audit_step1_portals.png" style="color:#38bdf8; font-weight:800;">1. Strictly 2-Button Entry Gate (Player &amp; Team Portal)</a><img src="${PAGES_BASE_URL}/screenshots/audit_step1_portals.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
-        <div><a href="${PAGES_BASE_URL}/screenshots/audit_step2_player_login.png" style="color:#38bdf8; font-weight:800;">2. Per-Profile Credential Lock &amp; Enter Lobby</a><img src="${PAGES_BASE_URL}/screenshots/audit_step2_player_login.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
-        <div><a href="${PAGES_BASE_URL}/screenshots/audit_rink_lobby.png" style="color:#38bdf8; font-weight:800;">3. Central Hub: Virtual Hockey Rink Lobby (5 Stations)</a><img src="${PAGES_BASE_URL}/screenshots/audit_rink_lobby.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
-        <div><a href="${PAGES_BASE_URL}/screenshots/audit_player_agent_picker.png" style="color:#38bdf8; font-weight:800;">4. 9 Player Agents w/ Pre-Selection Voice Audition</a><img src="${PAGES_BASE_URL}/screenshots/audit_player_agent_picker.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_red_flag_council_review.png" style="color:#fda4af; font-weight:800;">1. 🚩 Seat 0: Red-Flag Council Review (12U D-to-D Breakout)</a><img src="${PAGES_BASE_URL}/screenshots/audit_red_flag_council_review.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/assets/audit-screenshots/seat11-art-director-avatar-shop.png" style="color:#38bdf8; font-weight:800;">2. 🎨 Seat 11: 75%-Realistic Avatar &amp; Full Blackout Loadout</a><img src="${PAGES_BASE_URL}/assets/audit-screenshots/seat11-art-director-avatar-shop.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/assets/audit-screenshots/seat12-safesport-voice-qa.png" style="color:#38bdf8; font-weight:800;">3. 🛡️ Seat 12: SafeSport Notification Center &amp; Voice QA</a><img src="${PAGES_BASE_URL}/assets/audit-screenshots/seat12-safesport-voice-qa.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_bucket_coverage_report.png" style="color:#38bdf8; font-weight:800;">4. 📊 Phase 6: 16-Bucket / 5,760+ Organic Permutations Report</a><img src="${PAGES_BASE_URL}/screenshots/audit_bucket_coverage_report.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
       </div>
     </div>
 
     <!-- TOP 5 CO-SIGNED CONSENSUS PRIORITIES SUMMARY TABLE -->
     <div style="background:#022c22; border:2px solid #10b981; border-radius:14px; padding:16px; margin-bottom:22px;">
-      <div style="font-size:11px; font-weight:900; color:#34d399; text-transform:uppercase; letter-spacing:0.06em;">🏆 TOP 5 CO-SIGNED CONSENSUS PRIORITIES (UNANIMOUS 10-SEAT ROUNDTABLE VOTE)</div>
-      <div style="font-size:15px; font-weight:900; color:#ffffff; margin:4px 0 8px;">Ranked #1 to #5 Highest-Impact Upgrades Co-Signed Across All 3 Best-Practice Gates</div>
+      <div style="font-size:11px; font-weight:900; color:#34d399; text-transform:uppercase; letter-spacing:0.06em;">🏆 TOP 5 CO-SIGNED CONSENSUS PRIORITIES (UNANIMOUS 12-SEAT ROUNDTABLE VOTE)</div>
+      <div style="font-size:15px; font-weight:900; color:#ffffff; margin:4px 0 8px;">Ranked #1 to #5 Highest-Impact Upgrades Co-Signed Across All 4 Best-Practice Gates (Gates A, B, C &amp; D)</div>
       <table style="width:100%; border-collapse:collapse; font-size:12px; color:#e2e8f0; background:#0f172a; border-radius:10px; overflow:hidden;">
         <thead>
           <tr style="background:#1e293b; color:#fbbf24; text-align:left;">
             <th style="padding:8px;">Rank &amp; ID</th>
             <th style="padding:8px;">What to Build &amp; Target Age/Tier</th>
-            <th style="padding:8px;">3-Gate Cross-Seat Co-Sign Summary</th>
+            <th style="padding:8px;">4-Gate Cross-Seat Co-Sign Summary</th>
             <th style="padding:8px;">1-Click Decision</th>
           </tr>
         </thead>
@@ -763,7 +1020,7 @@ function buildEmailHtml(ideas, timestamp) {
             <tr>
               <td style="padding:8px; border-top:1px solid #1e293b; font-weight:900; color:#34d399;">#${item.rank} (${item.id})<br/><span style="font-size:10px; color:#94a3b8;">Seat ${item.seatNumber} Lead</span></td>
               <td style="padding:8px; border-top:1px solid #1e293b;"><strong>${item.title}</strong><br/><span style="font-size:11px; color:#38bdf8;">${item.targetScope}</span></td>
-              <td style="padding:8px; border-top:1px solid #1e293b; font-size:11px; color:#cbd5e1;">${item.crossSeatCoSign.gateA_TacticalAdm}<br/>${item.crossSeatCoSign.gateB_CognitionUx}</td>
+              <td style="padding:8px; border-top:1px solid #1e293b; font-size:11px; color:#cbd5e1;">${item.crossSeatCoSign.gateA_TacticalAdm}<br/>${item.crossSeatCoSign.gateD_VisualSafeSportQa}</td>
               <td style="padding:8px; border-top:1px solid #1e293b; white-space:nowrap;">
                 <a href="${PAGES_BASE_URL}/report.html?founder_action=explain&idea_id=${encodeURIComponent(item.id)}#founder-approval-board" style="background:#0284c7; color:#fff; padding:5px 9px; border-radius:6px; text-decoration:none; font-weight:900; font-size:11px; display:inline-block; margin-bottom:4px;">🔍 Explain</a><br/>
                 <a href="${PAGES_BASE_URL}/report.html?founder_action=approve&idea_id=${encodeURIComponent(item.id)}#founder-approval-board" style="background:#059669; color:#fff; padding:5px 9px; border-radius:6px; text-decoration:none; font-weight:900; font-size:11px; display:inline-block; margin-bottom:4px;">✅ Approve</a><br/>
@@ -802,17 +1059,17 @@ function buildEmailHtml(ideas, timestamp) {
     <h2 style="font-size:17px; color:#34d399; border-bottom:2px solid #10b981; padding-bottom:6px;">🤝 TOP 5 CO-SIGNED CONSENSUS PRIORITIES (7-FIELD ROUNDTABLE CARDS • RANKED #1 – #5)</h2>
     ${top5CoSigned.map(i => renderSevenFieldCardHtml(i, true)).join('')}
 
-    <h2 style="font-size:17px; color:#38bdf8; border-bottom:2px solid #0284c7; padding-bottom:6px; margin-top:26px;">📋 RANKS #6 – #24: CO-SIGNED 30-IDEA MATRIX PROPOSALS (AWAITING YOUR APPROVAL)</h2>
+    <h2 style="font-size:17px; color:#38bdf8; border-bottom:2px solid #0284c7; padding-bottom:6px; margin-top:26px;">📋 RANKS #6 – #28: CO-SIGNED 12-SEAT / 36-IDEA MATRIX PROPOSALS (AWAITING YOUR APPROVAL)</h2>
     ${awaitingRest.map(i => renderSevenFieldCardHtml(i, false)).join('')}
 
-    <h2 style="font-size:17px; color:#fb7185; border-bottom:2px solid #f43f5e; padding-bottom:6px; margin-top:26px;">🛑 RANKS #25 – #30: VETOED BY 3-GATE ROUNDTABLE (CANDID PUSHBACK AGAINST FLAWED IDEAS)</h2>
+    <h2 style="font-size:17px; color:#fb7185; border-bottom:2px solid #f43f5e; padding-bottom:6px; margin-top:26px;">🛑 VETOED BY 4-GATE ROUNDTABLE (CANDID PUSHBACK AGAINST FLAWED IDEAS)</h2>
     ${vetoed.map(i => renderSevenFieldCardHtml(i, false)).join('')}
   </div>
 </body>
 </html>`;
 }
 
-const BOARD_10_SEAT_DIGEST = BOARD_30_IDEA_DIGEST.filter(i => i.rank <= 10);
+const BOARD_10_SEAT_DIGEST = BOARD_12_SEAT_DIGEST;
 
 async function main() {
   const timestamp = new Date().toISOString();
@@ -821,9 +1078,11 @@ async function main() {
   fs.writeFileSync(outPath, htmlContent, 'utf8');
 
   const summaryCounts = {
+    totalSeats: 12,
+    seat0RedFlagsReviewed: SEAT_0_RED_FLAG_COUNCIL_OPTIONS.length,
     totalIdeas: BOARD_30_IDEA_DIGEST.length,
     top5CoSignedPriorities: TOP_5_COSIGNED_CONSENSUS_PRIORITIES.length,
-    focusedTop10PerSeat: BOARD_10_SEAT_DIGEST.length,
+    focusedTop12PerSeat: BOARD_12_SEAT_DIGEST.length,
     top3Recommended: BOARD_30_IDEA_DIGEST.filter(i => i.isTop3Recommended).length,
     awaitingApproval: BOARD_30_IDEA_DIGEST.filter(i => i.status === 'awaiting_founder_approval').length,
     vetoed: BOARD_30_IDEA_DIGEST.filter(i => i.status === 'vetoed').length
@@ -832,18 +1091,19 @@ async function main() {
   const payload = {
     created_by: 'send-board-digest.js',
     source_role: 'board_digest',
-    scenario_id: 'SYNAPZ-ROUNDTABLE-30-DIGEST-V92',
+    scenario_id: 'SYNAPZ-ROUNDTABLE-12SEAT-36IDEA-V97',
     age_division: 'ALL',
     category: 'board_digest',
     status: 'awaiting_founder_approval',
-    summary: `🤝 SYNAPZ HOCKEY — Nightly 10-Seat Collaborative Roundtable & 30-Idea Digest (Top 5 Co-Signed Priorities, ${summaryCounts.awaitingApproval} Awaiting Approval, ${summaryCounts.vetoed} Vetoed) -> ${RECIPIENTS.join(', ')}`,
+    summary: `🤝 SYNAPZ HOCKEY — Nightly 12-Seat Collaborative Roundtable, Red-Flag Council Options & Top 5 Consensus Digest (${summaryCounts.seat0RedFlagsReviewed} Red Flag w/ Option A & B, ${summaryCounts.awaitingApproval} Awaiting Approval, ${summaryCounts.vetoed} Vetoed) -> ${RECIPIENTS.join(', ')}`,
     details: {
-      version: 'v9.2',
+      version: 'v9.7',
       recipients: RECIPIENTS,
       counts: summaryCounts,
+      seat0RedFlagCouncilOptions: SEAT_0_RED_FLAG_COUNCIL_OPTIONS,
       movingVsStaticConsensus: MOVING_VS_STATIC_BOARD_CONSENSUS,
       top5CoSignedConsensusPriorities: TOP_5_COSIGNED_CONSENSUS_PRIORITIES,
-      top10FocusedProposals: BOARD_10_SEAT_DIGEST,
+      top12FocusedProposals: BOARD_12_SEAT_DIGEST,
       ideas: BOARD_30_IDEA_DIGEST,
       htmlFile: 'FOUNDER_EMAIL_DIGEST_LATEST.html',
       dispatchedAt: timestamp
@@ -876,8 +1136,7 @@ async function main() {
       awaitingApprovalRowCountInSupabase = Array.isArray(rows) ? rows.length : 0;
     }
 
-    // Ensure all 24 awaiting_founder_approval proposals from the 30-Idea Matrix are logged in public.pucksense_agent_inbox
-    if (awaitingApprovalRowCountInSupabase < 24) {
+    if (awaitingApprovalRowCountInSupabase < 28) {
       const proposalRows = BOARD_30_IDEA_DIGEST.filter(i => i.status === 'awaiting_founder_approval').map(item => ({
         created_by: `Seat-${item.seatNumber}-Roundtable`,
         source_role: 'council',
@@ -915,7 +1174,7 @@ async function main() {
 
   let gmailWebhookStatus = 'skipped';
   let gmailWebhookBody = '';
-  const emailSubject = `SYNAPZ HOCKEY — Nightly 10-Seat Collaborative Roundtable & 30-Idea Digest (Top 5 Co-Signed Priorities Awaiting Approval)`;
+  const emailSubject = `SYNAPZ HOCKEY — Nightly 12-Seat Collaborative Roundtable, Red-Flag Council Options & Top 5 Consensus Digest`;
   try {
     const gmailRes = await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
       method: 'POST',
@@ -953,5 +1212,5 @@ async function main() {
 if (require.main === module) {
   main();
 } else {
-  module.exports = { TOP_5_COSIGNED_CONSENSUS_PRIORITIES, BOARD_10_SEAT_DIGEST, BOARD_30_IDEA_DIGEST, MOVING_VS_STATIC_BOARD_CONSENSUS };
+  module.exports = { SEAT_0_RED_FLAG_COUNCIL_OPTIONS, TOP_5_COSIGNED_CONSENSUS_PRIORITIES, BOARD_12_SEAT_DIGEST, BOARD_10_SEAT_DIGEST, BOARD_36_IDEA_DIGEST, BOARD_30_IDEA_DIGEST, MOVING_VS_STATIC_BOARD_CONSENSUS };
 }

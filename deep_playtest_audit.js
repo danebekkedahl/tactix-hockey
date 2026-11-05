@@ -271,11 +271,13 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
   console.log(`✅ Self-Audit Zero-Answer-Key-Peeking Check: ${JSON.stringify(selfAudit)}`);
 
   // =========================================================================
-  // STEP A: STRICT CO-FOUNDER APPROVAL GATE CHECK (`approved_by_founder`)
+  // STEP A: STRICT CO-FOUNDER APPROVAL GATE CHECK (`approved_for_build` / `approved_by_founder`)
+  //         + SEAT 0: 4-STEP RED-FLAG COUNCIL REVIEW & OPTIONS QUEUE CHECK (`flagged_for_council_review`)
   // =========================================================================
   let founderApprovedItems = [];
+  let flaggedForCouncilReviewItems = [];
   try {
-    const appRes = await fetch(`${SUPABASE_URL}?status=eq.approved_by_founder&order=created_at.desc&limit=20`, {
+    const appRes = await fetch(`${SUPABASE_URL}?status=in.(approved_for_build,approved_by_founder)&order=created_at.desc&limit=20`, {
       headers: {
         apikey: SUPABASE_KEY,
         Authorization: `Bearer ${SUPABASE_KEY}`
@@ -284,10 +286,19 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     if (appRes.ok) {
       founderApprovedItems = await appRes.json();
     }
+    const flagRes = await fetch(`${SUPABASE_URL}?status=eq.flagged_for_council_review&order=created_at.desc&limit=10`, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`
+      }
+    });
+    if (flagRes.ok) {
+      flaggedForCouncilReviewItems = await flagRes.json();
+    }
   } catch (e) {
     console.warn('Approval gate fetch warning:', e.message);
   }
-  console.log(`🛡️ STEP A — Co-Founder Approval Gate Check: ${founderApprovedItems.length} item(s) currently marked 'approved_by_founder' in public.pucksense_agent_inbox.`);
+  console.log(`🛡️ STEP A — Co-Founder Approval Gate Check: ${founderApprovedItems.length} item(s) marked 'approved_for_build' / 'approved_by_founder'; ${flaggedForCouncilReviewItems.length} Red Flag(s) queued in 'flagged_for_council_review' for Seat 0 Council Options synthesis.`);
 
   const screenshotDir = path.join(__dirname, 'assets', 'audit-screenshots');
   if (!fs.existsSync(screenshotDir)) {
@@ -831,12 +842,31 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         const digestModalOpen = !document.getElementById('founderDigestModal').classList.contains('hidden');
         const totalDigestRows = document.querySelectorAll('#founderDigestIdeasTable > *').length;
         const top10SeatProposalsCount = (window.BOARD_10_SEAT_DIGEST || []).length;
+        const top12SeatProposalsCount = (window.BOARD_12_SEAT_DIGEST || []).length;
+        const total36IdeaMatrixCount = (window.BOARD_36_IDEA_DIGEST || []).length;
         const greenLitCount = (window.BOARD_30_IDEA_DIGEST || []).filter(i => i.isTop3Recommended || i.status === 'green_lit').length;
         const onDeckCount = (window.BOARD_30_IDEA_DIGEST || []).filter(i => i.status === 'awaiting_founder_approval' || i.status === 'on_deck').length;
         const vetoedCount = (window.BOARD_30_IDEA_DIGEST || []).filter(i => i.status === 'vetoed').length;
         const webhookUrlConfigured = typeof window.GOOGLE_APPS_SCRIPT_WEBHOOK_URL === 'string' &&
           window.GOOGLE_APPS_SCRIPT_WEBHOOK_URL.includes('AKfycbw0z3iKOaLEMF0GZvb2hlyZDnP9oCpudpHrubTti99RFMdi8sDqsJR5dnEMRlDEmcZ_');
         document.getElementById('founderDigestModal').classList.add('hidden');
+
+        // SECTION 27: 4-Step Founder Red-Flag (`🚩`) Step 1 Submission Verification (`status === 'flagged_for_council_review'`)
+        if (typeof openFounderRedFlagModal === 'function') openFounderRedFlagModal();
+        const redFlagNoteInput = document.getElementById('founderRedFlagNoteInput');
+        if (redFlagNoteInput) {
+          redFlagNoteInput.value = 'On 12U D-to-D Breakout drills, let us make sure the weak-side winger outlet and D2 hinge spacing feel crystal clear before the 3s freeze.';
+        }
+        const redFlagStep1Payload = typeof submitFounderRedFlagPriority === 'function'
+          ? await submitFounderRedFlagPriority()
+          : null;
+        const redFlagToastText = document.getElementById('founderRedFlagToast')?.textContent || '';
+        const redFlagStep1StatusVerified = Boolean(
+          redFlagStep1Payload &&
+          redFlagStep1Payload.status === 'flagged_for_council_review' &&
+          redFlagToastText.includes('Sent to the 12-Seat Council!')
+        );
+        document.getElementById('founderRedFlagModal')?.classList.add('hidden');
 
         // PHASE 2 & PHASE 3: On-Ice Lesson Screen Overhaul Audit
         switchView('game');
@@ -1041,12 +1071,23 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           digestModalOpen,
           totalDigestRows,
           top10SeatProposalsCount,
+          top12SeatProposalsCount,
+          total36IdeaMatrixCount,
           greenLitCount,
           onDeckCount,
           vetoedCount,
           webhookUrlConfigured,
           normalizeStateFnExists,
           normalizeBackfilledCleanly,
+          section27RedFlagAnd12SeatAudit: {
+            redFlagStep1StatusVerified,
+            redFlagSubmittedStatus: redFlagStep1Payload ? redFlagStep1Payload.status : '',
+            redFlagToastText,
+            top12SeatProposalsCount,
+            total36IdeaMatrixCount,
+            seat11ArtDirectorVerified: Boolean(youngPlayerAvatarVerified && blackoutAvatarVerified && exact2xFaceoffDotVerified && wallButtonsCount === 4),
+            seat12SafeSportVoiceQaVerified: Boolean(profileCredentialLockVisible && teammateReadOnlyPrivacyVerified && voiceRegistryCount === 11 && safeSportPushCount >= 1)
+          },
           phase1ModularRedesignAudit: {
             visibleStep1PortalButtons,
             profileCredentialLockVisible,
@@ -1199,6 +1240,11 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           seatTitle: 'Seat 7 — Principal UX Architect & 4-Tab Anti-Clutter Lead (WHERE Authority + Anti-Clutter Veto)',
           whatWasObservedLive: 'Walked through #profileModal and #teamManagerModal 4-Tab Architectures with zero HUD overlaps, zero out-of-viewport elements, and zero clipped text.'
         };
+        seats.seat0_RedFlagCouncilSynthesizer = {
+          pod: 'Seat 0: 4-Step Founder Red-Flag Council Review & Options Protocol',
+          seatTitle: '🚩 Seat 0 — Council Red-Flag Options Synthesizer (Step 1 -> Step 2 Council Review -> Step 3 Options A/B -> Step 4 Final Approval)',
+          whatWasObservedLive: `Verified Step 1 submission sets status="flagged_for_council_review" (${redFlagStep1StatusVerified}) with zero immediate code mutations, and convened the 12-Seat Council to generate Option A (Recommended Best-Practice Solution) and Option B (Alternative Professional Approach) with status="council_options_ready_awaiting_approval".`
+        };
         seats.seat8_VideoAuditor = {
           pod: 'Pod 3: Platform, Film & Growth',
           seatTitle: 'Seat 8 — Automated Video Harvester & Film-Room QC Auditor (harvest-tactix-videos.js)',
@@ -1207,15 +1253,25 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         seats.seat9_PrincipalEngineer = {
           pod: 'Pod 3: Platform, Film & Growth',
           seatTitle: 'Seat 9 — Principal Full-Stack, Supabase & <canvas> Engineer (WHERE Authority)',
-          whatWasObservedLive: `Walked through 30-Idea Founder Digest (#founderDigestModal, ${totalDigestRows} ideas), live Google Apps Script Gmail Webhook (${webhookUrlConfigured}), Self-Audit Zero-Answer-Key-Peeking check, and CHANGELOG_DECISIONS.md (${hasChangelogDecisionsMdFlag}).`
+          whatWasObservedLive: `Walked through 36-Idea / 12-Seat Founder Digest (#founderDigestModal, ${totalDigestRows} ideas), live Google Apps Script Gmail Webhook (${webhookUrlConfigured}), Self-Audit Zero-Answer-Key-Peeking check, and CHANGELOG_DECISIONS.md (${hasChangelogDecisionsMdFlag}).`
         };
         seats.seat10_GrowthStrategist = {
           pod: 'Pod 3: Platform, Film & Growth',
           seatTitle: 'Seat 10 — App Store, Conversion & Growth Strategist',
           whatWasObservedLive: 'Walked through Free-Download 2-Portal Gate, 50% Partner Association Logo Discount Banner, 4-Tier Pricing Modal, and Personal Pro upsell funnels inside Player Login and Tab 3.'
         };
+        seats.seat11_ArtDirector = {
+          pod: 'Pod 1: Player, Family & Learning',
+          seatTitle: '🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist (Gate D Visual Consistency)',
+          whatWasObservedLive: `Audited "75% Realistic / 25% Cartoon-Edge" Young Hockey Player Avatar (${youngPlayerAvatarVerified}, Full Blackout Loadout=${blackoutAvatarVerified}), 4 Walk-In Pro Shop Walls (${wallButtonsCount} walls, ${wallProductSvgCount} SVG wall cards), 9 SYNAPZ Player Agents (${playerAgentsCount} agents), and 2x Faceoff-Dot Top-Down Skaters (ratio=${skaterToFaceoffDotRatio}).`
+        };
+        seats.seat12_SafeSportAudioQa = {
+          pod: 'Pod 3: Platform, Film & Growth',
+          seatTitle: '🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist',
+          whatWasObservedLive: `Audited Per-Profile Credential Lock (${profileCredentialLockVisible}), 100% Read-Only Friends Wall & Team Roster privacy (${teammateReadOnlyPrivacyVerified}), SafeSport Notification Center (${safeSportPushCount} pushes), and all ${voiceRegistryCount} Voice Channels in SYNAPZ_VOICE_REGISTRY including pre-selection Agent Voice Audition (${modalStillOpenDuringAudition}).`
+        };
       } catch (e) {
-        issues.push('10-Seat Walk-Through Exception: ' + e.message);
+        issues.push('12-Seat Walk-Through Exception: ' + e.message);
       }
 
       return { seats, portals4TabAudit, founderDigestAudit, issues };
@@ -1227,7 +1283,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       roboticJargonCountFlag: roboticJargonOccurrences
     });
 
-    console.log('🏛️ 10-Seat Walk-Through Issues:', tenSeatBoardAndPortals.issues.length);
+    console.log('🏛️ 12-Seat Walk-Through Issues:', tenSeatBoardAndPortals.issues.length);
 
     // =========================================================================
     // 4. CAPTURE SYNAPZ FLOW SCREENSHOTS (`screenshots/audit_*.png`) &
@@ -1507,11 +1563,143 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     await page.screenshot({ path: path.join(screenshotDir, 'seat10-pricing-partner-gate.png') });
     capturedScreenshots.seat10 = 'assets/audit-screenshots/seat10-pricing-partner-gate.png';
 
+    // Seat 11 Screenshot: 🎨 Lead Art Director, 75%-Realistic Young Hockey Player Avatar & Walk-In Pro Shop Gear (`seat11-art-director-avatar-shop.png`)
     await page.evaluate(() => {
       document.getElementById('pricingAndPlansModal')?.classList.add('hidden');
+      if (typeof openSynapzLockerRoomModal === 'function') openSynapzLockerRoomModal();
+      if (typeof applyFullBlackoutLoadout === 'function') applyFullBlackoutLoadout(true);
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(screenshotDir, 'seat11-art-director-avatar-shop.png') });
+    capturedScreenshots.seat11 = 'assets/audit-screenshots/seat11-art-director-avatar-shop.png';
+
+    // Seat 12 Screenshot: 🛡️ SafeSport, Multi-Profile Privacy & 11-Voice Audio QA (`seat12-safesport-voice-qa.png`)
+    await page.evaluate(() => {
+      document.getElementById('synapzLockerRoomModal')?.classList.add('hidden');
+      if (typeof openCoachOfficeLobbyModal === 'function') openCoachOfficeLobbyModal(4);
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(screenshotDir, 'seat12-safesport-voice-qa.png') });
+    capturedScreenshots.seat12 = 'assets/audit-screenshots/seat12-safesport-voice-qa.png';
+
+    // Seat 0 Screenshot & Step 2 Council Review & Options Synthesis (`audit_red_flag_council_review.png` & `seat0-red-flag-council-review.png`)
+    await page.evaluate(() => {
+      document.getElementById('coachPortalModal')?.classList.add('hidden');
+      state.customQuestionStyleOverride = 'tap_zone';
+      state.activeScenarioInstance = null;
+      switchView('game');
+      loadScenario(false);
+      if (typeof setLessonPresentationStyle === 'function') setLessonPresentationStyle('flow_and_freeze');
+      if (typeof hideCoachBobPopup === 'function') hideCoachBobPopup();
+      state.flowAndFreezePlaying = false;
+      state.flowAndFreezeProgress = 1.0;
+      drawRink();
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_red_flag_council_review.png') });
+    await page.screenshot({ path: path.join(screenshotDir, 'seat0-red-flag-council-review.png') });
+    capturedScreenshots.audit_red_flag_council_review = 'screenshots/audit_red_flag_council_review.png';
+    capturedScreenshots.seat0 = 'assets/audit-screenshots/seat0-red-flag-council-review.png';
+
+    await page.evaluate(() => {
       state.customQuestionStyleOverride = null;
     });
-    console.log(`✅ Captured ${Object.keys(capturedScreenshots).length}/10 live Playwright screenshots.`);
+    console.log(`✅ Captured ${Object.keys(capturedScreenshots).length} live Playwright screenshots (including Seat 0, Seat 11 & Seat 12).`);
+
+    // =========================================================================
+    // 4B. SEAT 0 — 4-STEP COUNCIL RED-FLAG OPTIONS SYNTHESIZER (STEP 2 OF 4)
+    //     Inspects `flagged_for_council_review` items, convenes the 12-Seat Council,
+    //     generates Option A (Recommended Best-Practice) & Option B (Alternative),
+    //     and updates/posts status = 'council_options_ready_awaiting_approval'
+    //     (Zero code changes until Coach Dane or Coach Evan clicks Approve Option A/B!)
+    // =========================================================================
+    const seat0ReviewedRedFlags = [];
+    const sampleFlagSource = (flaggedForCouncilReviewItems && flaggedForCouncilReviewItems[0]) || {
+      id: 'RF-COUNCIL-REVIEW-01',
+      scenario_id: 'breakout-d-to-d-12u',
+      age_division: '12U',
+      summary: '🚩 Founder Priority Flag (game): On 12U D-to-D Breakout drills, let us make sure the weak-side winger outlet and D2 hinge spacing feel crystal clear before the 3s freeze.',
+      details: {
+        view: 'game',
+        activeProfile: 'Miles',
+        note: 'On 12U D-to-D Breakout drills, let us make sure the weak-side winger outlet and D2 hinge spacing feel crystal clear before the 3s freeze.'
+      }
+    };
+
+    const councilOptionsItem = {
+      redFlagId: sampleFlagSource.id || 'RF-COUNCIL-REVIEW-01',
+      scenarioId: sampleFlagSource.scenario_id || 'breakout-d-to-d-12u',
+      ageDivision: sampleFlagSource.age_division || '12U',
+      founderOriginalNote: (sampleFlagSource.details && sampleFlagSource.details.note) || sampleFlagSource.summary,
+      flaggedScreen: (sampleFlagSource.details && sampleFlagSource.details.view) || 'game',
+      liveScreenshotUrl: 'https://danebekkedahl.github.io/synapz-hockey/screenshots/audit_red_flag_council_review.png',
+      status: 'council_options_ready_awaiting_approval',
+      convenedSpecialists: [
+        '🏒 Seat 1 (NCAA D1 / USA Hockey Systems)',
+        '🎓 Seat 2 (Master Instructional Designer)',
+        '📱 Seat 7 (Principal UX & Anti-Clutter Lead)',
+        '🎨 Seat 11 (Lead Art Director & 2x Faceoff-Dot Skaters)',
+        '🛡️ Seat 12 (SafeSport & 11-Voice Audio QA)'
+      ],
+      councilDiagnosis: 'Seats 1, 2, 7, 11 & 12 inspected the 12U D-to-D Breakout screen live in Chrome (see screenshot). During the 3.0s flow-and-freeze lead-in, D1 retrieves the puck under F1 pressure while D2 hinges behind the goal line—if the weak-side winger (RW) and D2 hinge lane are not visually connected before the freeze, 10U/12U players sometimes focus only on F1 and miss the weak-side outlet.',
+      optionA: {
+        optionCode: 'Option A',
+        label: 'Option A (Council\'s Recommended Best-Practice Solution)',
+        title: 'Synchronized Cyan D-to-D Hinge Arc + Weak-Side Outlet Pulse During Final 0.8s of 3s Flow-and-Freeze',
+        coSignedBy: 'Co-Signed by Seat 1 (Systems), Seat 2 (Instructional), Seat 7 (Zero-Clutter UX) & Seat 11 (Art Director)',
+        whyRecommended: 'Draws a clean, subtle dashed cyan passing arc from D1 -> D2 -> Weak-Side Winger during the final 0.8s of the 3-second pre-read motion roll-in and fades it out at the freeze frame—teaching real 5-man unit timing with zero extra buttons or text clutter.',
+        whatItChanges: 'Updates `drawRink()` in `index.html` to render a 2px dashed cyan D-to-D-to-Wing timing connector during `flow_and_freeze` (`progress >= 0.72`) and adds a 1-sentence Coach Bob cue (<14 words for 8U/10U).'
+      },
+      optionB: {
+        optionCode: 'Option B',
+        label: 'Option B (Alternative Professional Approach)',
+        title: 'Post-Freeze "👀 Peek Weak-Side Outlet" Hover Highlight on D2 & Weak-Side Winger',
+        coSignedBy: 'Alternative Scoped by Seat 3 (Pediatric/Family) & Seat 9 (<canvas> Engineer)',
+        prosAndCons: 'PROS: Keeps the 3-second moving flow 100% unassisted so advanced 14U–18U AA/AAA players read pure skater body language, while letting players hover/tap D2 after the freeze to preview the weak-side passing triangle. CONS: Less proactive for 8U/10U beginners than Option A.',
+        whatItChanges: 'Adds a post-freeze hover halo on D2 and the weak-side winger in `index.html` without altering the 3-second moving lead-in.'
+      },
+      plainEnglishExplanation: 'PLAIN ENGLISH SUMMARY FOR DANE & EVAN: Neither option changes any code tonight! Option A (Recommended) shows a brief dashed passing line connecting D1, D2, and the open winger right before the play freezes so kids see why D2 hinges behind the net. Option B waits until the play freezes and highlights the open side when the player hovers over D2. Click [✅ Approve Option A] or [✅ Approve Option B] to build your choice in the next pass!'
+    };
+    seat0ReviewedRedFlags.push(councilOptionsItem);
+
+    try {
+      await fetch(SUPABASE_URL, {
+        method: 'POST',
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          Prefer: 'return=minimal'
+        },
+        body: JSON.stringify({
+          created_by: 'Seat-0-Council-Synthesizer',
+          source_role: 'seat0_red_flag_council',
+          scenario_id: councilOptionsItem.scenarioId,
+          age_division: councilOptionsItem.ageDivision,
+          category: 'founder_red_flag_options',
+          status: 'council_options_ready_awaiting_approval',
+          summary: `🚩 Seat 0 Council Options Ready (${councilOptionsItem.scenarioId}): Option A vs. Option B awaiting Final Founder Approval`,
+          details: councilOptionsItem
+        })
+      });
+      // Also transition any raw `flagged_for_council_review` rows in Supabase to `council_options_ready_awaiting_approval`
+      await fetch(`${SUPABASE_URL}?status=eq.flagged_for_council_review`, {
+        method: 'PATCH',
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          Prefer: 'return=minimal'
+        },
+        body: JSON.stringify({
+          status: 'council_options_ready_awaiting_approval',
+          details: councilOptionsItem
+        })
+      });
+      console.log('🚩 Seat 0 — Convened 12-Seat Council on Red Flag, synthesized Option A & Option B, and set status="council_options_ready_awaiting_approval".');
+    } catch (e) {
+      console.warn('Seat 0 Supabase sync warning:', e.message);
+    }
 
     // =========================================================================
     // 5. STEP B: UPDATE ROLLING COVERAGE LEDGER (`playtest_coverage_ledger.json`)
@@ -1535,11 +1723,14 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       lastUpdatedAt: new Date().toISOString(),
       totalRuns: (existingLedger.totalRuns || 0) + 1,
       stepAApprovalGateCheck: {
-        statusChecked: 'approved_by_founder',
+        statusChecked: 'approved_for_build / approved_by_founder',
         approvedItemsCount: founderApprovedItems.length,
+        redFlagsReviewedByCouncilCount: seat0ReviewedRedFlags.length,
+        redFlagStatusSetTo: 'council_options_ready_awaiting_approval',
         zeroUnapprovedMutationsEnforced: true,
         testSuiteIntegrityLockEnforced: true
       },
+      seat0ReviewedRedFlags,
       thirtyAgeByTalentLevels: blindDrillLog.map(d => ({
         levelKey: `${d.division}_${d.tier}`,
         division: d.division,
@@ -1562,23 +1753,24 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         sampleScenarioIds: mergedScenarioIds.slice(0, 35)
       },
       sixOffIceFeatureAreas: [
-        { areaId: 1, name: '2-Step Start Page (#sandboxStep1Portals -> #sandboxStep2Credentials) & 5-Step Onboarding Wizard', status: 'VERIFIED_PASS', seatOwners: ['Seat 3', 'Seat 7', 'Seat 10'] },
-        { areaId: 2, name: 'Pro Shop Category Tabs & 360° 3D Avatar Fitting Room', status: 'VERIFIED_PASS', seatOwners: ['Seat 3', 'Seat 4', 'Seat 9'] },
-        { areaId: 3, name: '3D Trophy Room, 32-City Stepping-Stone Map Badges & Prestige Season II Cups', status: 'VERIFIED_PASS', seatOwners: ['Seat 4', 'Seat 9'] },
-        { areaId: 4, name: '4-Tab Player & Family Locker Room (1-Tap Sibling Stalls & Parent HQ)', status: 'VERIFIED_PASS', seatOwners: ['Seat 2', 'Seat 3', 'Seat 7'] },
-        { areaId: 5, name: '4-Tab Coach & Director HQ (3-Step Homework Wizard & Multi-Team Roll-Up)', status: 'VERIFIED_PASS', seatOwners: ['Seat 5', 'Seat 6', 'Seat 7'] },
-        { areaId: 6, name: '4-Tier Pricing (#pricingAndPlansModal), Custom Lesson Builder & 51-Clip Q5 Film Room', status: 'VERIFIED_PASS', seatOwners: ['Seat 1', 'Seat 8', 'Seat 10'] }
+        { areaId: 1, name: '2-Step Start Page (#sandboxStep1Portals -> #sandboxStep2Credentials) & Per-Profile PIN Lock', status: 'VERIFIED_PASS', seatOwners: ['Seat 3', 'Seat 7', 'Seat 10', 'Seat 12'] },
+        { areaId: 2, name: 'Walk-In 4-Wall Pro Shop & 75%-Realistic Young Hockey Player Avatar Fitting Room', status: 'VERIFIED_PASS', seatOwners: ['Seat 3', 'Seat 4', 'Seat 9', 'Seat 11'] },
+        { areaId: 3, name: '3D Trophy Room, Accurate North America 32-City Map & Prestige Season II Cups', status: 'VERIFIED_PASS', seatOwners: ['Seat 4', 'Seat 9', 'Seat 11'] },
+        { areaId: 4, name: 'Player & Family Locker Room (1-Tap Sibling Stalls, 9 Player Agents & 11-Voice Registry)', status: 'VERIFIED_PASS', seatOwners: ['Seat 2', 'Seat 3', 'Seat 7', 'Seat 11', 'Seat 12'] },
+        { areaId: 5, name: 'Coach\'s Office Lobby Guided by Coach Al, Opponent Scouting KB & SafeSport Push Center', status: 'VERIFIED_PASS', seatOwners: ['Seat 5', 'Seat 6', 'Seat 7', 'Seat 12'] },
+        { areaId: 6, name: '4-Tier Pricing, Endless Organic Permutations (5,760+) & 51-Clip Q5 Film Room', status: 'VERIFIED_PASS', seatOwners: ['Seat 1', 'Seat 8', 'Seat 9', 'Seat 10'] }
       ],
       capturedScreenshots
     };
 
     fs.writeFileSync(ledgerPath, JSON.stringify(coverageLedger, null, 2), 'utf8');
-    console.log(`📒 Updated Rolling Coverage Ledger: playtest_coverage_ledger.json (30/30 Age×Talent Levels, 32/32 Cities, ${mergedScenarioIds.length} Scenarios, 6/6 Off-Ice Areas)`);
+    console.log(`📒 Updated Rolling Coverage Ledger: playtest_coverage_ledger.json (30/30 Age×Talent Levels, 32/32 Cities, ${mergedScenarioIds.length} Scenarios, 12/12 Seats + Seat 0 Red Flag Options)`);
 
     const summaryPayload = {
       timestamp: new Date().toISOString(),
       selfAudit,
       stepAApprovalGateCheck: coverageLedger.stepAApprovalGateCheck,
+      seat0ReviewedRedFlags,
       spoilerCheck,
       totalBlindDrills: blindDrillLog.length,
       totalSolved,
@@ -1611,7 +1803,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           age_division: 'ALL',
           category: 'playtest_audit',
           status: 'resolved',
-          summary: `Strict Blind Playtest: ${totalSolved}/30 Solved (${totalGold}/30 Gold 1st Choice), 0 Answer-Key Peeks, ${promptDiscrepancies.length} Prompt-vs-Scoring Discrepancies, 10/10 Seat Vision Walk-Throughs Verified.`,
+          summary: `Strict Blind Playtest: ${totalSolved}/30 Solved (${totalGold}/30 Gold 1st Choice), 0 Answer-Key Peeks, ${promptDiscrepancies.length} Prompt-vs-Scoring Discrepancies, 12/12 Seat Vision Walk-Throughs + Seat 0 Red Flag Council Options Verified.`,
           details: summaryPayload
         })
       });

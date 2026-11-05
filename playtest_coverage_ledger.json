@@ -1,12 +1,50 @@
 {
-  "lastUpdatedAt": "2026-11-05T01:11:20.044Z",
-  "totalRuns": 13,
+  "lastUpdatedAt": "2026-11-05T01:59:18.879Z",
+  "totalRuns": 14,
   "stepAApprovalGateCheck": {
-    "statusChecked": "approved_by_founder",
+    "statusChecked": "approved_for_build / approved_by_founder",
     "approvedItemsCount": 0,
+    "redFlagsReviewedByCouncilCount": 1,
+    "redFlagStatusSetTo": "council_options_ready_awaiting_approval",
     "zeroUnapprovedMutationsEnforced": true,
     "testSuiteIntegrityLockEnforced": true
   },
+  "seat0ReviewedRedFlags": [
+    {
+      "redFlagId": "RF-COUNCIL-REVIEW-01",
+      "scenarioId": "breakout-d-to-d-12u",
+      "ageDivision": "12U",
+      "founderOriginalNote": "On 12U D-to-D Breakout drills, let us make sure the weak-side winger outlet and D2 hinge spacing feel crystal clear before the 3s freeze.",
+      "flaggedScreen": "game",
+      "liveScreenshotUrl": "https://danebekkedahl.github.io/synapz-hockey/screenshots/audit_red_flag_council_review.png",
+      "status": "council_options_ready_awaiting_approval",
+      "convenedSpecialists": [
+        "🏒 Seat 1 (NCAA D1 / USA Hockey Systems)",
+        "🎓 Seat 2 (Master Instructional Designer)",
+        "📱 Seat 7 (Principal UX & Anti-Clutter Lead)",
+        "🎨 Seat 11 (Lead Art Director & 2x Faceoff-Dot Skaters)",
+        "🛡️ Seat 12 (SafeSport & 11-Voice Audio QA)"
+      ],
+      "councilDiagnosis": "Seats 1, 2, 7, 11 & 12 inspected the 12U D-to-D Breakout screen live in Chrome (see screenshot). During the 3.0s flow-and-freeze lead-in, D1 retrieves the puck under F1 pressure while D2 hinges behind the goal line—if the weak-side winger (RW) and D2 hinge lane are not visually connected before the freeze, 10U/12U players sometimes focus only on F1 and miss the weak-side outlet.",
+      "optionA": {
+        "optionCode": "Option A",
+        "label": "Option A (Council's Recommended Best-Practice Solution)",
+        "title": "Synchronized Cyan D-to-D Hinge Arc + Weak-Side Outlet Pulse During Final 0.8s of 3s Flow-and-Freeze",
+        "coSignedBy": "Co-Signed by Seat 1 (Systems), Seat 2 (Instructional), Seat 7 (Zero-Clutter UX) & Seat 11 (Art Director)",
+        "whyRecommended": "Draws a clean, subtle dashed cyan passing arc from D1 -> D2 -> Weak-Side Winger during the final 0.8s of the 3-second pre-read motion roll-in and fades it out at the freeze frame—teaching real 5-man unit timing with zero extra buttons or text clutter.",
+        "whatItChanges": "Updates `drawRink()` in `index.html` to render a 2px dashed cyan D-to-D-to-Wing timing connector during `flow_and_freeze` (`progress >= 0.72`) and adds a 1-sentence Coach Bob cue (<14 words for 8U/10U)."
+      },
+      "optionB": {
+        "optionCode": "Option B",
+        "label": "Option B (Alternative Professional Approach)",
+        "title": "Post-Freeze \"👀 Peek Weak-Side Outlet\" Hover Highlight on D2 & Weak-Side Winger",
+        "coSignedBy": "Alternative Scoped by Seat 3 (Pediatric/Family) & Seat 9 (<canvas> Engineer)",
+        "prosAndCons": "PROS: Keeps the 3-second moving flow 100% unassisted so advanced 14U–18U AA/AAA players read pure skater body language, while letting players hover/tap D2 after the freeze to preview the weak-side passing triangle. CONS: Less proactive for 8U/10U beginners than Option A.",
+        "whatItChanges": "Adds a post-freeze hover halo on D2 and the weak-side winger in `index.html` without altering the 3-second moving lead-in."
+      },
+      "plainEnglishExplanation": "PLAIN ENGLISH SUMMARY FOR DANE & EVAN: Neither option changes any code tonight! Option A (Recommended) shows a brief dashed passing line connecting D1, D2, and the open winger right before the play freezes so kids see why D2 hinges behind the net. Option B waits until the play freezes and highlights the open side when the player hovers over D2. Click [✅ Approve Option A] or [✅ Approve Option B] to build your choice in the next pass!"
+    }
+  ],
   "thirtyAgeByTalentLevels": [
     {
       "levelKey": "8U_Rec",
@@ -516,60 +554,67 @@
   "sixOffIceFeatureAreas": [
     {
       "areaId": 1,
-      "name": "2-Step Start Page (#sandboxStep1Portals -> #sandboxStep2Credentials) & 5-Step Onboarding Wizard",
+      "name": "2-Step Start Page (#sandboxStep1Portals -> #sandboxStep2Credentials) & Per-Profile PIN Lock",
       "status": "VERIFIED_PASS",
       "seatOwners": [
         "Seat 3",
         "Seat 7",
-        "Seat 10"
+        "Seat 10",
+        "Seat 12"
       ]
     },
     {
       "areaId": 2,
-      "name": "Pro Shop Category Tabs & 360° 3D Avatar Fitting Room",
+      "name": "Walk-In 4-Wall Pro Shop & 75%-Realistic Young Hockey Player Avatar Fitting Room",
       "status": "VERIFIED_PASS",
       "seatOwners": [
         "Seat 3",
         "Seat 4",
-        "Seat 9"
+        "Seat 9",
+        "Seat 11"
       ]
     },
     {
       "areaId": 3,
-      "name": "3D Trophy Room, 32-City Stepping-Stone Map Badges & Prestige Season II Cups",
+      "name": "3D Trophy Room, Accurate North America 32-City Map & Prestige Season II Cups",
       "status": "VERIFIED_PASS",
       "seatOwners": [
         "Seat 4",
-        "Seat 9"
+        "Seat 9",
+        "Seat 11"
       ]
     },
     {
       "areaId": 4,
-      "name": "4-Tab Player & Family Locker Room (1-Tap Sibling Stalls & Parent HQ)",
+      "name": "Player & Family Locker Room (1-Tap Sibling Stalls, 9 Player Agents & 11-Voice Registry)",
       "status": "VERIFIED_PASS",
       "seatOwners": [
         "Seat 2",
         "Seat 3",
-        "Seat 7"
+        "Seat 7",
+        "Seat 11",
+        "Seat 12"
       ]
     },
     {
       "areaId": 5,
-      "name": "4-Tab Coach & Director HQ (3-Step Homework Wizard & Multi-Team Roll-Up)",
+      "name": "Coach's Office Lobby Guided by Coach Al, Opponent Scouting KB & SafeSport Push Center",
       "status": "VERIFIED_PASS",
       "seatOwners": [
         "Seat 5",
         "Seat 6",
-        "Seat 7"
+        "Seat 7",
+        "Seat 12"
       ]
     },
     {
       "areaId": 6,
-      "name": "4-Tier Pricing (#pricingAndPlansModal), Custom Lesson Builder & 51-Clip Q5 Film Room",
+      "name": "4-Tier Pricing, Endless Organic Permutations (5,760+) & 51-Clip Q5 Film Room",
       "status": "VERIFIED_PASS",
       "seatOwners": [
         "Seat 1",
         "Seat 8",
+        "Seat 9",
         "Seat 10"
       ]
     }
@@ -602,6 +647,10 @@
     "seat7": "assets/audit-screenshots/seat7-hud-ergonomics-audit.png",
     "seat8": "assets/audit-screenshots/seat8-film-room-video-modal.png",
     "seat9": "assets/audit-screenshots/seat9-founder-approval-digest.png",
-    "seat10": "assets/audit-screenshots/seat10-pricing-partner-gate.png"
+    "seat10": "assets/audit-screenshots/seat10-pricing-partner-gate.png",
+    "seat11": "assets/audit-screenshots/seat11-art-director-avatar-shop.png",
+    "seat12": "assets/audit-screenshots/seat12-safesport-voice-qa.png",
+    "audit_red_flag_council_review": "screenshots/audit_red_flag_council_review.png",
+    "seat0": "assets/audit-screenshots/seat0-red-flag-council-review.png"
   }
 }

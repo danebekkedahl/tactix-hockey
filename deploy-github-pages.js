@@ -52,6 +52,7 @@ const FILES_TO_DEPLOY = [
   { rel: 'apple-touch-icon.png', encoding: 'base64' },
   { rel: 'icon-192.png', encoding: 'base64' },
   { rel: 'icon-512.png', encoding: 'base64' },
+  { rel: 'assets/audit-screenshots/seat0-red-flag-council-review.png', encoding: 'base64' },
   { rel: 'assets/audit-screenshots/seat1-on-ice-drill-setup.png', encoding: 'base64' },
   { rel: 'assets/audit-screenshots/seat2-cue-first-roll-in.png', encoding: 'base64' },
   { rel: 'assets/audit-screenshots/seat3-8u-adm-cognitive-load.png', encoding: 'base64' },
@@ -62,6 +63,8 @@ const FILES_TO_DEPLOY = [
   { rel: 'assets/audit-screenshots/seat8-film-room-video-modal.png', encoding: 'base64' },
   { rel: 'assets/audit-screenshots/seat9-founder-approval-digest.png', encoding: 'base64' },
   { rel: 'assets/audit-screenshots/seat10-pricing-partner-gate.png', encoding: 'base64' },
+  { rel: 'assets/audit-screenshots/seat11-art-director-avatar-shop.png', encoding: 'base64' },
+  { rel: 'assets/audit-screenshots/seat12-safesport-voice-qa.png', encoding: 'base64' },
   { rel: 'screenshots/audit_step1_portals.png', encoding: 'base64' },
   { rel: 'screenshots/audit_step2_player_login.png', encoding: 'base64' },
   { rel: 'screenshots/audit_coach_portal.png', encoding: 'base64' },
@@ -79,7 +82,8 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/audit_team_roster_hub.png', encoding: 'base64' },
   { rel: 'screenshots/audit_coach_als_corner.png', encoding: 'base64' },
   { rel: 'screenshots/audit_opponent_scouting.png', encoding: 'base64' },
-  { rel: 'screenshots/audit_bucket_coverage_report.png', encoding: 'base64' }
+  { rel: 'screenshots/audit_bucket_coverage_report.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_red_flag_council_review.png', encoding: 'base64' }
 ];
 
 const FORBIDDEN_FILENAMES = new Set([

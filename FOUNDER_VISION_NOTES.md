@@ -391,4 +391,23 @@ Every `RUN NIGHTLY AUTOPILOT` pass runs an active Playwright field inspection in
    - **Phase 6 (Complete):** Endless Organic Drill Permutations (`getNextOrganicScenarioPermutation`) & 16-Bucket / `360` -> `1,440` -> `5,760+` Concept Bucket & Tag Coverage Report (`#conceptBucketCoverageReportModal` & `report.html`).
 
 
+## 27. The 12-Seat Board & `🚩 Seat 0` 4-Step Founder Red-Flag Council Review & Options Protocol (`v9.7` Charter)
+1. **Strict 4-Step Governance Rule for Founder `🚩 Red Flags` (Zero Unreviewed Code Mutations):**
+   - **Step 1 — Submit in App (`index.html` `#founderRedFlagModal`):** Submitting a `🚩 Red Flag` on any screen saves the item to `public.pucksense_agent_inbox` with `status = 'flagged_for_council_review'` (zero immediate code changes) and displays:
+     `"🚩 Sent to the 12-Seat Council! The Council will review this screen, formulate Best-Practice Options, and send them in your next Nightly Report for your Final Approval before any code is changed."`
+   - **Step 2 — 12-Seat Council Review & Professional Options (`Seat 0 — Council Red-Flag Options Synthesizer` in `deep_playtest_audit.js`):** During `RUN NIGHTLY AUTOPILOT`, `Seat 0` queries `status = 'flagged_for_council_review'`, navigates to the exact flagged screen/drill in headless Chrome (`screenshots/audit_red_flag_council_review.png` & `assets/audit-screenshots/seat0-red-flag-council-review.png`), convenes the relevant specialists from the **12-Seat Board**, synthesizes **Option A (Council's Recommended Best-Practice Solution)** and **Option B (Alternative Professional Approach)**, and updates the status to `status = 'council_options_ready_awaiting_approval'`.
+   - **Step 3 — Top-of-Report & Nightly Email Digest Review (`report.html` & `send-board-digest.js`):** Renders **`🚩 FOUNDER RED FLAGS — 12-SEAT COUNCIL REVIEW & OPTIONS (AWAITING FINAL APPROVAL)`** (`#seat0-red-flag-council`) at the very top of `report.html` and the Nightly HTML Email Digest with the Founder's original note, live screenshot, multi-seat diagnosis, Option A vs. Option B, and 4 interactive buttons:
+     - **`[🔍 Explain Options in Plain English]`** (`?action=explain_red_flag&id=...`)
+     - **`[✅ Approve Option A (Recommended) for Next Build]`** (`?action=approve_option_a&id=...`)
+     - **`[✅ Approve Option B for Next Build]`** (`?action=approve_option_b&id=...`)
+     - **`[❌ Hold / Dismiss]`** (`?action=reject&id=...`)
+   - **Step 4 — Built ONLY After Final Founder Approval:** Clicking **`[✅ Approve Option A]`** or **`[✅ Approve Option B]`** flips the row in `public.pucksense_agent_inbox` to `status = 'approved_for_build'` with `selected_option: 'Option A' | 'Option B'` so the next build pass implements the exact option approved by Coach Dane or Coach Evan.
+2. **The Expanded 12-Seat Board (`12 Seats × 3 Ideas = 36-Idea Matrix`) & 4-Gate Collaborative Co-Sign:**
+   - **Seats 1–10:** Core Hockey Systems, Instructional Design, Pediatric/Parent Cognition, Game Economy, Multi-Level Coaching, Association Director, Zero-Clutter UX, Film-Room Harvester, Principal `<canvas>`/Full-Stack Engineer, and Growth/Conversion Strategist.
+   - **🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist:** Audits the 75%-realistic / 25%-cartoon-edge aesthetic across `renderYoungHockeyPlayerAvatar`, `drawTopDownSkaterToken` (`2.0x` faceoff-dot ratio), `#proShopModal` wall displays (`renderProShopWallProductSvg`), and `#nhlTourMapSvg` (`assets/audit-screenshots/seat11-art-director-avatar-shop.png`).
+   - **🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist:** Audits 100% SafeSport one-way push notifications (`#safeSportNotificationModal`), read-only teammate roster privacy (`#playerTeamRosterHubModal`), per-profile PIN credential lock (`#playerProfileCredentialLockBox`), and the 11-channel voice registry (`window.SYNAPZ_VOICE_REGISTRY` + mandatory pre-selection voice audition in `#playerAgentPickerModal`) (`assets/audit-screenshots/seat12-safesport-voice-qa.png`).
+   - **4-Gate Cross-Seat Co-Sign:** Every proposal passes **Gate A (Tactical & ADM)**, **Gate B (Child Cognition & Zero-Clutter UX)**, **Gate C (60fps `<canvas>` & Blind QA)**, and **Gate D (Visual Consistency & SafeSport/Audio QA)**.
+
+
+
 
