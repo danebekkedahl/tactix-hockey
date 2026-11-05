@@ -477,5 +477,23 @@ Every `RUN NIGHTLY AUTOPILOT` pass runs an active Playwright field inspection in
 5. **5 Deep Recommendations Per Seat (`12 Seats × 5 = 60-Idea Master Matrix`) & `Top 10 Co-Signed Consensus Master Priorities` (`#1` to `#10`):**
    - Each of the 12 Seats produces 5 deep, telemetry-grounded recommendations (`60 total ideas`), all passing the 4-Gate Cross-Seat Peer Review (`Gate A`, `Gate B`, `Gate C`, `Gate D`), with Ranks `#1` to `#10` highlighted at the top of `report.html` and the Email Digest (`SYNAPZ HOCKEY — Special Deep Marathon Audit: Top 10 Consensus + 60-Idea Master Report [...]`).
 
+---
+
+## 31. `🔍 Seat 13` Chief Meta-Auditor, 100% App Scouring Heatmap, Real Data-Driven Defect Scanner & 3-Tier Founder Preference Learning Engine (`v10.1` Charter)
+1. **Persistent Cross-Run Rotation Ledger (`audit_coverage_ledger.json`) & `🔍 Seat 13` Pre-Run Targeting:**
+   - Tracks `runNumber`, `testedScenarioIds[]` (out of `360`), `testedPermutationHashes[]` (`scenarioId + rotation (0/90/180/270) + position (C/LW/RW/LD/RD) + division (8U-18U)` out of `5,760+`), `testedCityStops[]` (out of `32 NHL Cities`), `testedBuckets[]` (`16/16`), `testedRoomHotspots[]` (`28/28` across all 5 Illustrated Rooms), and `previousRecommendationHashes[]`.
+   - Before each run, `🔍 Seat 13` inspects `audit_coverage_ledger.json`, identifies the lowest-coverage slices, and forces the current run to test 72 fresh scenarios/permutations next.
+2. **Real Data-Driven Defect Scanner (`audit_live_findings.json`):**
+   - Scans the live DOM, `<canvas>`, and scenario definitions in Chrome across `390x844` iPhone and `768x1024` iPad, logging exact `scenario.id`s with `8U/10U` prompts `> 14 words` or `12U–18U` prompts `> 22 words`, exact `scenario.id`s where any two skaters start or freeze within `< 0.15` normalized rink distance (`closestPair` + `mobilePixelDist390w`), and exact visible primary button counts across all 8 screens.
+3. **Founder Preference Learning Engine (`founder_taste_profile.json`) & 3-Tier Progressive Trust:**
+   - Computes a `🎯 Founder Alignment Match Score (0%–99%)` and classifies every recommendation into:
+     - **🟢 `TIER 1: SAFE HYGIENE / MICRO-FIX` (`>= 95% Match`):** Eligible for `⚡ Auto-Approve Tier 1 Safe Micro-Fixes: ON/OFF` with `[↩️ 1-Click Undo]` (`?action=undo_tier1&id=...`).
+     - **🟡 `TIER 2: HIGH-MATCH UI, ROOM & COACHING UPGRADES` (`>= 90% Match`):** Eligible for `[⭐ Approve All High-Match Picks (>=90% Match) in 1 Click]` (`?action=approve_high_match_batch`).
+     - **🔴 `TIER 3: CORE ARCHITECTURE, PRICING & 🚩 RED-FLAG OPTIONS`:** Requires explicit individual Founder click (`[✅ Approve Option A]`, `[✅ Approve Option B]`, or `[✅ Approve]`).
+4. **Honest 4-Gate Scoring (`4/4 Unanimous` vs. `3/4 Conditional` vs. `2/4 Vetoed`) & Guaranteed `< 75 KB` Email Payload:**
+   - Every proposal that adds any UI element or control is honestly scored `3/4 Conditional (Gate B: Must replace an existing element or live inside a modal so primary screen buttons stay <= 4)`.
+   - `send-board-digest.js` enforces `Buffer.byteLength(htmlBody, 'utf8') < 75,000` bytes (`< 75 KB`) across the 4 clean sections so Google Apps Script (`GmailApp.sendEmail`) delivers 100% of the time (`SYNAPZ HOCKEY — Seat 13 Audited Deep Report: Top 10 + 60 Telemetry Ideas [...]`).
+
+
 
 

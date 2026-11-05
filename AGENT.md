@@ -360,6 +360,18 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
 4. **5 Deep Recommendations Per Seat (`12 Seats × 5 = 60-Idea Master Matrix`) & `Top 10 Co-Signed Consensus Priorities` (`#1` to `#10`):**
    - Rendered in `report.html` and dispatched via `send-board-digest.js --marathon` (`SYNAPZ HOCKEY — Special Deep Marathon Audit: Top 10 Consensus + 60-Idea Master Report [...]`).
 
+---
+
+## 31. `🔍 Seat 13` Chief Meta-Auditor, 100% App Scouring Heatmap, Real Data-Driven Defect Scanner & 3-Tier Founder Preference Learning Engine (`v10.1`)
+1. **Persistent Cross-Run Rotation Ledger (`audit_coverage_ledger.json`):** Tracks `runNumber`, `testedScenarioIds[]` (`X/360`), `testedPermutationHashes[]` (`X/5,760`), `testedCityStops[]` (`X/32`), `testedBuckets[]` (`16/16`), `testedRoomHotspots[]` (`28/28`), and `previousRecommendationHashes[]`. `🔍 Seat 13` pre-run targeting forces each run to test 72 fresh scenarios/permutations next.
+2. **Real Data-Driven Defect Scanner (`audit_live_findings.json`):** Logs exact `scenario.id`s with `8U/10U` prompts `> 14 words` or `12U–18U` prompts `> 22 words`, exact `scenario.id`s with skater pairwise distance `< 0.15` (`closestPair` + `mobilePixelDist390w`), and exact visible primary button counts across all 8 screens on `390x844` iPhone & `768x1024` iPad.
+3. **3-Tier Progressive Trust (`founder_taste_profile.json`):**
+   - `🟢 TIER 1: SAFE HYGIENE / MICRO-FIX (>=95% Match)` — Auto-Approve toggle + `[↩️ 1-Click Undo]`.
+   - `🟡 TIER 2: HIGH-MATCH UPGRADES (>=90% Match)` — `[⭐ Approve All High-Match Picks (>=90% Match) in 1 Click]`.
+   - `🔴 TIER 3: CORE ARCHITECTURE, PRICING & 🚩 RED-FLAG OPTIONS` — Explicit individual Founder click required.
+4. **Honest 4-Gate Scoring (`4/4 Unanimous` vs. `3/4 Conditional` vs. `2/4 Vetoed`) & Guaranteed `< 75 KB` Email Payload (`send-board-digest.js`).**
+
+
 
 
 

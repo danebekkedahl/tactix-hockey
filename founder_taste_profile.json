@@ -1,0 +1,72 @@
+{
+  "version": "1.0-section31",
+  "lastUpdatedAt": "2026-11-05T04:16:00.000Z",
+  "managedBy": "Seat 13 — Chief Meta-Auditor & Founder Preference Learning Engine",
+  "founders": [
+    "Coach Dane (danebekkedahl@gmail.com)",
+    "Coach Evan (evanbekk@gmail.com)"
+  ],
+  "tier1AutoApproveEnabled": true,
+  "tier1AutoApproveMinMatchPct": 95,
+  "tier2BatchApproveMinMatchPct": 90,
+  "tagWeights": {
+    "simplicity_button_reduction": 0.98,
+    "plain_1_sentence_voice": 0.97,
+    "skater_spacing_hygiene": 0.96,
+    "room_hotspot_immersion": 0.94,
+    "coach_al_automation": 0.92,
+    "pro_shop_avatar_preview": 0.93,
+    "adm_ltpd_usa_canada_alignment": 0.91,
+    "neural_mp3_voice_naturalness": 0.96,
+    "extra_hud_badges": -0.52,
+    "complex_menus": -0.65,
+    "long_text": -0.70
+  },
+  "historicalDecisionSignal": {
+    "approvedPatterns": [
+      "2-to-4 tactile buttons max per screen",
+      "1-sentence natural locker-room speech (<=14 words for 8U/10U)",
+      "Top-down 2x faceoff-dot skaters with >=0.15 normalized spacing",
+      "Interactive point-and-click 3D illustrated room hotspots (Walnut Wood & Brushed Brass)",
+      "Pre-rendered Neural MP3 voices over browser robotic TTS",
+      "Coach Al 60-second pre-practice focus links & opponent counter-strategy cards"
+    ],
+    "rejectedOrVetoedPatterns": [
+      "Adding >4 primary buttons or HUD ribbons inside active drills",
+      "Multi-sentence academic explanations or robotic bracketed tags",
+      "Unapproved code mutations on Red Flags without Option A vs. Option B review"
+    ]
+  },
+  "progressiveTrustTiers": {
+    "TIER_1": {
+      "code": "TIER 1",
+      "badge": "🟢 TIER 1: SAFE HYGIENE / MICRO-FIX",
+      "policy": "Auto-Approve Eligible at >= 95% Match with [↩️ 1-Click Undo]",
+      "examples": [
+        "Trimming a wordy raw scenario prompt to <=12 plain words",
+        "Nudging two crowded skaters from d=0.080 to d=0.165 (+18px mobile separation)",
+        "Fixing a Q5 YouTube clip start/end timestamp"
+      ]
+    },
+    "TIER_2": {
+      "code": "TIER 2",
+      "badge": "🟡 TIER 2: HIGH-MATCH UI, ROOM & COACHING UPGRADE",
+      "policy": "Eligible for [⭐ Approve All High-Match Picks (>=90% Match) in 1 Click] or individual approval",
+      "examples": [
+        "1-tap Pro Shop jersey/stick preview on the 75%-realistic Young Hockey Player",
+        "Pre-snap Scan Pulse ring before passing",
+        "Coach Al 60-second Tonight's Focus link generator"
+      ]
+    },
+    "TIER_3": {
+      "code": "TIER 3",
+      "badge": "🔴 TIER 3: CORE ARCHITECTURE, PRICING & 🚩 RED-FLAG OPTIONS",
+      "policy": "Explicit Individual Founder Click Required ([✅ Approve Option A] / [✅ Approve Option B] / [✅ Approve])",
+      "examples": [
+        "🚩 Seat 0 Red Flag Option A vs. Option B architectural changes",
+        "Pricing tier or Stripe checkout modifications",
+        "New database tables or authentication flows"
+      ]
+    }
+  }
+}
