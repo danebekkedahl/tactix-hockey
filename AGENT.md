@@ -319,3 +319,16 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
 2. **The Expanded 12-Seat Board (`12 Seats × 3 Ideas = 36-Idea Matrix`) & 4-Gate Co-Sign:**
    - Adds **🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist** (`S11-A`, `S11-B`, `S11-C`, `assets/audit-screenshots/seat11-art-director-avatar-shop.png`) and **🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist** (`S12-A`, `S12-B`, `S12-C`, `assets/audit-screenshots/seat12-safesport-voice-qa.png`) alongside Seats 1–10 and **Gate D (Visual Consistency & SafeSport/Audio QA)**.
 
+---
+
+## 28. Interactive Point-and-Click Illustrated Room Navigation (`assets/rooms/`) & Warm Arena Walnut Wood, Brushed Brass & Championship Blue/Gold Theme (`v9.8`)
+1. **5 Interactive Point-and-Click Room Scenes (`assets/rooms/`):**
+   - **Room 1 (`assets/rooms/room-rink-lobby.png` in `#synapzRinkLobbySection`):** 6 clickable hotspots (`#lobbyStationHitTheIce`, `#lobbyStationLockerRoom`, `#lobbyStationProShop`, `#lobbyStationCoachOffice`, `#lobbyStationFriendsWall` + `#lobbyHotspotWallPortraits`, `#lobbyHotspotFloorMedallion`) -> audited via `screenshots/audit_room_lobby.png`.
+   - **Room 2 (`assets/rooms/room-locker-room.png` in `#synapzLockerRoomModal`):** Dynamic Brass Stall Nameplate Overlay (`#lockerBrassNameplateHotspot` / `#lockerBrassNameplateText` covering `"PLAYER STALL - AKL AGENT"` and showing e.g. `MILES #9 • AGENT: LEO`) + 6 clickable gear hotspots (`#lockerHotspotHelmet`, `#lockerHotspotJersey`, `#lockerHotspotStick`, `#lockerHotspotGloves`, `#lockerHotspotBreezers`, `#lockerHotspotSkates`) + `#lockerHotspotDoorwayExit` -> audited via `screenshots/audit_room_locker.png`.
+   - **Room 3 (`assets/rooms/room-coaches-office.png` in `#synapzCoachOfficeModal` & `#coachPortalModal`):** 5 clickable office hotspots (`Laptop`, `Coach Al`, `Whiteboard`, `Bookshelf`, `Open Doorway`) -> audited via `screenshots/audit_room_coach_office.png`.
+   - **Room 4 (`assets/rooms/room-pro-shop.png` in `#proShopModal`):** 6 clickable store fixture hotspots (`#proShopHotspotGloves`, `#proShopHotspotSkates`, `#proShopHotspotSticks`, `#proShopHotspotHelmets`, `#proShopHotspotShowcaseCounter`, `#proShopHotspotDoorway`) -> audited via `screenshots/audit_room_pro_shop.png`.
+   - **Room 5 (`assets/rooms/room-clubhouse.png` in `#synapzFriendsWallModal`):** 3 clickable Clubhouse hotspots (`#clubhouseHotspotFriendsWall`, `#clubhouseHotspotMapRaceScreen`, `#clubhouseHotspotTrophyCase`) -> audited via `screenshots/audit_room_clubhouse.png`.
+2. **Unique Email Subject Timestamping & `"Synapz Hockey 12-Seat Council"` Sender Name (`send-board-digest.js`):**
+   - Appends a unique local timestamp (`[Nov 4, ...]`) to `emailSubject` so Gmail treats every Council Digest as a brand-new standalone email at the top of the inbox, and passes `senderName: "Synapz Hockey 12-Seat Council"` to the Google Apps Script webhook.
+
+

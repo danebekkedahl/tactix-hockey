@@ -769,46 +769,6 @@ const BOARD_30_IDEA_DIGEST = [
     authorityFlow: 'VETOED by Seat 12 (SafeSport Authority) & Seat 3 (Pediatric/Family)',
     status: 'vetoed',
     vetoReason: 'VETOED by Seat 12 & Seat 3 (SafeSport Rule): Zero open chat or direct coach-to-kid messaging permitted.'
-  },
-  {
-    rank: 35,
-    isTop3Recommended: false,
-    id: 'S4-D',
-    pod: 'pod1',
-    podLabel: 'Pod 1: Player, Family & Learning',
-    seatNumber: 4,
-    seatName: 'Hit Mobile Game & EdTech Retention Designer',
-    authorityRole: 'HOW FUN Authority (Engagement & Rewards)',
-    seatLens: 'Seat 4 — Hit Mobile Game & EdTech Retention Designer (HOW FUN Authority)',
-    targetScope: 'Walk-In Pro Shop (#proShopModal) • IQ-Tied Puck Bucks Economy',
-    title: '[VETOED] Allow Real-Money Loot Boxes to Bypass IQ-Tied Puck Bucks in Pro Shop',
-    description: 'Proposal to sell randomized mystery gear crates so players can unlock pro sticks without earning Hockey IQ scores.',
-    candidCritique: 'CANDID CO-FOUNDER PUSHBACK: Our Pro Shop economy is strictly tied to Hockey IQ mastery (95% IQ = +95 Puck Bucks) so gear on the ice is earned through real learning, never pay-to-win gambling crates.',
-    crossImpact: 'Preserves Parent trust (Seat 3) and keeps Puck Bucks 100% tied to Hockey IQ (Seat 2 & Seat 4).',
-    screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat4-32-city-tour-map.png`,
-    authorityFlow: 'VETOED by Seat 3 (Parent Trust) & Seat 2 (Instructional Integrity)',
-    status: 'vetoed',
-    vetoReason: 'VETOED by Seat 2 & Seat 3: Puck Bucks must remain 100% earned via Hockey IQ scores, never randomized loot boxes.'
-  },
-  {
-    rank: 36,
-    isTop3Recommended: false,
-    id: 'S1-D',
-    pod: 'pod1',
-    podLabel: 'Pod 1: Player, Family & Learning',
-    seatNumber: 1,
-    seatName: 'NCAA D1 / AAA & USA Hockey Systems Director',
-    authorityRole: 'WHAT Authority (On-Ice Systems)',
-    seatLens: 'Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director (WHAT Authority)',
-    targetScope: 'Coach\'s Office Station 3 (#coachOfficeStationPane_3) • Opponent Counter-Strategy KB',
-    title: '[VETOED] Send Identical 16U Trap-Break Counter-Strategy Drills to 8U Mite Rosters',
-    description: 'Proposal to push advanced 16U/18U 1-2-2 Neutral Zone Trap counter-drills to 8U Mite teams.',
-    candidCritique: 'CANDID CO-FOUNDER PUSHBACK: An 8U Mite team needs foundational small-area triangle support and quick shoulder scans—never complex 16U neutral-zone trap counters. Counter-strategies must always scale by age division (8U–10U vs 12U–14U vs 16U–18U).',
-    crossImpact: 'Protects age-appropriate coaching across 8U–18U (Seat 1, Seat 2 & Seat 5).',
-    screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat1-on-ice-drill-setup.png`,
-    authorityFlow: 'VETOED by Seat 1 (WHAT Authority) & Seat 2 (HOW Authority)',
-    status: 'vetoed',
-    vetoReason: 'VETOED by Seat 1 & Seat 2: Opponent counter-strategies must strictly adapt to the team\'s age division (8U–18U).'
   }
 ];
 
@@ -847,19 +807,17 @@ function buildCrossSeatCoSign(item) {
   if (item.crossSeatCoSign && item.crossSeatCoSign.gateA_TacticalAdm) return item.crossSeatCoSign;
   const isVeto = item.status === 'vetoed';
   const gateA = isVeto
-    ? 'Gate A (Seat 1 NCAA/USA Hockey + Seat 6 Multi-Level Coach): Veto upheld—violates USA Hockey ADM developmental progression and real on-ice F1/F2/F3/D1/D2 habits.'
-    : (item.rank <= 5
-      ? `Gate A (Seat 1 NCAA/USA Hockey + Seat 6 Multi-Level Coach): Co-signed & refined so F1/F2/F3/D1/D2 gap closing and support angles match real ${item.targetScope} ice reads while keeping 8U strictly 5v5 ADM compliant.`
-      : `Gate A (Seat 1 NCAA/USA Hockey + Seat 6 Multi-Level Coach): Verified single-label role mapping (applyRoleLabelMap) and age-appropriate tactical read depth for ${item.targetScope}.`);
+    ? 'Gate A (Seat 1 + Seat 6 Tactical/ADM): Veto upheld—protects USA Hockey ADM & F1/F2/F3/D1/D2 habits.'
+    : `Gate A (Seat 1 + Seat 6 Tactical/ADM): Co-signed for ${item.targetScope} F1/F2/F3/D1/D2 reads & 8U ADM compliance.`;
   const gateB = isVeto
-    ? 'Gate B (Seat 3 Pediatric/Parent + Seat 5 Touch UX): Veto upheld—prevents cognitive overload, sibling data bleed, or HUD scroll clutter on 390x844 Phone & 768x1024 iPad.'
-    : `Gate B (Seat 3 Pediatric/Parent + Seat 5 Touch UX): Stripped potential HUD clutter; capped 8U/10U text at <=14 words and verified zero-scroll 44px touch targets across 390x844 Phone & 768x1024 / 1024x768 iPad.`;
+    ? 'Gate B (Seat 3 + Seat 5 Cognition/UX): Veto upheld—prevents text overload, sibling bleed & HUD clutter.'
+    : 'Gate B (Seat 3 + Seat 5 Cognition/UX): Zero-clutter verified; <=14 words for 8U/10U & 44px touch targets.';
   const gateC = isVeto
-    ? 'Gate C (Seat 8 Principal Engineer + Seat 10 Blind QA): Blocked from build queue to protect 60fps <canvas>, sibling localStorage isolation, and blind playtest integrity.'
-    : `Gate C (Seat 8 Principal Engineer + Seat 10 Blind QA): Scoped for 60fps requestAnimationFrame <canvas> rendering, normalizeSynapzState() sibling isolation, and 100% blind playtest verification before merge.`;
+    ? 'Gate C (Seat 8 + Seat 10 60fps/QA): Blocked to protect 60fps <canvas>, sibling isolation & blind QA.'
+    : 'Gate C (Seat 8 + Seat 10 60fps/QA): Scoped for 60fps <canvas>, normalizeSynapzState() & blind QA.';
   const gateD = isVeto
-    ? 'Gate D (🎨 Seat 11 Art Director + 🛡️ Seat 12 SafeSport/Voice QA): Veto upheld—protects 75%-Realistic / 25%-Cartoon-Edge hockey aesthetic, 100% SafeSport read-only privacy, and 11-Voice Registry integrity.'
-    : `Gate D (🎨 Seat 11 Art Director + 🛡️ Seat 12 SafeSport/Voice QA): Co-signed for 75%-Realistic / 25%-Cartoon-Edge visual consistency, 2x Faceoff-Dot skater clarity, Per-Profile PIN Lock privacy, and 11-Voice audio QA.`;
+    ? 'Gate D (🎨 Seat 11 + 🛡️ Seat 12 Art/SafeSport/Audio): Veto upheld—protects 75%-realistic style, SafeSport & 11-Voice QA.'
+    : 'Gate D (🎨 Seat 11 + 🛡️ Seat 12 Art/SafeSport/Audio): Co-signed for 75%-realistic style, 2x-dot skaters, SafeSport & 11-Voice QA.';
 
   return {
     gateA_TacticalAdm: gateA,
@@ -991,14 +949,16 @@ function buildEmailHtml(ideas, timestamp) {
       ${SEAT_0_RED_FLAG_COUNCIL_OPTIONS.map(rf => renderRedFlagCouncilOptionsHtml(rf)).join('')}
     </div>
 
-    <!-- ALL 6 PHASES + SEAT 11 & SEAT 12 LIVE SCREENSHOTS -->
-    <div style="background:#0f172a; border:2px solid #00e5ff; border-radius:14px; padding:16px; margin-bottom:22px;">
-      <div style="font-size:11px; font-weight:900; color:#00e5ff; text-transform:uppercase; letter-spacing:0.06em;">📸 LIVE PLAYWRIGHT AUDIT SCREENSHOTS (SEAT 0 RED-FLAG REVIEW, SEAT 11 ART DIRECTOR &amp; SEAT 12 SAFESPORT/VOICE QA)</div>
-      <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; margin-top:10px; font-size:11px; color:#cbd5e1;">
-        <div><a href="${PAGES_BASE_URL}/screenshots/audit_red_flag_council_review.png" style="color:#fda4af; font-weight:800;">1. 🚩 Seat 0: Red-Flag Council Review (12U D-to-D Breakout)</a><img src="${PAGES_BASE_URL}/screenshots/audit_red_flag_council_review.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
-        <div><a href="${PAGES_BASE_URL}/assets/audit-screenshots/seat11-art-director-avatar-shop.png" style="color:#38bdf8; font-weight:800;">2. 🎨 Seat 11: 75%-Realistic Avatar &amp; Full Blackout Loadout</a><img src="${PAGES_BASE_URL}/assets/audit-screenshots/seat11-art-director-avatar-shop.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
-        <div><a href="${PAGES_BASE_URL}/assets/audit-screenshots/seat12-safesport-voice-qa.png" style="color:#38bdf8; font-weight:800;">3. 🛡️ Seat 12: SafeSport Notification Center &amp; Voice QA</a><img src="${PAGES_BASE_URL}/assets/audit-screenshots/seat12-safesport-voice-qa.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
-        <div><a href="${PAGES_BASE_URL}/screenshots/audit_bucket_coverage_report.png" style="color:#38bdf8; font-weight:800;">4. 📊 Phase 6: 16-Bucket / 5,760+ Organic Permutations Report</a><img src="${PAGES_BASE_URL}/screenshots/audit_bucket_coverage_report.png" style="width:100%; border-radius:8px; border:1px solid #334155; margin-top:4px;" /></div>
+    <!-- SECTION 28 POINT-AND-CLICK ILLUSTRATED ROOMS + SEAT 0, 11 & 12 LIVE SCREENSHOTS -->
+    <div style="background:#1c120b; border:2px solid #fbbf24; border-radius:14px; padding:16px; margin-bottom:22px;">
+      <div style="font-size:11px; font-weight:900; color:#fbbf24; text-transform:uppercase; letter-spacing:0.06em;">🏛️ SECTION 28 LIVE SCREENSHOTS: INTERACTIVE POINT-AND-CLICK ILLUSTRATED ROOM NAVIGATION (5 ROOMS) + SEAT 0, 11 &amp; 12</div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-top:10px; font-size:11px; color:#cbd5e1;">
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_room_lobby.png" style="color:#fbbf24; font-weight:800;">1. 🏟️ Room 1: Two-Story Main Rink Lobby</a><img src="${PAGES_BASE_URL}/screenshots/audit_room_lobby.png" style="width:100%; border-radius:8px; border:1px solid #d4af37; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_room_locker.png" style="color:#fbbf24; font-weight:800;">2. 🎽 Room 2: Player Locker Room Stall</a><img src="${PAGES_BASE_URL}/screenshots/audit_room_locker.png" style="width:100%; border-radius:8px; border:1px solid #d4af37; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_room_coach_office.png" style="color:#fbbf24; font-weight:800;">3. 📋 Room 3: Coach Al's Office</a><img src="${PAGES_BASE_URL}/screenshots/audit_room_coach_office.png" style="width:100%; border-radius:8px; border:1px solid #d4af37; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_room_pro_shop.png" style="color:#fbbf24; font-weight:800;">4. 🛍️ Room 4: Walk-In Pro Shop</a><img src="${PAGES_BASE_URL}/screenshots/audit_room_pro_shop.png" style="width:100%; border-radius:8px; border:1px solid #d4af37; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_room_clubhouse.png" style="color:#fbbf24; font-weight:800;">5. 🏆 Room 5: Friends &amp; Trophy Clubhouse</a><img src="${PAGES_BASE_URL}/screenshots/audit_room_clubhouse.png" style="width:100%; border-radius:8px; border:1px solid #d4af37; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/audit_red_flag_council_review.png" style="color:#fda4af; font-weight:800;">6. 🚩 Seat 0: Red-Flag Council Review</a><img src="${PAGES_BASE_URL}/screenshots/audit_red_flag_council_review.png" style="width:100%; border-radius:8px; border:1px solid #fb7185; margin-top:4px;" /></div>
       </div>
     </div>
 
@@ -1174,7 +1134,26 @@ async function main() {
 
   let gmailWebhookStatus = 'skipped';
   let gmailWebhookBody = '';
-  const emailSubject = `SYNAPZ HOCKEY — Nightly 12-Seat Collaborative Roundtable, Red-Flag Council Options & Top 5 Consensus Digest`;
+  const nowLocal = new Date();
+  const uniqueTimestampLabel = nowLocal.toLocaleString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    second: '2-digit'
+  });
+  const senderDisplayName = 'Synapz Hockey 12-Seat Council';
+  const emailSubject = `SYNAPZ HOCKEY — Nightly 12-Seat Collaborative Roundtable, Section 28 Rooms & Red-Flag Options [${uniqueTimestampLabel}]`;
+  /**
+   * NOTE FOR GOOGLE APPS SCRIPT (`Code.gs`):
+   * Add `name: data.senderName || "Synapz Hockey 12-Seat Council"` inside `MailApp.sendEmail({...})`:
+   *   MailApp.sendEmail({
+   *     to: recipients.join(','),
+   *     subject: data.subject,
+   *     htmlBody: data.htmlBody,
+   *     name: data.senderName || "Synapz Hockey 12-Seat Council"
+   *   });
+   */
   try {
     const gmailRes = await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
       method: 'POST',
@@ -1184,6 +1163,8 @@ async function main() {
       },
       body: JSON.stringify({
         subject: emailSubject,
+        senderName: senderDisplayName,
+        name: senderDisplayName,
         htmlBody: htmlContent,
         recipients: RECIPIENTS
       })

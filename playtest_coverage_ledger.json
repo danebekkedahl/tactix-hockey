@@ -1,6 +1,6 @@
 {
-  "lastUpdatedAt": "2026-11-05T01:59:18.879Z",
-  "totalRuns": 14,
+  "lastUpdatedAt": "2026-11-05T02:43:45.648Z",
+  "totalRuns": 15,
   "stepAApprovalGateCheck": {
     "statusChecked": "approved_for_build / approved_by_founder",
     "approvedItemsCount": 0,
@@ -651,6 +651,11 @@
     "seat11": "assets/audit-screenshots/seat11-art-director-avatar-shop.png",
     "seat12": "assets/audit-screenshots/seat12-safesport-voice-qa.png",
     "audit_red_flag_council_review": "screenshots/audit_red_flag_council_review.png",
-    "seat0": "assets/audit-screenshots/seat0-red-flag-council-review.png"
+    "seat0": "assets/audit-screenshots/seat0-red-flag-council-review.png",
+    "audit_room_lobby": "screenshots/audit_room_lobby.png",
+    "audit_room_locker": "screenshots/audit_room_locker.png",
+    "audit_room_coach_office": "screenshots/audit_room_coach_office.png",
+    "audit_room_pro_shop": "screenshots/audit_room_pro_shop.png",
+    "audit_room_clubhouse": "screenshots/audit_room_clubhouse.png"
   }
 }

@@ -432,6 +432,105 @@
       animation: synapzPuckPulse 1.4s ease-in-out infinite;
     }
   </style>
+  <!-- SECTION 28: WARM ARENA WALNUT WOOD, BRUSHED BRASS & CHAMPIONSHIP BLUE/GOLD THEME + POINT-AND-CLICK ROOM HOTSPOTS -->
+  <style id="synapzArenaRoomStyles">
+    :root {
+      --arena-walnut-deep: #2a1b10;
+      --arena-walnut-mid: #4a301d;
+      --arena-brass-gold: #d4af37;
+      --arena-champ-gold: #fbbf24;
+      --arena-champ-blue-dark: #1e3a8a;
+      --arena-champ-blue: #2563eb;
+    }
+    .synapz-walnut-brass-panel {
+      background:
+        linear-gradient(145deg, rgba(42, 27, 16, 0.95) 0%, rgba(28, 18, 10, 0.96) 50%, rgba(30, 58, 138, 0.90) 100%) !important;
+      border: 2px solid rgba(212, 175, 55, 0.78) !important;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 22px rgba(212, 175, 55, 0.22), inset 0 1px 0 rgba(251, 191, 36, 0.35) !important;
+    }
+    .synapz-room-scene-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 2px solid #d4af37;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.75), 0 0 24px rgba(212, 175, 55, 0.26);
+      background: #1c120a;
+      user-select: none;
+    }
+    .synapz-room-scene-container > img.synapz-room-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+      user-select: none;
+    }
+    .synapz-room-hotspot {
+      position: absolute;
+      border-radius: 0.85rem;
+      background: rgba(30, 58, 138, 0.03);
+      border: 2px solid rgba(251, 191, 36, 0.22);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0.35rem;
+      text-align: center;
+      z-index: 20;
+    }
+    .synapz-room-hotspot:hover,
+    .synapz-room-hotspot:focus-visible,
+    body.room-tap-zones-visible .synapz-room-hotspot {
+      background: radial-gradient(circle at center, rgba(37, 99, 235, 0.26) 0%, rgba(212, 175, 55, 0.20) 100%) !important;
+      border-color: #fbbf24 !important;
+      box-shadow: 0 0 24px rgba(251, 191, 36, 0.72), inset 0 0 16px rgba(37, 99, 235, 0.48) !important;
+      transform: scale(1.01);
+    }
+    .synapz-hotspot-pill {
+      background: linear-gradient(145deg, rgba(42, 27, 16, 0.94) 0%, rgba(74, 48, 29, 0.94) 55%, rgba(30, 58, 138, 0.92) 100%);
+      border: 1.5px solid #d4af37;
+      color: #fbbf24;
+      font-size: 10px;
+      line-height: 1.15;
+      font-weight: 900;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.85);
+      letter-spacing: 0.03em;
+      pointer-events: none;
+      max-width: 98%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .synapz-brass-nameplate-overlay {
+      position: absolute;
+      background: linear-gradient(180deg, #fae084 0%, #d4af37 50%, #9a7418 100%) !important;
+      color: #1c120a !important;
+      border: 2px solid #2a1b10 !important;
+      border-radius: 0.45rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.75) !important;
+      font-weight: 900;
+      font-size: clamp(8px, 1.05vw, 12px);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 6px;
+      cursor: pointer;
+      z-index: 25;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .synapz-brass-nameplate-overlay:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    }
+  </style>
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#0d1829" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -672,156 +771,108 @@
   </section>
 
   <!-- ===================================================================== -->
-  <!-- VIEW 0: PHASE 1 CENTRAL HUB — THE VIRTUAL HOCKEY RINK LOBBY           -->
+  <!-- VIEW 0: PHASE 1 & SECTION 28 CENTRAL HUB — INTERACTIVE POINT-AND-CLICK RINK LOBBY -->
   <!-- ===================================================================== -->
   <section id="synapzRinkLobbySection" class="hidden max-w-7xl w-full mx-auto p-3 flex-1 flex flex-col gap-3">
-    <div class="synapz-gunmetal-panel rounded-2xl p-4 sm:p-5 shadow-2xl flex flex-col gap-4 relative overflow-hidden border border-cyan-400/50">
-      <!-- 1. Lobby Top Bar: SYNAPZ HOCKEY Wordmark (Left) • Active Player Badge (Center) • Notifications + Switch/Lock Profile (Right) -->
-      <div id="synapzLobbyHeaderBar" class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-cyan-500/30">
+    <div class="synapz-gunmetal-panel synapz-walnut-brass-panel rounded-2xl p-3.5 sm:p-4 shadow-2xl flex flex-col gap-3 relative overflow-hidden">
+      <!-- 1. Lobby Top Bar: SYNAPZ HOCKEY Wordmark (Left) • Active Player Badge (Center) • Tap Zones + Notifications + Switch/Lock Profile (Right) -->
+      <div id="synapzLobbyHeaderBar" class="flex flex-wrap items-center justify-between gap-2.5 pb-2.5 border-b border-amber-400/40">
         <div class="flex items-center gap-2.5">
-          <img src="assets/synapz-logo.png" alt="SYNAPZ HOCKEY — PLAY. LEARN. DOMINATE." class="h-11 sm:h-12 w-auto rounded-xl object-contain border border-cyan-400/60 shadow-[0_0_18px_rgba(0,229,255,0.28)]" />
+          <img src="assets/synapz-logo.png" alt="SYNAPZ HOCKEY — PLAY. LEARN. DOMINATE." class="h-10 sm:h-11 w-auto rounded-xl object-contain border border-amber-400/75 shadow-[0_0_18px_rgba(212,175,55,0.35)]" />
           <div class="hidden md:block">
-            <div class="text-[10px] font-black uppercase tracking-widest text-cyan-400">PHASE 1 • VIRTUAL HOCKEY RINK LOBBY</div>
-            <div class="text-xs font-extrabold text-slate-300">75% Realistic / 25% Cartoon-Edge Arena Hub</div>
+            <div class="text-[10px] font-black uppercase tracking-widest text-amber-300">INTERACTIVE POINT-AND-CLICK ARENA CONCOURSE</div>
+            <div class="text-xs font-extrabold text-slate-200">Tap Any Doorway, Balcony, Portrait Wall or Floor Crest to Enter</div>
           </div>
         </div>
 
         <!-- Center: Active Player Badge -->
-        <button id="lobbyActivePlayerBadge" type="button" class="synapz-cyan-pill px-4 py-2 rounded-full flex items-center gap-2 text-xs sm:text-sm font-black text-cyan-200 shadow-lg cursor-pointer" title="Tap to open Locker Room & Sibling Stalls">
+        <button id="lobbyActivePlayerBadge" type="button" class="synapz-cyan-pill px-4 py-2 rounded-full flex items-center gap-2 text-xs sm:text-sm font-black text-amber-200 shadow-lg cursor-pointer border border-amber-400/75" title="Tap to open Locker Room & Sibling Stalls">
           <span id="lobbyBadgeAvatar">🏒</span>
           <span id="lobbyBadgeText" class="tracking-wide text-white">Miles #9 • 12U • IQ: 88% • 💰 450 Puck Bucks</span>
         </button>
 
-        <!-- Right: SafeSport Notifications Bell + Switch Player / Lock Profile -->
+        <!-- Right: Tap Zones Toggle + SafeSport Notifications Bell + Switch Player / Lock Profile -->
         <div class="flex flex-wrap items-center gap-2">
-          <button id="btnLobbyNotificationsBell" type="button" class="synapz-cyan-pill px-3.5 py-2 rounded-xl text-xs font-black text-cyan-200 flex items-center gap-1.5 relative">
+          <button id="btnToggleRoomTapZones" type="button" class="btn-toggle-room-tap-zones px-3 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/75 text-xs font-black text-amber-200 flex items-center gap-1.5 transition" title="Show or hide golden-blue interactive tap zone outlines across all 5 rooms">
+            <span>✨</span><span class="tap-zones-status-label">Tap Zones: OFF</span>
+          </button>
+          <button id="btnLobbyNotificationsBell" type="button" class="synapz-cyan-pill px-3 py-2 rounded-xl text-xs font-black text-cyan-200 flex items-center gap-1.5 relative">
             <span>🔔</span><span>Notifications</span>
             <span id="lobbyNotificationCountBadge" class="px-1.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black">2</span>
           </button>
-          <button id="btnLobbyLockSwitchPlayer" type="button" class="px-3.5 py-2 rounded-xl bg-rose-500/20 hover:bg-rose-500/35 border border-rose-400/60 text-xs font-black text-rose-200 flex items-center gap-1.5 transition">
+          <button id="btnLobbyLockSwitchPlayer" type="button" class="px-3 py-2 rounded-xl bg-rose-500/20 hover:bg-rose-500/35 border border-rose-400/60 text-xs font-black text-rose-200 flex items-center gap-1.5 transition">
             <span>🔒</span><span>Switch Player / Lock Profile</span>
           </button>
         </div>
       </div>
 
-      <!-- 2. Main Virtual Hockey Rink Lobby Concourse (5 Tactile Doorways / Stations) -->
-      <div id="lobbyConcourseGrid" class="relative rounded-2xl border border-cyan-400/40 p-4 sm:p-5 bg-gradient-to-b from-slate-900/95 via-slate-950/95 to-slate-900/95 shadow-inner flex flex-col gap-4">
-        <!-- Spotlight Dimmer Overlay (Active during 5-Step 1-Sentence Quadrant Spotlight Tutorial) -->
-        <div id="lobbySpotlightDimmer" class="hidden inset-0 bg-slate-950/75 pointer-events-none rounded-2xl transition-opacity duration-200 z-10"></div>
+      <!-- 2. Full-Bleed Illustrated Room 1: Two-Story Main Rink Lobby (`assets/rooms/room-rink-lobby.png`) with Percentage-Mapped Hotspots -->
+      <div id="lobbyConcourseGrid" class="relative flex flex-col gap-3">
+        <div id="lobbyRoomSceneCanvas" class="synapz-room-scene-container">
+          <img id="lobbyRoomSceneImg" src="assets/rooms/room-rink-lobby.png" alt="SYNAPZ HOCKEY Interactive Two-Story Rink Lobby" class="synapz-room-bg-img" />
 
-        <!-- DEAD AHEAD: Station 1 — Center Ice Double Doors (HIT THE ICE — Road to the Stanley Cup) -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 relative z-20">
-          <!-- Left Doorway: Station 2 — LOCKER ROOM -->
-          <button id="lobbyStationLockerRoom" type="button" data-lobby-station="locker" class="lobby-station-card lg:col-span-3 synapz-cyan-frame p-4 rounded-2xl text-left flex flex-col justify-between gap-3 group cursor-pointer transition-all hover:scale-[1.01]">
-            <div>
-              <div class="flex items-center justify-between gap-1.5 mb-1.5">
-                <span class="px-2 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 text-[10px] font-black uppercase">Left Doorway</span>
-                <span class="text-xl">🎽</span>
-              </div>
-              <h3 class="text-base sm:text-lg font-black text-white group-hover:text-cyan-300 transition">LOCKER ROOM</h3>
-              <p class="text-[11px] text-slate-300 leading-snug mt-1">
-                Customize your <strong>Young Hockey Player Avatar</strong>, equip gloves/sticks/skates/visors, &amp; audition your <strong>Player Agent</strong>.
-              </p>
-            </div>
-            <div class="w-full py-2 px-3 rounded-xl bg-cyan-500/20 border border-cyan-400/60 text-cyan-200 font-black text-xs text-center">
-              Open My Stall &amp; Avatar ▶
-            </div>
+          <!-- Spotlight Dimmer Overlay (Active during 5-Step 1-Sentence Quadrant Spotlight Tutorial) -->
+          <div id="lobbySpotlightDimmer" class="hidden inset-0 bg-slate-950/70 pointer-events-none transition-opacity duration-200 z-10"></div>
+
+          <!-- Hotspot 4: Upper-Left Balcony Office (`COACHES OFFICE` — left: 16%; top: 6%; width: 22%; height: 30%) -->
+          <button id="lobbyStationCoachOffice" type="button" data-lobby-station="coach" class="synapz-room-hotspot lobby-station-card" style="left: 16%; top: 6%; width: 22%; height: 30%;" title="Upper-Left Balcony: Enter Coach Al's Office & Training Room">
+            <span class="synapz-hotspot-pill">📋 COACHES OFFICE (Coach Al)</span>
           </button>
 
-          <!-- Center Ice Double Doors: Station 1 — HIT THE ICE (Road to the Stanley Cup) -->
-          <button id="lobbyStationHitTheIce" type="button" data-lobby-station="ice" class="lobby-station-card lg:col-span-6 p-5 rounded-2xl border-2 border-cyan-300 bg-gradient-to-b from-cyan-500/25 via-sky-900/35 to-slate-950 text-left flex flex-col justify-between gap-3 shadow-[0_0_32px_rgba(0,229,255,0.28)] group cursor-pointer transition-all hover:scale-[1.01]">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-1.5">
-                <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 border border-amber-300/60 text-amber-300 text-[10px] font-black uppercase tracking-wider">⚡ Center Ice Double Doors • Main Event</span>
-                <span id="lobbyCurrentStopPill" class="px-2.5 py-0.5 rounded-full bg-cyan-400/20 border border-cyan-300/60 text-cyan-200 text-[10px] font-black">📍 Stop #1: San Jose • Rec Tier</span>
-              </div>
-              <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight group-hover:text-cyan-200 transition">🏒 HIT THE ICE — ROAD TO THE STANLEY CUP</h2>
-              <p class="text-xs text-slate-200 leading-relaxed mt-1">
-                Skate onto the North American NHL Tour Map! Conquer all 32 NHL Cities from Rec to AAA to hoist the Stanley Cup and earn <strong>💰 Puck Bucks</strong>.
-              </p>
-            </div>
-            <div class="synapz-cta-btn w-full py-3 px-4 rounded-xl font-black text-sm text-center uppercase tracking-wider shadow-lg">
-              🚪 Push Through Double Doors &amp; Hit the Ice ▶
-            </div>
+          <!-- Hotspot 5A: Upper-Right Balcony Lounge (`CLUBHOUSE` — left: 64%; top: 6%; width: 25%; height: 30%) -->
+          <button id="lobbyStationFriendsWall" type="button" data-lobby-station="friends" class="synapz-room-hotspot lobby-station-card" style="left: 64%; top: 6%; width: 25%; height: 30%;" title="Upper-Right Balcony: Enter the Clubhouse, Friends Wall, Map Races & Trophy Case">
+            <span class="synapz-hotspot-pill">🏛️ CLUBHOUSE &amp; FRIENDS WALL</span>
           </button>
 
-          <!-- Right Doorway: Station 3 — SYNAPZ PRO SHOP -->
-          <button id="lobbyStationProShop" type="button" data-lobby-station="shop" class="lobby-station-card lg:col-span-3 synapz-cyan-frame p-4 rounded-2xl text-left flex flex-col justify-between gap-3 group cursor-pointer transition-all hover:scale-[1.01]">
-            <div>
-              <div class="flex items-center justify-between gap-1.5 mb-1.5">
-                <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black uppercase">Right Doorway</span>
-                <span class="text-xl">🛍️</span>
-              </div>
-              <h3 class="text-base sm:text-lg font-black text-white group-hover:text-emerald-300 transition">SYNAPZ PRO SHOP</h3>
-              <p class="text-[11px] text-slate-300 leading-snug mt-1">
-                Walk the <strong>🧤 Wall of Gloves</strong>, <strong>⛸️ Wall of Skates</strong>, <strong>🏒 Stick Rack</strong>, &amp; <strong>🥽 Tinted Visors</strong>.
-              </p>
-            </div>
-            <div class="w-full py-2 px-3 rounded-xl bg-emerald-500/20 border border-emerald-400/60 text-emerald-200 font-black text-xs text-center">
-              Browse Pro Gear Walls ▶
-            </div>
+          <!-- Hotspot 5B: Framed Wall Portraits (`left: 16%; top: 42%; width: 18%; height: 22%`) -> Also opens Clubhouse & Friends Wall -->
+          <button id="lobbyHotspotWallPortraits" type="button" data-lobby-station="friends_portraits" class="synapz-room-hotspot" style="left: 16%; top: 42%; width: 18%; height: 22%;" title="Framed Wall Portraits: View Friends & Family Community Wall">
+            <span class="synapz-hotspot-pill">🖼️ FRIENDS PORTRAITS</span>
+          </button>
+
+          <!-- Hotspot 2: Bottom-Left Padded Leather Door & Stalls (`LOCKER ROOM` — left: 2%; top: 40%; width: 26%; height: 52%) -->
+          <button id="lobbyStationLockerRoom" type="button" data-lobby-station="locker" class="synapz-room-hotspot lobby-station-card" style="left: 2%; top: 40%; width: 26%; height: 52%;" title="Left Leather Door & Wood Stalls: Open My Locker Room Stall & Avatar">
+            <span class="synapz-hotspot-pill">🎽 LOCKER ROOM STALL ▶</span>
+          </button>
+
+          <!-- Hotspot 1: Center Double Glass Doors (`HIT THE ICE` — left: 34%; top: 38%; width: 32%; height: 40%) -->
+          <button id="lobbyStationHitTheIce" type="button" data-lobby-station="ice" class="synapz-room-hotspot lobby-station-card justify-between" style="left: 34%; top: 38%; width: 32%; height: 40%;" title="Center Double Glass Doors: Push Through to the 32-Team NHL Map & On-Ice Gameplay">
+            <span id="lobbyCurrentStopPill" class="synapz-hotspot-pill">📍 Stop #1: San Jose • Rec Tier</span>
+            <span class="synapz-hotspot-pill" style="background: linear-gradient(135deg, #fbbf24 0%, #d4af37 100%); color: #1c120a; border-color: #fef08a;">🏒 HIT THE ICE — STANLEY CUP TOUR ▶</span>
+          </button>
+
+          <!-- Hotspot 3: Bottom-Right Glass Storefront (`SYNAPZ PRO SHOP` — left: 72%; top: 38%; width: 27%; height: 52%) -->
+          <button id="lobbyStationProShop" type="button" data-lobby-station="shop" class="synapz-room-hotspot lobby-station-card" style="left: 72%; top: 38%; width: 27%; height: 52%;" title="Right Glass Storefront: Enter the Walk-In Synapz Pro Shop">
+            <span class="synapz-hotspot-pill">🛍️ SYNAPZ PRO SHOP ▶</span>
+          </button>
+
+          <!-- Hotspot 6: Center Floor Medallion (`SYNAPZ HOCKEY` Crest on Floor — left: 32%; top: 79%; width: 36%; height: 19%) -->
+          <button id="lobbyHotspotFloorMedallion" type="button" data-lobby-station="medallion_tour" class="synapz-room-hotspot" style="left: 32%; top: 79%; width: 36%; height: 19%;" title="Tap the SYNAPZ HOCKEY Floor Crest to launch your Player Agent 1-Sentence Spotlight Tour!">
+            <span class="synapz-hotspot-pill">🎙️ TAP CREST: AGENT 1-SENTENCE LOBBY TOUR</span>
           </button>
         </div>
 
-        <!-- Second Concourse Row: Station 4 (Coach's Office w/ Coach Al) + Station 5 (Friends & Family Community Wall) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 relative z-20">
-          <!-- Coach's Doorway: Station 4 — COACH'S OFFICE & TRAINING ROOM (With Coach Al) -->
-          <button id="lobbyStationCoachOffice" type="button" data-lobby-station="coach" class="lobby-station-card synapz-cyan-frame p-4 rounded-2xl text-left flex flex-col justify-between gap-3 group cursor-pointer transition-all hover:scale-[1.01]">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-1">
-                <span class="px-2 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-300 text-[10px] font-black uppercase">Coach's Doorway • Guided by Coach Al</span>
-                <span class="px-2 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-200 text-[10px] font-black">Synapz Pro + Team Link</span>
-              </div>
-              <h3 class="text-base sm:text-lg font-black text-white group-hover:text-amber-300 transition">📋 COACH'S OFFICE &amp; TRAINING ROOM (Coach Al)</h3>
-              <p class="text-[11px] text-slate-300 leading-snug mt-1">
-                Review your <strong>6-Slice Hockey IQ Pie Chart</strong>, build a <strong>5-Lesson Quick Tune-Up</strong> or <strong>10-Lesson Mastery Plan</strong>, or tap <strong>🔗 Find / Join My Team</strong>.
-              </p>
-            </div>
-            <div class="w-full py-2 px-3 rounded-xl bg-amber-400/20 border border-amber-400/60 text-amber-200 font-black text-xs text-center">
-              Enter Coach Al's Office ▶
-            </div>
-          </button>
-
-          <!-- Lobby Wall: Station 5 — FRIENDS & FAMILY COMMUNITY WALL (Read-Only Social + Map Races) -->
-          <button id="lobbyStationFriendsWall" type="button" data-lobby-station="friends" class="lobby-station-card synapz-cyan-frame p-4 rounded-2xl text-left flex flex-col justify-between gap-3 group cursor-pointer transition-all hover:scale-[1.01]">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-1">
-                <span class="px-2 py-0.5 rounded-full bg-indigo-500/20 border border-indigo-400/50 text-indigo-300 text-[10px] font-black uppercase">Lobby Community Wall • 100% SafeSport Read-Only</span>
-                <span class="text-lg">🖼️</span>
-              </div>
-              <h3 class="text-base sm:text-lg font-black text-white group-hover:text-indigo-300 transition">🖼️ FRIENDS &amp; FAMILY COMMUNITY WALL</h3>
-              <p class="text-[11px] text-slate-300 leading-snug mt-1">
-                Find friends &amp; cousins, inspect buddy avatars/pie charts (100% read-only, zero open chat), &amp; launch a <strong>🏁 Map Race</strong>!
-              </p>
-            </div>
-            <div class="w-full py-2 px-3 rounded-xl bg-indigo-500/20 border border-indigo-400/60 text-indigo-200 font-black text-xs text-center">
-              Open Community Wall &amp; Map Races ▶
-            </div>
-          </button>
-        </div>
-
-        <!-- 3. Lower-Left Quadrant (~25% Height): Player Agent Lobby Greeter & 5-Step 1-Sentence Spotlight Tour -->
-        <div id="lobbyActivePlayerAgentWidget" class="relative z-30 mt-1 p-3.5 rounded-2xl bg-slate-950/95 border-2 border-cyan-400/80 shadow-[0_0_28px_rgba(0,229,255,0.22)] flex flex-col sm:flex-row items-center justify-between gap-3">
+        <!-- 3. Lower-Left / Bottom Bar: Player Agent Lobby Greeter & 5-Step 1-Sentence Spotlight Tour -->
+        <div id="lobbyActivePlayerAgentWidget" class="relative z-30 p-3 rounded-2xl bg-slate-950/95 border-2 border-amber-400/80 shadow-[0_0_28px_rgba(212,175,55,0.22)] flex flex-col sm:flex-row items-center justify-between gap-3">
           <div class="flex items-center gap-3 min-w-0">
-            <img id="lobbyAgentAvatarImg" src="assets/agents/agent-chloe.png" alt="Player Agent" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-cyan-400 shadow-lg shrink-0" />
+            <img id="lobbyAgentAvatarImg" src="assets/agents/agent-chloe.png" alt="Player Agent" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border-2 border-amber-400 shadow-lg shrink-0" />
             <div class="min-w-0">
               <div class="flex flex-wrap items-center gap-1.5">
-                <span id="lobbyAgentNameBadge" class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/60 text-cyan-200 text-[11px] font-black">🎙️ Agent Chloe • 10U–14U Teen Agent</span>
+                <span id="lobbyAgentNameBadge" class="px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/60 text-amber-200 text-[11px] font-black">🎙️ Agent Chloe • 10U–14U Teen Agent</span>
                 <span id="lobbySpotlightStepBadge" class="hidden px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black">Tour Step 1 / 5</span>
               </div>
               <p id="lobbyAgentSpeechText" class="text-xs sm:text-sm font-extrabold text-white mt-1 leading-snug">
-                "Welcome to your Synapz Hockey Rink Lobby! Tap any doorway to jump in, or click ❓ Lobby Tour and I'll walk you through every station."
+                "Welcome to your Synapz Hockey Rink Lobby! Tap any doorway in the room—or tap the SYNAPZ crest on the floor for my 1-sentence tour."
               </p>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-2 shrink-0">
-            <button id="btnLobbySpeakAgentGreeting" type="button" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-cyan-400/50 text-cyan-200 text-xs font-black transition">
+            <button id="btnLobbySpeakAgentGreeting" type="button" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-amber-400/60 text-amber-200 text-xs font-black transition">
               🔊 Hear Agent
             </button>
-            <button id="btnStartLobbySpotlightTour" type="button" class="px-3.5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-black shadow transition">
+            <button id="btnStartLobbySpotlightTour" type="button" class="px-3.5 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black shadow transition">
               ❓ Lobby Tour (1-Sentence Guide)
             </button>
-            <button id="btnLobbySpotlightNext" type="button" class="hidden px-3.5 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black shadow transition">
+            <button id="btnLobbySpotlightNext" type="button" class="hidden px-3.5 py-2 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-xs font-black shadow transition">
               Next Station ➡️
             </button>
             <button id="btnLobbyChangePlayerAgent" type="button" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-bold transition">
@@ -2587,20 +2638,23 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- MODAL 5: WALK-IN WALL-STYLE SYNAPZ PRO SHOP (Sponsor-Ready for Bauer / CCM) -->
+  <!-- MODAL 5: WALK-IN WALL-STYLE SYNAPZ PRO SHOP (Room 4: assets/rooms/room-pro-shop.png) -->
   <!-- ===================================================================== -->
   <div id="proShopModal" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-2.5 sm:p-4">
-    <div class="synapz-gunmetal-panel border-2 border-cyan-400/70 rounded-2xl max-w-5xl w-full p-4 sm:p-5 shadow-2xl max-h-[94vh] overflow-y-auto space-y-3">
+    <div class="synapz-gunmetal-panel synapz-walnut-brass-panel rounded-2xl max-w-5xl w-full p-4 sm:p-5 shadow-2xl max-h-[94vh] overflow-y-auto space-y-3">
       <!-- Top Store Header -->
-      <div class="flex flex-wrap items-center justify-between gap-2.5 border-b border-cyan-500/30 pb-3">
+      <div class="flex flex-wrap items-center justify-between gap-2.5 border-b border-amber-400/40 pb-3">
         <div class="flex items-center gap-3">
           <span class="text-2xl sm:text-3xl">🛍️</span>
           <div>
-            <div class="text-[10px] font-black uppercase tracking-widest text-cyan-400">WALK-IN PRO HOCKEY STORE • SPONSOR-READY DISPLAYS</div>
-            <h3 class="text-base sm:text-lg font-black text-white">SYNAPZ PRO SHOP — WALLS OF GLOVES, STICKS, SKATES &amp; VISORS</h3>
+            <div class="text-[10px] font-black uppercase tracking-widest text-amber-300">ROOM 4 • POINT-AND-CLICK WALK-IN PRO HOCKEY STORE</div>
+            <h3 class="text-base sm:text-lg font-black text-white">SYNAPZ PRO SHOP — TAP ANY STORE RACK OR SHOWCASE CABINET</h3>
           </div>
         </div>
         <div class="flex flex-wrap items-center gap-2">
+          <button type="button" class="btn-toggle-room-tap-zones px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/75 text-xs font-black text-amber-200 flex items-center gap-1.5 transition">
+            <span>✨</span><span class="tap-zones-status-label">Tap Zones: OFF</span>
+          </button>
           <span id="shopBalanceBadge" class="px-3.5 py-1.5 rounded-xl bg-amber-400/20 border-2 border-amber-400 text-amber-300 text-xs sm:text-sm font-black shadow">💰 250 Puck Bucks</span>
           <button id="btnShopSaveExitLobby" type="button" class="px-3.5 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/35 border border-emerald-400/70 text-emerald-200 font-black text-xs transition synapz-tactile-3d-btn">
             💾 Save &amp; Exit to Lobby
@@ -2609,23 +2663,58 @@
         </div>
       </div>
 
+      <!-- Illustrated Room 4: Walk-In SYNAPZ PRO SHOP (`assets/rooms/room-pro-shop.png`) with 6 Fixture Hotspots -->
+      <div id="proShopRoomSceneCanvas" class="synapz-room-scene-container">
+        <img id="proShopRoomSceneImg" src="assets/rooms/room-pro-shop.png" alt="SYNAPZ PRO SHOP Walk-In Store" class="synapz-room-bg-img" />
+
+        <!-- Fixture 1: Left Glass Display Cabinet (`🧤 Wall of Gloves` — left: 1%; top: 36%; width: 20%; height: 52%) -->
+        <button id="proShopHotspotGloves" type="button" data-shop-fixture="Gloves" class="synapz-room-hotspot" style="left: 1%; top: 36%; width: 20%; height: 52%;" title="Left Glass Display Cabinet: Browse 4-Roll Pro, Tapered Vapor & Sponsor Promo Gloves">
+          <span class="synapz-hotspot-pill">🧤 WALL OF GLOVES</span>
+        </button>
+
+        <!-- Fixture 6: Left Open Doorway Out to Arena (`💾 Save & Exit to Lobby` — left: 20%; top: 24%; width: 14%; height: 32%) -->
+        <button id="proShopHotspotDoorway" type="button" data-shop-fixture="Exit" class="synapz-room-hotspot" style="left: 20%; top: 24%; width: 14%; height: 32%;" title="Open Arena Doorway: Save Purchases & Return to Main Rink Lobby">
+          <span class="synapz-hotspot-pill">🚪 EXIT TO LOBBY</span>
+        </button>
+
+        <!-- Fixture 2: Center-Left 3-Tier Skate Stand (`⛸️ Wall of Skates` — left: 22%; top: 55%; width: 24%; height: 34%) -->
+        <button id="proShopHotspotSkates" type="button" data-shop-fixture="Skates" class="synapz-room-hotspot" style="left: 22%; top: 55%; width: 24%; height: 34%;" title="Center-Left 3-Tier Skate Stand: Browse Pro Skates & Mirror-Black Steel Runners">
+          <span class="synapz-hotspot-pill">⛸️ WALL OF SKATES</span>
+        </button>
+
+        <!-- Fixture 3: Back-Left Upright Stick Rack (`🏒 Pro Stick Rack` — left: 36%; top: 40%; width: 16%; height: 28%) -->
+        <button id="proShopHotspotSticks" type="button" data-shop-fixture="Stick" class="synapz-room-hotspot" style="left: 36%; top: 40%; width: 16%; height: 28%;" title="Upright Stick Rack: Browse Carbon-Weave Sticks, Kick-Points & Tape Jobs">
+          <span class="synapz-hotspot-pill">🏒 PRO STICK RACK</span>
+        </button>
+
+        <!-- Fixture 4: Back-Center Cubbies (`🥽 Helmet and Facial` — left: 54%; top: 28%; width: 23%; height: 36%) -->
+        <button id="proShopHotspotHelmets" type="button" data-shop-fixture="Visor" class="synapz-room-hotspot" style="left: 54%; top: 28%; width: 23%; height: 36%;" title="Back-Center Helmet & Facial Cubbies: Browse Buckets, Cages & Tinted Visors">
+          <span class="synapz-hotspot-pill">🥽 HELMET &amp; FACIAL</span>
+        </button>
+
+        <!-- Fixture 5: Right Wall & Center Glass Showcase Counter (`🎽 Jerseys, Protective & Blackout Bundles` — left: 49%; top: 64%; width: 49%; height: 28%) -->
+        <button id="proShopHotspotShowcaseCounter" type="button" data-shop-fixture="BlackoutBundle" class="synapz-room-hotspot" style="left: 49%; top: 64%; width: 49%; height: 28%;" title="Center Glass Showcase & Right Jersey Rack: Preview Full Blackout & Sponsor Promo Bundles">
+          <span class="synapz-hotspot-pill">🖤 SHOWCASE COUNTER &amp; BLACKOUT BUNDLES</span>
+        </button>
+      </div>
+
       <!-- Player Agent Plain-Language Economy Explanation Banner -->
-      <div id="proShopAgentEconomyBanner" class="p-2.5 sm:p-3 rounded-2xl bg-slate-950/95 border border-cyan-400/50 flex flex-wrap items-center justify-between gap-2.5">
+      <div id="proShopAgentEconomyBanner" class="p-2.5 sm:p-3 rounded-2xl bg-slate-950/95 border border-amber-400/60 flex flex-wrap items-center justify-between gap-2.5">
         <div class="flex items-center gap-2.5 min-w-0 flex-1">
-          <img id="proShopAgentPortraitImg" src="assets/agents/agent-chloe.png" alt="Player Agent" class="w-10 h-10 rounded-xl object-cover border border-cyan-300 shrink-0" />
+          <img id="proShopAgentPortraitImg" src="assets/agents/agent-chloe.png" alt="Player Agent" class="w-10 h-10 rounded-xl object-cover border border-amber-300 shrink-0" />
           <div class="min-w-0">
-            <div id="proShopAgentNameBadge" class="text-[10px] font-black uppercase tracking-wider text-cyan-300">🎙️ Agent Chloe • IQ-Tied Puck Bucks Economy</div>
+            <div id="proShopAgentNameBadge" class="text-[10px] font-black uppercase tracking-wider text-amber-300">🎙️ Agent Chloe • IQ-Tied Puck Bucks Economy</div>
             <p id="proShopAgentEconomyText" class="text-xs font-bold text-white leading-snug">
-              "Your Puck Bucks match your Hockey IQ score—score 95% IQ on a lesson, bank 95 Puck Bucks, and spend them right here on the gear walls!"
+              "Your Puck Bucks match your Hockey IQ score—score 95% IQ on a lesson, bank 95 Puck Bucks, and tap any rack in the store above to try gear on your skater!"
             </p>
           </div>
         </div>
-        <button id="btnSpeakShopEconomyTip" type="button" class="px-3 py-1.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/35 border border-cyan-400/60 text-cyan-200 text-[11px] font-black shrink-0">
+        <button id="btnSpeakShopEconomyTip" type="button" class="px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/60 text-amber-200 text-[11px] font-black shrink-0">
           🔊 Hear Agent Tip
         </button>
       </div>
 
-      <!-- 4 Big, Tactile Wall Category Buttons (Strictly 4 Store Walls) -->
+      <!-- 4 Big, Tactile Wall Category Buttons (Linked with the 6 Store Fixture Hotspots Above) -->
       <div id="shopCategoryFilterBar" class="grid grid-cols-2 sm:grid-cols-4 gap-2">
         <button type="button" id="btnWallGloves" data-shopcat="Gloves" data-shop-cat="Gloves" class="shop-cat-btn synapz-tactile-3d-btn active-pill py-2.5 px-3 rounded-xl text-xs sm:text-sm font-black flex items-center justify-center gap-1.5 border border-cyan-300 bg-cyan-500 text-slate-950 shadow-lg">
           <span>🧤</span><span>Wall of Gloves</span>
@@ -2641,11 +2730,11 @@
         </button>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-3.5 items-start">
+      <div id="proShopInteractiveDrawer" class="grid grid-cols-1 md:grid-cols-12 gap-3.5 items-start">
         <!-- LEFT: YOUNG HOCKEY PLAYER FITTING STAGE (75%-Realistic Style + Visibly Equipped Gear) -->
-        <div class="md:col-span-4 bg-slate-950 border border-cyan-500/40 rounded-2xl p-3 flex flex-col items-center justify-between">
+        <div class="md:col-span-4 bg-slate-950 border border-amber-400/50 rounded-2xl p-3 flex flex-col items-center justify-between">
           <div class="w-full flex items-center justify-between mb-1">
-            <span id="shopPreviewBanner" class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-400/40">🏒 Live Skater Fitting Mirror</span>
+            <span id="shopPreviewBanner" class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/40">🏒 Live Skater Fitting Mirror</span>
             <span id="shopSpinAngleBadge" class="text-[10px] font-extrabold text-amber-300">Front Stance</span>
           </div>
 
@@ -2687,7 +2776,7 @@
           🎽 Open My Locker Room Stall
         </button>
         <div class="flex items-center gap-2">
-          <button id="btnCloseProShopBottom" type="button" class="px-4 py-2 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black text-xs transition shadow">
+          <button id="btnCloseProShopBottom" type="button" class="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs transition shadow">
             🏒 Done Shopping
           </button>
         </div>
@@ -20555,6 +20644,10 @@
       if (agentEl) {
         agentEl.textContent = `🎙️ My Agent: ${agent.name} (${agent.tierLabel})`;
       }
+      const brassPlateEl = document.getElementById('lockerBrassNameplateText');
+      if (brassPlateEl) {
+        brassPlateEl.textContent = `${String(prof.name || 'MILES').toUpperCase()} #${prof.jerseyNumber || '9'} • AGENT: ${String(agent.name || 'LEO').toUpperCase()}`;
+      }
 
       // Render Sibling / Profile Stall Switcher
       const stallRow = document.getElementById('lockerRoomSiblingStalls');
@@ -20817,11 +20910,11 @@
       const container = document.getElementById('friendsWallContentBox');
       if (!container) return;
       const tab = state.friendsWallTab || 'find';
-      ['find', 'inspect', 'race'].forEach(t => {
+      ['find', 'inspect', 'race', 'trophies'].forEach(t => {
         const b = document.getElementById('btnFriendsTab_' + t);
         if (b) {
           b.className = t === tab
-            ? 'px-3.5 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-black text-xs shadow transition'
+            ? 'px-3.5 py-2.5 rounded-xl bg-amber-400 text-slate-950 font-black text-xs shadow transition'
             : 'px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-xs transition';
         }
       });
@@ -20829,21 +20922,21 @@
       if (tab === 'find') {
         container.innerHTML = `
           <div class="space-y-2.5">
-            <div class="text-xs font-black text-cyan-300 uppercase">🔍 Find Friends / Cousins &amp; 📬 Friend Requests (100% SafeSport Read-Only)</div>
+            <div class="text-xs font-black text-amber-300 uppercase">🖼️ Left Portrait Wall — Find Friends / Cousins &amp; 📬 Friend Requests (100% SafeSport Read-Only)</div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <div class="p-3 rounded-xl bg-slate-900 border border-cyan-400/40 flex items-center justify-between">
+              <div class="p-3 rounded-xl bg-slate-900 border border-amber-400/40 flex items-center justify-between">
                 <div>
                   <div class="text-xs font-black text-white">🏒 Rhett #88 (8U Cousin / Sibling)</div>
                   <div class="text-[10px] text-emerald-300">Connected • Stop #3 Seattle • 112 IQ</div>
                 </div>
-                <button type="button" onclick="openSynapzFriendsWallModal('inspect')" class="px-2.5 py-1 rounded-lg bg-cyan-500/20 border border-cyan-400/50 text-cyan-200 text-[10px] font-black">👀 View Stall</button>
+                <button type="button" onclick="openSynapzFriendsWallModal('inspect')" class="px-2.5 py-1 rounded-lg bg-amber-500/20 border border-amber-400/50 text-amber-200 text-[10px] font-black">👀 View Stall</button>
               </div>
-              <div class="p-3 rounded-xl bg-slate-900 border border-cyan-400/40 flex items-center justify-between">
+              <div class="p-3 rounded-xl bg-slate-900 border border-amber-400/40 flex items-center justify-between">
                 <div>
                   <div class="text-xs font-black text-white">🏒 Cohen #14 (10U Cousin)</div>
                   <div class="text-[10px] text-amber-300">📬 Friend Request Approved ✅</div>
                 </div>
-                <button type="button" onclick="openSynapzFriendsWallModal('inspect')" class="px-2.5 py-1 rounded-lg bg-cyan-500/20 border border-cyan-400/50 text-cyan-200 text-[10px] font-black">👀 View Stall</button>
+                <button type="button" onclick="openSynapzFriendsWallModal('inspect')" class="px-2.5 py-1 rounded-lg bg-amber-500/20 border border-amber-400/50 text-amber-200 text-[10px] font-black">👀 View Stall</button>
               </div>
             </div>
           </div>
@@ -20859,10 +20952,43 @@
             <div class="text-xs text-cyan-200 font-bold">6-Slice Hockey IQ Balance: <strong>89% Overall</strong> (Top Slice: 📐 Attack Triangles 92%)</div>
           </div>
         `;
+      } else if (tab === 'trophies') {
+        container.innerHTML = `
+          <div class="p-3.5 rounded-xl bg-slate-900 border border-amber-400/60 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-amber-300 uppercase">🏆 Right Glass Trophy Case — Stanley Cups, Championship Banners &amp; Tier Medals</span>
+              <span class="px-2 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-200 text-[10px] font-black">Age-Stamped Prestige</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+              <div class="p-2.5 rounded-lg bg-slate-950 border border-amber-400/40">
+                <div class="font-black text-amber-300">🏆 10U Stanley Cup Run</div>
+                <div class="text-[11px] text-slate-300 mt-0.5">Pacific Division Banner Unlocked • 4/32 NHL Cities Conquered</div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-950 border border-cyan-400/40">
+                <div class="font-black text-cyan-300">🥇 92% IQ Gold Medal</div>
+                <div class="text-[11px] text-slate-300 mt-0.5">Attack Triangles &amp; D-Zone Box+1 Mastery Ribbon</div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-950 border border-emerald-400/40">
+                <div class="font-black text-emerald-300">🚩 2026 Synapz Pennant</div>
+                <div class="text-[11px] text-slate-300 mt-0.5">Clubhouse Charter Member • Agent Leo</div>
+              </div>
+            </div>
+            <button type="button" id="btnOpenFull3DTrophyVaultFromClubhouse" class="w-full py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs uppercase shadow">
+              🏆 Open Full 3D Stanley Cup Trophy Vault ▶
+            </button>
+          </div>
+        `;
+        const vaultBtn = document.getElementById('btnOpenFull3DTrophyVaultFromClubhouse');
+        if (vaultBtn) {
+          vaultBtn.addEventListener('click', () => {
+            document.getElementById('synapzFriendsWallModal').classList.add('hidden');
+            if (typeof openTrophyRoomModal === 'function') openTrophyRoomModal();
+          });
+        }
       } else {
         container.innerHTML = `
           <div class="p-3.5 rounded-xl bg-slate-900 border border-amber-400/50 space-y-2.5">
-            <div class="text-xs font-black text-amber-300 uppercase">🏁 Active Family &amp; Buddy Map Race — First to Stop #5 (Vancouver)!</div>
+            <div class="text-xs font-black text-amber-300 uppercase">🏁 Center Screen — Active Family &amp; Buddy Map Race (First to Stop #5 Vancouver!)</div>
             <div class="space-y-1.5 text-xs">
               <div class="flex items-center justify-between p-2 rounded-lg bg-slate-950 border border-cyan-400/40">
                 <span class="font-black text-white">🥇 1. Miles #9 (YOU)</span>
@@ -21893,7 +22019,7 @@
       // Phase 6: Concept Bucket Coverage Report Modal Close
       bindClick('btnCloseConceptBucketCoverageModal', () => document.getElementById('conceptBucketCoverageReportModal').classList.add('hidden'));
 
-      // 5 Lobby Stations
+      // 5 Lobby Stations + Section 28 Point-and-Click Hotspots
       bindClick('lobbyStationHitTheIce', () => {
         SoundFX.playTap();
         triggerSynapzScreenTransition('⚡ Pushing Through Center Ice Doors to NHL Map...', () => {
@@ -21909,6 +22035,19 @@
       });
       bindClick('lobbyStationCoachOffice', openSynapzCoachOfficeModal);
       bindClick('lobbyStationFriendsWall', () => openSynapzFriendsWallModal('find'));
+      bindClick('lobbyHotspotWallPortraits', () => openSynapzFriendsWallModal('find'));
+      bindClick('lobbyHotspotFloorMedallion', () => applyLobbySpotlightStep(0));
+
+      // Section 28: Toggle Tap Zones button across all rooms
+      document.querySelectorAll('.btn-toggle-room-tap-zones').forEach(btn => {
+        btn.addEventListener('click', () => {
+          SoundFX.playTap();
+          const isVisible = document.body.classList.toggle('room-tap-zones-visible');
+          document.querySelectorAll('.tap-zones-status-label').forEach(lbl => {
+            lbl.textContent = isVisible ? 'Tap Zones: ON' : 'Tap Zones: OFF';
+          });
+        });
+      });
 
       // Lobby Top Bar & Agent Widget
       bindClick('btnLobbyNotificationsBell', () => {
@@ -21937,7 +22076,7 @@
       });
       bindClick('btnConfirmHirePlayerAgent', confirmHireAuditionedAgent);
 
-      // Locker Room Modal
+      // Locker Room Modal + Room 2 Point-and-Click Hotspots
       bindClick('btnCloseSynapzLockerRoomModal', () => document.getElementById('synapzLockerRoomModal').classList.add('hidden'));
       bindClick('btnLockerSaveExitLobby', saveAndExitToRinkLobby);
       bindClick('btnLockerPreviewBlackout', () => applyFullBlackoutLoadout(true));
@@ -21952,6 +22091,25 @@
         document.getElementById('synapzLockerRoomModal').classList.add('hidden');
         openPlayerAgentPickerModal();
       });
+      bindClick('lockerBrassNameplateHotspot', () => {
+        document.getElementById('synapzLockerRoomModal').classList.add('hidden');
+        openPlayerAgentPickerModal();
+      });
+      const selectLockerCatAndScroll = (cat) => {
+        SoundFX.playTap();
+        state.lockerActiveCat = cat;
+        renderSynapzLockerRoomModal();
+        const grid = document.getElementById('lockerGearDrawerGrid');
+        if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      };
+      bindClick('lockerHotspotHelmet', () => selectLockerCatAndScroll('Visor'));
+      bindClick('lockerHotspotJersey', () => selectLockerCatAndScroll('Jersey'));
+      bindClick('lockerHotspotStick', () => selectLockerCatAndScroll('Stick'));
+      bindClick('lockerHotspotGloves', () => selectLockerCatAndScroll('Gloves'));
+      bindClick('lockerHotspotSkates', () => selectLockerCatAndScroll('Skates'));
+      bindClick('lockerHotspotBreezers', () => applyFullBlackoutLoadout(true));
+      bindClick('lockerHotspotDoorwayExit', saveAndExitToRinkLobby);
+
       document.querySelectorAll('.locker-cat-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           SoundFX.playTap();
@@ -21960,20 +22118,88 @@
         });
       });
 
-      // Coach Al's Office Modal
+      // Room 4 Pro Shop Point-and-Click Hotspots
+      const clickShopWallBtn = (btnId) => {
+        const b = document.getElementById(btnId);
+        if (b) {
+          b.click();
+          const itemsGrid = document.getElementById('proShopItemsContainer');
+          if (itemsGrid) itemsGrid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      };
+      bindClick('proShopHotspotGloves', () => clickShopWallBtn('btnWallGloves'));
+      bindClick('proShopHotspotSkates', () => clickShopWallBtn('btnWallSkates'));
+      bindClick('proShopHotspotSticks', () => clickShopWallBtn('btnWallStick'));
+      bindClick('proShopHotspotHelmets', () => clickShopWallBtn('btnWallVisor'));
+      bindClick('proShopHotspotShowcaseCounter', () => applyFullBlackoutLoadout(true));
+      bindClick('proShopHotspotDoorway', saveAndExitToRinkLobby);
+
+      // Coach Al's Office Modal + Room 3 Point-and-Click Hotspots (Player & Coach Modes)
       bindClick('btnCloseSynapzCoachOfficeModal', () => document.getElementById('synapzCoachOfficeModal').classList.add('hidden'));
       bindClick('btnCoachOfficeSaveExitLobby', saveAndExitToRinkLobby);
       bindClick('btnCoachOfficeJoinTeam', () => {
         document.getElementById('synapzCoachOfficeModal').classList.add('hidden');
         openPlayerTeamRosterHubModal('roster');
       });
+      bindClick('coachOfficeHotspotLaptop', () => {
+        SoundFX.playTap();
+        state.coachAlWizardStep = 1;
+        renderSynapzCoachOfficeModal();
+        const g = document.getElementById('coachAlPieSlicesGrid');
+        if (g) g.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+      bindClick('coachOfficeHotspotCoachAl', () => {
+        SoundFX.playTap();
+        if (!state.coachAlSelectedSliceId) state.coachAlSelectedSliceId = 'breakouts';
+        state.coachAlWizardStep = 2;
+        renderSynapzCoachOfficeModal();
+      });
+      bindClick('coachOfficeHotspotWhiteboard', () => {
+        SoundFX.playTap();
+        if (!state.coachAlSelectedSliceId) state.coachAlSelectedSliceId = 'breakouts';
+        state.coachAlWizardStep = 3;
+        renderSynapzCoachOfficeModal();
+      });
+      bindClick('coachOfficeHotspotBookshelf', () => {
+        document.getElementById('synapzCoachOfficeModal').classList.add('hidden');
+        openPlayerTeamRosterHubModal('roster');
+      });
+      bindClick('coachOfficeHotspotDoorway', saveAndExitToRinkLobby);
 
-      // Friends & Family Wall Modal
+      // Coach Portal Room 3 Hotspots
+      bindClick('coachPortalHotspotBookshelf', () => {
+        SoundFX.playTap();
+        if (typeof renderCoachOfficeLobbyModal === 'function') renderCoachOfficeLobbyModal(1);
+      });
+      bindClick('coachPortalHotspotLaptop', () => {
+        SoundFX.playTap();
+        if (typeof renderCoachOfficeLobbyModal === 'function') renderCoachOfficeLobbyModal(2);
+      });
+      bindClick('coachPortalHotspotCoachAl', () => {
+        SoundFX.playTap();
+        if (typeof renderCoachOfficeLobbyModal === 'function') renderCoachOfficeLobbyModal(2);
+      });
+      bindClick('coachPortalHotspotWhiteboard', () => {
+        SoundFX.playTap();
+        if (typeof renderCoachOfficeLobbyModal === 'function') renderCoachOfficeLobbyModal(3);
+      });
+      bindClick('coachPortalHotspotDoorway', () => {
+        SoundFX.playTap();
+        const m = document.getElementById('coachPortalModal');
+        if (m) m.classList.add('hidden');
+        saveAndExitToRinkLobby();
+      });
+
+      // Friends & Family Clubhouse Modal + Room 5 Hotspots
       bindClick('btnCloseSynapzFriendsWallModal', () => document.getElementById('synapzFriendsWallModal').classList.add('hidden'));
       bindClick('btnFriendsWallSaveExitLobby', saveAndExitToRinkLobby);
       bindClick('btnFriendsTab_find', () => openSynapzFriendsWallModal('find'));
       bindClick('btnFriendsTab_inspect', () => openSynapzFriendsWallModal('inspect'));
       bindClick('btnFriendsTab_race', () => openSynapzFriendsWallModal('race'));
+      bindClick('btnFriendsTab_trophies', () => openSynapzFriendsWallModal('trophies'));
+      bindClick('clubhouseHotspotFriendsWall', () => openSynapzFriendsWallModal('find'));
+      bindClick('clubhouseHotspotMapRaceScreen', () => openSynapzFriendsWallModal('race'));
+      bindClick('clubhouseHotspotTrophyCase', () => openSynapzFriendsWallModal('trophies'));
 
       // SafeSport Notification Modal
       bindClick('btnCloseSafeSportNotificationModal', () => document.getElementById('safeSportNotificationModal').classList.add('hidden'));
@@ -22165,15 +22391,18 @@
     </div>
   </div>
 
-  <!-- Station 2: Locker Room Modal (Young Hockey Player Avatar + Tactile Category Buttons) -->
+  <!-- Station 2: Room 2 — Inside the LOCKER ROOM (`assets/rooms/room-locker-room.png` + Brass Nameplate + 6 Equipment Hotspots) -->
   <div id="synapzLockerRoomModal" class="hidden fixed inset-0 z-[98] bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-    <div class="synapz-gunmetal-panel max-w-4xl w-full rounded-2xl p-4 sm:p-5 border-2 border-cyan-400 shadow-2xl space-y-4 my-auto">
-      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-cyan-500/30 pb-3">
+    <div class="synapz-gunmetal-panel synapz-walnut-brass-panel max-w-5xl w-full rounded-2xl p-4 sm:p-5 shadow-2xl space-y-3.5 my-auto max-h-[94vh] overflow-y-auto">
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-400/40 pb-3">
         <div>
-          <div class="text-[10px] font-black uppercase tracking-widest text-cyan-400">LEFT DOORWAY • PLAYER LOCKER ROOM STALL</div>
+          <div class="text-[10px] font-black uppercase tracking-widest text-amber-300">ROOM 2 • POINT-AND-CLICK MAHOGANY LOCKER STALL</div>
           <h3 id="lockerRoomPlayerTitle" class="text-lg sm:text-xl font-black text-white">Miles #9 BEKKEDAHL (12U)</h3>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" class="btn-toggle-room-tap-zones px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/75 text-xs font-black text-amber-200 flex items-center gap-1.5 transition">
+            <span>✨</span><span class="tap-zones-status-label">Tap Zones: OFF</span>
+          </button>
           <button id="btnLockerSaveExitLobby" type="button" class="px-3.5 py-2 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/35 border border-emerald-400/70 text-emerald-200 text-xs font-black">
             💾 Save &amp; Exit to Lobby
           </button>
@@ -22184,26 +22413,76 @@
       <!-- Sibling Stalls Quick Switcher -->
       <div id="lockerRoomSiblingStalls" class="flex flex-wrap items-center gap-2"></div>
 
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+      <!-- Full-Bleed Illustrated Room 2: Inside the LOCKER ROOM (`assets/rooms/room-locker-room.png`) -->
+      <div id="lockerRoomSceneCanvas" class="synapz-room-scene-container">
+        <img id="lockerRoomSceneImg" src="assets/rooms/room-locker-room.png" alt="SYNAPZ HOCKEY Interactive Player Locker Stall" class="synapz-room-bg-img" />
+
+        <!-- Dynamic Brass Stall Nameplate Overlay (Covers "PLAYER STALL - AKL AGENT" at left: 14.5%; top: 2.5%; width: 25.5%; height: 5.5%) -->
+        <button id="lockerBrassNameplateHotspot" type="button" class="synapz-brass-nameplate-overlay" style="left: 14.5%; top: 2.5%; width: 25.5%; height: 5.5%;" title="Tap Brass Stall Nameplate to Audition or Switch Your Player Agent (9 Voices)">
+          <span id="lockerBrassNameplateText" class="truncate">MILES #9 • AGENT: LEO</span>
+        </button>
+
+        <!-- Equipment Hotspot 1: Top Shelf (`Helmet & Cage/Visor` — left: 18%; top: 12%; width: 18%; height: 16%) -->
+        <button id="lockerHotspotHelmet" type="button" data-locker-hotspot="Visor" class="synapz-room-hotspot" style="left: 18%; top: 12%; width: 18%; height: 16%;" title="Top Shelf: Tap Helmet & Visor to Customize Buckets, Cages & Tinted Visors">
+          <span class="synapz-hotspot-pill">🥽 HELMET &amp; VISOR</span>
+        </button>
+
+        <!-- Equipment Hotspot 2: Center Hanger (`SYNAPZ HOCKEY Jersey & Shoulder Pads` — left: 15%; top: 31%; width: 24%; height: 35%) -->
+        <button id="lockerHotspotJersey" type="button" data-locker-hotspot="Jersey" class="synapz-room-hotspot" style="left: 15%; top: 31%; width: 24%; height: 35%;" title="Center Hanger: Tap SYNAPZ HOCKEY Jersey to Customize Sweater Color, Number & Nameplate">
+          <span class="synapz-hotspot-pill">🎽 JERSEY &amp; SWEATER</span>
+        </button>
+
+        <!-- Equipment Hotspot 3: Left Side of Stall (`Hockey Stick & Shin Guards` — left: 5%; top: 22%; width: 16%; height: 73%) -->
+        <button id="lockerHotspotStick" type="button" data-locker-hotspot="Stick" class="synapz-room-hotspot" style="left: 5%; top: 22%; width: 16%; height: 73%;" title="Left Stall Rack: Tap Hockey Stick to Customize Sticks, Flex & Tape Job">
+          <span class="synapz-hotspot-pill">🏒 STICK &amp; TAPE</span>
+        </button>
+
+        <!-- Equipment Hotspot 4: Leather Bench (`Hockey Gloves` — left: 18%; top: 68%; width: 19%; height: 12%) -->
+        <button id="lockerHotspotGloves" type="button" data-locker-hotspot="Gloves" class="synapz-room-hotspot" style="left: 18%; top: 68%; width: 19%; height: 12%;" title="Leather Bench: Tap Hockey Gloves to Equip Pro Mitts">
+          <span class="synapz-hotspot-pill">🧤 GLOVES</span>
+        </button>
+
+        <!-- Equipment Hotspot 5: Right Stall Hook (`Breezers / Pants` — left: 36%; top: 46%; width: 16%; height: 26%) -->
+        <button id="lockerHotspotBreezers" type="button" data-locker-hotspot="Avatar" class="synapz-room-hotspot" style="left: 36%; top: 46%; width: 16%; height: 26%;" title="Right Stall Hook: Tap Breezers to Preview Full Outfit on Your Young Hockey Player Avatar">
+          <span class="synapz-hotspot-pill">🧍‍♂️ BREEZERS &amp; AVATAR</span>
+        </button>
+
+        <!-- Equipment Hotspot 6: Floor Below Bench (`Hockey Skates` — left: 31%; top: 81%; width: 18%; height: 18%) -->
+        <button id="lockerHotspotSkates" type="button" data-locker-hotspot="Skates" class="synapz-room-hotspot" style="left: 31%; top: 81%; width: 18%; height: 18%;" title="Floor Below Bench: Tap Hockey Skates & Steel Runners">
+          <span class="synapz-hotspot-pill">⛸️ SKATES &amp; STEEL</span>
+        </button>
+
+        <!-- Exit Hotspot 7: Right Doorway & Corridor Stalls (`LOCKER ROOM` Exit — left: 56%; top: 12%; width: 42%; height: 78%) -->
+        <button id="lockerHotspotDoorwayExit" type="button" data-locker-hotspot="Exit" class="synapz-room-hotspot" style="left: 56%; top: 12%; width: 42%; height: 78%;" title="Right Doorway Out to Arena Concourse: Save & Return to Main Rink Lobby">
+          <span class="synapz-hotspot-pill">🚪 SAVE &amp; EXIT TO RINK LOBBY ▶</span>
+        </button>
+      </div>
+
+      <!-- Interactive Equipment Drawer & Young Hockey Player Avatar Preview -->
+      <div id="lockerRoomEquipmentDrawer" class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center p-3 rounded-2xl bg-slate-950/95 border border-amber-400/50">
         <!-- Left: Young Hockey Player Avatar Preview (75% Realistic / 25% Cartoon-Edge Style) -->
-        <div class="md:col-span-5 p-4 rounded-2xl bg-slate-950 border border-cyan-400/50 flex flex-col items-center gap-2">
+        <div class="md:col-span-5 p-3.5 rounded-2xl bg-slate-900/90 border border-amber-400/50 flex flex-col items-center gap-2">
+          <div class="text-[10px] font-black uppercase tracking-wider text-amber-300">🧍‍♂️ View Full Outfit on My Young Hockey Player Avatar</div>
           <div id="lockerRoom3dAvatarWrap" class="w-48 h-56 flex items-center justify-center"></div>
-          <div id="lockerRoomAgentBadge" class="text-xs font-black text-cyan-300">🎙️ My Agent: Chloe</div>
+          <div id="lockerRoomAgentBadge" class="text-xs font-black text-amber-300">🎙️ My Agent: Chloe</div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 w-full">
-            <button id="btnLockerPreviewBlackout" type="button" class="py-2 px-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-amber-400/70 text-amber-200 text-[11px] font-black transition">
+            <button id="btnLockerPreviewBlackout" type="button" class="py-2 px-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-amber-400/70 text-amber-200 text-[11px] font-black transition">
               🖤 Preview "Full Blackout" Loadout
             </button>
             <button id="btnLockerEquipOwnedGear" type="button" class="py-2 px-2.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/70 text-emerald-200 text-[11px] font-black transition">
               ⚡ Equip Owned Gear
             </button>
           </div>
-          <button id="btnLockerChangeAgent" type="button" class="w-full py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/60 text-cyan-200 text-xs font-black">
+          <button id="btnLockerChangeAgent" type="button" class="w-full py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/60 text-amber-200 text-xs font-black">
             🎙️ Change Player Agent (Audition 9 Voices)
           </button>
         </div>
 
         <!-- Right: Tactile Gear Category Buttons & Items -->
         <div class="md:col-span-7 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span id="lockerActiveHotspotStatusBadge" class="text-xs font-black uppercase text-amber-300">✨ Tap Any Gear in Your Stall Above or Select a Category Below:</span>
+          </div>
           <div class="flex flex-wrap items-center gap-1.5">
             <button type="button" data-locker-cat="Gloves" class="locker-cat-btn px-3 py-2 rounded-xl bg-cyan-500 text-slate-950 font-black text-xs">🧤 Gloves</button>
             <button type="button" data-locker-cat="Stick" class="locker-cat-btn px-3 py-2 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs">🏒 Sticks</button>
@@ -22211,21 +22490,24 @@
             <button type="button" data-locker-cat="Visor" class="locker-cat-btn px-3 py-2 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs">🥽 Visors &amp; Buckets</button>
             <button type="button" data-locker-cat="Jersey" class="locker-cat-btn px-3 py-2 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs">🎽 Jersey Color</button>
           </div>
-          <div id="lockerRoomGearItemsGrid" class="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto pr-1"></div>
+          <div id="lockerRoomGearItemsGrid" class="grid grid-cols-1 gap-2 max-h-60 overflow-y-auto pr-1"></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Station 4: Coach's Office & Training Room Modal (Guided by Coach Al) -->
+  <!-- Station 4: Room 3 — Inside the COACHES OFFICE (`assets/rooms/room-coaches-office.png` Guided by Coach Al) -->
   <div id="synapzCoachOfficeModal" class="hidden fixed inset-0 z-[98] bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-    <div class="synapz-gunmetal-panel max-w-4xl w-full rounded-2xl p-4 sm:p-5 border-2 border-amber-400 shadow-2xl space-y-4 my-auto">
-      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-400/30 pb-3">
+    <div class="synapz-gunmetal-panel synapz-walnut-brass-panel max-w-5xl w-full rounded-2xl p-4 sm:p-5 shadow-2xl space-y-3.5 my-auto max-h-[94vh] overflow-y-auto">
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-400/40 pb-3">
         <div>
-          <div class="text-[10px] font-black uppercase tracking-widest text-amber-300">COACH'S DOORWAY • GUIDED BY COACH AL</div>
-          <h3 class="text-lg sm:text-xl font-black text-white">📋 Coach's Office &amp; Training Room (6-Slice Skill Pie Chart)</h3>
+          <div class="text-[10px] font-black uppercase tracking-widest text-amber-300">ROOM 3 • POINT-AND-CLICK COACH'S OFFICE (GUIDED BY COACH AL)</div>
+          <h3 class="text-lg sm:text-xl font-black text-white">📋 Coach's Office — Tap Laptop, Whiteboard, Bookshelf or Coach Al</h3>
         </div>
         <div class="flex flex-wrap items-center gap-2">
+          <button type="button" class="btn-toggle-room-tap-zones px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/75 text-xs font-black text-amber-200 flex items-center gap-1.5 transition">
+            <span>✨</span><span class="tap-zones-status-label">Tap Zones: OFF</span>
+          </button>
           <button id="btnCoachOfficeJoinTeam" type="button" class="px-3.5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-black shadow">
             🔗 Find / Join My Team (Team Portal Link)
           </button>
@@ -22236,17 +22518,48 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
+      <!-- Full-Bleed Illustrated Room 3: Inside the COACHES OFFICE (`assets/rooms/room-coaches-office.png`) -->
+      <div id="coachOfficeRoomSceneCanvas" class="synapz-room-scene-container">
+        <img id="coachOfficeRoomSceneImg" src="assets/rooms/room-coaches-office.png" alt="SYNAPZ HOCKEY Interactive Coach Al Office" class="synapz-room-bg-img" />
+
+        <!-- Hotspot 4: Left Trophy & Team Photo Bookshelf (`left: 0%; top: 10%; width: 21%; height: 58%`) -->
+        <button id="coachOfficeHotspotBookshelf" type="button" data-office-hotspot="bookshelf" class="synapz-room-hotspot" style="left: 0%; top: 10%; width: 21%; height: 58%;" title="Left Trophy & Team Photo Bookshelf: Find / Join My Team Roster Hub">
+          <span class="synapz-hotspot-pill">🏆 TEAM ROSTER &amp; PLAYBOOK SHELF</span>
+        </button>
+
+        <!-- Hotspot 3: Giant Rink Whiteboard on the Wall (`left: 21%; top: 21%; width: 37%; height: 33%`) -->
+        <button id="coachOfficeHotspotWhiteboard" type="button" data-office-hotspot="whiteboard" class="synapz-room-hotspot" style="left: 21%; top: 21%; width: 37%; height: 33%;" title="Giant Rink Whiteboard: Launch Custom Lesson Plan on the Ice or View 16 Concept Buckets">
+          <span class="synapz-hotspot-pill">📋 TACTICAL RINK WHITEBOARD ▶</span>
+        </button>
+
+        <!-- Hotspot 1: Open Laptop on the Desk (`left: 35%; top: 58%; width: 25%; height: 20%`) -->
+        <button id="coachOfficeHotspotLaptop" type="button" data-office-hotspot="laptop" class="synapz-room-hotspot" style="left: 35%; top: 58%; width: 25%; height: 20%;" title="Open Laptop on Desk: Inspect Your 6-Slice Hockey IQ Pie Chart & Position Ratings">
+          <span class="synapz-hotspot-pill">💻 6-SLICE IQ PIE CHART</span>
+        </button>
+
+        <!-- Hotspot 5: Open Office Doorway (`left: 66%; top: 18%; width: 18%; height: 56%`) -->
+        <button id="coachOfficeHotspotDoorway" type="button" data-office-hotspot="doorway" class="synapz-room-hotspot" style="left: 66%; top: 18%; width: 18%; height: 56%;" title="Open Office Doorway: Save & Return to Main Rink Lobby">
+          <span class="synapz-hotspot-pill">🚪 EXIT TO LOBBY</span>
+        </button>
+
+        <!-- Hotspot 2: Coach Al Sitting in the Chair Holding the Slate (`left: 76%; top: 48%; width: 22%; height: 38%`) -->
+        <button id="coachOfficeHotspotCoachAl" type="button" data-office-hotspot="coach_al" class="synapz-room-hotspot" style="left: 76%; top: 48%; width: 22%; height: 38%;" title="Tap Coach Al: Start 1-Question-Per-Screen Tailored 5- or 10-Lesson Plan Wizard">
+          <span class="synapz-hotspot-pill">🧢 COACH AL LESSON WIZARD</span>
+        </button>
+      </div>
+
+      <!-- Interactive Coach Al Office Drawer (6-Slice IQ Pie Chart + 1-Question-Per-Screen Wizard) -->
+      <div id="coachOfficeInteractiveDrawer" class="grid grid-cols-1 md:grid-cols-12 gap-4 items-start p-3 rounded-2xl bg-slate-950/95 border border-amber-400/50">
         <!-- Left: 6 Skill Slices -->
         <div class="md:col-span-5 space-y-2">
-          <div class="text-xs font-black uppercase text-cyan-300">📊 Tap Any Skill Slice to Tailor Plan:</div>
+          <div class="text-xs font-black uppercase text-amber-300">💻 6-Slice Hockey IQ Pie Chart (Tap Any Slice):</div>
           <div id="coachAlPieSlicesGrid" class="grid grid-cols-1 gap-1.5"></div>
         </div>
         <!-- Right: Coach Al 1-Question-Per-Screen Wizard -->
-        <div class="md:col-span-7 p-4 rounded-2xl bg-slate-950 border-2 border-cyan-400/60 space-y-3">
+        <div class="md:col-span-7 p-4 rounded-2xl bg-slate-900 border-2 border-amber-400/70 space-y-3">
           <div class="flex items-center justify-between">
             <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 border border-amber-400/60 text-amber-300 text-[10px] font-black">🧢 Coach Al • Training Room Strategist</span>
-            <button type="button" onclick="playCharacterVoice('coach-al','office_welcome','Pick any skill slice and choose a 5-lesson tune-up or 10-lesson mastery plan!')" class="text-xs font-black text-cyan-300">🔊 Hear Coach Al</button>
+            <button type="button" onclick="playCharacterVoice('coach-al','office_welcome','Pick any skill slice and choose a 5-lesson tune-up or 10-lesson mastery plan!')" class="text-xs font-black text-amber-300">🔊 Hear Coach Al</button>
           </div>
           <div id="coachAlWizardContainer"></div>
         </div>
@@ -22254,15 +22567,18 @@
     </div>
   </div>
 
-  <!-- Station 5: Friends & Family Community Wall Modal -->
+  <!-- Station 5: Room 5 — Inside the CLUBHOUSE (`assets/rooms/room-clubhouse.png` — Portrait Wall, Map Race Big Screen & Trophy Case) -->
   <div id="synapzFriendsWallModal" class="hidden fixed inset-0 z-[98] bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-    <div class="synapz-gunmetal-panel max-w-3xl w-full rounded-2xl p-4 sm:p-5 border-2 border-indigo-400 shadow-2xl space-y-4 my-auto">
-      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-indigo-400/30 pb-3">
+    <div class="synapz-gunmetal-panel synapz-walnut-brass-panel max-w-4xl w-full rounded-2xl p-4 sm:p-5 shadow-2xl space-y-3.5 my-auto max-h-[94vh] overflow-y-auto">
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-400/40 pb-3">
         <div>
-          <div class="text-[10px] font-black uppercase tracking-widest text-indigo-300">LOBBY WALL • 100% SAFESPORT READ-ONLY SOCIAL</div>
-          <h3 class="text-lg sm:text-xl font-black text-white">🖼️ Friends &amp; Family Community Wall + Map Races</h3>
+          <div class="text-[10px] font-black uppercase tracking-widest text-amber-300">ROOM 5 • POINT-AND-CLICK ARENA CLUBHOUSE (100% SAFESPORT READ-ONLY)</div>
+          <h3 class="text-lg sm:text-xl font-black text-white">🏛️ Synapz Clubhouse — Friends Wall, Map Race Screen &amp; Trophy Case</h3>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" class="btn-toggle-room-tap-zones px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/75 text-xs font-black text-amber-200 flex items-center gap-1.5 transition">
+            <span>✨</span><span class="tap-zones-status-label">Tap Zones: OFF</span>
+          </button>
           <button id="btnFriendsWallSaveExitLobby" type="button" class="px-3.5 py-2 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/35 border border-emerald-400/70 text-emerald-200 text-xs font-black">
             💾 Save &amp; Exit to Lobby
           </button>
@@ -22270,16 +22586,39 @@
         </div>
       </div>
 
-      <!-- 3 Clear Tactile Action Buttons -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-        <button id="btnFriendsTab_find" type="button" class="px-3.5 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-black text-xs">
+      <!-- Full-Bleed Illustrated Room 5: Inside the CLUBHOUSE (`assets/rooms/room-clubhouse.png`) -->
+      <div id="clubhouseRoomSceneCanvas" class="synapz-room-scene-container">
+        <img id="clubhouseRoomSceneImg" src="assets/rooms/room-clubhouse.png" alt="SYNAPZ HOCKEY Interactive Clubhouse Lounge" class="synapz-room-bg-img" />
+
+        <!-- Hotspot 1: Left Wall (`🖼️ Friends & Family Portrait Wall` — left: 2%; top: 18%; width: 28%; height: 68%) -->
+        <button id="clubhouseHotspotFriendsWall" type="button" data-clubhouse-hotspot="find" class="synapz-room-hotspot" style="left: 2%; top: 18%; width: 28%; height: 68%;" title="Left Portrait Wall: Search Friends/Cousins & Inspect Read-Only Buddy Profiles">
+          <span class="synapz-hotspot-pill">🖼️ FRIENDS &amp; FAMILY WALL</span>
+        </button>
+
+        <!-- Hotspot 2: Center Big Screen (`🏁 Head-to-Head Map Race Scoreboard` — left: 33%; top: 36%; width: 34%; height: 34%) -->
+        <button id="clubhouseHotspotMapRaceScreen" type="button" data-clubhouse-hotspot="race" class="synapz-room-hotspot" style="left: 33%; top: 36%; width: 34%; height: 34%;" title="Center Big Screen: View or Launch Live Head-to-Head Map Races">
+          <span class="synapz-hotspot-pill">🏁 HEAD-TO-HEAD MAP RACE</span>
+        </button>
+
+        <!-- Hotspot 3: Right Glass Wall (`🏆 Stanley Cup Trophy Case` — left: 70%; top: 18%; width: 28%; height: 68%) -->
+        <button id="clubhouseHotspotTrophyCase" type="button" data-clubhouse-hotspot="trophies" class="synapz-room-hotspot" style="left: 70%; top: 18%; width: 28%; height: 68%;" title="Right Glass Trophy Case: View Earned Stanley Cups, Tier Banners & Gold IQ Medals">
+          <span class="synapz-hotspot-pill">🏆 STANLEY CUP TROPHY CASE</span>
+        </button>
+      </div>
+
+      <!-- 4 Clear Tactile Action Buttons Linked with the Clubhouse Room Hotspots -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <button id="btnFriendsTab_find" type="button" class="px-3 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-black text-xs">
           🔍 Find Friends &amp; Requests
         </button>
-        <button id="btnFriendsTab_inspect" type="button" class="px-3.5 py-2.5 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs">
+        <button id="btnFriendsTab_inspect" type="button" class="px-3 py-2.5 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs">
           👀 View Buddy Profile (Read-Only)
         </button>
-        <button id="btnFriendsTab_race" type="button" class="px-3.5 py-2.5 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs">
-          🏁 Start / Join a Map Race
+        <button id="btnFriendsTab_race" type="button" class="px-3 py-2.5 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs">
+          🏁 Head-to-Head Map Race
+        </button>
+        <button id="btnFriendsTab_trophies" type="button" class="px-3 py-2.5 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs">
+          🏆 Trophy Case &amp; Banners
         </button>
       </div>
 
@@ -22353,18 +22692,21 @@
     </div>
   </div>
 
-  <!-- 2) Coach's Office Lobby Guided by Coach Al (`#coachPortalModal` — 4 Clean Stations + Spotlight Tour) -->
+  <!-- 2) Coach's Office Lobby Guided by Coach Al (`#coachPortalModal` — Interactive Room 3 + 4 Clean Stations + Spotlight Tour) -->
   <div id="coachPortalModal" class="hidden fixed inset-0 z-[101] bg-slate-950/92 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-    <div class="synapz-gunmetal-panel max-w-5xl w-full rounded-2xl p-4 sm:p-5 border-2 border-amber-400 shadow-2xl space-y-3.5 my-auto">
-      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-400/30 pb-3">
+    <div class="synapz-gunmetal-panel synapz-walnut-brass-panel max-w-5xl w-full rounded-2xl p-4 sm:p-5 shadow-2xl space-y-3.5 my-auto max-h-[94vh] overflow-y-auto">
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-400/40 pb-3">
         <div class="flex items-center gap-3">
           <div class="w-11 h-11 rounded-2xl bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-2xl shrink-0">🧢</div>
           <div>
-            <div class="text-[10px] font-black uppercase tracking-widest text-amber-300">COACH LOGIN • GUIDED BY COACH AL (VOICE CHANNEL: COACH-AL)</div>
-            <h3 class="text-lg sm:text-xl font-black text-white">🧑‍💼 Coach's Office Lobby — 4 Tactical Coaching Stations</h3>
+            <div class="text-[10px] font-black uppercase tracking-widest text-amber-300">COACH LOGIN • INTERACTIVE COACH'S OFFICE (VOICE: COACH-AL)</div>
+            <h3 class="text-lg sm:text-xl font-black text-white">🧑‍💼 Coach's Office Lobby — Tap Laptop, Coach Al, Whiteboard or Bookshelf</h3>
           </div>
         </div>
         <div class="flex flex-wrap items-center gap-2">
+          <button type="button" class="btn-toggle-room-tap-zones px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/75 text-xs font-black text-amber-200 flex items-center gap-1.5 transition">
+            <span>✨</span><span class="tap-zones-status-label">Tap Zones: OFF</span>
+          </button>
           <button id="btnCoachOfficeStartSpotlight" type="button" class="px-3 py-1.5 rounded-xl bg-amber-400/20 hover:bg-amber-400/35 border border-amber-400/70 text-amber-200 text-xs font-black">
             🔦 1-Sentence Tour
           </button>
@@ -22383,6 +22725,36 @@
 
       <!-- Coach Al 1-Sentence Spotlight Banner -->
       <div id="coachOfficeSpotlightBanner" class="hidden p-2.5 rounded-xl bg-amber-400/15 border border-amber-400 text-amber-200 text-xs font-black"></div>
+
+      <!-- Illustrated Room 3 inside Coach Portal (`assets/rooms/room-coaches-office.png`) -->
+      <div id="coachPortalRoomSceneCanvas" class="synapz-room-scene-container">
+        <img id="coachPortalRoomSceneImg" src="assets/rooms/room-coaches-office.png" alt="Coach's Office Interactive Scene" class="synapz-room-bg-img" />
+
+        <!-- Hotspot 4: Left Trophy & Team Photo Bookshelf (`left: 0%; top: 10%; width: 21%; height: 58%`) -->
+        <button id="coachPortalHotspotBookshelf" type="button" data-coach-portal-hotspot="1" class="synapz-room-hotspot" style="left: 0%; top: 10%; width: 21%; height: 58%;" title="Left Bookshelf: Open Roster/Playbook Uploads & Opponent Scouting Counter-Strategy Prep">
+          <span class="synapz-hotspot-pill">📁 PLAYBOOK &amp; SCOUTING SHELF</span>
+        </button>
+
+        <!-- Hotspot 3: Giant Rink Whiteboard on the Wall (`left: 21%; top: 21%; width: 37%; height: 33%`) -->
+        <button id="coachPortalHotspotWhiteboard" type="button" data-coach-portal-hotspot="3" class="synapz-room-hotspot" style="left: 21%; top: 21%; width: 37%; height: 33%;" title="Giant Rink Whiteboard: Opponent Scouting Counter-Strategy & 16 Concept Buckets Report">
+          <span class="synapz-hotspot-pill">📋 WHITEBOARD &amp; OPPONENT SCOUTING</span>
+        </button>
+
+        <!-- Hotspot 1: Open Laptop on the Desk (`left: 35%; top: 58%; width: 25%; height: 20%`) -->
+        <button id="coachPortalHotspotLaptop" type="button" data-coach-portal-hotspot="2" class="synapz-room-hotspot" style="left: 35%; top: 58%; width: 25%; height: 20%;" title="Open Laptop on Desk: Question-by-Question Player Progress Report">
+          <span class="synapz-hotspot-pill">💻 PLAYER PROGRESS REPORT</span>
+        </button>
+
+        <!-- Hotspot 5: Open Office Doorway (`left: 66%; top: 18%; width: 18%; height: 56%`) -->
+        <button id="coachPortalHotspotDoorway" type="button" data-coach-portal-hotspot="exit" class="synapz-room-hotspot" style="left: 66%; top: 18%; width: 18%; height: 56%;" title="Open Office Doorway: Save & Return to Main Rink Lobby">
+          <span class="synapz-hotspot-pill">🚪 EXIT TO LOBBY</span>
+        </button>
+
+        <!-- Hotspot 2: Coach Al Sitting in the Chair Holding the Slate (`left: 76%; top: 48%; width: 22%; height: 38%`) -->
+        <button id="coachPortalHotspotCoachAl" type="button" data-coach-portal-hotspot="2" class="synapz-room-hotspot" style="left: 76%; top: 48%; width: 22%; height: 38%;" title="Coach Al's Corner: 1-Click Proactive Weekly Plan & Natural-Language AI Prompt">
+          <span class="synapz-hotspot-pill">🧢 COACH AL'S CORNER</span>
+        </button>
+      </div>
 
       <!-- 4 Clean Station Selector Buttons -->
       <div id="coachOffice4StationsNavGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">

@@ -1601,10 +1601,75 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     capturedScreenshots.audit_red_flag_council_review = 'screenshots/audit_red_flag_council_review.png';
     capturedScreenshots.seat0 = 'assets/audit-screenshots/seat0-red-flag-council-review.png';
 
+    // =========================================================================
+    // SECTION 28: INTERACTIVE POINT-AND-CLICK ILLUSTRATED ROOM SCENES AUDIT & 5 SCREENSHOTS
+    // =========================================================================
+    // 1. Room 1: Two-Story Main Rink Lobby (`room-rink-lobby.png` -> `screenshots/audit_room_lobby.png`)
     await page.evaluate(() => {
+      document.querySelectorAll('.fixed').forEach(el => {
+        if (el.id && el.id.endsWith('Modal')) el.classList.add('hidden');
+      });
+      document.body.classList.add('room-tap-zones-visible');
+      document.querySelectorAll('.tap-zones-status-label').forEach(lbl => { lbl.textContent = 'Tap Zones: ON'; });
+      if (typeof switchView === 'function') switchView('lobby');
+    });
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_room_lobby.png') });
+    capturedScreenshots.audit_room_lobby = 'screenshots/audit_room_lobby.png';
+
+    // 2. Room 2: Player Locker Room Stall (`room-locker-room.png` + Dynamic Brass Nameplate -> `screenshots/audit_room_locker.png`)
+    await page.evaluate(() => {
+      if (typeof openSynapzLockerRoomModal === 'function') openSynapzLockerRoomModal();
+      const modal = document.getElementById('synapzLockerRoomModal');
+      if (modal) modal.scrollTop = 0;
+    });
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_room_locker.png') });
+    capturedScreenshots.audit_room_locker = 'screenshots/audit_room_locker.png';
+
+    // 3. Room 3: Coach Al's Office (`room-coaches-office.png` -> `screenshots/audit_room_coach_office.png`)
+    await page.evaluate(() => {
+      document.getElementById('synapzLockerRoomModal')?.classList.add('hidden');
+      if (typeof openSynapzCoachOfficeModal === 'function') openSynapzCoachOfficeModal();
+      const modal = document.getElementById('synapzCoachOfficeModal');
+      if (modal) modal.scrollTop = 0;
+    });
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_room_coach_office.png') });
+    capturedScreenshots.audit_room_coach_office = 'screenshots/audit_room_coach_office.png';
+
+    // 4. Room 4: Walk-In Pro Shop (`room-pro-shop.png` -> `screenshots/audit_room_pro_shop.png`)
+    await page.evaluate(() => {
+      document.getElementById('synapzCoachOfficeModal')?.classList.add('hidden');
+      if (typeof renderProShopModal === 'function') renderProShopModal();
+      const modal = document.getElementById('proShopModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.scrollTop = 0;
+      }
+    });
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_room_pro_shop.png') });
+    capturedScreenshots.audit_room_pro_shop = 'screenshots/audit_room_pro_shop.png';
+
+    // 5. Room 5: Friends & Family / Trophy Case Clubhouse (`room-clubhouse.png` -> `screenshots/audit_room_clubhouse.png`)
+    await page.evaluate(() => {
+      document.getElementById('proShopModal')?.classList.add('hidden');
+      if (typeof openSynapzFriendsWallModal === 'function') openSynapzFriendsWallModal('trophies');
+      const modal = document.getElementById('synapzFriendsWallModal');
+      if (modal) modal.scrollTop = 0;
+    });
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_room_clubhouse.png') });
+    capturedScreenshots.audit_room_clubhouse = 'screenshots/audit_room_clubhouse.png';
+
+    await page.evaluate(() => {
+      document.getElementById('synapzFriendsWallModal')?.classList.add('hidden');
+      document.body.classList.remove('room-tap-zones-visible');
+      document.querySelectorAll('.tap-zones-status-label').forEach(lbl => { lbl.textContent = 'Tap Zones: OFF'; });
       state.customQuestionStyleOverride = null;
     });
-    console.log(`✅ Captured ${Object.keys(capturedScreenshots).length} live Playwright screenshots (including Seat 0, Seat 11 & Seat 12).`);
+    console.log(`✅ Captured ${Object.keys(capturedScreenshots).length} live Playwright screenshots (including all 5 Section 28 Point-and-Click Room Scenes, Seat 0, Seat 11 & Seat 12).`);
 
     // =========================================================================
     // 4B. SEAT 0 — 4-STEP COUNCIL RED-FLAG OPTIONS SYNTHESIZER (STEP 2 OF 4)

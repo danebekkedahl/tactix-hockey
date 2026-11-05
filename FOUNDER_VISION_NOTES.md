@@ -408,6 +408,28 @@ Every `RUN NIGHTLY AUTOPILOT` pass runs an active Playwright field inspection in
    - **🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist:** Audits 100% SafeSport one-way push notifications (`#safeSportNotificationModal`), read-only teammate roster privacy (`#playerTeamRosterHubModal`), per-profile PIN credential lock (`#playerProfileCredentialLockBox`), and the 11-channel voice registry (`window.SYNAPZ_VOICE_REGISTRY` + mandatory pre-selection voice audition in `#playerAgentPickerModal`) (`assets/audit-screenshots/seat12-safesport-voice-qa.png`).
    - **4-Gate Cross-Seat Co-Sign:** Every proposal passes **Gate A (Tactical & ADM)**, **Gate B (Child Cognition & Zero-Clutter UX)**, **Gate C (60fps `<canvas>` & Blind QA)**, and **Gate D (Visual Consistency & SafeSport/Audio QA)**.
 
+---
 
-
+## 28. Interactive Point-and-Click Illustrated Room Navigation (`assets/rooms/`) & Warm Arena Walnut Wood, Brushed Brass & Championship Blue/Gold Theme (`v9.8` Charter)
+1. **5 Illustrated 3D Room Scenes (`assets/rooms/` — 75% Realistic / 25% Stylized Arena Wood & Brass Theme):**
+   - **Room 1 — Two-Story Main Rink Lobby (`assets/rooms/room-rink-lobby.png` inside `#synapzRinkLobbySection`):**
+     - **Center Glass Double Doors (`HIT THE ICE` — `#lobbyStationHitTheIce`):** Launches the North America Road to the Stanley Cup Map (`switchView('map')`).
+     - **Left Ground-Floor Wood Doorway (`LOCKER ROOM` — `#lobbyStationLockerRoom`):** Opens Room 2 (`#synapzLockerRoomModal`).
+     - **Right Ground-Floor Storefront (`PRO SHOP` — `#lobbyStationProShop`):** Opens Room 4 (`#proShopModal`).
+     - **Upper-Left Balcony Doorway (`COACHES OFFICE` — `#lobbyStationCoachOffice`):** Opens Room 3 (`#synapzCoachOfficeModal`).
+     - **Upper-Right Balcony Doorway (`CLUBHOUSE` — `#lobbyStationFriendsWall`) & Left Framed Wall Portraits (`#lobbyHotspotWallPortraits`):** Opens Room 5 (`#synapzFriendsWallModal`).
+     - **Center-Floor `SYNAPZ HOCKEY` Medallion (`#lobbyHotspotFloorMedallion`):** Triggers the active Player Agent's 1-sentence Spotlight Tour (`applyLobbySpotlightStep(0)`).
+   - **Room 2 — Player Locker Room Stall (`assets/rooms/room-locker-room.png` inside `#synapzLockerRoomModal`):**
+     - **Dynamic Brass Stall Nameplate Overlay (`#lockerBrassNameplateHotspot` / `#lockerBrassNameplateText`):** Clean brushed-brass nameplate positioned directly over the upper stall header (`left: 14.5%; top: 2.5%; width: 25.5%; height: 5.5%`), dynamically displaying `<PLAYER NAME> #<NUMBER> • AGENT: <HIRED AGENT NAME>` (e.g., `MILES #9 • AGENT: LEO`) and opening `#playerAgentPickerModal` on click.
+     - **6 Clickable Equipment Hotspots:** Helmet & Visor (`#lockerHotspotHelmet` -> `Visor`), Hanging Blue `#9` Jersey (`#lockerHotspotJersey` -> `Jersey`), Hockey Stick (`#lockerHotspotStick` -> `Stick`), Hockey Gloves (`#lockerHotspotGloves` -> `Gloves`), Breezers (`#lockerHotspotBreezers` -> `applyFullBlackoutLoadout(true)`), and Skates (`#lockerHotspotSkates` -> `Skates`), plus the Right Open Doorway (`#lockerHotspotDoorwayExit` -> `saveAndExitToRinkLobby()`).
+   - **Room 3 — Coach's Office (`assets/rooms/room-coaches-office.png` inside `#synapzCoachOfficeModal` & `#coachPortalModal`):**
+     - **5 Clickable Office Hotspots:** Desk Laptop (`#coachOfficeHotspotLaptop` / `#coachPortalHotspotLaptop`), Coach Al (`#coachOfficeHotspotCoachAl` / `#coachPortalHotspotCoachAl`), Tactical Whiteboard (`#coachOfficeHotspotWhiteboard` / `#coachPortalHotspotWhiteboard`), Left Trophy & Playbook Bookshelf (`#coachOfficeHotspotBookshelf` / `#coachPortalHotspotBookshelf`), and Right Open Doorway (`#coachOfficeHotspotDoorway` / `#coachPortalHotspotDoorway`).
+   - **Room 4 — Walk-In Pro Shop (`assets/rooms/room-pro-shop.png` inside `#proShopModal`):**
+     - **6 Clickable Store Fixture Hotspots:** Left Glove Wall (`#proShopHotspotGloves`), Left Skate Shelves (`#proShopHotspotSkates`), Center Stick Rack (`#proShopHotspotSticks`), Right Helmet & Visor Wall (`#proShopHotspotHelmets`), Foreground Glass Counter (`#proShopHotspotShowcaseCounter` -> `applyFullBlackoutLoadout(true)`), and Back-Left Doorway (`#proShopHotspotDoorway` -> `saveAndExitToRinkLobby()`).
+   - **Room 5 — Friends & Family / Trophy Case Clubhouse (`assets/rooms/room-clubhouse.png` inside `#synapzFriendsWallModal`):**
+     - **3 Clickable Clubhouse Hotspots:** Left `FRIENDS & FAMILY` Portrait Wall (`#clubhouseHotspotFriendsWall` -> `'find'`), Center `HEAD-TO-HEAD MAP RACE` Screen (`#clubhouseHotspotMapRaceScreen` -> `'race'`), and Right Glass `TROPHY CASE` (`#clubhouseHotspotTrophyCase` -> `'trophies'` + 1-tap `🏆 Open Full 3D Stanley Cup Trophy Vault`).
+2. **Global `✨ Show / Hide Tap Zones` Toggle (`.btn-toggle-room-tap-zones`):**
+   - Toggles `document.body.classList.toggle('room-tap-zones-visible')` so young players (8U/10U) or first-time visitors can view glowing gold dashed outlines around every interactive doorway, shelf, and piece of gear.
+3. **Unique Email Subject Timestamping & `"Synapz Hockey 12-Seat Council"` Sender Name (`send-board-digest.js`):**
+   - Appends a unique local date/time stamp (`[Nov 4, ...]`) to every email subject line so Gmail never collapses new reports into an old thread, and sends `senderName: "Synapz Hockey 12-Seat Council"` in the Google Apps Script payload.
 

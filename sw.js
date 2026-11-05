@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v9.7';
+const CACHE_NAME = 'synapz-hockey-v9.8';
 const ASSETS = [
   './',
   './index.html',
@@ -8,7 +8,12 @@ const ASSETS = [
   './assets/synapz-logo.png',
   './assets/synapz-splash-bg.png',
   './assets/tactix-logo.png',
-  './assets/coach-bob.png'
+  './assets/coach-bob.png',
+  './assets/rooms/room-rink-lobby.png',
+  './assets/rooms/room-locker-room.png',
+  './assets/rooms/room-coaches-office.png',
+  './assets/rooms/room-pro-shop.png',
+  './assets/rooms/room-clubhouse.png'
 ];
 
 self.addEventListener('install', (e) => {

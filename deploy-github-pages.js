@@ -49,6 +49,11 @@ const FILES_TO_DEPLOY = [
   { rel: 'assets/agents/agent-priya.png', encoding: 'base64' },
   { rel: 'assets/agents/agent-ryan.png', encoding: 'base64' },
   { rel: 'assets/agents/agent-claire.png', encoding: 'base64' },
+  { rel: 'assets/rooms/room-rink-lobby.png', encoding: 'base64' },
+  { rel: 'assets/rooms/room-locker-room.png', encoding: 'base64' },
+  { rel: 'assets/rooms/room-coaches-office.png', encoding: 'base64' },
+  { rel: 'assets/rooms/room-pro-shop.png', encoding: 'base64' },
+  { rel: 'assets/rooms/room-clubhouse.png', encoding: 'base64' },
   { rel: 'apple-touch-icon.png', encoding: 'base64' },
   { rel: 'icon-192.png', encoding: 'base64' },
   { rel: 'icon-512.png', encoding: 'base64' },
@@ -83,7 +88,12 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/audit_coach_als_corner.png', encoding: 'base64' },
   { rel: 'screenshots/audit_opponent_scouting.png', encoding: 'base64' },
   { rel: 'screenshots/audit_bucket_coverage_report.png', encoding: 'base64' },
-  { rel: 'screenshots/audit_red_flag_council_review.png', encoding: 'base64' }
+  { rel: 'screenshots/audit_red_flag_council_review.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_room_lobby.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_room_locker.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_room_coach_office.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_room_pro_shop.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_room_clubhouse.png', encoding: 'base64' }
 ];
 
 const FORBIDDEN_FILENAMES = new Set([
