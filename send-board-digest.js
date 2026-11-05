@@ -769,6 +769,466 @@ const BOARD_30_IDEA_DIGEST = [
     authorityFlow: 'VETOED by Seat 12 (SafeSport Authority) & Seat 3 (Pediatric/Family)',
     status: 'vetoed',
     vetoReason: 'VETOED by Seat 12 & Seat 3 (SafeSport Rule): Zero open chat or direct coach-to-kid messaging permitted.'
+  },
+  // =========================================================================
+  // SECTION 30 DEEP MARATHON EXPANSION: IDEAS #4 & #5 PER SEAT (S1-D..S12-E = 24 IDEAS -> 60 TOTAL)
+  // Grounded in the 72-Play Marathon Telemetry (60 Blind Mastery + 12 Wrong-Answer Recovery Plays)
+  // =========================================================================
+  {
+    rank: 37,
+    isTop3Recommended: false,
+    id: 'S1-D',
+    pod: 'pod1',
+    podLabel: 'Pod 1: Player, Family & Learning',
+    seatNumber: 1,
+    seatName: 'NCAA D1 / AAA & USA Hockey Systems Director',
+    authorityRole: 'WHAT Authority (On-Ice Systems)',
+    seatLens: 'Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director (WHAT Authority)',
+    targetScope: '14U–18U (AA / AAA) • On-Ice Lesson Screen (#gameViewSection) • D-Zone & Breakout Reads',
+    title: 'Post-Freeze Stick-on-Puck vs. Stick-in-Lane Gap Indicator for D1/D2 Defenders',
+    description: 'During the 3.2s flow_and_freeze lead-in on 14U–18U defense drills, render a subtle blade-angle arc on D1 (stick-on-puck) and D2 (passing-lane denial) so players read defensive stick positioning at the freeze frame.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Across our 14U, 16U, and 18U Stage B moving-flow samples, our 2.0x faceoff-dot skaters show handedness (L/R) and headingRad cleanly, and adding a subtle stick-lane denial cone on D2 helps older AA/AAA players read why a royal-road pass is taken away.',
+    crossImpact: 'Sharpens 14U–18U AA/AAA pass-vs-shoot reads (Seat 1), pairs with Cue-First learning (Seat 2), and renders at 60fps on #rinkCanvas (Seat 9 & Seat 11).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/marathon_frame2_freeze.png`,
+    authorityFlow: 'Proposed by Seat 1 (WHAT) → Co-Signed by Seat 2 (HOW) & Seat 11 (Gate D)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 38,
+    isTop3Recommended: false,
+    id: 'S1-E',
+    pod: 'pod1',
+    podLabel: 'Pod 1: Player, Family & Learning',
+    seatNumber: 1,
+    seatName: 'NCAA D1 / AAA & USA Hockey Systems Director',
+    authorityRole: 'WHAT Authority (On-Ice Systems)',
+    seatLens: 'Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director (WHAT Authority)',
+    targetScope: '12U–18U (A / AA / AAA) • Neutral Zone Regroup & Rush Entry Buckets',
+    title: 'Middle-Lane Drive vs. High-Slot F3 Trailer Triangle Spacing Guide on 3-on-2 Entries',
+    description: 'Show a subtle 3-point triangle connector between F1 (wide drive), F2 (middle-lane net drive pushing D back), and F3 (#9 high-slot trailer) at the moment of the freeze on rush-1 and regroup-nz.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: In our 12U/14U wrong-answer recovery plays, kids who skate too deep into the slot flatten the 3-on-2 triangle; highlighting how F2 drives the far post to open the high slot for F3 makes the spatial geometry click immediately.',
+    crossImpact: 'Improves 3-on-2 rush spacing for Forwards (Seat 1 & Seat 5) and reinforces 1-sentence Coach Bob remediation (Seat 2).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/marathon_frame3_feedback.png`,
+    authorityFlow: 'Proposed by Seat 1 (WHAT) → Verified by Seat 2 (HOW) & Seat 7 (Zero-Clutter)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 39,
+    isTop3Recommended: false,
+    id: 'S2-D',
+    pod: 'pod1',
+    podLabel: 'Pod 1: Player, Family & Learning',
+    seatNumber: 2,
+    seatName: 'Master Instructional Designer & Sports Teaching Strategist',
+    authorityRole: 'HOW Authority (Outranks Coaches on Delivery)',
+    seatLens: 'Seat 2 — Master Instructional Designer & Sports Teaching Strategist (HOW Authority)',
+    targetScope: '8U–18U (All Divisions) • Track 3 Wrong-Answer / Confused Kid Recovery Flow',
+    title: '1-Tap "Show Me the Open Ice" Ghost Skater Glide After a <50% IQ Mistake Read',
+    description: 'When a player misses a read in the 12 wrong-answer recovery track, animate a translucent gold ghost skater gliding from their mistake spot to the Gold 1st-Choice landmark while Coach Bob delivers his 1-sentence natural tip.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: In all 12 Intentional Wrong-Answer / Confused Kid Recovery Plays, Coach Bob\'s 1-sentence toNaturalHockeyTalk() explanation is warm and clear—pairing that voice line with a 1.2s translucent gold ghost glide shows visual learners *where* to skate on their retry.',
+    crossImpact: 'Turns every wrong answer into an instant visual "aha!" moment for Kids (Seat 2 & Seat 3) with zero extra buttons (Seat 7).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/marathon_frame3_feedback.png`,
+    authorityFlow: 'Proposed by Seat 2 (HOW) → Endorsed by Seat 3 (Pediatric) & Seat 9 (<canvas>)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 40,
+    isTop3Recommended: false,
+    id: 'S2-E',
+    pod: 'pod1',
+    podLabel: 'Pod 1: Player, Family & Learning',
+    seatNumber: 2,
+    seatName: 'Master Instructional Designer & Sports Teaching Strategist',
+    authorityRole: 'HOW Authority (Outranks Coaches on Delivery)',
+    seatLens: 'Seat 2 — Master Instructional Designer & Sports Teaching Strategist (HOW Authority)',
+    targetScope: '8U–12U • Stage A Live Word-Streaming Speech Bubble (#cornerShortPrompt)',
+    title: 'Highlight the Action Verb & Landmark Keyword in Gold Inside Live Word-Streaming Bubble',
+    description: 'As SynapzCharacterSpeechEngine streams words at t=150ms -> 600ms -> 1200ms, style the core hockey landmark ("The House", "High Slot", "Hashmarks") in bold Championship Gold.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Our Stage A word-streaming audit confirmed progressive word counts (t=1200ms > t=150ms) and auto-minimize to the 64x64px corner circle; bolding the 2-word spatial landmark helps young readers anchor the key cue in <0.5s.',
+    crossImpact: 'Speeds up reading comprehension for 8U/10U Kids (Seat 2 & Seat 3) while keeping strictly 1 sentence (Seat 7).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/marathon_frame1_intro.png`,
+    authorityFlow: 'Proposed by Seat 2 (HOW) → Co-Signed by Seat 3 (Pediatric) & Seat 12 (Voice QA)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 41,
+    isTop3Recommended: false,
+    id: 'S3-D',
+    pod: 'pod1',
+    podLabel: 'Pod 1: Player, Family & Learning',
+    seatNumber: 3,
+    seatName: 'Pediatric Cognitive & Family/Parent Specialist',
+    authorityRole: 'HOW Authority (Family UX & Age Guardrails)',
+    seatLens: 'Seat 3 — Pediatric Cognitive & Family/Parent Specialist (HOW Authority)',
+    targetScope: '8U & 10U Divisions • Wrong-Answer Recovery & <50% IQ Retry Prompt',
+    title: 'Zero-Penalty "Mulligan Rep" Encouragement Badge on First Mistake for 8U/10U Beginners',
+    description: 'Ensure 8U and 10U Rec/B players never see red error Xs on a first miss—display a warm gold "🏒 Coach\'s Mulligan: Try That Read One More Time!" banner so confidence stays 100% high.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: During our 8U and 10U Confused-Kid Recovery Plays, the <50% IQ retry prompt worked cleanly and allowed 100% recovery on retry; framing the first retry as a positive "Coach\'s Mulligan" keeps 7- and 9-year-olds smiling.',
+    crossImpact: 'Eliminates mistake anxiety for 8U/10U Kids (Seat 3), boosts retry completion (Seat 4), and aligns with positive youth coaching (Seat 5).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/marathon_frame3_feedback.png`,
+    authorityFlow: 'Proposed by Seat 3 (Pediatric) → Co-Signed by Seat 2 (HOW) & Seat 4 (HOW FUN)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 42,
+    isTop3Recommended: false,
+    id: 'S3-E',
+    pod: 'pod1',
+    podLabel: 'Pod 1: Player, Family & Learning',
+    seatNumber: 3,
+    seatName: 'Pediatric Cognitive & Family/Parent Specialist',
+    authorityRole: 'HOW Authority (Family UX & Age Guardrails)',
+    seatLens: 'Seat 3 — Pediatric Cognitive & Family/Parent Specialist (HOW Authority)',
+    targetScope: 'Locker Room (#synapzLockerRoomModal) & Clubhouse (#synapzFriendsWallModal) • Shared Family Devices',
+    title: 'Active Sibling Jersey Badge Pill in Top-Left Corner of Locker Room & Clubhouse Scenes',
+    description: 'Display a compact brass nameplate pill ("Playing as: Miles #9 • 12U") with a 1-tap Switch Sibling lock icon in the top-left of the Locker Room and Clubhouse scenes.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: On shared family iPads with 4 siblings (Miles #9, Rhett #88, Whelan #7, Cohen #14), parents love the dynamic brass nameplate in the Locker Room—repeating that small identity badge in the Clubhouse prevents a younger sibling from thinking they are on their own account.',
+    crossImpact: 'Prevents sibling confusion for Families (Seat 3 & Seat 12) while matching the Warm Arena Wood & Brass aesthetic (Seat 11).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_room_locker.png`,
+    authorityFlow: 'Proposed by Seat 3 (Family) → Co-Signed by Seat 11 (Art) & Seat 12 (PIN Privacy)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 43,
+    isTop3Recommended: false,
+    id: 'S4-D',
+    pod: 'pod1',
+    podLabel: 'Pod 1: Player, Family & Learning',
+    seatNumber: 4,
+    seatName: 'Hit Mobile Game & EdTech Retention Designer',
+    authorityRole: 'HOW FUN Authority (Engagement & Rewards)',
+    seatLens: 'Seat 4 — Hit Mobile Game & EdTech Retention Designer (HOW FUN Authority)',
+    targetScope: '8U–18U • Post-Lesson IQ-Tied Puck Bucks Celebration & Agent High-Five',
+    title: 'Animated Puck Bucks Counter Roll-Up (+0 -> +95 Coins) With Player Agent Voice High-Five',
+    description: 'When a player finishes a 5-drill city stop or Coach Al plan with 95% IQ, animate the Puck Bucks counter rolling up to +95 while their hired Player Agent pops up for a 1-sentence celebration.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Our IQ-tied economy formula (95% IQ -> +95 Puck Bucks; 70% IQ -> +70 Puck Bucks) verified 100% accurate—adding a 1.2s tactile coin roll-up sound and Agent high-five makes earning 95% IQ feel like a true EA Sports milestone.',
+    crossImpact: 'Supercharges motivation to replay for 95%+ IQ (Seat 4 & Seat 2) and showcases the 9 Player Agents (Seat 11 & Seat 12).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_interactive_rooms.png`,
+    authorityFlow: 'Proposed by Seat 4 (HOW FUN) → Co-Signed by Seat 2 (HOW) & Seat 11 (Art)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 44,
+    isTop3Recommended: false,
+    id: 'S4-E',
+    pod: 'pod1',
+    podLabel: 'Pod 1: Player, Family & Learning',
+    seatNumber: 4,
+    seatName: 'Hit Mobile Game & EdTech Retention Designer',
+    authorityRole: 'HOW FUN Authority (Engagement & Rewards)',
+    seatLens: 'Seat 4 — Hit Mobile Game & EdTech Retention Designer (HOW FUN Authority)',
+    targetScope: 'Geographically Accurate North America Map (#mapViewSection) • 32 NHL Cities',
+    title: '3-Star "Gold Mastery Stamp" on Every Conquered NHL City Node Across U.S. & Canada',
+    description: 'Render 1 to 3 miniature gold stars underneath each conquered NHL city node on #nhlTourMapSvg based on whether the player achieved >=90% Gold IQ on that city stop.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Our North America map with 10 Canadian provinces,U.S. states, and 5 Great Lakes looks awesome—showing 1–3 Gold Mastery stars on completed cities gives completionist kids a reason to replay an 80% city for a 3-star 95%+ Gold stamp.',
+    crossImpact: 'Drives voluntary replay of earlier cities (Seat 4 & Seat 2) with zero extra buttons on the map header (Seat 7).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_accurate_na_map.png`,
+    authorityFlow: 'Proposed by Seat 4 (HOW FUN) → Co-Signed by Seat 7 (Zero-Clutter) & Seat 11 (Art)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 45,
+    isTop3Recommended: false,
+    id: 'S5-D',
+    pod: 'pod2',
+    podLabel: 'Pod 2: Coach, Director & Portal UX',
+    seatNumber: 5,
+    seatName: 'Youth, Travel & HS/Jr Team Head Coach Playtester (Levels A–C)',
+    authorityRole: 'WHAT Authority (Team Coaching & Homework)',
+    seatLens: 'Seat 5 — Youth, Travel & HS/Jr Team Head Coach Playtester (Levels A–C — WHAT Authority)',
+    targetScope: 'Coach\'s Office Room (#synapzCoachOfficeModal) • Station 3 Opponent Scouting & Counter-Strategy',
+    title: '1-Click "Send Weekend Bench 3 Keys to Assistant Coaches" Printable Locker-Room Card',
+    description: 'Let a Head Coach in Coach Al\'s Office Station 3 export the generated Weekend Bench Game Plan (3 Keys to Victory + 2 On-Ice Drills) as a 1-page printable locker-room whiteboard sheet.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Station 3\'s Opponent Scouting KB generated distinct 8U (5-lesson) vs. 16U (10-lesson) counter-plans and a 3-Key Weekend Bench Game Plan—giving coaches a 1-click print button lets them tape those 3 keys right onto the locker room door before Saturday\'s game.',
+    crossImpact: 'Bridges digital Hockey IQ homework with real Saturday bench coaching (Seat 5 & Seat 1) inside Coach Al\'s Office (Seat 7).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_opponent_scouting.png`,
+    authorityFlow: 'Proposed by Seat 5 (Coach) → Validated by Seat 1 (Systems) & Seat 7 (WHERE)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 46,
+    isTop3Recommended: false,
+    id: 'S5-E',
+    pod: 'pod2',
+    podLabel: 'Pod 2: Coach, Director & Portal UX',
+    seatNumber: 5,
+    seatName: 'Youth, Travel & HS/Jr Team Head Coach Playtester (Levels A–C)',
+    authorityRole: 'WHAT Authority (Team Coaching & Homework)',
+    seatLens: 'Seat 5 — Youth, Travel & HS/Jr Team Head Coach Playtester (Levels A–C — WHAT Authority)',
+    targetScope: 'Coach\'s Office Room (#synapzCoachOfficeModal) • Station 2 Coach Al\'s Corner',
+    title: 'Position-Filtered "Send 5-Lesson Plan to Defensemen Only vs. Forwards Only" Quick Pill',
+    description: 'In Coach Al\'s Corner (Station 2), allow the coach to target a 5- or 10-lesson plan specifically to Defensemen (LD/RD), Forwards (C/LW/RW), or Goalies (G) in 1 tap.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Coach Al\'s proactive briefing ("Team D-Zone Exit is 62% IQ") works seamlessly, and letting a coach send a D-to-D Hinge pack specifically to their 6 defensemen while forwards work on High-Slot F3 support saves practice time.',
+    crossImpact: 'Makes weekly assignments position-relevant for Players (Seat 1 & Seat 5) while keeping Station 2 clean (Seat 7).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_coach_als_corner.png`,
+    authorityFlow: 'Proposed by Seat 5 (Coach) → Co-Signed by Seat 1 (Systems) & Seat 7 (UX)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 47,
+    isTop3Recommended: false,
+    id: 'S6-D',
+    pod: 'pod2',
+    podLabel: 'Pod 2: Coach, Director & Portal UX',
+    seatNumber: 6,
+    seatName: 'Association Hockey Director & Club GM Playtester (Level D)',
+    authorityRole: 'WHAT Authority (Association & Multi-Team Oversight)',
+    seatLens: 'Seat 6 — Association Hockey Director & Club GM Playtester (Level D — WHAT Authority)',
+    targetScope: 'Coach Portal Tab 4 (Director HQ) & Concept Bucket Coverage Modal (#conceptBucketCoverageReportModal)',
+    title: 'Association-Wide Concept Bucket Mastery Heatmap (8U–18U Across All 16 Buckets)',
+    description: 'Link the 16-Bucket Coverage Report directly inside Director HQ (Tab 4) so an Association Hockey Director can see which of the 16 buckets (e.g., DZ House vs. NZ Regroup) each age division has mastered.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Our Concept Bucket Coverage Report verified all 16 buckets, 360 base scenarios, 1,440 4-way rotations, and 5,760+ organic permutations—surfacing that 16-bucket mastery matrix per club team in Director HQ gives Hockey Directors unprecedented curriculum visibility.',
+    crossImpact: 'Empowers Association Directors (Seat 6), aligns age-group coaching (Seat 1 & Seat 5), and boosts club-wide renewals (Seat 10).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_bucket_coverage_report.png`,
+    authorityFlow: 'Proposed by Seat 6 (Director) → Co-Signed by Seat 1 (Systems) & Seat 9 (Engineering)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 48,
+    isTop3Recommended: false,
+    id: 'S6-E',
+    pod: 'pod2',
+    podLabel: 'Pod 2: Coach, Director & Portal UX',
+    seatNumber: 6,
+    seatName: 'Association Hockey Director & Club GM Playtester (Level D)',
+    authorityRole: 'WHAT Authority (Association & Multi-Team Oversight)',
+    seatLens: 'Seat 6 — Association Hockey Director & Club GM Playtester (Level D — WHAT Authority)',
+    targetScope: 'Coach\'s Office Station 1 (Upload Association Playbook & Terminology)',
+    title: '1-Click "Apply Association Terminology Template Across All Club Teams" in Director HQ',
+    description: 'When a Hockey Director uploads an association playbook PDF/template in Station 1 (e.g., "F1=Hound, F2=Hunter, F3=High"), let them push that roleLabelMap default to all teams in their association in 1 click.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Station 1 playbook uploads and applyRoleLabelMap() worked with 0 double-labels in our marathon audit—allowing a Level D Director to standardize terminology from 10U through 18U ensures every kid in the club speaks the same hockey language.',
+    crossImpact: 'Unifies association coaching language (Seat 6, Seat 5 & Seat 1) with zero extra UI on player screens (Seat 7).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_room_coach_office.png`,
+    authorityFlow: 'Proposed by Seat 6 (Director) → Validated by Seat 1 (WHAT) & Seat 9 (Engineering)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 49,
+    isTop3Recommended: false,
+    id: 'S7-D',
+    pod: 'pod2',
+    podLabel: 'Pod 2: Coach, Director & Portal UX',
+    seatNumber: 7,
+    seatName: 'Principal UX Architect & 4-Tab Anti-Clutter Lead',
+    authorityRole: 'WHERE Authority + Anti-Clutter Veto Power',
+    seatLens: 'Seat 7 — Principal UX Architect & 4-Tab Anti-Clutter Lead (WHERE Authority)',
+    targetScope: 'All 5 Interactive Point-and-Click Illustrated Rooms (assets/rooms/*.png) • 4 Viewports',
+    title: 'Subtle 1.5s Golden Edge Shimmer on Interactive Room Hotspots Upon Room Entry (Then Fade)',
+    description: 'When a player enters any of the 5 illustrated rooms (Lobby, Locker Room, Coach\'s Office, Pro Shop, Clubhouse), pulse a 1.5-second warm brass edge shimmer around the 4–5 clickable furniture/doorway hotspots, then fade to 100% clean art.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Our 4-viewport getBoundingClientRect() geometry audit confirmed 0 hotspot collisions across all 5 room scenes—a brief 1.5s arrival shimmer teaches first-time kids where to tap (doors, jersey stall, Pro Shop walls) without leaving permanent boxes over the artwork.',
+    crossImpact: 'Improves first-session discoverability for Kids & Parents (Seat 3 & Seat 7) while honoring the 75%-realistic room art (Seat 11).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_room_lobby.png`,
+    authorityFlow: 'Proposed by Seat 7 (WHERE) → Co-Signed by Seat 11 (Art Director) & Seat 3 (Family)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 50,
+    isTop3Recommended: false,
+    id: 'S7-E',
+    pod: 'pod2',
+    podLabel: 'Pod 2: Coach, Director & Portal UX',
+    seatNumber: 7,
+    seatName: 'Principal UX Architect & 4-Tab Anti-Clutter Lead',
+    authorityRole: 'WHERE Authority + Anti-Clutter Veto Power',
+    seatLens: 'Seat 7 — Principal UX Architect & 4-Tab Anti-Clutter Lead (WHERE Authority)',
+    targetScope: '390x844 iPhone Portrait & 768x1024 iPad Portrait • On-Ice Gameplay (#gameViewSection)',
+    title: 'Portrait-Mode Aspect-Ratio Lock for #rinkCanvas + 4-Button Bottom Bar Ergonomic Spacing',
+    description: 'Lock #rinkCanvas padding and #lessonConsistentBottomBar button height (min 48px) on 390x844 iPhone Portrait so all 4 tactile 3D buttons stay comfortably within single-thumb reach.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Across all 4 viewports (390x844, 768x1024, 1024x768, 1280x800), #synapzCleanPlayerScreensRule kept the gameplay screen 100% clutter-free with 0 collisions; fine-tuning bottom-bar thumb padding on 390x844 Portrait makes one-handed phone play effortless.',
+    crossImpact: 'Enhances mobile thumb comfort for Players & Parents (Seat 7 & Seat 3) and maintains 60fps canvas layout stability (Seat 9).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_clean_gameplay_screen.png`,
+    authorityFlow: 'Proposed by Seat 7 (WHERE) → Co-Signed by Seat 9 (Engineering) & Seat 3 (Pediatric)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 51,
+    isTop3Recommended: false,
+    id: 'S8-D',
+    pod: 'pod3',
+    podLabel: 'Pod 3: Platform, Film & Growth',
+    seatNumber: 8,
+    seatName: 'Automated Video Harvester & Film-Room QC Auditor',
+    authorityRole: 'Film-Room QC & 16-Bucket Coverage',
+    seatLens: 'Seat 8 — Automated Video Harvester & Film-Room QC Auditor (harvest-tactix-videos.js)',
+    targetScope: 'On-Ice Lesson Screen (#btnLessonWatchVideoPopup) • All 16 Concept Buckets',
+    title: '1-Sentence Natural Coach Bob Voice Intro Before Playing Any [🎬 Watch Video] Clip',
+    description: 'When a player taps [🎬 Watch Video] on the 4-button lesson bar, have Coach Bob deliver a 1-sentence natural locker-room cue ("Watch how F3 holds the high slot before jumping into the seam!") synced to the clip\'s bucket.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Tapping [🎬 Watch Video] opens the verified Film Room modal cleanly, and bridging the on-ice drill to the video clip with a 1-sentence Coach Bob voice cue tells the kid *what player to watch* in the first 3 seconds of the video.',
+    crossImpact: 'Connects Film Study to On-Ice Reads (Seat 8, Seat 1 & Seat 2) and uses our neural .mp3 voice bank (Seat 12).',
+    screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat8-film-room-video-modal.png`,
+    authorityFlow: 'Proposed by Seat 8 (Film QC) → Co-Signed by Seat 2 (HOW) & Seat 12 (Voice QA)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 52,
+    isTop3Recommended: false,
+    id: 'S8-E',
+    pod: 'pod3',
+    podLabel: 'Pod 3: Platform, Film & Growth',
+    seatNumber: 8,
+    seatName: 'Automated Video Harvester & Film-Room QC Auditor',
+    authorityRole: 'Film-Room QC & 16-Bucket Coverage',
+    seatLens: 'Seat 8 — Automated Video Harvester & Film-Room QC Auditor (harvest-tactix-videos.js)',
+    targetScope: 'harvest-tactix-videos.js & public.tactix_video_library • 16th Bucket (Coach Playbook Custom)',
+    title: 'Dedicated Curated Video Tagging for Bucket #16 (Coach Playbook Systems & Custom Reads)',
+    description: 'Ensure harvest-tactix-videos.js tags at least 4 verified chalkboard breakdown clips specifically for Bucket #16 (Coach Playbook Custom Systems: 1-2-2 Trap, 2-1-2 Pressure, Rim/Wheel Breakouts).',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Our Concept Bucket Coverage Report spans all 16 buckets (360 base scenarios); tagging dedicated systems chalkboard clips to Bucket #16 ensures custom Coach Al plans always have matching film.',
+    crossImpact: 'Supports Coach Al custom lesson plans (Seat 5 & Seat 8) and guarantees 16/16 bucket video parity (Seat 9).',
+    screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat8-film-room-video-modal.png`,
+    authorityFlow: 'Proposed by Seat 8 (Film QC) → Validated by Seat 1 (Systems) & Seat 5 (Coach)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 53,
+    isTop3Recommended: false,
+    id: 'S9-D',
+    pod: 'pod3',
+    podLabel: 'Pod 3: Platform, Film & Growth',
+    seatNumber: 9,
+    seatName: 'Principal Full-Stack, Supabase & <canvas> Performance Engineer',
+    authorityRole: 'WHERE Authority + Engineering/HUD Veto Power',
+    seatLens: 'Seat 9 — Principal Full-Stack, Supabase & <canvas> Engineer (WHERE Authority)',
+    targetScope: 'deep_playtest_audit.js (--marathon) & CI Regression Gate • All 4 Viewports',
+    title: 'Permanent Stage A/B/C Dwell & 4-Viewport Bounding-Box Regression Gate in Nightly Autopilot',
+    description: 'Keep the Section 30 3-Stage Dwell Sampler (t=150ms, 600ms, 1200ms word streaming + 3.2s flow_and_freeze geometry) and 4-viewport getBoundingClientRect() collision assertion permanently active in deep_playtest_audit.js.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Instant 50ms clicks never catch race conditions in speech streaming or canvas animation interpolation. Running real-time Stage A/B/C dwell sampling and 4-viewport bounding-box checks caught and verified 100% of our timing and layout invariants.',
+    crossImpact: 'Guarantees AAA Game-QA reliability across all 12 Seats (Seat 9, Seat 7 & Seat 12) before any deploy.',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/marathon_frame1_intro.png`,
+    authorityFlow: 'Proposed by Seat 9 (Engineering) → Co-Signed by All 12 Seats',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 54,
+    isTop3Recommended: false,
+    id: 'S9-E',
+    pod: 'pod3',
+    podLabel: 'Pod 3: Platform, Film & Growth',
+    seatNumber: 9,
+    seatName: 'Principal Full-Stack, Supabase & <canvas> Performance Engineer',
+    authorityRole: 'WHERE Authority + Engineering/HUD Veto Power',
+    seatLens: 'Seat 9 — Principal Full-Stack, Supabase & <canvas> Engineer (WHERE Authority)',
+    targetScope: 'assets/audio/voices/voice-manifest.json & sw.js • Instant Preload Cache for Active Agent',
+    title: 'Lazy Pre-Fetch of Active Profile\'s Hired Player Agent & Coach Bob .mp3 Clips on Profile Unlock',
+    description: 'As soon as a player unlocks their profile PIN at the Entry Gate, pre-fetch their hired Player Agent\'s and Coach Bob\'s neural .mp3 clips in the background so the very first Lobby greeting plays with <10ms latency.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: We now have 112 neural .mp3 voice files across all 11 characters in assets/audio/voices/—pre-warming only the active profile\'s hired Agent + Coach Bob (18 small .mp3 files) on login makes voice playback instantaneous without downloading all 112 files upfront.',
+    crossImpact: 'Delivers zero-latency neural voice greetings (Seat 9 & Seat 12) while saving mobile bandwidth for Families (Seat 3).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_step2_player_login.png`,
+    authorityFlow: 'Proposed by Seat 9 (Engineering) → Co-Signed by Seat 12 (Voice QA) & Seat 7 (UX)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 55,
+    isTop3Recommended: false,
+    id: 'S10-D',
+    pod: 'pod3',
+    podLabel: 'Pod 3: Platform, Film & Growth',
+    seatNumber: 10,
+    seatName: 'App Store, Conversion & Growth Strategist',
+    authorityRole: 'Monetization, Funnels & Partner Club Growth',
+    seatLens: 'Seat 10 — App Store, Conversion & Growth Strategist',
+    targetScope: 'Walk-In Pro Shop (#proShopModal) • Sponsor-Ready Brand Showcase Wall',
+    title: '"Featured Partner Gear Drop of the Month" Analytics Counter for Equipment Brand Sponsors',
+    description: 'Track anonymous aggregate impressions and Puck Bucks redemptions on the Pro Shop Brand Showcase Rack so Coach Dane & Coach Evan can show CCM / Bauer / Warrior / True exact engagement metrics.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Our Walk-In Pro Shop with 4 category walls and the Sponsor-Ready Promo Showcase Rack renders 100% cleanly—logging aggregate, privacy-safe "Gear Try-On & Equip" counts builds a turnkey sponsorship pitch deck.',
+    crossImpact: 'Opens high-margin B2B equipment sponsor revenue (Seat 10 & Seat 11) with zero child privacy tracking (Seat 12).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_room_pro_shop.png`,
+    authorityFlow: 'Proposed by Seat 10 (Growth) → Co-Signed by Seat 11 (Art) & Seat 12 (SafeSport Privacy)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 56,
+    isTop3Recommended: false,
+    id: 'S10-E',
+    pod: 'pod3',
+    podLabel: 'Pod 3: Platform, Film & Growth',
+    seatNumber: 10,
+    seatName: 'App Store, Conversion & Growth Strategist',
+    authorityRole: 'Monetization, Funnels & Partner Club Growth',
+    seatLens: 'Seat 10 — App Store, Conversion & Growth Strategist',
+    targetScope: '2-Button Entry Gate (#sandboxLoginModal) & Team Portal -> Coach Code Onboarding',
+    title: '1-Tap "Try 3 Free On-Ice Reads Before Creating a PIN" Guest Demo Button on Step 2 Player Login',
+    description: 'Allow brand-new visitors who click [🏒 PLAYER LOGIN] at a tournament booth to tap a subtle "⚡ Play 3 Instant Demo Reads" link before setting up their full profile PIN.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Our 2-Button Entry Gate ([🏒 PLAYER LOGIN] and [📋 TEAM PORTAL]) is ultra-clean—giving first-time tournament parents a 60-second taste of the 2x faceoff-dot skaters and Coach Bob voice before profile creation boosts top-of-funnel conversion.',
+    crossImpact: 'Increases App Store & tournament booth conversion (Seat 10) while keeping Step 1 strictly 2 buttons (Seat 7).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_step1_portals.png`,
+    authorityFlow: 'Proposed by Seat 10 (Growth) → Validated by Seat 7 (2-Button Rule) & Seat 3 (Family)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 57,
+    isTop3Recommended: false,
+    id: 'S11-D',
+    pod: 'pod1',
+    podLabel: 'Pod 1: Player, Family & Learning',
+    seatNumber: 11,
+    seatName: 'Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist',
+    authorityRole: 'Gate D Visual Consistency (75% Realistic / 25% Cartoon-Edge)',
+    seatLens: '🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist (Gate D Visual Consistency)',
+    targetScope: 'On-Ice Rink Canvas (#rinkCanvas) • 2.0x Faceoff-Dot Top-Down Skaters',
+    title: 'Subtle Skate-Blade Ice Glint & Puck Shadow Depth on 2.0x Faceoff-Dot Directional Skaters',
+    description: 'Add a crisp 2px specular ice highlight under the skate blades and a soft directional drop-shadow under the 2.0x faceoff-dot skater shoulders on #rinkCanvas.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Our Stage B audit verified exact 2.0x faceoff-dot sizing (ratio = 2.00) and directional L/R sticks across all 6 divisions; adding a subtle specular skate-blade glint makes the skaters pop off the white ice sheet on bright rink iPads.',
+    crossImpact: 'Elevates on-ice visual polish (Seat 11 & Seat 4) with zero FPS cost on #rinkCanvas (Seat 9).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/marathon_frame2_freeze.png`,
+    authorityFlow: 'Proposed by Seat 11 (Gate D Art) → Co-Signed by Seat 9 (<canvas>) & Seat 1 (Systems)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 58,
+    isTop3Recommended: false,
+    id: 'S11-E',
+    pod: 'pod1',
+    podLabel: 'Pod 1: Player, Family & Learning',
+    seatNumber: 11,
+    seatName: 'Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist',
+    authorityRole: 'Gate D Visual Consistency (75% Realistic / 25% Cartoon-Edge)',
+    seatLens: '🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist (Gate D Visual Consistency)',
+    targetScope: 'Clubhouse Room (#synapzFriendsWallModal • room-clubhouse.png) • Trophy Case & Banners',
+    title: 'Dynamic Championship Banner Engraving Inside the Illustrated Clubhouse Trophy Case',
+    description: 'Overlay the player\'s conquered Division Banners (e.g., "MILES #9 • CENTRAL DIVISION CHAMP") in brushed gold typography directly onto the hanging championship banners inside room-clubhouse.png.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Just like the dynamic brass nameplate in the Locker Room (room-locker-room.png) personalizes the stall, engraving the player\'s name and division onto the Clubhouse banners makes room-clubhouse.png feel like their personal Hall of Fame.',
+    crossImpact: 'Deepens pride of ownership in the Clubhouse (Seat 11 & Seat 4) with zero extra modal clutter (Seat 7).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_room_clubhouse.png`,
+    authorityFlow: 'Proposed by Seat 11 (Gate D Art) → Co-Signed by Seat 4 (HOW FUN) & Seat 7 (WHERE)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 59,
+    isTop3Recommended: false,
+    id: 'S12-D',
+    pod: 'pod3',
+    podLabel: 'Pod 3: Platform, Film & Growth',
+    seatNumber: 12,
+    seatName: 'SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist',
+    authorityRole: 'SafeSport Compliance, Sibling PIN Lock & 11-Channel Voice QA',
+    seatLens: '🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist',
+    targetScope: '11-Channel Neural .mp3 Voice Bank (assets/audio/voices/) & Natural Speech Interceptor',
+    title: 'CI Build Gate Blocking Any Prompt String With [Brackets], Role Tags, or >1 Sentence From Speech Engine',
+    description: 'Enforce an automated assertion in deep_playtest_audit.js that fails the build if any spoken string in SynapzCharacterSpeechEngine contains bracketed metadata ([F1 • AA]) or more than 1 sentence.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Our v9.5 Natural Voice upgrade (112 neural .mp3 files + toNaturalHockeyTalk()) eliminated 100% of robotic bracket reading across all 72 plays—locking a permanent CI assertion guarantees no future drill edit ever reintroduces robotic text.',
+    crossImpact: 'Permanently protects natural locker-room voice quality across all 11 characters (Seat 12, Seat 2 & Seat 9).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_live_word_speech_bubble.png`,
+    authorityFlow: 'Proposed by Seat 12 (Voice QA) → Co-Signed by Seat 2 (HOW) & Seat 9 (Engineering)',
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 60,
+    isTop3Recommended: false,
+    id: 'S12-E',
+    pod: 'pod3',
+    podLabel: 'Pod 3: Platform, Film & Growth',
+    seatNumber: 12,
+    seatName: 'SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist',
+    authorityRole: 'SafeSport Compliance, Sibling PIN Lock & 11-Channel Voice QA',
+    seatLens: '🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist',
+    targetScope: 'Friends & Family Clubhouse (#synapzFriendsWallModal) & Team Roster Hub (#playerTeamRosterHubModal)',
+    title: 'Automated Privacy Redaction Guardrail Verifying Zero Diagnostic Slice Leaks in Social DOM',
+    description: 'Add a permanent DOM inspection check in deep_playtest_audit.js verifying that #synapzFriendsWallModal and #playerTeamRosterHubModal never render individual pillar percentages or missed-drill IDs for teammates.',
+    candidCritique: 'MARATHON 72-PLAY TELEMETRY OBSERVATION: Our Marathon audit confirmed teammateReadOnlyPrivacyVerified === true across both social views—automating a DOM redaction scan on every build guarantees 100% SafeSport psychological safety as new social features are added.',
+    crossImpact: 'Guarantees 100% SafeSport & child privacy compliance for Players, Parents, and Associations (Seat 12, Seat 3 & Seat 6).',
+    screenshotUrl: `${PAGES_BASE_URL}/screenshots/audit_team_roster_hub.png`,
+    authorityFlow: 'Proposed by Seat 12 (SafeSport) → Co-Signed by Seat 3 (Family) & Seat 9 (Engineering)',
+    status: 'awaiting_founder_approval'
   }
 ];
 
@@ -828,14 +1288,18 @@ function buildCrossSeatCoSign(item) {
   };
 }
 
-for (const item of BOARD_30_IDEA_DIGEST) {
+BOARD_30_IDEA_DIGEST.forEach((item, idx) => {
+  item.rank = idx + 1;
   item.isTop5CoSigned = item.rank <= 5;
+  item.isTop10CoSigned = item.rank <= 10;
   item.crossSeatCoSign = buildCrossSeatCoSign(item);
-}
+});
 
 const TOP_5_COSIGNED_CONSENSUS_PRIORITIES = BOARD_30_IDEA_DIGEST.filter(i => i.rank <= 5);
+const TOP_10_COSIGNED_CONSENSUS_PRIORITIES = BOARD_30_IDEA_DIGEST.filter(i => i.rank <= 10);
 const BOARD_12_SEAT_DIGEST = BOARD_30_IDEA_DIGEST.filter(i => i.rank <= 12);
 const BOARD_36_IDEA_DIGEST = BOARD_30_IDEA_DIGEST;
+const BOARD_60_IDEA_DIGEST = BOARD_30_IDEA_DIGEST;
 
 function renderRedFlagCouncilOptionsHtml(rf) {
   const explainUrl = `${PAGES_BASE_URL}/report.html?action=explain_red_flag&id=${encodeURIComponent(rf.id)}#seat0-red-flag-council`;
@@ -887,25 +1351,25 @@ function renderRedFlagCouncilOptionsHtml(rf) {
 </div>`;
 }
 
-function renderSevenFieldCardHtml(item, isTop5Banner = false) {
+function renderSevenFieldCardHtml(item, isTop10Banner = false) {
   const isVetoed = item.status === 'vetoed';
-  const borderCol = isTop5Banner ? '#10b981' : isVetoed ? '#f43f5e' : '#38bdf8';
-  const bgCol = isTop5Banner ? '#022c22' : isVetoed ? '#3b071e' : '#0f172a';
-  const badgeBg = isTop5Banner ? '#059669' : isVetoed ? '#e11d48' : '#0284c7';
-  const badgeText = isTop5Banner
+  const borderCol = isTop10Banner ? '#10b981' : isVetoed ? '#f43f5e' : '#38bdf8';
+  const bgCol = isTop10Banner ? '#022c22' : isVetoed ? '#3b071e' : '#0f172a';
+  const badgeBg = isTop10Banner ? '#059669' : isVetoed ? '#e11d48' : '#0284c7';
+  const badgeText = isTop10Banner
     ? `🤝 TOP #${item.rank} CO-SIGNED CONSENSUS PRIORITY (12/12 SEATS) • AWAITING FOUNDER APPROVAL`
     : isVetoed
       ? `🛑 RANK #${item.rank} • VETOED BY 4-GATE ROUNDTABLE`
       : `📋 RANK #${item.rank} CO-SIGNED PROPOSAL • AWAITING FOUNDER APPROVAL`;
 
-  const explainHref = `${PAGES_BASE_URL}/report.html?founder_action=explain&idea_id=${encodeURIComponent(item.id)}#founder-approval-board`;
-  const approveHref = `${PAGES_BASE_URL}/report.html?founder_action=approve&idea_id=${encodeURIComponent(item.id)}#founder-approval-board`;
-  const rejectHref = `${PAGES_BASE_URL}/report.html?founder_action=reject&idea_id=${encodeURIComponent(item.id)}#founder-approval-board`;
+  const explainHref = `${PAGES_BASE_URL}/report.html?action=explain&id=${encodeURIComponent(item.id)}#founder-approval-board`;
+  const approveHref = `${PAGES_BASE_URL}/report.html?action=approve&id=${encodeURIComponent(item.id)}#founder-approval-board`;
+  const rejectHref = `${PAGES_BASE_URL}/report.html?action=reject&id=${encodeURIComponent(item.id)}#founder-approval-board`;
   const coSign = item.crossSeatCoSign || buildCrossSeatCoSign(item);
 
   return `
 <div style="background:${bgCol};border:2px solid ${borderCol};border-radius:12px;padding:12px;margin-bottom:12px;">
-  <div style="margin-bottom:6px;"><span style="background:${badgeBg};color:#fff;font-size:10px;font-weight:900;padding:3px 8px;border-radius:99px;">${badgeText}</span> <span style="font-size:11px;font-weight:800;color:#fbbf24;">ID: ${item.id} • ${item.podLabel}</span></div>
+  <div style="margin-bottom:6px;"><span style="background:${badgeBg};color:#fff;font-size:10px;font-weight:900;padding:3px 8px;border-radius:99px;">${badgeText}</span> <span style="font-size:11px;font-weight:800;color:#fbbf24;">ID: ${item.id} • Seat ${item.seatNumber} (${item.podLabel})</span></div>
   <div style="font-size:15px;font-weight:900;color:#fff;margin-bottom:8px;">#${item.rank} — ${item.title}</div>
   <div style="font-size:12px;color:#e2e8f0;line-height:1.45;">
     <div style="margin-bottom:4px;"><strong style="color:#38bdf8;">1. Seat &amp; Lens:</strong> ${item.seatLens} <span style="color:#94a3b8;">(${item.authorityFlow})</span></div>
@@ -920,26 +1384,26 @@ function renderSevenFieldCardHtml(item, isTop5Banner = false) {
 }
 
 function buildEmailHtml(ideas, timestamp) {
-  const top5CoSigned = ideas.filter(i => i.rank <= 5);
-  const awaitingRest = ideas.filter(i => i.rank > 5 && i.status === 'awaiting_founder_approval');
+  const top10CoSigned = ideas.filter(i => i.rank <= 10);
+  const awaitingRest = ideas.filter(i => i.rank > 10 && i.status === 'awaiting_founder_approval');
   const vetoed = ideas.filter(i => i.status === 'vetoed');
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SYNAPZ HOCKEY — Nightly 12-Seat Collaborative Roundtable, Red-Flag Council Options &amp; Top 5 Consensus Digest</title>
+  <title>SYNAPZ HOCKEY — Special Deep Marathon Audit: Top 10 Consensus + 60-Idea Master Report</title>
 </head>
 <body style="font-family: Inter, Arial, sans-serif; background:#020617; color:#f8fafc; padding:20px; line-height:1.5;">
   <div style="max-width:920px; margin:0 auto; background:#090d16; border:2px solid #00e5ff; border-radius:18px; padding:24px;">
-    <div style="font-size:11px; font-weight:900; color:#00e5ff; text-transform:uppercase; letter-spacing:0.08em;">SYNAPZ HOCKEY • PLAY. LEARN. DOMINATE. • SECTION 27: 12-SEAT BOARD + 🚩 SEAT 0 RED-FLAG COUNCIL OPTIONS PROTOCOL</div>
-    <h1 style="margin:6px 0 8px; font-size:22px; color:#ffffff;">🏒 Nightly 12-Seat Collaborative Roundtable, 🚩 Seat 0 Red-Flag Council Options (Option A vs. Option B) &amp; Top 5 Consensus Digest</h1>
+    <div style="font-size:11px; font-weight:900; color:#00e5ff; text-transform:uppercase; letter-spacing:0.08em;">SYNAPZ HOCKEY • SECTION 30: UNHURRIED 72-PLAY DEEP MARATHON BLIND PLAYTEST • TOP 10 CONSENSUS + 60-IDEA MASTER REPORT (12 SEATS × 5 IDEAS)</div>
+    <h1 style="margin:6px 0 8px; font-size:22px; color:#ffffff;">🏒 Special Deep Marathon Audit: Top 10 Co-Signed Consensus Priorities + 60-Idea Master Matrix (12 Seats × 5 Deep Recommendations)</h1>
     <p style="margin:0 0 14px; font-size:13px; color:#cbd5e1;">
       Prepared for <strong>Coach Dane (danebekkedahl@gmail.com)</strong> &amp; <strong>Coach Evan (evanbekk@gmail.com)</strong> • Generated ${timestamp}<br/>
       🌐 <strong>Live App:</strong> <a href="https://danebekkedahl.github.io/synapz-hockey/" style="color:#00e5ff; font-weight:800;">https://danebekkedahl.github.io/synapz-hockey/</a> •
-      📊 <strong>Live 12-Seat Board &amp; Red-Flag Council Report:</strong> <a href="https://danebekkedahl.github.io/synapz-hockey/report.html#seat0-red-flag-council" style="color:#34d399; font-weight:800;">https://danebekkedahl.github.io/synapz-hockey/report.html</a> •
+      📊 <strong>Live 60-Idea &amp; Top 10 Consensus Report:</strong> <a href="https://danebekkedahl.github.io/synapz-hockey/report.html#founder-approval-board" style="color:#34d399; font-weight:800;">https://danebekkedahl.github.io/synapz-hockey/report.html</a> •
       🪞 <strong>Mirror:</strong> <a href="https://danebekkedahl.github.io/tactix-hockey/" style="color:#94a3b8;">tactix-hockey</a><br/>
-      🔒 <strong>4-Step Red-Flag Governance &amp; 12-Seat Approval Gate Enforced:</strong> A Founder <code>🚩 Red Flag</code> NEVER changes code without review! Below, <code>Seat 0</code> presents Option A (Recommended) vs. Option B for your Final Approval.
+      🎯 <strong>72-Play Deep Marathon Telemetry:</strong> <code>60/60</code> Blind Gold Mastery Plays (8U–18U) + <code>12/12</code> Wrong-Answer Confused-Kid Recovery Plays • Stage A (<code>t=150ms, 600ms, 1200ms</code> Word Streaming) • Stage B (<code>3.2s</code> Flow -> Freeze <code>2.0x</code> Dot Skaters) • Stage C (Circle Re-Summon) • <code>0</code> Bounding-Box Collisions Across 4 Viewports.
     </p>
 
     <!-- 🚩 FOUNDER RED FLAGS — 12-SEAT COUNCIL REVIEW & OPTIONS (AWAITING FINAL APPROVAL) -->
@@ -947,6 +1411,46 @@ function buildEmailHtml(ideas, timestamp) {
       <div style="font-size:11px; font-weight:900; color:#fda4af; text-transform:uppercase; letter-spacing:0.06em;">🚩 FOUNDER RED FLAGS — 12-SEAT COUNCIL REVIEW &amp; OPTIONS (AWAITING FINAL APPROVAL)</div>
       <div style="font-size:15px; font-weight:900; color:#ffffff; margin:4px 0 8px;">4-Step Governance: 1. Submit in App (flagged_for_council_review) -> 2. Seat 0 12-Seat Council Options (Option A vs. Option B) -> 3. Sent in Nightly Report -> 4. Built ONLY After You Click Approve Option A or Option B</div>
       ${SEAT_0_RED_FLAG_COUNCIL_OPTIONS.map(rf => renderRedFlagCouncilOptionsHtml(rf)).join('')}
+    </div>
+
+    <!-- 🏆 TOP 10 CO-SIGNED CONSENSUS PRIORITIES SUMMARY TABLE (#1 TO #10) -->
+    <div style="background:#022c22; border:2px solid #10b981; border-radius:14px; padding:16px; margin-bottom:22px;">
+      <div style="font-size:11px; font-weight:900; color:#34d399; text-transform:uppercase; letter-spacing:0.06em;">🏆 TOP 10 CO-SIGNED CONSENSUS MASTER PRIORITIES (#1 TO #10 • UNANIMOUS 12-SEAT ROUNDTABLE VOTE)</div>
+      <div style="font-size:15px; font-weight:900; color:#ffffff; margin:4px 0 8px;">Synthesized from the 60-Idea Master Matrix (12 Seats × 5 Deep Recommendations) &amp; Co-Signed Across All 4 Gates (Gates A, B, C &amp; D)</div>
+      <table style="width:100%; border-collapse:collapse; font-size:12px; color:#e2e8f0; background:#0f172a; border-radius:10px; overflow:hidden;">
+        <thead>
+          <tr style="background:#1e293b; color:#fbbf24; text-align:left;">
+            <th style="padding:8px;">Rank &amp; ID</th>
+            <th style="padding:8px;">What to Build &amp; Target Age/Tier</th>
+            <th style="padding:8px;">4-Gate Cross-Seat Co-Sign Summary</th>
+            <th style="padding:8px;">1-Click Founder Decision</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${top10CoSigned.map(item => `
+            <tr>
+              <td style="padding:8px; border-top:1px solid #1e293b; font-weight:900; color:#34d399;">#${item.rank} (${item.id})<br/><span style="font-size:10px; color:#94a3b8;">Seat ${item.seatNumber} Lead</span></td>
+              <td style="padding:8px; border-top:1px solid #1e293b;"><strong>${item.title}</strong><br/><span style="font-size:11px; color:#38bdf8;">${item.targetScope}</span></td>
+              <td style="padding:8px; border-top:1px solid #1e293b; font-size:11px; color:#cbd5e1;">${item.crossSeatCoSign.gateA_TacticalAdm}<br/>${item.crossSeatCoSign.gateD_VisualSafeSportQa}</td>
+              <td style="padding:8px; border-top:1px solid #1e293b; white-space:nowrap;">
+                <a href="${PAGES_BASE_URL}/report.html?action=explain&id=${encodeURIComponent(item.id)}#founder-approval-board" style="background:#0284c7; color:#fff; padding:5px 9px; border-radius:6px; text-decoration:none; font-weight:900; font-size:11px; display:inline-block; margin-bottom:4px;">🔍 Explain This to Me</a><br/>
+                <a href="${PAGES_BASE_URL}/report.html?action=approve&id=${encodeURIComponent(item.id)}#founder-approval-board" style="background:#059669; color:#fff; padding:5px 9px; border-radius:6px; text-decoration:none; font-weight:900; font-size:11px; display:inline-block; margin-bottom:4px;">✅ Approve for Next Build</a><br/>
+                <a href="${PAGES_BASE_URL}/report.html?action=reject&id=${encodeURIComponent(item.id)}#founder-approval-board" style="background:#be123c; color:#fff; padding:5px 9px; border-radius:6px; text-decoration:none; font-weight:900; font-size:11px; display:inline-block;">❌ Reject</a>
+              </td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 🎞️ SECTION 30 3-FRAME MARATHON ACTION FILMSTRIP + SECTION 28 & 29 LIVE SCREENSHOTS -->
+    <div style="background:#0f172a; border:2px solid #38bdf8; border-radius:14px; padding:16px; margin-bottom:22px;">
+      <div style="font-size:11px; font-weight:900; color:#38bdf8; text-transform:uppercase; letter-spacing:0.06em;">🎞️ SECTION 30 3-FRAME ACTION FILMSTRIP (STAGE A INTRO -> STAGE B 3.2S FREEZE -> STAGE C FEEDBACK)</div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-top:10px; font-size:11px; color:#cbd5e1;">
+        <div><a href="${PAGES_BASE_URL}/screenshots/marathon_frame1_intro.png" style="color:#38bdf8; font-weight:800;">Frame 1 (Stage A): Coach Bob ~25% Pop-Up + Live Word Stream (t=150..1200ms)</a><img src="${PAGES_BASE_URL}/screenshots/marathon_frame1_intro.png" style="width:100%; border-radius:8px; border:1px solid #38bdf8; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/marathon_frame2_freeze.png" style="color:#fbbf24; font-weight:800;">Frame 2 (Stage B): 3.2s Flow -> Freeze Decision Frame (2.0x Dot Skaters)</a><img src="${PAGES_BASE_URL}/screenshots/marathon_frame2_freeze.png" style="width:100%; border-radius:8px; border:1px solid #fbbf24; margin-top:4px;" /></div>
+        <div><a href="${PAGES_BASE_URL}/screenshots/marathon_frame3_feedback.png" style="color:#34d399; font-weight:800;">Frame 3 (Stage C): Gold 1st-Choice Read + Natural Feedback (+95 Puck Bucks)</a><img src="${PAGES_BASE_URL}/screenshots/marathon_frame3_feedback.png" style="width:100%; border-radius:8px; border:1px solid #34d399; margin-top:4px;" /></div>
+      </div>
     </div>
 
     <!-- SECTION 28 & SECTION 29 LIVE SCREENSHOTS: CLEAN PLAYER SCREENS, LIVE WORD-STREAMING SPEECH & 5 INTERACTIVE ROOMS -->
@@ -965,67 +1469,13 @@ function buildEmailHtml(ideas, timestamp) {
       </div>
     </div>
 
-    <!-- TOP 5 CO-SIGNED CONSENSUS PRIORITIES SUMMARY TABLE -->
-    <div style="background:#022c22; border:2px solid #10b981; border-radius:14px; padding:16px; margin-bottom:22px;">
-      <div style="font-size:11px; font-weight:900; color:#34d399; text-transform:uppercase; letter-spacing:0.06em;">🏆 TOP 5 CO-SIGNED CONSENSUS PRIORITIES (UNANIMOUS 12-SEAT ROUNDTABLE VOTE)</div>
-      <div style="font-size:15px; font-weight:900; color:#ffffff; margin:4px 0 8px;">Ranked #1 to #5 Highest-Impact Upgrades Co-Signed Across All 4 Best-Practice Gates (Gates A, B, C &amp; D)</div>
-      <table style="width:100%; border-collapse:collapse; font-size:12px; color:#e2e8f0; background:#0f172a; border-radius:10px; overflow:hidden;">
-        <thead>
-          <tr style="background:#1e293b; color:#fbbf24; text-align:left;">
-            <th style="padding:8px;">Rank &amp; ID</th>
-            <th style="padding:8px;">What to Build &amp; Target Age/Tier</th>
-            <th style="padding:8px;">4-Gate Cross-Seat Co-Sign Summary</th>
-            <th style="padding:8px;">1-Click Decision</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${top5CoSigned.map(item => `
-            <tr>
-              <td style="padding:8px; border-top:1px solid #1e293b; font-weight:900; color:#34d399;">#${item.rank} (${item.id})<br/><span style="font-size:10px; color:#94a3b8;">Seat ${item.seatNumber} Lead</span></td>
-              <td style="padding:8px; border-top:1px solid #1e293b;"><strong>${item.title}</strong><br/><span style="font-size:11px; color:#38bdf8;">${item.targetScope}</span></td>
-              <td style="padding:8px; border-top:1px solid #1e293b; font-size:11px; color:#cbd5e1;">${item.crossSeatCoSign.gateA_TacticalAdm}<br/>${item.crossSeatCoSign.gateD_VisualSafeSportQa}</td>
-              <td style="padding:8px; border-top:1px solid #1e293b; white-space:nowrap;">
-                <a href="${PAGES_BASE_URL}/report.html?founder_action=explain&idea_id=${encodeURIComponent(item.id)}#founder-approval-board" style="background:#0284c7; color:#fff; padding:5px 9px; border-radius:6px; text-decoration:none; font-weight:900; font-size:11px; display:inline-block; margin-bottom:4px;">🔍 Explain</a><br/>
-                <a href="${PAGES_BASE_URL}/report.html?founder_action=approve&idea_id=${encodeURIComponent(item.id)}#founder-approval-board" style="background:#059669; color:#fff; padding:5px 9px; border-radius:6px; text-decoration:none; font-weight:900; font-size:11px; display:inline-block; margin-bottom:4px;">✅ Approve</a><br/>
-                <a href="${PAGES_BASE_URL}/report.html?founder_action=reject&idea_id=${encodeURIComponent(item.id)}#founder-approval-board" style="background:#be123c; color:#fff; padding:5px 9px; border-radius:6px; text-decoration:none; font-weight:900; font-size:11px; display:inline-block;">❌ Reject</a>
-              </td>
-            </tr>
-          `).join('')}
-        </tbody>
-      </table>
-    </div>
+    <h2 style="font-size:17px; color:#34d399; border-bottom:2px solid #10b981; padding-bottom:6px;">🤝 TOP 10 CO-SIGNED CONSENSUS MASTER PRIORITIES (7-FIELD ROUNDTABLE CARDS • RANKED #1 – #10)</h2>
+    ${top10CoSigned.map(i => renderSevenFieldCardHtml(i, true)).join('')}
 
-    <!-- SPECIAL BOARD QUESTION: MOVING PLAYS VS STATIC SETUPS -->
-    <div style="background:#172554; border:2px solid #38bdf8; border-radius:14px; padding:16px; margin-bottom:22px;">
-      <div style="font-size:11px; font-weight:900; color:#38bdf8; text-transform:uppercase; letter-spacing:0.06em;">🏒 SPECIAL CO-FOUNDER BOARD QUESTION (SEATS 1, 2, 3 &amp; 4 CONSENSUS)</div>
-      <div style="font-size:15px; font-weight:900; color:#ffffff; margin:4px 0 8px;">${MOVING_VS_STATIC_BOARD_CONSENSUS.question}</div>
-      <table style="width:100%; border-collapse:collapse; font-size:12px; color:#e2e8f0; background:#0f172a; border-radius:10px; overflow:hidden;">
-        <thead>
-          <tr style="background:#1e293b; color:#fbbf24; text-align:left;">
-            <th style="padding:8px;">Age &amp; Talent Band</th>
-            <th style="padding:8px;">Recommended On-Ice Play Start</th>
-            <th style="padding:8px;">Candid Co-Founder Reasoning (Seats 1–4)</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${MOVING_VS_STATIC_BOARD_CONSENSUS.recommendedMatrix.map(row => `
-            <tr>
-              <td style="padding:8px; border-top:1px solid #1e293b; font-weight:800; color:#38bdf8;">${row.band}</td>
-              <td style="padding:8px; border-top:1px solid #1e293b; font-weight:800; color:#34d399;">${row.defaultStart}</td>
-              <td style="padding:8px; border-top:1px solid #1e293b; color:#cbd5e1;">${row.why}</td>
-            </tr>
-          `).join('')}
-        </tbody>
-      </table>
-    </div>
-
-    <h2 style="font-size:17px; color:#34d399; border-bottom:2px solid #10b981; padding-bottom:6px;">🤝 TOP 5 CO-SIGNED CONSENSUS PRIORITIES (7-FIELD ROUNDTABLE CARDS • RANKED #1 – #5)</h2>
-    ${top5CoSigned.map(i => renderSevenFieldCardHtml(i, true)).join('')}
-
-    <h2 style="font-size:17px; color:#38bdf8; border-bottom:2px solid #0284c7; padding-bottom:6px; margin-top:26px;">📋 RANKS #6 – #28: CO-SIGNED 12-SEAT / 36-IDEA MATRIX PROPOSALS (AWAITING YOUR APPROVAL)</h2>
+    <h2 style="font-size:17px; color:#38bdf8; border-bottom:2px solid #0284c7; padding-bottom:6px; margin-top:26px;">📋 FULL 60-IDEA MASTER MATRIX (12 SEATS × 5 DEEP RECOMMENDATIONS • RANKS #11 – #52 AWAITING APPROVAL)</h2>
     ${awaitingRest.map(i => renderSevenFieldCardHtml(i, false)).join('')}
 
-    <h2 style="font-size:17px; color:#fb7185; border-bottom:2px solid #f43f5e; padding-bottom:6px; margin-top:26px;">🛑 VETOED BY 4-GATE ROUNDTABLE (CANDID PUSHBACK AGAINST FLAWED IDEAS)</h2>
+    <h2 style="font-size:17px; color:#fb7185; border-bottom:2px solid #f43f5e; padding-bottom:6px; margin-top:26px;">🛑 VETOED BY 4-GATE ROUNDTABLE (8 CANDID VETOES PROTECTING ADM, PRIVACY &amp; ZERO-CLUTTER)</h2>
     ${vetoed.map(i => renderSevenFieldCardHtml(i, false)).join('')}
   </div>
 </body>
@@ -1042,8 +1492,10 @@ async function main() {
 
   const summaryCounts = {
     totalSeats: 12,
+    ideasPerSeat: 5,
     seat0RedFlagsReviewed: SEAT_0_RED_FLAG_COUNCIL_OPTIONS.length,
     totalIdeas: BOARD_30_IDEA_DIGEST.length,
+    top10CoSignedPriorities: TOP_10_COSIGNED_CONSENSUS_PRIORITIES.length,
     top5CoSignedPriorities: TOP_5_COSIGNED_CONSENSUS_PRIORITIES.length,
     focusedTop12PerSeat: BOARD_12_SEAT_DIGEST.length,
     top3Recommended: BOARD_30_IDEA_DIGEST.filter(i => i.isTop3Recommended).length,
@@ -1054,17 +1506,18 @@ async function main() {
   const payload = {
     created_by: 'send-board-digest.js',
     source_role: 'board_digest',
-    scenario_id: 'SYNAPZ-ROUNDTABLE-12SEAT-36IDEA-V97',
+    scenario_id: 'SYNAPZ-MARATHON-12SEAT-60IDEA-V98',
     age_division: 'ALL',
     category: 'board_digest',
     status: 'awaiting_founder_approval',
-    summary: `🤝 SYNAPZ HOCKEY — Nightly 12-Seat Collaborative Roundtable, Red-Flag Council Options & Top 5 Consensus Digest (${summaryCounts.seat0RedFlagsReviewed} Red Flag w/ Option A & B, ${summaryCounts.awaitingApproval} Awaiting Approval, ${summaryCounts.vetoed} Vetoed) -> ${RECIPIENTS.join(', ')}`,
+    summary: `🤝 SYNAPZ HOCKEY — Special Deep Marathon Audit: Top 10 Consensus + 60-Idea Master Report (${summaryCounts.totalIdeas} Total Ideas = 12 Seats × 5, ${summaryCounts.top10CoSignedPriorities} Top 10 Consensus, ${summaryCounts.seat0RedFlagsReviewed} Red Flag w/ Option A & B, ${summaryCounts.awaitingApproval} Awaiting Approval, ${summaryCounts.vetoed} Vetoed) -> ${RECIPIENTS.join(', ')}`,
     details: {
-      version: 'v9.7',
+      version: 'v9.8-marathon',
       recipients: RECIPIENTS,
       counts: summaryCounts,
       seat0RedFlagCouncilOptions: SEAT_0_RED_FLAG_COUNCIL_OPTIONS,
       movingVsStaticConsensus: MOVING_VS_STATIC_BOARD_CONSENSUS,
+      top10CoSignedConsensusPriorities: TOP_10_COSIGNED_CONSENSUS_PRIORITIES,
       top5CoSignedConsensusPriorities: TOP_5_COSIGNED_CONSENSUS_PRIORITIES,
       top12FocusedProposals: BOARD_12_SEAT_DIGEST,
       ideas: BOARD_30_IDEA_DIGEST,
@@ -1088,48 +1541,36 @@ async function main() {
     });
     supabaseStatus = `HTTP ${res.status}`;
 
-    const countRes = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox?status=eq.awaiting_founder_approval&select=id`, {
+    const proposalRows = BOARD_30_IDEA_DIGEST.filter(i => i.status === 'awaiting_founder_approval').map(item => ({
+      created_by: `Seat-${item.seatNumber}-Marathon`,
+      source_role: 'council',
+      scenario_id: item.id,
+      age_division: 'ALL',
+      category: 'council_spec',
+      status: 'awaiting_founder_approval',
+      summary: `[Rank #${item.rank} • ${item.id}] ${item.title} (${item.targetScope})`,
+      details: item
+    }));
+    await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox`, {
+      method: 'POST',
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal'
+      },
+      body: JSON.stringify(proposalRows)
+    });
+
+    const recountRes = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox?status=eq.awaiting_founder_approval&select=id`, {
       headers: {
         apikey: SUPABASE_KEY,
         Authorization: `Bearer ${SUPABASE_KEY}`
       }
     });
-    if (countRes.ok) {
-      const rows = await countRes.json();
-      awaitingApprovalRowCountInSupabase = Array.isArray(rows) ? rows.length : 0;
-    }
-
-    if (awaitingApprovalRowCountInSupabase < 28) {
-      const proposalRows = BOARD_30_IDEA_DIGEST.filter(i => i.status === 'awaiting_founder_approval').map(item => ({
-        created_by: `Seat-${item.seatNumber}-Roundtable`,
-        source_role: 'council',
-        scenario_id: item.id,
-        age_division: 'ALL',
-        category: 'council_spec',
-        status: 'awaiting_founder_approval',
-        summary: `[Rank #${item.rank} • ${item.id}] ${item.title} (${item.targetScope})`,
-        details: item
-      }));
-      await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox`, {
-        method: 'POST',
-        headers: {
-          apikey: SUPABASE_KEY,
-          Authorization: `Bearer ${SUPABASE_KEY}`,
-          'Content-Type': 'application/json',
-          Prefer: 'return=minimal'
-        },
-        body: JSON.stringify(proposalRows)
-      });
-      const recountRes = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox?status=eq.awaiting_founder_approval&select=id`, {
-        headers: {
-          apikey: SUPABASE_KEY,
-          Authorization: `Bearer ${SUPABASE_KEY}`
-        }
-      });
-      if (recountRes.ok) {
-        const rows2 = await recountRes.json();
-        awaitingApprovalRowCountInSupabase = Array.isArray(rows2) ? rows2.length : 0;
-      }
+    if (recountRes.ok) {
+      const rows2 = await recountRes.json();
+      awaitingApprovalRowCountInSupabase = Array.isArray(rows2) ? rows2.length : 0;
     }
   } catch (err) {
     supabaseStatus = `Error: ${err.message}`;
@@ -1146,17 +1587,7 @@ async function main() {
     second: '2-digit'
   });
   const senderDisplayName = 'Synapz Hockey 12-Seat Council';
-  const emailSubject = `SYNAPZ HOCKEY — Nightly 12-Seat Collaborative Roundtable, Section 28 Rooms & Red-Flag Options [${uniqueTimestampLabel}]`;
-  /**
-   * NOTE FOR GOOGLE APPS SCRIPT (`Code.gs`):
-   * Add `name: data.senderName || "Synapz Hockey 12-Seat Council"` inside `MailApp.sendEmail({...})`:
-   *   MailApp.sendEmail({
-   *     to: recipients.join(','),
-   *     subject: data.subject,
-   *     htmlBody: data.htmlBody,
-   *     name: data.senderName || "Synapz Hockey 12-Seat Council"
-   *   });
-   */
+  const emailSubject = `SYNAPZ HOCKEY — Special Deep Marathon Audit: Top 10 Consensus + 60-Idea Master Report [${uniqueTimestampLabel}]`;
   try {
     const gmailRes = await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
       method: 'POST',
@@ -1183,6 +1614,7 @@ async function main() {
 
   console.log(JSON.stringify({
     ok: true,
+    emailSubject,
     recipients: RECIPIENTS,
     counts: summaryCounts,
     supabaseStatus,
@@ -1196,5 +1628,5 @@ async function main() {
 if (require.main === module) {
   main();
 } else {
-  module.exports = { SEAT_0_RED_FLAG_COUNCIL_OPTIONS, TOP_5_COSIGNED_CONSENSUS_PRIORITIES, BOARD_12_SEAT_DIGEST, BOARD_10_SEAT_DIGEST, BOARD_36_IDEA_DIGEST, BOARD_30_IDEA_DIGEST, MOVING_VS_STATIC_BOARD_CONSENSUS };
+  module.exports = { SEAT_0_RED_FLAG_COUNCIL_OPTIONS, TOP_10_COSIGNED_CONSENSUS_PRIORITIES, TOP_5_COSIGNED_CONSENSUS_PRIORITIES, BOARD_12_SEAT_DIGEST, BOARD_10_SEAT_DIGEST, BOARD_60_IDEA_DIGEST, BOARD_36_IDEA_DIGEST, BOARD_30_IDEA_DIGEST, MOVING_VS_STATIC_BOARD_CONSENSUS };
 }

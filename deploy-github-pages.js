@@ -98,7 +98,10 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/audit_room_clubhouse.png', encoding: 'base64' },
   { rel: 'screenshots/audit_interactive_rooms.png', encoding: 'base64' },
   { rel: 'screenshots/audit_clean_gameplay_screen.png', encoding: 'base64' },
-  { rel: 'screenshots/audit_live_word_speech_bubble.png', encoding: 'base64' }
+  { rel: 'screenshots/audit_live_word_speech_bubble.png', encoding: 'base64' },
+  { rel: 'screenshots/marathon_frame1_intro.png', encoding: 'base64' },
+  { rel: 'screenshots/marathon_frame2_freeze.png', encoding: 'base64' },
+  { rel: 'screenshots/marathon_frame3_feedback.png', encoding: 'base64' }
 ];
 
 // Automatically include all generated neural .mp3 voice files in assets/audio/voices/<characterId>/*.mp3

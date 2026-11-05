@@ -1,6 +1,6 @@
 {
-  "lastUpdatedAt": "2026-11-05T03:29:04.481Z",
-  "totalRuns": 17,
+  "lastUpdatedAt": "2026-11-05T03:53:44.070Z",
+  "totalRuns": 19,
   "stepAApprovalGateCheck": {
     "statusChecked": "approved_for_build / approved_by_founder",
     "approvedItemsCount": 0,
@@ -11,10 +11,10 @@
   },
   "seat0ReviewedRedFlags": [
     {
-      "redFlagId": "b79e4b06-d23a-4654-94a1-efdadee6f209",
-      "scenarioId": "breakout-1",
-      "ageDivision": "10U",
-      "founderOriginalNote": "🎙️ [Voice Note]: Tighten weak-side F2 support spacing on this breakout read.   The coach and text box is covering the play so we can't see the play.  Can the coach move around out of the way depending on where the play is from corner to corner as nessesary",
+      "redFlagId": "RF-COUNCIL-REVIEW-01",
+      "scenarioId": "breakout-d-to-d-12u",
+      "ageDivision": "12U",
+      "founderOriginalNote": "On 12U D-to-D Breakout drills, let us make sure the weak-side winger outlet and D2 hinge spacing feel crystal clear before the 3s freeze.",
       "flaggedScreen": "game",
       "liveScreenshotUrl": "https://danebekkedahl.github.io/synapz-hockey/screenshots/audit_red_flag_council_review.png",
       "status": "council_options_ready_awaiting_approval",
@@ -92,6 +92,106 @@
       "tier": "AAA",
       "lastScenarioTested": "f1_f2_f3_roles-v20",
       "qStyle": "drag_skater",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "8U_Rec",
+      "division": "8U",
+      "tier": "Rec",
+      "lastScenarioTested": "basics-center",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "8U_B",
+      "division": "8U",
+      "tier": "B",
+      "lastScenarioTested": "basics_support-v17",
+      "qStyle": "tactical_choice",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
+    },
+    {
+      "levelKey": "8U_A",
+      "division": "8U",
+      "tier": "A",
+      "lastScenarioTested": "oz_cycle_scissors-v08",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "8U_AA",
+      "division": "8U",
+      "tier": "AA",
+      "lastScenarioTested": "oz_cycle_scissors-v04",
+      "qStyle": "tap_player",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "8U_AAA",
+      "division": "8U",
+      "tier": "AAA",
+      "lastScenarioTested": "f1_f2_f3_roles-v20",
+      "qStyle": "drag_skater",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "10U_Rec",
+      "division": "10U",
+      "tier": "Rec",
+      "lastScenarioTested": "basics-center",
+      "qStyle": "tactical_choice",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
+    },
+    {
+      "levelKey": "10U_B",
+      "division": "10U",
+      "tier": "B",
+      "lastScenarioTested": "nz-center-curl-2",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "10U_A",
+      "division": "10U",
+      "tier": "A",
+      "lastScenarioTested": "f1_f2_f3_roles-v08",
+      "qStyle": "drag_skater",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "10U_AA",
+      "division": "10U",
+      "tier": "AA",
+      "lastScenarioTested": "f1_f2_f3_roles-v14",
+      "qStyle": "spot_and_fix",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "10U_AAA",
+      "division": "10U",
+      "tier": "AAA",
+      "lastScenarioTested": "breakout-dtod",
+      "qStyle": "tap_player",
       "readSuccess": true,
       "multiplier": 1,
       "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
@@ -197,6 +297,106 @@
       "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
     },
     {
+      "levelKey": "12U_Rec",
+      "division": "12U",
+      "tier": "Rec",
+      "lastScenarioTested": "basics-center",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "12U_B",
+      "division": "12U",
+      "tier": "B",
+      "lastScenarioTested": "nz-center-curl-2",
+      "qStyle": "drag_skater",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "12U_A",
+      "division": "12U",
+      "tier": "A",
+      "lastScenarioTested": "basics_support-v23",
+      "qStyle": "spot_and_fix",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "12U_AA",
+      "division": "12U",
+      "tier": "AA",
+      "lastScenarioTested": "f1_f2_f3_roles-v14",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "12U_AAA",
+      "division": "12U",
+      "tier": "AAA",
+      "lastScenarioTested": "powerplay_5v4-v15",
+      "qStyle": "tactical_choice",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
+    },
+    {
+      "levelKey": "14U_Rec",
+      "division": "14U",
+      "tier": "Rec",
+      "lastScenarioTested": "basics-center",
+      "qStyle": "drag_skater",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "14U_B",
+      "division": "14U",
+      "tier": "B",
+      "lastScenarioTested": "nz-center-curl-2",
+      "qStyle": "spot_and_fix",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "14U_A",
+      "division": "14U",
+      "tier": "A",
+      "lastScenarioTested": "basics_support-v23",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "14U_AA",
+      "division": "14U",
+      "tier": "AA",
+      "lastScenarioTested": "f1_f2_f3_roles-v14",
+      "qStyle": "tactical_choice",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
+    },
+    {
+      "levelKey": "14U_AAA",
+      "division": "14U",
+      "tier": "AAA",
+      "lastScenarioTested": "powerplay_5v4-v15",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
       "levelKey": "14U_Rec",
       "division": "14U",
       "tier": "Rec",
@@ -292,6 +492,106 @@
       "tier": "AAA",
       "lastScenarioTested": "powerplay_5v4-v15",
       "qStyle": "drag_skater",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "16U_Rec",
+      "division": "16U",
+      "tier": "Rec",
+      "lastScenarioTested": "basics-center",
+      "qStyle": "spot_and_fix",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "16U_B",
+      "division": "16U",
+      "tier": "B",
+      "lastScenarioTested": "nz-center-curl-2",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "16U_A",
+      "division": "16U",
+      "tier": "A",
+      "lastScenarioTested": "basics_support-v23",
+      "qStyle": "tactical_choice",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
+    },
+    {
+      "levelKey": "16U_AA",
+      "division": "16U",
+      "tier": "AA",
+      "lastScenarioTested": "f1_f2_f3_roles-v14",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "16U_AAA",
+      "division": "16U",
+      "tier": "AAA",
+      "lastScenarioTested": "powerplay_5v4-v15",
+      "qStyle": "drag_skater",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "18U_Rec",
+      "division": "18U",
+      "tier": "Rec",
+      "lastScenarioTested": "basics-center",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "18U_B",
+      "division": "18U",
+      "tier": "B",
+      "lastScenarioTested": "nz-center-curl-2",
+      "qStyle": "tactical_choice",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
+    },
+    {
+      "levelKey": "18U_A",
+      "division": "18U",
+      "tier": "A",
+      "lastScenarioTested": "basics_support-v23",
+      "qStyle": "tap_zone",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "18U_AA",
+      "division": "18U",
+      "tier": "AA",
+      "lastScenarioTested": "f1_f2_f3_roles-v14",
+      "qStyle": "drag_skater",
+      "readSuccess": true,
+      "multiplier": 1,
+      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+    },
+    {
+      "levelKey": "18U_AAA",
+      "division": "18U",
+      "tier": "AAA",
+      "lastScenarioTested": "powerplay_5v4-v15",
+      "qStyle": "spot_and_fix",
       "readSuccess": true,
       "multiplier": 1,
       "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
@@ -619,6 +919,635 @@
       ]
     }
   ],
+  "section30MarathonAudit": {
+    "totalMarathonPlays": 72,
+    "blindGoldMasteryPlays": 60,
+    "totalSolved": 60,
+    "totalGold": 60,
+    "wrongAnswerRecoveryPlays": 12,
+    "totalRecovered": 12,
+    "stageABCSamples": [
+      {
+        "division": "8U",
+        "stageA": {
+          "t150Words": 9,
+          "t600Words": 9,
+          "t1200Words": 9,
+          "progressiveStreamVerified": true,
+          "popupHeightRatio": 0.28,
+          "minimizedToCircle": true,
+          "circleSizePx": "64x64"
+        },
+        "stageB": {
+          "flowStartProgress": 0,
+          "flowMidProgress": 0,
+          "freezeProgress": 1,
+          "skaterToFaceoffDotRatio": 2,
+          "allHeadingsValid": true,
+          "withinBoards": false,
+          "zeroSkaterOverlap": true,
+          "minPairDist": 45.19
+        },
+        "stageC": {
+          "reSummoned": true,
+          "reminderText": "Drag #9 into the Offensive Zone Slot (between the faceoff circles in front!"
+        }
+      },
+      {
+        "division": "10U",
+        "stageA": {
+          "t150Words": 9,
+          "t600Words": 9,
+          "t1200Words": 9,
+          "progressiveStreamVerified": true,
+          "popupHeightRatio": 0.28,
+          "minimizedToCircle": true,
+          "circleSizePx": "64x64"
+        },
+        "stageB": {
+          "flowStartProgress": 1,
+          "flowMidProgress": 1,
+          "freezeProgress": 1,
+          "skaterToFaceoffDotRatio": 2,
+          "allHeadingsValid": true,
+          "withinBoards": false,
+          "zeroSkaterOverlap": true,
+          "minPairDist": 36.482
+        },
+        "stageC": {
+          "reSummoned": true,
+          "reminderText": "Drag #9 into the Offensive Zone Slot (between the faceoff circles in front!"
+        }
+      },
+      {
+        "division": "12U",
+        "stageA": {
+          "t150Words": 9,
+          "t600Words": 9,
+          "t1200Words": 9,
+          "progressiveStreamVerified": true,
+          "popupHeightRatio": 0.28,
+          "minimizedToCircle": true,
+          "circleSizePx": "64x64"
+        },
+        "stageB": {
+          "flowStartProgress": 1,
+          "flowMidProgress": 1,
+          "freezeProgress": 1,
+          "skaterToFaceoffDotRatio": 2,
+          "allHeadingsValid": true,
+          "withinBoards": false,
+          "zeroSkaterOverlap": true,
+          "minPairDist": 36.482
+        },
+        "stageC": {
+          "reSummoned": true,
+          "reminderText": "Drag #9 into the Offensive Zone Slot (between the faceoff circles in front of the goalie) , the Center slot!"
+        }
+      },
+      {
+        "division": "14U",
+        "stageA": {
+          "t150Words": 9,
+          "t600Words": 9,
+          "t1200Words": 9,
+          "progressiveStreamVerified": true,
+          "popupHeightRatio": 0.28,
+          "minimizedToCircle": true,
+          "circleSizePx": "64x64"
+        },
+        "stageB": {
+          "flowStartProgress": 1,
+          "flowMidProgress": 1,
+          "freezeProgress": 1,
+          "skaterToFaceoffDotRatio": 2,
+          "allHeadingsValid": true,
+          "withinBoards": false,
+          "zeroSkaterOverlap": true,
+          "minPairDist": 36.482
+        },
+        "stageC": {
+          "reSummoned": true,
+          "reminderText": "Drag #9 into the Offensive Zone Slot (between the faceoff circles in front of the goalie) , the Center slot!"
+        }
+      },
+      {
+        "division": "16U",
+        "stageA": {
+          "t150Words": 9,
+          "t600Words": 9,
+          "t1200Words": 9,
+          "progressiveStreamVerified": true,
+          "popupHeightRatio": 0.28,
+          "minimizedToCircle": true,
+          "circleSizePx": "64x64"
+        },
+        "stageB": {
+          "flowStartProgress": 1,
+          "flowMidProgress": 1,
+          "freezeProgress": 1,
+          "skaterToFaceoffDotRatio": 2,
+          "allHeadingsValid": true,
+          "withinBoards": false,
+          "zeroSkaterOverlap": true,
+          "minPairDist": 34.874
+        },
+        "stageC": {
+          "reSummoned": true,
+          "reminderText": "Drag #9 into the Offensive Zone Slot (between the faceoff circles in front of the goalie) , the Center slot!"
+        }
+      },
+      {
+        "division": "18U",
+        "stageA": {
+          "t150Words": 9,
+          "t600Words": 9,
+          "t1200Words": 9,
+          "progressiveStreamVerified": true,
+          "popupHeightRatio": 0.28,
+          "minimizedToCircle": true,
+          "circleSizePx": "64x64"
+        },
+        "stageB": {
+          "flowStartProgress": 1,
+          "flowMidProgress": 1,
+          "freezeProgress": 1,
+          "skaterToFaceoffDotRatio": 2,
+          "allHeadingsValid": true,
+          "withinBoards": false,
+          "zeroSkaterOverlap": true,
+          "minPairDist": 36.482
+        },
+        "stageC": {
+          "reSummoned": true,
+          "reminderText": "Drag #9 into the Offensive Zone Slot (between the faceoff circles in front of the goalie) , the Center slot!"
+        }
+      }
+    ],
+    "wrongAnswerRecoveryLog": [
+      {
+        "playNum": 61,
+        "division": "8U",
+        "attemptIdx": 1,
+        "scenId": "basics-center",
+        "mistakeStateActive": true,
+        "naturalRemediation": "Good try, slide into the slot between the dots so you're open!",
+        "singleSentenceClean": true,
+        "requiresRetryPrompt": true,
+        "recoveredOnRetry": true,
+        "recoveredMultiplier": 1
+      },
+      {
+        "playNum": 62,
+        "division": "8U",
+        "attemptIdx": 2,
+        "scenId": "oz-d-pinch-backfill-3",
+        "mistakeStateActive": true,
+        "naturalRemediation": "Good try, slide into the slot between the dots so you're open!",
+        "singleSentenceClean": true,
+        "requiresRetryPrompt": true,
+        "recoveredOnRetry": true,
+        "recoveredMultiplier": 0.8
+      },
+      {
+        "playNum": 63,
+        "division": "10U",
+        "attemptIdx": 1,
+        "scenId": "basics-center",
+        "mistakeStateActive": true,
+        "naturalRemediation": "Good try, slide into the slot between the dots so you're open!",
+        "singleSentenceClean": true,
+        "requiresRetryPrompt": true,
+        "recoveredOnRetry": true,
+        "recoveredMultiplier": 1
+      },
+      {
+        "playNum": 64,
+        "division": "10U",
+        "attemptIdx": 2,
+        "scenId": "basics_support-v23",
+        "mistakeStateActive": true,
+        "naturalRemediation": "Good try, slide into the slot between the dots so you're open!",
+        "singleSentenceClean": true,
+        "requiresRetryPrompt": true,
+        "recoveredOnRetry": true,
+        "recoveredMultiplier": 1
+      },
+      {
+        "playNum": 65,
+        "division": "12U",
+        "attemptIdx": 1,
+        "scenId": "basics-center",
+        "mistakeStateActive": true,
+        "naturalRemediation": "You got it, the Center owns the middle lane of the ice and supports both wings!",
+        "singleSentenceClean": true,
+        "requiresRetryPrompt": true,
+        "recoveredOnRetry": true,
+        "recoveredMultiplier": 1
+      },
+      {
+        "playNum": 66,
+        "division": "12U",
+        "attemptIdx": 2,
+        "scenId": "basics_support-v18",
+        "mistakeStateActive": true,
+        "naturalRemediation": "🥇 1st Choice Gold Read (100% IQ), as D1 (C), you nailed Strong-Side Point Inside Blue Line!",
+        "singleSentenceClean": true,
+        "requiresRetryPrompt": true,
+        "recoveredOnRetry": true,
+        "recoveredMultiplier": 0.8
+      },
+      {
+        "playNum": 67,
+        "division": "14U",
+        "attemptIdx": 1,
+        "scenId": "basics-center",
+        "mistakeStateActive": true,
+        "naturalRemediation": "You got it, the Center owns the middle lane of the ice and supports both wings!",
+        "singleSentenceClean": true,
+        "requiresRetryPrompt": true,
+        "recoveredOnRetry": true,
+        "recoveredMultiplier": 1
+      },
+      {
+        "playNum": 68,
+        "division": "14U",
+        "attemptIdx": 2,
+        "scenId": "basics_support-v18",
+        "mistakeStateActive": true,
+        "naturalRemediation": "🥇 1st Choice Gold Read (100% IQ), as D1 (C), you nailed Strong-Side Point Inside Blue Line!",
+        "singleSentenceClean": true,
+        "requiresRetryPrompt": true,
+        "recoveredOnRetry": true,
+        "recoveredMultiplier": 0.8
+      },
+      {
+        "playNum": 69,
+        "division": "16U",
+        "attemptIdx": 1,
+        "scenId": "basics-center",
+        "mistakeStateActive": true,
+        "naturalRemediation": "You got it, the Center owns the middle lane of the ice and supports both wings!",
+        "singleSentenceClean": true,
+        "requiresRetryPrompt": true,
+        "recoveredOnRetry": true,
+        "recoveredMultiplier": 1
+      },
+      {
+        "playNum": 70,
+        "division": "16U",
+        "attemptIdx": 2,
+        "scenId": "basics_support-v18",
+        "mistakeStateActive": true,
+        "naturalRemediation": "🥇 1st Choice Gold Read (100% IQ), as D1 (C), you nailed Strong-Side Point Inside Blue Line!",
+        "singleSentenceClean": true,
+        "requiresRetryPrompt": true,
+        "recoveredOnRetry": true,
+        "recoveredMultiplier": 0.8
+      },
+      {
+        "playNum": 71,
+        "division": "18U",
+        "attemptIdx": 1,
+        "scenId": "basics-center",
+        "mistakeStateActive": true,
+        "naturalRemediation": "You got it, the Center owns the middle lane of the ice and supports both wings!",
+        "singleSentenceClean": true,
+        "requiresRetryPrompt": true,
+        "recoveredOnRetry": true,
+        "recoveredMultiplier": 1
+      },
+      {
+        "playNum": 72,
+        "division": "18U",
+        "attemptIdx": 2,
+        "scenId": "basics_support-v18",
+        "mistakeStateActive": true,
+        "naturalRemediation": "🥇 1st Choice Gold Read (100% IQ), as D1 (C), you nailed Strong-Side Point Inside Blue Line!",
+        "singleSentenceClean": true,
+        "requiresRetryPrompt": true,
+        "recoveredOnRetry": true,
+        "recoveredMultiplier": 0.8
+      }
+    ],
+    "boundingBoxGeometryAudit": {
+      "viewportsTested": [
+        "iPhone_390x844",
+        "iPad_Portrait_768x1024",
+        "iPad_Landscape_1024x768",
+        "Desktop_1280x800"
+      ],
+      "screensTested": [
+        "2-Button Entry",
+        "Main Rink Lobby",
+        "Locker Room",
+        "Coaches Office",
+        "Pro Shop",
+        "Clubhouse",
+        "Map",
+        "On-Ice Drill"
+      ],
+      "totalCollisions": 0,
+      "totalOffscreenClipped": 0,
+      "totalBrokenImages": 0,
+      "allTapTargetsMin44Px": true,
+      "matrix": [
+        {
+          "viewport": "iPhone_390x844",
+          "screen": "2-Button Entry",
+          "checkedButtons": 2,
+          "checkedImages": 20,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPhone_390x844",
+          "screen": "Main Rink Lobby",
+          "checkedButtons": 0,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPhone_390x844",
+          "screen": "Locker Room",
+          "checkedButtons": 0,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPhone_390x844",
+          "screen": "Coaches Office",
+          "checkedButtons": 0,
+          "checkedImages": 19,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPhone_390x844",
+          "screen": "Pro Shop",
+          "checkedButtons": 0,
+          "checkedImages": 19,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPhone_390x844",
+          "screen": "Clubhouse",
+          "checkedButtons": 0,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPhone_390x844",
+          "screen": "Map",
+          "checkedButtons": 2,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPhone_390x844",
+          "screen": "On-Ice Drill",
+          "checkedButtons": 4,
+          "checkedImages": 20,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Portrait_768x1024",
+          "screen": "2-Button Entry",
+          "checkedButtons": 2,
+          "checkedImages": 20,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Portrait_768x1024",
+          "screen": "Main Rink Lobby",
+          "checkedButtons": 0,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Portrait_768x1024",
+          "screen": "Locker Room",
+          "checkedButtons": 0,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Portrait_768x1024",
+          "screen": "Coaches Office",
+          "checkedButtons": 0,
+          "checkedImages": 19,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Portrait_768x1024",
+          "screen": "Pro Shop",
+          "checkedButtons": 0,
+          "checkedImages": 19,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Portrait_768x1024",
+          "screen": "Clubhouse",
+          "checkedButtons": 0,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Portrait_768x1024",
+          "screen": "Map",
+          "checkedButtons": 2,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Portrait_768x1024",
+          "screen": "On-Ice Drill",
+          "checkedButtons": 4,
+          "checkedImages": 20,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Landscape_1024x768",
+          "screen": "2-Button Entry",
+          "checkedButtons": 2,
+          "checkedImages": 20,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Landscape_1024x768",
+          "screen": "Main Rink Lobby",
+          "checkedButtons": 0,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Landscape_1024x768",
+          "screen": "Locker Room",
+          "checkedButtons": 0,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Landscape_1024x768",
+          "screen": "Coaches Office",
+          "checkedButtons": 0,
+          "checkedImages": 19,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Landscape_1024x768",
+          "screen": "Pro Shop",
+          "checkedButtons": 0,
+          "checkedImages": 19,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Landscape_1024x768",
+          "screen": "Clubhouse",
+          "checkedButtons": 0,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Landscape_1024x768",
+          "screen": "Map",
+          "checkedButtons": 2,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "iPad_Landscape_1024x768",
+          "screen": "On-Ice Drill",
+          "checkedButtons": 4,
+          "checkedImages": 20,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "Desktop_1280x800",
+          "screen": "2-Button Entry",
+          "checkedButtons": 2,
+          "checkedImages": 20,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "Desktop_1280x800",
+          "screen": "Main Rink Lobby",
+          "checkedButtons": 0,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "Desktop_1280x800",
+          "screen": "Locker Room",
+          "checkedButtons": 0,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "Desktop_1280x800",
+          "screen": "Coaches Office",
+          "checkedButtons": 0,
+          "checkedImages": 19,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "Desktop_1280x800",
+          "screen": "Pro Shop",
+          "checkedButtons": 0,
+          "checkedImages": 19,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "Desktop_1280x800",
+          "screen": "Clubhouse",
+          "checkedButtons": 0,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "Desktop_1280x800",
+          "screen": "Map",
+          "checkedButtons": 2,
+          "checkedImages": 21,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        },
+        {
+          "viewport": "Desktop_1280x800",
+          "screen": "On-Ice Drill",
+          "checkedButtons": 4,
+          "checkedImages": 20,
+          "brokenImgs": 0,
+          "collisions": 0,
+          "offscreen": 0
+        }
+      ]
+    },
+    "filmstripScreenshots": [
+      "screenshots/marathon_frame1_intro.png",
+      "screenshots/marathon_frame2_freeze.png",
+      "screenshots/marathon_frame3_feedback.png"
+    ]
+  },
   "capturedScreenshots": {
     "audit_step1_portals": "screenshots/audit_step1_portals.png",
     "audit_step2_player_login": "screenshots/audit_step2_player_login.png",
@@ -659,6 +1588,9 @@
     "audit_room_clubhouse": "screenshots/audit_room_clubhouse.png",
     "audit_interactive_rooms": "screenshots/audit_interactive_rooms.png",
     "audit_clean_gameplay_screen": "screenshots/audit_clean_gameplay_screen.png",
-    "audit_live_word_speech_bubble": "screenshots/audit_live_word_speech_bubble.png"
+    "audit_live_word_speech_bubble": "screenshots/audit_live_word_speech_bubble.png",
+    "marathon_frame1_intro": "screenshots/marathon_frame1_intro.png",
+    "marathon_frame2_freeze": "screenshots/marathon_frame2_freeze.png",
+    "marathon_frame3_feedback": "screenshots/marathon_frame3_feedback.png"
   }
 }

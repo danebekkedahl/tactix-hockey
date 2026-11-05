@@ -458,4 +458,24 @@ Every `RUN NIGHTLY AUTOPILOT` pass runs an active Playwright field inspection in
    - `screenshots/audit_live_word_speech_bubble.png` (3-Stage Live Word-Streaming Character Speech System)
    - `screenshots/audit_interactive_rooms.png` (Interactive Point-and-Click Rooms + Agent Speech)
 
+---
+
+## 30. Deep Marathon Blind Playtest Architecture: Top 10 Consensus + 12 Seats × 5 Ideas = 60-Idea Master Report & AAA Game-QA Best Practices (`v10.0` Charter)
+1. **Unhurried Real-Time Dwell & 3-Stage Animation/Speech Sampling (`deep_playtest_audit.js --marathon`):**
+   - **Stage A (`t = 150ms`, `t = 600ms`, `t = 1200ms`):** Verifies Coach Bob pops up (`~25%` height), words stream progressively (`wordCount(t=1200ms) >= wordCount(t=150ms)`), and Coach Bob shrinks to the persistent corner Circle Button (`#btnCallCoachBob` / `#synapzPersistentCharCircleBtn`) when finished.
+   - **Stage B (`3.0–3.5s` Moving Flow -> Freeze):** Samples skater `(x, y)` coordinates, `headingRad` stick direction, `2.0x faceoff dot` size (`skaterToFaceoffDotRatio === 2.0`), board boundary containment, and zero skater overlap across the moving lead-in before the freeze.
+   - **Stage C (Re-Summon + 100% Blind Solve):** Clicks the persistent Circle Button mid-drill to verify Coach Bob re-appears with the reminder before solving 100% blind (`verifyZeroAnswerKeyPeekingInSource() === true`).
+2. **72 Total Plays Across 3 Distinct Persona Tracks:**
+   - **60 Blind Gold Mastery Plays (`10 plays × 6 Age Divisions: 8U, 10U, 12U, 14U, 16U, 18U`):** Across all 3 lesson formats (`flow_and_freeze`, `static_hover_zones`, `habit_combo`) and both Map Adventure Tour & Coach's Office Tailored Lesson Plan flows.
+   - **12 Intentional Wrong-Answer / Confused Kid Recovery Plays (`2 per Age Division`):** Intentionally selects a wrong move / `<50%` IQ play to audit the **Mistake & Remediation UX** (verifying Coach Bob explains *why* in warm, 1-sentence natural hockey talk via `toNaturalHockeyTalk()`, verifying the `<50%` IQ retry prompt appears cleanly, and recovering on the retry to advance).
+3. **4-Viewport Bounding-Box Collision, Overflow & Tap-Target Geometry Audit (`getBoundingClientRect()`):**
+   - Audits all 4 viewports (`390x844` iPhone, `768x1024` iPad Portrait, `1024x768` iPad Landscape, `1280x800` Desktop) across all 8 screens (`2-Button Entry`, `Main Rink Lobby`, `Locker Room`, `Coaches Office`, `Pro Shop`, `Clubhouse`, `Map`, `On-Ice Drill`), checking zero button collisions, `>= 44x44px` touch targets, zero off-screen clipping, and `img.complete && img.naturalWidth > 0`.
+4. **3-Frame Action Filmstrip Screenshots:**
+   - `screenshots/marathon_frame1_intro.png` (Stage A Intro + Live Word Stream)
+   - `screenshots/marathon_frame2_freeze.png` (Stage B 3.2s Flow -> Freeze Decision Frame)
+   - `screenshots/marathon_frame3_feedback.png` (Stage C Gold Read + Remediation Feedback)
+5. **5 Deep Recommendations Per Seat (`12 Seats × 5 = 60-Idea Master Matrix`) & `Top 10 Co-Signed Consensus Master Priorities` (`#1` to `#10`):**
+   - Each of the 12 Seats produces 5 deep, telemetry-grounded recommendations (`60 total ideas`), all passing the 4-Gate Cross-Seat Peer Review (`Gate A`, `Gate B`, `Gate C`, `Gate D`), with Ranks `#1` to `#10` highlighted at the top of `report.html` and the Email Digest (`SYNAPZ HOCKEY — Special Deep Marathon Audit: Top 10 Consensus + 60-Idea Master Report [...]`).
+
+
 

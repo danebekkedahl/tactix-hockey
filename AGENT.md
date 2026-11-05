@@ -346,5 +346,20 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
    - `screenshots/audit_live_word_speech_bubble.png`
    - `screenshots/audit_interactive_rooms.png`
 
+---
+
+## 30. Deep Marathon Blind Playtest Architecture: Top 10 Consensus + 12 Seats × 5 Ideas = 60-Idea Master Report & AAA Game-QA Best Practices (`v10.0`)
+1. **Unhurried Real-Time Dwell & 3-Stage Animation/Speech Sampling (`deep_playtest_audit.js --marathon`):**
+   - **Stage A (`t=150ms, 600ms, 1200ms`):** Verifies Coach Bob's ~25% quadrant pop-up, progressive live word streaming (`wordCount(t=1200ms) >= wordCount(t=150ms)`), and auto-minimize to the persistent 64×64px corner Circle Button (`#btnCallCoachBob` / `#synapzPersistentCharCircleBtn`).
+   - **Stage B (`3.0–3.5s` Moving Flow -> Freeze):** Verifies skater `(x, y)` motion, `headingRad` stick direction, `2.0x` faceoff-dot ratio, board boundary containment, and zero skater overlap.
+   - **Stage C (Re-Summon + 100% Blind Solve):** Clicks `#btnCallCoachBob` mid-drill to verify re-summon before solving 100% blind (`verifyZeroAnswerKeyPeekingInSource() === true`).
+2. **72 Total Plays Across 3 Distinct Persona Tracks:**
+   - `60` Blind Gold Mastery Plays (`10 plays × 6 Age Divisions: 8U..18U` across `flow_and_freeze`, `static_hover_zones`, `habit_combo`, Map & Coach's Office Lesson Plans) + `12` Intentional Wrong-Answer / Confused Kid Recovery Plays (`2 per Division` verifying 1-sentence natural Coach Bob remediation via `toNaturalHockeyTalk()`, `<50%` IQ retry prompt, and blind recovery solve).
+3. **4-Viewport Bounding-Box Collision, Overflow & Tap-Target Geometry Audit (`getBoundingClientRect()`):**
+   - Audits `390x844`, `768x1024`, `1024x768`, and `1280x800` across all 8 screens (`2-Button Entry`, `Main Rink Lobby`, `Locker Room`, `Coaches Office`, `Pro Shop`, `Clubhouse`, `Map`, `On-Ice Drill`), plus captures the 3-Frame Action Filmstrip (`screenshots/marathon_frame1_intro.png`, `screenshots/marathon_frame2_freeze.png`, `screenshots/marathon_frame3_feedback.png`).
+4. **5 Deep Recommendations Per Seat (`12 Seats × 5 = 60-Idea Master Matrix`) & `Top 10 Co-Signed Consensus Priorities` (`#1` to `#10`):**
+   - Rendered in `report.html` and dispatched via `send-board-digest.js --marathon` (`SYNAPZ HOCKEY — Special Deep Marathon Audit: Top 10 Consensus + 60-Idea Master Report [...]`).
+
+
 
 
