@@ -531,6 +531,121 @@
       box-shadow: 0 0 20px rgba(251, 191, 36, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
     }
   </style>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 29: HARD PLAYER-SCREEN DE-CLUTTER & 3-STAGE CHARACTER SPEECH  -->
+  <!-- ===================================================================== -->
+  <style id="synapzCleanPlayerScreensRule">
+    /* 1. Hard-Hide Legacy Global Header, Filter Drawers, Sidebars & In-Drill Clutter */
+    body > header,
+    #settingsDrawer,
+    #rightPanelDeck,
+    #rightActionRibbon,
+    #tacticalActionDock,
+    #coachCornerWidget,
+    #btnOpenCityIntroFromGame,
+    #btnTogglePovMode,
+    #btnToggleFullscreenRink,
+    #btnPrevDrill,
+    #btnNextDrill,
+    #skaterSetupTag,
+    #conceptTag,
+    #btnCycleQuestionFormat,
+    #btnCueFirstHighlight,
+    #mathseedsTierTrackBar,
+    #btnMapLockerRoom,
+    #btnMapProShop,
+    #btnMapSwitchPortal,
+    #lobbyActivePlayerAgentWidget {
+      display: none !important;
+    }
+
+    /* Keep #scenarioTitle in DOM with innerText readable for blind playtest, but zero visual clutter */
+    #scenarioTitle {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      opacity: 0 !important;
+      overflow: hidden !important;
+      pointer-events: none !important;
+    }
+
+    /* 2. Full-Width Centered On-Ice Lesson Screen (Rink + Coach + 4 Tactile 3D Buttons Only) */
+    #gameViewSection:not(.hidden) {
+      display: block !important;
+      max-width: 1180px !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+      padding: 8px 12px !important;
+    }
+    #leftRinkColumn {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    /* 3. Stage 1: Full Lower-Left Quadrant Character Pop-Up (~25% Screen Height for Entire Speech) */
+    #coachBobPopup,
+    #synapzUniversalCharSpeechOverlay {
+      min-height: clamp(165px, 25vh, 230px) !important;
+      max-height: 30vh !important;
+      align-items: stretch !important;
+      transform-origin: bottom left !important;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.24s ease !important;
+    }
+    #coachBobAvatarImg,
+    #synapzUniversalCharAvatarImg {
+      width: clamp(104px, 18vh, 148px) !important;
+      height: clamp(104px, 18vh, 148px) !important;
+      border-radius: 1.25rem !important;
+      border: 3px solid #fbbf24 !important;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.85), 0 0 22px rgba(251, 191, 36, 0.55) !important;
+      object-fit: cover !important;
+    }
+
+    /* 4. Stage 2: Live Word-by-Word Synchronized Speech Bubble ("Words Come Out As They Say Them") */
+    .synapz-stream-word {
+      display: inline;
+      transition: opacity 0.12s ease, color 0.12s ease, text-shadow 0.12s ease;
+    }
+    .synapz-word-spoken {
+      opacity: 1 !important;
+      color: #ffffff !important;
+    }
+    .synapz-word-current {
+      opacity: 1 !important;
+      color: #fde047 !important;
+      text-shadow: 0 0 10px rgba(251, 191, 36, 0.75);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .synapz-word-pending {
+      opacity: 0.14 !important;
+      color: #64748b !important;
+    }
+
+    /* 5. Stage 3: Persistent Bottom-Left 64x64px Circular Character Medallion Button */
+    .synapz-persistent-char-circle {
+      width: 64px !important;
+      height: 64px !important;
+      border-radius: 9999px !important;
+      background: radial-gradient(circle at 30% 30%, #1e3a8a 0%, #0f172a 100%) !important;
+      border: 3px solid #fbbf24 !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85), 0 0 18px rgba(251, 191, 36, 0.55) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 0 !important;
+      cursor: pointer !important;
+      transition: transform 0.18s ease, box-shadow 0.18s ease !important;
+    }
+    .synapz-persistent-char-circle:hover {
+      transform: scale(1.08) translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.9), 0 0 26px rgba(251, 191, 36, 0.9) !important;
+    }
+    .synapz-persistent-char-circle.hidden {
+      display: none !important;
+    }
+  </style>
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#0d1829" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1141,11 +1256,17 @@
         </svg>
       </div>
 
-      <!-- Single Bold Bottom Launch Bar -->
-      <button id="btnPlayCurrentCity" type="button" class="synapz-cta-btn w-full py-3.5 px-6 rounded-2xl text-sm sm:text-base font-black uppercase tracking-wider shadow-2xl flex items-center justify-center gap-2.5">
-        <span>▶️</span>
-        <span id="btnPlayCurrentCityLabel">DROP THE PUCK — STOP #1: SAN JOSE</span>
-      </button>
+      <!-- Two Unmistakable Bottom Tactile 3D Buttons: Drop the Puck + Save & Exit to Lobby -->
+      <div id="mapCleanBottomActionRow" class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-stretch">
+        <button id="btnPlayCurrentCity" type="button" class="sm:col-span-8 synapz-cta-btn synapz-tactile-3d-btn w-full py-3.5 px-6 rounded-2xl text-sm sm:text-base font-black uppercase tracking-wider shadow-2xl flex items-center justify-center gap-2.5">
+          <span>▶️</span>
+          <span id="btnPlayCurrentCityLabel">DROP THE PUCK — STOP #1: SAN JOSE</span>
+        </button>
+        <button id="btnMapBottomSaveExitLobby" type="button" class="sm:col-span-4 py-3.5 px-5 rounded-2xl bg-gradient-to-b from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 border-2 border-emerald-400/80 text-emerald-300 font-black text-xs sm:text-sm uppercase tracking-wider shadow-2xl flex items-center justify-center gap-2 synapz-tactile-3d-btn">
+          <span>💾</span>
+          <span>Save &amp; Exit to Lobby</span>
+        </button>
+      </div>
 
       <!-- Hidden Legacy Map Elements Preserved for Zero-Error JS Compatibility -->
       <div class="hidden">
@@ -1172,28 +1293,25 @@
 
     <!-- LEFT / MAIN RINK AREA (100% Full-Screen Clean Arena + Right Ribbon when playing!) -->
     <div id="leftRinkColumn" class="lg:col-span-8 flex flex-col gap-2">
-      <!-- Compact Game Series Header Bar (Hidden in Clean Arena Play Mode) -->
-      <div id="gameTopSubheader" class="bg-slate-900/95 border border-slate-800 rounded-2xl px-3 py-1.5 flex flex-wrap items-center justify-between gap-2">
-        <div class="flex items-center gap-2">
-          <span id="citySeriesBadge" class="px-2.5 py-1 rounded-lg bg-sky-500/20 border border-sky-400/40 text-sky-300 text-xs font-black">📍 San Jose • Q1/10 (10 Pts)</span>
-          <span id="conceptTag" class="px-2 py-0.5 rounded-lg bg-amber-500/20 border border-amber-400/40 text-amber-300 text-[11px] font-extrabold uppercase">Hockey 101</span>
-          <h2 id="scenarioTitle" class="text-xs sm:text-sm font-extrabold text-white truncate max-w-xs sm:max-w-md">Identify the Center (C)</h2>
+      <!-- Minimal 1-Line Top Bar: Shows ONLY City/Lesson Name, Play # (Play X of 10), and IQ % / 💰 Puck Bucks Pill -->
+      <div id="gameTopSubheader" class="synapz-walnut-brass-panel rounded-2xl px-4 py-2 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <span id="citySeriesBadge" class="px-3 py-1 rounded-xl bg-slate-950/90 border border-amber-400/65 text-amber-300 text-xs sm:text-sm font-black">📍 San Jose Sharks</span>
+          <span id="drillCounter" class="px-3 py-1 rounded-xl bg-blue-950/90 border border-cyan-400/60 text-cyan-200 text-xs sm:text-sm font-black">Play 1 of 10</span>
+          <span id="conceptTag" class="hidden">Hockey 101</span>
+          <h2 id="scenarioTitle">Identify the Center (C)</h2>
         </div>
 
-        <div class="flex items-center gap-1.5">
-          <span id="skaterSetupTag" class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-slate-800 text-emerald-300 border border-slate-700 hidden sm:inline">5v5 • Half Ice • 10 Pts</span>
-          <button id="btnOpenCityIntroFromGame" type="button" class="px-2 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 text-[11px] font-extrabold transition" title="View Town Briefing & Focus">
-            🏙️ Town Info
-          </button>
-          <button id="btnTogglePovMode" type="button" class="px-2.5 py-1 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-400/40 text-indigo-200 text-xs font-extrabold transition" title="Toggle between Top-Down Chalkboard and First-Person 3D In-the-Skates View">
-            🥽 In-Skates 3D POV
-          </button>
-          <button id="btnToggleFullscreenRink" type="button" class="px-2.5 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/40 text-cyan-200 text-xs font-extrabold transition" title="Toggle Ice Sheet View">
-            ⛶ Full Rink
-          </button>
-          <button id="btnPrevDrill" type="button" class="hidden px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-slate-200 transition">◀ Prev</button>
-          <span id="drillCounter" class="text-xs font-bold text-slate-400 px-1">Q1 / 10</span>
-          <button id="btnNextDrill" type="button" class="hidden px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-slate-200 transition">Next ▶</button>
+        <div class="flex items-center gap-2">
+          <span id="cleanGameIqBucksPill" class="px-3.5 py-1 rounded-xl bg-slate-950/90 border border-emerald-400/70 text-emerald-300 text-xs sm:text-sm font-black shadow">
+            🧠 92% IQ • 💰 450 Puck Bucks
+          </span>
+          <span id="skaterSetupTag" class="hidden">5v5 • Half Ice • 10 Pts</span>
+          <button id="btnOpenCityIntroFromGame" type="button" class="hidden">🏙️ Town Info</button>
+          <button id="btnTogglePovMode" type="button" class="hidden">🥽 In-Skates 3D POV</button>
+          <button id="btnToggleFullscreenRink" type="button" class="hidden">⛶ Full Rink</button>
+          <button id="btnPrevDrill" type="button" class="hidden">◀ Prev</button>
+          <button id="btnNextDrill" type="button" class="hidden">Next ▶</button>
         </div>
       </div>
 
@@ -1280,40 +1398,41 @@
               </div>
             </div>
 
-            <!-- 📣 SMALL WHISTLE TRIGGER BUTTON (Stays tucked in lower-left when Coach Bob slides out of sight!) -->
-            <button id="btnCallCoachBob" type="button" class="absolute bottom-2.5 left-2.5 z-20 flex items-center gap-1.5 bg-slate-950/90 hover:bg-slate-900 border border-amber-400/70 rounded-full pl-1 pr-2.5 py-1 shadow-xl backdrop-blur-sm transition" title="Call Coach Bob for Tactical Advice">
-              <img src="assets/coach-bob.png" alt="Coach Bob" class="w-7 h-7 rounded-full object-cover border border-amber-300" />
-              <span class="text-[10px] font-black text-amber-300">📣 Call Coach Bob</span>
+            <!-- STAGE 3: PERSISTENT BOTTOM-LEFT 64x64px COACH BOB CIRCLE MEDALLION (Tap Anytime to Re-Summon!) -->
+            <button id="btnCallCoachBob" type="button" class="synapz-persistent-char-circle hidden absolute bottom-3 left-3 z-25" title="Tap Coach Bob anytime to re-hear the instruction & live word-streaming hint!">
+              <img src="assets/coach-bob.png" alt="Coach Bob" class="w-full h-full rounded-full object-cover" />
+              <span class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[9px] font-black uppercase whitespace-nowrap shadow border border-slate-950">🧢 Coach Bob</span>
             </button>
 
-            <!-- 🧢 EXPLORELEARNING REFLEX-STYLE POP-UP AVATAR (#coachBobPopup — Slides Up in Lower-Left on Intro/Miss/Gold IQ & Auto-Hides!) -->
-            <div id="coachBobPopup" class="coach-bob-state-talking absolute bottom-2.5 left-2.5 z-30 flex items-end gap-2 max-w-[94%] sm:max-w-[500px] transition-all duration-300 ease-out">
-              <!-- Frameless/Circular Cutout Avatar of Coach Bob with Soundwave Rings & Multi-State Aura -->
-              <div class="relative shrink-0">
-                <span id="coachBobSoundwaveRing1" class="hidden absolute -inset-1.5 rounded-full border-2 border-sky-400/70 pointer-events-none"></span>
-                <span id="coachBobSoundwaveRing2" class="hidden absolute -inset-3 rounded-full border border-amber-300/60 pointer-events-none"></span>
-                <img id="coachBobAvatarImg" src="assets/coach-bob.png" alt="Coach Bob" class="relative z-10 w-14 h-14 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-amber-400 shadow-[0_0_24px_rgba(245,158,11,0.55)] bg-slate-900" />
-                <span id="cornerCoachPulseDot" class="hidden absolute -top-0.5 -right-0.5 z-20 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-slate-950 animate-ping"></span>
-                <span id="coachBobAnimStateBadge" class="absolute -bottom-1 left-1/2 -translate-x-1/2 z-20 px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[9px] font-black uppercase whitespace-nowrap shadow">🎙️ Coach Bob</span>
+            <!-- STAGE 1 & STAGE 2: FULL QUADRANT POP-UP (~25% SCREEN HEIGHT) + LIVE WORD-STREAMING SPEECH BUBBLE (#coachBobPopup) -->
+            <div id="coachBobPopup" class="coach-bob-state-talking synapz-char-quadrant-popup absolute bottom-2.5 left-2.5 z-30 flex items-end gap-3 max-w-[95%] sm:max-w-[560px] transition-all duration-300 ease-out">
+              <!-- Large ~25% Screen-Height Character Portrait -->
+              <div class="relative shrink-0 flex flex-col items-center">
+                <span id="coachBobSoundwaveRing1" class="hidden absolute -inset-1.5 rounded-2xl border-2 border-sky-400/70 pointer-events-none"></span>
+                <span id="coachBobSoundwaveRing2" class="hidden absolute -inset-3 rounded-2xl border border-amber-300/60 pointer-events-none"></span>
+                <img id="coachBobAvatarImg" src="assets/coach-bob.png" alt="Coach Bob" class="relative z-10 bg-slate-900" />
+                <span id="cornerCoachPulseDot" class="hidden absolute -top-1 -right-1 z-20 w-4 h-4 rounded-full bg-emerald-400 border-2 border-slate-950 animate-ping"></span>
+                <span id="coachBobAnimStateBadge" class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 z-20 px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black uppercase whitespace-nowrap shadow border border-slate-950">🧢 Coach Bob</span>
               </div>
 
-              <!-- Speech Bubble Card -->
-              <div id="coachCornerFloating" class="bg-slate-950/96 border-2 border-amber-400 rounded-2xl p-2 sm:p-3 text-left shadow-2xl backdrop-blur-md flex-1 min-w-[200px]">
+              <!-- Live Word-by-Word Synchronized Speech Bubble Card -->
+              <div id="coachCornerFloating" class="bg-slate-950/96 border-2 border-amber-400 rounded-2xl p-3 sm:p-3.5 text-left shadow-2xl backdrop-blur-md flex-1 min-w-[220px] flex flex-col justify-between">
                 <div class="flex flex-wrap items-center justify-between gap-1.5 border-b border-slate-800 pb-1.5 mb-1.5">
-                  <div class="flex flex-wrap items-center gap-1 min-w-0">
-                    <span id="cornerCoachTitle" class="text-[11px] font-black text-amber-300 whitespace-nowrap">🧢 Coach Bob</span>
+                  <div class="flex flex-wrap items-center gap-1.5 min-w-0">
+                    <span id="cornerCoachTitle" class="text-xs font-black text-amber-300 whitespace-nowrap">🧢 Coach Bob • Live Dictation</span>
                     <span id="coachBobRoleCalloutBadge" class="px-1.5 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 text-amber-300 text-[9px] font-black whitespace-nowrap">YOU = F1</span>
                     <span id="coachBobSituationTag" class="px-1.5 py-0.5 rounded bg-sky-500/20 border border-sky-400/40 text-sky-300 text-[9px] font-black whitespace-nowrap">5v5 • OZ</span>
                   </div>
-                  <div class="flex items-center gap-1 shrink-0">
+                  <div class="flex items-center gap-1.5 shrink-0">
                     <button id="btnCornerSpeakBtn" type="button" class="px-2 py-0.5 rounded bg-sky-500/25 hover:bg-sky-500/40 text-sky-200 text-[10px] font-black whitespace-nowrap" title="Replay Coach Bob Voice">🔊</button>
-                    <button id="btnDismissCoachBob" type="button" class="px-2.5 py-1 rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 text-[11px] font-black shadow transition whitespace-nowrap synapz-tactile-3d-btn" title="Hide Coach Bob & Play on Full Unobstructed Ice">
-                      🏒 Drop the Puck / Watch Play ▶
+                    <button id="btnDismissCoachBob" type="button" class="px-3 py-1 rounded-xl bg-gradient-to-r from-amber-400 to-emerald-400 hover:from-amber-300 hover:to-emerald-300 text-slate-950 text-[11px] font-black shadow transition whitespace-nowrap synapz-tactile-3d-btn" title="Minimize Coach Bob to Corner Circle & Play on Unobstructed Ice">
+                      👍 Got It / Drop the Puck ▶
                     </button>
                   </div>
                 </div>
-                <div id="cornerBubbleQuestionTitle" class="text-[10px] font-extrabold text-sky-300 mb-0.5">📍 San Jose • Q1/10</div>
-                <p id="cornerShortPrompt" class="text-xs font-bold text-white leading-snug mb-1.5">Tap the best zone on the ice!</p>
+                <div id="cornerBubbleQuestionTitle" class="text-[10px] font-extrabold text-sky-300 mb-0.5">📍 San Jose • Play 1 of 10</div>
+                <p id="cornerShortPrompt" class="text-xs sm:text-sm font-extrabold text-white leading-snug mb-1.5">Tap the best zone on the ice!</p>
+                <div id="coachBobLiveStreamedWordsPreview" class="hidden text-[11px] font-black text-amber-300 mb-1"></div>
                 <p id="cornerBubbleFullText" class="hidden text-[11px] text-slate-200 leading-snug mb-1.5"></p>
                 <div id="cornerBubbleGoldenRule" class="text-[10px] font-extrabold text-emerald-300 bg-slate-900/90 border border-emerald-500/30 rounded-lg px-2 py-1"></div>
                 <!-- Hidden compatibility elements so existing references never error -->
@@ -1578,17 +1697,17 @@
         </div>
 
         <!-- STEP 1: STRICT DRILL-TO-DRILL CONSISTENT 4-BUTTON TACTILE BOTTOM BAR ("Only the Ice and Skaters Change") -->
-        <div id="lessonConsistentBottomBar" class="mt-2 pt-2 border-t border-slate-800/90 grid grid-cols-2 sm:grid-cols-4 gap-2 shrink-0">
-          <button id="btnGameSaveExitLobby" type="button" class="py-2.5 px-3 rounded-xl bg-gradient-to-b from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 border-2 border-emerald-400/70 text-emerald-300 font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 synapz-tactile-3d-btn" title="Save your progress and return to the Virtual Hockey Rink Lobby">
-            <span>💾</span><span>Save &amp; Exit to Lobby</span>
+        <div id="lessonConsistentBottomBar" class="mt-2 pt-2 border-t border-amber-400/30 grid grid-cols-2 sm:grid-cols-4 gap-2.5 shrink-0">
+          <button id="btnLessonMoreInfoPopup" type="button" class="py-2.5 px-3 rounded-xl bg-gradient-to-b from-amber-400 to-amber-600 hover:from-amber-300 hover:to-amber-500 border-2 border-amber-200 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 synapz-tactile-3d-btn" title="Tap anytime to summon Coach Bob and re-hear his plain-English instruction & hint!">
+            <span>🧢</span><span>Coach Bob (Hint)</span>
           </button>
-          <button id="btnLessonWatchVideoPopup" type="button" class="py-2.5 px-3 rounded-xl bg-gradient-to-b from-sky-600 to-blue-800 hover:from-sky-500 hover:to-blue-700 border-2 border-sky-300/80 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 synapz-tactile-3d-btn" title="Open pop-up modal with verified NHL/coaching video clip">
+          <button id="btnLessonWatchVideoPopup" type="button" class="py-2.5 px-3 rounded-xl bg-gradient-to-b from-blue-600 to-blue-900 hover:from-blue-500 hover:to-blue-800 border-2 border-sky-300 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 synapz-tactile-3d-btn" title="Open pop-up modal with verified NHL/coaching video clip">
             <span>🎬</span><span>Video Clip</span>
           </button>
-          <button id="btnLessonMoreInfoPopup" type="button" class="py-2.5 px-3 rounded-xl bg-gradient-to-b from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 border-2 border-amber-200/80 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 synapz-tactile-3d-btn" title="Open a short, plain-language pop-up hint from Coach Bob">
-            <span>💡</span><span>More Info / Hint</span>
+          <button id="btnGameSaveExitLobby" type="button" class="py-2.5 px-3 rounded-xl bg-gradient-to-b from-slate-800 to-slate-950 hover:from-slate-700 hover:to-slate-900 border-2 border-emerald-400 text-emerald-300 font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 synapz-tactile-3d-btn" title="Save your progress and return to the Virtual Hockey Rink Lobby">
+            <span>💾</span><span>Save &amp; Exit to Lobby</span>
           </button>
-          <button id="btnNextQuestion" type="button" class="py-2.5 px-3 rounded-xl bg-gradient-to-b from-emerald-400 to-teal-600 hover:from-emerald-300 hover:to-teal-500 border-2 border-emerald-200/90 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 synapz-tactile-3d-btn" title="Check your move or advance to the next play">
+          <button id="btnNextQuestion" type="button" class="py-2.5 px-3 rounded-xl bg-gradient-to-b from-emerald-400 to-teal-600 hover:from-emerald-300 hover:to-teal-500 border-2 border-emerald-200 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 synapz-tactile-3d-btn" title="Check your move or advance to the next play">
             <span>➡️</span><span id="btnNextQuestionLabel">Next Play</span>
           </button>
         </div>
@@ -7987,6 +8106,8 @@
       setCoachBobAnimationState(opts.stateMode || opts.mode || 'talking');
       popup.classList.remove('translate-y-[130%]', 'opacity-0', 'pointer-events-none');
       popup.classList.add('translate-y-0', 'opacity-100');
+      const callBtn = document.getElementById('btnCallCoachBob');
+      if (callBtn) callBtn.classList.add('hidden');
       const dock = document.getElementById('tacticalActionDock');
       if (dock) dock.classList.add('opacity-0', 'pointer-events-none');
       const mapFn = typeof applyRoleLabelMap === 'function' ? applyRoleLabelMap : (s => s);
@@ -7995,8 +8116,12 @@
         if (tEl) tEl.textContent = mapFn(opts.title);
       }
       if (opts.prompt) {
+        const mappedPrompt = mapFn(opts.prompt);
         const pEl = document.getElementById('cornerShortPrompt');
-        if (pEl) pEl.textContent = mapFn(opts.prompt);
+        if (pEl) pEl.textContent = mappedPrompt;
+        if (window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine.startWordStreamOnElement === 'function') {
+          window.SynapzCharacterSpeechEngine.startWordStreamOnElement('coach-bob', mappedPrompt, pEl, opts);
+        }
       }
       if (opts.rule) {
         const rEl = document.getElementById('cornerBubbleGoldenRule');
@@ -8022,6 +8147,12 @@
       state.coachBobVisible = false;
       popup.classList.remove('translate-y-0', 'opacity-100', 'coach-bob-state-talking', 'coach-bob-state-mistake', 'coach-bob-state-celebrate');
       popup.classList.add('translate-y-[130%]', 'opacity-0', 'pointer-events-none');
+      const callBtn = document.getElementById('btnCallCoachBob');
+      if (callBtn) callBtn.classList.remove('hidden');
+      if (window.SynapzCharacterSpeechEngine && window.SynapzCharacterSpeechEngine.state) {
+        window.SynapzCharacterSpeechEngine.state.stage = 'stage3_minimized_circle';
+        window.SynapzCharacterSpeechEngine.state.isMinimizedToCircle = true;
+      }
       // Phase 2 & 3 Format 1: Right after Coach Bob's 1-sentence intro disappears, trigger 3.0-3.5s moving play -> FREEZE!
       if (wasVisible && !state.questionAnswered && state.activePresentationStyle === 'flow_and_freeze' && state.flowFreezePhase === 'ready') {
         const scen = typeof getCurrentScenario === 'function' ? getCurrentScenario() : null;
@@ -10867,8 +10998,8 @@
       const city = NHL_CITIES[state.currentCityIdx] || NHL_CITIES[0];
 
       document.getElementById('citySeriesBadge').textContent = state.overtimeRedemptionActive
-        ? `🚨 ${city.name} • 3v3 OVERTIME REDEMPTION (+${qPts} Pts)`
-        : `📍 ${city.name} • Q${state.seriesQuestionNum}/10 (${qPts} Pts)`;
+        ? `🚨 ${city.name} • 3v3 OT`
+        : `📍 ${city.name}`;
       document.getElementById('questionPointValueBadge').textContent = state.overtimeRedemptionActive
         ? `🚨 3v3 Overtime Sudden-Death • Worth +${qPts} IQ Pts`
         : `Question ${state.seriesQuestionNum} • Worth ${qPts} IQ Pts`;
@@ -10892,7 +11023,11 @@
       document.getElementById('scenarioSubtitle').textContent = mappedSubtitle;
       document.getElementById('scenarioBriefing').textContent = ageScaledBriefing;
       document.getElementById('goldenRuleText').textContent = mappedRule;
-      document.getElementById('drillCounter').textContent = state.overtimeRedemptionActive ? 'OT / 10' : `Q${state.seriesQuestionNum} / 10`;
+      document.getElementById('drillCounter').textContent = state.overtimeRedemptionActive ? 'Play OT of 10' : `Play ${state.seriesQuestionNum} of 10`;
+      const iqBucksPill = document.getElementById('cleanGameIqBucksPill');
+      if (iqBucksPill) {
+        iqBucksPill.textContent = `🧠 ${state.iqScore || 100}% IQ • 💰 $${state.puckBucks || 0} Puck Bucks`;
+      }
 
       const concisePrompt = applyRoleLabelMap(is8U
         ? enforceAdmPromptWordLimit(scen.subtitle, '8U', scen)
@@ -14056,6 +14191,15 @@
       document.getElementById('mapViewSection').classList.toggle('hidden', targetView !== 'map');
       document.getElementById('gameViewSection').classList.toggle('hidden', targetView !== 'game');
       updateHeaderStats();
+      if (window.SynapzCharacterSpeechEngine) {
+        if (targetView === 'game') {
+          document.getElementById('synapzUniversalCharSpeechOverlay')?.classList.add('hidden');
+          document.getElementById('synapzPersistentCharCircleBtn')?.classList.add('hidden');
+        } else {
+          document.getElementById('synapzPersistentCharCircleBtn')?.classList.remove('hidden');
+          window.SynapzCharacterSpeechEngine.syncPersistentCircleButton();
+        }
+      }
       if (targetView === 'lobby') {
         if (typeof renderSynapzRinkLobby === 'function') renderSynapzRinkLobby();
       } else if (targetView === 'map') {
@@ -20336,6 +20480,12 @@
         timestamp: Date.now()
       };
 
+      // Trigger Section 29 3-Stage Live Word-Streaming Character Speech System when not inside Agent Picker modal
+      const pickerModalOpen = !document.getElementById('playerAgentPickerModal')?.classList.contains('hidden');
+      if (!pickerModalOpen && textToSpeak && window.SynapzCharacterSpeechEngine && clipKey !== 'summon_hint') {
+        window.SynapzCharacterSpeechEngine.speak(chan.id, textToSpeak);
+      }
+
       const speakFallback = () => {
         if (!('speechSynthesis' in window) || !textToSpeak) return;
         try {
@@ -20343,6 +20493,14 @@
           const utter = new SpeechSynthesisUtterance(textToSpeak);
           utter.pitch = chan.pitch || 1.0;
           utter.rate = chan.rate || 1.0;
+          utter.onboundary = (ev) => {
+            if (ev && ev.name === 'word' && window.SynapzCharacterSpeechEngine && window.SynapzCharacterSpeechEngine.state) {
+              const st = window.SynapzCharacterSpeechEngine.state;
+              if (st.currentWordIndex < (st.words || []).length) {
+                st.currentWordIndex++;
+              }
+            }
+          };
           const voices = window.speechSynthesis.getVoices() || [];
           if (voices.length > 0) {
             const wantFemale = chan.gender === 'female';
@@ -22213,9 +22371,33 @@
 
       // Universal Save & Exit to Lobby buttons on Map, Game, and Pro Shop
       bindClick('btnMapSaveExitLobby', saveAndExitToRinkLobby);
+      bindClick('btnMapBottomSaveExitLobby', saveAndExitToRinkLobby);
       bindClick('btnGameSaveExitLobby', saveAndExitToRinkLobby);
       bindClick('btnGameSaveExitLobbyRibbon', saveAndExitToRinkLobby);
       bindClick('btnShopSaveExitLobby', saveAndExitToRinkLobby);
+
+      // Section 29: 3-Stage Live Word-Streaming Character Speech System Listeners
+      bindClick('btnCallCoachBob', () => {
+        if (window.SynapzCharacterSpeechEngine) {
+          window.SynapzCharacterSpeechEngine.summonFromCircle('coach-bob');
+        }
+      });
+      bindClick('synapzPersistentCharCircleBtn', () => {
+        if (window.SynapzCharacterSpeechEngine) {
+          window.SynapzCharacterSpeechEngine.summonFromCircle();
+        }
+      });
+      bindClick('btnDismissUniversalCharSpeech', () => {
+        if (window.SynapzCharacterSpeechEngine) {
+          window.SynapzCharacterSpeechEngine.minimizeToCircle();
+        }
+      });
+      bindClick('btnReplayUniversalCharSpeech', () => {
+        if (window.SynapzCharacterSpeechEngine) {
+          const st = window.SynapzCharacterSpeechEngine.state;
+          window.SynapzCharacterSpeechEngine.speak(st.activeCharacterId || 'active-agent', st.fullText);
+        }
+      });
 
       // Phase 2 & Phase 3 On-Ice Lesson Screen Consistent 4-Button Bottom Bar & Format Controls
       bindClick('btnLessonWatchVideoPopup', () => {
@@ -22271,6 +22453,275 @@
         }
       });
     }
+
+    // =========================================================================
+    // SECTION 29: 3-STAGE LIVE WORD-STREAMING CHARACTER SPEECH SYSTEM
+    // (`window.SynapzCharacterSpeechEngine`)
+    // Stage 1: Full Quadrant Pop-Up (~25% Screen Height) for Entire Dictation
+    // Stage 2: Live Word-by-Word Synchronized Speech Bubble ("Words Come Out As They Say Them")
+    // Stage 3: Smoothly Minimize Down to Persistent 64x64px Bottom-Left Circle Button
+    // =========================================================================
+    const SynapzCharacterSpeechEngine = {
+      state: {
+        stage: 'stage1_2_speaking_quadrant',
+        activeCharacterId: 'coach-bob',
+        activeCharacterName: '🧢 Coach Bob',
+        activeCharacterRole: 'On-Ice Hockey Coach',
+        activeCharacterAvatar: 'assets/coach-bob.png',
+        fullText: '',
+        words: [],
+        currentWordIndex: 0,
+        streamedWordsCount: 0,
+        streamedTextSoFar: '',
+        isMinimizedToCircle: false,
+        wordTimer: null,
+        minimizeTimer: null
+      },
+
+      resolveCharacterProfile(characterId) {
+        const ag = typeof getActivePlayerAgent === 'function' ? getActivePlayerAgent() : (SYNAPZ_PLAYER_AGENTS && SYNAPZ_PLAYER_AGENTS[0]);
+        if (!characterId || characterId === 'active-agent') {
+          const coachModalOpen = !document.getElementById('synapzCoachOfficeModal')?.classList.contains('hidden') ||
+            !document.getElementById('coachPortalModal')?.classList.contains('hidden');
+          if (coachModalOpen) {
+            return { id: 'coach-al', name: '🦉 Coach Al', badge: '🦉 Coach Al', role: "Coach's Office Strategist", avatar: 'assets/coach-bob.png' };
+          }
+          if (state.view === 'game') {
+            return { id: 'coach-bob', name: '🧢 Coach Bob', badge: '🧢 Coach Bob', role: 'On-Ice Hockey Coach', avatar: 'assets/coach-bob.png' };
+          }
+          return {
+            id: ag ? ag.id : 'agent-leo',
+            name: ag ? `🕶️ Agent ${ag.name}` : '🕶️ Agent Leo',
+            badge: ag ? `🕶️ Agent ${ag.name}` : '🕶️ Agent Leo',
+            role: ag ? (ag.tierLabel || ag.band || 'Player Agent') : 'Player Agent',
+            avatar: ag ? (ag.img || ag.avatar || 'assets/agents/agent-leo.png') : 'assets/agents/agent-leo.png'
+          };
+        }
+        if (characterId === 'coach-bob') {
+          return { id: 'coach-bob', name: '🧢 Coach Bob', badge: '🧢 Coach Bob', role: 'On-Ice Hockey Coach', avatar: 'assets/coach-bob.png' };
+        }
+        if (characterId === 'coach-al') {
+          return { id: 'coach-al', name: '🦉 Coach Al', badge: '🦉 Coach Al', role: "Coach's Office Strategist", avatar: 'assets/coach-bob.png' };
+        }
+        const foundAg = (window.SYNAPZ_PLAYER_AGENTS || []).find(a => a.id === characterId) || ag;
+        return {
+          id: foundAg ? foundAg.id : 'agent-leo',
+          name: foundAg ? `🕶️ Agent ${foundAg.name}` : '🕶️ Agent Leo',
+          badge: foundAg ? `🕶️ Agent ${foundAg.name}` : '🕶️ Agent Leo',
+          role: foundAg ? (foundAg.tierLabel || foundAg.band || 'Player Agent') : 'Player Agent',
+          avatar: foundAg ? (foundAg.img || foundAg.avatar || 'assets/agents/agent-leo.png') : 'assets/agents/agent-leo.png'
+        };
+      },
+
+      clearTimers() {
+        if (this.state.wordTimer) {
+          clearInterval(this.state.wordTimer);
+          this.state.wordTimer = null;
+        }
+        if (this.state.minimizeTimer) {
+          clearTimeout(this.state.minimizeTimer);
+          this.state.minimizeTimer = null;
+        }
+      },
+
+      startWordStreamOnElement(characterId, rawText, targetEl, opts = {}) {
+        const cleanText = String(rawText || '').replace(/\s+/g, ' ').trim();
+        if (!cleanText) return;
+        this.clearTimers();
+
+        const prof = this.resolveCharacterProfile(characterId);
+        const words = cleanText.split(' ').filter(Boolean);
+        this.state.stage = 'stage1_2_speaking_quadrant';
+        this.state.activeCharacterId = prof.id;
+        this.state.activeCharacterName = prof.name;
+        this.state.activeCharacterRole = prof.role;
+        this.state.activeCharacterAvatar = prof.avatar;
+        this.state.fullText = cleanText;
+        this.state.words = words;
+        this.state.currentWordIndex = 1;
+        this.state.streamedWordsCount = 1;
+        this.state.streamedTextSoFar = words[0] || '';
+        this.state.isMinimizedToCircle = false;
+
+        // Sync persistent circle button avatar & badge for when it minimizes
+        this.syncPersistentCircleButton(prof);
+
+        if (targetEl) {
+          targetEl.innerHTML = words.map((w, idx) => {
+            const cls = idx === 0
+              ? 'synapz-stream-word synapz-word-spoken synapz-word-current'
+              : 'synapz-stream-word synapz-word-pending';
+            const safeW = w.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return `<span class="${cls}" data-word-idx="${idx}">${safeW}</span>`;
+          }).join(' ');
+        }
+
+        const previewEl = document.getElementById('coachBobLiveStreamedWordsPreview');
+        if (previewEl && prof.id === 'coach-bob') {
+          previewEl.classList.remove('hidden');
+          previewEl.textContent = `🗣️ Streaming Word 1/${words.length}: "${this.state.streamedTextSoFar}"`;
+        }
+        const univPreviewEl = document.getElementById('synapzUniversalStreamedSoFarBadge');
+        if (univPreviewEl) {
+          univPreviewEl.textContent = `🗣️ Word 1/${words.length}: "${this.state.streamedTextSoFar}"`;
+        }
+
+        const wordIntervalMs = typeof opts.wordIntervalMs === 'number' ? opts.wordIntervalMs : 110;
+        const advanceWord = (toIndex) => {
+          const nextIdx = typeof toIndex === 'number' ? toIndex : (this.state.currentWordIndex + 1);
+          if (nextIdx > words.length) {
+            if (this.state.wordTimer) {
+              clearInterval(this.state.wordTimer);
+              this.state.wordTimer = null;
+            }
+            if (previewEl && prof.id === 'coach-bob') {
+              previewEl.textContent = `✅ Dictation Complete (${words.length}/${words.length} words): "${cleanText}"`;
+            }
+            if (univPreviewEl) {
+              univPreviewEl.textContent = `✅ Spoken (${words.length}/${words.length} words)`;
+            }
+            return;
+          }
+          this.state.currentWordIndex = nextIdx;
+          this.state.streamedWordsCount = nextIdx;
+          this.state.streamedTextSoFar = words.slice(0, nextIdx).join(' ');
+          if (targetEl) {
+            const spans = targetEl.querySelectorAll('.synapz-stream-word');
+            spans.forEach((sp, sIdx) => {
+              if (sIdx < nextIdx - 1) {
+                sp.className = 'synapz-stream-word synapz-word-spoken';
+              } else if (sIdx === nextIdx - 1) {
+                sp.className = 'synapz-stream-word synapz-word-spoken synapz-word-current';
+              } else {
+                sp.className = 'synapz-stream-word synapz-word-pending';
+              }
+            });
+          }
+          if (previewEl && prof.id === 'coach-bob') {
+            previewEl.textContent = `🗣️ Streaming Word ${nextIdx}/${words.length}: "${this.state.streamedTextSoFar}"`;
+          }
+          if (univPreviewEl) {
+            univPreviewEl.textContent = `🗣️ Word ${nextIdx}/${words.length}: "${this.state.streamedTextSoFar}"`;
+          }
+        };
+
+        this.state.wordTimer = setInterval(() => {
+          advanceWord();
+        }, wordIntervalMs);
+
+        return {
+          wordsCount: words.length,
+          fullText: cleanText,
+          advanceWord
+        };
+      },
+
+      syncPersistentCircleButton(prof) {
+        const resolved = prof || this.resolveCharacterProfile();
+        const circleBtn = document.getElementById('synapzPersistentCharCircleBtn');
+        const circleImg = document.getElementById('synapzPersistentCharCircleImg');
+        const circleBadge = document.getElementById('synapzPersistentCharCircleBadge');
+        if (circleImg) circleImg.src = resolved.avatar;
+        if (circleBadge) circleBadge.textContent = resolved.badge;
+        if (circleBtn) {
+          // On #gameViewSection we use #btnCallCoachBob inside the rink; on all other screens we use #synapzPersistentCharCircleBtn
+          const isGame = state.view === 'game' &&
+            document.getElementById('synapzLockerRoomModal')?.classList.contains('hidden') &&
+            document.getElementById('proShopModal')?.classList.contains('hidden') &&
+            document.getElementById('synapzCoachOfficeModal')?.classList.contains('hidden') &&
+            document.getElementById('coachPortalModal')?.classList.contains('hidden') &&
+            document.getElementById('synapzFriendsWallModal')?.classList.contains('hidden');
+          if (isGame) {
+            circleBtn.classList.add('hidden');
+          }
+        }
+      },
+
+      speak(characterId, text, opts = {}) {
+        const prof = this.resolveCharacterProfile(characterId);
+        const cleanText = String(text || '').trim() || this.getDefaultContextualQuote(prof.id);
+        if (prof.id === 'coach-bob' && state.view === 'game') {
+          showCoachBobPopup({
+            title: opts.title || `🧢 Coach Bob • On-Ice Instruction`,
+            prompt: cleanText,
+            rule: opts.rule || (getCurrentScenario()?.goldenRule ? `⭐ Golden Rule: ${getCurrentScenario().goldenRule}` : '⭐ Eyes up—scan the ice!'),
+            autoHideMs: typeof opts.autoHideMs === 'number' ? opts.autoHideMs : Math.max(4800, cleanText.split(/\s+/).length * 145 + 1400),
+            wordIntervalMs: opts.wordIntervalMs
+          });
+          return this.state;
+        }
+
+        const overlay = document.getElementById('synapzUniversalCharSpeechOverlay');
+        const circleBtn = document.getElementById('synapzPersistentCharCircleBtn');
+        const avatarImg = document.getElementById('synapzUniversalCharAvatarImg');
+        const nameEl = document.getElementById('synapzUniversalCharNameTitle');
+        const badgeEl = document.getElementById('synapzUniversalCharBadgePill');
+        const bubbleTextEl = document.getElementById('synapzUniversalSpeechBubbleText');
+
+        if (avatarImg) avatarImg.src = prof.avatar;
+        if (nameEl) nameEl.textContent = `${prof.name} • ${prof.role}`;
+        if (badgeEl) badgeEl.textContent = prof.badge;
+        if (circleBtn) circleBtn.classList.add('hidden');
+        if (overlay) overlay.classList.remove('hidden');
+
+        this.startWordStreamOnElement(prof.id, cleanText, bubbleTextEl, opts);
+
+        const wordsCount = (this.state.words || []).length;
+        const autoHideMs = typeof opts.autoHideMs === 'number'
+          ? opts.autoHideMs
+          : Math.max(4500, wordsCount * (opts.wordIntervalMs || 110) + 1400);
+        if (autoHideMs > 0) {
+          this.state.minimizeTimer = setTimeout(() => {
+            this.minimizeToCircle(prof.id);
+          }, autoHideMs);
+        }
+        return this.state;
+      },
+
+      minimizeToCircle(characterId) {
+        this.clearTimers();
+        const prof = this.resolveCharacterProfile(characterId || this.state.activeCharacterId);
+        this.state.stage = 'stage3_minimized_circle';
+        this.state.isMinimizedToCircle = true;
+
+        const overlay = document.getElementById('synapzUniversalCharSpeechOverlay');
+        if (overlay) overlay.classList.add('hidden');
+
+        if (state.view === 'game' && prof.id === 'coach-bob') {
+          hideCoachBobPopup();
+        } else {
+          const circleBtn = document.getElementById('synapzPersistentCharCircleBtn');
+          this.syncPersistentCircleButton(prof);
+          if (circleBtn) circleBtn.classList.remove('hidden');
+        }
+        return this.state;
+      },
+
+      getDefaultContextualQuote(charId) {
+        if (charId === 'coach-bob') {
+          const scen = typeof getCurrentScenario === 'function' ? getCurrentScenario() : null;
+          return scen ? (scen.subtitle || scen.briefing) : 'Watch the 3-second play develop, then tap the open ice lane!';
+        }
+        if (charId === 'coach-al') {
+          return "Welcome to the Coach's Office! Tap my laptop for the 6-Slice IQ Pie Chart or tap the whiteboard to launch a tailored 5 or 10 lesson plan.";
+        }
+        const ag = typeof getActivePlayerAgent === 'function' ? getActivePlayerAgent() : null;
+        if (state.view === 'map') {
+          const city = (window.NHL_CITIES || [])[state.currentCityIdx || 0];
+          return `Ready for ${city ? city.name : 'your next stop'}? Score 90% or higher Hockey IQ to bank 90+ Puck Bucks toward the Stanley Cup!`;
+        }
+        return ag ? ag.greeting : 'Tap any doorway or piece of gear in the room to jump straight into action!';
+      },
+
+      summonFromCircle(characterId) {
+        SoundFX.playTap();
+        const prof = this.resolveCharacterProfile(characterId);
+        const quote = this.getDefaultContextualQuote(prof.id);
+        playCharacterVoice(prof.id, 'summon_hint', quote);
+        return this.speak(prof.id, quote, { autoHideMs: 6800 });
+      }
+    };
+    window.SynapzCharacterSpeechEngine = SynapzCharacterSpeechEngine;
 
     window.onload = async () => {
       wirePhase1LobbyAndModalListeners();
@@ -22981,6 +23432,36 @@
           <tbody id="conceptBucketCoverageTableBody"></tbody>
         </table>
       </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 29: UNIVERSAL 3-STAGE CHARACTER SPEECH QUADRANT & 64x64 CIRCLE -->
+  <!-- ===================================================================== -->
+  <!-- Stage 3: Persistent Bottom-Left 64x64px Circular Character Medallion (Lobby, Map, Locker Room, Pro Shop, Clubhouse & Coach's Office) -->
+  <button id="synapzPersistentCharCircleBtn" type="button" class="synapz-persistent-char-circle fixed bottom-3.5 left-3.5 z-[105]" title="Tap your Agent or Coach anytime to pop up their live word-streaming speech bubble!">
+    <img id="synapzPersistentCharCircleImg" src="assets/agents/agent-leo.png" alt="Active Character" class="w-full h-full rounded-full object-cover" />
+    <span id="synapzPersistentCharCircleBadge" class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[9px] font-black uppercase whitespace-nowrap shadow border border-slate-950">🕶️ Agent Leo</span>
+  </button>
+
+  <!-- Stage 1 & Stage 2: Full Lower-Left Quadrant Character Pop-Up (~25% Screen Height) + Live Word-Streaming Speech Bubble -->
+  <div id="synapzUniversalCharSpeechOverlay" class="hidden synapz-char-quadrant-popup fixed bottom-3.5 left-3.5 z-[106] flex items-end gap-3 max-w-[94vw] sm:max-w-[560px]">
+    <div class="relative shrink-0 flex flex-col items-center">
+      <img id="synapzUniversalCharAvatarImg" src="assets/agents/agent-leo.png" alt="Speaking Character" class="bg-slate-900" />
+      <span id="synapzUniversalCharBadgePill" class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 z-20 px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black uppercase whitespace-nowrap shadow border border-slate-950">🕶️ Agent Leo</span>
+    </div>
+    <div class="bg-slate-950/96 border-2 border-amber-400 rounded-2xl p-3 sm:p-3.5 text-left shadow-2xl backdrop-blur-md flex-1 min-w-[230px] flex flex-col justify-between">
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-1.5 mb-1.5">
+        <span id="synapzUniversalCharNameTitle" class="text-xs font-black text-amber-300">🕶️ Agent Leo • Live Dictation</span>
+        <div class="flex items-center gap-1.5">
+          <button id="btnReplayUniversalCharSpeech" type="button" class="px-2 py-0.5 rounded bg-sky-500/25 hover:bg-sky-500/40 text-sky-200 text-[10px] font-black" title="Replay Voice">🔊</button>
+          <button id="btnDismissUniversalCharSpeech" type="button" class="px-2.5 py-1 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-[11px] font-black shadow synapz-tactile-3d-btn">
+            👍 Got It ▶
+          </button>
+        </div>
+      </div>
+      <p id="synapzUniversalSpeechBubbleText" class="text-xs sm:text-sm font-extrabold text-white leading-snug mb-1.5"></p>
+      <div id="synapzUniversalStreamedSoFarBadge" class="text-[10px] font-black text-amber-300"></div>
     </div>
   </div>
 </body>

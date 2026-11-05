@@ -93,7 +93,10 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/audit_room_locker.png', encoding: 'base64' },
   { rel: 'screenshots/audit_room_coach_office.png', encoding: 'base64' },
   { rel: 'screenshots/audit_room_pro_shop.png', encoding: 'base64' },
-  { rel: 'screenshots/audit_room_clubhouse.png', encoding: 'base64' }
+  { rel: 'screenshots/audit_room_clubhouse.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_interactive_rooms.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_clean_gameplay_screen.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_live_word_speech_bubble.png', encoding: 'base64' }
 ];
 
 const FORBIDDEN_FILENAMES = new Set([

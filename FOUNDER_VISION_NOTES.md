@@ -433,3 +433,29 @@ Every `RUN NIGHTLY AUTOPILOT` pass runs an active Playwright field inspection in
 3. **Unique Email Subject Timestamping & `"Synapz Hockey 12-Seat Council"` Sender Name (`send-board-digest.js`):**
    - Appends a unique local date/time stamp (`[Nov 4, ...]`) to every email subject line so Gmail never collapses new reports into an old thread, and sends `senderName: "Synapz Hockey 12-Seat Council"` in the Google Apps Script payload.
 
+---
+
+## 29. Hard Player-Screen De-Clutter & 3-Stage Live Word-Streaming Character Speech System (`v9.9` Charter)
+1. **Hard Strip-Down of All Player Screens (`#synapzCleanPlayerScreensRule` — "Rink + Coach + Max 4 Real Tactile Buttons — Zero Clutter"):**
+   - **On-Ice Gameplay / Lesson Screen (`#gameViewSection`):**
+     - Permanently hides all legacy global header bars (`body > header`, `#settingsDrawer`), in-drill `5v5`/`3v3`/manpower filter buttons, division/position/zone selector bars, top/bottom ribbon bars, sidebars (`#rightPanelDeck`, `#rightActionRibbon`, `#tacticalActionDock`, `#coachCornerWidget`), and plain-text links.
+     - Displays **ONLY**:
+       1. **Minimal 1-Line Top Bar (`#gameTopSubheader`):** Shows City/Lesson name (`#citySeriesBadge`), Question `#` (`#drillCounter`, e.g., `Play 1 of 10`), and `IQ % / 💰 Puck Bucks` pill (`#cleanGameIqBucksPill`).
+       2. **Center Ice Rink (`#rinkCanvas`):** Full-width top-down ice surface + `2x Faceoff Dot` Top-Down Directional Hockey Player Skaters (`drawTopDownSkaterToken`).
+       3. **Coach Bob's 3-Stage Live Word-Streaming Pop-Up (`#coachBobPopup` at `~25%` screen height) / Persistent Bottom-Left `64x64px` Circle Button (`#btnCallCoachBob`).**
+       4. **Strictly 4 Real, Tactile 3D Buttons Below the Rink (`#lessonConsistentBottomBar`):** `🧢 Coach Bob (Hint)` (`#btnLessonMoreInfoPopup`), `🎬 Video Clip` (`#btnLessonWatchVideoPopup`), `💾 Save & Exit to Lobby` (`#btnGameSaveExitLobby`), and `➡️ Next Play` (`#btnNextQuestion`).
+   - **Adventure Map Screen (`#mapViewSection`):**
+     - Hides extra header/tier bars (`#mathseedsTierTrackBar`, `#btnMapLockerRoom`, `#btnMapProShop`, `#btnMapSwitchPortal`) and shows **ONLY**:
+       1. The Geographically Accurate North America Map (`#nhlTourMapSvg`),
+       2. The persistent **Player Agent Circle Button (`64x64px`)** in the bottom-left corner (`#synapzPersistentCharCircleBtn`),
+       3. Two unmistakable bottom tactile 3D buttons (`#mapCleanBottomActionRow`): **`▶️ DROP THE PUCK — STOP #X: [CITY NAME]`** (`#btnPlayCurrentCity`) and **`💾 Save & Exit to Lobby`** (`#btnMapBottomSaveExitLobby`).
+2. **The 3-Stage Live Word-Streaming Character Speech System (`window.SynapzCharacterSpeechEngine`):**
+   - **Stage 1 — Full Lower-Left Quadrant Pop-Up (`~25%` Screen Height):** Whenever **Coach Bob** (`coach-bob` on the Ice), **Coach Al** (`coach-al` in the Coach's Office), or any of the **9 Player Agents** (`agent-maya` .. `agent-claire` in the Lobby, Map, Locker Room, Pro Shop, or Clubhouse) speaks, they pop up in the **lower-left quadrant (`~25%` of screen height)** for the **entire duration of their spoken dictation**.
+   - **Stage 2 — Live Word-by-Word Synchronized Speech Bubble ("Words Come Out As They Say Them"):** Instead of dumping a static block of text, `window.SynapzCharacterSpeechEngine.speakWithLiveWordStream()` wraps each word in `.synapz-stream-word` spans (`.synapz-word-spoken`, `.synapz-word-current`, `.synapz-word-pending`) and synchronizes word-by-word unveiling (`SpeechSynthesisUtterance.onboundary` + calibrated word-cadence interval timer) alongside `#coachBobLiveStreamedWordsPreview` (`🗣️ Streaming Word X/N: "..."`).
+   - **Stage 3 — Minimize to Persistent Bottom-Left `64x64px` Circle Avatar Button (1-Tap Re-Summon):** Once the character finishes speaking (or the user taps **`🏒 Drop the Puck / Watch Play`**), the quadrant pop-up smoothly minimizes down into a **persistent `64x64px` Circular Character Avatar Button** in the bottom-left corner (`#btnCallCoachBob` on `#gameViewSection`, `#synapzPersistentCharCircleBtn` across Lobby/Map/Locker/Shop/Clubhouse/Coach Office). Tapping the circle button at any time re-summons the character (`summonFromCircle`) and replays their live word-streaming speech bubble.
+3. **Live Playwright Verification Screenshots (`deep_playtest_audit.js`):**
+   - `screenshots/audit_clean_gameplay_screen.png` (Stripped-Down On-Ice Gameplay Screen)
+   - `screenshots/audit_live_word_speech_bubble.png` (3-Stage Live Word-Streaming Character Speech System)
+   - `screenshots/audit_interactive_rooms.png` (Interactive Point-and-Click Rooms + Agent Speech)
+
+

@@ -1669,7 +1669,70 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       document.querySelectorAll('.tap-zones-status-label').forEach(lbl => { lbl.textContent = 'Tap Zones: OFF'; });
       state.customQuestionStyleOverride = null;
     });
-    console.log(`✅ Captured ${Object.keys(capturedScreenshots).length} live Playwright screenshots (including all 5 Section 28 Point-and-Click Room Scenes, Seat 0, Seat 11 & Seat 12).`);
+
+    // =========================================================================
+    // SECTION 29: HARD PLAYER-SCREEN DE-CLUTTER & 3-STAGE LIVE WORD-STREAMING
+    //             CHARACTER SPEECH SYSTEM AUDIT & 3 SCREENSHOTS
+    // =========================================================================
+    // 1. Interactive Point-and-Click Rooms Summary Screenshot (`screenshots/audit_interactive_rooms.png`)
+    await page.evaluate(() => {
+      document.body.classList.add('room-tap-zones-visible');
+      document.querySelectorAll('.tap-zones-status-label').forEach(lbl => { lbl.textContent = 'Tap Zones: ON'; });
+      if (typeof switchView === 'function') switchView('lobby');
+      if (window.SynapzCharacterSpeechEngine) {
+        window.SynapzCharacterSpeechEngine.summonFromCircle('agent');
+      }
+    });
+    await page.waitForTimeout(350);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_interactive_rooms.png') });
+    capturedScreenshots.audit_interactive_rooms = 'screenshots/audit_interactive_rooms.png';
+
+    // 2. Stripped-Down On-Ice Gameplay Screen (`screenshots/audit_clean_gameplay_screen.png`)
+    //    Shows ONLY: Minimal 1-Line Top Bar (`#gameTopSubheader`), Rink (`#rinkCanvas`),
+    //    Bottom-Left 64x64px Coach Bob Circle (`#btnCallCoachBob`), and 4 Tactile 3D Buttons (`#lessonConsistentBottomBar`).
+    const section29Check = await page.evaluate(() => {
+      document.body.classList.remove('room-tap-zones-visible');
+      document.querySelectorAll('.tap-zones-status-label').forEach(lbl => { lbl.textContent = 'Tap Zones: OFF'; });
+      if (typeof switchView === 'function') switchView('game');
+      if (typeof loadScenario === 'function') loadScenario(false);
+      if (typeof setLessonPresentationStyle === 'function') setLessonPresentationStyle('flow_and_freeze');
+      state.flowAndFreezePlaying = false;
+      state.flowAndFreezeProgress = 1.0;
+      if (typeof drawRink === 'function') drawRink();
+      if (typeof hideCoachBobPopup === 'function') hideCoachBobPopup();
+
+      const headerHidden = getComputedStyle(document.querySelector('body > header')).display === 'none';
+      const rightDeckHidden = getComputedStyle(document.getElementById('rightPanelDeck')).display === 'none';
+      const coachBobCircleVisible = !document.getElementById('btnCallCoachBob')?.classList.contains('hidden');
+      const bottomBarBtns = document.querySelectorAll('#lessonConsistentBottomBar > button').length;
+      const speechEngineReady = Boolean(window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine.speakWithLiveWordStream === 'function');
+      return {
+        headerHidden,
+        rightDeckHidden,
+        coachBobCircleVisible,
+        bottomBarBtns,
+        speechEngineReady
+      };
+    });
+    interactiveChecks.section29CleanPlayerScreensAndLiveWordSpeech = section29Check;
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_clean_gameplay_screen.png') });
+    capturedScreenshots.audit_clean_gameplay_screen = 'screenshots/audit_clean_gameplay_screen.png';
+
+    // 3. 3-Stage Live Word-Streaming Character Speech Bubble (`screenshots/audit_live_word_speech_bubble.png`)
+    //    Summon Coach Bob into his ~25% Lower-Left Quadrant Pop-Up and capture mid-word-stream!
+    await page.evaluate(() => {
+      if (window.SynapzCharacterSpeechEngine) {
+        window.SynapzCharacterSpeechEngine.summonFromCircle('coach-bob');
+      } else if (typeof showCoachBobPopup === 'function') {
+        showCoachBobPopup('intro');
+      }
+    });
+    await page.waitForTimeout(420);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_live_word_speech_bubble.png') });
+    capturedScreenshots.audit_live_word_speech_bubble = 'screenshots/audit_live_word_speech_bubble.png';
+
+    console.log(`✅ Captured ${Object.keys(capturedScreenshots).length} live Playwright screenshots (including Section 28 5 Room Scenes, Section 29 Clean Gameplay & Live Word Speech Bubble, Seat 0, Seat 11 & Seat 12).`);
 
     // =========================================================================
     // 4B. SEAT 0 — 4-STEP COUNCIL RED-FLAG OPTIONS SYNTHESIZER (STEP 2 OF 4)

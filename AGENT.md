@@ -331,4 +331,20 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
 2. **Unique Email Subject Timestamping & `"Synapz Hockey 12-Seat Council"` Sender Name (`send-board-digest.js`):**
    - Appends a unique local timestamp (`[Nov 4, ...]`) to `emailSubject` so Gmail treats every Council Digest as a brand-new standalone email at the top of the inbox, and passes `senderName: "Synapz Hockey 12-Seat Council"` to the Google Apps Script webhook.
 
+---
+
+## 29. Hard Player-Screen De-Clutter & 3-Stage Live Word-Streaming Character Speech System (`v9.9`)
+1. **Hard Strip-Down of All Player Screens (`#synapzCleanPlayerScreensRule`):**
+   - **On-Ice Gameplay Screen (`#gameViewSection`):** Hides `body > header`, `#settingsDrawer`, `#rightPanelDeck`, `#rightActionRibbon`, `#tacticalActionDock`, `#coachCornerWidget`, and all in-drill filter chips/dropdowns. Shows **ONLY**: Minimal 1-Line Top Bar (`#gameTopSubheader`: `#citySeriesBadge`, `#drillCounter`, `#cleanGameIqBucksPill`), `#rinkCanvas` (`2x Faceoff Dot` skaters), Coach Bob's 3-Stage Pop-Up / `64x64px` Circle Button (`#btnCallCoachBob`), and 4 Tactile 3D Bottom Buttons (`#lessonConsistentBottomBar`: `🧢 Coach Bob (Hint)`, `🎬 Video Clip`, `💾 Save & Exit to Lobby`, `➡️ Next Play`).
+   - **Adventure Map Screen (`#mapViewSection`):** Hides `#mathseedsTierTrackBar`, `#btnMapLockerRoom`, `#btnMapProShop`, and `#btnMapSwitchPortal`. Shows **ONLY**: `#nhlTourMapSvg`, the `64x64px` bottom-left Player Agent Circle (`#synapzPersistentCharCircleBtn`), and `#mapCleanBottomActionRow` (`#btnPlayCurrentCity` + `#btnMapBottomSaveExitLobby`).
+2. **3-Stage Live Word-Streaming Character Speech System (`window.SynapzCharacterSpeechEngine`):**
+   - **Stage 1:** Lower-Left Quadrant Pop-Up (`~25%` screen height) for Coach Bob (`coach-bob`), Coach Al (`coach-al`), and all 9 Player Agents (`agent-maya` .. `agent-claire`) during spoken dictation.
+   - **Stage 2:** Live Word-by-Word Synchronized Speech Bubble (`.synapz-stream-word`, `.synapz-word-spoken`, `.synapz-word-current`, `.synapz-word-pending` + `SpeechSynthesisUtterance.onboundary` + calibrated word-cadence timer + `#coachBobLiveStreamedWordsPreview`).
+   - **Stage 3:** Smoothly minimizes to the persistent `64x64px` bottom-left Circular Character Avatar Button (`#btnCallCoachBob` / `#synapzPersistentCharCircleBtn`) that re-summons the character and their live word-streaming speech bubble whenever tapped (`summonFromCircle`).
+3. **Audited & Screenshotted in `deep_playtest_audit.js`:**
+   - `screenshots/audit_clean_gameplay_screen.png`
+   - `screenshots/audit_live_word_speech_bubble.png`
+   - `screenshots/audit_interactive_rooms.png`
+
+
 

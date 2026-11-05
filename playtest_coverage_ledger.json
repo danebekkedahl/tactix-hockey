@@ -1,6 +1,6 @@
 {
-  "lastUpdatedAt": "2026-11-05T02:43:45.648Z",
-  "totalRuns": 15,
+  "lastUpdatedAt": "2026-11-05T03:05:21.835Z",
+  "totalRuns": 16,
   "stepAApprovalGateCheck": {
     "statusChecked": "approved_for_build / approved_by_founder",
     "approvedItemsCount": 0,
@@ -656,6 +656,9 @@
     "audit_room_locker": "screenshots/audit_room_locker.png",
     "audit_room_coach_office": "screenshots/audit_room_coach_office.png",
     "audit_room_pro_shop": "screenshots/audit_room_pro_shop.png",
-    "audit_room_clubhouse": "screenshots/audit_room_clubhouse.png"
+    "audit_room_clubhouse": "screenshots/audit_room_clubhouse.png",
+    "audit_interactive_rooms": "screenshots/audit_interactive_rooms.png",
+    "audit_clean_gameplay_screen": "screenshots/audit_clean_gameplay_screen.png",
+    "audit_live_word_speech_bubble": "screenshots/audit_live_word_speech_bubble.png"
   }
 }
