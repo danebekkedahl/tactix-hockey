@@ -1,6 +1,6 @@
 {
-  "lastUpdatedAt": "2026-11-05T03:05:21.835Z",
-  "totalRuns": 16,
+  "lastUpdatedAt": "2026-11-05T03:29:04.481Z",
+  "totalRuns": 17,
   "stepAApprovalGateCheck": {
     "statusChecked": "approved_for_build / approved_by_founder",
     "approvedItemsCount": 0,
@@ -11,10 +11,10 @@
   },
   "seat0ReviewedRedFlags": [
     {
-      "redFlagId": "RF-COUNCIL-REVIEW-01",
-      "scenarioId": "breakout-d-to-d-12u",
-      "ageDivision": "12U",
-      "founderOriginalNote": "On 12U D-to-D Breakout drills, let us make sure the weak-side winger outlet and D2 hinge spacing feel crystal clear before the 3s freeze.",
+      "redFlagId": "b79e4b06-d23a-4654-94a1-efdadee6f209",
+      "scenarioId": "breakout-1",
+      "ageDivision": "10U",
+      "founderOriginalNote": "🎙️ [Voice Note]: Tighten weak-side F2 support spacing on this breakout read.   The coach and text box is covering the play so we can't see the play.  Can the coach move around out of the way depending on where the play is from corner to corner as nessesary",
       "flaggedScreen": "game",
       "liveScreenshotUrl": "https://danebekkedahl.github.io/synapz-hockey/screenshots/audit_red_flag_council_review.png",
       "status": "council_options_ready_awaiting_approval",

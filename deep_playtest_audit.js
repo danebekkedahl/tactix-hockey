@@ -1706,14 +1706,38 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       const coachBobCircleVisible = !document.getElementById('btnCallCoachBob')?.classList.contains('hidden');
       const bottomBarBtns = document.querySelectorAll('#lessonConsistentBottomBar > button').length;
       const speechEngineReady = Boolean(window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine.speakWithLiveWordStream === 'function');
+      const naturalSpeechInterceptorExists = typeof window.toNaturalHockeyTalk === 'function';
+      const naturalVoiceSelectorExists = typeof window.selectBestNaturalBrowserVoice === 'function';
+      const sampleIntercepted = naturalSpeechInterceptorExists
+        ? window.toNaturalHockeyTalk('[F1 • D • AA Tier] You have the puck in the corner as F1! Defender D1 charges you—hit wide-open #14 (F3 in High Slot) for the one-timer! Select the 1st Choice Gold action targeting #14 (F3 in High Slot)!', 'coach-bob', 'drill_intro', '12U')
+        : '';
+      const bubbleText = document.getElementById('cornerShortPrompt')?.innerText || '';
       return {
         headerHidden,
         rightDeckHidden,
         coachBobCircleVisible,
         bottomBarBtns,
-        speechEngineReady
+        speechEngineReady,
+        naturalSpeechInterceptorExists,
+        naturalVoiceSelectorExists,
+        serviceWorkerCacheName: window.SYNAPZ_CACHE_NAME || '',
+        sampleIntercepted,
+        bubbleText,
+        zeroBracketsInBubble: !/\[[^\]]*\]/.test(bubbleText) && !/\[[^\]]*\]/.test(sampleIntercepted),
+        singleSentenceInBubble: ((bubbleText.match(/[.!?]+/g) || []).length <= 1) && ((sampleIntercepted.match(/[.!?]+/g) || []).length <= 1)
       };
     });
+    const voicesDir = path.join(__dirname, 'assets', 'audio', 'voices');
+    let mp3VoiceFilesCount = 0;
+    if (fs.existsSync(voicesDir)) {
+      for (const sub of fs.readdirSync(voicesDir)) {
+        const subPath = path.join(voicesDir, sub);
+        if (fs.statSync(subPath).isDirectory()) {
+          mp3VoiceFilesCount += fs.readdirSync(subPath).filter(f => f.endsWith('.mp3')).length;
+        }
+      }
+    }
+    section29Check.mp3VoiceFilesCount = mp3VoiceFilesCount;
     interactiveChecks.section29CleanPlayerScreensAndLiveWordSpeech = section29Check;
     await page.waitForTimeout(300);
     await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_clean_gameplay_screen.png') });

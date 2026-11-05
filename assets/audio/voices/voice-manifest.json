@@ -1,0 +1,584 @@
+{
+  "coach-bob": {
+    "feedback_try_again": {
+      "path": "assets/audio/voices/coach-bob/feedback_try_again.mp3",
+      "bytes": 117933,
+      "text": "Good hustle, take one quick look before the defender closes on you and try that read again!"
+    },
+    "dzone_tip": {
+      "path": "assets/audio/voices/coach-bob/dzone_tip.mp3",
+      "bytes": 102189,
+      "text": "Protect the house in front of our goalie first, and keep your stick in the passing lane!"
+    },
+    "ozone_tip": {
+      "path": "assets/audio/voices/coach-bob/ozone_tip.mp3",
+      "bytes": 99501,
+      "text": "Form a triangle with your linemates and get to the slot with your stick on the ice!"
+    },
+    "feedback_gold": {
+      "path": "assets/audio/voices/coach-bob/feedback_gold.mp3",
+      "bytes": 98349,
+      "text": "Great read, you kept your head up and moved the puck to open ice right on time!"
+    },
+    "hint": {
+      "path": "assets/audio/voices/coach-bob/hint.mp3",
+      "bytes": 84141,
+      "text": "Look for your open teammate in the soft ice with their stick on the tape!"
+    },
+    "intro_default": {
+      "path": "assets/audio/voices/coach-bob/intro_default.mp3",
+      "bytes": 102957,
+      "text": "Keep your head up, scan the ice early, and find your open teammate in the slot!"
+    },
+    "greeting": {
+      "path": "assets/audio/voices/coach-bob/greeting.mp3",
+      "bytes": 114861,
+      "text": "Hey skater, I'm Coach Bob, let's keep our heads up and make quick hockey reads today!"
+    },
+    "breakout_tip": {
+      "path": "assets/audio/voices/coach-bob/breakout_tip.mp3",
+      "bytes": 114861,
+      "text": "When F1 pressures you behind the net, use your D partner or hit your winger on the boards!"
+    }
+  },
+  "coach-al": {
+    "office_tour": {
+      "path": "assets/audio/voices/coach-al/office_tour.mp3",
+      "bytes": 79533,
+      "text": "Pick your lowest skill slice on the chart and we'll dial in five quick on-ice reps!"
+    },
+    "office_welcome": {
+      "path": "assets/audio/voices/coach-al/office_welcome.mp3",
+      "bytes": 92205,
+      "text": "Welcome to my office, tap any slice of your Hockey IQ chart to build today's training plan!"
+    },
+    "pie_chart": {
+      "path": "assets/audio/voices/coach-al/pie_chart.mp3",
+      "bytes": 126765,
+      "text": "Your six-slice Hockey IQ chart tracks breakouts, D-zone coverage, attack triangles, transition, spacing, and scanning."
+    },
+    "greeting": {
+      "path": "assets/audio/voices/coach-al/greeting.mp3",
+      "bytes": 91437,
+      "text": "Welcome to my office, tap any slice of your Hockey IQ chart to build today's training plan!"
+    },
+    "weekly_plan": {
+      "path": "assets/audio/voices/coach-al/weekly_plan.mp3",
+      "bytes": 88365,
+      "text": "Your custom training plan is locked in, let's step onto the ice and sharpen those reads!"
+    }
+  },
+  "agent-maya": {
+    "audition_greeting": {
+      "path": "assets/audio/voices/agent-maya/audition_greeting.mp3",
+      "bytes": 115245,
+      "text": "Hey, I'm Maya, your Youth Player Agent—let's dial in your gear, hit the ice, and stack Puck Bucks!"
+    },
+    "greeting": {
+      "path": "assets/audio/voices/agent-maya/greeting.mp3",
+      "bytes": 115245,
+      "text": "Hey, I'm Maya, your Youth Player Agent—let's dial in your gear, hit the ice, and stack Puck Bucks!"
+    },
+    "lobby_tour_2": {
+      "path": "assets/audio/voices/agent-maya/lobby_tour_2.mp3",
+      "bytes": 85677,
+      "text": "Step into your Locker Room stall to equip pro gear on your skater or switch agents!"
+    },
+    "lobby_tour_1": {
+      "path": "assets/audio/voices/agent-maya/lobby_tour_1.mp3",
+      "bytes": 96045,
+      "text": "Push through the Center Ice doors to skate the thirty-two team NHL Map and earn Puck Bucks!"
+    },
+    "lobby_tour_4": {
+      "path": "assets/audio/voices/agent-maya/lobby_tour_4.mp3",
+      "bytes": 92589,
+      "text": "Head into Coach Al's Office to check your skill pie chart and build a custom lesson plan!"
+    },
+    "lobby_tour_3": {
+      "path": "assets/audio/voices/agent-maya/lobby_tour_3.mp3",
+      "bytes": 117165,
+      "text": "Score ninety-five percent Hockey IQ to earn ninety-five Puck Bucks for gloves, sticks, skates, and visors!"
+    },
+    "lobby_tour_5": {
+      "path": "assets/audio/voices/agent-maya/lobby_tour_5.mp3",
+      "bytes": 103341,
+      "text": "Visit the Clubhouse to check out buddy stalls, your trophy case, and head-to-head map races!"
+    },
+    "locker_room": {
+      "path": "assets/audio/voices/agent-maya/locker_room.mp3",
+      "bytes": 109101,
+      "text": "Here's your Locker Room stall, tap any shelf to try on new mitts, sticks, skates, or visors!"
+    },
+    "pro_shop": {
+      "path": "assets/audio/voices/agent-maya/pro_shop.mp3",
+      "bytes": 90669,
+      "text": "Welcome to the Pro Shop, tap any display wall to spend your Puck Bucks on pro-stock gear!"
+    },
+    "clubhouse": {
+      "path": "assets/audio/voices/agent-maya/clubhouse.mp3",
+      "bytes": 107181,
+      "text": "Welcome to the Clubhouse, tap the portrait wall, center race screen, or trophy case to explore!"
+    },
+    "map_intro": {
+      "path": "assets/audio/voices/agent-maya/map_intro.mp3",
+      "bytes": 96045,
+      "text": "Here's the North America tour map, tap Drop the Puck to play your next NHL city series!"
+    }
+  },
+  "agent-jalen": {
+    "greeting": {
+      "path": "assets/audio/voices/agent-jalen/greeting.mp3",
+      "bytes": 105261,
+      "text": "Hey, I'm Jalen, your Youth Player Agent—let's get your gear dialed in and stack some Puck Bucks!"
+    },
+    "audition_greeting": {
+      "path": "assets/audio/voices/agent-jalen/audition_greeting.mp3",
+      "bytes": 106413,
+      "text": "Hey, I'm Jalen, your Youth Player Agent—let's get your gear dialed in and stack some Puck Bucks!"
+    },
+    "lobby_tour_2": {
+      "path": "assets/audio/voices/agent-jalen/lobby_tour_2.mp3",
+      "bytes": 89901,
+      "text": "Step into your Locker Room stall to equip pro gear on your skater or switch agents!"
+    },
+    "lobby_tour_3": {
+      "path": "assets/audio/voices/agent-jalen/lobby_tour_3.mp3",
+      "bytes": 121005,
+      "text": "Score ninety-five percent Hockey IQ to earn ninety-five Puck Bucks for gloves, sticks, skates, and visors!"
+    },
+    "lobby_tour_1": {
+      "path": "assets/audio/voices/agent-jalen/lobby_tour_1.mp3",
+      "bytes": 91437,
+      "text": "Push through the Center Ice doors to skate the thirty-two team NHL Map and earn Puck Bucks!"
+    },
+    "lobby_tour_4": {
+      "path": "assets/audio/voices/agent-jalen/lobby_tour_4.mp3",
+      "bytes": 91053,
+      "text": "Head into Coach Al's Office to check your skill pie chart and build a custom lesson plan!"
+    },
+    "locker_room": {
+      "path": "assets/audio/voices/agent-jalen/locker_room.mp3",
+      "bytes": 109101,
+      "text": "Here's your Locker Room stall, tap any shelf to try on new mitts, sticks, skates, or visors!"
+    },
+    "lobby_tour_5": {
+      "path": "assets/audio/voices/agent-jalen/lobby_tour_5.mp3",
+      "bytes": 91437,
+      "text": "Visit the Clubhouse to check out buddy stalls, your trophy case, and head-to-head map races!"
+    },
+    "clubhouse": {
+      "path": "assets/audio/voices/agent-jalen/clubhouse.mp3",
+      "bytes": 99117,
+      "text": "Welcome to the Clubhouse, tap the portrait wall, center race screen, or trophy case to explore!"
+    },
+    "map_intro": {
+      "path": "assets/audio/voices/agent-jalen/map_intro.mp3",
+      "bytes": 99501,
+      "text": "Here's the North America tour map, tap Drop the Puck to play your next NHL city series!"
+    },
+    "pro_shop": {
+      "path": "assets/audio/voices/agent-jalen/pro_shop.mp3",
+      "bytes": 88749,
+      "text": "Welcome to the Pro Shop, tap any display wall to spend your Puck Bucks on pro-stock gear!"
+    }
+  },
+  "agent-chloe": {
+    "greeting": {
+      "path": "assets/audio/voices/agent-chloe/greeting.mp3",
+      "bytes": 95661,
+      "text": "What's up, I'm Chloe—I've got your back from the Locker Room all the way to the Stanley Cup Finals!"
+    },
+    "audition_greeting": {
+      "path": "assets/audio/voices/agent-chloe/audition_greeting.mp3",
+      "bytes": 95661,
+      "text": "What's up, I'm Chloe—I've got your back from the Locker Room all the way to the Stanley Cup Finals!"
+    },
+    "lobby_tour_1": {
+      "path": "assets/audio/voices/agent-chloe/lobby_tour_1.mp3",
+      "bytes": 96045,
+      "text": "Push through the Center Ice doors to skate the thirty-two team NHL Map and earn Puck Bucks!"
+    },
+    "lobby_tour_2": {
+      "path": "assets/audio/voices/agent-chloe/lobby_tour_2.mp3",
+      "bytes": 85677,
+      "text": "Step into your Locker Room stall to equip pro gear on your skater or switch agents!"
+    },
+    "lobby_tour_3": {
+      "path": "assets/audio/voices/agent-chloe/lobby_tour_3.mp3",
+      "bytes": 117165,
+      "text": "Score ninety-five percent Hockey IQ to earn ninety-five Puck Bucks for gloves, sticks, skates, and visors!"
+    },
+    "lobby_tour_4": {
+      "path": "assets/audio/voices/agent-chloe/lobby_tour_4.mp3",
+      "bytes": 92589,
+      "text": "Head into Coach Al's Office to check your skill pie chart and build a custom lesson plan!"
+    },
+    "clubhouse": {
+      "path": "assets/audio/voices/agent-chloe/clubhouse.mp3",
+      "bytes": 107181,
+      "text": "Welcome to the Clubhouse, tap the portrait wall, center race screen, or trophy case to explore!"
+    },
+    "pro_shop": {
+      "path": "assets/audio/voices/agent-chloe/pro_shop.mp3",
+      "bytes": 90669,
+      "text": "Welcome to the Pro Shop, tap any display wall to spend your Puck Bucks on pro-stock gear!"
+    },
+    "locker_room": {
+      "path": "assets/audio/voices/agent-chloe/locker_room.mp3",
+      "bytes": 109101,
+      "text": "Here's your Locker Room stall, tap any shelf to try on new mitts, sticks, skates, or visors!"
+    },
+    "map_intro": {
+      "path": "assets/audio/voices/agent-chloe/map_intro.mp3",
+      "bytes": 96045,
+      "text": "Here's the North America tour map, tap Drop the Puck to play your next NHL city series!"
+    },
+    "lobby_tour_5": {
+      "path": "assets/audio/voices/agent-chloe/lobby_tour_5.mp3",
+      "bytes": 103341,
+      "text": "Visit the Clubhouse to check out buddy stalls, your trophy case, and head-to-head map races!"
+    }
+  },
+  "agent-sofia": {
+    "greeting": {
+      "path": "assets/audio/voices/agent-sofia/greeting.mp3",
+      "bytes": 114861,
+      "text": "Hey there, I'm Sofia—let's read the ice faster than anyone in your division and unlock pro gear!"
+    },
+    "lobby_tour_1": {
+      "path": "assets/audio/voices/agent-sofia/lobby_tour_1.mp3",
+      "bytes": 99501,
+      "text": "Push through the Center Ice doors to skate the thirty-two team NHL Map and earn Puck Bucks!"
+    },
+    "audition_greeting": {
+      "path": "assets/audio/voices/agent-sofia/audition_greeting.mp3",
+      "bytes": 114861,
+      "text": "Hey there, I'm Sofia—let's read the ice faster than anyone in your division and unlock pro gear!"
+    },
+    "lobby_tour_2": {
+      "path": "assets/audio/voices/agent-sofia/lobby_tour_2.mp3",
+      "bytes": 86061,
+      "text": "Step into your Locker Room stall to equip pro gear on your skater or switch agents!"
+    },
+    "lobby_tour_4": {
+      "path": "assets/audio/voices/agent-sofia/lobby_tour_4.mp3",
+      "bytes": 84909,
+      "text": "Head into Coach Al's Office to check your skill pie chart and build a custom lesson plan!"
+    },
+    "lobby_tour_3": {
+      "path": "assets/audio/voices/agent-sofia/lobby_tour_3.mp3",
+      "bytes": 136365,
+      "text": "Score ninety-five percent Hockey IQ to earn ninety-five Puck Bucks for gloves, sticks, skates, and visors!"
+    },
+    "locker_room": {
+      "path": "assets/audio/voices/agent-sofia/locker_room.mp3",
+      "bytes": 130221,
+      "text": "Here's your Locker Room stall, tap any shelf to try on new mitts, sticks, skates, or visors!"
+    },
+    "lobby_tour_5": {
+      "path": "assets/audio/voices/agent-sofia/lobby_tour_5.mp3",
+      "bytes": 117165,
+      "text": "Visit the Clubhouse to check out buddy stalls, your trophy case, and head-to-head map races!"
+    },
+    "map_intro": {
+      "path": "assets/audio/voices/agent-sofia/map_intro.mp3",
+      "bytes": 104493,
+      "text": "Here's the North America tour map, tap Drop the Puck to play your next NHL city series!"
+    },
+    "clubhouse": {
+      "path": "assets/audio/voices/agent-sofia/clubhouse.mp3",
+      "bytes": 112173,
+      "text": "Welcome to the Clubhouse, tap the portrait wall, center race screen, or trophy case to explore!"
+    },
+    "pro_shop": {
+      "path": "assets/audio/voices/agent-sofia/pro_shop.mp3",
+      "bytes": 97965,
+      "text": "Welcome to the Pro Shop, tap any display wall to spend your Puck Bucks on pro-stock gear!"
+    }
+  },
+  "agent-leo": {
+    "audition_greeting": {
+      "path": "assets/audio/voices/agent-leo/audition_greeting.mp3",
+      "bytes": 106029,
+      "text": "Yo, I'm Leo, your Teen Player Agent—let's build your Hockey IQ chart and dominate the Road to the Cup!"
+    },
+    "greeting": {
+      "path": "assets/audio/voices/agent-leo/greeting.mp3",
+      "bytes": 106029,
+      "text": "Yo, I'm Leo, your Teen Player Agent—let's build your Hockey IQ chart and dominate the Road to the Cup!"
+    },
+    "lobby_tour_1": {
+      "path": "assets/audio/voices/agent-leo/lobby_tour_1.mp3",
+      "bytes": 86445,
+      "text": "Push through the Center Ice doors to skate the thirty-two team NHL Map and earn Puck Bucks!"
+    },
+    "lobby_tour_2": {
+      "path": "assets/audio/voices/agent-leo/lobby_tour_2.mp3",
+      "bytes": 74925,
+      "text": "Step into your Locker Room stall to equip pro gear on your skater or switch agents!"
+    },
+    "lobby_tour_4": {
+      "path": "assets/audio/voices/agent-leo/lobby_tour_4.mp3",
+      "bytes": 81837,
+      "text": "Head into Coach Al's Office to check your skill pie chart and build a custom lesson plan!"
+    },
+    "lobby_tour_3": {
+      "path": "assets/audio/voices/agent-leo/lobby_tour_3.mp3",
+      "bytes": 118317,
+      "text": "Score ninety-five percent Hockey IQ to earn ninety-five Puck Bucks for gloves, sticks, skates, and visors!"
+    },
+    "locker_room": {
+      "path": "assets/audio/voices/agent-leo/locker_room.mp3",
+      "bytes": 105645,
+      "text": "Here's your Locker Room stall, tap any shelf to try on new mitts, sticks, skates, or visors!"
+    },
+    "lobby_tour_5": {
+      "path": "assets/audio/voices/agent-leo/lobby_tour_5.mp3",
+      "bytes": 92973,
+      "text": "Visit the Clubhouse to check out buddy stalls, your trophy case, and head-to-head map races!"
+    },
+    "pro_shop": {
+      "path": "assets/audio/voices/agent-leo/pro_shop.mp3",
+      "bytes": 86061,
+      "text": "Welcome to the Pro Shop, tap any display wall to spend your Puck Bucks on pro-stock gear!"
+    },
+    "map_intro": {
+      "path": "assets/audio/voices/agent-leo/map_intro.mp3",
+      "bytes": 89901,
+      "text": "Here's the North America tour map, tap Drop the Puck to play your next NHL city series!"
+    },
+    "clubhouse": {
+      "path": "assets/audio/voices/agent-leo/clubhouse.mp3",
+      "bytes": 96045,
+      "text": "Welcome to the Clubhouse, tap the portrait wall, center race screen, or trophy case to explore!"
+    }
+  },
+  "agent-marcus": {
+    "audition_greeting": {
+      "path": "assets/audio/voices/agent-marcus/audition_greeting.mp3",
+      "bytes": 105261,
+      "text": "Welcome to the show, I'm Marcus—I represent top prospects who study the game and make elite reads."
+    },
+    "lobby_tour_1": {
+      "path": "assets/audio/voices/agent-marcus/lobby_tour_1.mp3",
+      "bytes": 107565,
+      "text": "Push through the Center Ice doors to skate the thirty-two team NHL Map and earn Puck Bucks!"
+    },
+    "greeting": {
+      "path": "assets/audio/voices/agent-marcus/greeting.mp3",
+      "bytes": 105261,
+      "text": "Welcome to the show, I'm Marcus—I represent top prospects who study the game and make elite reads."
+    },
+    "lobby_tour_2": {
+      "path": "assets/audio/voices/agent-marcus/lobby_tour_2.mp3",
+      "bytes": 89517,
+      "text": "Step into your Locker Room stall to equip pro gear on your skater or switch agents!"
+    },
+    "lobby_tour_3": {
+      "path": "assets/audio/voices/agent-marcus/lobby_tour_3.mp3",
+      "bytes": 136749,
+      "text": "Score ninety-five percent Hockey IQ to earn ninety-five Puck Bucks for gloves, sticks, skates, and visors!"
+    },
+    "lobby_tour_4": {
+      "path": "assets/audio/voices/agent-marcus/lobby_tour_4.mp3",
+      "bytes": 89901,
+      "text": "Head into Coach Al's Office to check your skill pie chart and build a custom lesson plan!"
+    },
+    "lobby_tour_5": {
+      "path": "assets/audio/voices/agent-marcus/lobby_tour_5.mp3",
+      "bytes": 104109,
+      "text": "Visit the Clubhouse to check out buddy stalls, your trophy case, and head-to-head map races!"
+    },
+    "locker_room": {
+      "path": "assets/audio/voices/agent-marcus/locker_room.mp3",
+      "bytes": 113325,
+      "text": "Here's your Locker Room stall, tap any shelf to try on new mitts, sticks, skates, or visors!"
+    },
+    "pro_shop": {
+      "path": "assets/audio/voices/agent-marcus/pro_shop.mp3",
+      "bytes": 95661,
+      "text": "Welcome to the Pro Shop, tap any display wall to spend your Puck Bucks on pro-stock gear!"
+    },
+    "clubhouse": {
+      "path": "assets/audio/voices/agent-marcus/clubhouse.mp3",
+      "bytes": 109869,
+      "text": "Welcome to the Clubhouse, tap the portrait wall, center race screen, or trophy case to explore!"
+    },
+    "map_intro": {
+      "path": "assets/audio/voices/agent-marcus/map_intro.mp3",
+      "bytes": 104109,
+      "text": "Here's the North America tour map, tap Drop the Puck to play your next NHL city series!"
+    }
+  },
+  "agent-priya": {
+    "greeting": {
+      "path": "assets/audio/voices/agent-priya/greeting.mp3",
+      "bytes": 102189,
+      "text": "Hi, I'm Priya—my job is to sharpen every slice of your Hockey IQ chart and get you Cup-ready!"
+    },
+    "audition_greeting": {
+      "path": "assets/audio/voices/agent-priya/audition_greeting.mp3",
+      "bytes": 102189,
+      "text": "Hi, I'm Priya—my job is to sharpen every slice of your Hockey IQ chart and get you Cup-ready!"
+    },
+    "lobby_tour_1": {
+      "path": "assets/audio/voices/agent-priya/lobby_tour_1.mp3",
+      "bytes": 88365,
+      "text": "Push through the Center Ice doors to skate the thirty-two team NHL Map and earn Puck Bucks!"
+    },
+    "lobby_tour_2": {
+      "path": "assets/audio/voices/agent-priya/lobby_tour_2.mp3",
+      "bytes": 79149,
+      "text": "Step into your Locker Room stall to equip pro gear on your skater or switch agents!"
+    },
+    "lobby_tour_3": {
+      "path": "assets/audio/voices/agent-priya/lobby_tour_3.mp3",
+      "bytes": 124845,
+      "text": "Score ninety-five percent Hockey IQ to earn ninety-five Puck Bucks for gloves, sticks, skates, and visors!"
+    },
+    "lobby_tour_4": {
+      "path": "assets/audio/voices/agent-priya/lobby_tour_4.mp3",
+      "bytes": 86829,
+      "text": "Head into Coach Al's Office to check your skill pie chart and build a custom lesson plan!"
+    },
+    "locker_room": {
+      "path": "assets/audio/voices/agent-priya/locker_room.mp3",
+      "bytes": 107949,
+      "text": "Here's your Locker Room stall, tap any shelf to try on new mitts, sticks, skates, or visors!"
+    },
+    "lobby_tour_5": {
+      "path": "assets/audio/voices/agent-priya/lobby_tour_5.mp3",
+      "bytes": 95277,
+      "text": "Visit the Clubhouse to check out buddy stalls, your trophy case, and head-to-head map races!"
+    },
+    "pro_shop": {
+      "path": "assets/audio/voices/agent-priya/pro_shop.mp3",
+      "bytes": 85293,
+      "text": "Welcome to the Pro Shop, tap any display wall to spend your Puck Bucks on pro-stock gear!"
+    },
+    "clubhouse": {
+      "path": "assets/audio/voices/agent-priya/clubhouse.mp3",
+      "bytes": 106797,
+      "text": "Welcome to the Clubhouse, tap the portrait wall, center race screen, or trophy case to explore!"
+    },
+    "map_intro": {
+      "path": "assets/audio/voices/agent-priya/map_intro.mp3",
+      "bytes": 90669,
+      "text": "Here's the North America tour map, tap Drop the Puck to play your next NHL city series!"
+    }
+  },
+  "agent-ryan": {
+    "greeting": {
+      "path": "assets/audio/voices/agent-ryan/greeting.mp3",
+      "bytes": 107949,
+      "text": "Hey, I'm Ryan—let's lock in your pro habits, crush Coach Al's training plans, and climb the map!"
+    },
+    "audition_greeting": {
+      "path": "assets/audio/voices/agent-ryan/audition_greeting.mp3",
+      "bytes": 107949,
+      "text": "Hey, I'm Ryan—let's lock in your pro habits, crush Coach Al's training plans, and climb the map!"
+    },
+    "lobby_tour_4": {
+      "path": "assets/audio/voices/agent-ryan/lobby_tour_4.mp3",
+      "bytes": 82605,
+      "text": "Head into Coach Al's Office to check your skill pie chart and build a custom lesson plan!"
+    },
+    "lobby_tour_2": {
+      "path": "assets/audio/voices/agent-ryan/lobby_tour_2.mp3",
+      "bytes": 76845,
+      "text": "Step into your Locker Room stall to equip pro gear on your skater or switch agents!"
+    },
+    "lobby_tour_3": {
+      "path": "assets/audio/voices/agent-ryan/lobby_tour_3.mp3",
+      "bytes": 110253,
+      "text": "Score ninety-five percent Hockey IQ to earn ninety-five Puck Bucks for gloves, sticks, skates, and visors!"
+    },
+    "lobby_tour_5": {
+      "path": "assets/audio/voices/agent-ryan/lobby_tour_5.mp3",
+      "bytes": 89517,
+      "text": "Visit the Clubhouse to check out buddy stalls, your trophy case, and head-to-head map races!"
+    },
+    "lobby_tour_1": {
+      "path": "assets/audio/voices/agent-ryan/lobby_tour_1.mp3",
+      "bytes": 88749,
+      "text": "Push through the Center Ice doors to skate the thirty-two team NHL Map and earn Puck Bucks!"
+    },
+    "locker_room": {
+      "path": "assets/audio/voices/agent-ryan/locker_room.mp3",
+      "bytes": 94125,
+      "text": "Here's your Locker Room stall, tap any shelf to try on new mitts, sticks, skates, or visors!"
+    },
+    "clubhouse": {
+      "path": "assets/audio/voices/agent-ryan/clubhouse.mp3",
+      "bytes": 98733,
+      "text": "Welcome to the Clubhouse, tap the portrait wall, center race screen, or trophy case to explore!"
+    },
+    "pro_shop": {
+      "path": "assets/audio/voices/agent-ryan/pro_shop.mp3",
+      "bytes": 88365,
+      "text": "Welcome to the Pro Shop, tap any display wall to spend your Puck Bucks on pro-stock gear!"
+    },
+    "map_intro": {
+      "path": "assets/audio/voices/agent-ryan/map_intro.mp3",
+      "bytes": 87213,
+      "text": "Here's the North America tour map, tap Drop the Puck to play your next NHL city series!"
+    }
+  },
+  "agent-claire": {
+    "lobby_tour_2": {
+      "path": "assets/audio/voices/agent-claire/lobby_tour_2.mp3",
+      "bytes": 85677,
+      "text": "Step into your Locker Room stall to equip pro gear on your skater or switch agents!"
+    },
+    "greeting": {
+      "path": "assets/audio/voices/agent-claire/greeting.mp3",
+      "bytes": 102573,
+      "text": "Hey, I'm Claire—let's turn your off-ice reps into elite on-ice reads and outfit your locker stall!"
+    },
+    "audition_greeting": {
+      "path": "assets/audio/voices/agent-claire/audition_greeting.mp3",
+      "bytes": 102573,
+      "text": "Hey, I'm Claire—let's turn your off-ice reps into elite on-ice reads and outfit your locker stall!"
+    },
+    "lobby_tour_1": {
+      "path": "assets/audio/voices/agent-claire/lobby_tour_1.mp3",
+      "bytes": 96045,
+      "text": "Push through the Center Ice doors to skate the thirty-two team NHL Map and earn Puck Bucks!"
+    },
+    "lobby_tour_3": {
+      "path": "assets/audio/voices/agent-claire/lobby_tour_3.mp3",
+      "bytes": 117165,
+      "text": "Score ninety-five percent Hockey IQ to earn ninety-five Puck Bucks for gloves, sticks, skates, and visors!"
+    },
+    "lobby_tour_5": {
+      "path": "assets/audio/voices/agent-claire/lobby_tour_5.mp3",
+      "bytes": 103341,
+      "text": "Visit the Clubhouse to check out buddy stalls, your trophy case, and head-to-head map races!"
+    },
+    "lobby_tour_4": {
+      "path": "assets/audio/voices/agent-claire/lobby_tour_4.mp3",
+      "bytes": 92589,
+      "text": "Head into Coach Al's Office to check your skill pie chart and build a custom lesson plan!"
+    },
+    "locker_room": {
+      "path": "assets/audio/voices/agent-claire/locker_room.mp3",
+      "bytes": 109101,
+      "text": "Here's your Locker Room stall, tap any shelf to try on new mitts, sticks, skates, or visors!"
+    },
+    "map_intro": {
+      "path": "assets/audio/voices/agent-claire/map_intro.mp3",
+      "bytes": 96045,
+      "text": "Here's the North America tour map, tap Drop the Puck to play your next NHL city series!"
+    },
+    "pro_shop": {
+      "path": "assets/audio/voices/agent-claire/pro_shop.mp3",
+      "bytes": 90669,
+      "text": "Welcome to the Pro Shop, tap any display wall to spend your Puck Bucks on pro-stock gear!"
+    },
+    "clubhouse": {
+      "path": "assets/audio/voices/agent-claire/clubhouse.mp3",
+      "bytes": 107181,
+      "text": "Welcome to the Clubhouse, tap the portrait wall, center race screen, or trophy case to explore!"
+    }
+  }
+}

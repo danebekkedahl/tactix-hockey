@@ -4324,6 +4324,146 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v9.5-natural-voice';
+    window._naturalSpeechStats = {
+      totalInterceptedLines: 0,
+      lastRawText: '',
+      lastCleanSentence: '',
+      zeroBracketsVerified: true,
+      singleSentenceVerified: true,
+      zeroRoboticTokensVerified: true
+    };
+
+    function toNaturalHockeyTalk(rawText, characterId = 'coach-bob', context = 'general', division = '') {
+      let s = String(rawText || '').trim();
+      if (!s) return '';
+
+      const prof = (typeof getActiveProfile === 'function' && getActiveProfile()) || null;
+      const div = String(division || (prof && prof.ageGroup) || '12U').toUpperCase();
+      const isYoung = (div === '8U' || div === '10U');
+
+      // 1. Strip bracketed metadata tags ([12U • C], [F1 • D • AA Tier], [1st Choice], etc.)
+      s = s.replace(/\[[^\]]*\]/g, ' ');
+
+      // 2. Strip situation prefix boilerplate & robotic prompt instructions
+      s = s.replace(/^(5-on-5 Even Strength|5-on-4 Power Play|4-on-5 Penalty Kill|3-on-3 Open Ice)[^.!?]*[.!?]\s*/i, '');
+      s = s.replace(/Select the 1st Choice[^.!?]*[.!?]?/gi, ' ');
+      s = s.replace(/1st Choice Consensus Optimal/gi, 'great read');
+      s = s.replace(/1st Choice Gold action/gi, 'open play');
+      s = s.replace(/consensus optimal/gi, 'first-choice');
+      s = s.replace(/sub-optimal tactical selection/gi, 'covered lane');
+      s = s.replace(/great optimization/gi, 'smart hockey read');
+      s = s.replace(/\b(Consensus|Optimal|Sub-optimal|Suboptimal|Tactical read|Execution|Scenario)\b/gi, '');
+
+      // 3. Simplify parenthetical role tags so they read naturally out loud
+      s = s.replace(/\((F[123]|D[12]|R[123])\s+in\s+([^)]+)\)/gi, 'in the $2');
+      s = s.replace(/\((F[123]|D[12]|R[123])\)/gi, '$1');
+      s = s.replace(/[—–]+/g, ', ');
+      s = s.replace(/\s+/g, ' ').trim();
+
+      // 4. Collapse into strictly 1 conversational locker-room sentence
+      const fragments = s
+        .split(/[.!?]+/)
+        .map(p => p.replace(/^[\s,;:-]+|[\s,;:-]+$/g, '').trim())
+        .filter(Boolean);
+
+      let chosen = fragments[0] || s;
+      if (fragments.length > 1) {
+        const f0 = fragments[0];
+        const f1 = fragments[1];
+        const combinedTwo = `${f0}, ${f1.charAt(0).toLowerCase()}${f1.slice(1)}`;
+        const combinedWords = combinedTwo.split(/\s+/).filter(Boolean).length;
+        const maxCombine = isYoung ? 13 : 18;
+        if (combinedWords <= maxCombine) {
+          chosen = combinedTwo;
+        } else {
+          // Pick the fragment with the direct hockey action/target cue
+          const actionFrag = fragments.find((f, idx) =>
+            idx > 0 && /\b(skate|pass|hit|slide|tap|shoot|angle|hold|drop|swing|sprint|step|tie|protect|wait|score|push|head|visit|#\d+|slot|house|blue line|net|crease|boards|wall|point)\b/i.test(f)
+          );
+          chosen = actionFrag || fragments[fragments.length - 1] || f0;
+        }
+      }
+
+      // Remove any residual internal sentence terminators
+      chosen = chosen.replace(/[.!?]+/g, ',').replace(/,\s*,+/g, ',').replace(/^[\s,]+|[\s,]+$/g, '').trim();
+
+      // 5. Enforce crisp 1-sentence word limit (<= 14 words for 8U/10U; <= 20 words for 12U+)
+      const maxWords = isYoung ? 14 : 20;
+      let words = chosen.split(/\s+/).filter(Boolean);
+      if (words.length > maxWords) {
+        words = words.slice(0, maxWords);
+        while (words.length > 5 && /^(and|or|to|the|a|an|in|on|for|with|so|at|by|of|into|from|as|that)$/i.test(words[words.length - 1].replace(/[^a-zA-Z]/g, ''))) {
+          words.pop();
+        }
+      }
+
+      let out = words.join(' ').replace(/[,;:-]+$/g, '').trim();
+      if (out && !/[.!]$/.test(out)) {
+        out += '!';
+      }
+
+      window._naturalSpeechStats = {
+        totalInterceptedLines: (window._naturalSpeechStats?.totalInterceptedLines || 0) + 1,
+        lastRawText: String(rawText || ''),
+        lastCleanSentence: out,
+        zeroBracketsVerified: !/\[[^\]]*\]/.test(out),
+        singleSentenceVerified: (out.match(/[.!?]+/g) || []).length <= 1,
+        zeroRoboticTokensVerified: !/\b(Consensus|Optimal|Sub-optimal|Tactical read|Execution|1st Choice Gold action)\b/i.test(out)
+      };
+
+      return out;
+    }
+    window.toNaturalHockeyTalk = toNaturalHockeyTalk;
+
+    function selectBestNaturalBrowserVoice(characterId = 'coach-bob', gender = '') {
+      if (!('speechSynthesis' in window)) return null;
+      const voices = window.speechSynthesis.getVoices() || [];
+      if (!voices.length) return null;
+      const enVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+      const pool = enVoices.length ? enVoices : voices;
+      const wantFemale = String(gender || '').toLowerCase() === 'female' ||
+        ['agent-maya', 'agent-chloe', 'agent-sofia', 'agent-priya', 'agent-claire'].includes(characterId);
+
+      // Explicitly filter out mechanical index-0 offline Desktop voices whenever any better voice exists
+      const nonRoboticPool = pool.filter(v => {
+        const n = (v.name || '').toLowerCase();
+        return !n.includes('david desktop') && !n.includes('zira desktop') && !n.includes('mark desktop') && !n.includes('espeak');
+      });
+      const candidatePool = nonRoboticPool.length > 0 ? nonRoboticPool : pool;
+
+      let best = candidatePool[0];
+      let bestScore = -9999;
+
+      for (const v of candidatePool) {
+        const n = (v.name || '').toLowerCase();
+        let score = 0;
+        if (n.includes('natural') || n.includes('online') || n.includes('neural')) score += 120;
+        if (n.includes('google')) score += 95;
+        if (n.includes('enhanced') || n.includes('premium')) score += 80;
+        if (!v.localService) score += 45;
+
+        if (wantFemale) {
+          if (n.includes('aria') || n.includes('jenny') || n.includes('sonia') || n.includes('clara') || n.includes('samantha') || n.includes('ava') || n.includes('female') || n.includes('google us english')) {
+            score += 40;
+          }
+        } else {
+          if (n.includes('guy') || n.includes('christopher') || n.includes('ryan') || n.includes('liam') || n.includes('eric') || n.includes('roger') || n.includes('alex') || n.includes('daniel') || n.includes('male')) {
+            score += 40;
+          }
+        }
+
+        if (n.includes('david desktop') || n.includes('zira desktop')) score -= 500;
+
+        if (score > bestScore) {
+          bestScore = score;
+          best = v;
+        }
+      }
+      return best;
+    }
+    window.selectBestNaturalBrowserVoice = selectBestNaturalBrowserVoice;
+
     const SoundFX = {
       ctx: null,
       muted: false,
@@ -4338,23 +4478,8 @@
           this.ctx.resume();
         }
       },
-      pickNaturalVoice() {
-        if (!('speechSynthesis' in window)) return null;
-        const voices = window.speechSynthesis.getVoices() || [];
-        if (!voices.length) return null;
-        const enVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('en'));
-        const pool = enVoices.length ? enVoices : voices;
-        // Prioritize Natural / Online / Neural / Premium voices so Coach Bob sounds human!
-        const preferred = [
-          'Natural', 'Online', 'Neural', 'Premium', 'Enhanced',
-          'Google US English', 'Microsoft Guy', 'Microsoft Christopher',
-          'Microsoft Ryan', 'Alex', 'Daniel', 'Samantha', 'Aaron'
-        ];
-        for (const kw of preferred) {
-          const found = pool.find(v => v.name.includes(kw));
-          if (found) return found;
-        }
-        return pool[0];
+      pickNaturalVoice(characterId = 'coach-bob', gender = 'male') {
+        return selectBestNaturalBrowserVoice(characterId, gender);
       },
       playTap() {
         if (this.muted) return;
@@ -4448,11 +4573,12 @@
       lastSpokenText: '',
       speechDoneTimeout: null,
       speak(text, statusTitle = '🎙️ Coach Bob (3D Audio Coach)', withIceHighlights = true, onComplete = null) {
-        this.lastSpokenText = text;
+        const cleanText = toNaturalHockeyTalk(text, 'coach-bob', 'drill');
+        this.lastSpokenText = cleanText;
         document.getElementById('coachBubbleStatus').textContent = statusTitle;
-        document.getElementById('coachSpokenSummary').textContent = text;
+        document.getElementById('coachSpokenSummary').textContent = cleanText;
         const cornerBubbleBody = document.getElementById('cornerBubbleFullText');
-        if (cornerBubbleBody) cornerBubbleBody.textContent = text;
+        if (cornerBubbleBody) cornerBubbleBody.textContent = cleanText;
         const cornerDot = document.getElementById('cornerCoachPulseDot');
 
         const mouth = document.getElementById('coachMouthSvg');
@@ -4507,46 +4633,113 @@
           this.highlightTimer = requestAnimationFrame(animateHighlights);
         }
 
-        const words = (text || '').trim().split(/\s+/).length;
-        const estimatedMs = Math.max(6000, Math.min(16000, words * 370));
-        const minExplainMs = 5200; // Minimum 5.2s setup window if speechSynthesis is muted/blocked by browser autoplay
+        const words = (cleanText || '').trim().split(/\s+/).length;
+        const estimatedMs = Math.max(5400, Math.min(12000, words * 330));
+        const minExplainMs = 4800;
 
-        if (SoundFX.muted || !SoundFX.voiceEnabled || !('speechSynthesis' in window)) {
+        if (SoundFX.muted || !SoundFX.voiceEnabled) {
           if (onComplete) {
             this.speechDoneTimeout = setTimeout(finishCallback, minExplainMs);
           }
           return;
         }
 
+        const speakStartMs = performance.now();
+        const handleSpeechEndOrError = () => {
+          const elapsed = performance.now() - speakStartMs;
+          if (elapsed < 2400 && onComplete) {
+            if (this.speechDoneTimeout) clearTimeout(this.speechDoneTimeout);
+            this.speechDoneTimeout = setTimeout(finishCallback, minExplainMs - elapsed);
+          } else {
+            finishCallback();
+          }
+        };
+
+        const runBrowserNaturalTts = () => {
+          if (!('speechSynthesis' in window)) {
+            handleSpeechEndOrError();
+            return;
+          }
+          try {
+            window.speechSynthesis.cancel();
+            const utter = new SpeechSynthesisUtterance(cleanText);
+            SoundFX.bestVoice = selectBestNaturalBrowserVoice('coach-bob', 'male');
+            if (SoundFX.bestVoice) utter.voice = SoundFX.bestVoice;
+            utter.rate = 0.99;
+            utter.pitch = 0.95;
+            utter.onboundary = (ev) => {
+              if (ev && ev.name === 'word' && window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
+                window.SynapzCharacterSpeechEngine._activeAdvanceWordFn();
+              }
+            };
+            utter.onend = handleSpeechEndOrError;
+            utter.onerror = handleSpeechEndOrError;
+            window.speechSynthesis.speak(utter);
+          } catch (e) {
+            handleSpeechEndOrError();
+          }
+        };
+
+        // Determine matching neural .mp3 clip in assets/audio/voices/coach-bob/
+        let bobClipKey = 'intro_default';
+        const lowerStatus = String(statusTitle || '').toLowerCase();
+        const lowerTxt = cleanText.toLowerCase();
+        if (lowerStatus.includes('hint') || lowerTxt.includes('soft ice')) {
+          bobClipKey = 'hint';
+        } else if (lowerTxt.includes('great read') || lowerTxt.includes('great job') || lowerTxt.includes('awesome job') || lowerTxt.includes('nice play') || lowerTxt.includes('great breakout') || lowerTxt.includes('great angle')) {
+          bobClipKey = 'feedback_gold';
+        } else if (lowerTxt.includes('good try') || lowerTxt.includes('good hustle') || lowerTxt.includes('adjustment')) {
+          bobClipKey = 'feedback_try_again';
+        } else if (lowerTxt.includes('breakout') || lowerTxt.includes('hashmarks') || lowerTxt.includes('outlet')) {
+          bobClipKey = 'breakout_tip';
+        } else if (lowerTxt.includes('house') || lowerTxt.includes('crease') || lowerTxt.includes('goalie')) {
+          bobClipKey = 'dzone_tip';
+        } else if (lowerTxt.includes('triangle') || lowerTxt.includes('slot') || lowerTxt.includes('one-timer')) {
+          bobClipKey = 'ozone_tip';
+        }
+
+        const bobMp3Url = `assets/audio/voices/coach-bob/${bobClipKey}.mp3`;
         try {
-          window.speechSynthesis.cancel();
-          const speakStartMs = performance.now();
-          const utter = new SpeechSynthesisUtterance(text);
-          if (!SoundFX.bestVoice) SoundFX.bestVoice = SoundFX.pickNaturalVoice();
-          if (SoundFX.bestVoice) utter.voice = SoundFX.bestVoice;
-          utter.rate = 0.98;
-          utter.pitch = 0.96;
-          const handleSpeechEndOrError = () => {
-            const elapsed = performance.now() - speakStartMs;
-            if (elapsed < 2500 && onComplete) {
-              // Browser autoplay blocked or canceled speech early — give skater full reading time before 3-2-1!
-              if (this.speechDoneTimeout) clearTimeout(this.speechDoneTimeout);
-              this.speechDoneTimeout = setTimeout(finishCallback, minExplainMs - elapsed);
-            } else {
-              finishCallback();
+          if (window._activeCharacterAudio) {
+            try { window._activeCharacterAudio.pause(); } catch (_) {}
+          }
+          const audio = new Audio(bobMp3Url);
+          window._activeCharacterAudio = audio;
+          window._lastPlayedCharacterVoice = {
+            characterId: 'coach-bob',
+            characterName: 'Coach Bob',
+            clipKey: bobClipKey,
+            mp3Url: bobMp3Url,
+            text: cleanText,
+            timestamp: Date.now()
+          };
+          audio.ontimeupdate = () => {
+            if (audio.duration && audio.duration > 0 && window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
+              const wCount = (window.SynapzCharacterSpeechEngine.state.words || []).length || 1;
+              const targetWordIdx = Math.min(wCount, Math.max(1, Math.ceil((audio.currentTime / audio.duration) * wCount)));
+              if (targetWordIdx > window.SynapzCharacterSpeechEngine.state.currentWordIndex) {
+                window.SynapzCharacterSpeechEngine._activeAdvanceWordFn(targetWordIdx);
+              }
             }
           };
-          utter.onend = handleSpeechEndOrError;
-          utter.onerror = handleSpeechEndOrError;
-          window.speechSynthesis.speak(utter);
-          if (onComplete) {
-            // Safety fallback in case browser speechSynthesis drops onend event
-            this.speechDoneTimeout = setTimeout(finishCallback, estimatedMs + 1200);
+          audio.onended = () => {
+            if (window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
+              const wCount = (window.SynapzCharacterSpeechEngine.state.words || []).length || 1;
+              window.SynapzCharacterSpeechEngine._activeAdvanceWordFn(wCount + 1);
+            }
+            handleSpeechEndOrError();
+          };
+          audio.onerror = () => runBrowserNaturalTts();
+          const playPromise = audio.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => runBrowserNaturalTts());
           }
-        } catch (e) {
-          if (onComplete) {
-            this.speechDoneTimeout = setTimeout(finishCallback, minExplainMs);
-          }
+        } catch (err) {
+          runBrowserNaturalTts();
+        }
+
+        if (onComplete) {
+          this.speechDoneTimeout = setTimeout(finishCallback, estimatedMs + 1000);
         }
       }
     };
@@ -8116,7 +8309,7 @@
         if (tEl) tEl.textContent = mapFn(opts.title);
       }
       if (opts.prompt) {
-        const mappedPrompt = mapFn(opts.prompt);
+        const mappedPrompt = toNaturalHockeyTalk(mapFn(opts.prompt), 'coach-bob', 'drill_intro');
         const pEl = document.getElementById('cornerShortPrompt');
         if (pEl) pEl.textContent = mappedPrompt;
         if (window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine.startWordStreamOnElement === 'function') {
@@ -8243,45 +8436,35 @@
       if (isYoung) {
         let kidLine = '';
         if (success && mult >= 0.99) {
-          if (concept === 'offsides') kidLine = 'Great job! You kept both skates onside at the blue line.';
-          else if (concept === 'house') kidLine = 'Awesome job! You protected the house in front of our goalie.';
-          else if (concept === 'breakout') kidLine = 'Great breakout! You skated low and wide for an easy pass.';
-          else if (concept === 'forecheck') kidLine = 'Great angle! You steered the puck carrier toward the side boards.';
-          else if (concept === 'transition') kidLine = 'Nice play! You skated into the open lane on the rush.';
-          else kidLine = 'Great job! You skated to open ice so your teammate can pass.';
+          if (concept === 'offsides') kidLine = 'Great job, you kept both skates onside at the blue line!';
+          else if (concept === 'house') kidLine = 'Awesome job, you protected the house in front of our goalie!';
+          else if (concept === 'breakout') kidLine = 'Great breakout, you skated low and wide for an easy pass!';
+          else if (concept === 'forecheck') kidLine = 'Great angle, you steered the puck carrier toward the side boards!';
+          else if (concept === 'transition') kidLine = 'Nice play, you skated into the open lane on the rush!';
+          else kidLine = 'Great job, you skated to open ice so your teammate can pass!';
         } else if (success && mult > 0) {
-          kidLine = 'Good play! Check the green circle for an even wider-open spot.';
+          kidLine = 'Good play, check the green circle for an even wider-open spot!';
         } else {
-          if (concept === 'offsides') kidLine = 'Good try—wait at the blue line until the puck crosses first!';
-          else if (concept === 'house') kidLine = 'Good try—slide between the dots to protect our net!';
-          else kidLine = "Good try—slide into the slot between the dots so you're open!";
+          if (concept === 'offsides') kidLine = 'Good try, wait at the blue line until the puck crosses first!';
+          else if (concept === 'house') kidLine = 'Good try, slide between the dots to protect our net!';
+          else kidLine = "Good try, slide into the slot between the dots so you're open!";
         }
-        // Strictly <= 14 words, 1 plain-English sentence for 8U & 10U
-        const words = kidLine.trim().split(/\s+/);
-        return words.length <= 14 ? kidLine : words.slice(0, 14).join(' ') + '!';
+        return toNaturalHockeyTalk(kidLine, 'coach-bob', 'feedback', div);
       }
 
-      // 12U, 14U, 16U, 18U: 1 to 2 natural coaching sentences with authentic hockey terms, zero robotic jargon
+      // 12U, 14U, 16U, 18U: Strictly 1 natural bench-coach sentence with authentic hockey terms, zero robotic jargon
       let base = rawMsg || ((scen.readChoices && scen.readChoices[0] && scen.readChoices[0].feedback) || scen.goldenRule || '');
-      base = base
-        .replace(/1st Choice Consensus Optimal/gi, 'Great Read')
-        .replace(/consensus optimal/gi, 'first-choice')
-        .replace(/sub-optimal tactical selection/gi, 'covered lane')
-        .replace(/great optimization/gi, 'smart hockey read')
-        .trim();
-
       if (!base) {
         if (success && mult >= 0.99) {
-          base = `Great read! You found the open high-slot support lane and gave the puck carrier a clean tape-to-tape target.`;
+          base = `Great read, you found the open high-slot support lane for a clean tape-to-tape pass!`;
         } else if (success) {
-          base = `Good secondary support read! Check the primary green circle to create an even cleaner F1/F2 passing angle.`;
+          base = `Good secondary support read, check the green circle for an even cleaner passing angle!`;
         } else {
-          base = `Coach's adjustment: scan the defender's stick angle first, then slide into the open support seam.`;
+          base = `Scan the defender's stick angle first, then slide into the open support seam!`;
         }
       }
 
-      const sentences = (base.match(/[^.!?]+[.!?]+/g) || [base]).map(s => s.trim()).filter(Boolean);
-      return sentences.slice(0, 2).join(' ');
+      return toNaturalHockeyTalk(base, 'coach-bob', 'feedback', div);
     }
     window.formatPlainLanguageCoachFeedback = formatPlainLanguageCoachFeedback;
 
@@ -11029,9 +11212,10 @@
         iqBucksPill.textContent = `🧠 ${state.iqScore || 100}% IQ • 💰 $${state.puckBucks || 0} Puck Bucks`;
       }
 
-      const concisePrompt = applyRoleLabelMap(is8U
+      const rawPromptSource = is8U
         ? enforceAdmPromptWordLimit(scen.subtitle, '8U', scen)
-        : scen.subtitle);
+        : (scen.subtitle || scen.voicePrompt || '');
+      const concisePrompt = toNaturalHockeyTalk(applyRoleLabelMap(rawPromptSource), 'coach-bob', 'drill_intro', prof.ageGroup);
       const sitLabel = getScenarioSituationLabel(scen, prof.ageGroup);
       const zoneInfo = getScenarioIceZoneCode(scen);
 
@@ -11154,9 +11338,7 @@
       drawRink();
 
       if (!isTimedPlay && autoSpeak && state.view === 'game') {
-        const spokenIntro = is8U
-          ? `${sitLabel}, ${zoneInfo.label}. ${concisePrompt}`
-          : `${sitLabel} in the ${zoneInfo.label}. ${scen.voicePrompt || scen.subtitle}`;
+        const spokenIntro = concisePrompt || toNaturalHockeyTalk(scen.voicePrompt || scen.subtitle, 'coach-bob', 'drill_intro', prof.ageGroup);
         CoachVoice.speak(spokenIntro, '🎙️ Coach Bob (Calling the Play)', true, () => {
           hideCoachBobPopup();
         });
@@ -20348,10 +20530,10 @@
         tierLabel: '8U–12U Youth Junior Agent',
         roleTitle: 'Energetic Youth Skater Rep',
         img: 'assets/agents/agent-maya.png',
-        pitch: 1.24,
-        rate: 1.06,
+        pitch: 1.12,
+        rate: 1.03,
         gender: 'female',
-        greeting: "Hey! I'm Maya—your Youth Player Agent! Let's get your gear dialed in, hit the ice, and stack some Puck Bucks!"
+        greeting: "Hey, I'm Maya, your Youth Player Agent, let's dial in your gear, hit the ice, and stack Puck Bucks!"
       },
       {
         id: 'agent-jalen',
@@ -20360,10 +20542,10 @@
         tierLabel: '8U–12U Youth Junior Agent',
         roleTitle: 'Energetic Youth Skater Rep',
         img: 'assets/agents/agent-jalen.png',
-        pitch: 1.15,
-        rate: 1.08,
+        pitch: 1.06,
+        rate: 1.03,
         gender: 'male',
-        greeting: "Hey! I'm Jalen—let's get your gear dialed in, hit the ice, and stack some Puck Bucks!"
+        greeting: "Hey, I'm Jalen, your Youth Player Agent, let's get your gear dialed in and stack some Puck Bucks!"
       },
       {
         id: 'agent-chloe',
@@ -20372,10 +20554,10 @@
         tierLabel: '10U–14U Teen Agent',
         roleTitle: 'Confident Teen Skater Rep',
         img: 'assets/agents/agent-chloe.png',
-        pitch: 1.12,
-        rate: 1.03,
+        pitch: 1.06,
+        rate: 1.01,
         gender: 'female',
-        greeting: "What's up! I'm Chloe—I've got your back from the Locker Room to the Stanley Cup Finals. Ready to roll?"
+        greeting: "What's up, I'm Chloe, I've got your back from the Locker Room all the way to the Stanley Cup Finals!"
       },
       {
         id: 'agent-sofia',
@@ -20384,10 +20566,10 @@
         tierLabel: '10U–14U Teen Agent',
         roleTitle: 'Tactical Teen Skater Rep',
         img: 'assets/agents/agent-sofia.png',
-        pitch: 1.08,
-        rate: 1.01,
+        pitch: 1.04,
+        rate: 1.0,
         gender: 'female',
-        greeting: "Hey there, I'm Sofia! We're going to read the ice faster than anyone in your division and unlock the best pro gear."
+        greeting: "Hey there, I'm Sofia, let's read the ice faster than anyone in your division and unlock pro gear!"
       },
       {
         id: 'agent-leo',
@@ -20396,10 +20578,10 @@
         tierLabel: '10U–14U Teen Agent',
         roleTitle: 'Sharp Teen Skater Rep',
         img: 'assets/agents/agent-leo.png',
-        pitch: 1.02,
-        rate: 1.05,
+        pitch: 1.0,
+        rate: 1.02,
         gender: 'male',
-        greeting: "Yo! I'm Leo—your Teen Player Agent. Let's build your Hockey IQ pie chart and dominate the Road to the Cup!"
+        greeting: "Yo, I'm Leo, your Teen Player Agent, let's build your Hockey IQ chart and dominate the Road to the Cup!"
       },
       {
         id: 'agent-marcus',
@@ -20408,10 +20590,10 @@
         tierLabel: '14U–18U+ Pro Agent',
         roleTitle: 'Veteran Pro Hockey Agent',
         img: 'assets/agents/agent-marcus.png',
-        pitch: 0.86,
-        rate: 0.98,
+        pitch: 0.94,
+        rate: 0.99,
         gender: 'male',
-        greeting: "Welcome to the show. I'm Marcus—I represent top prospects who study the game and execute at an elite level."
+        greeting: "Welcome to the show, I'm Marcus, I represent top prospects who study the game and make elite reads!"
       },
       {
         id: 'agent-priya',
@@ -20420,10 +20602,10 @@
         tierLabel: '14U–18U+ Pro Agent',
         roleTitle: 'Executive Pro Hockey Agent',
         img: 'assets/agents/agent-priya.png',
-        pitch: 0.98,
+        pitch: 1.0,
         rate: 1.0,
         gender: 'female',
-        greeting: "Hi, I'm Priya. My job is to manage your development path, sharpen every slice of your IQ pie chart, and get you Cup-ready."
+        greeting: "Hi, I'm Priya, my job is to sharpen every slice of your Hockey IQ chart and get you Cup-ready!"
       },
       {
         id: 'agent-ryan',
@@ -20432,10 +20614,10 @@
         tierLabel: '14U–18U+ Pro Agent',
         roleTitle: 'Modern Pro Hockey Agent',
         img: 'assets/agents/agent-ryan.png',
-        pitch: 0.92,
-        rate: 1.02,
+        pitch: 0.96,
+        rate: 1.01,
         gender: 'male',
-        greeting: "Hey, I'm Ryan. Let's lock in your pro habits, crush your Coach Al training plans, and climb the leaderboard."
+        greeting: "Hey, I'm Ryan, let's lock in your pro habits, crush Coach Al's training plans, and climb the map!"
       },
       {
         id: 'agent-claire',
@@ -20444,97 +20626,144 @@
         tierLabel: '14U–18U+ Pro Agent',
         roleTitle: 'Modern Pro Hockey Agent',
         img: 'assets/agents/agent-claire.png',
-        pitch: 1.04,
+        pitch: 1.03,
         rate: 1.01,
         gender: 'female',
-        greeting: "Hey! I'm Claire—let's turn your off-ice reps into elite on-ice reads and outfit your stall with pro-stock gear."
+        greeting: "Hey, I'm Claire, let's turn your off-ice reps into elite on-ice reads and outfit your locker stall!"
       }
     ];
     window.SYNAPZ_PLAYER_AGENTS = SYNAPZ_PLAYER_AGENTS;
 
     const SYNAPZ_VOICE_REGISTRY = {
-      'agent-maya': { id: 'agent-maya', name: 'Maya', role: '8U–12U Youth Junior Agent', basePath: 'assets/audio/voices/agent-maya', pitch: 1.24, rate: 1.06, gender: 'female' },
-      'agent-jalen': { id: 'agent-jalen', name: 'Jalen', role: '8U–12U Youth Junior Agent', basePath: 'assets/audio/voices/agent-jalen', pitch: 1.15, rate: 1.08, gender: 'male' },
-      'agent-chloe': { id: 'agent-chloe', name: 'Chloe', role: '10U–14U Teen Agent', basePath: 'assets/audio/voices/agent-chloe', pitch: 1.12, rate: 1.03, gender: 'female' },
-      'agent-sofia': { id: 'agent-sofia', name: 'Sofia', role: '10U–14U Teen Agent', basePath: 'assets/audio/voices/agent-sofia', pitch: 1.08, rate: 1.01, gender: 'female' },
-      'agent-leo': { id: 'agent-leo', name: 'Leo', role: '10U–14U Teen Agent', basePath: 'assets/audio/voices/agent-leo', pitch: 1.02, rate: 1.05, gender: 'male' },
-      'agent-marcus': { id: 'agent-marcus', name: 'Marcus', role: '14U–18U+ Pro Agent', basePath: 'assets/audio/voices/agent-marcus', pitch: 0.86, rate: 0.98, gender: 'male' },
-      'agent-priya': { id: 'agent-priya', name: 'Priya', role: '14U–18U+ Pro Agent', basePath: 'assets/audio/voices/agent-priya', pitch: 0.98, rate: 1.0, gender: 'female' },
-      'agent-ryan': { id: 'agent-ryan', name: 'Ryan', role: '14U–18U+ Pro Agent', basePath: 'assets/audio/voices/agent-ryan', pitch: 0.92, rate: 1.02, gender: 'male' },
-      'agent-claire': { id: 'agent-claire', name: 'Claire', role: '14U–18U+ Pro Agent', basePath: 'assets/audio/voices/agent-claire', pitch: 1.04, rate: 1.01, gender: 'female' },
-      'coach-bob': { id: 'coach-bob', name: 'Coach Bob', role: 'On-Ice Lessons & Rink Drills Coach', basePath: 'assets/audio/voices/coach-bob', pitch: 0.88, rate: 0.97, gender: 'male' },
-      'coach-al': { id: 'coach-al', name: 'Coach Al', role: "Coach's Office & Training Room Strategist", basePath: 'assets/audio/voices/coach-al', pitch: 0.93, rate: 1.0, gender: 'male' }
+      'agent-maya': { id: 'agent-maya', name: 'Maya', role: '8U–12U Youth Junior Agent', basePath: 'assets/audio/voices/agent-maya', pitch: 1.12, rate: 1.03, gender: 'female' },
+      'agent-jalen': { id: 'agent-jalen', name: 'Jalen', role: '8U–12U Youth Junior Agent', basePath: 'assets/audio/voices/agent-jalen', pitch: 1.06, rate: 1.03, gender: 'male' },
+      'agent-chloe': { id: 'agent-chloe', name: 'Chloe', role: '10U–14U Teen Agent', basePath: 'assets/audio/voices/agent-chloe', pitch: 1.06, rate: 1.01, gender: 'female' },
+      'agent-sofia': { id: 'agent-sofia', name: 'Sofia', role: '10U–14U Teen Agent', basePath: 'assets/audio/voices/agent-sofia', pitch: 1.04, rate: 1.0, gender: 'female' },
+      'agent-leo': { id: 'agent-leo', name: 'Leo', role: '10U–14U Teen Agent', basePath: 'assets/audio/voices/agent-leo', pitch: 1.0, rate: 1.02, gender: 'male' },
+      'agent-marcus': { id: 'agent-marcus', name: 'Marcus', role: '14U–18U+ Pro Agent', basePath: 'assets/audio/voices/agent-marcus', pitch: 0.94, rate: 0.99, gender: 'male' },
+      'agent-priya': { id: 'agent-priya', name: 'Priya', role: '14U–18U+ Pro Agent', basePath: 'assets/audio/voices/agent-priya', pitch: 1.0, rate: 1.0, gender: 'female' },
+      'agent-ryan': { id: 'agent-ryan', name: 'Ryan', role: '14U–18U+ Pro Agent', basePath: 'assets/audio/voices/agent-ryan', pitch: 0.96, rate: 1.01, gender: 'male' },
+      'agent-claire': { id: 'agent-claire', name: 'Claire', role: '14U–18U+ Pro Agent', basePath: 'assets/audio/voices/agent-claire', pitch: 1.03, rate: 1.01, gender: 'female' },
+      'coach-bob': { id: 'coach-bob', name: 'Coach Bob', role: 'On-Ice Lessons & Rink Drills Coach', basePath: 'assets/audio/voices/coach-bob', pitch: 0.95, rate: 0.99, gender: 'male' },
+      'coach-al': { id: 'coach-al', name: 'Coach Al', role: "Coach's Office & Training Room Strategist", basePath: 'assets/audio/voices/coach-al', pitch: 0.97, rate: 1.0, gender: 'male' }
     };
     window.SYNAPZ_VOICE_REGISTRY = SYNAPZ_VOICE_REGISTRY;
 
+    function resolveVoiceClipKey(characterId, requestedKey, textToSpeak) {
+      const validAgentClips = new Set([
+        'audition_greeting', 'greeting',
+        'lobby_tour_1', 'lobby_tour_2', 'lobby_tour_3', 'lobby_tour_4', 'lobby_tour_5',
+        'locker_room', 'pro_shop', 'clubhouse', 'map_intro'
+      ]);
+      const validBobClips = new Set([
+        'greeting', 'intro_default', 'feedback_gold', 'feedback_try_again',
+        'hint', 'breakout_tip', 'dzone_tip', 'ozone_tip'
+      ]);
+      const validAlClips = new Set([
+        'greeting', 'office_welcome', 'office_tour', 'pie_chart', 'weekly_plan'
+      ]);
+
+      const req = String(requestedKey || '').trim();
+      const lower = String(textToSpeak || '').toLowerCase();
+
+      if (characterId === 'coach-bob') {
+        if (validBobClips.has(req)) return req;
+        if (lower.includes('great') || lower.includes('awesome') || lower.includes('nice play')) return 'feedback_gold';
+        if (lower.includes('good try') || lower.includes('hustle')) return 'feedback_try_again';
+        if (lower.includes('breakout') || lower.includes('hashmarks')) return 'breakout_tip';
+        if (lower.includes('house') || lower.includes('goalie')) return 'dzone_tip';
+        if (lower.includes('triangle') || lower.includes('slot')) return 'ozone_tip';
+        return 'intro_default';
+      }
+      if (characterId === 'coach-al') {
+        if (validAlClips.has(req)) return req;
+        if (lower.includes('slice') || lower.includes('chart')) return 'office_welcome';
+        if (lower.includes('plan')) return 'weekly_plan';
+        return 'office_welcome';
+      }
+      if (validAgentClips.has(req)) return req;
+      if (lower.includes('locker')) return 'locker_room';
+      if (lower.includes('pro shop') || lower.includes('display wall')) return 'pro_shop';
+      if (lower.includes('clubhouse') || lower.includes('trophy')) return 'clubhouse';
+      if (lower.includes('map') || lower.includes('north america')) return 'map_intro';
+      return 'greeting';
+    }
+
     function playCharacterVoice(characterId, clipKey, fallbackText) {
       const chan = SYNAPZ_VOICE_REGISTRY[characterId] || SYNAPZ_VOICE_REGISTRY['agent-chloe'];
-      const textToSpeak = String(fallbackText || '').trim();
-      const mp3Url = `${chan.basePath}/${clipKey || 'greeting'}.mp3`;
+      const cleanSentence = toNaturalHockeyTalk(fallbackText || '', chan.id, clipKey || 'greeting');
+      const resolvedKey = resolveVoiceClipKey(chan.id, clipKey, cleanSentence);
+      const mp3Url = `${chan.basePath}/${resolvedKey}.mp3`;
       window._lastPlayedCharacterVoice = {
         characterId: chan.id,
         characterName: chan.name,
-        clipKey: clipKey || 'greeting',
+        clipKey: resolvedKey,
+        requestedClipKey: clipKey || 'greeting',
         mp3Url,
-        text: textToSpeak,
+        text: cleanSentence,
         timestamp: Date.now()
       };
 
       // Trigger Section 29 3-Stage Live Word-Streaming Character Speech System when not inside Agent Picker modal
       const pickerModalOpen = !document.getElementById('playerAgentPickerModal')?.classList.contains('hidden');
-      if (!pickerModalOpen && textToSpeak && window.SynapzCharacterSpeechEngine && clipKey !== 'summon_hint') {
-        window.SynapzCharacterSpeechEngine.speak(chan.id, textToSpeak);
+      if (!pickerModalOpen && cleanSentence && window.SynapzCharacterSpeechEngine && clipKey !== 'summon_hint') {
+        window.SynapzCharacterSpeechEngine.speak(chan.id, cleanSentence);
       }
 
       const speakFallback = () => {
-        if (!('speechSynthesis' in window) || !textToSpeak) return;
+        if (!('speechSynthesis' in window) || !cleanSentence) return;
         try {
           window.speechSynthesis.cancel();
-          const utter = new SpeechSynthesisUtterance(textToSpeak);
+          const utter = new SpeechSynthesisUtterance(cleanSentence);
           utter.pitch = chan.pitch || 1.0;
           utter.rate = chan.rate || 1.0;
           utter.onboundary = (ev) => {
-            if (ev && ev.name === 'word' && window.SynapzCharacterSpeechEngine && window.SynapzCharacterSpeechEngine.state) {
-              const st = window.SynapzCharacterSpeechEngine.state;
-              if (st.currentWordIndex < (st.words || []).length) {
-                st.currentWordIndex++;
-              }
+            if (ev && ev.name === 'word' && window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
+              window.SynapzCharacterSpeechEngine._activeAdvanceWordFn();
             }
           };
-          const voices = window.speechSynthesis.getVoices() || [];
-          if (voices.length > 0) {
-            const wantFemale = chan.gender === 'female';
-            const match = voices.find(v => {
-              const n = (v.name || '').toLowerCase();
-              return wantFemale
-                ? (n.includes('zira') || n.includes('aria') || n.includes('samantha') || n.includes('jenny') || n.includes('female') || n.includes('google us english'))
-                : (n.includes('david') || n.includes('guy') || n.includes('mark') || n.includes('alex') || n.includes('male'));
-            });
-            if (match) utter.voice = match;
-          }
+          utter.onend = () => {
+            if (!pickerModalOpen && window.SynapzCharacterSpeechEngine) {
+              window.SynapzCharacterSpeechEngine.minimizeToCircle(chan.id);
+            }
+          };
+          const bestVoice = selectBestNaturalBrowserVoice(chan.id, chan.gender);
+          if (bestVoice) utter.voice = bestVoice;
           window.speechSynthesis.speak(utter);
         } catch (err) {}
       };
 
       try {
+        if (window._activeCharacterAudio) {
+          try { window._activeCharacterAudio.pause(); } catch (_) {}
+        }
         const audio = new Audio(mp3Url);
-        let settled = false;
-        audio.addEventListener('canplaythrough', () => {
-          if (settled) return;
-          settled = true;
-          audio.play().catch(speakFallback);
-        }, { once: true });
-        audio.addEventListener('error', () => {
-          if (settled) return;
-          settled = true;
-          speakFallback();
-        }, { once: true });
-        setTimeout(() => {
-          if (!settled) {
-            settled = true;
-            speakFallback();
+        window._activeCharacterAudio = audio;
+        audio.ontimeupdate = () => {
+          if (audio.duration && audio.duration > 0 && window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
+            const wCount = (window.SynapzCharacterSpeechEngine.state.words || []).length || 1;
+            const targetWordIdx = Math.min(wCount, Math.max(1, Math.ceil((audio.currentTime / audio.duration) * wCount)));
+            if (targetWordIdx > window.SynapzCharacterSpeechEngine.state.currentWordIndex) {
+              window.SynapzCharacterSpeechEngine._activeAdvanceWordFn(targetWordIdx);
+            }
           }
-        }, 180);
+        };
+        audio.onended = () => {
+          if (window.SynapzCharacterSpeechEngine) {
+            if (typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
+              const wCount = (window.SynapzCharacterSpeechEngine.state.words || []).length || 1;
+              window.SynapzCharacterSpeechEngine._activeAdvanceWordFn(wCount + 1);
+            }
+            if (!pickerModalOpen) {
+              window.SynapzCharacterSpeechEngine.minimizeToCircle(chan.id);
+            }
+          }
+        };
+        audio.onerror = () => speakFallback();
+        const playPromise = audio.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(() => speakFallback());
+        }
       } catch (e) {
         speakFallback();
       }
@@ -20575,7 +20804,7 @@
       }
       const speechEl = document.getElementById('lobbyAgentSpeechText');
       if (speechEl && !state.lobbySpotlightActive) {
-        speechEl.textContent = `"${agent.greeting}"`;
+        speechEl.textContent = `"${toNaturalHockeyTalk(agent.greeting, agent.id, 'greeting')}"`;
       }
     }
     window.renderSynapzRinkLobby = renderSynapzRinkLobby;
@@ -20598,27 +20827,27 @@
       {
         stationId: 'lobbyStationHitTheIce',
         title: 'Step 1 / 5 • Hit the Ice',
-        sentence: 'Push through the Center Ice Double Doors to skate onto the 32-Team NHL Map and earn Puck Bucks!'
+        sentence: 'Push through the Center Ice doors to skate the 32-team NHL Map and earn Puck Bucks!'
       },
       {
         stationId: 'lobbyStationLockerRoom',
         title: 'Step 2 / 5 • Locker Room',
-        sentence: 'Step into your Locker Room stall to customize your Young Hockey Player Avatar, equip pro gear, or switch your Player Agent.'
+        sentence: 'Step into your Locker Room stall to equip pro gear on your skater or switch agents!'
       },
       {
         stationId: 'lobbyStationProShop',
         title: 'Step 3 / 5 • Synapz Pro Shop & IQ Economy',
-        sentence: "Score 95% Hockey IQ in any Map Series or Coach Al's 5- or 10-Lesson Plan to earn +95 Puck Bucks, then spend them on the Wall of Gloves, Pro Stick Rack, Wall of Skates, and Tinted Visors!"
+        sentence: 'Score 95% Hockey IQ to earn 95 Puck Bucks for gloves, sticks, skates, and visors!'
       },
       {
         stationId: 'lobbyStationCoachOffice',
         title: "Step 4 / 5 • Coach Al's Office",
-        sentence: "Head into Coach Al's Office to review your 6-Slice Skill Pie Chart, build a 5- or 10-lesson plan, or link your Team Code."
+        sentence: "Head into Coach Al's Office to check your skill pie chart and build a custom lesson plan!"
       },
       {
         stationId: 'lobbyStationFriendsWall',
         title: 'Step 5 / 5 • Friends & Family Wall',
-        sentence: 'Check the Friends and Family Community Wall to inspect buddy avatars safely and challenge cousins to a Map Race!'
+        sentence: 'Visit the Clubhouse to check out buddy stalls, your trophy case, and head-to-head map races!'
       }
     ];
     state.lobbySpotlightStepIdx = 0;
@@ -20782,6 +21011,8 @@
       renderSynapzLockerRoomModal();
       const modal = document.getElementById('synapzLockerRoomModal');
       if (modal) modal.classList.remove('hidden');
+      const agent = getActivePlayerAgent();
+      playCharacterVoice(agent.id, 'locker_room', "Here's your Locker Room stall, tap any shelf to try on new mitts, sticks, skates, or visors!");
     }
     window.openSynapzLockerRoomModal = openSynapzLockerRoomModal;
 
@@ -20929,7 +21160,7 @@
       renderSynapzCoachOfficeModal();
       const modal = document.getElementById('synapzCoachOfficeModal');
       if (modal) modal.classList.remove('hidden');
-      playCharacterVoice('coach-al', 'office_welcome', "Welcome to my office! Tap any slice of your Hockey IQ Pie Chart and we'll build a custom 5- or 10-lesson training plan together.");
+      playCharacterVoice('coach-al', 'office_welcome', "Welcome to my office, tap any slice of your Hockey IQ chart to build today's training plan!");
     }
     window.openSynapzCoachOfficeModal = openSynapzCoachOfficeModal;
 
@@ -21061,6 +21292,8 @@
       renderSynapzFriendsWallModal();
       const modal = document.getElementById('synapzFriendsWallModal');
       if (modal) modal.classList.remove('hidden');
+      const agent = getActivePlayerAgent();
+      playCharacterVoice(agent.id, 'clubhouse', "Welcome to the Clubhouse, tap the portrait wall, center race screen, or trophy case to explore!");
     }
     window.openSynapzFriendsWallModal = openSynapzFriendsWallModal;
 
@@ -22525,7 +22758,7 @@
       },
 
       startWordStreamOnElement(characterId, rawText, targetEl, opts = {}) {
-        const cleanText = String(rawText || '').replace(/\s+/g, ' ').trim();
+        const cleanText = toNaturalHockeyTalk(rawText || '', characterId || 'coach-bob', opts.context || 'speech');
         if (!cleanText) return;
         this.clearTimers();
 
@@ -22605,6 +22838,7 @@
           }
         };
 
+        this._activeAdvanceWordFn = advanceWord;
         this.state.wordTimer = setInterval(() => {
           advanceWord();
         }, wordIntervalMs);
@@ -22637,9 +22871,13 @@
         }
       },
 
+      speakWithLiveWordStream(characterId, text, opts = {}) {
+        return this.speak(characterId, text, opts);
+      },
+
       speak(characterId, text, opts = {}) {
         const prof = this.resolveCharacterProfile(characterId);
-        const cleanText = String(text || '').trim() || this.getDefaultContextualQuote(prof.id);
+        const cleanText = toNaturalHockeyTalk(String(text || '').trim() || this.getDefaultContextualQuote(prof.id), prof.id, 'speech');
         if (prof.id === 'coach-bob' && state.view === 'game') {
           showCoachBobPopup({
             title: opts.title || `🧢 Coach Bob • On-Ice Instruction`,
@@ -22700,17 +22938,17 @@
       getDefaultContextualQuote(charId) {
         if (charId === 'coach-bob') {
           const scen = typeof getCurrentScenario === 'function' ? getCurrentScenario() : null;
-          return scen ? (scen.subtitle || scen.briefing) : 'Watch the 3-second play develop, then tap the open ice lane!';
+          return toNaturalHockeyTalk(scen ? (scen.subtitle || scen.briefing) : 'Watch the 3-second play develop, then tap the open ice lane!', 'coach-bob', 'drill_intro');
         }
         if (charId === 'coach-al') {
-          return "Welcome to the Coach's Office! Tap my laptop for the 6-Slice IQ Pie Chart or tap the whiteboard to launch a tailored 5 or 10 lesson plan.";
+          return "Welcome to my office, tap any slice of your Hockey IQ chart to build today's training plan!";
         }
         const ag = typeof getActivePlayerAgent === 'function' ? getActivePlayerAgent() : null;
         if (state.view === 'map') {
           const city = (window.NHL_CITIES || [])[state.currentCityIdx || 0];
-          return `Ready for ${city ? city.name : 'your next stop'}? Score 90% or higher Hockey IQ to bank 90+ Puck Bucks toward the Stanley Cup!`;
+          return `Here's the North America tour map, tap Drop the Puck to play your ${city ? city.name : 'next'} series!`;
         }
-        return ag ? ag.greeting : 'Tap any doorway or piece of gear in the room to jump straight into action!';
+        return ag ? toNaturalHockeyTalk(ag.greeting, ag.id, 'greeting') : 'Tap any doorway or piece of gear in the room to jump straight into action!';
       },
 
       summonFromCircle(characterId) {
@@ -22769,8 +23007,19 @@
       }
     };
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      window.addEventListener('load', async () => {
+        try {
+          if ('caches' in window) {
+            const keys = await caches.keys();
+            await Promise.all(
+              keys.filter(k => k !== window.SYNAPZ_CACHE_NAME).map(k => caches.delete(k))
+            );
+          }
+          const reg = await navigator.serviceWorker.register('./sw.js?v=9.5');
+          if (reg && typeof reg.update === 'function') {
+            reg.update().catch(() => {});
+          }
+        } catch (_) {}
       });
     }
   </script>

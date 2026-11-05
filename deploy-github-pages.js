@@ -34,6 +34,8 @@ const FILES_TO_DEPLOY = [
   { rel: 'send-board-digest.js', encoding: 'utf-8' },
   { rel: 'deep_playtest_audit.js', encoding: 'utf-8' },
   { rel: 'deploy-github-pages.js', encoding: 'utf-8' },
+  { rel: 'generate-natural-voices.js', encoding: 'utf-8' },
+  { rel: 'assets/audio/voices/voice-manifest.json', encoding: 'utf-8' },
   { rel: '.github/workflows/nightly-tactix-harvest.yml', encoding: 'utf-8' },
   { rel: '.gitignore', encoding: 'utf-8' },
   { rel: 'assets/synapz-logo.png', encoding: 'base64' },
@@ -98,6 +100,21 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/audit_clean_gameplay_screen.png', encoding: 'base64' },
   { rel: 'screenshots/audit_live_word_speech_bubble.png', encoding: 'base64' }
 ];
+
+// Automatically include all generated neural .mp3 voice files in assets/audio/voices/<characterId>/*.mp3
+const voicesRoot = path.join(WORKSPACE_A, 'assets', 'audio', 'voices');
+if (fs.existsSync(voicesRoot)) {
+  for (const sub of fs.readdirSync(voicesRoot)) {
+    const subDir = path.join(voicesRoot, sub);
+    if (fs.statSync(subDir).isDirectory()) {
+      for (const f of fs.readdirSync(subDir)) {
+        if (f.endsWith('.mp3')) {
+          FILES_TO_DEPLOY.push({ rel: `assets/audio/voices/${sub}/${f}`, encoding: 'base64' });
+        }
+      }
+    }
+  }
+}
 
 const FORBIDDEN_FILENAMES = new Set([
   '.tactix_gh_token',
@@ -292,40 +309,46 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
     }
   ];
 
-  for (const item of FILES_TO_DEPLOY) {
-    const fullPath = path.join(WORKSPACE_A, item.rel);
-    if (!fs.existsSync(fullPath)) continue;
-    if (item.encoding === 'base64') {
-      const b64 = fs.readFileSync(fullPath).toString('base64');
-      const blobRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/blobs`, token, 'POST', {
-        content: b64,
-        encoding: 'base64'
-      });
-      if (blobRes.ok && blobRes.data.sha) {
-        treeItems.push({
-          path: item.rel,
-          mode: '100644',
-          type: 'blob',
-          sha: blobRes.data.sha
+  let idxCursor = 0;
+  const BLOB_CONCURRENCY = 8;
+  async function blobWorker() {
+    while (idxCursor < FILES_TO_DEPLOY.length) {
+      const item = FILES_TO_DEPLOY[idxCursor++];
+      const fullPath = path.join(WORKSPACE_A, item.rel);
+      if (!fs.existsSync(fullPath)) continue;
+      if (item.encoding === 'base64') {
+        const b64 = fs.readFileSync(fullPath).toString('base64');
+        const blobRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/blobs`, token, 'POST', {
+          content: b64,
+          encoding: 'base64'
         });
-      }
-    } else {
-      const txt = fs.readFileSync(fullPath, 'utf-8');
-      const blobRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/blobs`, token, 'POST', {
-        content: txt,
-        encoding: 'utf-8'
-      });
-      if (blobRes.ok && blobRes.data.sha) {
-        treeItems.push({
-          path: item.rel,
-          mode: '100644',
-          type: 'blob',
-          sha: blobRes.data.sha
+        if (blobRes.ok && blobRes.data.sha) {
+          treeItems.push({
+            path: item.rel,
+            mode: '100644',
+            type: 'blob',
+            sha: blobRes.data.sha
+          });
+        }
+      } else {
+        const txt = fs.readFileSync(fullPath, 'utf-8');
+        const blobRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/blobs`, token, 'POST', {
+          content: txt,
+          encoding: 'utf-8'
         });
+        if (blobRes.ok && blobRes.data.sha) {
+          treeItems.push({
+            path: item.rel,
+            mode: '100644',
+            type: 'blob',
+            sha: blobRes.data.sha
+          });
+        }
       }
     }
-    console.log(`  📄 Staged ${item.rel}`);
   }
+  await Promise.all(Array.from({ length: BLOB_CONCURRENCY }, () => blobWorker()));
+  console.log(`  📄 Staged ${treeItems.length} files & neural .mp3 voice clips`);
 
   // 4. Create Git Tree
   let treeRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/trees`, token, 'POST', {
@@ -345,7 +368,7 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
 
   // 5. Create Commit
   const commitRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/commits`, token, 'POST', {
-    message: `Deploy SYNAPZ HOCKEY v9.1 (Full Visual Theme Upgrade, 2-Step Portal Gate, Transition Splash & Stepping-Stone Map)`,
+    message: `Deploy SYNAPZ HOCKEY v9.5 (Natural Locker-Room Speech Interceptor, 112 Neural MP3 Voice Clips & 3-Stage Word-Streaming Bubble)`,
     tree: treeRes.data.sha,
     parents: [baseCommitSha]
   });
