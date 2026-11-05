@@ -890,6 +890,69 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         const habitComboChecksVerified = Boolean(state.habitComboScanned && state.habitComboCalledOut && habitComboControlsVisible && habitComboScorecardVisible);
         if (typeof setLessonPresentationStyle === 'function') setLessonPresentationStyle('flow_and_freeze');
 
+        // PHASE 4: Young Hockey Player Avatar (75% Realistic Style + Visibly Equipped Gear), Walk-In Wall-Style Pro Shop, IQ-Tied Puck Bucks Economy, & Geographically Accurate North America Map
+        if (typeof openSynapzLockerRoomModal === 'function') openSynapzLockerRoomModal();
+        const blackoutTelemetry = typeof window.applyFullBlackoutLoadout === 'function' ? window.applyFullBlackoutLoadout(true) : null;
+        const blackoutAvatarVerified = Boolean(
+          blackoutTelemetry &&
+          blackoutTelemetry.style === '75%-realistic-25%-cartoon-edge' &&
+          blackoutTelemetry.isBlackoutLoadout === true
+        );
+        const defaultGearTelemetry = typeof window.equipOwnedGearLoadout === 'function' ? window.equipOwnedGearLoadout() : null;
+        const youngPlayerAvatarVerified = Boolean(
+          defaultGearTelemetry &&
+          defaultGearTelemetry.style === '75%-realistic-25%-cartoon-edge' &&
+          defaultGearTelemetry.glovesId === 'gloves-cyan' &&
+          defaultGearTelemetry.stickId === 'stick-gold' &&
+          defaultGearTelemetry.skatesId === 'skate-blue' &&
+          defaultGearTelemetry.visorId === 'visor-blue'
+        );
+        document.getElementById('synapzLockerRoomModal')?.classList.add('hidden');
+
+        // Walk-In Wall-Style Pro Shop Audit (4 Wall Category Buttons + Sponsor-Ready Promo Showcase Rack)
+        state.shopCategoryFilter = 'Gloves';
+        if (typeof renderProShopModal === 'function') renderProShopModal();
+        document.getElementById('proShopModal')?.classList.remove('hidden');
+        const wallButtonsCount = ['btnWallGloves', 'btnWallStick', 'btnWallSkates', 'btnWallVisor'].filter(id => Boolean(document.getElementById(id))).length;
+        const promoShowcaseRackVisible = Boolean(
+          document.getElementById('proShopBrandShowcaseRack') &&
+          (document.getElementById('proShopBrandShowcaseRack')?.innerHTML || '').includes('<svg')
+        );
+        const agentEconomyBannerVisible = Boolean(
+          document.getElementById('proShopAgentEconomyBanner') &&
+          (document.getElementById('proShopAgentEconomyText')?.innerText || '').includes('95%')
+        );
+        const wallProductSvgCount = document.querySelectorAll('#proShopItemsGrid svg').length;
+        document.getElementById('proShopModal')?.classList.add('hidden');
+
+        // IQ-Tied Puck Bucks Formula Audit (95% IQ -> +95 Puck Bucks; 70% IQ -> +70 Puck Bucks; <50% -> Retry Prompt; works in Map & Coach Al 5/10-Lesson Plans)
+        const iq95Calc = typeof window.calculateIqTiedPuckBucks === 'function' ? window.calculateIqTiedPuckBucks(95, 10) : null;
+        const iq70Calc = typeof window.calculateIqTiedPuckBucks === 'function' ? window.calculateIqTiedPuckBucks(70, 10) : null;
+        const iq40Calc = typeof window.calculateIqTiedPuckBucks === 'function' ? window.calculateIqTiedPuckBucks(40, 10) : null;
+        const beforeBucks = state.puckBucks;
+        const coachPlanReward = typeof window.completeLessonWithIqTiedPuckBucks === 'function'
+          ? window.completeLessonWithIqTiedPuckBucks(95, 'coach_office_5_lesson_plan', 5)
+          : null;
+        const afterBucks = state.puckBucks;
+        const iqFormulaVerified = Boolean(
+          iq95Calc && iq95Calc.puckBucksEarned === 95 && !iq95Calc.requiresRetryPrompt &&
+          iq70Calc && iq70Calc.puckBucksEarned === 70 && !iq70Calc.requiresRetryPrompt &&
+          iq40Calc && iq40Calc.requiresRetryPrompt === true &&
+          coachPlanReward && (afterBucks - beforeBucks === 95)
+        );
+
+        // Geographically Accurate North America Map Audit (U.S. States + Canadian Provinces + 5 Great Lakes + 32 NHL Cities + Post-Cup Future Tours Teaser Badge)
+        switchView('map');
+        const canadaProvincesCount = document.querySelectorAll('#canadaAccurateProvincesGroup [data-province]').length;
+        const usaStatesCount = document.querySelectorAll('#usaAccurateStatesGroup [data-state]').length;
+        const greatLakesVisible = Boolean(document.getElementById('greatLakesSvgGroup'));
+        const postCupTeaserVisible = Boolean(
+          document.getElementById('postCupFutureToursTeaserBadge') &&
+          (document.getElementById('postCupFutureToursTeaserBadge')?.textContent || '').includes('Olympic Gold')
+        );
+        const nhlCitiesGeoVerified = Array.isArray(window.NHL_CITIES) && window.NHL_CITIES.length === 32 && window.NHL_CITIES.every(c => Boolean(c.stateOrProvince));
+        switchView('game');
+
         founderDigestAudit.summary = {
           digestModalOpen,
           totalDigestRows,
@@ -937,6 +1000,22 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
             staticHoverZonesCount,
             staticHoverZonesActive,
             habitComboChecksVerified
+          },
+          phase4AvatarShopEconomyMapAudit: {
+            youngPlayerAvatarVerified,
+            blackoutAvatarVerified,
+            wallButtonsCount,
+            promoShowcaseRackVisible,
+            agentEconomyBannerVisible,
+            wallProductSvgCount,
+            iqFormulaVerified,
+            iq95PuckBucks: iq95Calc ? iq95Calc.puckBucksEarned : 0,
+            iq70PuckBucks: iq70Calc ? iq70Calc.puckBucksEarned : 0,
+            canadaProvincesCount,
+            usaStatesCount,
+            greatLakesVisible,
+            postCupTeaserVisible,
+            nhlCitiesGeoVerified
           },
           twoStepStartPageAudit: {
             step1PortalsVisible,
@@ -1105,15 +1184,42 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       document.getElementById('playerAgentPickerModal')?.classList.add('hidden');
     });
 
-    // 4G. Revamped Adventure Map (`screenshots/audit_adventure_map.png`)
+    // 4G. Phase 4 Geographically Accurate North America Map (`screenshots/audit_accurate_na_map.png` & `screenshots/audit_adventure_map.png`)
     await page.evaluate(() => {
       document.getElementById('sandboxLoginModal')?.classList.add('hidden');
       if (typeof switchSiblingStall === 'function') switchSiblingStall('miles');
       switchView('map');
     });
     await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_accurate_na_map.png') });
     await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_adventure_map.png') });
+    capturedScreenshots.audit_accurate_na_map = 'screenshots/audit_accurate_na_map.png';
     capturedScreenshots.audit_adventure_map = 'screenshots/audit_adventure_map.png';
+
+    // 4G2. Phase 4 Locker Room Young Hockey Player Avatar w/ Visibly Worn Gear (`screenshots/audit_locker_room_avatar.png`)
+    await page.evaluate(() => {
+      if (typeof openSynapzLockerRoomModal === 'function') openSynapzLockerRoomModal();
+      if (typeof equipOwnedGearLoadout === 'function') equipOwnedGearLoadout();
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_locker_room_avatar.png') });
+    capturedScreenshots.audit_locker_room_avatar = 'screenshots/audit_locker_room_avatar.png';
+    await page.evaluate(() => {
+      document.getElementById('synapzLockerRoomModal')?.classList.add('hidden');
+    });
+
+    // 4G3. Phase 4 Walk-In Wall-Style Synapz Pro Shop (`screenshots/audit_pro_shop_walls.png`)
+    await page.evaluate(() => {
+      state.shopCategoryFilter = 'Gloves';
+      if (typeof renderProShopModal === 'function') renderProShopModal();
+      document.getElementById('proShopModal')?.classList.remove('hidden');
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_pro_shop_walls.png') });
+    capturedScreenshots.audit_pro_shop_walls = 'screenshots/audit_pro_shop_walls.png';
+    await page.evaluate(() => {
+      document.getElementById('proShopModal')?.classList.add('hidden');
+    });
 
     // 4H. Phase 2 De-Cluttered On-Ice Lesson Screen w/ Top-Down Directional Skaters (2x Faceoff Dot) & 4 Bottom Buttons (`screenshots/audit_phase2_lesson_screen.png`)
     await page.evaluate(() => {

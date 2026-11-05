@@ -872,22 +872,32 @@
       <!-- Mathseeds-Style 5-Tier Milestone Progression Bar (Rec -> B -> A -> AA -> AAA -> 🏆 Stanley Cup) -->
       <div id="mathseedsTierTrackBar" class="grid grid-cols-2 sm:grid-cols-5 gap-2 bg-slate-950/90 border border-cyan-500/35 rounded-2xl p-2.5"></div>
 
-      <!-- 2. Upgraded Stepping-Stone Stanley Cup Map (#nhlTourMapSvg) -->
-      <div class="relative w-full rounded-2xl border border-cyan-400/45 overflow-hidden p-1.5 shadow-[0_0_30px_rgba(0,229,255,0.16)]" style="aspect-ratio: 16 / 7.2; max-height: 56dvh; background: radial-gradient(circle at 50% 45%, #0d1829 0%, #060b14 100%);">
+      <!-- 2. Geographically Accurate North America Map (#nhlTourMapSvg — U.S. States + Canadian Provinces + 32 NHL Cities) -->
+      <div class="relative w-full rounded-2xl border border-cyan-400/45 overflow-hidden p-1.5 shadow-[0_0_30px_rgba(0,229,255,0.16)]" style="aspect-ratio: 16 / 7.4; max-height: 58dvh; background: radial-gradient(circle at 50% 45%, #0d1829 0%, #060b14 100%);">
+        <!-- Post-Cup Future Tours Teaser Badge (Tabled Until Proof-of-Concept Completion) -->
+        <div id="postCupFutureToursTeaserBadge" class="absolute top-2.5 right-2.5 z-20 px-3 py-1 rounded-full bg-slate-950/92 border border-amber-400/60 text-[10px] sm:text-[11px] font-black text-amber-300 shadow-xl backdrop-blur-md flex items-center gap-1.5 pointer-events-none">
+          <span>🌍</span>
+          <span>NEXT TOUR AFTER STANLEY CUP: Road to Olympic Gold &amp; European Pro Tour (Locked — Win the Stanley Cup First!)</span>
+        </div>
+
         <svg id="nhlTourMapSvg" viewBox="0 0 1000 520" class="w-full h-full">
           <defs>
             <linearGradient id="oceanGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#060b14" />
-              <stop offset="55%" stop-color="#0d1829" />
-              <stop offset="100%" stop-color="#050911" />
+              <stop offset="0%" stop-color="#040811" />
+              <stop offset="55%" stop-color="#091324" />
+              <stop offset="100%" stop-color="#03060c" />
             </linearGradient>
             <linearGradient id="canadaGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#0f2238" />
-              <stop offset="100%" stop-color="#091526" />
+              <stop offset="0%" stop-color="#112844" />
+              <stop offset="100%" stop-color="#0b1a2e" />
             </linearGradient>
             <linearGradient id="usaGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#0c2644" stop-opacity="0.78" />
-              <stop offset="100%" stop-color="#081322" stop-opacity="0.92" />
+              <stop offset="0%" stop-color="#0e2f54" stop-opacity="0.92" />
+              <stop offset="100%" stop-color="#081c34" stop-opacity="0.96" />
+            </linearGradient>
+            <linearGradient id="greatLakesGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#051326" />
+              <stop offset="100%" stop-color="#082442" />
             </linearGradient>
             <linearGradient id="synapzTrailUnlocked" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stop-color="#00e5ff" />
@@ -904,25 +914,174 @@
 
           <rect width="1000" height="520" fill="url(#oceanGrad)" rx="16" />
 
-          <!-- Subtle Neural Grid Lines across North America -->
-          <g stroke="rgba(0,229,255,0.06)" stroke-width="1">
-            <line x1="0" y1="130" x2="1000" y2="130" />
-            <line x1="0" y1="260" x2="1000" y2="260" />
-            <line x1="0" y1="390" x2="1000" y2="390" />
-            <line x1="250" y1="0" x2="250" y2="520" />
-            <line x1="500" y1="0" x2="500" y2="520" />
-            <line x1="750" y1="0" x2="750" y2="520" />
+          <!-- Subtle Lat/Lon Graticule Grid Across North America -->
+          <g stroke="rgba(0,229,255,0.05)" stroke-width="1">
+            <path d="M 0 120 Q 500 145 1000 120" fill="none" />
+            <path d="M 0 240 Q 500 265 1000 240" fill="none" />
+            <path d="M 0 360 Q 500 385 1000 360" fill="none" />
+            <line x1="200" y1="0" x2="170" y2="520" />
+            <line x1="400" y1="0" x2="390" y2="520" />
+            <line x1="600" y1="0" x2="610" y2="520" />
+            <line x1="800" y1="0" x2="830" y2="520" />
           </g>
 
-          <!-- Canada -->
-          <path d="M 90 190 L 110 85 L 280 55 L 490 60 L 630 95 L 770 75 L 895 140 L 860 225 L 720 235 L 590 215 L 430 195 L 140 195 Z"
-                fill="url(#canadaGrad)" stroke="rgba(0,229,255,0.32)" stroke-width="2" />
-          <text x="440" y="108" fill="rgba(0,229,255,0.10)" font-size="30" font-weight="900" text-anchor="middle" letter-spacing="10">CANADA • NORTHERN CONFERENCE</text>
+          <!-- =============================================================== -->
+          <!-- GEOGRAPHICALLY ACCURATE NORTH AMERICA: CANADA PROVINCES & USA   -->
+          <!-- =============================================================== -->
+          <g id="naAccurateGeographyGroup">
+            <!-- 1. CANADIAN PROVINCES (BC, AB, SK, MB, ON, QC, Maritimes) -->
+            <g id="canadaAccurateProvincesGroup" fill="url(#canadaGrad)" stroke="rgba(0,229,255,0.34)" stroke-width="1.35" stroke-linejoin="round">
+              <!-- Vancouver Island -->
+              <path id="prov-BC-island" d="M 88 148 L 102 135 L 116 158 L 104 166 Z" />
+              <!-- British Columbia (BC) -->
+              <path id="prov-BC" data-province="BC" d="M 96 62 L 195 62 L 198 110 L 218 148 L 222 172 L 122 172 L 114 148 L 100 118 Z" />
+              <!-- Alberta (AB) -->
+              <path id="prov-AB" data-province="AB" d="M 195 62 L 292 62 L 292 172 L 222 172 L 218 148 L 198 110 Z" />
+              <!-- Saskatchewan (SK) -->
+              <path id="prov-SK" data-province="SK" d="M 292 62 L 385 62 L 385 172 L 292 172 Z" />
+              <!-- Manitoba (MB) + Hudson Bay SW Coast -->
+              <path id="prov-MB" data-province="MB" d="M 385 62 L 468 62 L 495 88 L 512 108 L 478 172 L 385 172 Z" />
+              <!-- Ontario (ON) — Northern Shore to Great Lakes Peninsula (Toronto / Ottawa) -->
+              <path id="prov-ON" data-province="ON" d="M 512 108 L 568 118 L 622 106 L 654 142 L 732 156 L 748 168 L 718 196 L 668 228 L 642 238 L 636 214 L 604 188 L 552 178 L 478 172 Z" />
+              <!-- Quebec (QC) — Ungava / Gaspe / St. Lawrence Valley (Montreal) -->
+              <path id="prov-QC" data-province="QC" d="M 654 142 L 662 72 L 758 54 L 848 84 L 892 118 L 845 142 L 798 158 L 786 168 L 748 168 L 732 156 Z" />
+              <!-- Maritimes (NB / NS / PEI) -->
+              <path id="prov-NB-NS" data-province="NB-NS" d="M 845 142 L 904 136 L 932 156 L 906 182 L 878 174 L 852 168 Z" />
+            </g>
 
-          <!-- USA -->
-          <path d="M 115 195 L 430 195 L 590 215 L 720 235 L 855 225 L 835 315 L 775 395 L 745 465 L 695 455 L 680 405 L 535 420 L 455 465 L 385 405 L 210 385 L 105 315 Z"
-                fill="url(#usaGrad)" stroke="rgba(0,229,255,0.48)" stroke-width="2.2" />
-          <text x="440" y="345" fill="rgba(0,229,255,0.09)" font-size="30" font-weight="900" text-anchor="middle" letter-spacing="10">UNITED STATES • ROAD TO THE CUP</text>
+            <!-- Canadian Province Code Labels -->
+            <g fill="rgba(186,230,253,0.34)" font-size="9.5" font-weight="900" text-anchor="middle" letter-spacing="1.2" pointer-events="none">
+              <text x="156" y="112">BC</text>
+              <text x="248" y="102">AB</text>
+              <text x="338" y="114">SK</text>
+              <text x="434" y="114">MB</text>
+              <text x="588" y="152">ON</text>
+              <text x="765" y="112">QC</text>
+              <text x="892" y="160">NB/NS</text>
+            </g>
+
+            <!-- 2. UNITED STATES OF AMERICA — ACCURATE COASTLINE & STATE BOUNDARIES -->
+            <g id="usaAccurateStatesGroup" fill="url(#usaGrad)" stroke="rgba(0,229,255,0.38)" stroke-width="1.25" stroke-linejoin="round">
+              <!-- Washington (WA) -->
+              <path id="state-WA" data-state="WA" d="M 116 172 L 196 172 L 196 216 L 114 216 L 106 192 Z" />
+              <!-- Oregon (OR) -->
+              <path id="state-OR" data-state="OR" d="M 114 216 L 196 216 L 196 266 L 102 266 Z" />
+              <!-- California (CA) — True Pacific Coast Curve from Bay Area to SoCal -->
+              <path id="state-CA" data-state="CA" d="M 102 266 L 164 266 L 164 306 L 204 362 L 198 394 L 156 392 L 122 356 L 98 308 Z" />
+              <!-- Idaho (ID) -->
+              <path id="state-ID" data-state="ID" d="M 196 172 L 222 172 L 226 218 L 252 224 L 252 266 L 196 266 Z" />
+              <!-- Nevada (NV) -->
+              <path id="state-NV" data-state="NV" d="M 164 266 L 234 266 L 234 342 L 204 362 L 164 306 Z" />
+              <!-- Montana (MT) -->
+              <path id="state-MT" data-state="MT" d="M 222 172 L 348 172 L 348 224 L 252 224 L 226 218 Z" />
+              <!-- Wyoming (WY) -->
+              <path id="state-WY" data-state="WY" d="M 252 224 L 348 224 L 348 276 L 252 276 Z" />
+              <!-- Utah (UT) -->
+              <path id="state-UT" data-state="UT" d="M 234 266 L 252 266 L 252 276 L 298 276 L 298 338 L 234 338 Z" />
+              <!-- Arizona (AZ) -->
+              <path id="state-AZ" data-state="AZ" d="M 204 362 L 234 338 L 298 338 L 298 408 L 238 408 L 198 394 Z" />
+              <!-- Colorado (CO) -->
+              <path id="state-CO" data-state="CO" d="M 298 276 L 392 276 L 392 338 L 298 338 Z" />
+              <!-- New Mexico (NM) -->
+              <path id="state-NM" data-state="NM" d="M 298 338 L 386 338 L 386 412 L 298 408 Z" />
+              <!-- North Dakota (ND) -->
+              <path id="state-ND" data-state="ND" d="M 348 172 L 448 172 L 452 214 L 348 214 Z" />
+              <!-- South Dakota (SD) -->
+              <path id="state-SD" data-state="SD" d="M 348 214 L 452 214 L 456 254 L 348 254 Z" />
+              <!-- Nebraska (NE) -->
+              <path id="state-NE" data-state="NE" d="M 348 254 L 456 254 L 468 294 L 392 294 L 392 276 L 348 276 Z" />
+              <!-- Kansas (KS) -->
+              <path id="state-KS" data-state="KS" d="M 392 294 L 478 294 L 482 338 L 392 338 Z" />
+              <!-- Oklahoma (OK) -->
+              <path id="state-OK" data-state="OK" d="M 386 338 L 482 338 L 486 378 L 418 376 L 418 352 L 386 352 Z" />
+              <!-- Texas (TX) — Recognizable Panhandle, Rio Grande & Gulf Coast -->
+              <path id="state-TX" data-state="TX" d="M 386 352 L 418 352 L 418 376 L 486 378 L 502 426 L 464 468 L 434 486 L 404 452 L 372 424 L 386 412 Z" />
+              <!-- Minnesota (MN) -->
+              <path id="state-MN" data-state="MN" d="M 448 172 L 536 176 L 516 206 L 522 242 L 456 242 L 452 214 Z" />
+              <!-- Iowa (IA) -->
+              <path id="state-IA" data-state="IA" d="M 456 242 L 522 242 L 534 266 L 524 286 L 468 286 L 456 254 Z" />
+              <!-- Missouri (MO) -->
+              <path id="state-MO" data-state="MO" d="M 468 286 L 524 286 L 548 318 L 544 350 L 482 350 L 478 294 Z" />
+              <!-- Arkansas (AR) & Louisiana (LA) -->
+              <path id="state-AR-LA" data-state="AR-LA" d="M 482 350 L 544 350 L 548 434 L 502 426 L 486 378 Z" />
+              <!-- Wisconsin (WI) -->
+              <path id="state-WI" data-state="WI" d="M 516 206 L 558 198 L 574 218 L 572 254 L 534 254 L 522 242 Z" />
+              <!-- Illinois (IL) -->
+              <path id="state-IL" data-state="IL" d="M 534 254 L 574 254 L 578 312 L 548 318 L 524 286 Z" />
+              <!-- Michigan (MI) — Mitten Peninsula between Lake Michigan & Lake Huron -->
+              <path id="state-MI" data-state="MI" d="M 592 202 L 626 204 L 638 232 L 632 254 L 592 254 L 586 226 Z" />
+              <!-- Indiana (IN) -->
+              <path id="state-IN" data-state="IN" d="M 574 254 L 610 254 L 610 306 L 578 312 Z" />
+              <!-- Ohio (OH) -->
+              <path id="state-OH" data-state="OH" d="M 610 254 L 664 246 L 668 294 L 610 306 Z" />
+              <!-- Kentucky (KY) & Tennessee (TN) -->
+              <path id="state-KY-TN" data-state="TN" d="M 548 318 L 668 294 L 688 326 L 662 358 L 544 358 Z" />
+              <!-- Deep South (MS / AL / GA) -->
+              <path id="state-GA-AL" data-state="GA" d="M 544 358 L 662 358 L 718 398 L 696 426 L 548 426 Z" />
+              <!-- Florida (FL) — Recognizable Florida Peninsula -->
+              <path id="state-FL" data-state="FL" d="M 642 426 L 718 422 L 758 468 L 748 494 L 722 486 L 688 442 L 642 436 Z" />
+              <!-- North & South Carolina (NC / SC) -->
+              <path id="state-NC-SC" data-state="NC" d="M 662 358 L 758 342 L 796 364 L 756 408 L 718 398 Z" />
+              <!-- Virginia, West Virginia & Maryland (VA / WV / MD / DC) -->
+              <path id="state-VA-MD" data-state="VA" d="M 668 294 L 746 286 L 784 318 L 758 342 L 688 326 Z" />
+              <!-- Pennsylvania (PA) -->
+              <path id="state-PA" data-state="PA" d="M 664 246 L 748 238 L 756 278 L 668 286 Z" />
+              <!-- New Jersey (NJ) -->
+              <path id="state-NJ" data-state="NJ" d="M 748 238 L 774 242 L 776 282 L 756 278 Z" />
+              <!-- New York (NY) + Long Island -->
+              <path id="state-NY" data-state="NY" d="M 696 208 L 764 188 L 782 228 L 814 236 L 796 244 L 774 242 L 748 238 L 694 238 Z" />
+              <!-- New England (MA, CT, RI, VT, NH, ME) -->
+              <path id="state-MA-NE" data-state="MA" d="M 764 188 L 794 166 L 852 146 L 876 168 L 844 214 L 826 226 L 782 228 Z" />
+            </g>
+
+            <!-- 3. THE 5 GREAT LAKES (Lake Superior, Michigan, Huron, Erie, Ontario) -->
+            <g id="greatLakesSvgGroup" fill="url(#greatLakesGrad)" stroke="rgba(56,189,248,0.45)" stroke-width="1">
+              <!-- Lake Superior -->
+              <ellipse cx="556" cy="186" rx="28" ry="10" />
+              <!-- Lake Michigan -->
+              <ellipse cx="580" cy="230" rx="8.5" ry="23" />
+              <!-- Lake Huron -->
+              <ellipse cx="628" cy="210" rx="14" ry="16" />
+              <!-- Lake Erie -->
+              <ellipse cx="662" cy="240" rx="20" ry="7" transform="rotate(-12 662 240)" />
+              <!-- Lake Ontario -->
+              <ellipse cx="708" cy="214" rx="17" ry="6" transform="rotate(-10 708 214)" />
+            </g>
+
+            <!-- Subtle U.S. State Code Watermarks -->
+            <g fill="rgba(148,163,184,0.28)" font-size="8" font-weight="800" text-anchor="middle" pointer-events="none">
+              <text x="155" y="196">WA</text>
+              <text x="150" y="244">OR</text>
+              <text x="142" y="335">CA</text>
+              <text x="200" y="302">NV</text>
+              <text x="268" y="308">UT</text>
+              <text x="255" y="376">AZ</text>
+              <text x="295" y="202">MT</text>
+              <text x="302" y="252">WY</text>
+              <text x="345" y="308">CO</text>
+              <text x="342" y="376">NM</text>
+              <text x="398" y="196">ND</text>
+              <text x="398" y="236">SD</text>
+              <text x="405" y="276">NE</text>
+              <text x="436" y="318">KS</text>
+              <text x="444" y="424">TX</text>
+              <text x="488" y="212">MN</text>
+              <text x="492" y="268">IA</text>
+              <text x="506" y="324">MO</text>
+              <text x="546" y="232">WI</text>
+              <text x="556" y="286">IL</text>
+              <text x="612" y="234">MI</text>
+              <text x="638" y="278">OH</text>
+              <text x="612" y="342">TN</text>
+              <text x="708" y="264">PA</text>
+              <text x="738" y="218">NY</text>
+              <text x="765" y="262">NJ</text>
+              <text x="818" y="196">MA</text>
+              <text x="724" y="318">VA</text>
+              <text x="736" y="376">NC</text>
+              <text x="718" y="458">FL</text>
+            </g>
+          </g>
 
           <g id="mapRoutesGroup"></g>
           <g id="mapMilestoneGatesGroup"></g>
@@ -2428,48 +2587,84 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- MODAL 5: PRO GEAR SHOP (3D Spinning Avatar Preview + Sticks, Helmets, Visors, Skates & Cellies) -->
+  <!-- MODAL 5: WALK-IN WALL-STYLE SYNAPZ PRO SHOP (Sponsor-Ready for Bauer / CCM) -->
   <!-- ===================================================================== -->
-  <div id="proShopModal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
-    <div class="bg-slate-900 border border-emerald-400/50 rounded-2xl max-w-3xl w-full p-4 sm:p-5 shadow-2xl max-h-[93vh] overflow-y-auto">
-      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
-        <div class="flex items-center gap-2.5">
-          <span class="text-2xl">🛒</span>
+  <div id="proShopModal" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-2.5 sm:p-4">
+    <div class="synapz-gunmetal-panel border-2 border-cyan-400/70 rounded-2xl max-w-5xl w-full p-4 sm:p-5 shadow-2xl max-h-[94vh] overflow-y-auto space-y-3">
+      <!-- Top Store Header -->
+      <div class="flex flex-wrap items-center justify-between gap-2.5 border-b border-cyan-500/30 pb-3">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl sm:text-3xl">🛍️</span>
           <div>
-            <h3 class="text-base font-black text-white">Locker Room Pro Gear Shop & 3D Fitting Room</h3>
-            <p class="text-xs text-emerald-300">Click <strong>👁️ Preview</strong> on any helmet, visor, stick, or skate to see it live on your 360° spinning avatar!</p>
+            <div class="text-[10px] font-black uppercase tracking-widest text-cyan-400">WALK-IN PRO HOCKEY STORE • SPONSOR-READY DISPLAYS</div>
+            <h3 class="text-base sm:text-lg font-black text-white">SYNAPZ PRO SHOP — WALLS OF GLOVES, STICKS, SKATES &amp; VISORS</h3>
           </div>
         </div>
-        <div class="flex items-center gap-2">
-          <span id="shopBalanceBadge" class="px-3 py-1 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-black">$150</span>
-          <button id="btnCloseProShop" type="button" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold">✕</button>
+        <div class="flex flex-wrap items-center gap-2">
+          <span id="shopBalanceBadge" class="px-3.5 py-1.5 rounded-xl bg-amber-400/20 border-2 border-amber-400 text-amber-300 text-xs sm:text-sm font-black shadow">💰 250 Puck Bucks</span>
+          <button id="btnShopSaveExitLobby" type="button" class="px-3.5 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/35 border border-emerald-400/70 text-emerald-200 font-black text-xs transition synapz-tactile-3d-btn">
+            💾 Save &amp; Exit to Lobby
+          </button>
+          <button id="btnCloseProShop" type="button" class="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-black">✕</button>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-3 my-3.5 items-start">
-        <!-- LEFT: 3D-SPINNABLE AVATAR FITTING ROOM -->
-        <div class="md:col-span-5 bg-slate-950 border border-emerald-500/30 rounded-2xl p-3 flex flex-col items-center justify-between sticky top-0">
-          <div class="w-full flex items-center justify-between">
-            <span id="shopPreviewBanner" class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">👁️ Live 3D Fitting Stage</span>
-            <span id="shopSpinAngleBadge" class="text-[10px] font-extrabold text-sky-400">360° Spin</span>
+      <!-- Player Agent Plain-Language Economy Explanation Banner -->
+      <div id="proShopAgentEconomyBanner" class="p-2.5 sm:p-3 rounded-2xl bg-slate-950/95 border border-cyan-400/50 flex flex-wrap items-center justify-between gap-2.5">
+        <div class="flex items-center gap-2.5 min-w-0 flex-1">
+          <img id="proShopAgentPortraitImg" src="assets/agents/agent-chloe.png" alt="Player Agent" class="w-10 h-10 rounded-xl object-cover border border-cyan-300 shrink-0" />
+          <div class="min-w-0">
+            <div id="proShopAgentNameBadge" class="text-[10px] font-black uppercase tracking-wider text-cyan-300">🎙️ Agent Chloe • IQ-Tied Puck Bucks Economy</div>
+            <p id="proShopAgentEconomyText" class="text-xs font-bold text-white leading-snug">
+              "Your Puck Bucks match your Hockey IQ score—score 95% IQ on a lesson, bank 95 Puck Bucks, and spend them right here on the gear walls!"
+            </p>
+          </div>
+        </div>
+        <button id="btnSpeakShopEconomyTip" type="button" class="px-3 py-1.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/35 border border-cyan-400/60 text-cyan-200 text-[11px] font-black shrink-0">
+          🔊 Hear Agent Tip
+        </button>
+      </div>
+
+      <!-- 4 Big, Tactile Wall Category Buttons (Strictly 4 Store Walls) -->
+      <div id="shopCategoryFilterBar" class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <button type="button" id="btnWallGloves" data-shopcat="Gloves" data-shop-cat="Gloves" class="shop-cat-btn synapz-tactile-3d-btn active-pill py-2.5 px-3 rounded-xl text-xs sm:text-sm font-black flex items-center justify-center gap-1.5 border border-cyan-300 bg-cyan-500 text-slate-950 shadow-lg">
+          <span>🧤</span><span>Wall of Gloves</span>
+        </button>
+        <button type="button" id="btnWallStick" data-shopcat="Stick" data-shop-cat="Stick" class="shop-cat-btn synapz-tactile-3d-btn py-2.5 px-3 rounded-xl text-xs sm:text-sm font-black flex items-center justify-center gap-1.5 border border-slate-700 bg-slate-900 text-slate-200">
+          <span>🏒</span><span>Pro Stick Rack</span>
+        </button>
+        <button type="button" id="btnWallSkates" data-shopcat="Skates" data-shop-cat="Skates" class="shop-cat-btn synapz-tactile-3d-btn py-2.5 px-3 rounded-xl text-xs sm:text-sm font-black flex items-center justify-center gap-1.5 border border-slate-700 bg-slate-900 text-slate-200">
+          <span>⛸️</span><span>Wall of Skates</span>
+        </button>
+        <button type="button" id="btnWallVisor" data-shopcat="Visor" data-shop-cat="Visor" class="shop-cat-btn synapz-tactile-3d-btn py-2.5 px-3 rounded-xl text-xs sm:text-sm font-black flex items-center justify-center gap-1.5 border border-slate-700 bg-slate-900 text-slate-200">
+          <span>🥽</span><span>Visors &amp; Buckets</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-3.5 items-start">
+        <!-- LEFT: YOUNG HOCKEY PLAYER FITTING STAGE (75%-Realistic Style + Visibly Equipped Gear) -->
+        <div class="md:col-span-4 bg-slate-950 border border-cyan-500/40 rounded-2xl p-3 flex flex-col items-center justify-between">
+          <div class="w-full flex items-center justify-between mb-1">
+            <span id="shopPreviewBanner" class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-400/40">🏒 Live Skater Fitting Mirror</span>
+            <span id="shopSpinAngleBadge" class="text-[10px] font-extrabold text-amber-300">Front Stance</span>
           </div>
 
-          <div id="shop3dAvatarSvgWrap" class="w-44 h-48 my-1 flex items-center justify-center cursor-grab active:cursor-grabbing select-none" title="Drag or spin to inspect front gear and back jersey nameplate!"></div>
+          <div id="shop3dAvatarSvgWrap" class="w-48 h-56 my-1 flex items-center justify-center cursor-grab active:cursor-grabbing select-none" title="See equipped Gloves, Stick, Skates, Visor & Sweater live on your Young Hockey Player!"></div>
 
-          <div id="shopPreviewItemName" class="text-xs font-extrabold text-amber-300 text-center mb-1.5">Showing Equipped Locker Room Gear</div>
+          <div id="shopPreviewItemName" class="text-xs font-extrabold text-amber-300 text-center mb-2">Showing Equipped Locker Room Gear</div>
 
           <div class="w-full space-y-1.5">
             <div class="flex items-center gap-1.5">
-              <button id="btnToggleShopSpin" type="button" class="flex-1 py-1.5 px-2 rounded-lg bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/40 text-sky-200 text-[11px] font-extrabold transition">
-                🔄 Auto-Spin: ON
+              <button id="btnFlipShopBack" type="button" class="flex-1 py-1.5 px-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-300 text-[11px] font-black transition">
+                👕 Flip Front / Back Jersey
               </button>
-              <button id="btnFlipShopBack" type="button" class="flex-1 py-1.5 px-2 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 text-[11px] font-extrabold transition">
-                👕 See Back Name
+              <button id="btnShopPreviewBlackout" type="button" class="flex-1 py-1.5 px-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-400/60 text-cyan-200 text-[11px] font-black transition">
+                🖤 Full Blackout
               </button>
             </div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] font-bold text-slate-400">Rotate:</span>
-              <input id="sliderShopSpin" type="range" min="0" max="360" value="0" class="flex-1 accent-emerald-400 h-1.5 bg-slate-800 rounded-lg cursor-pointer" />
+            <div class="hidden">
+              <button id="btnToggleShopSpin" type="button">🔄 Auto-Spin: ON</button>
+              <input id="sliderShopSpin" type="range" min="0" max="360" value="0" />
             </div>
             <button id="btnClearShopPreview" type="button" class="hidden w-full py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] font-bold">
               ↺ Reset to Equipped Gear
@@ -2477,32 +2672,24 @@
           </div>
         </div>
 
-        <!-- RIGHT: SHOP ITEMS CATALOG -->
-        <div class="md:col-span-7 flex flex-col gap-2">
-          <!-- Category Filter Pills (Walk-In Hockey Store Category Walls) -->
-          <div id="shopCategoryFilterBar" class="flex flex-wrap gap-1.5">
-            <button type="button" data-shopcat="all" data-shop-cat="all" class="shop-cat-btn active-pill px-2.5 py-1 rounded-lg text-[11px] font-extrabold">All Gear</button>
-            <button type="button" data-shopcat="Gloves" data-shop-cat="Gloves" class="shop-cat-btn bg-slate-950 text-slate-300 border border-slate-800 px-2.5 py-1 rounded-lg text-[11px] font-bold">🧤 Wall of Gloves</button>
-            <button type="button" data-shopcat="Skates" data-shop-cat="Skates" class="shop-cat-btn bg-slate-950 text-slate-300 border border-slate-800 px-2.5 py-1 rounded-lg text-[11px] font-bold">⛸️ Wall of Skates</button>
-            <button type="button" data-shopcat="Stick" data-shop-cat="Stick" class="shop-cat-btn bg-slate-950 text-slate-300 border border-slate-800 px-2.5 py-1 rounded-lg text-[11px] font-bold">🏒 Stick Rack</button>
-            <button type="button" data-shopcat="Visor" data-shop-cat="Visor" class="shop-cat-btn bg-slate-950 text-slate-300 border border-slate-800 px-2.5 py-1 rounded-lg text-[11px] font-bold">🥽 Visors &amp; Buckets</button>
-            <button type="button" data-shopcat="Helmet" data-shop-cat="Helmet" class="shop-cat-btn bg-slate-950 text-slate-300 border border-slate-800 px-2.5 py-1 rounded-lg text-[11px] font-bold">⛑️ Helmets</button>
-            <button type="button" data-shopcat="Celly" data-shop-cat="Celly" class="shop-cat-btn bg-slate-950 text-slate-300 border border-slate-800 px-2.5 py-1 rounded-lg text-[11px] font-bold">🚨 Cellies</button>
-          </div>
+        <!-- RIGHT: WALK-IN WALL DISPLAY RACK + PRO BRAND SHOWCASE -->
+        <div class="md:col-span-8 flex flex-col gap-2.5">
+          <!-- Dedicated ⭐ PRO BRAND SHOWCASE & PROMO DROP Rack (Sponsor-Ready for Bauer / CCM / Warrior / True) -->
+          <div id="proShopBrandShowcaseRack" class="p-3 rounded-2xl bg-gradient-to-r from-slate-950 via-cyan-950/40 to-slate-950 border-2 border-amber-400/80 shadow-[0_0_24px_rgba(245,158,11,0.18)]"></div>
 
-          <div id="proShopItemsGrid" class="grid grid-cols-1 gap-2 max-h-[340px] overflow-y-auto pr-1"></div>
+          <!-- Wall Pegboard Grid of Large 75%-Realistic Product Mount Cards -->
+          <div id="proShopItemsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[360px] overflow-y-auto pr-1"></div>
         </div>
       </div>
 
       <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800">
-        <button id="btnOpenCustomAvatarFromShop" type="button" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-300 font-bold text-xs transition">
-          ✏️ Edit Hair / Skin / Jersey Nameplate
+        <button id="btnOpenCustomAvatarFromShop" type="button" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-cyan-400/40 text-cyan-200 font-black text-xs transition">
+          🎽 Open My Locker Room Stall
         </button>
         <div class="flex items-center gap-2">
-          <button id="btnShopSaveExitLobby" type="button" class="px-3.5 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/60 text-cyan-200 font-black text-xs transition">
-            💾 Save &amp; Exit to Lobby
+          <button id="btnCloseProShopBottom" type="button" class="px-4 py-2 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black text-xs transition shadow">
+            🏒 Done Shopping
           </button>
-          <button id="btnCloseProShopBottom" type="button" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs transition">Back to the Ice</button>
         </div>
       </div>
     </div>
@@ -4133,43 +4320,44 @@
     };
 
     // =========================================================================
-    // ALL 32 NHL TEAM CITIES ON THE USA & CANADA TOUR MAP
-    // Each city requires 80% (440 / 550 IQ Points) and teaches a progressive concept!
+    // ALL 32 NHL TEAM CITIES ON THE GEOGRAPHICALLY ACCURATE USA & CANADA MAP
+    // Each city sits inside its true U.S. State or Canadian Province and requires 80% IQ!
     // =========================================================================
     const NHL_CITIES = [
-      { id: 'sanjose',      name: 'San Jose',      team: 'Sharks',            x: 84,  y: 285, focus: 'basics',     minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'anaheim',      name: 'Anaheim',       team: 'Ducks',             x: 136, y: 416, focus: 'basics',     minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'losangeles',   name: 'Los Angeles',   team: 'Kings',             x: 96,  y: 356, focus: 'spacing',    minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'seattle',      name: 'Seattle',       team: 'Kraken',            x: 112, y: 205, focus: 'spacing',    minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'vancouver',    name: 'Vancouver',     team: 'Canucks',           x: 146, y: 138, focus: 'house',      minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
-      { id: 'calgary',      name: 'Calgary',       team: 'Flames',            x: 242, y: 168, focus: 'house',      minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'edmonton',     name: 'Edmonton',      team: 'Oilers',            x: 278, y: 105, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'vegas',        name: 'Las Vegas',     team: 'Golden Knights',    x: 196, y: 342, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'utah',         name: 'Salt Lake',     team: 'Utah HC',           x: 256, y: 274, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
-      { id: 'denver',       name: 'Denver',        team: 'Avalanche',         x: 346, y: 298, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'dallas',       name: 'Dallas',        team: 'Stars',             x: 432, y: 418, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'winnipeg',     name: 'Winnipeg',      team: 'Jets',              x: 428, y: 148, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
-      { id: 'stpaul',       name: 'St. Paul',      team: 'Wild',              x: 492, y: 218, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
-      { id: 'stlouis',      name: 'St. Louis',     team: 'Blues',             x: 522, y: 326, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'chicago',      name: 'Chicago',       team: 'Blackhawks',        x: 568, y: 254, focus: 'spacing',    minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
-      { id: 'nashville',    name: 'Nashville',     team: 'Predators',         x: 594, y: 374, focus: 'house',      minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'detroit',      name: 'Detroit',       team: 'Red Wings',         x: 636, y: 226, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
-      { id: 'columbus',     name: 'Columbus',      team: 'Blue Jackets',      x: 648, y: 304, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'toronto',      name: 'Toronto',       team: 'Maple Leafs',       x: 696, y: 184, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
-      { id: 'ottawa',       name: 'Ottawa',        team: 'Senators',          x: 748, y: 136, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
-      { id: 'montreal',     name: 'Montreal',      team: 'Canadiens',         x: 828, y: 122, focus: 'house',      minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'boston',       name: 'Boston',        team: 'Bruins',            x: 916, y: 178, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
-      { id: 'buffalo',      name: 'Buffalo',       team: 'Sabres',            x: 738, y: 222, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
-      { id: 'nyrangers',    name: 'New York',      team: 'Rangers',           x: 842, y: 224, focus: 'transition', minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
-      { id: 'nyislanders',  name: 'Long Island',   team: 'Islanders',         x: 924, y: 248, focus: 'transition', minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'newjersey',    name: 'New Jersey',    team: 'Devils',            x: 856, y: 284, focus: 'transition', minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'philadelphia', name: 'Philadelphia',  team: 'Flyers',            x: 786, y: 318, focus: 'transition', minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'pittsburgh',   name: 'Pittsburgh',    team: 'Penguins',          x: 718, y: 274, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
-      { id: 'washington',   name: 'Washington',    team: 'Capitals',          x: 742, y: 358, focus: 'spacing',    minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'carolina',     name: 'Raleigh',       team: 'Hurricanes',        x: 792, y: 404, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
-      { id: 'tampabay',     name: 'Tampa Bay',     team: 'Lightning',         x: 696, y: 454, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
-      { id: 'florida',      name: 'Florida 🏆',    team: 'Stanley Cup Final', x: 788, y: 478, focus: 'all',        minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' }
+      { id: 'sanjose',      name: 'San Jose',      team: 'Sharks',            stateOrProvince: 'CA', x: 112, y: 312, focus: 'basics',     minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'anaheim',      name: 'Anaheim',       team: 'Ducks',             stateOrProvince: 'CA', x: 154, y: 382, focus: 'basics',     minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'losangeles',   name: 'Los Angeles',   team: 'Kings',             stateOrProvince: 'CA', x: 132, y: 362, focus: 'spacing',    minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'seattle',      name: 'Seattle',       team: 'Kraken',            stateOrProvince: 'WA', x: 132, y: 188, focus: 'spacing',    minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'vancouver',    name: 'Vancouver',     team: 'Canucks',           stateOrProvince: 'BC', x: 128, y: 156, focus: 'house',      minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'calgary',      name: 'Calgary',       team: 'Flames',            stateOrProvince: 'AB', x: 242, y: 152, focus: 'house',      minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'edmonton',     name: 'Edmonton',      team: 'Oilers',            stateOrProvince: 'AB', x: 252, y: 116, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'vegas',        name: 'Las Vegas',     team: 'Golden Knights',    stateOrProvince: 'NV', x: 198, y: 334, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'utah',         name: 'Salt Lake',     team: 'Utah HC',           stateOrProvince: 'UT', x: 264, y: 294, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'denver',       name: 'Denver',        team: 'Avalanche',         stateOrProvince: 'CO', x: 348, y: 304, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'dallas',       name: 'Dallas',        team: 'Stars',             stateOrProvince: 'TX', x: 452, y: 398, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'winnipeg',     name: 'Winnipeg',      team: 'Jets',              stateOrProvince: 'MB', x: 446, y: 156, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'stpaul',       name: 'St. Paul',      team: 'Wild',              stateOrProvince: 'MN', x: 498, y: 218, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'stlouis',      name: 'St. Louis',     team: 'Blues',             stateOrProvince: 'MO', x: 528, y: 312, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'chicago',      name: 'Chicago',       team: 'Blackhawks',        stateOrProvince: 'IL', x: 568, y: 256, focus: 'spacing',    minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'nashville',    name: 'Nashville',     team: 'Predators',         stateOrProvince: 'TN', x: 604, y: 344, focus: 'house',      minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'detroit',      name: 'Detroit',       team: 'Red Wings',         stateOrProvince: 'MI', x: 632, y: 238, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'columbus',     name: 'Columbus',      team: 'Blue Jackets',      stateOrProvince: 'OH', x: 642, y: 282, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'toronto',      name: 'Toronto',       team: 'Maple Leafs',       stateOrProvince: 'ON', x: 686, y: 204, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'ottawa',       name: 'Ottawa',        team: 'Senators',          stateOrProvince: 'ON', x: 734, y: 168, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'montreal',     name: 'Montreal',      team: 'Canadiens',         stateOrProvince: 'QC', x: 774, y: 154, focus: 'house',      minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'boston',       name: 'Boston',        team: 'Bruins',            stateOrProvince: 'MA', x: 838, y: 204, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'buffalo',      name: 'Buffalo',       team: 'Sabres',            stateOrProvince: 'NY', x: 706, y: 226, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'nyrangers',    name: 'New York',      team: 'Rangers',           stateOrProvince: 'NY', x: 782, y: 236, focus: 'transition', minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'nyislanders',  name: 'Long Island',   team: 'Islanders',         stateOrProvince: 'NY', x: 812, y: 242, focus: 'transition', minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'newjersey',    name: 'New Jersey',    team: 'Devils',            stateOrProvince: 'NJ', x: 766, y: 256, focus: 'transition', minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'philadelphia', name: 'Philadelphia',  team: 'Flyers',            stateOrProvince: 'PA', x: 746, y: 272, focus: 'transition', minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'pittsburgh',   name: 'Pittsburgh',    team: 'Penguins',          stateOrProvince: 'PA', x: 688, y: 268, focus: 'forecheck',  minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'washington',   name: 'Washington',    team: 'Capitals',          stateOrProvince: 'DC', x: 738, y: 306, focus: 'spacing',    minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'carolina',     name: 'Raleigh',       team: 'Hurricanes',        stateOrProvince: 'NC', x: 742, y: 368, focus: 'breakout',   minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' },
+      { id: 'tampabay',     name: 'Tampa Bay',     team: 'Lightning',         stateOrProvince: 'FL', x: 698, y: 458, focus: 'rush',       minIqPct: 80, labelDx: 0,   labelDy: -14, labelAnchor: 'middle' },
+      { id: 'florida',      name: 'Florida 🏆',    team: 'Stanley Cup Final', stateOrProvince: 'FL', x: 748, y: 484, focus: 'all',        minIqPct: 80, labelDx: 0,   labelDy: 16,  labelAnchor: 'middle' }
     ];
+    window.NHL_CITIES = NHL_CITIES;
 
     const AVATARS = ['🦅', '🏒', '🛡️', '🥅', '⚡', '🐻', '🔥', '❄️'];
 
@@ -4211,34 +4399,46 @@
       { id: 'red',     color: '#dc2626', label: 'Crimson Red' },
       { id: 'emerald', color: '#059669', label: 'Emerald Green' },
       { id: 'gold',    color: '#d97706', label: 'Vegas Gold' },
-      { id: 'stealth', color: '#1e293b', label: 'Stealth Black' },
+      { id: 'stealth', color: '#111827', label: 'Stealth Blackout' },
       { id: 'purple',  color: '#7c3aed', label: 'Royal Purple' }
     ];
 
     // =========================================================================
-    // PRO SHOP ITEMS (Spend PuckBucks to upgrade your skater's Gloves, Stick, Helmet, Visor, Skates, Celly)
+    // PRO SHOP ITEMS (Walk-In Wall-Style Hockey Store + Sponsor Promo Showcases)
     // =========================================================================
     const PRO_SHOP_ITEMS = [
-      { id: 'gloves-vapor',    category: 'Gloves', name: 'Vapor Pro-Stock 4-Roll Mitts',  cost: 120, color: '#0284c7', desc: '75%-realistic tapered pro-stock hockey gloves (Bauer / CCM sponsor ready)' },
-      { id: 'gloves-jetspeed', category: 'Gloves', name: 'JetSpeed Crimson Elite Mitts',  cost: 180, color: '#e11d48', desc: 'Lightweight pro nylon & anatomical cuff hockey gloves' },
-      { id: 'gloves-cyan',     category: 'Gloves', name: 'Synapz Electric Cyan Mitts',    cost: 240, color: '#06b6d4', desc: 'Signature Synapz Hockey cyan-trimmed pro mitts' },
-      { id: 'gloves-gold',     category: 'Gloves', name: '24K All-Star Silky Mitts',      cost: 320, color: '#facc15', desc: 'Championship gold cuff & palm pro hockey gloves' },
-      { id: 'stick-neon',      category: 'Stick',  name: 'Neon Green Vapor Twig',         cost: 100, color: '#22c55e', desc: 'High-vis neon composite stick blade on your avatar & ice' },
-      { id: 'stick-gold',      category: 'Stick',  name: 'Gold One-Timer Pro Twig',       cost: 250, color: '#facc15', desc: 'Pure gold championship shaft & blade' },
-      { id: 'stick-cyan',      category: 'Stick',  name: 'Electric Cyan Sniper Twig',     cost: 400, color: '#06b6d4', desc: 'Pro-stock cyan low-kick sniper stick' },
-      { id: 'stick-crimson',   category: 'Stick',  name: 'Crimson Rocket Carbon Twig',    cost: 350, color: '#f43f5e', desc: 'Blazing red flex composite twig' },
-      { id: 'helmet-navy',     category: 'Helmet', name: 'Pro Navy Bucket',               cost: 120, color: '#1e3a8a', desc: 'Classic pro navy shell with ear loops' },
-      { id: 'helmet-gold',     category: 'Helmet', name: '24K Chrome Gold Bucket',        cost: 300, color: '#eab308', desc: 'Metallic gold championship helmet shell' },
-      { id: 'helmet-white',    category: 'Helmet', name: 'All-Star Whiteout Bucket',      cost: 180, color: '#f8fafc', desc: 'Clean icy white pro shell' },
-      { id: 'visor-tint',      category: 'Visor',  name: 'Mirrored Chrome Shield',        cost: 200, color: '#94a3b8', desc: 'Reflective silver pro visor shield on your helmet' },
-      { id: 'visor-blue',      category: 'Visor',  name: 'Ice Blue Prizm Shield',         cost: 260, color: '#38bdf8', desc: 'High-contrast sapphire tinted visor' },
-      { id: 'visor-gold',      category: 'Visor',  name: 'Sunset Gold Iridium Shield',    cost: 320, color: '#facc15', desc: 'Pro gold iridium tinted shield' },
-      { id: 'skate-silver',    category: 'Skates', name: 'Jet-Speed Chrome Steel',        cost: 150, color: '#e2e8f0', desc: 'Bright silver skate steel & on-ice halo' },
-      { id: 'skate-blue',      category: 'Skates', name: 'Electric Blue Runners',         cost: 300, color: '#38bdf8', desc: 'Glowing ice-blue skate runners & edge ring' },
-      { id: 'skate-gold',      category: 'Skates', name: 'Gold Championship Runners',     cost: 380, color: '#facc15', desc: '24K gold anodized blade holders & steel' },
-      { id: 'celly-sniper',    category: 'Celly',  name: 'One-Knee Sniper Celly',         cost: 250, color: '#f97316', desc: 'Unlocks custom Goal Lamp celebration banner' },
-      { id: 'celly-cup',       category: 'Celly',  name: 'Stanley Cup Raise Celly',       cost: 500, color: '#eab308', desc: 'Championship trophy celebration on goals' }
+      // WALL 1: WALL OF GLOVES (4-Roll Pro vs Tapered Vapor + Sponsor Promo Showcase)
+      { id: 'gloves-blackout-pro', category: 'Gloves', slot: 'gloves', icon: '🧤', style: '4-roll-blackout', isPromoShowcase: true, brandTag: '⭐ PRO BRAND SHOWCASE • BAUER / CCM PROMO DROP', name: 'Blackout Pro 4-Roll Gloves (Promo Drop)', cost: 280, color: '#111827', accentColor: '#00e5ff', desc: 'Stealth matte-black 4-Roll pro nylon mitts with electric-cyan cuff stitching & pro Clarino palm' },
+      { id: 'gloves-vapor',        category: 'Gloves', slot: 'gloves', icon: '🧤', style: 'tapered-vapor',   isPromoShowcase: false, brandTag: 'TAPERED VAPOR FIT • BAUER READY', name: 'Vapor Pro-Stock Tapered Mitts', cost: 120, color: '#0284c7', accentColor: '#f8fafc', desc: '75%-realistic tapered fit with anatomical 2-piece flex thumb & white cuff roll' },
+      { id: 'gloves-jetspeed',     category: 'Gloves', slot: 'gloves', icon: '🧤', style: '4-roll-pro',      isPromoShowcase: false, brandTag: 'PRO 4-ROLL FIT • CCM READY', name: 'JetSpeed Crimson 4-Roll Mitts', cost: 180, color: '#e11d48', accentColor: '#f8fafc', desc: 'Classic 4-Roll pro-stock volume fit with cable-mesh gussets & reinforced palm' },
+      { id: 'gloves-cyan',         category: 'Gloves', slot: 'gloves', icon: '🧤', style: 'tapered-vapor',   isPromoShowcase: false, brandTag: 'SYNAPZ PRO SERIES', name: 'Synapz Electric Cyan Mitts', cost: 240, color: '#06b6d4', accentColor: '#0f172a', desc: 'Signature Synapz Hockey cyan-trimmed pro mitts with high-grip digital palm' },
+      { id: 'gloves-gold',         category: 'Gloves', slot: 'gloves', icon: '🧤', style: '4-roll-pro',      isPromoShowcase: false, brandTag: 'ALL-STAR EDITION', name: '24K All-Star Silky Mitts', cost: 320, color: '#facc15', accentColor: '#0f172a', desc: 'Championship metallic gold cuff & segmented backhand rolls' },
+
+      // WALL 2: PRO STICK RACK (Carbon Weave, Kick-Point Band & Tape Job + Sponsor Promo Showcase)
+      { id: 'stick-carbon-pulse',  category: 'Stick',  slot: 'stick',  icon: '🏒', style: 'carbon-blackout', isPromoShowcase: true, brandTag: '⭐ UNRELEASED PROMO DROP • SPONSOR SHOWCASE', name: 'Pro Carbon Pulse Stick (Promo Drop)', cost: 320, color: '#0f172a', accentColor: '#00e5ff', tapeColor: '#0f172a', desc: 'Raw 18K exposed carbon-weave shaft, neon-cyan low-kick graphic band & pro blackout toe tape' },
+      { id: 'stick-neon',          category: 'Stick',  slot: 'stick',  icon: '🏒', style: 'low-kick-neon',   isPromoShowcase: false, brandTag: 'LOW-KICK RELEASE • BAUER / CCM READY', name: 'Neon Green Vapor Low-Kick Twig', cost: 100, color: '#22c55e', accentColor: '#0f172a', tapeColor: '#f8fafc', desc: 'High-vis neon green kick-point shaft with crisp white heel-to-toe cloth tape job' },
+      { id: 'stick-gold',          category: 'Stick',  slot: 'stick',  icon: '🏒', style: 'mid-kick-gold',   isPromoShowcase: false, brandTag: 'MID-KICK ONE-TIMER', name: 'Gold One-Timer Pro Twig', cost: 250, color: '#facc15', accentColor: '#0f172a', tapeColor: '#0f172a', desc: 'Heavy-shot championship gold carbon shaft with pro black friction blade tape' },
+      { id: 'stick-cyan',          category: 'Stick',  slot: 'stick',  icon: '🏒', style: 'hybrid-cyan',     isPromoShowcase: false, brandTag: 'SYNAPZ PRO SERIES', name: 'Electric Cyan Sniper Twig', cost: 400, color: '#06b6d4', accentColor: '#f8fafc', tapeColor: '#f8fafc', desc: 'Pro-stock cyan hybrid-kick sniper stick with stiff carbon hosel' },
+      { id: 'stick-crimson',       category: 'Stick',  slot: 'stick',  icon: '🏒', style: 'mid-kick-red',    isPromoShowcase: false, brandTag: 'POWER FLEX SERIES', name: 'Crimson Rocket Carbon Twig', cost: 350, color: '#f43f5e', accentColor: '#f8fafc', tapeColor: '#0f172a', desc: 'Blazing red 3K carbon-weave composite twig with tack-grip shaft' },
+
+      // WALL 3: WALL OF SKATES (Quarter Package, Tendon Guard, Holder & Steel Runner + Sponsor Promo Showcase)
+      { id: 'skate-ridgecore-dlc', category: 'Skates', slot: 'skates', icon: '⛸️', style: 'black-steel',     isPromoShowcase: true, brandTag: '⭐ PRO BRAND SHOWCASE • DLC BLACK-STEEL', name: 'Elite Ridgecore Black-Steel Skates (Promo)', cost: 340, color: '#1e293b', accentColor: '#00e5ff', steelColor: '#0f172a', desc: 'One-piece carbon boot quarter-package, flexible tendon guard & DLC black-oxide steel runners' },
+      { id: 'skate-silver',        category: 'Skates', slot: 'skates', icon: '⛸️', style: 'chrome-steel',    isPromoShowcase: false, brandTag: 'PRO MIRROR STEEL • BAUER / CCM READY', name: 'Jet-Speed Mirror Chrome Skates', cost: 150, color: '#e2e8f0', accentColor: '#0284c7', steelColor: '#f8fafc', desc: 'Thermoformable pro composite boot with quick-release white holder & mirror-polished steel' },
+      { id: 'skate-blue',          category: 'Skates', slot: 'skates', icon: '⛸️', style: 'blue-steel',      isPromoShowcase: false, brandTag: 'ANODIZED EDGE SERIES', name: 'Electric Blue Runner Skates', cost: 300, color: '#38bdf8', accentColor: '#0f172a', steelColor: '#38bdf8', desc: 'Pro carbon quarter-package with glowing ice-blue anodized steel runners' },
+      { id: 'skate-gold',          category: 'Skates', slot: 'skates', icon: '⛸️', style: 'gold-steel',      isPromoShowcase: false, brandTag: 'CHAMPIONSHIP TITANIUM', name: '24K Gold Titanium Steel Skates', cost: 380, color: '#facc15', accentColor: '#0f172a', steelColor: '#facc15', desc: '24K gold titanium-nitride coated steel runners & pro white felt tongue' },
+
+      // WALL 4: VISORS & BUCKETS (Clear, Smoke-Blackout, Blue-Iridium, Gold-Iridium & Chrome Cage + Sponsor Promo Showcase)
+      { id: 'visor-smoke-blackout', category: 'Visor', slot: 'visor',  icon: '🥽', style: 'smoke-blackout',  isPromoShowcase: true, brandTag: '⭐ PRO BRAND SHOWCASE • DARK SMOKE TINT', name: 'Smoke-Blackout Pro Visor Shield (Promo)', cost: 260, color: '#111827', accentColor: '#00e5ff', desc: 'Pro dark-smoke blackout polycarbonate shield with anti-fog coating & temple hardware' },
+      { id: 'visor-tint',           category: 'Visor', slot: 'visor',  icon: '🥽', style: 'chrome-cage',     isPromoShowcase: false, brandTag: 'MIRRORED CHROME / CAGE', name: 'Mirrored Chrome Shield & Pro Cage', cost: 200, color: '#94a3b8', accentColor: '#f8fafc', desc: 'Reflective silver pro visor shield with high-impact titanium cage bars' },
+      { id: 'visor-blue',           category: 'Visor', slot: 'visor',  icon: '🥽', style: 'blue-iridium',    isPromoShowcase: false, brandTag: 'ICE BLUE PRIZM OPTICS', name: 'Ice Blue Iridium Shield', cost: 260, color: '#38bdf8', accentColor: '#0284c7', desc: 'High-contrast sapphire blue iridium tinted shield over skater eyes' },
+      { id: 'visor-gold',           category: 'Visor', slot: 'visor',  icon: '🥽', style: 'gold-iridium',    isPromoShowcase: false, brandTag: 'SUNSET GOLD IRIDIUM', name: 'Sunset Gold Iridium Shield', cost: 320, color: '#facc15', accentColor: '#d97706', desc: 'Pro gold iridium mirrored shield with anti-glare arena optics' },
+      { id: 'helmet-navy',          category: 'Helmet', slot: 'helmet', icon: '⛑️', style: 'bucket-navy',    isPromoShowcase: false, brandTag: 'PRO VTX BUCKET', name: 'Pro Navy Aero Bucket', cost: 120, color: '#1e3a8a', accentColor: '#38bdf8', desc: 'Classic pro navy multi-vent shell with ear loops & occipital lock' },
+      { id: 'helmet-gold',          category: 'Helmet', slot: 'helmet', icon: '⛑️', style: 'bucket-gold',    isPromoShowcase: false, brandTag: 'ALL-STAR CHROME BUCKET', name: '24K Chrome Gold Bucket', cost: 300, color: '#eab308', accentColor: '#fef08a', desc: 'Metallic gold championship helmet shell with dual-ridge crown vents' },
+      { id: 'helmet-white',         category: 'Helmet', slot: 'helmet', icon: '⛑️', style: 'bucket-white',   isPromoShowcase: false, brandTag: 'CLEAN WHITEOUT BUCKET', name: 'All-Star Whiteout Bucket', cost: 180, color: '#f8fafc', accentColor: '#94a3b8', desc: 'Clean icy white pro shell with dark contrast ventilation ports' },
+      { id: 'celly-sniper',         category: 'Celly',  slot: 'celly',  icon: '🚨', style: 'celly-sniper',   isPromoShowcase: false, brandTag: 'GOAL CELLY', name: 'One-Knee Sniper Celly', cost: 250, color: '#f97316', accentColor: '#fde047', desc: 'Unlocks custom Goal Lamp celebration banner' },
+      { id: 'celly-cup',            category: 'Celly',  slot: 'celly',  icon: '🏆', style: 'celly-cup',      isPromoShowcase: false, brandTag: 'STANLEY CUP CELLY', name: 'Stanley Cup Raise Celly', cost: 500, color: '#eab308', accentColor: '#f8fafc', desc: 'Championship trophy celebration on goals' }
     ];
+    window.PRO_SHOP_ITEMS = PRO_SHOP_ITEMS;
 
     // =========================================================================
     // SEAT 9: CLOUD VIDEO LIBRARY (`public.tactix_video_library` & `public.tactix_video_channels`)
@@ -8353,192 +8553,300 @@
     window.toggleAvatarAutoSpin = toggleAvatarAutoSpin;
 
     // =========================================================================
-    // 360° 3D-SPINNABLE CUSTOM AVATAR ENGINE (Boy, Girl, Animals + Back Jersey Nameplate + Shop Gear!)
+    // 75%-REALISTIC / 25%-STYLIZED YOUNG HOCKEY PLAYER AVATAR ENGINE
+    // (`renderYoungHockeyPlayerAvatar` & `render3dAvatarSvg`)
+    // Real-Time Visibly Worn Equipment: Gloves (4-Roll vs Vapor), Stick (Carbon Weave + Tape),
+    // Helmet & Visor (Smoke-Blackout / Blue-Iridium / Gold / Cage), Skates (Quarter + Steel), & Jersey!
     // =========================================================================
-    function render3dAvatarSvg(prof, angleDeg = 0, previewItem = null) {
+    function resolveEquippedItemColor(val, category, fallbackHex) {
+      if (!val) return fallbackHex;
+      if (String(val).startsWith('#')) return val;
+      const found = PRO_SHOP_ITEMS.find(i => i.id === val || (i.category === category && i.style === val));
+      return (found && found.color) || fallbackHex;
+    }
+
+    function resolveEquippedItemMeta(val, category) {
+      if (!val) return null;
+      return PRO_SHOP_ITEMS.find(i => i.id === val || (i.category === category && i.color === val)) || null;
+    }
+
+    function renderYoungHockeyPlayerAvatar(prof, angleDeg = 0, previewItem = null) {
       const p = JSON.parse(JSON.stringify(prof || {}));
       ensureProfileAvatarDefaults(p);
       if (previewItem) {
-        if (previewItem.category === 'Gloves') p.equippedGloves = previewItem.color;
-        if (previewItem.category === 'Stick') p.equippedStick = previewItem.color;
-        if (previewItem.category === 'Helmet') p.equippedHelmet = previewItem.color;
-        if (previewItem.category === 'Visor') p.equippedVisor = previewItem.color;
-        if (previewItem.category === 'Skates') p.equippedSkate = previewItem.color;
+        if (previewItem.category === 'Gloves') { p.equippedGloves = previewItem.color; p.equippedGlovesId = previewItem.id; }
+        if (previewItem.category === 'Stick')  { p.equippedStick = previewItem.color;  p.equippedStickId = previewItem.id; }
+        if (previewItem.category === 'Helmet') { p.equippedHelmet = previewItem.color; p.equippedHelmetId = previewItem.id; }
+        if (previewItem.category === 'Visor')  { p.equippedVisor = previewItem.color;  p.equippedVisorId = previewItem.id; }
+        if (previewItem.category === 'Skates') { p.equippedSkate = previewItem.color;  p.equippedSkatesId = previewItem.id; }
       }
 
       const rawAngle = Number.isFinite(Number(angleDeg)) ? Number(angleDeg) : 0;
       window.avatar3dAngle = rawAngle;
       const normAngle = ((rawAngle % 360) + 360) % 360;
       const rad = (normAngle * Math.PI) / 180;
-      const cosA = Math.cos(rad); // >= 0 is Front, < 0 is Back!
-      const sinA = Math.sin(rad); // Lateral 3D parallax offset
+      const cosA = Math.cos(rad);
+      const sinA = Math.sin(rad);
       const isBack = cosA < 0;
-      const bodyTurnX = sinA * 10;
-      const faceShiftX = sinA * 14;
-      const bodyScaleX = 0.82 + Math.abs(cosA) * 0.18;
+      const bodyTurnX = sinA * 9;
+      const faceShiftX = sinA * 11;
 
       const skin = p.skinTone || '#fdba74';
-      const hairCol = p.hairColor || '#eab308';
+      const hairCol = p.hairColor || '#78350f';
       const jerseyCol = p.jerseyColor || '#0284c7';
-      const glovesCol = p.equippedGloves || '#0284c7';
-      const helmetCol = (!p.equippedHelmet || p.equippedHelmet === '#0f172a') ? '#1e3a8a' : p.equippedHelmet;
-      const visorCol = (!p.equippedVisor || p.equippedVisor === 'clear') ? '#38bdf8' : p.equippedVisor;
-      const stickCol = (!p.equippedStick || p.equippedStick === '#1e293b') ? '#facc15' : p.equippedStick;
-      const skateCol = p.equippedSkate || '#e2e8f0';
-      const lastName = (p.lastName || 'LARSON').toUpperCase().slice(0, 10);
-      const isAnimal = ['hawk', 'bear', 'wolf', 'shark'].includes(p.avatarType);
+      const glovesMeta = resolveEquippedItemMeta(p.equippedGlovesId || p.equippedGloves, 'Gloves');
+      const stickMeta  = resolveEquippedItemMeta(p.equippedStickId || p.equippedStick, 'Stick');
+      const helmetMeta = resolveEquippedItemMeta(p.equippedHelmetId || p.equippedHelmet, 'Helmet');
+      const visorMeta  = resolveEquippedItemMeta(p.equippedVisorId || p.equippedVisor, 'Visor');
+      const skateMeta  = resolveEquippedItemMeta(p.equippedSkatesId || p.equippedSkate, 'Skates');
 
-      // Head / Face / Animal Mascot SVG
-      let headFeatures = '';
-      if (!isBack) {
-        if (p.avatarType === 'hawk') {
-          headFeatures = `
-            <circle cx="${80 + faceShiftX * 0.5}" cy="58" r="22" fill="#92400e" stroke="#020617" stroke-width="2.5"/>
-            <polygon points="${80 + faceShiftX - 6},58 ${80 + faceShiftX + 6},58 ${80 + faceShiftX},70" fill="#facc15" stroke="#020617" stroke-width="2"/>
-            <circle cx="${73 + faceShiftX * 0.6}" cy="53" r="3.5" fill="#ffffff"/><circle cx="${73 + faceShiftX * 0.6}" cy="53" r="1.8" fill="#020617"/>
-            <circle cx="${87 + faceShiftX * 0.6}" cy="53" r="3.5" fill="#ffffff"/><circle cx="${87 + faceShiftX * 0.6}" cy="53" r="1.8" fill="#020617"/>
-          `;
-        } else if (p.avatarType === 'bear') {
-          headFeatures = `
-            <circle cx="${63 + faceShiftX * 0.4}" cy="40" r="7" fill="#78350f" stroke="#020617" stroke-width="2"/>
-            <circle cx="${97 + faceShiftX * 0.4}" cy="40" r="7" fill="#78350f" stroke="#020617" stroke-width="2"/>
-            <circle cx="${80 + faceShiftX * 0.5}" cy="58" r="22" fill="#92400e" stroke="#020617" stroke-width="2.5"/>
-            <ellipse cx="${80 + faceShiftX * 0.7}" cy="63" rx="9" ry="7" fill="#fde68a"/>
-            <ellipse cx="${80 + faceShiftX * 0.8}" cy="60" rx="4" ry="2.8" fill="#020617"/>
-            <circle cx="${72 + faceShiftX * 0.6}" cy="53" r="3" fill="#020617"/>
-            <circle cx="${88 + faceShiftX * 0.6}" cy="53" r="3" fill="#020617"/>
-          `;
-        } else if (p.avatarType === 'wolf') {
-          headFeatures = `
-            <polygon points="${60 + faceShiftX * 0.3},44 ${66 + faceShiftX * 0.3},26 ${74 + faceShiftX * 0.3},42" fill="#64748b" stroke="#020617" stroke-width="2"/>
-            <polygon points="${100 + faceShiftX * 0.3},44 ${94 + faceShiftX * 0.3},26 ${86 + faceShiftX * 0.3},42" fill="#64748b" stroke="#020617" stroke-width="2"/>
-            <circle cx="${80 + faceShiftX * 0.5}" cy="58" r="22" fill="#64748b" stroke="#020617" stroke-width="2.5"/>
-            <polygon points="${71 + faceShiftX * 0.6},58 ${89 + faceShiftX * 0.6},58 ${80 + faceShiftX * 0.8},72" fill="#e2e8f0" stroke="#020617" stroke-width="1.5"/>
-            <circle cx="${80 + faceShiftX * 0.8}" cy="64" r="3" fill="#020617"/>
-            <circle cx="${72 + faceShiftX * 0.6}" cy="52" r="3.2" fill="#facc15"/><circle cx="${72 + faceShiftX * 0.6}" cy="52" r="1.5" fill="#020617"/>
-            <circle cx="${88 + faceShiftX * 0.6}" cy="52" r="3.2" fill="#facc15"/><circle cx="${88 + faceShiftX * 0.6}" cy="52" r="1.5" fill="#020617"/>
-          `;
-        } else if (p.avatarType === 'shark') {
-          headFeatures = `
-            <polygon points="${76},22 ${86},22 ${80},38" fill="#0284c7" stroke="#020617" stroke-width="2"/>
-            <circle cx="${80 + faceShiftX * 0.5}" cy="58" r="22" fill="#0284c7" stroke="#020617" stroke-width="2.5"/>
-            <path d="M ${66 + faceShiftX * 0.5} 64 Q ${80 + faceShiftX * 0.6} 75 ${94 + faceShiftX * 0.5} 64 Z" fill="#f8fafc" stroke="#020617" stroke-width="1.5"/>
-            <circle cx="${72 + faceShiftX * 0.6}" cy="52" r="3.2" fill="#ffffff"/><circle cx="${72 + faceShiftX * 0.6}" cy="52" r="1.6" fill="#020617"/>
-            <circle cx="${88 + faceShiftX * 0.6}" cy="52" r="3.2" fill="#ffffff"/><circle cx="${88 + faceShiftX * 0.6}" cy="52" r="1.6" fill="#020617"/>
-          `;
-        } else {
-          // Boy or Girl human skater face
-          const eyelashes = p.avatarType === 'girl'
-            ? `<path d="M ${68 + faceShiftX * 0.6} 50 L ${65 + faceShiftX * 0.6} 48 M ${92 + faceShiftX * 0.6} 50 L ${95 + faceShiftX * 0.6} 48" stroke="#020617" stroke-width="2" stroke-linecap="round"/>`
-            : '';
-          headFeatures = `
-            <circle cx="${80 + faceShiftX * 0.5}" cy="58" r="21" fill="${skin}" stroke="#020617" stroke-width="2.5"/>
-            ${eyelashes}
-            <circle cx="${73 + faceShiftX * 0.6}" cy="54" r="3.2" fill="#ffffff"/><circle cx="${73 + faceShiftX * 0.6}" cy="54" r="1.7" fill="#020617"/>
-            <circle cx="${87 + faceShiftX * 0.6}" cy="54" r="3.2" fill="#ffffff"/><circle cx="${87 + faceShiftX * 0.6}" cy="54" r="1.7" fill="#020617"/>
-            <path d="M ${74 + faceShiftX * 0.6} 65 Q ${80 + faceShiftX * 0.6} 70 ${86 + faceShiftX * 0.6} 65" fill="none" stroke="#020617" stroke-width="2.4" stroke-linecap="round"/>
-          `;
-        }
-      } else {
-        // Back of head
-        headFeatures = `<circle cx="${80 - faceShiftX * 0.3}" cy="58" r="21" fill="${isAnimal ? '#475569' : skin}" stroke="#020617" stroke-width="2.5"/>`;
-      }
+      const glovesCol = resolveEquippedItemColor(p.equippedGloves, 'Gloves', '#0284c7');
+      const glovesAccent = (glovesMeta && glovesMeta.accentColor) || (glovesCol === '#111827' ? '#00e5ff' : '#f8fafc');
+      const glovesStyle = (glovesMeta && glovesMeta.style) || (glovesCol === '#111827' ? '4-roll-blackout' : 'tapered-vapor');
 
-      // Hair / Flow SVG (visible sticking out from helmet on front & back!)
-      let hairSvg = '';
-      if (!isAnimal) {
-        if (p.hairStyle === 'flow') {
-          hairSvg = `<path d="M 55 55 Q 48 68 54 76 L 64 72 Z M 105 55 Q 112 68 106 76 L 96 72 Z ${isBack ? 'M 60 54 Q 80 78 100 54 L 104 74 Q 80 84 56 74 Z' : ''}" fill="${hairCol}" stroke="#020617" stroke-width="2"/>`;
-        } else if (p.hairStyle === 'ponytail') {
-          hairSvg = `<path d="M 56 54 Q 45 66 50 78 Q 56 76 60 66 Z M 104 54 Q 115 66 110 78 Q 104 76 100 66 Z ${isBack ? 'M 75 56 Q 80 92 88 90 Q 94 74 84 56 Z' : ''}" fill="${hairCol}" stroke="#020617" stroke-width="2"/>`;
-        } else if (p.hairStyle === 'braids') {
-          hairSvg = `<rect x="52" y="56" width="7" height="24" rx="3.5" fill="${hairCol}" stroke="#020617" stroke-width="2"/><rect x="101" y="56" width="7" height="24" rx="3.5" fill="${hairCol}" stroke="#020617" stroke-width="2"/>`;
-        } else if (p.hairStyle === 'spiky') {
-          hairSvg = `<polygon points="56,52 50,62 60,62" fill="${hairCol}"/><polygon points="104,52 110,62 100,62" fill="${hairCol}"/>`;
-        }
-      }
+      const stickCol = resolveEquippedItemColor(p.equippedStick, 'Stick', '#22c55e');
+      const stickAccent = (stickMeta && stickMeta.accentColor) || '#00e5ff';
+      const bladeTapeCol = (stickMeta && stickMeta.tapeColor) || (stickCol === '#0f172a' || stickCol === '#111827' ? '#0f172a' : '#f8fafc');
 
-      // Helmet & Visor Shield
-      const helmetSvg = `
-        <path d="M ${57 + faceShiftX * 0.25} 50 C ${57 + faceShiftX * 0.25} 26, ${103 + faceShiftX * 0.25} 26, ${103 + faceShiftX * 0.25} 50 ${isBack ? 'L 101 66 L 59 66' : ''} Z" fill="${helmetCol}" stroke="#020617" stroke-width="2.5"/>
-        <rect x="${72 + faceShiftX * 0.3}" y="31" width="16" height="7" rx="2" fill="#f59e0b" stroke="#020617" stroke-width="1.5"/>
-        <text x="${80 + faceShiftX * 0.3}" y="36.5" fill="#020617" font-size="5.5" font-weight="900" text-anchor="middle">#9</text>
+      const helmetCol = resolveEquippedItemColor(p.equippedHelmet, 'Helmet', '#1e3a8a');
+      const visorCol = (!p.equippedVisor || p.equippedVisor === 'clear') ? '#38bdf8' : resolveEquippedItemColor(p.equippedVisor, 'Visor', '#38bdf8');
+      const visorStyle = (visorMeta && visorMeta.style) || (visorCol === '#111827' ? 'smoke-blackout' : (visorCol === '#94a3b8' ? 'chrome-cage' : 'blue-iridium'));
+
+      const skateCol = resolveEquippedItemColor(p.equippedSkate || p.equippedSkates, 'Skates', '#e2e8f0');
+      const steelCol = (skateMeta && skateMeta.steelColor) || skateCol;
+
+      const jNum = String(p.jerseyNumber || (p.id === 'rhett' ? 88 : (p.id === 'whelan' ? 7 : (p.id === 'cohen' ? 14 : 9))));
+      const lastName = (p.lastName || 'BEKKEDAHL').toUpperCase().slice(0, 10);
+      const isLeftShot = !String(p.hand || 'L').toUpperCase().startsWith('R');
+      const isBlackoutLoadout = (jerseyCol === '#111827' || jerseyCol === '#0f172a') && (glovesCol === '#111827' || glovesCol === '#0f172a');
+
+      window._lastRenderedYoungPlayerAvatar = {
+        style: '75%-realistic-25%-cartoon-edge',
+        profileId: p.id || 'miles',
+        name: p.name || 'Miles',
+        jerseyNumber: jNum,
+        jerseyColor: jerseyCol,
+        glovesId: p.equippedGlovesId || (glovesMeta && glovesMeta.id) || 'gloves-cyan-dangler',
+        glovesColor: glovesCol,
+        glovesStyle,
+        stickId: p.equippedStickId || (stickMeta && stickMeta.id) || 'stick-gold-pro',
+        stickColor: stickCol,
+        bladeTapeColor: bladeTapeCol,
+        helmetColor: helmetCol,
+        visorId: p.equippedVisorId || (visorMeta && visorMeta.id) || 'visor-blue-iridium',
+        visorColor: visorCol,
+        visorStyle,
+        skatesId: p.equippedSkates || (skateMeta && skateMeta.id) || 'skate-tuuk-cyan',
+        skateColor: skateCol,
+        steelColor: steelCol,
+        isBlackoutLoadout
+      };
+
+      const hx = 110 + faceShiftX * 0.45;
+      const tx = 110 + bodyTurnX * 0.35;
+
+      // 1. Hair / Hockey Flow peeking out under the bucket ear loops
+      const hairFlowSvg = `
+        <path d="M ${hx - 27} 62 C ${hx - 37} 72, ${hx - 35} 84, ${hx - 23} 86 C ${hx - 20} 79, ${hx - 21} 70, ${hx - 24} 64 Z" fill="${hairCol}" stroke="#020617" stroke-width="1.6"/>
+        <path d="M ${hx + 27} 62 C ${hx + 37} 72, ${hx + 35} 84, ${hx + 23} 86 C ${hx + 20} 79, ${hx + 21} 70, ${hx + 24} 64 Z" fill="${hairCol}" stroke="#020617" stroke-width="1.6"/>
+        ${p.hairStyle === 'ponytail' ? `<path d="M ${hx + 18} 68 Q ${hx + 38} 88 ${hx + 29} 102 Q ${hx + 19} 94 ${hx + 16} 76 Z" fill="${hairCol}" stroke="#020617" stroke-width="1.5"/>` : ''}
       `;
 
-      const visorSvg = (!isBack && visorCol)
-        ? `<path d="M ${60 + faceShiftX * 0.45} 47 Q ${80 + faceShiftX * 0.55} 52 ${100 + faceShiftX * 0.45} 47 L ${98 + faceShiftX * 0.45} 59 Q ${80 + faceShiftX * 0.55} 64 ${62 + faceShiftX * 0.45} 59 Z" fill="${visorCol}" fill-opacity="0.72" stroke="#f8fafc" stroke-width="2"/>`
-        : '';
+      // 2. Recognizable Young Hockey Player Face (75% realistic sculpted jaw/cheeks/eyes + 25% stylized edge)
+      const faceSvg = !isBack ? `
+        <!-- Neck & Base Compression Collar -->
+        <rect x="${hx - 9}" y="82" width="18" height="14" rx="5" fill="${skin}" stroke="#020617" stroke-width="1.6"/>
+        <path d="M ${hx - 14} 91 Q ${hx} 98 ${hx + 14} 91 L ${hx + 17} 97 L ${hx - 17} 97 Z" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+        <!-- Sculpted Young Skater Head & Jawline -->
+        <path d="M ${hx - 23} 52 C ${hx - 24} 34, ${hx + 24} 34, ${hx + 23} 52 C ${hx + 23} 69, ${hx + 15} 85, ${hx} 86 C ${hx - 15} 85, ${hx - 23} 69, ${hx - 23} 52 Z" fill="${skin}" stroke="#020617" stroke-width="2.1"/>
+        <!-- Cheekbone Warm Highlight & Chin Shadow -->
+        <ellipse cx="${hx - 12}" cy="66" rx="5.5" ry="3" fill="#f97316" fill-opacity="0.18"/>
+        <ellipse cx="${hx + 12}" cy="66" rx="5.5" ry="3" fill="#f97316" fill-opacity="0.18"/>
+        <!-- Athletic Eyebrows -->
+        <path d="M ${hx - 15} 52 Q ${hx - 9} 49.5 ${hx - 4} 52" fill="none" stroke="${hairCol}" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M ${hx + 4} 52 Q ${hx + 9} 49.5 ${hx + 15} 52" fill="none" stroke="${hairCol}" stroke-width="2.2" stroke-linecap="round"/>
+        <!-- Expressive Eyes with Iris & Specular Catchlight -->
+        <ellipse cx="${hx - 9.5}" cy="57.5" rx="4.2" ry="3.2" fill="#ffffff" stroke="#0f172a" stroke-width="1.2"/>
+        <circle cx="${hx - 9.2}" cy="57.5" r="2.2" fill="#1e293b"/>
+        <circle cx="${hx - 10}" cy="56.6" r="0.9" fill="#ffffff"/>
+        <ellipse cx="${hx + 9.5}" cy="57.5" rx="4.2" ry="3.2" fill="#ffffff" stroke="#0f172a" stroke-width="1.2"/>
+        <circle cx="${hx + 9.2}" cy="57.5" r="2.2" fill="#1e293b"/>
+        <circle cx="${hx + 8.4}" cy="56.6" r="0.9" fill="#ffffff"/>
+        <!-- Sculpted Nose Bridge -->
+        <path d="M ${hx - 1} 58 L ${hx - 2.2} 65.5 Q ${hx} 67 ${hx + 2.2} 65.5" fill="none" stroke="#9a3412" stroke-opacity="0.55" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Confident Game-Ready Smile -->
+        <path d="M ${hx - 7.5} 72.5 Q ${hx} 77.5 ${hx + 7.5} 72.5" fill="#ffffff" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round"/>
+        <!-- Pro Helmet Chin Cup & Strap -->
+        <path d="M ${hx - 21} 65 Q ${hx} 89 ${hx + 21} 65" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="3 1"/>
+        <rect x="${hx - 6.5}" y="81.5" width="13" height="5" rx="2.5" fill="#f8fafc" stroke="#0f172a" stroke-width="1.2"/>
+      ` : `
+        <rect x="${hx - 9}" y="82" width="18" height="14" rx="5" fill="${skin}" stroke="#020617" stroke-width="1.6"/>
+        <circle cx="${hx}" cy="59" r="23" fill="${skin}" stroke="#020617" stroke-width="2.1"/>
+        <path d="M ${hx - 22} 56 Q ${hx} 84 ${hx + 22} 56 L ${hx + 25} 82 Q ${hx} 92 ${hx - 25} 82 Z" fill="${hairCol}" stroke="#020617" stroke-width="1.8"/>
+      `;
 
-      // Jersey Torso: Front Crest vs. Back Nameplate (LAST NAME + #9)
-      const torsoW = Math.round(54 * bodyScaleX);
-      const torsoX = Math.round(80 - torsoW / 2 + bodyTurnX * 0.35);
-      let jerseyDetails = '';
-      if (!isBack) {
-        jerseyDetails = `
-          <!-- Front Jersey Stripes & Crest -->
-          <rect x="${torsoX}" y="110" width="${torsoW}" height="7" fill="#f8fafc" opacity="0.9"/>
-          <rect x="${torsoX}" y="114" width="${torsoW}" height="3.5" fill="#f59e0b"/>
-          <circle cx="${80 + bodyTurnX * 0.5}" cy="96" r="13" fill="#0f172a" stroke="#f59e0b" stroke-width="2.2"/>
-          <text x="${80 + bodyTurnX * 0.5}" y="101" fill="#ffffff" font-size="13" font-weight="900" text-anchor="middle">9</text>
-        `;
-      } else {
-        // BACK OF JERSEY: Stitched Nameplate with Player's LAST NAME + Huge #9!
-        const plateW = Math.max(42, torsoW - 4);
-        const plateX = Math.round(80 - plateW / 2 - bodyTurnX * 0.3);
-        jerseyDetails = `
-          <rect x="${torsoX}" y="112" width="${torsoW}" height="6" fill="#f8fafc" opacity="0.85"/>
-          <!-- Stitched Back Nameplate -->
-          <rect x="${plateX}" y="79" width="${plateW}" height="12" rx="2.5" fill="#f8fafc" stroke="#020617" stroke-width="1.8"/>
-          <text x="${80 - bodyTurnX * 0.3}" y="87.5" fill="#020617" font-size="${lastName.length > 7 ? '7' : '8.5'}" font-weight="900" text-anchor="middle" letter-spacing="0.5">${lastName}</text>
-          <!-- Large Back Jersey Number #9 -->
-          <text x="${80 - bodyTurnX * 0.35}" y="111" fill="#ffffff" stroke="#020617" stroke-width="1.5" font-size="22" font-weight="900" text-anchor="middle">9</text>
-        `;
-      }
+      // 3. Multi-Vent Pro Hockey Helmet Bucket & Visor Shield / Cage
+      const helmetAndVisorSvg = `
+        <!-- Pro Aero Helmet Shell with Crown Ridge & Ventilation Ports -->
+        <path d="M ${hx - 26} 53 C ${hx - 27} 23, ${hx + 27} 23, ${hx + 26} 53 L ${hx + 24} 61 Q ${hx + 18} 48 ${hx + 14} 47 L ${hx - 14} 47 Q ${hx - 18} 48 ${hx - 24} 61 Z" fill="${helmetCol}" stroke="#020617" stroke-width="2.2"/>
+        <!-- Helmet Crown Vent Slots -->
+        <rect x="${hx - 14}" y="31" width="8" height="3.2" rx="1.5" fill="#020617" opacity="0.65"/>
+        <rect x="${hx + 6}" y="31" width="8" height="3.2" rx="1.5" fill="#020617" opacity="0.65"/>
+        <!-- Front Helmet Number Badge -->
+        <rect x="${hx - 9}" y="36" width="18" height="8.5" rx="2.5" fill="#0f172a" stroke="#00e5ff" stroke-width="1.2"/>
+        <text x="${hx}" y="42.4" fill="#f8fafc" font-size="6.5" font-weight="900" text-anchor="middle">#${jNum}</text>
+        ${!isBack ? `
+          <!-- Pro Polycarbonate Visor Shield Over Eyes -->
+          <path d="M ${hx - 24} 47 Q ${hx} 52 ${hx + 24} 47 L ${hx + 22} 62.5 Q ${hx} 68 ${hx - 22} 62.5 Z"
+                fill="${visorStyle === 'smoke-blackout' ? '#090d16' : visorCol}"
+                fill-opacity="${visorStyle === 'smoke-blackout' ? '0.84' : '0.58'}"
+                stroke="${visorStyle === 'smoke-blackout' ? '#00e5ff' : '#f8fafc'}" stroke-width="1.8"/>
+          <!-- Visor Glare Reflection Streak -->
+          <path d="M ${hx - 17} 50 L ${hx - 7} 50 L ${hx - 12} 60 L ${hx - 20} 60 Z" fill="#ffffff" fill-opacity="0.32"/>
+          ${visorStyle === 'chrome-cage' ? `
+            <!-- Chrome Facial Cage Grid Overlay -->
+            <path d="M ${hx - 20} 50 L ${hx - 16} 81 M ${hx - 8} 49 L ${hx - 7} 83 M ${hx + 8} 49 L ${hx + 7} 83 M ${hx + 20} 50 L ${hx + 16} 81 M ${hx - 22} 58 L ${hx + 22} 58 M ${hx - 20} 67 L ${hx + 20} 67 M ${hx - 17} 75 L ${hx + 17} 75" stroke="#e2e8f0" stroke-width="1.25" opacity="0.85"/>
+          ` : ''}
+        ` : ''}
+      `;
+
+      // 4. Athletic Hockey Sweater (Jersey), Breezers (Pants), Socks & Contoured Shin Pads
+      const stripeAccent = isBlackoutLoadout ? '#00e5ff' : '#f8fafc';
+      const goldTrim = isBlackoutLoadout ? '#38bdf8' : '#f59e0b';
+      const jerseyTorsoSvg = `
+        <!-- Anatomical Hockey Breezers (Padded Shorts) with Belt & Leg Stripe -->
+        <path d="M ${tx - 31} 152 L ${tx + 31} 152 L ${tx + 35} 187 L ${tx + 5} 187 L ${tx} 173 L ${tx - 5} 187 L ${tx - 35} 187 Z" fill="#0f172a" stroke="#020617" stroke-width="2.4"/>
+        <line x1="${tx - 32}" y1="158" x2="${tx - 34}" y2="185" stroke="${stripeAccent}" stroke-width="2.5"/>
+        <line x1="${tx + 32}" y1="158" x2="${tx + 34}" y2="185" stroke="${stripeAccent}" stroke-width="2.5"/>
+        <!-- Contoured Hockey Shin-Pad Socks with Tape Bands -->
+        <path d="M ${tx - 30} 186 C ${tx - 33} 198, ${tx - 31} 210, ${tx - 28} 220 L ${tx - 11} 220 C ${tx - 9} 210, ${tx - 8} 198, ${tx - 11} 186 Z" fill="${jerseyCol}" stroke="#020617" stroke-width="2.1"/>
+        <rect x="${tx - 30.5}" y="198" width="20" height="4.5" fill="${stripeAccent}"/>
+        <rect x="${tx - 30}" y="204" width="19.5" height="2.8" fill="${goldTrim}"/>
+        <path d="M ${tx + 11} 186 C ${tx + 8} 198, ${tx + 9} 210, ${tx + 11} 220 L ${tx + 28} 220 C ${tx + 31} 210, ${tx + 33} 198, ${tx + 30} 186 Z" fill="${jerseyCol}" stroke="#020617" stroke-width="2.1"/>
+        <rect x="${tx + 10.5}" y="198" width="20" height="4.5" fill="${stripeAccent}"/>
+        <rect x="${tx + 10.5}" y="204" width="19.5" height="2.8" fill="${goldTrim}"/>
+
+        <!-- Broad Hockey Shoulder Pads & Sweater Torso -->
+        <path d="M ${tx - 40} 102 C ${tx - 40} 91, ${tx - 24} 88, ${tx - 14} 90 L ${tx + 14} 90 C ${tx + 24} 88, ${tx + 40} 91, ${tx + 40} 102 L ${tx + 48} 138 L ${tx + 33} 143 L ${tx + 30} 116 L ${tx + 31} 156 L ${tx - 31} 156 L ${tx - 30} 116 L ${tx - 33} 143 L ${tx - 48} 138 Z"
+              fill="${jerseyCol}" stroke="#020617" stroke-width="2.4" stroke-linejoin="round"/>
+        <!-- Shoulder Yoke Contrast Trim -->
+        <path d="M ${tx - 39} 101 C ${tx - 34} 91, ${tx - 20} 90, ${tx - 12} 92 L ${tx} 101 L ${tx + 12} 92 C ${tx + 20} 90, ${tx + 34} 91, ${tx + 39} 101 Z"
+              fill="#0f172a" fill-opacity="0.48" stroke="${stripeAccent}" stroke-width="1.3"/>
+        <!-- Subtle Jersey Fabric Folds -->
+        <path d="M ${tx - 18} 134 Q ${tx - 8} 140 ${tx - 14} 148 M ${tx + 16} 132 Q ${tx + 7} 139 ${tx + 13} 148" fill="none" stroke="#020617" stroke-opacity="0.28" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Sweater Waist Stripes -->
+        <rect x="${tx - 31}" y="143" width="62" height="5" fill="${stripeAccent}" opacity="0.92"/>
+        <rect x="${tx - 31}" y="149" width="62" height="3.5" fill="${goldTrim}"/>
+        <!-- Sleeve Stripes -->
+        <line x1="${tx - 44}" y1="126" x2="${tx - 32}" y2="130" stroke="${stripeAccent}" stroke-width="4"/>
+        <line x1="${tx + 44}" y1="126" x2="${tx + 32}" y2="130" stroke="${stripeAccent}" stroke-width="4"/>
+
+        ${!isBack ? `
+          <!-- V-Neck Hockey Collar & Skate Lace Tie -->
+          <polygon points="${tx - 11},91 ${tx + 11},91 ${tx},105" fill="#0f172a" stroke="${stripeAccent}" stroke-width="1.5"/>
+          <line x1="${tx - 4}" y1="95" x2="${tx + 4}" y2="95" stroke="#f8fafc" stroke-width="1.3"/>
+          <line x1="${tx - 3}" y1="98" x2="${tx + 3}" y2="98" stroke="#f8fafc" stroke-width="1.3"/>
+          <!-- SYNAPZ HOCKEY Chest Crest & Player Number -->
+          <circle cx="${tx}" cy="123" r="16.5" fill="#060b14" stroke="${goldTrim}" stroke-width="2.2"/>
+          <circle cx="${tx}" cy="123" r="13.5" fill="none" stroke="#00e5ff" stroke-width="1" stroke-dasharray="3 2"/>
+          <text x="${tx}" y="116" fill="#00e5ff" font-size="5.2" font-weight="900" text-anchor="middle" letter-spacing="0.6">SYNAPZ</text>
+          <text x="${tx}" y="131" fill="#ffffff" font-size="14.5" font-weight="900" text-anchor="middle">${jNum}</text>
+        ` : `
+          <!-- Stitched Back Jersey Nameplate & Pro Number -->
+          <rect x="${tx - 25}" y="99" width="50" height="12.5" rx="2.5" fill="#f8fafc" stroke="#020617" stroke-width="1.8"/>
+          <text x="${tx}" y="108" fill="#020617" font-size="${lastName.length > 7 ? '7.2' : '8.5'}" font-weight="900" text-anchor="middle" letter-spacing="0.5">${lastName}</text>
+          <text x="${tx}" y="137" fill="#ffffff" stroke="#020617" stroke-width="1.8" font-size="26" font-weight="900" text-anchor="middle">${jNum}</text>
+        `}
+      `;
+
+      // 5. Pro Skates (Quarter-Package Boot, Tendon Guard, White Felt Tongue, Holder & Steel Runner)
+      const skatesSvg = `
+        <!-- Left Skate Boot, Tendon Guard, Holder & Steel Runner -->
+        <rect x="${tx - 31}" y="216" width="19" height="15" rx="4" fill="#0f172a" stroke="${skateCol}" stroke-width="1.8"/>
+        <rect x="${tx - 26}" y="213" width="9" height="5" rx="2" fill="#f8fafc" stroke="#020617" stroke-width="1"/>
+        <path d="M ${tx - 33} 231 L ${tx - 10} 231 L ${tx - 12} 236 L ${tx - 31} 236 Z" fill="#e2e8f0" stroke="#020617" stroke-width="1.3"/>
+        <rect x="${tx - 35}" y="236" width="26" height="4.2" rx="2" fill="${steelCol}" stroke="#020617" stroke-width="1.4"/>
+
+        <!-- Right Skate Boot, Tendon Guard, Holder & Steel Runner -->
+        <rect x="${tx + 12}" y="216" width="19" height="15" rx="4" fill="#0f172a" stroke="${skateCol}" stroke-width="1.8"/>
+        <rect x="${tx + 17}" y="213" width="9" height="5" rx="2" fill="#f8fafc" stroke="#020617" stroke-width="1"/>
+        <path d="M ${tx + 10} 231 L ${tx + 33} 231 L ${tx + 31} 236 L ${tx + 12} 236 Z" fill="#e2e8f0" stroke="#020617" stroke-width="1.3"/>
+        <rect x="${tx + 9}" y="236" width="26" height="4.2" rx="2" fill="${steelCol}" stroke="#020617" stroke-width="1.4"/>
+      `;
+
+      // 6. Two-Handed Composite Stick Across Body + Segmented Pro Hockey Gloves (4-Roll vs Tapered Vapor)
+      const stickX1 = isLeftShot ? tx - 46 : tx + 46;
+      const stickY1 = 122;
+      const stickX2 = isLeftShot ? tx + 54 : tx - 54;
+      const stickY2 = 232;
+      const bladeTipX = isLeftShot ? stickX2 + 28 : stickX2 - 28;
+      const g1x = isLeftShot ? tx - 39 : tx + 39;
+      const g1y = 136;
+      const g2x = isLeftShot ? tx + 24 : tx - 24;
+      const g2y = 154;
+
+      const buildGloveSvg = (gx, gy, rotDeg) => `
+        <g transform="translate(${gx}, ${gy}) rotate(${rotDeg})">
+          <!-- Split Pro Cuff with Brand/Contrast Stitching -->
+          <rect x="-11" y="-12" width="22" height="9" rx="3" fill="${glovesCol}" stroke="${glovesAccent}" stroke-width="1.8"/>
+          <!-- Glove Body (4-Roll Segmented Rolls vs Tapered Vapor Backhand) -->
+          <rect x="-10" y="-3" width="20" height="15" rx="5" fill="${glovesCol}" stroke="#020617" stroke-width="1.8"/>
+          ${glovesStyle.includes('4-roll') ? `
+            <line x1="-8" y1="1" x2="8" y2="1" stroke="${glovesAccent}" stroke-width="1.3"/>
+            <line x1="-8" y1="5" x2="8" y2="5" stroke="${glovesAccent}" stroke-width="1.3"/>
+            <line x1="-8" y1="9" x2="8" y2="9" stroke="${glovesAccent}" stroke-width="1.3"/>
+          ` : `
+            <path d="M -7 0 L 0 9 L 7 0" fill="none" stroke="${glovesAccent}" stroke-width="1.6"/>
+          `}
+          <!-- Two-Piece Flex Thumb Guard -->
+          <ellipse cx="${isLeftShot ? 9 : -9}" cy="4" rx="4.2" ry="6.5" fill="${glovesCol}" stroke="${glovesAccent}" stroke-width="1.4"/>
+        </g>
+      `;
+
+      const stickAndGlovesSvg = `
+        <!-- Composite Hockey Stick Shaft with 3K Carbon Weave & Kick-Point Graphic Band -->
+        <line x1="${stickX1}" y1="${stickY1}" x2="${stickX2}" y2="${stickY2}" stroke="#020617" stroke-width="8.5" stroke-linecap="round"/>
+        <line x1="${stickX1}" y1="${stickY1}" x2="${stickX2}" y2="${stickY2}" stroke="${stickCol}" stroke-width="5.5" stroke-linecap="round"/>
+        <!-- Kick-Point Graphic Accent Band on Shaft -->
+        <line x1="${(stickX1 + stickX2) * 0.48}" y1="${(stickY1 + stickY2) * 0.48}" x2="${(stickX1 + stickX2) * 0.56}" y2="${(stickY1 + stickY2) * 0.56}" stroke="${stickAccent}" stroke-width="5.8" stroke-linecap="round"/>
+        <!-- Curved Composite Blade & Full Heel-to-Toe Tape Job -->
+        <path d="M ${stickX2} ${stickY2} Q ${(stickX2 + bladeTipX) * 0.5} ${stickY2 + 6} ${bladeTipX} ${stickY2 - 2} L ${bladeTipX} ${stickY2 - 11} Q ${(stickX2 + bladeTipX) * 0.5} ${stickY2 - 3} ${stickX2} ${stickY2 - 6} Z"
+              fill="${stickCol}" stroke="#020617" stroke-width="1.8"/>
+        <!-- Blade Tape Job Overlay -->
+        <path d="M ${(stickX2 + bladeTipX) * 0.35} ${stickY2 + 1} L ${bladeTipX - (isLeftShot ? 2 : -2)} ${stickY2 - 2} L ${bladeTipX - (isLeftShot ? 2 : -2)} ${stickY2 - 10} L ${(stickX2 + bladeTipX) * 0.35} ${stickY2 - 5} Z"
+              fill="${bladeTapeCol}" stroke="#020617" stroke-width="1.1"/>
+        <!-- Puck on Blade -->
+        <ellipse cx="${isLeftShot ? bladeTipX - 6 : bladeTipX + 6}" cy="${stickY2 + 2.5}" rx="8.5" ry="4.2" fill="#090d16" stroke="#00e5ff" stroke-width="1.2"/>
+
+        <!-- Top-Hand & Bottom-Hand Visibly Equipped Hockey Gloves -->
+        ${buildGloveSvg(g1x, g1y, isLeftShot ? -18 : 18)}
+        ${buildGloveSvg(g2x, g2y, isLeftShot ? 22 : -22)}
+      `;
 
       return `
-        <svg viewBox="0 0 160 190" class="w-full h-full drop-shadow-xl">
-          <!-- 3D Ice Turntable Disc -->
-          <ellipse cx="80" cy="172" rx="54" ry="12" fill="#0f172a" stroke="${skateCol}" stroke-width="2.5"/>
-          <ellipse cx="80" cy="170" rx="44" ry="8" fill="#1e293b" stroke="#38bdf8" stroke-opacity="0.4" stroke-dasharray="4 3"/>
-          <text x="80" y="180" fill="#94a3b8" font-size="7" font-weight="800" text-anchor="middle">${isBack ? 'BACK JERSEY VIEW (NAMEPLATE)' : 'FRONT LOCKER ROOM VIEW'}</text>
+        <svg viewBox="0 0 220 260" class="w-full h-full drop-shadow-2xl" data-avatar-renderer="young-hockey-player-75realistic" data-blackout="${isBlackoutLoadout}">
+          <!-- Glowing Locker Room Ice Platform -->
+          <ellipse cx="110" cy="240" rx="74" ry="14" fill="#060b14" stroke="${steelCol}" stroke-width="2.4"/>
+          <ellipse cx="110" cy="238" rx="60" ry="9.5" fill="#0d1829" stroke="#00e5ff" stroke-opacity="0.5" stroke-dasharray="5 3"/>
+          <text x="110" y="254" fill="#67e8f9" font-size="7.5" font-weight="900" text-anchor="middle" letter-spacing="0.7">
+            ${isBlackoutLoadout ? '🖤 FULL BLACKOUT LOADOUT ACTIVE' : (isBack ? `BACK SWEATER • #${jNum} ${lastName}` : `${(p.name || 'MILES').toUpperCase()} #${jNum} • ${glovesStyle.toUpperCase()}`)}
+          </text>
 
-          <!-- Skates & Custom Steel Runners -->
-          <rect x="${63 + bodyTurnX * 0.2}" y="159" width="14" height="7" rx="2" fill="${skateCol}" stroke="#020617" stroke-width="1.8"/>
-          <rect x="${83 + bodyTurnX * 0.2}" y="159" width="14" height="7" rx="2" fill="${skateCol}" stroke="#020617" stroke-width="1.8"/>
-          <rect x="${65 + bodyTurnX * 0.2}" y="148" width="11" height="12" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1.8"/>
-          <rect x="${84 + bodyTurnX * 0.2}" y="148" width="11" height="12" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1.8"/>
-
-          <!-- Hockey Breezers (Pants) & Socks -->
-          <rect x="${64 + bodyTurnX * 0.25}" y="136" width="13" height="14" rx="3" fill="${jerseyCol}" stroke="#020617" stroke-width="2"/>
-          <rect x="${83 + bodyTurnX * 0.25}" y="136" width="13" height="14" rx="3" fill="${jerseyCol}" stroke="#020617" stroke-width="2"/>
-          <rect x="${torsoX + 2}" y="120" width="${torsoW - 4}" height="19" rx="5" fill="#0f172a" stroke="#020617" stroke-width="2.5"/>
-
-          <!-- Sleeves & Hockey Gloves -->
-          <path d="M ${torsoX} 80 L ${torsoX - 13} 108 L ${torsoX - 3} 112 L ${torsoX + 4} 90 Z" fill="${jerseyCol}" stroke="#020617" stroke-width="2.2"/>
-          <path d="M ${torsoX + torsoW} 80 L ${torsoX + torsoW + 13} 108 L ${torsoX + torsoW + 3} 112 L ${torsoX + torsoW - 4} 90 Z" fill="${jerseyCol}" stroke="#020617" stroke-width="2.2"/>
-          <circle cx="${torsoX - 9}" cy="112" r="6.8" fill="${glovesCol}" stroke="#f8fafc" stroke-width="1.8"/>
-          <circle cx="${torsoX + torsoW + 9}" cy="112" r="6.8" fill="${glovesCol}" stroke="#f8fafc" stroke-width="1.8"/>
-
-          <!-- Jersey Sweater Torso -->
-          <rect x="${torsoX}" y="74" width="${torsoW}" height="48" rx="10" fill="${jerseyCol}" stroke="#020617" stroke-width="2.8"/>
-          ${jerseyDetails}
-
-          <!-- Hair Behind / Sides -->
-          ${hairSvg}
-
-          <!-- Head / Mascot Face -->
-          ${headFeatures}
-
-          <!-- Helmet & Visor Shield -->
-          ${helmetSvg}
-          ${visorSvg}
-
-          <!-- Custom Hockey Stick (Twig) -->
-          <line x1="${torsoX + torsoW + 9}" y1="68" x2="${torsoX + torsoW + 18}" y2="165" stroke="${stickCol}" stroke-width="5" stroke-linecap="round"/>
-          <path d="M ${torsoX + torsoW + 18} 165 L ${torsoX + torsoW + 35} 168 L ${torsoX + torsoW + 35} 161 L ${torsoX + torsoW + 18} 160 Z" fill="${stickCol}" stroke="#020617" stroke-width="1.8"/>
+          ${skatesSvg}
+          ${jerseyTorsoSvg}
+          ${hairFlowSvg}
+          ${faceSvg}
+          ${helmetAndVisorSvg}
+          ${stickAndGlovesSvg}
         </svg>
       `;
     }
+    window.renderYoungHockeyPlayerAvatar = renderYoungHockeyPlayerAvatar;
+
+    function render3dAvatarSvg(prof, angleDeg = 0, previewItem = null) {
+      return renderYoungHockeyPlayerAvatar(prof, angleDeg, previewItem);
+    }
+    window.render3dAvatarSvg = render3dAvatarSvg;
 
     function renderMiniAvatarSvg(prof, size = 30) {
       const p = { ...prof };
@@ -12932,20 +13240,72 @@
       modal.classList.remove('hidden');
     }
 
+    // =========================================================================
+    // PHASE 4 STEP 3: IQ-TIED PUCK BUCKS ($) REWARD FORMULA
+    // Puck Bucks Earned = Lesson Hockey IQ Percentage Score (e.g., 95% IQ -> +95 Puck Bucks;
+    // 70% IQ -> +70 Puck Bucks; < 50% IQ -> minimal consolidation bucks + retry prompt).
+    // Works identically across Map Play AND Coach's Office 5-Lesson / 10-Lesson Plans!
+    // =========================================================================
+    function calculateIqTiedPuckBucks(iqPct, lessonLength = 10) {
+      const clampedIq = Math.max(0, Math.min(100, Math.round(Number(iqPct) || 0)));
+      const requiresRetryPrompt = clampedIq < 50;
+      const puckBucksEarned = requiresRetryPrompt
+        ? Math.max(5, Math.round(clampedIq * 0.25))
+        : clampedIq;
+      return {
+        iqPct: clampedIq,
+        puckBucksEarned,
+        requiresRetryPrompt,
+        lessonLength: Number(lessonLength) || 10,
+        formulaSummary: requiresRetryPrompt
+          ? `${clampedIq}% Hockey IQ (< 50% Threshold) -> +${puckBucksEarned} Consolidation Puck Bucks + Retry Prompt`
+          : `${clampedIq}% Hockey IQ -> +${puckBucksEarned} 💰 Puck Bucks`
+      };
+    }
+    window.calculateIqTiedPuckBucks = calculateIqTiedPuckBucks;
+
+    function completeLessonWithIqTiedPuckBucks(iqPct, sourceMode = 'map_series', lessonLength = 10) {
+      const reward = calculateIqTiedPuckBucks(iqPct, lessonLength);
+      const prof = getActiveProfile();
+      state.puckBucks = (Number(state.puckBucks) || 0) + reward.puckBucksEarned;
+      if (prof) {
+        prof.puckBucks = state.puckBucks;
+        prof.lastLessonIqPct = reward.iqPct;
+        prof.lastLessonPuckBucksEarned = reward.puckBucksEarned;
+        prof.lastLessonSourceMode = sourceMode;
+      }
+      state.lastIqEconomyReward = {
+        ...reward,
+        sourceMode,
+        newPuckBucksBalance: state.puckBucks,
+        awardedAt: new Date().toISOString()
+      };
+      saveProgress();
+      updateHeaderStats();
+      if (typeof renderSynapzRinkLobby === 'function') renderSynapzRinkLobby();
+      return state.lastIqEconomyReward;
+    }
+    window.completeLessonWithIqTiedPuckBucks = completeLessonWithIqTiedPuckBucks;
+
     function advanceSeriesOrRegenerate() {
       const city = NHL_CITIES[state.currentCityIdx] || NHL_CITIES[0];
+      const targetSeriesLen = state.customPlanLength || 10;
 
-      // Check if 10 questions completed in this city series (Total available = 550 pts; 80% = 440 pts)
-      if (state.seriesResults.length >= 10) {
+      // Check if target questions completed in this city series or Coach's Office 5/10-Lesson Plan
+      if (state.seriesResults.length >= targetSeriesLen) {
         const earned = state.seriesPointsEarned;
-        const pct = Math.round((earned / 550) * 100);
+        const maxAvailable = targetSeriesLen === 5 ? 150 : 550; // 10+20+30+40+50 = 150 for 5-lesson; 550 for 10-lesson
+        const pct = Math.max(0, Math.min(100, Math.round((earned / maxAvailable) * 100)));
+        const sourceMode = state.customPlanLength ? `coach_office_${targetSeriesLen}_lesson_plan` : 'map_series';
+        const iqReward = completeLessonWithIqTiedPuckBucks(pct, sourceMode, targetSeriesLen);
+        const passThresholdPts = Math.round(maxAvailable * 0.8);
 
-        if (earned >= 440) {
+        if (earned >= passThresholdPts) {
           SoundFX.playGoalHorn();
           const conqueredCity = city;
           const prevCityIdx = state.currentCityIdx;
           state.overtimeRedemptionActive = false;
-          state.puckBucks += 100; // +$100 Series Completion Bonus!
+          state.customPlanLength = null;
           if (state.currentCityIdx < NHL_CITIES.length - 1) {
             state.currentCityIdx += 1;
           }
@@ -12963,6 +13323,10 @@
           switchView('map');
           if (!aiDemoActive) {
             openSeriesCompleteModal(conqueredCity, nextCity, earned, pct, true);
+            const msgEl = document.getElementById('seriesCompleteSummaryMsg');
+            if (msgEl) {
+              msgEl.textContent = `Outstanding Hockey IQ, ${prof.name}! You scored ${pct}% Hockey IQ (${earned}/${maxAvailable} Pts), earned +${iqReward.puckBucksEarned} 💰 IQ-Tied Puck Bucks (${iqReward.formulaSummary}), and unlocked Stop #${state.currentCityIdx + 1}: ${nextCity.name} (${nextCity.team})!`;
+            }
             if (promotedTier) {
               const titleEl = document.getElementById('seriesCompleteTitle');
               const badgeEl = document.getElementById('seriesCompleteBadge');
@@ -12970,15 +13334,15 @@
               if (titleEl) titleEl.textContent = `🎉 Tier Promotion: ${prof.ageGroup} ${promotedTier.label} + Unlocked ${promotedTier.gearName}!`;
             }
           }
-          CoachVoice.speak(`Series Victory! You scored ${earned} out of 550 IQ points (${pct} percent) in ${conqueredCity.name} and unlocked ${nextCity.name} on the 32-Stop Adventure Map!`, '🏆 City Conquered!', false);
+          CoachVoice.speak(`Series Victory! You scored ${pct} percent Hockey IQ and earned ${iqReward.puckBucksEarned} Puck Bucks in ${conqueredCity.name}, unlocking ${nextCity.name} on the North America NHL Map!`, '🏆 City Conquered!', false);
           return;
-        } else if (earned >= 380 && !state.overtimeRedemptionActive) {
-          // 3v3 Overtime Sudden-Death Redemption Shift (Triggered when within 60 points of 440 pt threshold: >= 380 pts)!
+        } else if (earned >= Math.round(maxAvailable * 0.69) && !state.overtimeRedemptionActive) {
+          // 3v3 Overtime Sudden-Death Redemption Shift!
           SoundFX.playWhistle();
           state.overtimeRedemptionActive = true;
           state.activeScenarioInstance = null;
           loadScenario(false);
-          CoachVoice.speak(`Overtime Alert! You finished regulation with ${earned} points—within 60 points of the 440 target! Coach Bob is sending you out for a 3-on-3 Sudden-Death Overtime shift worth 75 bonus points to clinch ${city.name}!`, '🚨 3v3 Overtime Sudden-Death!', true);
+          CoachVoice.speak(`Overtime Alert! You finished regulation at ${pct} percent Hockey IQ! Coach Bob is sending you out for a 3-on-3 Sudden-Death Overtime shift worth 75 bonus points to clinch ${city.name}!`, '🚨 3v3 Overtime Sudden-Death!', true);
           return;
         } else {
           SoundFX.playBuzzer();
@@ -12992,8 +13356,12 @@
           loadScenario(false);
           if (!aiDemoActive) {
             openSeriesCompleteModal(city, city, earned, pct, false);
+            const msgEl = document.getElementById('seriesCompleteSummaryMsg');
+            if (msgEl) {
+              msgEl.textContent = `You finished at ${pct}% Hockey IQ and earned +${iqReward.puckBucksEarned} Consolidation Puck Bucks. You need 80% IQ to unlock the next NHL city—Coach Bob just generated fresh play variations so you can retry and boost your Hockey IQ score!`;
+            }
           }
-          CoachVoice.speak(`You scored ${earned} out of 550 IQ points (${pct} percent) in ${city.name}. You need at least 440 points—80 percent—to advance! I just generated 10 fresh play variations with 2 new hints so you can conquer ${city.name}!`, '🔄 New 10-Play Series Generated', true);
+          CoachVoice.speak(`You finished at ${pct} percent Hockey IQ and earned ${iqReward.puckBucksEarned} Puck Bucks. Let's retry with fresh play variations to hit 80 percent and unlock the next city!`, '🔄 Retry Lesson to Boost IQ & Puck Bucks', true);
           return;
         }
       }
@@ -13584,8 +13952,181 @@
     window.switchView = switchView;
 
     // =========================================================================
-    // PRO GEAR SHOP MODAL & 360° 3D AVATAR FITTING STAGE
+    // PHASE 4 STEP 2: WALK-IN WALL-STYLE SYNAPZ PRO SHOP & 75%-REALISTIC GEAR WALL CARDS
     // =========================================================================
+    function renderProShopWallProductSvg(item) {
+      if (!item) return '';
+      const col = item.color || '#00e5ff';
+      const acc = item.accentColor || '#38bdf8';
+      const cat = item.category || 'Gloves';
+
+      if (cat === 'Gloves') {
+        const is4Roll = (item.style || '').includes('4-roll');
+        return `
+          <svg viewBox="0 0 110 76" class="w-24 h-16 shrink-0 rounded-xl bg-slate-950/90 border border-cyan-500/30 p-1">
+            <!-- Pro Cuff with Brand Stitch -->
+            <rect x="14" y="10" width="82" height="16" rx="5" fill="${col}" stroke="${acc}" stroke-width="1.6"/>
+            <line x1="20" y1="18" x2="90" y2="18" stroke="${acc}" stroke-width="1.2" stroke-dasharray="4 2"/>
+            ${is4Roll ? `
+              <!-- 4-Roll Pro Backhand Padding -->
+              <rect x="16" y="28" width="78" height="7" rx="3.5" fill="${col}" stroke="#ffffff" stroke-width="0.9" opacity="0.95"/>
+              <rect x="16" y="36.5" width="78" height="7" rx="3.5" fill="${col}" stroke="#ffffff" stroke-width="0.9" opacity="0.95"/>
+              <rect x="16" y="45" width="78" height="7" rx="3.5" fill="${col}" stroke="#ffffff" stroke-width="0.9" opacity="0.95"/>
+              <rect x="18" y="53.5" width="74" height="6.5" rx="3.2" fill="${col}" stroke="${acc}" stroke-width="1"/>
+            ` : `
+              <!-- Tapered Vapor Dual-Density Backhand Plates -->
+              <path d="M 16 28 L 53 28 L 50 56 L 18 56 Z" fill="${col}" stroke="${acc}" stroke-width="1.3"/>
+              <path d="M 57 28 L 94 28 L 92 56 L 60 56 Z" fill="${col}" stroke="${acc}" stroke-width="1.3"/>
+            `}
+            <!-- Lock-Thumb & Nash Palm Gussets -->
+            <path d="M 8 32 Q 3 45 13 58 L 22 55 L 18 32 Z" fill="${acc}" stroke="#020617" stroke-width="1.2"/>
+            <rect x="24" y="61" width="14" height="10" rx="3" fill="${col}" stroke="#cbd5e1" stroke-width="0.9"/>
+            <rect x="40" y="61" width="14" height="10" rx="3" fill="${col}" stroke="#cbd5e1" stroke-width="0.9"/>
+            <rect x="56" y="61" width="14" height="10" rx="3" fill="${col}" stroke="#cbd5e1" stroke-width="0.9"/>
+            <rect x="72" y="61" width="13" height="9" rx="3" fill="${col}" stroke="#cbd5e1" stroke-width="0.9"/>
+          </svg>
+        `;
+      }
+
+      if (cat === 'Stick') {
+        return `
+          <svg viewBox="0 0 110 76" class="w-24 h-16 shrink-0 rounded-xl bg-slate-950/90 border border-cyan-500/30 p-1">
+            <!-- Carbon-Weave Pro Shaft -->
+            <line x1="14" y1="12" x2="74" y2="58" stroke="#0f172a" stroke-width="8" stroke-linecap="round"/>
+            <line x1="14" y1="12" x2="74" y2="58" stroke="${col}" stroke-width="5.5" stroke-linecap="round"/>
+            <!-- Kick-Point Graphic Band -->
+            <line x1="34" y1="27" x2="54" y2="43" stroke="${acc}" stroke-width="6" stroke-linecap="round"/>
+            <line x1="16" y1="14" x2="72" y2="56" stroke="#ffffff" stroke-width="1.1" stroke-dasharray="2 4" opacity="0.55"/>
+            <!-- Curved Pro Blade & Tape Job -->
+            <path d="M 72 57 Q 88 64 102 55 Q 104 49 95 48 Q 82 52 72 54 Z" fill="${col}" stroke="${acc}" stroke-width="1.5"/>
+            <path d="M 80 53 L 96 49 L 98 56 L 80 60 Z" fill="#f8fafc" opacity="0.9"/>
+            <line x1="84" y1="52" x2="85" y2="59" stroke="#cbd5e1" stroke-width="1"/>
+            <line x1="90" y1="50" x2="91" y2="58" stroke="#cbd5e1" stroke-width="1"/>
+          </svg>
+        `;
+      }
+
+      if (cat === 'Skates') {
+        const isBlackSteel = (item.style || '').includes('black-steel');
+        const isGoldSteel = (item.style || '').includes('gold-steel');
+        const runnerCol = isBlackSteel ? '#0f172a' : (isGoldSteel ? '#facc15' : '#e2e8f0');
+        return `
+          <svg viewBox="0 0 110 76" class="w-24 h-16 shrink-0 rounded-xl bg-slate-950/90 border border-cyan-500/30 p-1">
+            <!-- Tendon Guard & Pro Boot Quarter-Package -->
+            <rect x="28" y="8" width="9" height="18" rx="3" fill="${acc}" stroke="#020617" stroke-width="1"/>
+            <path d="M 26 20 L 62 20 L 84 40 Q 90 45 86 52 L 24 52 Q 20 44 26 20 Z" fill="#0f172a" stroke="${col}" stroke-width="2"/>
+            <!-- Quarter-Package Carbon Ribbing & Laces -->
+            <path d="M 32 30 Q 52 28 74 42" fill="none" stroke="${acc}" stroke-width="2.2"/>
+            <line x1="56" y1="24" x2="64" y2="22" stroke="#f8fafc" stroke-width="1.5"/>
+            <line x1="62" y1="29" x2="70" y2="27" stroke="#f8fafc" stroke-width="1.5"/>
+            <line x1="68" y1="34" x2="76" y2="32" stroke="#f8fafc" stroke-width="1.5"/>
+            <!-- Tuuk-Style Cutout Holder & Steel Runner -->
+            <path d="M 26 52 L 84 52 L 80 61 L 30 61 Z" fill="#f8fafc" stroke="#64748b" stroke-width="1.2"/>
+            <ellipse cx="44" cy="56.5" rx="6" ry="2.6" fill="#020617"/>
+            <ellipse cx="66" cy="56.5" rx="6" ry="2.6" fill="#020617"/>
+            <rect x="22" y="61" width="66" height="5" rx="2.5" fill="${runnerCol}" stroke="${acc}" stroke-width="1.1"/>
+          </svg>
+        `;
+      }
+
+      // Visors & Buckets
+      const isCage = (item.style || '').includes('cage');
+      return `
+        <svg viewBox="0 0 110 76" class="w-24 h-16 shrink-0 rounded-xl bg-slate-950/90 border border-cyan-500/30 p-1">
+          <!-- Pro Bucket Shell & Vents -->
+          <path d="M 22 42 C 20 14, 90 14, 88 42 L 82 48 L 28 48 Z" fill="#0f172a" stroke="${acc}" stroke-width="2"/>
+          <rect x="38" y="20" width="12" height="4" rx="2" fill="#020617" stroke="${col}" stroke-width="0.9"/>
+          <rect x="60" y="20" width="12" height="4" rx="2" fill="#020617" stroke="${col}" stroke-width="0.9"/>
+          ${isCage ? `
+            <rect x="28" y="38" width="54" height="24" rx="6" fill="rgba(226,232,240,0.15)" stroke="#e2e8f0" stroke-width="1.8"/>
+            <line x1="28" y1="46" x2="82" y2="46" stroke="#e2e8f0" stroke-width="1.3"/>
+            <line x1="28" y1="54" x2="82" y2="54" stroke="#e2e8f0" stroke-width="1.3"/>
+            <line x1="46" y1="38" x2="46" y2="62" stroke="#e2e8f0" stroke-width="1.3"/>
+            <line x1="64" y1="38" x2="64" y2="62" stroke="#e2e8f0" stroke-width="1.3"/>
+          ` : `
+            <!-- Tinted Pro Half-Shield Visor -->
+            <path d="M 24 36 Q 55 44 86 36 L 83 56 Q 55 64 27 56 Z" fill="${col}" fill-opacity="0.78" stroke="${acc}" stroke-width="1.8"/>
+            <path d="M 32 41 Q 55 46 76 40" fill="none" stroke="#ffffff" stroke-width="1.8" opacity="0.65"/>
+          `}
+        </svg>
+      `;
+    }
+    window.renderProShopWallProductSvg = renderProShopWallProductSvg;
+
+    function equipProShopItemOnProfile(prof, item) {
+      if (!prof || !item) return;
+      if (!Array.isArray(prof.ownedGear)) prof.ownedGear = [];
+      if (!prof.ownedGear.includes(item.id)) prof.ownedGear.push(item.id);
+      if (!Array.isArray(state.unlockedItems)) state.unlockedItems = [];
+      if (!state.unlockedItems.includes(item.id)) state.unlockedItems.push(item.id);
+
+      if (item.category === 'Gloves' || item.slot === 'gloves') {
+        prof.equippedGloves = item.color;
+        prof.equippedGlovesId = item.id;
+      } else if (item.category === 'Stick' || item.slot === 'stick') {
+        prof.equippedStick = item.color;
+        prof.equippedStickId = item.id;
+      } else if (item.category === 'Skates' || item.slot === 'skates') {
+        prof.equippedSkate = item.color;
+        prof.equippedSkates = item.id;
+      } else if (item.category === 'Helmet') {
+        prof.equippedHelmet = item.color;
+        prof.equippedHelmetId = item.id;
+      } else if (item.category === 'Visor' || item.slot === 'helmet') {
+        prof.equippedVisor = item.color;
+        prof.equippedVisorId = item.id;
+      }
+    }
+    window.equipProShopItemOnProfile = equipProShopItemOnProfile;
+
+    function applyFullBlackoutLoadout(equipPermanently = true) {
+      SoundFX.playGoalHorn();
+      const prof = getActiveProfile();
+      if (!prof) return null;
+      ensureProfileAvatarDefaults(prof);
+      const blackoutIds = ['gloves-blackout-pro', 'stick-carbon-pulse', 'skate-ridgecore-dlc', 'visor-smoke-blackout'];
+      blackoutIds.forEach(id => {
+        const it = PRO_SHOP_ITEMS.find(x => x.id === id);
+        if (it) equipProShopItemOnProfile(prof, it);
+      });
+      prof.equippedHelmet = '#0f172a';
+      prof.jerseyColor = '#0f172a';
+      state.shopPreviewItem = null;
+      if (equipPermanently) {
+        saveProgress();
+      }
+      updateHeaderStats();
+      updateShop3dStage();
+      if (typeof renderProShopModal === 'function') renderProShopModal();
+      if (typeof renderSynapzLockerRoomModal === 'function') renderSynapzLockerRoomModal();
+      if (typeof renderSynapzRinkLobby === 'function') renderSynapzRinkLobby();
+      drawRink();
+      return window._lastRenderedYoungPlayerAvatar;
+    }
+    window.applyFullBlackoutLoadout = applyFullBlackoutLoadout;
+
+    function equipOwnedGearLoadout() {
+      SoundFX.playTap();
+      const prof = getActiveProfile();
+      if (!prof) return null;
+      ensureProfileAvatarDefaults(prof);
+      const defaults = ['gloves-cyan', 'stick-gold', 'skate-blue', 'visor-blue'];
+      defaults.forEach(id => {
+        const it = PRO_SHOP_ITEMS.find(x => x.id === id);
+        if (it) equipProShopItemOnProfile(prof, it);
+      });
+      prof.jerseyColor = '#0284c7';
+      saveProgress();
+      updateHeaderStats();
+      updateShop3dStage();
+      if (typeof renderProShopModal === 'function') renderProShopModal();
+      if (typeof renderSynapzLockerRoomModal === 'function') renderSynapzLockerRoomModal();
+      if (typeof renderSynapzRinkLobby === 'function') renderSynapzRinkLobby();
+      drawRink();
+      return window._lastRenderedYoungPlayerAvatar;
+    }
+    window.equipOwnedGearLoadout = equipOwnedGearLoadout;
+
     function updateShop3dStage() {
       const wrap = document.getElementById('shop3dAvatarSvgWrap');
       if (!wrap) return;
@@ -13594,7 +14135,7 @@
         ? PRO_SHOP_ITEMS.find(i => i.id === state.shopPreviewItem)
         : state.shopPreviewItem;
       const angle = state.shopSpinAngle != null ? state.shopSpinAngle : (state.avatarSpinAngle || 0);
-      wrap.innerHTML = render3dAvatarSvg(prof, angle, previewObj);
+      wrap.innerHTML = renderYoungHockeyPlayerAvatar(prof, angle, previewObj);
       const normA = Math.round(((angle % 360) + 360) % 360);
       const isBack = Math.cos((normA * Math.PI) / 180) < 0;
       const badge = document.getElementById('shopSpinAngleBadge');
@@ -13605,7 +14146,24 @@
 
     function renderProShopModal() {
       const prof = getActiveProfile();
-      document.getElementById('shopBalanceBadge').textContent = `$${state.puckBucks} PuckBucks`;
+      ensureProfileAvatarDefaults(prof);
+      const agent = typeof getActivePlayerAgent === 'function' ? getActivePlayerAgent() : SYNAPZ_PLAYER_AGENTS[2];
+
+      const balEl = document.getElementById('shopBalanceBadge');
+      if (balEl) balEl.textContent = `💰 ${state.puckBucks} Puck Bucks`;
+
+      // Update Player Agent Economy Banner at top of Pro Shop
+      const agImg = document.getElementById('proShopAgentPortraitImg') || document.getElementById('proShopAgentImg');
+      if (agImg && agent) agImg.src = agent.img;
+      const agTitle = document.getElementById('proShopAgentNameBadge') || document.getElementById('proShopAgentTitle');
+      if (agTitle && agent) {
+        agTitle.textContent = `🎙️ Agent ${agent.name} • How You Earn Puck Bucks for Pro Gear`;
+      }
+      const agQuote = document.getElementById('proShopAgentEconomyText') || document.getElementById('proShopAgentEconomyQuote');
+      if (agQuote && agent) {
+        agQuote.innerHTML = `"Score <strong class="text-emerald-300">95% Hockey IQ</strong> in any Map Series or Coach Al's 5- or 10-Lesson Plan and you earn <strong class="text-amber-300">+95 💰 Puck Bucks</strong> right into your wallet! Tap any wall below to try gear on ${prof.name} #${prof.jerseyNumber || '9'}."`;
+      }
+
       if (typeof state.shopPreviewItem === 'string') {
         state.shopPreviewItem = PRO_SHOP_ITEMS.find(i => i.id === state.shopPreviewItem) || null;
       }
@@ -13614,85 +14172,178 @@
       const previewLabel = document.getElementById('shopPreviewItemName');
       const resetPreviewBtn = document.getElementById('btnClearShopPreview');
       if (state.shopPreviewItem) {
-        if (previewLabel) previewLabel.textContent = `👁️ Previewing: ${state.shopPreviewItem.name} ($${state.shopPreviewItem.cost})`;
+        if (previewLabel) previewLabel.textContent = `👁️ Trying On: ${state.shopPreviewItem.name} (💰 ${state.shopPreviewItem.cost} Puck Bucks)`;
         if (resetPreviewBtn) resetPreviewBtn.classList.remove('hidden');
       } else {
-        if (previewLabel) previewLabel.textContent = `Showing ${prof.name}'s Equipped Gear (#9 ${prof.lastName})`;
+        if (previewLabel) previewLabel.textContent = `Showing ${prof.name}'s Equipped Gear (#${prof.jerseyNumber || '9'} ${prof.lastName || 'BEKKEDAHL'})`;
         if (resetPreviewBtn) resetPreviewBtn.classList.add('hidden');
       }
 
-      const activeCat = state.shopCategoryFilter || state.shopCategory || 'all';
+      // Default to 'Gloves' Wall if 'all' or unset so the 4 Wall Category Buttons shine!
+      if (!state.shopCategoryFilter || state.shopCategoryFilter === 'all') {
+        state.shopCategoryFilter = 'Gloves';
+      }
+      const activeCat = state.shopCategoryFilter;
+
       document.querySelectorAll('.shop-cat-btn, [data-shop-cat]').forEach(b => {
-        const catVal = b.dataset.shopCat || b.dataset.shopcat || 'all';
+        const catVal = b.dataset.shopCat || b.dataset.shopcat || 'Gloves';
         const active = catVal === activeCat;
         b.classList.toggle('active-pill', active);
         b.classList.toggle('bg-slate-950', !active);
         b.classList.toggle('text-slate-300', !active);
       });
 
+      const wallTitles = {
+        Gloves: '🧤 Wall of Gloves — 4-Roll Pro & Tapered Dangler Mitts',
+        Stick: '🏒 Pro Stick Rack — One-Piece Carbon Twigs & Custom Tape Jobs',
+        Skates: '⛸️ Wall of Skates — Pro Carbon Boots, Holders & DLC Black/Gold Steel',
+        Visor: '🥽 Visors & Buckets — Smoke-Blackout, Blue/Gold Iridium & Pro Cages'
+      };
+      const wallTitleEl = document.getElementById('proShopActiveWallTitle');
+      if (wallTitleEl) {
+        wallTitleEl.textContent = wallTitles[activeCat] || wallTitles.Gloves;
+      }
+
+      const wallItems = PRO_SHOP_ITEMS.filter(i =>
+        i.category === activeCat || (activeCat === 'Visor' && (i.category === 'Visor' || i.category === 'Helmet'))
+      );
+
+      // Render Dedicated Sponsor-Ready Brand Showcase & Promo Drop Card (#proShopBrandShowcaseRack)
+      const promoItem = wallItems.find(i => i.isPromoShowcase) || wallItems[0];
+      const promoSlot = document.getElementById('proShopBrandShowcaseRack') || document.getElementById('proShopPromoFeaturedCardSlot');
+      if (promoSlot && promoItem) {
+        const promoOwned = (prof.ownedGear || []).includes(promoItem.id);
+        const promoEquipped =
+          (promoItem.category === 'Gloves' && (prof.equippedGloves === promoItem.color || prof.equippedGlovesId === promoItem.id)) ||
+          (promoItem.category === 'Stick' && (prof.equippedStick === promoItem.color || prof.equippedStickId === promoItem.id)) ||
+          (promoItem.category === 'Skates' && (prof.equippedSkate === promoItem.color || prof.equippedSkates === promoItem.id)) ||
+          ((promoItem.category === 'Visor' || promoItem.category === 'Helmet') && (prof.equippedVisor === promoItem.color || prof.equippedVisorId === promoItem.id));
+
+        promoSlot.innerHTML = `
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-[10px] font-black uppercase tracking-widest text-amber-300">⭐ PRO BRAND SHOWCASE &amp; PROMO DROP • SPONSOR-READY DISPLAY RACK</span>
+            <span class="px-2 py-0.5 rounded bg-amber-400/20 border border-amber-400/50 text-amber-200 text-[9px] font-black">BAUER / CCM PARTNER READY</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/95 border border-amber-400/60 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-3 min-w-0">
+              ${renderProShopWallProductSvg(promoItem)}
+              <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-1.5">
+                  <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 text-[9px] font-black uppercase">${promoItem.brandTag || 'PRO SHOWCASE DROP'}</span>
+                  <span class="text-sm font-black text-white">${promoItem.name}</span>
+                </div>
+                <p class="text-[11px] text-slate-300 mt-0.5">${promoItem.desc}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <button type="button" id="btnPromoTryOnSkater" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-400/60 text-cyan-200 text-xs font-black transition">
+                👁️ Try On Skater
+              </button>
+              <button type="button" id="btnPromoBuyOrEquip" class="px-3.5 py-2 rounded-xl ${promoEquipped ? 'bg-emerald-400 text-slate-950' : 'bg-amber-400 hover:bg-amber-300 text-slate-950'} text-xs font-black shadow transition">
+                ${promoEquipped ? '✅ Equipped' : (promoOwned ? '⚡ Equip Now' : `💰 ${promoItem.cost} Puck Bucks`)}
+              </button>
+            </div>
+          </div>
+        `;
+        const tryBtn = document.getElementById('btnPromoTryOnSkater');
+        if (tryBtn) {
+          tryBtn.addEventListener('click', () => {
+            SoundFX.playTap();
+            state.shopPreviewItem = promoItem;
+            state.avatarSpinAngle = 0;
+            renderProShopModal();
+          });
+        }
+        const buyBtn = document.getElementById('btnPromoBuyOrEquip');
+        if (buyBtn) {
+          buyBtn.addEventListener('click', () => {
+            if (!promoOwned) {
+              if (state.puckBucks < promoItem.cost) {
+                SoundFX.playBuzzer();
+                return;
+              }
+              state.puckBucks -= promoItem.cost;
+            }
+            equipProShopItemOnProfile(prof, promoItem);
+            state.shopPreviewItem = null;
+            SoundFX.playGoalHorn();
+            saveProgress();
+            updateHeaderStats();
+            renderProShopModal();
+            if (typeof renderSynapzLockerRoomModal === 'function') renderSynapzLockerRoomModal();
+            if (typeof renderSynapzRinkLobby === 'function') renderSynapzRinkLobby();
+            drawRink();
+          });
+        }
+      }
+
+      // Render Large 75%-Realistic Product Wall Cards in #proShopItemsGrid
       const grid = document.getElementById('proShopItemsGrid');
+      if (!grid) return;
       grid.innerHTML = '';
 
-      const items = activeCat === 'all'
-        ? PRO_SHOP_ITEMS
-        : PRO_SHOP_ITEMS.filter(i => i.category === activeCat || (activeCat === 'Visor' && (i.category === 'Visor' || i.category === 'Helmet')));
-
-      items.forEach(item => {
+      wallItems.forEach(item => {
         const owned = (prof.ownedGear || []).includes(item.id);
-        const equipped = (item.category === 'Gloves' && prof.equippedGloves === item.color) ||
-                         (item.category === 'Stick' && prof.equippedStick === item.color) ||
-                         (item.category === 'Skates' && prof.equippedSkate === item.color) ||
-                         (item.category === 'Helmet' && prof.equippedHelmet === item.color) ||
-                         (item.category === 'Visor' && prof.equippedVisor === item.color);
+        const equipped =
+          (item.category === 'Gloves' && (prof.equippedGloves === item.color || prof.equippedGlovesId === item.id)) ||
+          (item.category === 'Stick' && (prof.equippedStick === item.color || prof.equippedStickId === item.id)) ||
+          (item.category === 'Skates' && (prof.equippedSkate === item.color || prof.equippedSkates === item.id)) ||
+          (item.category === 'Helmet' && (prof.equippedHelmet === item.color || prof.equippedHelmetId === item.id)) ||
+          (item.category === 'Visor' && (prof.equippedVisor === item.color || prof.equippedVisorId === item.id));
         const isPreviewing = state.shopPreviewItem && state.shopPreviewItem.id === item.id;
 
         const card = document.createElement('div');
-        card.className = `p-2.5 rounded-xl border flex items-center justify-between gap-2 transition ${
-          isPreviewing ? 'bg-emerald-950/40 border-emerald-400' : 'bg-slate-950 border-slate-800'
+        card.className = `p-3 rounded-2xl border-2 flex flex-col justify-between gap-2.5 transition ${
+          equipped
+            ? 'bg-emerald-950/35 border-emerald-400 shadow-[0_0_18px_rgba(16,185,129,0.22)]'
+            : isPreviewing
+            ? 'bg-cyan-950/40 border-cyan-300 shadow-[0_0_18px_rgba(0,229,255,0.25)]'
+            : 'bg-slate-950/95 border-slate-800 hover:border-cyan-400/50'
         }`;
         card.innerHTML = `
-          <div class="flex items-center gap-2.5 min-w-0">
-            <span class="w-8 h-8 rounded-lg border border-white/20 flex items-center justify-center text-xs font-black shrink-0" style="background:${item.color}; color:#020617;">${item.category[0]}</span>
-            <div class="min-w-0">
-              <div class="text-xs font-extrabold text-white truncate">${item.name} <span class="text-[10px] text-emerald-300 font-bold">(${item.category})</span></div>
-              <div class="text-[10px] text-slate-400 truncate">${item.desc}</div>
+          <div class="flex items-center gap-3 min-w-0">
+            ${renderProShopWallProductSvg(item)}
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-1">
+                <span class="px-1.5 py-0.5 rounded bg-slate-900 border border-cyan-500/40 text-cyan-300 text-[9px] font-black uppercase">${item.brandTag || item.category}</span>
+                ${item.isPromoShowcase ? '<span class="px-1.5 py-0.5 rounded bg-amber-400/20 border border-amber-400/50 text-amber-300 text-[9px] font-black">⭐ PROMO</span>' : ''}
+              </div>
+              <div class="text-xs sm:text-sm font-black text-white mt-0.5">${item.name}</div>
+              <div class="text-[11px] text-slate-300 leading-snug mt-0.5">${item.desc}</div>
             </div>
           </div>
         `;
 
         const actionsWrap = document.createElement('div');
-        actionsWrap.className = 'flex items-center gap-1.5 shrink-0';
+        actionsWrap.className = 'flex items-center justify-between gap-2 pt-1.5 border-t border-slate-800/80';
 
-        // 👁️ Preview on 3D Avatar Button
         const prevBtn = document.createElement('button');
         prevBtn.type = 'button';
-        prevBtn.className = `px-2.5 py-1.5 rounded-lg text-[11px] font-extrabold border transition ${
+        prevBtn.className = `px-3 py-1.5 rounded-xl text-[11px] font-black border transition ${
           isPreviewing
-            ? 'bg-sky-500 text-slate-950 border-sky-300'
-            : 'bg-slate-900 hover:bg-slate-800 text-sky-300 border-slate-700'
+            ? 'bg-cyan-400 text-slate-950 border-cyan-200'
+            : 'bg-slate-900 hover:bg-slate-800 text-cyan-200 border-cyan-500/40'
         }`;
-        prevBtn.textContent = isPreviewing ? '👁️ Previewing' : '👁️ Preview';
+        prevBtn.textContent = isPreviewing ? '👁️ Trying On' : '👁️ Try On Skater';
         prevBtn.addEventListener('click', () => {
           SoundFX.playTap();
           state.shopPreviewItem = item;
-          // Rotate to front view so visor/helmet/stick/skates are immediately clear
-          state.avatarSpinAngle = 15;
+          state.avatarSpinAngle = 0;
           renderProShopModal();
         });
 
-        // Buy / Equip Button
         const btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = `px-3 py-1.5 rounded-lg text-xs font-black shrink-0 transition ${
+        btn.className = `px-3.5 py-1.5 rounded-xl text-xs font-black shrink-0 transition ${
           equipped
-            ? 'bg-emerald-500 text-slate-950'
+            ? 'bg-emerald-400 text-slate-950'
             : owned
-            ? 'bg-sky-500 hover:bg-sky-400 text-slate-950'
+            ? 'bg-cyan-400 hover:bg-cyan-300 text-slate-950'
             : state.puckBucks >= item.cost
-            ? 'bg-amber-400 hover:bg-amber-300 text-slate-950'
-            : 'bg-slate-800 text-slate-500 cursor-not-allowed'
+            ? 'bg-amber-400 hover:bg-amber-300 text-slate-950 shadow'
+            : 'bg-slate-800 text-slate-400 cursor-not-allowed'
         }`;
-        btn.textContent = equipped ? 'Equipped ✓' : (owned ? 'Equip' : `Buy $${item.cost}`);
+        btn.textContent = equipped ? '✅ Equipped' : (owned ? '⚡ Equip' : `💰 ${item.cost} Puck Bucks`);
         btn.addEventListener('click', () => {
           if (!owned) {
             if (state.puckBucks < item.cost) {
@@ -13700,13 +14351,8 @@
               return;
             }
             state.puckBucks -= item.cost;
-            prof.ownedGear.push(item.id);
           }
-          if (item.category === 'Gloves') prof.equippedGloves = item.color;
-          if (item.category === 'Stick') prof.equippedStick = item.color;
-          if (item.category === 'Skates') prof.equippedSkate = item.color;
-          if (item.category === 'Helmet') prof.equippedHelmet = item.color;
-          if (item.category === 'Visor') prof.equippedVisor = item.color;
+          equipProShopItemOnProfile(prof, item);
           state.shopPreviewItem = null;
           SoundFX.playGoalHorn();
           saveProgress();
@@ -13723,6 +14369,7 @@
         grid.appendChild(card);
       });
     }
+    window.renderProShopModal = renderProShopModal;
 
     // =========================================================================
     // AUTOMATED QA & TAG CONTROL AUDITOR (Checks All 22 Drills, Permutations, Coordinates, Numbers & Video Tags)
@@ -19562,8 +20209,8 @@
       },
       {
         stationId: 'lobbyStationProShop',
-        title: 'Step 3 / 5 • Synapz Pro Shop',
-        sentence: 'Visit the Synapz Pro Shop to spend your earned Puck Bucks on the Wall of Gloves, Skates, Sticks, and Tinted Visors.'
+        title: 'Step 3 / 5 • Synapz Pro Shop & IQ Economy',
+        sentence: "Score 95% Hockey IQ in any Map Series or Coach Al's 5- or 10-Lesson Plan to earn +95 Puck Bucks, then spend them on the Wall of Gloves, Pro Stick Rack, Wall of Skates, and Tinted Visors!"
       },
       {
         stationId: 'lobbyStationCoachOffice',
@@ -19747,7 +20394,7 @@
 
       const avatarStage = document.getElementById('lockerRoom3dAvatarWrap');
       if (avatarStage) {
-        avatarStage.innerHTML = render3dAvatarSvg(prof, state.lockerSpinAngle || 0);
+        avatarStage.innerHTML = renderYoungHockeyPlayerAvatar(prof, state.lockerSpinAngle || 0);
       }
       const titleEl = document.getElementById('lockerRoomPlayerTitle');
       if (titleEl) {
@@ -19782,10 +20429,15 @@
         });
       }
 
-      // Render Equipped / Owned Gear Category Grid
-      const cat = state.lockerActiveCat || 'Gloves';
+      // Normalize category aliases ('Sticks' -> 'Stick', 'Helmets' -> 'Visor')
+      let cat = state.lockerActiveCat || 'Gloves';
+      if (cat === 'Sticks') cat = 'Stick';
+      if (cat === 'Helmets') cat = 'Visor';
+      state.lockerActiveCat = cat;
+
       document.querySelectorAll('.locker-cat-btn').forEach(b => {
-        const isC = b.dataset.lockerCat === cat;
+        const bCat = b.dataset.lockerCat === 'Sticks' ? 'Stick' : (b.dataset.lockerCat === 'Helmets' ? 'Visor' : b.dataset.lockerCat);
+        const isC = bCat === cat;
         b.className = isC
           ? 'locker-cat-btn px-3 py-2 rounded-xl bg-cyan-500 text-slate-950 font-black text-xs shadow transition'
           : 'locker-cat-btn px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-xs transition';
@@ -19795,43 +20447,55 @@
       if (gearGrid) {
         if (cat === 'Jersey') {
           const colors = [
-            { hex: '#0284c7', label: 'Synapz Cyan-Blue' },
-            { hex: '#dc2626', label: 'Championship Red' },
-            { hex: '#10b981', label: 'Breakaway Emerald' },
-            { hex: '#f59e0b', label: 'Trophy Gold' }
+            { hex: '#0284c7', label: 'Synapz Cyan-Blue (#9 / #88 / #7 / #14)' },
+            { hex: '#0f172a', label: '🖤 Stealth Full-Blackout Pro Jersey' },
+            { hex: '#dc2626', label: 'Championship Crimson Red' },
+            { hex: '#10b981', label: 'Breakaway Emerald Green' },
+            { hex: '#f59e0b', label: 'Stanley Cup Trophy Gold' }
           ];
           gearGrid.innerHTML = colors.map(c => `
-            <button type="button" data-jersey-hex="${c.hex}" class="btn-locker-jersey p-3 rounded-xl border ${prof.jerseyColor === c.hex ? 'border-cyan-300 bg-cyan-500/20' : 'border-slate-800 bg-slate-900'} text-left flex items-center gap-2.5">
-              <span class="w-6 h-6 rounded-full border border-white/40 shrink-0" style="background:${c.hex}"></span>
-              <span class="text-xs font-black text-white">${c.label}</span>
+            <button type="button" data-jersey-hex="${c.hex}" class="btn-locker-jersey p-3 rounded-xl border ${prof.jerseyColor === c.hex ? 'border-cyan-300 bg-cyan-500/20' : 'border-slate-800 bg-slate-900'} text-left flex items-center justify-between gap-2.5">
+              <div class="flex items-center gap-2.5">
+                <span class="w-7 h-7 rounded-full border-2 border-white/50 shrink-0" style="background:${c.hex}"></span>
+                <span class="text-xs font-black text-white">${c.label}</span>
+              </div>
+              <span class="px-2.5 py-1 rounded-lg text-[10px] font-black ${prof.jerseyColor === c.hex ? 'bg-emerald-400 text-slate-950' : 'bg-cyan-500/20 text-cyan-200'}">
+                ${prof.jerseyColor === c.hex ? '✅ Equipped' : '⚡ Wear'}
+              </span>
             </button>
           `).join('');
           gearGrid.querySelectorAll('.btn-locker-jersey').forEach(b => {
             b.addEventListener('click', () => {
+              SoundFX.playTap();
               prof.jerseyColor = b.dataset.jerseyHex;
               saveProgress();
               renderSynapzLockerRoomModal();
+              renderSynapzRinkLobby();
+              drawRink();
             });
           });
         } else {
-          const items = PRO_SHOP_ITEMS.filter(i => i.category === cat);
+          const items = PRO_SHOP_ITEMS.filter(i =>
+            i.category === cat || (cat === 'Visor' && (i.category === 'Visor' || i.category === 'Helmet'))
+          );
           gearGrid.innerHTML = items.map(item => {
-            const isEq = (item.slot === 'gloves' && prof.equippedGloves === item.id) ||
-                         (item.slot === 'skates' && prof.equippedSkates === item.id) ||
-                         (item.slot === 'stick' && prof.equippedStick === item.id) ||
-                         (item.slot === 'helmet' && prof.equippedHelmet === item.id) ||
-                         (item.slot === 'celly' && prof.equippedCelly === item.id);
+            const isEq =
+              (item.category === 'Gloves' && (prof.equippedGloves === item.color || prof.equippedGlovesId === item.id)) ||
+              (item.category === 'Stick' && (prof.equippedStick === item.color || prof.equippedStickId === item.id)) ||
+              (item.category === 'Skates' && (prof.equippedSkate === item.color || prof.equippedSkates === item.id)) ||
+              (item.category === 'Helmet' && (prof.equippedHelmet === item.color || prof.equippedHelmetId === item.id)) ||
+              (item.category === 'Visor' && (prof.equippedVisor === item.color || prof.equippedVisorId === item.id));
             return `
-              <button type="button" data-equip-id="${item.id}" class="btn-locker-equip p-3 rounded-xl border ${isEq ? 'border-emerald-400 bg-emerald-500/20' : 'border-slate-800 bg-slate-900 hover:border-cyan-400/50'} text-left flex items-center justify-between gap-2">
-                <div class="flex items-center gap-2 min-w-0">
-                  <span class="text-xl">${item.icon}</span>
+              <button type="button" data-equip-id="${item.id}" class="btn-locker-equip p-2.5 rounded-xl border ${isEq ? 'border-emerald-400 bg-emerald-500/20' : 'border-slate-800 bg-slate-900 hover:border-cyan-400/50'} text-left flex items-center justify-between gap-2.5">
+                <div class="flex items-center gap-2.5 min-w-0">
+                  ${renderProShopWallProductSvg(item)}
                   <div class="min-w-0">
                     <div class="text-xs font-black text-white truncate">${item.name}</div>
-                    <div class="text-[10px] text-slate-400 truncate">${item.desc}</div>
+                    <div class="text-[10px] text-slate-300 leading-snug">${item.desc}</div>
                   </div>
                 </div>
-                <span class="px-2.5 py-1 rounded-lg text-[10px] font-black shrink-0 ${isEq ? 'bg-emerald-400 text-slate-950' : 'bg-cyan-500/20 text-cyan-200 border border-cyan-400/50'}">
-                  ${isEq ? '✅ Equipped' : 'Equip'}
+                <span class="px-3 py-1.5 rounded-lg text-[10px] font-black shrink-0 ${isEq ? 'bg-emerald-400 text-slate-950' : 'bg-cyan-500/20 text-cyan-200 border border-cyan-400/50'}">
+                  ${isEq ? '✅ Equipped' : '⚡ Equip'}
                 </span>
               </button>
             `;
@@ -19841,14 +20505,11 @@
               const it = PRO_SHOP_ITEMS.find(x => x.id === b.dataset.equipId);
               if (!it) return;
               SoundFX.playTap();
-              if (!state.unlockedItems.includes(it.id)) state.unlockedItems.push(it.id);
-              if (it.slot === 'gloves') prof.equippedGloves = it.id;
-              if (it.slot === 'skates') prof.equippedSkates = it.id;
-              if (it.slot === 'stick') prof.equippedStick = it.id;
-              if (it.slot === 'helmet') prof.equippedHelmet = it.id;
-              if (it.slot === 'celly') prof.equippedCelly = it.id;
+              equipProShopItemOnProfile(prof, it);
               saveProgress();
               renderSynapzLockerRoomModal();
+              renderSynapzRinkLobby();
+              drawRink();
             });
           });
         }
@@ -20176,6 +20837,14 @@
       // Locker Room Modal
       bindClick('btnCloseSynapzLockerRoomModal', () => document.getElementById('synapzLockerRoomModal').classList.add('hidden'));
       bindClick('btnLockerSaveExitLobby', saveAndExitToRinkLobby);
+      bindClick('btnLockerPreviewBlackout', () => applyFullBlackoutLoadout(true));
+      bindClick('btnLockerEquipOwnedGear', () => equipOwnedGearLoadout());
+      bindClick('btnShopPreviewBlackout', () => applyFullBlackoutLoadout(true));
+      bindClick('btnSpeakShopEconomyTip', () => {
+        const ag = getActivePlayerAgent();
+        const quote = "Score 95 percent Hockey IQ in any Map Series or Coach Al's 5 or 10 Lesson Plan and you earn 95 Puck Bucks right into your wallet! Tap any wall below to try gear on your skater.";
+        playCharacterVoice(ag.id, 'shop_economy_tip', quote);
+      });
       bindClick('btnLockerChangeAgent', () => {
         document.getElementById('synapzLockerRoomModal').classList.add('hidden');
         openPlayerAgentPickerModal();
@@ -20413,10 +21082,18 @@
       <div id="lockerRoomSiblingStalls" class="flex flex-wrap items-center gap-2"></div>
 
       <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-        <!-- Left: Young Hockey Player Avatar Preview -->
+        <!-- Left: Young Hockey Player Avatar Preview (75% Realistic / 25% Cartoon-Edge Style) -->
         <div class="md:col-span-5 p-4 rounded-2xl bg-slate-950 border border-cyan-400/50 flex flex-col items-center gap-2">
-          <div id="lockerRoom3dAvatarWrap" class="w-44 h-52 flex items-center justify-center"></div>
+          <div id="lockerRoom3dAvatarWrap" class="w-48 h-56 flex items-center justify-center"></div>
           <div id="lockerRoomAgentBadge" class="text-xs font-black text-cyan-300">🎙️ My Agent: Chloe</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 w-full">
+            <button id="btnLockerPreviewBlackout" type="button" class="py-2 px-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-amber-400/70 text-amber-200 text-[11px] font-black transition">
+              🖤 Preview "Full Blackout" Loadout
+            </button>
+            <button id="btnLockerEquipOwnedGear" type="button" class="py-2 px-2.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/70 text-emerald-200 text-[11px] font-black transition">
+              ⚡ Equip Owned Gear
+            </button>
+          </div>
           <button id="btnLockerChangeAgent" type="button" class="w-full py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/60 text-cyan-200 text-xs font-black">
             🎙️ Change Player Agent (Audition 9 Voices)
           </button>
@@ -20426,9 +21103,9 @@
         <div class="md:col-span-7 space-y-3">
           <div class="flex flex-wrap items-center gap-1.5">
             <button type="button" data-locker-cat="Gloves" class="locker-cat-btn px-3 py-2 rounded-xl bg-cyan-500 text-slate-950 font-black text-xs">🧤 Gloves</button>
-            <button type="button" data-locker-cat="Sticks" class="locker-cat-btn px-3 py-2 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs">🏒 Sticks</button>
+            <button type="button" data-locker-cat="Stick" class="locker-cat-btn px-3 py-2 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs">🏒 Sticks</button>
             <button type="button" data-locker-cat="Skates" class="locker-cat-btn px-3 py-2 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs">⛸️ Skates</button>
-            <button type="button" data-locker-cat="Helmets" class="locker-cat-btn px-3 py-2 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs">🥽 Visors &amp; Buckets</button>
+            <button type="button" data-locker-cat="Visor" class="locker-cat-btn px-3 py-2 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs">🥽 Visors &amp; Buckets</button>
             <button type="button" data-locker-cat="Jersey" class="locker-cat-btn px-3 py-2 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs">🎽 Jersey Color</button>
           </div>
           <div id="lockerRoomGearItemsGrid" class="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto pr-1"></div>

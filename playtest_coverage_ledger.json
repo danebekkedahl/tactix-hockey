@@ -1,6 +1,6 @@
 {
-  "lastUpdatedAt": "2026-11-04T23:35:46.726Z",
-  "totalRuns": 7,
+  "lastUpdatedAt": "2026-11-05T00:46:55.546Z",
+  "totalRuns": 11,
   "stepAApprovalGateCheck": {
     "statusChecked": "approved_by_founder",
     "approvedItemsCount": 0,
@@ -581,7 +581,10 @@
     "audit_family_portal": "screenshots/audit_family_portal.png",
     "audit_rink_lobby": "screenshots/audit_rink_lobby.png",
     "audit_player_agent_picker": "screenshots/audit_player_agent_picker.png",
+    "audit_accurate_na_map": "screenshots/audit_accurate_na_map.png",
     "audit_adventure_map": "screenshots/audit_adventure_map.png",
+    "audit_locker_room_avatar": "screenshots/audit_locker_room_avatar.png",
+    "audit_pro_shop_walls": "screenshots/audit_pro_shop_walls.png",
     "audit_phase2_lesson_screen": "screenshots/audit_phase2_lesson_screen.png",
     "audit_on_ice_gameplay": "screenshots/audit_on_ice_gameplay.png",
     "seat1": "assets/audit-screenshots/seat1-on-ice-drill-setup.png",
