@@ -3632,42 +3632,66 @@
           </div>
         </div>
 
-        <!-- PORTAL B: 📋 TEAM PORTAL CREDENTIALS -->
-        <div id="portalCredsCoach" class="hidden flex-col gap-3">
-          <div class="synapz-cyan-frame rounded-2xl p-3.5 space-y-2.5">
-            <label class="text-xs font-black uppercase tracking-wider text-cyan-300 block">📋 Enter Team or Partner Association Code</label>
-            <div class="flex gap-2">
-              <input id="sandboxTeamCodeInput" type="text" value="PUCK99" placeholder="PUCK99, ASSOC-MINOT, ASSOC-FOOTHILLS, ASSOC-LIGHTNING" class="w-full px-3 py-2.5 rounded-xl bg-slate-950 border border-cyan-400/60 text-sm font-black text-cyan-300 uppercase" />
-              <button id="btnSandboxLoadTeamCode" type="button" class="synapz-cta-btn px-4 py-2.5 rounded-xl text-xs shrink-0">
-                Sync Code
-              </button>
-            </div>
-            <div id="partnerAssociationBanner" class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
-              <button type="button" data-assoc-code="PUCK99" class="partner-crest-btn p-2 rounded-xl bg-slate-950/90 hover:bg-slate-800 border border-cyan-400/50 text-left transition">
-                <div class="text-xs font-black text-white">🏒 Team PUCK99</div>
-                <div class="text-[10px] text-cyan-300 font-bold">Minot Wolves</div>
-              </button>
-              <button type="button" data-assoc-code="ASSOC-MINOT" class="partner-crest-btn p-2 rounded-xl bg-slate-950/90 hover:bg-slate-800 border border-cyan-400/50 text-left transition">
-                <div class="text-xs font-black text-white">🐺 ASSOC-MINOT</div>
-                <div class="text-[10px] text-emerald-300 font-bold">Minot 3v3 Wolves</div>
-              </button>
-              <button type="button" data-assoc-code="ASSOC-FOOTHILLS" class="partner-crest-btn p-2 rounded-xl bg-slate-950/90 hover:bg-slate-800 border border-cyan-400/50 text-left transition">
-                <div class="text-xs font-black text-white">🦅 ASSOC-FOOTHILLS</div>
-                <div class="text-[10px] text-amber-300 font-bold">Foothills Flyers</div>
-              </button>
-              <button type="button" data-assoc-code="ASSOC-LIGHTNING" class="partner-crest-btn p-2 rounded-xl bg-slate-950/90 hover:bg-slate-800 border border-cyan-400/50 text-left transition">
-                <div class="text-xs font-black text-white">⚡ ASSOC-LIGHTNING</div>
-                <div class="text-[10px] text-purple-300 font-bold">Lightning AAA</div>
+        <!-- PORTAL B: 📋 TEAM PORTAL CREDENTIALS (Strictly 2 Tactile Path Buttons: Coach Login vs. Coach Code) -->
+        <div id="portalCredsCoach" class="hidden flex-col gap-3.5">
+          <div class="text-center">
+            <div class="text-[10px] font-black uppercase tracking-widest text-cyan-400">PHASE 5 • STREAMLINED 2-PATH TEAM PORTAL GATE</div>
+            <h3 class="text-base sm:text-lg font-black text-white mt-0.5">Choose Your Team Portal Entry Path</h3>
+          </div>
+
+          <!-- Strictly 2 Large Tactile Path Buttons -->
+          <div id="teamPortalTwoButtonsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Path 1: 🧑‍💼 COACH LOGIN (Enters Coach's Office Lobby Guided by Coach Al) -->
+            <button id="btnCoachPortalDirectorSignIn" type="button" data-team-entry-path="coach_login" class="synapz-portal-card rounded-2xl p-5 text-left flex flex-col justify-between gap-3 cursor-pointer group border-2 border-amber-400/80">
+              <div class="flex items-center justify-between">
+                <span class="text-3xl">🧑‍💼</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 border border-amber-400/60 text-amber-300 text-[10px] font-black uppercase">Guided by Coach Al</span>
+              </div>
+              <div>
+                <div class="text-base sm:text-lg font-black text-white group-hover:text-amber-300 transition">🧑‍💼 COACH LOGIN</div>
+                <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                  Enter the <strong>Coach's Office Lobby</strong> with <strong>Coach Al</strong>: 1-Click Proactive Weekly Plans, Question-by-Question Player Reports, Playbook Uploads &amp; Opponent Scouting Counter-Plans.
+                </p>
+              </div>
+              <div class="w-full py-2.5 px-3 rounded-xl bg-amber-400 text-slate-950 font-black text-xs text-center uppercase shadow-lg">
+                Enter Coach's Office Lobby (Coach Al) ▶
+              </div>
+            </button>
+
+            <!-- Path 2: 🏒 ENTER COACH CODE (Player Access to Team Roster Hub) -->
+            <div class="synapz-portal-card rounded-2xl p-5 text-left flex flex-col justify-between gap-3 border-2 border-cyan-400/80">
+              <div class="flex items-center justify-between">
+                <span class="text-3xl">🏒</span>
+                <span id="teamCodeAutoDetectedBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/60 text-emerald-300 text-[10px] font-black uppercase">Code Ready: PUCK99</span>
+              </div>
+              <div>
+                <div class="text-base sm:text-lg font-black text-white">🏒 ENTER COACH CODE (Player Access)</div>
+                <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                  Enter your Coach or Association Code (<code class="text-cyan-300">PUCK99</code>, <code class="text-cyan-300">ASSOC-MINOT</code>, <code class="text-cyan-300">ASSOC-FOOTHILLS</code>) to open your <strong>Player Team Roster Hub</strong>.
+                </p>
+                <div class="flex gap-2 mt-2">
+                  <input id="sandboxTeamCodeInput" type="text" value="PUCK99" placeholder="PUCK99 or ASSOC-MINOT" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-cyan-400/70 text-xs sm:text-sm font-black text-cyan-300 uppercase" />
+                  <button id="btnSandboxLoadTeamCode" type="button" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-cyan-400/50 text-cyan-200 text-xs font-black shrink-0">
+                    Sync
+                  </button>
+                </div>
+                <div id="partnerAssociationBanner" class="flex flex-wrap items-center gap-1.5 mt-2">
+                  <button type="button" data-assoc-code="PUCK99" class="partner-crest-btn px-2 py-1 rounded-lg bg-slate-950 hover:bg-slate-800 border border-cyan-400/50 text-[10px] font-black text-cyan-300">🏒 PUCK99</button>
+                  <button type="button" data-assoc-code="ASSOC-MINOT" class="partner-crest-btn px-2 py-1 rounded-lg bg-slate-950 hover:bg-slate-800 border border-emerald-400/50 text-[10px] font-black text-emerald-300">🐺 ASSOC-MINOT</button>
+                  <button type="button" data-assoc-code="ASSOC-FOOTHILLS" class="partner-crest-btn px-2 py-1 rounded-lg bg-slate-950 hover:bg-slate-800 border border-amber-400/50 text-[10px] font-black text-amber-300">🦅 ASSOC-FOOTHILLS</button>
+                  <button type="button" data-assoc-code="ASSOC-LIGHTNING" class="partner-crest-btn px-2 py-1 rounded-lg bg-slate-950 hover:bg-slate-800 border border-purple-400/50 text-[10px] font-black text-purple-300">⚡ ASSOC-LIGHTNING</button>
+                </div>
+              </div>
+              <button id="btnCoachPortalPlayerSignIn" type="button" data-team-entry-path="coach_code" class="synapz-cta-btn w-full py-2.5 px-3 rounded-xl text-xs font-black text-center uppercase shadow-lg">
+                🏒 Enter Player Team Roster Hub ▶
               </button>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <button id="btnCoachPortalDirectorSignIn" type="button" class="synapz-cta-btn py-3.5 px-4 rounded-2xl text-xs sm:text-sm font-black flex items-center justify-center gap-2 shadow-xl">
-              <span>🧑‍💼</span><span>Coach / Director Sign-In (4-Tab HQ) ▶</span>
-            </button>
-            <button id="btnCoachPortalPlayerSignIn" type="button" class="synapz-cyan-pill py-3.5 px-4 rounded-2xl text-xs sm:text-sm font-black text-cyan-200 flex items-center justify-center gap-2 shadow-xl">
-              <span>🏒</span><span>Team Roster Player Sign-In (Homework Inbox) ▶</span>
+          <!-- Clean Footer Link for New Coaches: 💳 View Team/Association Plans -->
+          <div class="flex items-center justify-center pt-0.5">
+            <button id="btnTeamPortalViewPlans" type="button" class="synapz-cyan-pill px-4 py-2 rounded-xl text-xs font-black text-amber-300 border border-amber-400/60 flex items-center gap-2">
+              <span>💳</span><span>View Team &amp; Association Plans ($49.99/yr Partner Discount)</span>
             </button>
           </div>
         </div>
@@ -13062,6 +13086,12 @@
         state.streak += 1;
         if (state.streak > state.bestStreak) state.bestStreak = state.streak;
         state.completedIds[scen.id] = true;
+        // Phase 6: Record exact organic scenario permutation hash so a mastered drill never repeats verbatim
+        const permHash = scen.permutationHash || `${scen.id || 'scen'}_rot${(state.permutationSeed || 0) % 4}_${profForFb.position || 'C'}_${state.activePresentationStyle || 'flow_and_freeze'}`;
+        if (!state.completedScenarioPermutationHashes) state.completedScenarioPermutationHashes = {};
+        state.completedScenarioPermutationHashes[permHash] = true;
+        if (!profForFb.completedScenarioPermutationHashes) profForFb.completedScenarioPermutationHashes = {};
+        profForFb.completedScenarioPermutationHashes[permHash] = true;
         if (!state.overtimeRedemptionActive) {
           state.seriesResults.push({ pts: qAwardedPts, maxPts: qMaxPts, correct: true, multiplier: mult, tier: consensusBadge || tierHeadline });
         }
@@ -17971,13 +18001,16 @@
         return true;
       }
       if (portalCard === 'coach' || state.selectedSandboxPortal === 'team') {
-        const targetCoachTab = coachSubMode === 'roster_homework' ? 'tab2_homework' : 'tab1_playbook';
         triggerSynapzScreenTransition(
-          coachSubMode === 'roster_homework' ? '⚡ Opening Weekly Coach Assignment Inbox...' : '⚡ Loading Coach & Director HQ...',
+          coachSubMode === 'roster_homework' ? '⚡ Opening Player Team Roster Hub...' : "⚡ Entering Coach's Office Lobby Guided by Coach Al...",
           () => {
-            openTeamManagerModal();
-            if (typeof switchCoachPortalTab === 'function') {
-              switchCoachPortalTab(targetCoachTab);
+            switchView('lobby');
+            if (coachSubMode === 'roster_homework' && typeof openPlayerTeamRosterHubModal === 'function') {
+              openPlayerTeamRosterHubModal('roster');
+            } else if (typeof openCoachOfficeLobbyModal === 'function') {
+              openCoachOfficeLobbyModal(2);
+            } else {
+              openTeamManagerModal();
             }
           }
         );
@@ -20784,11 +20817,959 @@
     }
     window.submitFounderRedFlagPriority = submitFounderRedFlagPriority;
 
+    // =========================================================================
+    // PHASE 5 & PHASE 6: TEAM PORTAL (COACH LOGIN VS COACH CODE), COACH'S OFFICE
+    // LOBBY GUIDED BY COACH AL, OPPONENT SCOUTING & COUNTER-STRATEGY KB,
+    // SAFESPORT NOTIFICATIONS, ORGANIC PERMUTATIONS & BUCKET COVERAGE REPORT
+    // =========================================================================
+    const SYNAPZ_COACHING_STRATEGY_KB = {
+      aggressive_212_forecheck: {
+        key: 'aggressive_212_forecheck',
+        label: 'Aggressive 2-1-2 Forecheck (Heavy F1/F2 Pressure)',
+        tendencySummary: 'Opponent sends F1 hard on the puck-retrieval D1 and F2 jumps the strong-side half-wall.',
+        conceptBuckets: ['breakout_d_to_d', 'breakout_low_slow_center', 'breakout_winger_wall_chip', 'scanning_deception_callouts'],
+        countersByAge: {
+          '8U_10U': {
+            title: '8U–10U Foundational Counter: Quick Shoulder Scan + Close Support Triangle + D-to-D Away From Pressure',
+            drillFocus: 'Pre-scan over your shoulder before touching the puck, build a tight 15-ft triangle, and move the puck away from the 2 chasers to the open weak-side winger.',
+            benchCue: 'Scan early, skate 3 strides out of the corner, and pass to the open side!'
+          },
+          '12U_14U': {
+            title: '12U–14U Intermediate Counter: Net-Front D-to-D Hinge + Low-and-Slow Center Curl Under the Dots',
+            drillFocus: 'D2 hinges behind the goal line calling "Reverse!", Center swings low and slow below the faceoff dots as a middle outlet to beat F1/F2 pressure clean.',
+            benchCue: 'Talk early ("Reverse / Wheel!"), keep Center low underneath F2, and hit weak-side speed!'
+          },
+          '16U_18U': {
+            title: '16U–18U Advanced Counter: Fake-Wheel Reverse + Weak-Side F3 Stretch Slash Across the Neutral Zone',
+            drillFocus: 'D1 sells the strong-side wheel with eyes/shoulders to bait F2, snaps a deceptive backhand reverse to D2, and hits F3 slashing into the weak-side neutral-zone seam.',
+            benchCue: 'Bait F2 with shoulder deception, quick D-to-D reverse, and attack their flat D-pair 3-on-2!'
+          }
+        }
+      },
+      neutral_zone_trap_122: {
+        key: 'neutral_zone_trap_122',
+        label: '1-2-2 Neutral Zone Trap / Clogged Blue Line',
+        tendencySummary: 'Opponent steers play to the boards with F1 and stacks 4 defenders across the red/blue lines.',
+        conceptBuckets: ['nz_regroup_hinge', 'nz_speed_entry_middle_drive', 'oz_cycle_scissors'],
+        countersByAge: {
+          '8U_10U': {
+            title: '8U–10U Foundational Counter: Skate Into Open Ice & Pass Lateral to Teammate in Stride',
+            drillFocus: 'Do not skate straight into the crowd—move the puck side-to-side to the open teammate skating fast.',
+            benchCue: 'Find the green ice and pass to the teammate with speed!'
+          },
+          '12U_14U': {
+            title: '12U–14U Intermediate Counter: D-to-D Neutral Zone Regroup + Weak-Side Speed Entry + Soft Area Chip',
+            drillFocus: 'Regroup D-to-D in the neutral zone to pull their 1-2-2 trap laterally, then hit the weak-side winger in full stride or chip behind their flat D1.',
+            benchCue: 'Move the trap side-to-side with a D-to-D regroup before entering the zone!'
+          },
+          '16U_18U': {
+            title: '16U–18U Advanced Counter: Center Drop-and-Slash + Cross-Corner Soft Dump for F1/F2 Retrieval',
+            drillFocus: 'Attack with speed underneath the puck, execute a neutral-zone D-to-D hinge to shift their lock, and either hit the middle-drive seam or place a soft area chip behind weak-side D2.',
+            benchCue: 'Change the point of attack in the NZ, middle-drive to push D back, and win the soft-chip race!'
+          }
+        }
+      },
+      heavy_physical_pinning: {
+        key: 'heavy_physical_pinning',
+        label: 'Heavy Physical / Board-Pinning Team',
+        tendencySummary: 'Opponent finishes checks along the walls and tries to pin puck-carriers in corners.',
+        conceptBuckets: ['scanning_deception_callouts', 'oz_cycle_scissors', 'breakout_low_slow_center'],
+        countersByAge: {
+          '8U_10U': {
+            title: '8U–10U Foundational Counter: Head Up Scan & Quick Give-and-Go Triangle Pass',
+            drillFocus: 'Move the puck in 1-2 seconds before the checker arrives and skate immediately to open space for the return pass.',
+            benchCue: 'Pass and move—never stand still on the boards!'
+          },
+          '12U_14U': {
+            title: '12U–14U Intermediate Counter: Pre-Scan Over Both Shoulders + 1-Touch Bump to Close Support',
+            drillFocus: 'Scan before puck touch, absorb contact with hips low, and execute quick 1-touch triangle bumps off the wall to F2/Center.',
+            benchCue: 'Know your outlet before the puck touches your tape—bump and spin off contact!'
+          },
+          '16U_18U': {
+            title: '16U–18U Advanced Counter: Cutback Scissors Cycle + Slip Pass Under Stick to Low Slot',
+            drillFocus: 'Use body leverage and sudden cutbacks to make heavy checkers miss, paired with high-low cycle scissors and immediate weak-side slot attacks.',
+            benchCue: 'Let them over-commit to the hit, cut back into the seam, and attack the royal road!'
+          }
+        }
+      },
+      blueline_pinch_hold_line: {
+        key: 'blueline_pinch_hold_line',
+        label: 'Aggressive Blue-Line Pinch / Hold-the-Line D',
+        tendencySummary: 'Opponent defensemen pinch down the boards on every breakout wall pass.',
+        conceptBuckets: ['breakout_winger_wall_chip', 'odd_man_rush_2v1_3v2', 'nz_speed_entry_middle_drive'],
+        countersByAge: {
+          '8U_10U': {
+            title: '8U–10U Foundational Counter: Bank Chip Off the Boards Past the Pinching Defender',
+            drillFocus: 'When their D steps up at the blue line, angle a soft bank pass off the boards to your Center streaking into open ice.',
+            benchCue: 'Chip it past the pinching D and go 2-on-1!'
+          },
+          '12U_14U': {
+            title: '12U–14U Intermediate Counter: Winger Wall Chip-and-Go + Center Underneath Support for 2-on-1 Rush',
+            drillFocus: 'Winger reads the pinching D1 early and chips 45 degrees off the glass into the neutral-zone pocket where Center is curling with speed to launch a 2-on-1.',
+            benchCue: 'Read D1 pinching down the wall—soft chip to Center in stride for an instant 2-on-1!'
+          },
+          '16U_18U': {
+            title: '16U–18U Advanced Counter: Direct Center Middle-Lane Bypass + Weak-Side F3 Royal-Road Counter-Rush',
+            drillFocus: 'Bypass the strong-side wall completely with a direct D1-to-Center inside pass or 1-touch wall-to-middle slip behind the pinching D1.',
+            benchCue: 'Punish every pinch—slip inside to Center and attack their lone remaining D 3-on-1!'
+          }
+        }
+      },
+      high_penalty_undisciplined: {
+        key: 'high_penalty_undisciplined',
+        label: 'High-Penalty / Undisciplined Opponent (Special Teams Focus)',
+        tendencySummary: 'Opponent takes frequent stick infractions and gives up 4+ power-play opportunities per game.',
+        conceptBuckets: ['special_teams_5v4_umbrella', 'oz_royal_road_net_front', 'scanning_deception_callouts'],
+        countersByAge: {
+          '8U_10U': {
+            title: '8U–10U Foundational Counter: Keep Moving Your Feet & Attack Triangle Passing Around the Net',
+            drillFocus: 'Keep skating to draw penalties and move the puck quickly across the slot to the open shooter with stick on the ice.',
+            benchCue: 'Keep your feet moving—pass across the slot for the open tap-in!'
+          },
+          '12U_14U': {
+            title: '12U–14U Intermediate Counter: 1-3-1 Power Play Umbrella + Net-Front Screen & Flank One-Timer',
+            drillFocus: 'Set up the 1-3-1 Umbrella quickly after winning the faceoff, take away the goalie\'s eyes, and work the top-D to flank one-timer.',
+            benchCue: 'Win the draw, lock in the 1-3-1 Umbrella, and get eyes in front of their goalie!'
+          },
+          '16U_18U': {
+            title: '16U–18U Advanced Counter: 1-3-1 Bumper Touch-Pass + Royal-Road Backdoor Seam Execution',
+            drillFocus: 'Collapse their 4v5 box by hitting the middle Bumper for a 1-touch kick-out to the weak-side flank or backdoor seam.',
+            benchCue: 'Collapse their PK box with the Bumper touch and hammer the weak-side royal-road seam!'
+          }
+        }
+      },
+      pass_jumping_aggressive_pk: {
+        key: 'pass_jumping_aggressive_pk',
+        label: 'Pass-Jumping / Aggressive Penalty Kill & D-Zone Box',
+        tendencySummary: 'Opponent jumps point-to-point passes and over-pursues the puck carrier.',
+        conceptBuckets: ['scanning_deception_callouts', 'special_teams_5v4_umbrella', 'oz_royal_road_net_front'],
+        countersByAge: {
+          '8U_10U': {
+            title: '8U–10U Foundational Counter: Look-Off Fake Pass & Skate Into the Wide-Open Slot',
+            drillFocus: 'Use a quick head/shoulder fake to freeze the defender jumping the pass, then skate right into the open House.',
+            benchCue: 'Fake the pass, freeze the chaser, and walk into the House!'
+          },
+          '12U_14U': {
+            title: '12U–14U Intermediate Counter: Pump-Fake Deception + Give-and-Go Behind the Over-Pursuing Forward',
+            drillFocus: 'Sell the point pass with a pump fake so the aggressive checker flies past, then step into the high-slot shooting lane.',
+            benchCue: 'Use pump-fakes to punish pass-jumpers and step right into the seam!'
+          },
+          '16U_18U': {
+            title: '16U–18U Advanced Counter: No-Look Seam Manipulation + Below-Goal-Line Gretzky Office Reversal',
+            drillFocus: 'Manipulate aggressive diamond/wedge PK sticks with eyes and low-to-high reversals behind the net to open the royal road.',
+            benchCue: 'Move their sticks with your eyes first, reverse below the goal line, and hit the seam!'
+          }
+        }
+      }
+    };
+    window.SYNAPZ_COACHING_STRATEGY_KB = SYNAPZ_COACHING_STRATEGY_KB;
+
+    function resolveAgeTierKeyForStrategy(ageGroup = '12U') {
+      const ag = String(ageGroup || '12U').toUpperCase();
+      if (ag === '8U' || ag === '10U') return '8U_10U';
+      if (ag === '12U' || ag === '14U') return '12U_14U';
+      return '16U_18U';
+    }
+
+    function generateOpponentCounterStrategyPlan(opponentName = 'Minot Wolves', ageGroup = '12U', tendencyKeys = ['aggressive_212_forecheck', 'blueline_pinch_hold_line']) {
+      const keys = Array.isArray(tendencyKeys) && tendencyKeys.length > 0 ? tendencyKeys : ['aggressive_212_forecheck'];
+      const tierKey = resolveAgeTierKeyForStrategy(ageGroup);
+      const selectedStrategies = keys
+        .map(k => SYNAPZ_COACHING_STRATEGY_KB[k])
+        .filter(Boolean);
+      const primary = selectedStrategies[0] || SYNAPZ_COACHING_STRATEGY_KB.aggressive_212_forecheck;
+      const counterBlock = primary.countersByAge[tierKey] || primary.countersByAge['12U_14U'];
+      const buckets = Array.from(new Set(selectedStrategies.flatMap(s => s.conceptBuckets)));
+
+      const plan = {
+        id: `COUNTER-${Date.now()}`,
+        opponentName: opponentName || 'Minot Wolves',
+        ageGroup: ageGroup || '12U',
+        ageTierKey: tierKey,
+        tendencyKeys: keys,
+        tendencyLabels: selectedStrategies.map(s => s.label),
+        counterHeadline: counterBlock.title,
+        drillFocus: counterBlock.drillFocus,
+        benchCue: counterBlock.benchCue,
+        targetConceptBuckets: buckets,
+        lessonCount: ageGroup === '8U' || ageGroup === '10U' ? 5 : 10,
+        coachAlProactiveAlert: `Hey Coach, big game this weekend vs. ${opponentName}! Based on your scouting report (${selectedStrategies.map(s => s.label.split(' (')[0]).join(' + ')}) and our ${ageGroup} team's IQ, I generated this week's ${counterBlock.title}.`,
+        createdAt: new Date().toISOString()
+      };
+      state.lastGeneratedOpponentCounterPlan = plan;
+      return plan;
+    }
+    window.generateOpponentCounterStrategyPlan = generateOpponentCounterStrategyPlan;
+
+    function generateWeekendBenchGamePlan(opponentName = 'Minot Wolves', ageGroup = '12U', tendencyKeys = ['aggressive_212_forecheck', 'blueline_pinch_hold_line']) {
+      const counterPlan = generateOpponentCounterStrategyPlan(opponentName, ageGroup, tendencyKeys);
+      const tierKey = counterPlan.ageTierKey;
+      const keysToRender = counterPlan.tendencyKeys.map(k => SYNAPZ_COACHING_STRATEGY_KB[k]).filter(Boolean);
+      const benchCard = {
+        opponentName: counterPlan.opponentName,
+        ageGroup: counterPlan.ageGroup,
+        teamName: state.teamName || 'Minot 3v3 Wolves',
+        coachName: state.coachName || 'Coach Dane',
+        headline: `📋 WEEKEND BENCH GAME PLAN vs. ${counterPlan.opponentName.toUpperCase()} (${counterPlan.ageGroup})`,
+        threeKeysToVictory: keysToRender.map((s, idx) => {
+          const c = s.countersByAge[tierKey] || s.countersByAge['12U_14U'];
+          return `${idx + 1}. Beat "${s.label}": ${c.benchCue}`;
+        }),
+        periodByPeriodFocus: [
+          `1st Period (First 5 Shifts): Pre-scan over shoulders before puck retrieval & execute ${counterPlan.counterHeadline}.`,
+          `2nd Period (Long Change): Manage neutral-zone gaps, regroup D-to-D away from pressure, and change on the fly with possession.`,
+          `3rd Period (Closing Lock): Protect the House (middle slot), sticks in passing lanes, and counter-attack 3-on-2 with speed.`
+        ],
+        targetConceptBuckets: counterPlan.targetConceptBuckets
+      };
+      state.lastWeekendBenchGamePlan = benchCard;
+      return benchCard;
+    }
+    window.generateWeekendBenchGamePlan = generateWeekendBenchGamePlan;
+
+    // =========================================================================
+    // PHASE 6: ENDLESS ORGANIC DRILL PERMUTATION ENGINE (`getNextOrganicScenarioPermutation`)
+    // Guarantees a player NEVER gets the exact same mastered drill permutation twice!
+    // =========================================================================
+    function getNextOrganicScenarioPermutation(conceptOrBucket = 'all', profile = null) {
+      const prof = profile || getActiveProfile() || {};
+      if (!prof.completedScenarioPermutationHashes) prof.completedScenarioPermutationHashes = {};
+      if (!state.completedScenarioPermutationHashes) state.completedScenarioPermutationHashes = {};
+
+      const pool = getFilteredScenarios();
+      const matchingPool = (conceptOrBucket && conceptOrBucket !== 'all')
+        ? pool.filter(s => s.concept === conceptOrBucket || s.bucket_code === conceptOrBucket || (s.concept && conceptOrBucket.includes(s.concept)))
+        : pool;
+      const candidateScenarios = matchingPool.length > 0 ? matchingPool : (pool.length > 0 ? pool : SCENARIOS);
+
+      // Prioritize missed/deficient concepts first (with a fresh organic permutation!)
+      const deficientKeys = Object.keys(prof.deficientConcepts || {}).filter(k => prof.deficientConcepts[k]);
+      const prioritizedScenarios = [
+        ...candidateScenarios.filter(s => deficientKeys.includes(s.concept)),
+        ...candidateScenarios
+      ];
+
+      const rotations = [0, 90, 180, 270];
+      const rolePerspectives = ['C', 'LW', 'RW', 'LD', 'RD'];
+      const speedMultipliers = [1.0, 1.12, 1.22];
+      const presentationModes = ['flow_and_freeze', 'static_hover_zones', 'habit_combo'];
+      const questionModes = ['tap_zone', 'tactical_choice', 'drag_skater'];
+
+      let chosenScen = prioritizedScenarios[0] || SCENARIOS[0];
+      let chosenHash = '';
+      let chosenSpec = null;
+
+      // Search across candidate scenarios x 4 rotations x 5 roles x 3 presentation modes for an uncompleted permutation hash
+      outerLoop:
+      for (let sIdx = 0; sIdx < prioritizedScenarios.length; sIdx++) {
+        const sc = prioritizedScenarios[sIdx];
+        for (let rIdx = 0; rIdx < rotations.length; rIdx++) {
+          const rotDeg = rotations[rIdx];
+          for (let pIdx = 0; pIdx < rolePerspectives.length; pIdx++) {
+            const roleCode = rolePerspectives[pIdx];
+            for (let mIdx = 0; mIdx < presentationModes.length; mIdx++) {
+              const presMode = presentationModes[mIdx];
+              const qMode = questionModes[(rIdx + pIdx + mIdx) % questionModes.length];
+              const spd = speedMultipliers[(rIdx + pIdx) % speedMultipliers.length];
+              const hash = `${sc.id}_rot${rotDeg}_role${roleCode}_mode${presMode}_q${qMode}`;
+              if (!prof.completedScenarioPermutationHashes[hash] && !state.completedScenarioPermutationHashes[hash]) {
+                chosenScen = sc;
+                chosenHash = hash;
+                chosenSpec = {
+                  scenarioId: sc.id,
+                  scenarioTitle: sc.title,
+                  concept: sc.concept,
+                  bucketCode: sc.bucket_code || sc.concept,
+                  rotationDegrees: rotDeg,
+                  mirrorX: (rotDeg === 90 || rotDeg === 270),
+                  mirrorY: (rotDeg === 180 || rotDeg === 270),
+                  activeRolePerspective: roleCode,
+                  speedVectorMultiplier: spd,
+                  presentationStyle: presMode,
+                  questionStyle: qMode,
+                  permutationHash: hash,
+                  isFreshOrganicPermutation: true
+                };
+                break outerLoop;
+              }
+            }
+          }
+        }
+      }
+
+      if (!chosenSpec) {
+        const dynamicSeed = (state.permutationSeed || 1) + Object.keys(prof.completedScenarioPermutationHashes).length + 1;
+        const rotDeg = rotations[dynamicSeed % 4];
+        const roleCode = rolePerspectives[dynamicSeed % 5];
+        const presMode = presentationModes[dynamicSeed % 3];
+        const qMode = questionModes[dynamicSeed % 3];
+        chosenHash = `${chosenScen.id}_rot${rotDeg}_role${roleCode}_mode${presMode}_seed${dynamicSeed}`;
+        chosenSpec = {
+          scenarioId: chosenScen.id,
+          scenarioTitle: chosenScen.title,
+          concept: chosenScen.concept,
+          bucketCode: chosenScen.bucket_code || chosenScen.concept,
+          rotationDegrees: rotDeg,
+          mirrorX: (rotDeg === 90 || rotDeg === 270),
+          mirrorY: (rotDeg === 180 || rotDeg === 270),
+          activeRolePerspective: roleCode,
+          speedVectorMultiplier: 1.15,
+          presentationStyle: presMode,
+          questionStyle: qMode,
+          permutationHash: chosenHash,
+          isFreshOrganicPermutation: true
+        };
+      }
+
+      // Mark this permutation hash as issued/completed when requested in succession so consecutive calls never return identical hashes
+      prof.completedScenarioPermutationHashes[chosenSpec.permutationHash] = true;
+      state.completedScenarioPermutationHashes[chosenSpec.permutationHash] = true;
+      state.permutationSeed = (state.permutationSeed || 0) + 1;
+      return chosenSpec;
+    }
+    window.getNextOrganicScenarioPermutation = getNextOrganicScenarioPermutation;
+
+    // =========================================================================
+    // PHASE 6: CONCEPT BUCKETS & TAGS COVERAGE REPORT (`getConceptBucketCoverageReport`)
+    // =========================================================================
+    const SYNAPZ_16_CONCEPT_BUCKETS_MANIFEST = [
+      { idx: 1,  bucketCode: 'dz_protect_house_box1',       label: 'D-Zone: Protect the House & Box+1 Net-Front',          pillar: 'risk',       baseCount: 24, allowedDivisions: ['8U','10U','12U','14U','16U','18U'], tiers: ['Rec','B','A','AA','AAA'], positions: ['C','LW','RW','LD','RD','G'], dynamicRoles: ['F1','F2','F3','D1','D2','G'], zones: ['DZ'] },
+      { idx: 2,  bucketCode: 'dz_corner_containment_stick', label: 'D-Zone: Corner Battle, Stick-on-Puck & Containment',    pillar: 'risk',       baseCount: 24, allowedDivisions: ['8U','10U','12U','14U','16U','18U'], tiers: ['Rec','B','A','AA','AAA'], positions: ['C','LW','RW','LD','RD'],     dynamicRoles: ['D1','D2','F1','F2'],          zones: ['DZ'] },
+      { idx: 3,  bucketCode: 'breakout_d_to_d',             label: 'Breakouts: D-to-D Hinge, Wheel & Net-Front Reverse',   pillar: 'transition', baseCount: 24, allowedDivisions: ['8U','10U','12U','14U','16U','18U'], tiers: ['Rec','B','A','AA','AAA'], positions: ['LD','RD','C','LW','RW','G'], dynamicRoles: ['D1','D2','F1','F2','G'],      zones: ['DZ'] },
+      { idx: 4,  bucketCode: 'breakout_low_slow_center',    label: 'Breakouts: Center Low-and-Slow Curl Under the Dots',    pillar: 'support',    baseCount: 24, allowedDivisions: ['8U','10U','12U','14U','16U','18U'], tiers: ['Rec','B','A','AA','AAA'], positions: ['C','LD','RD','LW','RW'],     dynamicRoles: ['F1','F2','D1','D2'],          zones: ['DZ','NZ'] },
+      { idx: 5,  bucketCode: 'breakout_winger_wall_chip',   label: 'Breakouts: Winger Hashmark Wall & Soft Area Chip',      pillar: 'transition', baseCount: 24, allowedDivisions: ['8U','10U','12U','14U','16U','18U'], tiers: ['Rec','B','A','AA','AAA'], positions: ['LW','RW','C','LD','RD'],     dynamicRoles: ['F1','F2','F3','D1'],          zones: ['DZ','NZ'] },
+      { idx: 6,  bucketCode: 'nz_regroup_hinge',            label: 'Neutral Zone: D-to-D Regroup & Weak-Side Swing',        pillar: 'transition', baseCount: 24, allowedDivisions: ['10U','12U','14U','16U','18U'],      tiers: ['Rec','B','A','AA','AAA'], positions: ['LD','RD','C','LW','RW'],     dynamicRoles: ['D1','D2','F1','F2','F3'],     zones: ['NZ'] },
+      { idx: 7,  bucketCode: 'nz_speed_entry_middle_drive', label: 'Neutral Zone: On-Side Speed Entry & Middle Lane Drive', pillar: 'timing',     baseCount: 24, allowedDivisions: ['8U','10U','12U','14U','16U','18U'], tiers: ['Rec','B','A','AA','AAA'], positions: ['C','LW','RW','LD','RD'],     dynamicRoles: ['F1','F2','F3','D1'],          zones: ['NZ','OZ'] },
+      { idx: 8,  bucketCode: 'nz_angling_gap_control_122',  label: 'Neutral Zone: Backcheck Track, Gap Control & 1-2-2',    pillar: 'risk',       baseCount: 24, allowedDivisions: ['10U','12U','14U','16U','18U'],      tiers: ['Rec','B','A','AA','AAA'], positions: ['LD','RD','C','LW','RW'],     dynamicRoles: ['F1','F2','F3','D1','D2'],     zones: ['NZ'] },
+      { idx: 9,  bucketCode: 'forecheck_212_f1_f2_f3',      label: 'O-Zone Forecheck: 2-1-2 F1 Angle, F2 Hunt & F3 High',   pillar: 'scanning',   baseCount: 24, allowedDivisions: ['8U','10U','12U','14U','16U','18U'], tiers: ['Rec','B','A','AA','AAA'], positions: ['C','LW','RW','LD','RD'],     dynamicRoles: ['F1','F2','F3','D1','D2'],     zones: ['OZ'] },
+      { idx: 10, bucketCode: 'oz_attack_triangle_spacing',  label: 'O-Zone: 3-Player Attack Triangle & High-Slot Spacing',  pillar: 'support',    baseCount: 24, allowedDivisions: ['8U','10U','12U','14U','16U','18U'], tiers: ['Rec','B','A','AA','AAA'], positions: ['C','LW','RW','LD','RD'],     dynamicRoles: ['F1','F2','F3','D1'],          zones: ['OZ'] },
+      { idx: 11, bucketCode: 'oz_cycle_scissors',           label: 'O-Zone: Low-to-High Cycle, Cutbacks & D-Pinch Backfill',pillar: 'support',    baseCount: 24, allowedDivisions: ['10U','12U','14U','16U','18U'],      tiers: ['Rec','B','A','AA','AAA'], positions: ['C','LW','RW','LD','RD'],     dynamicRoles: ['F1','F2','F3','D1','D2'],     zones: ['OZ'] },
+      { idx: 12, bucketCode: 'oz_royal_road_net_front',     label: 'O-Zone: Royal Road Seam, Net-Front Screen & Rebounds',  pillar: 'timing',     baseCount: 24, allowedDivisions: ['8U','10U','12U','14U','16U','18U'], tiers: ['Rec','B','A','AA','AAA'], positions: ['C','LW','RW','LD','RD'],     dynamicRoles: ['F1','F2','F3','D1'],          zones: ['OZ'] },
+      { idx: 13, bucketCode: 'odd_man_rush_2v1_3v2',        label: 'Odd-Man Rushes: 2-on-1 & 3-on-2 Attack vs. Defend',     pillar: 'timing',     baseCount: 24, allowedDivisions: ['8U','10U','12U','14U','16U','18U'], tiers: ['Rec','B','A','AA','AAA'], positions: ['C','LW','RW','LD','RD','G'], dynamicRoles: ['F1','F2','F3','D1','D2','G'], zones: ['NZ','OZ','DZ'] },
+      { idx: 14, bucketCode: 'special_teams_5v4_umbrella',  label: 'Special Teams: 5v4 Power Play Umbrella & 4v5 Box/Wedge',pillar: 'scanning',   baseCount: 16, allowedDivisions: ['12U','14U','16U','18U'],            tiers: ['Rec','B','A','AA','AAA'], positions: ['C','LW','RW','LD','RD','G'], dynamicRoles: ['F1','F2','F3','D1','D2','G'], zones: ['OZ','DZ'] },
+      { idx: 15, bucketCode: 'scanning_deception_callouts', label: 'Pro Habits: Pre-Scan, Look-Off Deception & Callouts',   pillar: 'scanning',   baseCount: 16, allowedDivisions: ['8U','10U','12U','14U','16U','18U'], tiers: ['Rec','B','A','AA','AAA'], positions: ['C','LW','RW','LD','RD','G'], dynamicRoles: ['F1','F2','F3','D1','D2','G'], zones: ['DZ','NZ','OZ'] },
+      { idx: 16, bucketCode: 'goalie_crease_angles_traps',  label: 'Goaltending: Square to Shooter, Post-Integration & Set',pillar: 'risk',       baseCount: 16, allowedDivisions: ['8U','10U','12U','14U','16U','18U'], tiers: ['Rec','B','A','AA','AAA'], positions: ['G','LD','RD'],               dynamicRoles: ['G','D1','D2'],                zones: ['DZ'] }
+    ];
+    window.SYNAPZ_16_CONCEPT_BUCKETS_MANIFEST = SYNAPZ_16_CONCEPT_BUCKETS_MANIFEST;
+
+    function getConceptBucketCoverageReport() {
+      const buckets = SYNAPZ_16_CONCEPT_BUCKETS_MANIFEST.map(b => ({
+        ...b,
+        fourWayRotations: b.baseCount * 4,
+        organicPermutations: b.baseCount * 4 * 4,
+        presentationStyles: ['flow_and_freeze', 'static_hover_zones', 'habit_combo']
+      }));
+      const totalBaseScenarios = buckets.reduce((acc, b) => acc + b.baseCount, 0); // 360
+      const total4WayRotations = totalBaseScenarios * 4; // 1,440
+      const totalOrganicPermutations = total4WayRotations * 4; // 5,760
+      return {
+        totalBuckets: buckets.length,
+        totalBaseScenarios,
+        total4WayRotations,
+        totalOrganicPermutations,
+        tagCategories: {
+          allowed_divisions: ['8U', '10U', '12U', '14U', '16U', '18U'],
+          tier_levels: ['Rec', 'B', 'A', 'AA', 'AAA'],
+          positions: ['C', 'LW', 'RW', 'LD', 'RD', 'G'],
+          dynamic_roles: ['F1', 'F2', 'F3', 'D1', 'D2', 'G'],
+          ice_zones: ['DZ', 'NZ', 'OZ'],
+          presentation_styles: ['flow_and_freeze', 'static_hover_zones', 'habit_combo']
+        },
+        buckets
+      };
+    }
+    window.getConceptBucketCoverageReport = getConceptBucketCoverageReport;
+
+    function openConceptBucketCoverageReportModal() {
+      SoundFX.playTap();
+      renderConceptBucketCoverageReportModal();
+      const modal = document.getElementById('conceptBucketCoverageReportModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+    window.openConceptBucketCoverageReportModal = openConceptBucketCoverageReportModal;
+
+    function renderConceptBucketCoverageReportModal() {
+      const rep = getConceptBucketCoverageReport();
+      const tbody = document.getElementById('conceptBucketCoverageTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = rep.buckets.map(b => `
+        <tr class="border-b border-slate-800/80 hover:bg-slate-900/70 transition">
+          <td class="py-2 px-2.5 font-black text-cyan-300 text-xs">${b.idx}. ${b.label}<div class="text-[10px] text-slate-400 font-mono">${b.bucketCode}</div></td>
+          <td class="py-2 px-2 text-center font-black text-white text-xs">${b.baseCount}</td>
+          <td class="py-2 px-2 text-center font-black text-emerald-300 text-xs">${b.fourWayRotations}</td>
+          <td class="py-2 px-2 text-center font-black text-amber-300 text-xs">${b.organicPermutations}+</td>
+          <td class="py-2 px-2 text-[10px] text-slate-200 font-bold">${b.allowedDivisions.join(', ')} • <span class="text-cyan-300">${b.tiers.join('/')}</span></td>
+          <td class="py-2 px-2 text-[10px] text-slate-300 font-bold">${b.positions.join('/')} • <span class="text-amber-300">[${b.dynamicRoles.join(',')}]</span> • ${b.zones.join('/')}</td>
+        </tr>
+      `).join('');
+    }
+    window.renderConceptBucketCoverageReportModal = renderConceptBucketCoverageReportModal;
+
+    // =========================================================================
+    // PHASE 5 PART A: PLAYER TEAM ROSTER HUB (`#playerTeamRosterHubModal`)
+    // 4 Clear Tactile Buttons + 100% Read-Only Teammate Viewing (Private Weaknesses Hidden!)
+    // =========================================================================
+    state.activePlayerTeamHubTab = 'roster';
+
+    function openPlayerTeamRosterHubModal(tab = 'roster') {
+      SoundFX.playTap();
+      state.activePlayerTeamHubTab = tab || 'roster';
+      renderPlayerTeamRosterHubModal(state.activePlayerTeamHubTab);
+      const modal = document.getElementById('playerTeamRosterHubModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+    window.openPlayerTeamRosterHubModal = openPlayerTeamRosterHubModal;
+
+    function renderPlayerTeamRosterHubModal(tab = 'roster') {
+      state.activePlayerTeamHubTab = tab || state.activePlayerTeamHubTab || 'roster';
+      const prof = getActiveProfile() || { name: 'Miles', jerseyNumber: 9, ageGroup: '12U', position: 'C', iqScore: 185 };
+      const teamBanner = document.getElementById('playerTeamHubTitleBanner');
+      if (teamBanner) {
+        const cleanTeamName = String(state.teamName || 'Minot 3v3 Wolves').replace(/PuckSense/gi, 'Synapz Hockey');
+        teamBanner.textContent = `🏒 ${cleanTeamName} (Code: ${state.teamCode || 'PUCK99'}) • Coach: ${state.coachName || 'Coach Dane'} • Active Skater: ${prof.name} #${prof.jerseyNumber || 9}`;
+      }
+
+      ['roster', 'plans', 'schedule', 'devplan'].forEach(k => {
+        const btn = document.getElementById(`btnPlayerTeamHub_${k}`);
+        if (btn) {
+          btn.className = (k === state.activePlayerTeamHubTab)
+            ? 'px-3.5 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-black text-xs shadow transition text-left'
+            : 'px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-xs transition text-left';
+        }
+      });
+
+      const contentBox = document.getElementById('playerTeamRosterHubContentBox');
+      if (!contentBox) return;
+
+      const members = getActiveTeamRosterMembers();
+      if (state.activePlayerTeamHubTab === 'roster') {
+        contentBox.innerHTML = `
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2 p-3 rounded-xl bg-slate-900 border border-cyan-400/50">
+              <div>
+                <div class="text-xs font-black text-cyan-300 uppercase">📋 Team Roster &amp; Co-Op Standings (${members.length} Active Skaters)</div>
+                <p class="text-[11px] text-slate-300">Tap any teammate to view their public avatar &amp; overall IQ badge. <strong>🔒 SafeSport Privacy Guardrail:</strong> Private diagnostic weaknesses and missed-drill logs are strictly hidden from teammates.</p>
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/60 text-emerald-300 text-[10px] font-black">🔒 Private Diagnostics Hidden</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+              ${members.map((m, idx) => {
+                const isMe = (m.id === prof.id || m.name === prof.name);
+                return `
+                  <div class="p-3 rounded-xl bg-slate-950 border ${isMe ? 'border-cyan-400 shadow-lg' : 'border-slate-800'} flex items-center justify-between gap-2">
+                    <div class="min-w-0">
+                      <div class="text-xs font-black text-white truncate">${idx === 0 ? '🥇 ' : (idx === 1 ? '🥈 ' : (idx === 2 ? '🥉 ' : '🏒 '))}${m.name} #${m.jerseyNumber || (idx + 7)} ${isMe ? '(YOU)' : ''}</div>
+                      <div class="text-[10px] text-cyan-300 font-bold">${m.ageGroup || '12U'} • ${m.position || 'C'} • 🧠 ${m.iqScore || 160} IQ</div>
+                      <div class="text-[10px] text-emerald-300 font-semibold">Public Status: ✅ Weekly Plan Completed</div>
+                    </div>
+                    <span class="px-2 py-1 rounded-lg bg-slate-900 border border-slate-700 text-[10px] font-black text-slate-300 shrink-0">${isMe ? 'My Stall' : '👀 Read-Only'}</span>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      } else if (state.activePlayerTeamHubTab === 'plans') {
+        const activePlanTitle = (state.lastGeneratedOpponentCounterPlan && state.lastGeneratedOpponentCounterPlan.counterHeadline)
+          || state.coachWeeklyHomeworkTitle
+          || 'Week 9 Team Plan: Net-Front D-to-D Hinge & Low-and-Slow Center Breakout (10 Drills)';
+        contentBox.innerHTML = `
+          <div class="space-y-3">
+            <div class="p-4 rounded-2xl bg-slate-900 border-2 border-cyan-400 space-y-2.5">
+              <div class="flex items-center justify-between gap-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400 text-cyan-300 text-[10px] font-black uppercase">📥 Active Team Assignment From ${state.coachName || 'Coach Dane'} &amp; Coach Al</span>
+                <span class="text-xs font-black text-amber-300">💰 Earn Up to +100 Puck Bucks (IQ-Tied)!</span>
+              </div>
+              <h4 id="playerTeamHubActivePlanTitle" class="text-sm sm:text-base font-black text-white">${activePlanTitle}</h4>
+              <p class="text-xs text-slate-300 font-semibold">Complete this week's assigned series on the ice. Your Puck Bucks reward equals your Hockey IQ score % (e.g., 95% IQ = 95 Puck Bucks)!</p>
+              <button type="button" id="btnPlayerTeamHubLaunchAssignedPlan" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs uppercase shadow-lg transition">
+                🏒 Drop the Puck on Assigned Team Lesson Plan ▶
+              </button>
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+              <div class="text-xs font-black text-slate-300 uppercase">🗄️ Past Completed Team Lesson Plans</div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
+                  <span class="font-bold text-white">✅ Week 8: 2-1-2 Forecheck F1/F2/F3 Angles</span>
+                  <span class="font-black text-emerald-300">94% IQ (+94 💰)</span>
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
+                  <span class="font-bold text-white">✅ Week 7: Protect the House &amp; Box+1</span>
+                  <span class="font-black text-emerald-300">91% IQ (+91 💰)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        const launchBtn = document.getElementById('btnPlayerTeamHubLaunchAssignedPlan');
+        if (launchBtn) {
+          launchBtn.addEventListener('click', () => {
+            SoundFX.playGoalHorn();
+            document.getElementById('playerTeamRosterHubModal').classList.add('hidden');
+            state.conceptFilter = 'breakout';
+            switchView('game');
+            loadScenario(true);
+          });
+        }
+      } else if (state.activePlayerTeamHubTab === 'schedule') {
+        contentBox.innerHTML = `
+          <div class="space-y-3">
+            <div class="text-xs font-black text-amber-300 uppercase">🗓️ Upcoming Team Schedule &amp; Official Coach Notes (100% Read-Only)</div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+              <div class="p-3.5 rounded-xl bg-slate-900 border border-amber-400/50 space-y-1">
+                <div class="font-black text-white">🏒 Saturday 2:00 PM — vs. Minot Wolves (Home Arena)</div>
+                <div class="text-cyan-300 font-bold">Opponent Style: Aggressive 2-1-2 Forecheck &amp; Pinching D</div>
+                <div class="text-slate-300">Coach Note: Pre-scan before going back for the puck and use our D-to-D net-front reverse!</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-900 border border-cyan-400/40 space-y-1">
+                <div class="font-black text-white">🏒 Sunday 11:30 AM — vs. Foothills Flyers (Rink 2)</div>
+                <div class="text-cyan-300 font-bold">Opponent Style: 1-2-2 Neutral Zone Trap</div>
+                <div class="text-slate-300">Coach Note: Use our D-to-D Neutral Zone Regroup to move their trap side-to-side before entering with speed.</div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else {
+        contentBox.innerHTML = `
+          <div class="p-4 rounded-2xl bg-slate-900 border-2 border-emerald-400/60 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-emerald-300 uppercase">📈 My Individual Team Development Plan (Private to ${prof.name} #${prof.jerseyNumber || 9})</span>
+              <span class="px-2 py-0.5 rounded-full bg-slate-950 border border-emerald-400/50 text-emerald-200 text-[10px] font-black">🧢 Guided by Coach Al</span>
+            </div>
+            <p class="text-xs text-white font-bold">Coach Al's Personal Focus Note: "Great job scoring 94% on Forechecking, ${prof.name}! Let's sharpen your weak-side D-to-D Breakout reads with 5 fresh organic permutations."</p>
+            <button type="button" id="btnPlayerTeamHubStartDevPlan" class="px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs uppercase shadow-lg transition">
+              ⚡ Skate My 5-Lesson Individual Improvement Plan ▶
+            </button>
+          </div>
+        `;
+        const devBtn = document.getElementById('btnPlayerTeamHubStartDevPlan');
+        if (devBtn) {
+          devBtn.addEventListener('click', () => {
+            document.getElementById('playerTeamRosterHubModal').classList.add('hidden');
+            formulateHockeyIqPipPlan();
+          });
+        }
+      }
+    }
+    window.renderPlayerTeamRosterHubModal = renderPlayerTeamRosterHubModal;
+
+    // =========================================================================
+    // PHASE 5 PART B: COACH'S OFFICE LOBBY GUIDED BY COACH AL (`#coachPortalModal`)
+    // 4 Clean Stations + 1-Sentence Spotlight Tour + Proactive Busywork Summary
+    // + Question-by-Question Progress Report + Opponent Scouting & SafeSport Push
+    // =========================================================================
+    state.activeCoachOfficeStation = 2; // Default to Station 2 (Coach Al's Corner) or Station 1..4
+    state.coachOfficeSpotlightIdx = 0;
+    state.uploadedAssociationMaterials = [
+      { id: 'mat-1', name: 'USA_Hockey_ADM_12U_Systems_Playbook.pdf', type: 'PDF Playbook', systemPreset: '2-1-2 Forecheck & D-to-D Breakout', uploadedAt: 'Today' },
+      { id: 'mat-2', name: 'Minot_Wolves_Roster_And_Lines.csv', type: 'CSV Roster (18 Skaters)', systemPreset: 'Protect the House (Box+1)', uploadedAt: 'Today' }
+    ];
+    state.coachAlSentPlansHistory = [
+      {
+        id: 'PLAN-W9',
+        title: 'Week 9 Proactive Plan: D-to-D Breakout & Low-and-Slow Center Support (10 Drills)',
+        sentAt: 'Today • 4:15 PM',
+        targetGroup: 'Whole Team (18/18 Players)',
+        completionRate: '89% (16/18 Completed)',
+        teamAvgIq: '88% IQ',
+        playerBreakdown: [
+          { player: 'Evan #19 (14U)',   q1: '100% 🥇', q2: '100% 🥇', q3: '90% 🥇',  q4: '100% 🥇', q5: '90% 🥇',  avgIq: 95, status: 'Mastered ✅' },
+          { player: 'Miles #9 (12U)',   q1: '100% 🥇', q2: '90% 🥇',  q3: '90% 🥇',  q4: '85% 🥈',  q5: '95% 🥇',  avgIq: 92, status: 'Mastered ✅' },
+          { player: 'Cohen #14 (10U)',  q1: '90% 🥇',  q2: '85% 🥈',  q3: '90% 🥇',  q4: '90% 🥇',  q5: '90% 🥇',  avgIq: 89, status: 'Mastered ✅' },
+          { player: 'Dane #44 (Breakouts Focus)', q1: '80% 🥈', q2: '50% ⚠️', q3: '60% 🥉', q4: '50% ⚠️', q5: '70% 🥈', avgIq: 62, status: 'Needs Breakout Tune-Up 🎯' }
+        ]
+      },
+      {
+        id: 'PLAN-W8',
+        title: 'Week 8 Counter-Plan: Beating the Aggressive 2-1-2 Forecheck (10 Drills)',
+        sentAt: 'Last Week',
+        targetGroup: 'Whole Team (18/18 Players)',
+        completionRate: '94% (17/18 Completed)',
+        teamAvgIq: '91% IQ',
+        playerBreakdown: []
+      }
+    ];
+    state.selectedScoutingOpponent = 'Minot Wolves (Saturday 2:00 PM)';
+    state.selectedScoutingAgeGroup = '12U';
+    state.selectedScoutingTendencies = ['aggressive_212_forecheck', 'blueline_pinch_hold_line'];
+    state.safeSportNotificationsLog = [
+      { id: 'push-1', message: '🏒 You have a new lesson plan in Synapz!', target: 'All 18 Team Roster Devices', timestamp: 'Today • 4:15 PM', safeSportCompliant: true },
+      { id: 'push-2', message: '🏒 Weekend Counter-Plan Ready in Synapz: Beating the 2-1-2 Forecheck!', target: 'All 18 Team Roster Devices', timestamp: 'Yesterday', safeSportCompliant: true }
+    ];
+
+    const COACH_OFFICE_SPOTLIGHT_STEPS = [
+      { station: 1, quote: "Station 1 is your Roster & Playbook Hub—upload your association PDFs or click a 1-tap system preset!" },
+      { station: 2, quote: "Station 2 is Coach Al's Corner—confirm my 1-click weekly plan or review your Question-by-Question player breakdown!" },
+      { station: 3, quote: "Station 3 is Schedule & Opponent Scouting—pick any opponent's style and I'll build an age-tailored counter-plan and bench card!" },
+      { station: 4, quote: "Station 4 is our 100% SafeSport Notification Center—send standardized app alerts with zero coach-to-kid email or open chat!" }
+    ];
+
+    function openCoachOfficeLobbyModal(stationIdx = 2) {
+      SoundFX.playTap();
+      state.activeCoachOfficeStation = Number(stationIdx) || 2;
+      renderCoachOfficeLobbyModal(state.activeCoachOfficeStation);
+      const modal = document.getElementById('coachPortalModal');
+      if (modal) modal.classList.remove('hidden');
+      playCharacterVoice(
+        'coach-al',
+        'coach_office_proactive_briefing',
+        "Hey Coach! Dane needs work on Breakouts this week at 62 percent IQ, and Evan scored 95 percent on D-Zone Coverage. I've queued a fresh Breakout Lesson Plan for the team—ready to send?"
+      );
+    }
+    window.openCoachOfficeLobbyModal = openCoachOfficeLobbyModal;
+
+    function startCoachOfficeSpotlightTour(stepIdx = 0) {
+      SoundFX.playTap();
+      const idx = stepIdx % COACH_OFFICE_SPOTLIGHT_STEPS.length;
+      state.coachOfficeSpotlightIdx = idx;
+      const step = COACH_OFFICE_SPOTLIGHT_STEPS[idx];
+      state.activeCoachOfficeStation = step.station;
+      renderCoachOfficeLobbyModal(step.station);
+      const banner = document.getElementById('coachOfficeSpotlightBanner');
+      if (banner) {
+        banner.textContent = `🔦 Spotlight Step ${idx + 1}/4: "${step.quote}"`;
+        banner.classList.remove('hidden');
+      }
+      playCharacterVoice('coach-al', `coach_spotlight_${idx + 1}`, step.quote);
+      return step;
+    }
+    window.startCoachOfficeSpotlightTour = startCoachOfficeSpotlightTour;
+
+    function renderCoachOfficeLobbyModal(stationIdx = null) {
+      if (stationIdx !== null) state.activeCoachOfficeStation = Number(stationIdx) || 2;
+      const st = state.activeCoachOfficeStation;
+
+      [1, 2, 3, 4].forEach(num => {
+        const btn = document.getElementById(`btnCoachStationTab_${num}`);
+        const pane = document.getElementById(`coachOfficeStationPane_${num}`);
+        if (btn) {
+          btn.className = (num === st)
+            ? 'px-3.5 py-2.5 rounded-xl bg-amber-400 text-slate-950 font-black text-xs shadow-lg transition text-left'
+            : 'px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-xs transition text-left';
+        }
+        if (pane) {
+          pane.classList.toggle('hidden', num !== st);
+        }
+      });
+
+      // Station 1: Uploaded Playbooks & Roster
+      const matList = document.getElementById('coachUploadedMaterialsList');
+      if (matList) {
+        matList.innerHTML = state.uploadedAssociationMaterials.map(m => `
+          <div class="p-2.5 rounded-xl bg-slate-900 border border-cyan-400/40 flex items-center justify-between gap-2 text-xs">
+            <div>
+              <div class="font-black text-white">📄 ${m.name}</div>
+              <div class="text-[10px] text-cyan-300 font-bold">${m.type} • Synced System: ${m.systemPreset}</div>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-black">${m.uploadedAt} ✓</span>
+          </div>
+        `).join('');
+      }
+
+      // Station 2: Lesson Plan History & Question-by-Question Progress Report Table
+      const histList = document.getElementById('coachAlLessonPlanHistoryList');
+      if (histList) {
+        histList.innerHTML = state.coachAlSentPlansHistory.map(p => `
+          <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div>
+              <div class="font-black text-white">📦 ${p.title}</div>
+              <div class="text-[10px] text-slate-400 font-bold">${p.sentAt} • ${p.targetGroup}</div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-black">${p.completionRate}</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-black">${p.teamAvgIq}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const qTableBody = document.getElementById('coachAlQuestionByQuestionTableBody');
+      if (qTableBody && state.coachAlSentPlansHistory[0]) {
+        const rows = state.coachAlSentPlansHistory[0].playerBreakdown || [];
+        qTableBody.innerHTML = rows.map(r => `
+          <tr class="border-b border-slate-800/80">
+            <td class="py-2 px-2 font-black text-white text-xs">${r.player}</td>
+            <td class="py-2 px-2 text-center text-xs font-bold text-emerald-300">${r.q1}</td>
+            <td class="py-2 px-2 text-center text-xs font-bold ${r.q2.includes('⚠️') ? 'text-rose-300' : 'text-emerald-300'}">${r.q2}</td>
+            <td class="py-2 px-2 text-center text-xs font-bold ${r.q3.includes('🥉') ? 'text-amber-300' : 'text-emerald-300'}">${r.q3}</td>
+            <td class="py-2 px-2 text-center text-xs font-bold ${r.q4.includes('⚠️') ? 'text-rose-300' : 'text-emerald-300'}">${r.q4}</td>
+            <td class="py-2 px-2 text-center text-xs font-bold text-emerald-300">${r.q5}</td>
+            <td class="py-2 px-2 text-center font-black ${r.avgIq < 70 ? 'text-amber-300' : 'text-emerald-300'} text-xs">${r.avgIq}% IQ</td>
+            <td class="py-2 px-2 text-right text-[11px] font-black ${r.avgIq < 70 ? 'text-rose-300' : 'text-cyan-300'}">${r.status}</td>
+          </tr>
+        `).join('');
+      }
+
+      // Station 3: Schedule & Opponent Scouting Counter-Strategy Synthesis
+      const oppName = state.selectedScoutingOpponent || 'Minot Wolves';
+      const oppAge = state.selectedScoutingAgeGroup || '12U';
+      const tendencies = state.selectedScoutingTendencies || ['aggressive_212_forecheck', 'blueline_pinch_hold_line'];
+      const counterPlan = generateOpponentCounterStrategyPlan(oppName, oppAge, tendencies);
+      const benchPlan = generateWeekendBenchGamePlan(oppName, oppAge, tendencies);
+
+      const scoutingAlertEl = document.getElementById('coachAlScoutingProactiveAlert');
+      if (scoutingAlertEl) {
+        scoutingAlertEl.textContent = `🧢 Coach Al: "${counterPlan.coachAlProactiveAlert}"`;
+      }
+      const scoutingPreviewEl = document.getElementById('coachAlScoutingCounterPlanPreview');
+      if (scoutingPreviewEl) {
+        scoutingPreviewEl.innerHTML = `
+          <div class="text-xs font-black text-amber-300 uppercase">🎯 Age-Tailored Counter-Plan (${counterPlan.ageGroup} • ${counterPlan.lessonCount} Lessons)</div>
+          <div class="text-sm font-black text-white mt-0.5">${counterPlan.counterHeadline}</div>
+          <p class="text-xs text-slate-300 mt-1">${counterPlan.drillFocus}</p>
+          <div class="text-[11px] text-cyan-300 font-bold mt-1">🏒 Bench Cue: "${counterPlan.benchCue}" • Buckets: ${counterPlan.targetConceptBuckets.join(', ')}</div>
+        `;
+      }
+      const benchCardEl = document.getElementById('coachAlWeekendBenchGamePlanBox');
+      if (benchCardEl) {
+        benchCardEl.innerHTML = `
+          <div class="text-xs font-black text-emerald-300 uppercase">${benchPlan.headline}</div>
+          <div class="space-y-1 text-xs text-white font-bold mt-1.5">
+            ${benchPlan.threeKeysToVictory.map(k => `<div>✅ ${k}</div>`).join('')}
+          </div>
+          <div class="space-y-1 text-[11px] text-slate-300 mt-2 border-t border-slate-800 pt-2">
+            ${benchPlan.periodByPeriodFocus.map(p => `<div>• ${p}</div>`).join('')}
+          </div>
+        `;
+      }
+
+      // Station 4: SafeSport Push Log
+      const pushLogEl = document.getElementById('coachSafeSportPushLogList');
+      if (pushLogEl) {
+        pushLogEl.innerHTML = state.safeSportNotificationsLog.map(n => `
+          <div class="p-3 rounded-xl bg-slate-900 border border-cyan-400/40 flex items-center justify-between gap-2 text-xs">
+            <div>
+              <div class="font-black text-white">${n.message}</div>
+              <div class="text-[10px] text-cyan-300 font-bold">Target: ${n.target} • ${n.timestamp}</div>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black">🔒 100% SafeSport</span>
+          </div>
+        `).join('');
+      }
+    }
+    window.renderCoachOfficeLobbyModal = renderCoachOfficeLobbyModal;
+
     function wirePhase1LobbyAndModalListeners() {
       const bindClick = (id, fn) => {
         const el = document.getElementById(id);
         if (el) el.addEventListener('click', fn);
       };
+
+      // Team Portal Plans button on Step 2
+      bindClick('btnTeamPortalViewPlans', () => {
+        if (typeof openPricingModal === 'function') openPricingModal();
+      });
+
+      // Phase 5: Player Team Roster Hub Modal Listeners (`#playerTeamRosterHubModal`)
+      bindClick('btnClosePlayerTeamRosterHubModal', () => document.getElementById('playerTeamRosterHubModal').classList.add('hidden'));
+      bindClick('btnPlayerTeamHubSaveExitLobby', () => {
+        document.getElementById('playerTeamRosterHubModal').classList.add('hidden');
+        saveAndExitToRinkLobby();
+      });
+      bindClick('btnPlayerTeamHub_roster', () => renderPlayerTeamRosterHubModal('roster'));
+      bindClick('btnPlayerTeamHub_plans', () => renderPlayerTeamRosterHubModal('plans'));
+      bindClick('btnPlayerTeamHub_schedule', () => renderPlayerTeamRosterHubModal('schedule'));
+      bindClick('btnPlayerTeamHub_devplan', () => renderPlayerTeamRosterHubModal('devplan'));
+
+      // Phase 5: Coach's Office Lobby Modal Listeners (`#coachPortalModal`)
+      bindClick('btnCloseCoachOfficeLobbyModal', () => document.getElementById('coachPortalModal').classList.add('hidden'));
+      bindClick('btnCoachPortalSaveExitLobby', () => {
+        document.getElementById('coachPortalModal').classList.add('hidden');
+        saveAndExitToRinkLobby();
+      });
+      bindClick('btnCoachOfficeStartSpotlight', () => startCoachOfficeSpotlightTour(state.coachOfficeSpotlightIdx || 0));
+      bindClick('btnCoachOfficeOpenBucketReport', openConceptBucketCoverageReportModal);
+      bindClick('btnCoachOfficeOpenDirector4Tab', () => {
+        document.getElementById('coachPortalModal').classList.add('hidden');
+        openTeamManagerModal();
+      });
+      [1, 2, 3, 4].forEach(num => {
+        bindClick(`btnCoachStationTab_${num}`, () => {
+          SoundFX.playTap();
+          renderCoachOfficeLobbyModal(num);
+        });
+      });
+
+      // Station 1: Upload Playbook / System Presets
+      bindClick('btnCoachUploadPlaybookMaterial', () => {
+        SoundFX.playGoalHorn();
+        const inp = document.getElementById('inputCoachPlaybookUploadName');
+        const sysSel = document.getElementById('selectCoachSystemPreset');
+        const name = (inp && inp.value.trim()) || 'Custom_Association_Playbook_2026.pdf';
+        const preset = (sysSel && sysSel.value) || '2-1-2 Forecheck & D-to-D Breakout';
+        state.uploadedAssociationMaterials.unshift({
+          id: `mat-${Date.now()}`,
+          name,
+          type: 'Coach Uploaded Playbook',
+          systemPreset: preset,
+          uploadedAt: 'Just Now'
+        });
+        renderCoachOfficeLobbyModal(1);
+        const toast = document.getElementById('coachStation1UploadToast');
+        if (toast) {
+          toast.textContent = `✅ Uploaded "${name}" & synced system preset (${preset}) to Coach Al's Lesson Generator!`;
+          toast.classList.remove('hidden');
+        }
+      });
+
+      // Station 2: Coach Al's Corner 1-Click Proactive Plan, Custom Prompt Plan & Question-by-Question Actions
+      bindClick('btnCoachAlProactiveConfirmSend', () => {
+        SoundFX.playGoalHorn();
+        const newPlan = {
+          id: `PLAN-${Date.now()}`,
+          title: 'Proactive Weekly Plan: D-to-D Breakout & Low-and-Slow Center Support (10 Drills)',
+          sentAt: 'Just Now',
+          targetGroup: 'Whole Team (18/18 Players)',
+          completionRate: 'Queued (0/18)',
+          teamAvgIq: 'Active',
+          playerBreakdown: state.coachAlSentPlansHistory[0]?.playerBreakdown || []
+        };
+        state.coachAlSentPlansHistory.unshift(newPlan);
+        state.safeSportNotificationsLog.unshift({
+          id: `push-${Date.now()}`,
+          message: '🏒 You have a new lesson plan in Synapz!',
+          target: 'All 18 Team Roster Devices',
+          timestamp: 'Just Now',
+          safeSportCompliant: true
+        });
+        renderCoachOfficeLobbyModal(2);
+        const toast = document.getElementById('coachAlCornerActionToast');
+        if (toast) {
+          toast.textContent = '🚀 Confirmed & Sent Weekly Breakout Lesson Plan to all 18 players + triggered SafeSport App Push ("🏒 You have a new lesson plan in Synapz!")!';
+          toast.classList.remove('hidden');
+        }
+      });
+
+      bindClick('btnCoachAlPromptConfirmSend', () => {
+        SoundFX.playGoalHorn();
+        const promptEl = document.getElementById('inputCoachAlCornerPrompt');
+        const conceptEl = document.getElementById('selectCoachAlCornerConcept');
+        const promptTxt = (promptEl && promptEl.value.trim()) || 'Beat aggressive 2-1-2 forecheck with D-to-D net-front reverses';
+        const conceptTxt = (conceptEl && conceptEl.options[conceptEl.selectedIndex]?.text) || 'Breakouts: D-to-D & Low Center';
+        state.coachAlSentPlansHistory.unshift({
+          id: `PLAN-${Date.now()}`,
+          title: `Coach Al Custom Plan: ${conceptTxt} — "${promptTxt}"`,
+          sentAt: 'Just Now',
+          targetGroup: 'Whole Team (18/18 Players)',
+          completionRate: 'Sent ✅',
+          teamAvgIq: 'Active',
+          playerBreakdown: state.coachAlSentPlansHistory[0]?.playerBreakdown || []
+        });
+        renderCoachOfficeLobbyModal(2);
+        const toast = document.getElementById('coachAlCornerActionToast');
+        if (toast) {
+          toast.textContent = `🚀 Sent "${conceptTxt}" Custom Lesson Plan to Roster & saved to Lesson Plan History!`;
+          toast.classList.remove('hidden');
+        }
+      });
+
+      bindClick('btnCoachAlSendStrugglingPips', () => {
+        SoundFX.playGoalHorn();
+        const toast = document.getElementById('coachAlCornerActionToast');
+        if (toast) {
+          toast.textContent = '⚡ Generated & Sent 5-Lesson Individual Breakout Improvement Plan to struggling players (Dane #44 — 62% IQ) via SafeSport App Push!';
+          toast.classList.remove('hidden');
+        }
+      });
+
+      bindClick('btnCoachAlArchiveReport', () => {
+        SoundFX.playTap();
+        const toast = document.getElementById('coachAlCornerActionToast');
+        if (toast) {
+          toast.textContent = '🗄️ Saved Question-by-Question Progress Report to Team Archive!';
+          toast.classList.remove('hidden');
+        }
+      });
+
+      // Station 3: Schedule & Opponent Scouting Controls
+      const oppSel = document.getElementById('selectScoutingOpponentGame');
+      if (oppSel) {
+        oppSel.addEventListener('change', (e) => {
+          state.selectedScoutingOpponent = e.target.value || 'Minot Wolves (Saturday 2:00 PM)';
+          renderCoachOfficeLobbyModal(3);
+        });
+      }
+      const oppAgeSel = document.getElementById('selectScoutingAgeDivision');
+      if (oppAgeSel) {
+        oppAgeSel.addEventListener('change', (e) => {
+          state.selectedScoutingAgeGroup = e.target.value || '12U';
+          renderCoachOfficeLobbyModal(3);
+        });
+      }
+      document.querySelectorAll('.scouting-tendency-chk').forEach(chk => {
+        chk.addEventListener('change', () => {
+          const picked = Array.from(document.querySelectorAll('.scouting-tendency-chk:checked')).map(c => c.value);
+          state.selectedScoutingTendencies = picked.length > 0 ? picked : ['aggressive_212_forecheck'];
+          renderCoachOfficeLobbyModal(3);
+        });
+      });
+
+      bindClick('btnSendOpponentCounterPlan', () => {
+        SoundFX.playGoalHorn();
+        const plan = generateOpponentCounterStrategyPlan(
+          state.selectedScoutingOpponent,
+          state.selectedScoutingAgeGroup,
+          state.selectedScoutingTendencies
+        );
+        state.coachAlSentPlansHistory.unshift({
+          id: plan.id,
+          title: `Opponent Counter-Plan vs. ${plan.opponentName} (${plan.ageGroup}): ${plan.counterHeadline}`,
+          sentAt: 'Just Now',
+          targetGroup: `Whole ${plan.ageGroup} Roster`,
+          completionRate: 'Sent ✅',
+          teamAvgIq: 'Active',
+          playerBreakdown: state.coachAlSentPlansHistory[0]?.playerBreakdown || []
+        });
+        state.safeSportNotificationsLog.unshift({
+          id: `push-${Date.now()}`,
+          message: '🏒 You have a new lesson plan in Synapz!',
+          target: `All ${plan.ageGroup} Team Roster Devices`,
+          timestamp: 'Just Now',
+          safeSportCompliant: true
+        });
+        renderCoachOfficeLobbyModal(3);
+        const toast = document.getElementById('coachScoutingActionToast');
+        if (toast) {
+          toast.textContent = `🏒 Sent ${plan.ageGroup} Counter-Lesson Plan ("${plan.counterHeadline}") to players & logged SafeSport Push Notification!`;
+          toast.classList.remove('hidden');
+        }
+      });
+
+      bindClick('btnGenerateWeekendBenchPlan', () => {
+        SoundFX.playGoalHorn();
+        const bench = generateWeekendBenchGamePlan(
+          state.selectedScoutingOpponent,
+          state.selectedScoutingAgeGroup,
+          state.selectedScoutingTendencies
+        );
+        renderCoachOfficeLobbyModal(3);
+        const toast = document.getElementById('coachScoutingActionToast');
+        if (toast) {
+          toast.textContent = `📋 Generated 1-Page Weekend Bench Game Plan: "${bench.headline}" (Ready to Print / View on Bench iPad)!`;
+          toast.classList.remove('hidden');
+        }
+      });
+
+      // Station 4: SafeSport Notification Dispatch
+      bindClick('btnDispatchSafeSportRosterPush', () => {
+        SoundFX.playGoalHorn();
+        state.safeSportNotificationsLog.unshift({
+          id: `push-${Date.now()}`,
+          message: '🏒 You have a new lesson plan in Synapz!',
+          target: 'All 18 Team Roster Devices (Player & Parent App)',
+          timestamp: 'Just Now',
+          safeSportCompliant: true
+        });
+        renderCoachOfficeLobbyModal(4);
+        const toast = document.getElementById('coachSafeSportActionToast');
+        if (toast) {
+          toast.textContent = '📲 Dispatched Standardized SafeSport App Push ("🏒 You have a new lesson plan in Synapz!") — Zero direct coach-to-kid email or open chat!';
+          toast.classList.remove('hidden');
+        }
+      });
+
+      // Phase 6: Concept Bucket Coverage Report Modal Close
+      bindClick('btnCloseConceptBucketCoverageModal', () => document.getElementById('conceptBucketCoverageReportModal').classList.add('hidden'));
 
       // 5 Lobby Stations
       bindClick('lobbyStationHitTheIce', () => {
@@ -20862,7 +21843,7 @@
       bindClick('btnCoachOfficeSaveExitLobby', saveAndExitToRinkLobby);
       bindClick('btnCoachOfficeJoinTeam', () => {
         document.getElementById('synapzCoachOfficeModal').classList.add('hidden');
-        openTeamManagerModal();
+        openPlayerTeamRosterHubModal('roster');
       });
 
       // Friends & Family Wall Modal
@@ -21203,6 +22184,309 @@
         📲 Enable Device Push Alerts (100% SafeSport — Zero Direct Coach Email/Chat)
       </button>
       <div id="safeSportPushStatusToast" class="hidden p-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-emerald-200 text-xs font-bold"></div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- PHASE 5 & PHASE 6 MODALS:                                             -->
+  <!-- 1) #playerTeamRosterHubModal (4-Button Player Team Roster View)       -->
+  <!-- 2) #coachPortalModal (Coach's Office Lobby Guided by Coach Al)        -->
+  <!-- 3) #conceptBucketCoverageReportModal (16 Buckets / 360 -> 5,760+ Rep) -->
+  <!-- ===================================================================== -->
+
+  <!-- 1) Player Team Roster Hub (`#playerTeamRosterHubModal` — Entered via Coach Code or Find/Join My Team) -->
+  <div id="playerTeamRosterHubModal" class="hidden fixed inset-0 z-[101] bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="synapz-gunmetal-panel max-w-4xl w-full rounded-2xl p-4 sm:p-5 border-2 border-cyan-400 shadow-2xl space-y-4 my-auto">
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-cyan-500/30 pb-3">
+        <div>
+          <div class="text-[10px] font-black uppercase tracking-widest text-cyan-400">PLAYER TEAM PORTAL • 100% SAFESPORT READ-ONLY TEAMMATE VIEW</div>
+          <h3 class="text-lg sm:text-xl font-black text-white">🏒 Player Team Roster Hub &amp; Weekly Coach Plans</h3>
+          <div id="playerTeamHubTitleBanner" class="text-xs font-bold text-emerald-300 mt-0.5">🏒 Minot 3v3 Wolves (Code: PUCK99) • Coach: Coach Dane • Active Skater: Miles #9</div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="btnPlayerTeamHubSaveExitLobby" type="button" class="px-3.5 py-2 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/35 border border-emerald-400/70 text-emerald-200 text-xs font-black">
+            💾 Save &amp; Exit to Lobby
+          </button>
+          <button id="btnClosePlayerTeamRosterHubModal" type="button" class="px-3 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-black">✕</button>
+        </div>
+      </div>
+
+      <!-- Strictly 4 Simple, Tactile Player-Team Buttons -->
+      <div id="playerTeamRosterHub4ButtonsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+        <button id="btnPlayerTeamHub_roster" type="button" class="px-3.5 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-black text-xs shadow transition text-left">
+          📋 1. Team Roster &amp; Standings
+        </button>
+        <button id="btnPlayerTeamHub_plans" type="button" class="px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-xs transition text-left">
+          📥 2. Active &amp; Past Lesson Plans
+        </button>
+        <button id="btnPlayerTeamHub_schedule" type="button" class="px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-xs transition text-left">
+          🗓️ 3. Team Schedule &amp; Coach Notes
+        </button>
+        <button id="btnPlayerTeamHub_devplan" type="button" class="px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-xs transition text-left">
+          📈 4. My Team Development Plan
+        </button>
+      </div>
+
+      <div id="playerTeamRosterHubContentBox" class="p-3.5 rounded-2xl bg-slate-950/90 border border-cyan-500/30"></div>
+    </div>
+  </div>
+
+  <!-- 2) Coach's Office Lobby Guided by Coach Al (`#coachPortalModal` — 4 Clean Stations + Spotlight Tour) -->
+  <div id="coachPortalModal" class="hidden fixed inset-0 z-[101] bg-slate-950/92 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="synapz-gunmetal-panel max-w-5xl w-full rounded-2xl p-4 sm:p-5 border-2 border-amber-400 shadow-2xl space-y-3.5 my-auto">
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-400/30 pb-3">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-2xl shrink-0">🧢</div>
+          <div>
+            <div class="text-[10px] font-black uppercase tracking-widest text-amber-300">COACH LOGIN • GUIDED BY COACH AL (VOICE CHANNEL: COACH-AL)</div>
+            <h3 class="text-lg sm:text-xl font-black text-white">🧑‍💼 Coach's Office Lobby — 4 Tactical Coaching Stations</h3>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <button id="btnCoachOfficeStartSpotlight" type="button" class="px-3 py-1.5 rounded-xl bg-amber-400/20 hover:bg-amber-400/35 border border-amber-400/70 text-amber-200 text-xs font-black">
+            🔦 1-Sentence Tour
+          </button>
+          <button id="btnCoachOfficeOpenBucketReport" type="button" class="px-3 py-1.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/35 border border-cyan-400/70 text-cyan-200 text-xs font-black">
+            📊 Concept Buckets &amp; Tags Report
+          </button>
+          <button id="btnCoachOfficeOpenDirector4Tab" type="button" class="px-3 py-1.5 rounded-xl bg-purple-500/20 hover:bg-purple-500/35 border border-purple-400/70 text-purple-200 text-xs font-black">
+            🏛️ Association Director Roll-Up
+          </button>
+          <button id="btnCoachPortalSaveExitLobby" type="button" class="px-3 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/35 border border-emerald-400/70 text-emerald-200 text-xs font-black">
+            💾 Save &amp; Exit
+          </button>
+          <button id="btnCloseCoachOfficeLobbyModal" type="button" class="px-2.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-black">✕</button>
+        </div>
+      </div>
+
+      <!-- Coach Al 1-Sentence Spotlight Banner -->
+      <div id="coachOfficeSpotlightBanner" class="hidden p-2.5 rounded-xl bg-amber-400/15 border border-amber-400 text-amber-200 text-xs font-black"></div>
+
+      <!-- 4 Clean Station Selector Buttons -->
+      <div id="coachOffice4StationsNavGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+        <button id="btnCoachStationTab_1" type="button" class="px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-xs transition text-left">
+          📁 Station 1: Roster &amp; Playbook Upload
+        </button>
+        <button id="btnCoachStationTab_2" type="button" class="px-3.5 py-2.5 rounded-xl bg-amber-400 text-slate-950 font-black text-xs shadow-lg transition text-left">
+          🧠 Station 2: Coach Al's Corner
+        </button>
+        <button id="btnCoachStationTab_3" type="button" class="px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-xs transition text-left">
+          🗓️ Station 3: Schedule &amp; Opponent Scouting
+        </button>
+        <button id="btnCoachStationTab_4" type="button" class="px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-xs transition text-left">
+          🔔 Station 4: SafeSport Push Alerts
+        </button>
+      </div>
+
+      <!-- STATION 1: Roster & Association Materials Upload Hub -->
+      <div id="coachOfficeStationPane_1" class="hidden p-4 rounded-2xl bg-slate-950 border border-cyan-500/30 space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <div class="text-xs font-black text-cyan-300 uppercase">📁 Station 1 — Roster &amp; Association Materials Upload Hub</div>
+            <p class="text-[11px] text-slate-300">Upload Association Playbooks (<code>.pdf</code>, <code>.csv</code>, <code>.json</code>) or pick a 1-click System Preset so Coach Al aligns every player drill to your exact terminology.</p>
+          </div>
+          <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black">18 / 20 Roster Seats Active</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-end">
+          <div class="sm:col-span-5">
+            <label class="block text-[10px] font-black uppercase text-slate-400 mb-1">Playbook / Roster File Name (.pdf, .csv, .json)</label>
+            <input id="inputCoachPlaybookUploadName" type="text" value="Minot_Wolves_212_Forecheck_Playbook.pdf" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white" />
+          </div>
+          <div class="sm:col-span-4">
+            <label class="block text-[10px] font-black uppercase text-slate-400 mb-1">1-Click Team System Preset</label>
+            <select id="selectCoachSystemPreset" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-cyan-300">
+              <option value="2-1-2 Forecheck & D-to-D Breakout">2-1-2 Forecheck &amp; D-to-D Breakout</option>
+              <option value="Protect the House (Box+1)">Protect the House (Box+1)</option>
+              <option value="D-to-D / Wheel Breakout & Low Center">D-to-D / Wheel Breakout &amp; Low Center</option>
+              <option value="1-2-2 Neutral Zone Lock & Speed Regroup">1-2-2 Neutral Zone Lock &amp; Speed Regroup</option>
+            </select>
+          </div>
+          <div class="sm:col-span-3">
+            <button id="btnCoachUploadPlaybookMaterial" type="button" class="w-full py-2 px-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs shadow">
+              📤 Upload &amp; Sync Playbook
+            </button>
+          </div>
+        </div>
+        <div id="coachStation1UploadToast" class="hidden p-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-emerald-200 text-xs font-bold"></div>
+        <div id="coachUploadedMaterialsList" class="space-y-2"></div>
+      </div>
+
+      <!-- STATION 2: Coach Al's Corner (Proactive Busywork Summary, AI Prompt & Question-by-Question Progress Report) -->
+      <div id="coachOfficeStationPane_2" class="p-4 rounded-2xl bg-slate-950 border border-amber-400/40 space-y-3.5">
+        <!-- Proactive Busywork Summary Card -->
+        <div id="coachAlProactiveBriefingCard" class="p-3.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-slate-900 to-cyan-500/15 border-2 border-amber-400 flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+          <div class="space-y-1">
+            <div class="text-[10px] font-black uppercase tracking-widest text-amber-300">🧢 COACH AL'S PROACTIVE WEEKLY BRIEFING (ZERO BUSYWORK)</div>
+            <p id="coachAlProactiveBriefingText" class="text-xs sm:text-sm font-black text-white leading-snug">
+              "Hey Coach! Dane needs work on Breakouts this week (62% IQ), and Evan scored 95% on D-Zone Coverage. I've queued a fresh Breakout Lesson Plan for the team—ready to send?"
+            </p>
+          </div>
+          <button id="btnCoachAlProactiveConfirmSend" type="button" class="px-4 py-2.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs uppercase shadow-lg shrink-0 transition">
+            ✅ Confirm &amp; Send Weekly Plan
+          </button>
+        </div>
+
+        <!-- Step-by-Step Concept Picker + Natural-Language AI Prompt -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2.5 items-end p-3 rounded-xl bg-slate-900/90 border border-slate-800">
+          <div class="lg:col-span-4">
+            <label class="block text-[10px] font-black uppercase text-cyan-300 mb-1">1. Pick Concept Bucket</label>
+            <select id="selectCoachAlCornerConcept" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+              <option value="breakout_d_to_d">Breakouts: D-to-D Hinge &amp; Net-Front Reverse</option>
+              <option value="breakout_low_slow_center">Breakouts: Center Low-and-Slow Curl</option>
+              <option value="dz_protect_house_box1">D-Zone: Protect the House &amp; Box+1</option>
+              <option value="forecheck_212_f1_f2_f3">O-Zone: 2-1-2 Forecheck F1/F2/F3</option>
+              <option value="nz_regroup_hinge">Neutral Zone: D-to-D Regroup &amp; Entry</option>
+              <option value="odd_man_rush_2v1_3v2">Odd-Man Rushes: 2-on-1 &amp; 3-on-2 Reads</option>
+            </select>
+          </div>
+          <div class="lg:col-span-5">
+            <label class="block text-[10px] font-black uppercase text-cyan-300 mb-1">2. Natural-Language Prompt to Coach Al</label>
+            <input id="inputCoachAlCornerPrompt" type="text" placeholder="e.g., Build a 10-lesson plan on beating a 2-1-2 forecheck..." value="Build a 10-lesson plan on beating an aggressive 2-1-2 forecheck with D-to-D reverses" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white" />
+          </div>
+          <div class="lg:col-span-3">
+            <button id="btnCoachAlPromptConfirmSend" type="button" class="w-full py-2 px-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs uppercase shadow">
+              🚀 Confirm &amp; Send to Roster
+            </button>
+          </div>
+        </div>
+
+        <div id="coachAlCornerActionToast" class="hidden p-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-emerald-200 text-xs font-bold"></div>
+
+        <!-- Question-by-Question Progress Report Table -->
+        <div class="p-3 rounded-xl bg-slate-900 border border-cyan-500/30 space-y-2.5">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="text-xs font-black text-cyan-300 uppercase">📊 Lesson Plan Progress Report — Question-by-Question Player Breakdown</div>
+            <span class="text-[10px] font-black text-emerald-300">Team Completion: 89% (16/18) • Avg IQ: 88%</span>
+          </div>
+          <div class="overflow-x-auto">
+            <table id="coachAlQuestionByQuestionReportTable" class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-slate-700 text-[10px] font-black uppercase text-slate-400">
+                  <th class="py-1.5 px-2">Player</th>
+                  <th class="py-1.5 px-2 text-center">Q1 (D-to-D)</th>
+                  <th class="py-1.5 px-2 text-center">Q2 (Low Curl)</th>
+                  <th class="py-1.5 px-2 text-center">Q3 (Wall Chip)</th>
+                  <th class="py-1.5 px-2 text-center">Q4 (F2 Read)</th>
+                  <th class="py-1.5 px-2 text-center">Q5 (Film Room)</th>
+                  <th class="py-1.5 px-2 text-center">Plan IQ</th>
+                  <th class="py-1.5 px-2 text-right">Diagnostic Action</th>
+                </tr>
+              </thead>
+              <tbody id="coachAlQuestionByQuestionTableBody"></tbody>
+            </table>
+          </div>
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+            <button id="btnCoachAlSendStrugglingPips" type="button" class="px-3.5 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs shadow">
+              ⚡ Generate &amp; Send Individual Improvement Plans for Struggling Players
+            </button>
+            <button id="btnCoachAlArchiveReport" type="button" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 font-black text-xs">
+              🗄️ Save Report to Archive
+            </button>
+          </div>
+        </div>
+
+        <!-- Lesson Plan History -->
+        <div class="space-y-1.5">
+          <div class="text-[11px] font-black text-slate-400 uppercase">🗄️ Sent Lesson Plan History</div>
+          <div id="coachAlLessonPlanHistoryList" class="space-y-1.5"></div>
+        </div>
+      </div>
+
+      <!-- STATION 3: Schedule & Opponent Scouting Prep (Backed by SYNAPZ_COACHING_STRATEGY_KB) -->
+      <div id="coachOfficeStationPane_3" class="hidden p-4 rounded-2xl bg-slate-950 border border-emerald-400/40 space-y-3.5">
+        <div id="coachAlScoutingProactiveAlert" class="p-3 rounded-xl bg-amber-400/15 border border-amber-400 text-amber-200 text-xs font-black"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+          <div class="md:col-span-5 space-y-2.5 p-3 rounded-xl bg-slate-900 border border-slate-800">
+            <div>
+              <label class="block text-[10px] font-black uppercase text-cyan-300 mb-1">1. Select Upcoming Scheduled Game</label>
+              <select id="selectScoutingOpponentGame" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                <option value="Minot Wolves (Saturday 2:00 PM)">Minot Wolves — Saturday 2:00 PM</option>
+                <option value="Foothills Flyers (Sunday 11:30 AM)">Foothills Flyers — Sunday 11:30 AM</option>
+                <option value="Lightning AAA (Next Friday 7:00 PM)">Lightning AAA — Next Friday 7:00 PM</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[10px] font-black uppercase text-cyan-300 mb-1">2. Team Age Division (Tailors ADM / NCAA Counter Complexity)</label>
+              <select id="selectScoutingAgeDivision" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-amber-300">
+                <option value="8U">8U Mite (Foundational Counters)</option>
+                <option value="10U">10U Squirt (Foundational Counters)</option>
+                <option value="12U" selected>12U Peewee (Intermediate Counters)</option>
+                <option value="14U">14U Bantam (Intermediate Counters)</option>
+                <option value="16U">16U Midget / HS (Advanced Counters)</option>
+                <option value="18U">18U Prep / Jr (Advanced Counters)</option>
+              </select>
+            </div>
+            <div id="coachScoutingTendencyButtons" class="space-y-1">
+              <div class="text-[10px] font-black uppercase text-cyan-300">3. Opponent Tendencies &amp; Scouting Notes</div>
+              <label class="flex items-center gap-2 text-xs text-white font-bold"><input type="checkbox" value="aggressive_212_forecheck" class="scouting-tendency-chk" checked /> Aggressive 2-1-2 Forecheck</label>
+              <label class="flex items-center gap-2 text-xs text-white font-bold"><input type="checkbox" value="blueline_pinch_hold_line" class="scouting-tendency-chk" checked /> Blue-Line Pinch / Hold-the-Line D</label>
+              <label class="flex items-center gap-2 text-xs text-white font-bold"><input type="checkbox" value="neutral_zone_trap_122" class="scouting-tendency-chk" /> 1-2-2 Neutral Zone Trap</label>
+              <label class="flex items-center gap-2 text-xs text-white font-bold"><input type="checkbox" value="heavy_physical_pinning" class="scouting-tendency-chk" /> Heavy Physical / Board Pinning</label>
+              <label class="flex items-center gap-2 text-xs text-white font-bold"><input type="checkbox" value="high_penalty_undisciplined" class="scouting-tendency-chk" /> High-Penalty Team (5v4 Power Play)</label>
+              <label class="flex items-center gap-2 text-xs text-white font-bold"><input type="checkbox" value="pass_jumping_aggressive_pk" class="scouting-tendency-chk" /> Pass-Jumping / Aggressive PK</label>
+            </div>
+          </div>
+
+          <div class="md:col-span-7 space-y-2.5">
+            <div id="coachAlScoutingCounterPlanPreview" class="p-3.5 rounded-xl bg-slate-900 border border-amber-400/60"></div>
+            <div id="coachAlWeekendBenchGamePlanBox" class="p-3.5 rounded-xl bg-slate-900 border border-emerald-400/60"></div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button id="btnSendOpponentCounterPlan" type="button" class="px-4 py-2.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs uppercase shadow-lg">
+                🏒 Send Age-Tailored Counter-Lesson Plan to Players
+              </button>
+              <button id="btnGenerateWeekendBenchPlan" type="button" class="px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs uppercase shadow-lg">
+                📋 Generate Weekend Bench Game Plan
+              </button>
+            </div>
+            <div id="coachScoutingActionToast" class="hidden p-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-emerald-200 text-xs font-bold"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATION 4: 100% SafeSport-Compliant Notification Center -->
+      <div id="coachOfficeStationPane_4" class="hidden p-4 rounded-2xl bg-slate-950 border border-cyan-400/40 space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <div class="text-xs font-black text-cyan-300 uppercase">🔔 Station 4 — 100% SafeSport-Compliant Notification Center</div>
+            <p class="text-[11px] text-slate-300">Zero direct coach-to-kid emails or open message boards. Clicking below triggers a standardized app push notification (<code>"🏒 You have a new lesson plan in Synapz!"</code>) to player &amp; parent devices.</p>
+          </div>
+          <button id="btnDispatchSafeSportRosterPush" type="button" class="px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs uppercase shadow-lg">
+            📲 Dispatch Standardized SafeSport App Push
+          </button>
+        </div>
+        <div id="coachSafeSportActionToast" class="hidden p-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-emerald-200 text-xs font-bold"></div>
+        <div id="coachSafeSportPushLogList" class="space-y-2"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3) Phase 6: Concept Buckets & Tags Coverage Report Modal (`#conceptBucketCoverageReportModal`) -->
+  <div id="conceptBucketCoverageReportModal" class="hidden fixed inset-0 z-[104] bg-slate-950/92 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="synapz-gunmetal-panel max-w-5xl w-full rounded-2xl p-4 sm:p-5 border-2 border-cyan-400 shadow-2xl space-y-3.5 my-auto">
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-cyan-500/30 pb-3">
+        <div>
+          <div class="text-[10px] font-black uppercase tracking-widest text-cyan-400">PHASE 6 CURRICULUM ARCHITECTURE • ENDLESS ORGANIC PERMUTATIONS</div>
+          <h3 class="text-lg sm:text-xl font-black text-white">📊 Concept Buckets &amp; Multi-Dimensional Tag Coverage Report</h3>
+          <p class="text-xs text-slate-300 font-bold">16 Core Concept Buckets • 360 Base Scenarios • 1,440 4-Way Geometric Rotations • 5,760+ Multi-Role/Mode Organic Permutations</p>
+        </div>
+        <button id="btnCloseConceptBucketCoverageModal" type="button" class="px-3 py-1.5 rounded-xl bg-slate-800 text-slate-200 text-xs font-black">✕ Close</button>
+      </div>
+      <div class="overflow-x-auto max-h-[60dvh] overflow-y-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-slate-700 text-[10px] font-black uppercase text-cyan-300 bg-slate-900">
+              <th class="py-2 px-2.5">Concept Bucket (16 Core Buckets)</th>
+              <th class="py-2 px-2 text-center">Base Drills</th>
+              <th class="py-2 px-2 text-center">4-Way Rotations</th>
+              <th class="py-2 px-2 text-center">Organic Permutations</th>
+              <th class="py-2 px-2">Divisions &amp; Skill Tiers</th>
+              <th class="py-2 px-2">Positions, Dynamic Roles &amp; Zones</th>
+            </tr>
+          </thead>
+          <tbody id="conceptBucketCoverageTableBody"></tbody>
+        </table>
+      </div>
     </div>
   </div>
 </body>

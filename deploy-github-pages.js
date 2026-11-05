@@ -75,7 +75,11 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/audit_phase3_habit_combo.png', encoding: 'base64' },
   { rel: 'screenshots/audit_locker_room_avatar.png', encoding: 'base64' },
   { rel: 'screenshots/audit_pro_shop_walls.png', encoding: 'base64' },
-  { rel: 'screenshots/audit_accurate_na_map.png', encoding: 'base64' }
+  { rel: 'screenshots/audit_accurate_na_map.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_team_roster_hub.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_coach_als_corner.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_opponent_scouting.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_bucket_coverage_report.png', encoding: 'base64' }
 ];
 
 const FORBIDDEN_FILENAMES = new Set([

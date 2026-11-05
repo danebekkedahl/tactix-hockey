@@ -953,6 +953,90 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         const nhlCitiesGeoVerified = Array.isArray(window.NHL_CITIES) && window.NHL_CITIES.length === 32 && window.NHL_CITIES.every(c => Boolean(c.stateOrProvince));
         switchView('game');
 
+        // PHASE 5 & PHASE 6: Team Portal (Coach Login vs Coach Code), Coach's Office Lobby Guided by Coach Al, Opponent Scouting KB, SafeSport Push, Endless Organic Permutations & Concept Bucket Coverage Report
+        const teamPortal2ButtonsCount = ['btnCoachPortalDirectorSignIn', 'btnCoachPortalPlayerSignIn'].filter(id => Boolean(document.getElementById(id))).length;
+
+        if (typeof openPlayerTeamRosterHubModal === 'function') openPlayerTeamRosterHubModal('roster');
+        const playerTeamHubOpen = !document.getElementById('playerTeamRosterHubModal')?.classList.contains('hidden');
+        const playerTeamHub4ButtonsCount = ['btnPlayerTeamHub_roster', 'btnPlayerTeamHub_plans', 'btnPlayerTeamHub_schedule', 'btnPlayerTeamHub_devplan']
+          .filter(id => Boolean(document.getElementById(id))).length;
+        const playerRosterHtml = document.getElementById('playerTeamRosterHubContentBox')?.innerHTML || '';
+        const teammateReadOnlyPrivacyVerified = playerRosterHtml.includes('Private Diagnostics Hidden') && playerRosterHtml.includes('Read-Only');
+        document.getElementById('playerTeamRosterHubModal')?.classList.add('hidden');
+
+        if (typeof openCoachOfficeLobbyModal === 'function') openCoachOfficeLobbyModal(2);
+        const coachOfficeLobbyOpen = !document.getElementById('coachPortalModal')?.classList.contains('hidden');
+        const coachOffice4StationsCount = [1, 2, 3, 4].filter(n => Boolean(document.getElementById(`btnCoachStationTab_${n}`))).length;
+        const coachSpotlightStep = typeof startCoachOfficeSpotlightTour === 'function' ? startCoachOfficeSpotlightTour(0) : null;
+        const coachSpotlightVerified = Boolean(coachSpotlightStep && coachSpotlightStep.quote);
+
+        // Station 1 Playbook Upload check
+        if (typeof renderCoachOfficeLobbyModal === 'function') renderCoachOfficeLobbyModal(1);
+        document.getElementById('btnCoachUploadPlaybookMaterial')?.click();
+        const uploadedMaterialsCount = (state.uploadedAssociationMaterials || []).length;
+
+        // Station 2 Coach Al's Corner: 1-Click Proactive Plan, Custom Prompt, Question-by-Question Progress Report & History
+        if (typeof renderCoachOfficeLobbyModal === 'function') renderCoachOfficeLobbyModal(2);
+        const proactiveBriefingText = document.getElementById('coachAlProactiveBriefingText')?.innerText || '';
+        document.getElementById('btnCoachAlProactiveConfirmSend')?.click();
+        document.getElementById('btnCoachAlSendStrugglingPips')?.click();
+        document.getElementById('btnCoachAlArchiveReport')?.click();
+        const questionByQuestionRowsCount = document.querySelectorAll('#coachAlQuestionByQuestionTableBody tr').length;
+        const lessonPlanHistoryCount = (state.coachAlSentPlansHistory || []).length;
+
+        // Station 3 Opponent Scouting & Counter-Strategy KB (Distinct 8U vs 16U Counter-Plans + Weekend Bench Game Plan)
+        const kbTendenciesCount = Object.keys(window.SYNAPZ_COACHING_STRATEGY_KB || {}).length;
+        const counterPlan8U = typeof window.generateOpponentCounterStrategyPlan === 'function'
+          ? window.generateOpponentCounterStrategyPlan('Minot Wolves', '8U', ['aggressive_212_forecheck', 'blueline_pinch_hold_line'])
+          : null;
+        const counterPlan16U = typeof window.generateOpponentCounterStrategyPlan === 'function'
+          ? window.generateOpponentCounterStrategyPlan('Minot Wolves', '16U', ['aggressive_212_forecheck', 'blueline_pinch_hold_line'])
+          : null;
+        const ageTailoredCountersDistinct = Boolean(
+          counterPlan8U && counterPlan16U &&
+          counterPlan8U.counterHeadline !== counterPlan16U.counterHeadline &&
+          counterPlan8U.lessonCount === 5 &&
+          counterPlan16U.lessonCount === 10
+        );
+        const weekendBenchPlan = typeof window.generateWeekendBenchGamePlan === 'function'
+          ? window.generateWeekendBenchGamePlan('Minot Wolves', '12U', ['aggressive_212_forecheck', 'blueline_pinch_hold_line'])
+          : null;
+        const weekendBenchPlanVerified = Boolean(weekendBenchPlan && Array.isArray(weekendBenchPlan.threeKeysToVictory) && weekendBenchPlan.threeKeysToVictory.length >= 2);
+
+        // Station 4 SafeSport Notification Center check
+        if (typeof renderCoachOfficeLobbyModal === 'function') renderCoachOfficeLobbyModal(4);
+        document.getElementById('btnDispatchSafeSportRosterPush')?.click();
+        const safeSportPushCount = (state.safeSportNotificationsLog || []).length;
+        document.getElementById('coachPortalModal')?.classList.add('hidden');
+
+        // Phase 6: Endless Organic Drill Permutations (`getNextOrganicScenarioPermutation`) & Concept Bucket Coverage Report
+        const perm1 = typeof window.getNextOrganicScenarioPermutation === 'function'
+          ? window.getNextOrganicScenarioPermutation('breakout', getActiveProfile())
+          : null;
+        const perm2 = typeof window.getNextOrganicScenarioPermutation === 'function'
+          ? window.getNextOrganicScenarioPermutation('breakout', getActiveProfile())
+          : null;
+        const organicPermutationsNeverRepeat = Boolean(
+          perm1 && perm2 &&
+          perm1.permutationHash !== perm2.permutationHash &&
+          perm1.isFreshOrganicPermutation && perm2.isFreshOrganicPermutation
+        );
+
+        const bucketCoverageReport = typeof window.getConceptBucketCoverageReport === 'function'
+          ? window.getConceptBucketCoverageReport()
+          : null;
+        if (typeof openConceptBucketCoverageReportModal === 'function') openConceptBucketCoverageReportModal();
+        const bucketModalRowsCount = document.querySelectorAll('#conceptBucketCoverageTableBody tr').length;
+        document.getElementById('conceptBucketCoverageReportModal')?.classList.add('hidden');
+        const bucketCoverageVerified = Boolean(
+          bucketCoverageReport &&
+          bucketCoverageReport.totalBuckets === 16 &&
+          bucketCoverageReport.totalBaseScenarios === 360 &&
+          bucketCoverageReport.total4WayRotations === 1440 &&
+          bucketCoverageReport.totalOrganicPermutations === 5760 &&
+          bucketModalRowsCount === 16
+        );
+
         founderDigestAudit.summary = {
           digestModalOpen,
           totalDigestRows,
@@ -1016,6 +1100,33 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
             greatLakesVisible,
             postCupTeaserVisible,
             nhlCitiesGeoVerified
+          },
+          phase5And6TeamCoachScoutingPermutationsAudit: {
+            teamPortal2ButtonsCount,
+            playerTeamHubOpen,
+            playerTeamHub4ButtonsCount,
+            teammateReadOnlyPrivacyVerified,
+            coachOfficeLobbyOpen,
+            coachOffice4StationsCount,
+            coachSpotlightVerified,
+            uploadedMaterialsCount,
+            proactiveBriefingPresent: Boolean(proactiveBriefingText && proactiveBriefingText.includes('62% IQ')),
+            questionByQuestionRowsCount,
+            lessonPlanHistoryCount,
+            kbTendenciesCount,
+            ageTailoredCountersDistinct,
+            counter8UHeadline: counterPlan8U ? counterPlan8U.counterHeadline : '',
+            counter16UHeadline: counterPlan16U ? counterPlan16U.counterHeadline : '',
+            weekendBenchPlanVerified,
+            safeSportPushCount,
+            organicPermutationsNeverRepeat,
+            perm1Hash: perm1 ? perm1.permutationHash : '',
+            perm2Hash: perm2 ? perm2.permutationHash : '',
+            bucketCoverageVerified,
+            totalBuckets: bucketCoverageReport ? bucketCoverageReport.totalBuckets : 0,
+            totalBaseScenarios: bucketCoverageReport ? bucketCoverageReport.totalBaseScenarios : 0,
+            total4WayRotations: bucketCoverageReport ? bucketCoverageReport.total4WayRotations : 0,
+            totalOrganicPermutations: bucketCoverageReport ? bucketCoverageReport.totalOrganicPermutations : 0
           },
           twoStepStartPageAudit: {
             step1PortalsVisible,
@@ -1219,6 +1330,47 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     capturedScreenshots.audit_pro_shop_walls = 'screenshots/audit_pro_shop_walls.png';
     await page.evaluate(() => {
       document.getElementById('proShopModal')?.classList.add('hidden');
+    });
+
+    // 4G4. Phase 5 Player Team Roster Hub (`screenshots/audit_team_roster_hub.png`)
+    await page.evaluate(() => {
+      if (typeof openPlayerTeamRosterHubModal === 'function') openPlayerTeamRosterHubModal('roster');
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_team_roster_hub.png') });
+    capturedScreenshots.audit_team_roster_hub = 'screenshots/audit_team_roster_hub.png';
+    await page.evaluate(() => {
+      document.getElementById('playerTeamRosterHubModal')?.classList.add('hidden');
+    });
+
+    // 4G5. Phase 5 Coach Al's Corner: Proactive Weekly Briefing & Question-by-Question Progress Report (`screenshots/audit_coach_als_corner.png`)
+    await page.evaluate(() => {
+      if (typeof openCoachOfficeLobbyModal === 'function') openCoachOfficeLobbyModal(2);
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_coach_als_corner.png') });
+    capturedScreenshots.audit_coach_als_corner = 'screenshots/audit_coach_als_corner.png';
+
+    // 4G6. Phase 5 Schedule & Opponent Scouting Prep (`screenshots/audit_opponent_scouting.png`)
+    await page.evaluate(() => {
+      if (typeof renderCoachOfficeLobbyModal === 'function') renderCoachOfficeLobbyModal(3);
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_opponent_scouting.png') });
+    capturedScreenshots.audit_opponent_scouting = 'screenshots/audit_opponent_scouting.png';
+    await page.evaluate(() => {
+      document.getElementById('coachPortalModal')?.classList.add('hidden');
+    });
+
+    // 4G7. Phase 6 Concept Buckets & Tags Coverage Report (`screenshots/audit_bucket_coverage_report.png`)
+    await page.evaluate(() => {
+      if (typeof openConceptBucketCoverageReportModal === 'function') openConceptBucketCoverageReportModal();
+    });
+    await page.waitForTimeout(250);
+    await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_bucket_coverage_report.png') });
+    capturedScreenshots.audit_bucket_coverage_report = 'screenshots/audit_bucket_coverage_report.png';
+    await page.evaluate(() => {
+      document.getElementById('conceptBucketCoverageReportModal')?.classList.add('hidden');
     });
 
     // 4H. Phase 2 De-Cluttered On-Ice Lesson Screen w/ Top-Down Directional Skaters (2x Faceoff Dot) & 4 Bottom Buttons (`screenshots/audit_phase2_lesson_screen.png`)
