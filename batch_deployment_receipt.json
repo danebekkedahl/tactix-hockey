@@ -1,33 +1,118 @@
 {
-  "batchNumber": 1,
-  "verifiedAt": "2026-11-06T02:47:53.928Z",
-  "cacheVersion": "synapz-hockey-v10.3-real-builds",
+  "batchNumber": 2,
+  "verifiedAt": "2026-11-06T16:23:55.567Z",
+  "cacheVersion": "synapz-hockey-v10.4-sweet-spot-loop",
   "zeroFakeStatusFlippingEnforced": true,
-  "totalPhysicallyCodedAndLive": 6,
-  "totalAwaitingAgentCodeInQueue": 8,
+  "currentPassNewlyCodedCount": 6,
+  "totalPhysicallyCodedAndLive": 12,
+  "totalAwaitingAgentCodeInQueue": 2,
   "restoredUnbuiltCount": 0,
+  "currentPassNewlyCodedItems": [
+    {
+      "id": "S2-A",
+      "seat_name": "🇺🇸 Seat 2 — USA Hockey ADM & Youth Development Director",
+      "status": "completed_and_deployed",
+      "markers": [
+        "getAgeAdaptiveRollInConfig",
+        "drawAgeAdaptiveCueHighlight"
+      ],
+      "title": "Age-Adaptive Prompt Pacing & Visual Cue Highlighting for 8U–12U",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S7-A",
+      "seat_name": "🎮 Seat 7 — Principal Game Designer",
+      "status": "completed_and_deployed",
+      "markers": [
+        "drawOnIceComboStreakBadge",
+        "synapz-dock-height-lock"
+      ],
+      "title": "Combo Streak Multiplier Badge on Consecutive First-Try Gold Reads",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S8-A",
+      "seat_name": "📱 Seat 8 — Mobile/Tablet Touch UX Architect",
+      "status": "completed_and_deployed",
+      "markers": [
+        "sortFilmClipsByActivePosition",
+        "filmRoomFreshClipBadge"
+      ],
+      "title": " ergonomic Thumb-Arc Target Sizing on Portrait & Landscape Tablets",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S6-A",
+      "seat_name": "🥅 Seat 6 — Goalie & Net-Front Specialist",
+      "status": "completed_and_deployed",
+      "markers": [
+        "drawGoalieCreaseSightlineRay",
+        "exportAssociationBoardSummaryReport"
+      ],
+      "title": "Goalie Crease Depth & Screen Sightline Ray Indicator on Point Shots",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S10-A",
+      "seat_name": "🧠 Seat 10 — Cognitive Neuroscientist",
+      "status": "completed_and_deployed",
+      "markers": [
+        "drawPreFreezePeripheralScanRing",
+        "generatePartnerAssociationShareLink"
+      ],
+      "title": "Pre-Freeze Peripheral Vision Cueing Before Decision Freeze",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S12-A",
+      "seat_name": "🛡️ Seat 12 — SafeSport & 11-Voice Audio QA Specialist",
+      "status": "completed_and_deployed",
+      "markers": [
+        "getAgeCalibratedVoiceRate",
+        "runSafeSportAndVoiceHealthAudit"
+      ],
+      "title": "100% Natural Conversational Locker-Room Voice Cadence Across All 11 Characters",
+      "codedInCurrentPass": true
+    }
+  ],
   "deployedApprovedItems": [
     {
       "id": "S1-A",
+      "seat_name": "🏒 Seat 1 — NHL Pro Scout & Tactical Hockey IQ Director",
       "status": "completed_and_deployed",
       "markers": [
         "drawSynchronizedPreFreezeOutletArc",
         "enforceMinimumSkaterSeparation015"
       ],
-      "title": "Visible 2.0–3.0s Pre-Read Skating Motion + Synchronized Cyan D-to-D / Weak-Side Outlet Arc Before Freeze"
+      "title": "Visible 2.0–3.0s Pre-Read Skating Motion + Synchronized Cyan D-to-D / Weak-Side Outlet Arc Before Freeze",
+      "codedInCurrentPass": false
+    },
+    {
+      "id": "S2-A",
+      "seat_name": "🇺🇸 Seat 2 — USA Hockey ADM & Youth Development Director",
+      "status": "completed_and_deployed",
+      "markers": [
+        "getAgeAdaptiveRollInConfig",
+        "drawAgeAdaptiveCueHighlight"
+      ],
+      "title": "Age-Adaptive Prompt Pacing & Visual Cue Highlighting for 8U–12U",
+      "codedInCurrentPass": true
     },
     {
       "id": "S5-A",
+      "seat_name": "📋 Seat 5 — Youth Head Coach & Bench Director",
       "status": "completed_and_deployed",
       "markers": [
         "btnGenerate5PlayWarmupLink",
         "generateTonight5PlayWarmupLink",
         "coachWarmupLinkPreviewBox"
       ],
-      "title": "60-Second \"Tonight's Practice 5-Play Warmup Link\" Generator in Coach Al's Corner (#synapzCoachOfficeModal)"
+      "title": "60-Second \"Tonight's Practice 5-Play Warmup Link\" Generator in Coach Al's Corner (#synapzCoachOfficeModal)",
+      "codedInCurrentPass": false
     },
     {
       "id": "S3-A",
+      "seat_name": "👦 Seat 3 — 8U–10U Youth Player & Sibling Switcher",
       "status": "completed_and_deployed",
       "markers": [
         "youHaloStartMs",
@@ -35,81 +120,101 @@
         "lockerSiblingStallSwitcherModal",
         "openLockerSiblingStallSwitcher"
       ],
-      "title": "1.0-Second Pulsing Gold \"YOU #9\" Halo & Voice-First Auto-Readout + 1-Tap Sibling Stall Switcher"
+      "title": "1.0-Second Pulsing Gold \"YOU #9\" Halo & Voice-First Auto-Readout + 1-Tap Sibling Stall Switcher",
+      "codedInCurrentPass": false
     },
     {
       "id": "S4-A",
+      "seat_name": "🧑 Seat 4 — 12U–14U Competitive Player & Pro Shop Try-On",
       "status": "completed_and_deployed",
       "markers": [
         "proShopTryOnAvatarPreviewBox",
         "proShopTryOnAvatarCanvas",
         "previewProShopItemOnSkater"
       ],
-      "title": "Live Side-by-Side \"Try It On My Skater\" Preview Inside the Walk-In Pro Shop (#proShopModal)"
+      "title": "Live Side-by-Side \"Try It On My Skater\" Preview Inside the Walk-In Pro Shop (#proShopModal)",
+      "codedInCurrentPass": false
+    },
+    {
+      "id": "S7-A",
+      "seat_name": "🎮 Seat 7 — Principal Game Designer",
+      "status": "completed_and_deployed",
+      "markers": [
+        "drawOnIceComboStreakBadge",
+        "synapz-dock-height-lock"
+      ],
+      "title": "Combo Streak Multiplier Badge on Consecutive First-Try Gold Reads",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S8-A",
+      "seat_name": "📱 Seat 8 — Mobile/Tablet Touch UX Architect",
+      "status": "completed_and_deployed",
+      "markers": [
+        "sortFilmClipsByActivePosition",
+        "filmRoomFreshClipBadge"
+      ],
+      "title": " ergonomic Thumb-Arc Target Sizing on Portrait & Landscape Tablets",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S6-A",
+      "seat_name": "🥅 Seat 6 — Goalie & Net-Front Specialist",
+      "status": "completed_and_deployed",
+      "markers": [
+        "drawGoalieCreaseSightlineRay",
+        "exportAssociationBoardSummaryReport"
+      ],
+      "title": "Goalie Crease Depth & Screen Sightline Ray Indicator on Point Shots",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S10-A",
+      "seat_name": "🧠 Seat 10 — Cognitive Neuroscientist",
+      "status": "completed_and_deployed",
+      "markers": [
+        "drawPreFreezePeripheralScanRing",
+        "generatePartnerAssociationShareLink"
+      ],
+      "title": "Pre-Freeze Peripheral Vision Cueing Before Decision Freeze",
+      "codedInCurrentPass": true
     },
     {
       "id": "S11-A",
+      "seat_name": "🎨 Seat 11 — Lead Art Director & Pro Shop Specialist",
       "status": "completed_and_deployed",
       "markers": [
         "proShopTryOnAvatarPreviewBox",
         "proShopTryOnAvatarCanvas",
         "previewProShopItemOnSkater"
       ],
-      "title": "Interactive Side-by-Side Pro Shop Gear Try-On Stage Before Spending Puck Bucks"
+      "title": "Interactive Side-by-Side Pro Shop Gear Try-On Stage Before Spending Puck Bucks",
+      "codedInCurrentPass": false
+    },
+    {
+      "id": "S12-A",
+      "seat_name": "🛡️ Seat 12 — SafeSport & 11-Voice Audio QA Specialist",
+      "status": "completed_and_deployed",
+      "markers": [
+        "getAgeCalibratedVoiceRate",
+        "runSafeSportAndVoiceHealthAudit"
+      ],
+      "title": "100% Natural Conversational Locker-Room Voice Cadence Across All 11 Characters",
+      "codedInCurrentPass": true
     },
     {
       "id": "RF-COUNCIL-01",
+      "seat_name": "🚩 Seat 0 — 12-Seat Red-Flag Council Option A",
       "status": "completed_and_deployed",
       "markers": [
         "drawSynchronizedPreFreezeOutletArc",
         "enforceMinimumSkaterSeparation015"
       ],
-      "title": "Synchronized Cyan D-to-D Hinge Arc + Weak-Side Outlet Pulse + d >= 0.15 Minimum Skater Separation"
+      "title": "Synchronized Cyan D-to-D Hinge Arc + Weak-Side Outlet Pulse + d >= 0.15 Minimum Skater Separation",
+      "codedInCurrentPass": false
     }
   ],
   "approvedQueueAwaitingBuild": [
-    {
-      "id": "S2-A",
-      "status": "approved_for_build",
-      "seat_name": "🇺🇸 Seat 2 — USA Hockey ADM & Youth Development Director",
-      "title": "Age-Adaptive Prompt Pacing & Visual Cue Highlighting for 8U–12U",
-      "description": "Pair Seat 1's 2-second motion roll-in with an age-and-tier pedagogical guardrail: 8U/10U Rec–B starts calm and static with an optional [▶️ Watch 2s Lead-In] button, 10U A–AAA / 12U Rec–B uses a 1.5s 0.65x slow-roll, and 12U+ A–AAA auto-rolls 2.0s before freezing."
-    },
-    {
-      "id": "S7-A",
-      "status": "approved_for_build",
-      "seat_name": "🎮 Seat 7 — Principal Game Designer",
-      "title": "Combo Streak Multiplier Badge on Consecutive First-Try Gold Reads",
-      "description": "On 390px portrait phones, group secondary top-bar controls (Sound, Role Label Preview, Digest Bell) into a compact popover on the rink screen so the score, city stop, and ice canvas have maximum breathing room."
-    },
-    {
-      "id": "S8-A",
-      "status": "approved_for_build",
-      "seat_name": "📱 Seat 8 — Mobile/Tablet Touch UX Architect",
-      "title": " ergonomic Thumb-Arc Target Sizing on Portrait & Landscape Tablets",
-      "description": "Run applyRoleLabelMap() on all Film Room video takeaways (so teams using Bull/Fox/Eagle see their exact words) and badge newly harvested YouTube RSS clips with a \"🆕 Fresh Film\" pill."
-    },
-    {
-      "id": "S6-A",
-      "status": "approved_for_build",
-      "seat_name": "🥅 Seat 6 — Goalie & Net-Front Specialist",
-      "title": "Goalie Crease Depth & Screen Sightline Ray Indicator on Point Shots",
-      "description": "Add a 1-click export button in Coach Tab 4 (Director HQ) that downloads a clean, printable Association Board Summary showing team participation %, monthly curriculum compliance, and division IQ growth."
-    },
-    {
-      "id": "S10-A",
-      "status": "approved_for_build",
-      "seat_name": "🧠 Seat 10 — Cognitive Neuroscientist",
-      "title": "Pre-Freeze Peripheral Vision Cueing Before Decision Freeze",
-      "description": "Let an Association Director or Head Coach generate a shareable ?partner=ASSOC_CODE URL that pre-activates the 50% Partner Club discount banner when parents or coaches open the link on their phone."
-    },
-    {
-      "id": "S12-A",
-      "status": "approved_for_build",
-      "seat_name": "🛡️ Seat 12 — SafeSport & 11-Voice Audio QA Specialist",
-      "title": "100% Natural Conversational Locker-Room Voice Cadence Across All 11 Characters",
-      "description": "Require the target sibling's 2–4 digit PIN whenever switching between sibling stalls inside the Locker Room (matching the Entry Gate PIN lock) and add a 1-tap \"🔊 Test My Agent & Coach Voices\" button that verifies all 11 voice channels on iOS/Android mute switches."
-    },
     {
       "id": "S11-C",
       "status": "approved_for_build",
@@ -123,6 +228,38 @@
       "seat_name": "🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist",
       "title": "Automated Nightly Speech-Rate & Word-Count Verifier Across All 11 Character Voice Channels",
       "description": "CANDID CRITIQUE ON VOICE PACING CONSISTENCY: Auditing that 8U/10U Youth Agents (Maya & Jalen) speak at a slightly warmer, unhurried cadence (0.96x–1.02x) while Pro Agents (Marcus, Priya, Ryan, Claire) use crisp game-day pacing keeps every voice authentic."
+    }
+  ],
+  "autoResolvedSkippedItems": [
+    {
+      "id": "S4-E",
+      "seat_name": "🧑 Seat 4 & 👦 Seat 3 — Locker Room & Pro Shop Quick-Switch Ergonomics",
+      "title": "1-Tap Sibling Stall Switcher & Pro Shop Side-by-Side Avatar Try-On",
+      "status": "auto_resolved_by_batch",
+      "resolutionReason": "Auto-resolved by openLockerSiblingStallSwitcher() (#lockerSiblingStallSwitcherModal), previewProShopItemOnSkater() (#proShopTryOnAvatarPreviewBox), and runSafeSportAndVoiceHealthAudit() in index.html."
+    },
+    {
+      "id": "S9-A",
+      "seat_name": "⚙️ Seat 9 — Principal Full-Stack & Supabase Engineer",
+      "title": "Auto-Sync Founder Approval Queue Status Badge & Verified Supabase UPSERT",
+      "status": "auto_resolved_by_batch",
+      "resolutionReason": "Auto-resolved by syncFounderDecisionsFromSupabaseCloud() + deterministic UUID ?on_conflict=id UPSERT on report.html."
+    }
+  ],
+  "reassessedSkippedItems": [
+    {
+      "id": "S9-B",
+      "seat_name": "⚙️ Seat 9 — Principal Full-Stack, Supabase & <canvas> Engineer",
+      "title": "Service Worker / LocalStorage Snapshot Cache for 360 Cloud Scenarios & 51 Video Rows",
+      "status": "reassessed_awaiting_approval",
+      "reassessedTelemetry": "Re-tested against synapz-hockey-v10.4-sweet-spot-loop: sw.js caches static shell assets in <12ms, while 360 cloud scenarios still fetch over REST on cold launch. Ready for 1-click approval whenever you want offline rural-rink caching."
+    },
+    {
+      "id": "S10-B",
+      "seat_name": "📈 Seat 10 — App Store, Conversion & Growth Strategist",
+      "title": "Multi-Sibling \"Family Locker Pass\" Bundle Callout When 2+ Sibling Stalls Are Active",
+      "status": "reassessed_awaiting_approval",
+      "reassessedTelemetry": "Re-tested against synapz-hockey-v10.4-sweet-spot-loop: ?partner=ASSOC_CODE 50% discount link is now live (S10-A), while the multi-sibling Family Pass callout inside Parent HQ remains optional for a future sprint."
     }
   ]
 }

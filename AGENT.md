@@ -387,8 +387,29 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
 4. **Single Consolidated Batch Summary Email (`< 75 KB` in `send-board-digest.js`):**
    - Sends strictly ONE consolidated email (`< 75 KB`) containing the Batch Deployment Receipt, Auto-Resolved Skipped Items, Reassessed Items, Seat 0 + Seat 13 Heatmap (Batch #2), and 60 fresh non-repeating Batch #2 telemetry ideas equipped with all 4 buttons (`🔍 Explain`, `✅ Approve`, `⏭️ Skip & Reassess`, `❌ Reject`).
 
+---
 
-
-
+## 33. Permanent 5-Step Continuous Improvement Loop (`RUN BUILD & NEXT DEEP AUDIT` 1-Command Alias) (`v10.4`)
+Whenever the user types **`RUN BUILD & NEXT DEEP AUDIT`**, execute this exact 5-Step Sweet-Spot Continuous Improvement Loop across both `c:\Users\Dane\.gemini\antigravity\scratch\pucksense\` and `C:\Users\Dane\Documents\Hockey-IQ-App\`:
+1. **Step 1 — Pull Current Founder Decisions From Supabase (`node fetch-approved-queue.js`):**
+   - Queries `public.pucksense_agent_inbox` (`https://jrusjgpfcnptozfehcrv.supabase.co`) for `status = 'approved_for_build'`, `status = 'skipped_reassess_next_run'`, `status = 'rejected_by_founder'`, and `status = 'flagged_for_council_review'`.
+   - Prints the live queue summary and writes `founder_approved_queue.json`, `founder_taste_profile.json`, and `batch_deployment_receipt.json`.
+   - **Hard Safety Gate:** `fetch-approved-queue.js` and `apply-approved-batch.js` NEVER flip items to `completed_and_deployed` unless their physical `/* [REAL-CODED-FEATURE: <id>] */` markers are verified inside `index.html`.
+2. **Step 2 — Write Real Code for Up to 5–6 Approved Upgrades in `index.html`:**
+   - Directly code up to **5–6 approved items per pass** into `index.html` with real HTML/CSS/`<canvas>`/JS implementation (never fake status flags) while strictly preserving `<= 4` primary buttons on all player screens (`#synapzCleanPlayerScreensRule`).
+   - Bump `CACHE_NAME` in `sw.js` and mark only the physically coded & verified items `completed_and_deployed` in Supabase (`public.pucksense_agent_inbox`).
+3. **Step 3 — Auto-Reassess Previously Skipped Items:**
+   - Re-evaluate all `skipped_reassess_next_run` items against the newly updated `index.html`:
+     - **Case A (`status = 'auto_resolved_by_batch'`):** Automatically close skipped items whose root cause was fixed or superseded by the newly built batch.
+     - **Case B (`status = 'reassessed_awaiting_approval'`):** Keep still-relevant skipped items with updated telemetry and a `🔄 Reassessed After Last Build` badge.
+4. **Step 4 — Run the 24-Play Rotated Blind Playtest & Pre-Upsert 12 Fresh Recommendations (`node deep_playtest_audit.js`):**
+   - Executes **24 Fresh Blind Plays** (`4 plays × 6 Age Divisions: 8U–18U` = `18` Blind Gold Mastery plays + `6` Intentional Wrong-Answer Recovery plays) rotating through `audit_coverage_ledger.json`, plus 4-viewport geometry checks (`390x844`, `768x1024`, `1024x768`, `1280x800`) and live functional assertions for all newly coded features (`v104RealFeaturesAudit` / `v103RealFeaturesAudit`).
+   - Generates **12 Fresh Telemetry-Grounded Recommendations** (`1 best non-repeating finding per Seat` across Seats 1–12, with the `Top 5 Co-Signed Consensus Priorities` highlighted first) and **pre-`UPSERT`s all 12 rows into `public.pucksense_agent_inbox` (`status = 'awaiting_founder_approval'`)** with deterministic UUIDs (`ideaToUuid`) so every click on `report.html` or in the email (`✅ Approve`, `⏭️ Skip & Reassess`, `❌ Reject`) persists reliably via `UPSERT` (`Prefer: resolution=merge-duplicates,return=representation`).
+5. **Step 5 — Deploy Live & Send Single Focused `< 35 KB` Email Digest (`node deploy-github-pages.js && node send-board-digest.js`):**
+   - Mirrors all updated files across both workspaces, deploys `index.html`, `sw.js`, and `report.html` to `https://danebekkedahl.github.io/synapz-hockey/` and `https://danebekkedahl.github.io/tactix-hockey/`, and sends **strictly ONE focused `< 35 KB` HTML Email** to `danebekkedahl@gmail.com` and `evanbekk@gmail.com` containing:
+     - **Section 1:** Newly Coded Fixes Receipt + Auto-Resolved Skipped Items
+     - **Section 2:** Reassessed Skipped Items (`🔄 Reassessed After Last Build`)
+     - **Section 3:** `🚩 Seat 0` Red-Flag Council Options + `🔍 Seat 13` Cumulative Coverage Heatmap
+     - **Section 4:** `Top 5 Consensus Priorities` + `12 Fresh Seat Recommendations` (each with `[🔍 Explain]`, `[✅ Approve]`, `[⏭️ Skip & Reassess]`, `[❌ Reject]`, plus the bottom `[🚀 BUILD & DEPLOY ALL APPROVED UPGRADES NOW]` CTA).
 
 

@@ -1,9 +1,9 @@
 {
-  "lastUpdatedAt": "2026-11-06T02:46:50.350Z",
-  "totalRuns": 24,
+  "lastUpdatedAt": "2026-11-06T16:39:55.440Z",
+  "totalRuns": 26,
   "stepAApprovalGateCheck": {
     "statusChecked": "approved_for_build / approved_by_founder",
-    "approvedItemsCount": 9,
+    "approvedItemsCount": 3,
     "redFlagsReviewedByCouncilCount": 1,
     "redFlagStatusSetTo": "council_options_ready_awaiting_approval",
     "zeroUnapprovedMutationsEnforced": true,
@@ -57,94 +57,24 @@
       "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
-      "levelKey": "8U_B",
+      "levelKey": "8U_A",
       "division": "8U",
-      "tier": "B",
-      "lastScenarioTested": "basics_support-v17",
+      "tier": "A",
+      "lastScenarioTested": "oz-d-pinch-backfill-3",
       "qStyle": "tactical_choice",
       "readSuccess": true,
       "multiplier": 1,
       "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
     },
     {
-      "levelKey": "8U_A",
-      "division": "8U",
-      "tier": "A",
-      "lastScenarioTested": "oz_cycle_scissors-v08",
-      "qStyle": "tap_zone",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "8U_AA",
-      "division": "8U",
-      "tier": "AA",
-      "lastScenarioTested": "oz_cycle_scissors-v04",
-      "qStyle": "tap_player",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
       "levelKey": "8U_AAA",
       "division": "8U",
       "tier": "AAA",
-      "lastScenarioTested": "f1_f2_f3_roles-v20",
-      "qStyle": "drag_skater",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "8U_Rec",
-      "division": "8U",
-      "tier": "Rec",
-      "lastScenarioTested": "basics-center",
+      "lastScenarioTested": "f1_f2_f3_roles-v10",
       "qStyle": "tap_zone",
       "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "8U_B",
-      "division": "8U",
-      "tier": "B",
-      "lastScenarioTested": "basics_support-v17",
-      "qStyle": "tactical_choice",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
-    },
-    {
-      "levelKey": "8U_A",
-      "division": "8U",
-      "tier": "A",
-      "lastScenarioTested": "oz_cycle_scissors-v08",
-      "qStyle": "tap_zone",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "8U_AA",
-      "division": "8U",
-      "tier": "AA",
-      "lastScenarioTested": "oz_cycle_scissors-v04",
-      "qStyle": "tap_player",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "8U_AAA",
-      "division": "8U",
-      "tier": "AAA",
-      "lastScenarioTested": "f1_f2_f3_roles-v20",
-      "qStyle": "drag_skater",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+      "multiplier": 0.8,
+      "badge": "🥈 2nd Choice Strong Secondary Read (80% Silver IQ)"
     },
     {
       "levelKey": "10U_Rec",
@@ -157,31 +87,11 @@
       "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
     },
     {
-      "levelKey": "10U_B",
-      "division": "10U",
-      "tier": "B",
-      "lastScenarioTested": "nz-center-curl-2",
-      "qStyle": "tap_zone",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
       "levelKey": "10U_A",
       "division": "10U",
       "tier": "A",
-      "lastScenarioTested": "f1_f2_f3_roles-v08",
-      "qStyle": "drag_skater",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "10U_AA",
-      "division": "10U",
-      "tier": "AA",
-      "lastScenarioTested": "f1_f2_f3_roles-v14",
-      "qStyle": "spot_and_fix",
+      "lastScenarioTested": "basics_support-v23",
+      "qStyle": "tap_zone",
       "readSuccess": true,
       "multiplier": 1,
       "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
@@ -190,58 +100,8 @@
       "levelKey": "10U_AAA",
       "division": "10U",
       "tier": "AAA",
-      "lastScenarioTested": "breakout-dtod",
-      "qStyle": "tap_player",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "10U_Rec",
-      "division": "10U",
-      "tier": "Rec",
-      "lastScenarioTested": "basics-center",
-      "qStyle": "tactical_choice",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
-    },
-    {
-      "levelKey": "10U_B",
-      "division": "10U",
-      "tier": "B",
-      "lastScenarioTested": "nz-center-curl-2",
-      "qStyle": "tap_zone",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "10U_A",
-      "division": "10U",
-      "tier": "A",
-      "lastScenarioTested": "f1_f2_f3_roles-v08",
+      "lastScenarioTested": "breakout-1",
       "qStyle": "drag_skater",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "10U_AA",
-      "division": "10U",
-      "tier": "AA",
-      "lastScenarioTested": "f1_f2_f3_roles-v14",
-      "qStyle": "spot_and_fix",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "10U_AAA",
-      "division": "10U",
-      "tier": "AAA",
-      "lastScenarioTested": "breakout-dtod",
-      "qStyle": "tap_player",
       "readSuccess": true,
       "multiplier": 1,
       "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
@@ -257,94 +117,24 @@
       "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
-      "levelKey": "12U_B",
-      "division": "12U",
-      "tier": "B",
-      "lastScenarioTested": "nz-center-curl-2",
-      "qStyle": "drag_skater",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
       "levelKey": "12U_A",
       "division": "12U",
       "tier": "A",
-      "lastScenarioTested": "basics_support-v23",
-      "qStyle": "spot_and_fix",
+      "lastScenarioTested": "basics_support-v18",
+      "qStyle": "drag_skater",
       "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "12U_AA",
-      "division": "12U",
-      "tier": "AA",
-      "lastScenarioTested": "f1_f2_f3_roles-v14",
-      "qStyle": "tap_zone",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+      "multiplier": 0.8,
+      "badge": "🥈 2nd Choice Strong Secondary Read (80% Silver IQ)"
     },
     {
       "levelKey": "12U_AAA",
       "division": "12U",
       "tier": "AAA",
-      "lastScenarioTested": "powerplay_5v4-v15",
-      "qStyle": "tactical_choice",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
-    },
-    {
-      "levelKey": "12U_Rec",
-      "division": "12U",
-      "tier": "Rec",
-      "lastScenarioTested": "basics-center",
-      "qStyle": "tap_zone",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "12U_B",
-      "division": "12U",
-      "tier": "B",
-      "lastScenarioTested": "nz-center-curl-2",
-      "qStyle": "drag_skater",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "12U_A",
-      "division": "12U",
-      "tier": "A",
-      "lastScenarioTested": "basics_support-v23",
-      "qStyle": "spot_and_fix",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "12U_AA",
-      "division": "12U",
-      "tier": "AA",
-      "lastScenarioTested": "f1_f2_f3_roles-v14",
-      "qStyle": "tap_zone",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "12U_AAA",
-      "division": "12U",
-      "tier": "AAA",
-      "lastScenarioTested": "powerplay_5v4-v15",
-      "qStyle": "tactical_choice",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
+      "lastScenarioTested": "powerplay_5v4-v10",
+      "qStyle": "tap_player",
+      "readSuccess": false,
+      "multiplier": 0,
+      "badge": ""
     },
     {
       "levelKey": "14U_Rec",
@@ -357,91 +147,21 @@
       "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
-      "levelKey": "14U_B",
-      "division": "14U",
-      "tier": "B",
-      "lastScenarioTested": "nz-center-curl-2",
-      "qStyle": "spot_and_fix",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
       "levelKey": "14U_A",
       "division": "14U",
       "tier": "A",
-      "lastScenarioTested": "basics_support-v23",
-      "qStyle": "tap_zone",
+      "lastScenarioTested": "basics_support-v18",
+      "qStyle": "spot_and_fix",
       "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "14U_AA",
-      "division": "14U",
-      "tier": "AA",
-      "lastScenarioTested": "f1_f2_f3_roles-v14",
-      "qStyle": "tactical_choice",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
+      "multiplier": 0.8,
+      "badge": "🥈 2nd Choice Strong Secondary Read (80% Silver IQ)"
     },
     {
       "levelKey": "14U_AAA",
       "division": "14U",
       "tier": "AAA",
-      "lastScenarioTested": "powerplay_5v4-v15",
-      "qStyle": "tap_zone",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "14U_Rec",
-      "division": "14U",
-      "tier": "Rec",
-      "lastScenarioTested": "basics-center",
-      "qStyle": "drag_skater",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "14U_B",
-      "division": "14U",
-      "tier": "B",
-      "lastScenarioTested": "nz-center-curl-2",
-      "qStyle": "spot_and_fix",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "14U_A",
-      "division": "14U",
-      "tier": "A",
-      "lastScenarioTested": "basics_support-v23",
-      "qStyle": "tap_zone",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "14U_AA",
-      "division": "14U",
-      "tier": "AA",
-      "lastScenarioTested": "f1_f2_f3_roles-v14",
-      "qStyle": "tactical_choice",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
-    },
-    {
-      "levelKey": "14U_AAA",
-      "division": "14U",
-      "tier": "AAA",
-      "lastScenarioTested": "powerplay_5v4-v15",
-      "qStyle": "tap_zone",
+      "lastScenarioTested": "powerplay_5v4-v10",
+      "qStyle": "tap_player",
       "readSuccess": true,
       "multiplier": 1,
       "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
@@ -457,94 +177,24 @@
       "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
-      "levelKey": "16U_B",
-      "division": "16U",
-      "tier": "B",
-      "lastScenarioTested": "nz-center-curl-2",
-      "qStyle": "tap_zone",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
       "levelKey": "16U_A",
       "division": "16U",
       "tier": "A",
-      "lastScenarioTested": "basics_support-v23",
-      "qStyle": "tactical_choice",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
-    },
-    {
-      "levelKey": "16U_AA",
-      "division": "16U",
-      "tier": "AA",
-      "lastScenarioTested": "f1_f2_f3_roles-v14",
+      "lastScenarioTested": "basics_support-v18",
       "qStyle": "tap_zone",
       "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
+      "multiplier": 0.8,
+      "badge": "🥈 2nd Choice Strong Secondary Read (80% Silver IQ)"
     },
     {
       "levelKey": "16U_AAA",
       "division": "16U",
       "tier": "AAA",
-      "lastScenarioTested": "powerplay_5v4-v15",
-      "qStyle": "drag_skater",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "16U_Rec",
-      "division": "16U",
-      "tier": "Rec",
-      "lastScenarioTested": "basics-center",
-      "qStyle": "spot_and_fix",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "16U_B",
-      "division": "16U",
-      "tier": "B",
-      "lastScenarioTested": "nz-center-curl-2",
-      "qStyle": "tap_zone",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "16U_A",
-      "division": "16U",
-      "tier": "A",
-      "lastScenarioTested": "basics_support-v23",
+      "lastScenarioTested": "powerplay_5v4-v10",
       "qStyle": "tactical_choice",
       "readSuccess": true,
       "multiplier": 1,
       "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
-    },
-    {
-      "levelKey": "16U_AA",
-      "division": "16U",
-      "tier": "AA",
-      "lastScenarioTested": "f1_f2_f3_roles-v14",
-      "qStyle": "tap_zone",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "16U_AAA",
-      "division": "16U",
-      "tier": "AAA",
-      "lastScenarioTested": "powerplay_5v4-v15",
-      "qStyle": "drag_skater",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
       "levelKey": "18U_Rec",
@@ -557,91 +207,21 @@
       "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
     },
     {
-      "levelKey": "18U_B",
+      "levelKey": "18U_A",
       "division": "18U",
-      "tier": "B",
-      "lastScenarioTested": "nz-center-curl-2",
+      "tier": "A",
+      "lastScenarioTested": "basics_support-v18",
       "qStyle": "tactical_choice",
       "readSuccess": true,
       "multiplier": 1,
       "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
     },
     {
-      "levelKey": "18U_A",
-      "division": "18U",
-      "tier": "A",
-      "lastScenarioTested": "basics_support-v23",
-      "qStyle": "tap_zone",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "18U_AA",
-      "division": "18U",
-      "tier": "AA",
-      "lastScenarioTested": "f1_f2_f3_roles-v14",
-      "qStyle": "drag_skater",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
       "levelKey": "18U_AAA",
       "division": "18U",
       "tier": "AAA",
-      "lastScenarioTested": "powerplay_5v4-v15",
-      "qStyle": "spot_and_fix",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "18U_Rec",
-      "division": "18U",
-      "tier": "Rec",
-      "lastScenarioTested": "basics-center",
-      "qStyle": "tap_zone",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "18U_B",
-      "division": "18U",
-      "tier": "B",
-      "lastScenarioTested": "nz-center-curl-2",
-      "qStyle": "tactical_choice",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 1st Choice Tactical Read (100% Gold IQ)"
-    },
-    {
-      "levelKey": "18U_A",
-      "division": "18U",
-      "tier": "A",
-      "lastScenarioTested": "basics_support-v23",
-      "qStyle": "tap_zone",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "18U_AA",
-      "division": "18U",
-      "tier": "AA",
-      "lastScenarioTested": "f1_f2_f3_roles-v14",
-      "qStyle": "drag_skater",
-      "readSuccess": true,
-      "multiplier": 1,
-      "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
-    },
-    {
-      "levelKey": "18U_AAA",
-      "division": "18U",
-      "tier": "AAA",
-      "lastScenarioTested": "powerplay_5v4-v15",
-      "qStyle": "spot_and_fix",
+      "lastScenarioTested": "powerplay_5v4-v10",
+      "qStyle": "tap_player",
       "readSuccess": true,
       "multiplier": 1,
       "badge": "🥇 Great Read! Best Play on the Ice (100% Gold IQ)"
@@ -815,16 +395,12 @@
     "coveragePct": "100%",
     "sampleScenarioIds": [
       "basics-center",
-      "basics_support-v17",
-      "oz_cycle_scissors-v08",
-      "oz_cycle_scissors-v04",
-      "f1_f2_f3_roles-v20",
-      "nz-center-curl-2",
-      "f1_f2_f3_roles-v08",
-      "f1_f2_f3_roles-v14",
-      "breakout-dtod",
+      "oz-d-pinch-backfill-3",
+      "f1_f2_f3_roles-v10",
       "basics_support-v23",
-      "powerplay_5v4-v15",
+      "breakout-1",
+      "basics_support-v18",
+      "powerplay_5v4-v10",
       "basics-defense",
       "basics-offsides",
       "spacing-1",
@@ -832,8 +408,8 @@
       "cycle-pov",
       "house-1",
       "house-2",
-      "breakout-1",
       "breakout-2",
+      "breakout-dtod",
       "regroup-nz",
       "rush-1",
       "rush-2v1-dish",
@@ -848,7 +424,11 @@
       "protect-cutback-wall",
       "delay-high-slot",
       "d-gap-1v1",
-      "d-2v1-slide"
+      "d-2v1-slide",
+      "d-netfront-boxout",
+      "d-blueline-walk",
+      "goalie-angle-depth",
+      "goalie-screen-look"
     ]
   },
   "sixOffIceFeatureAreas": [
@@ -920,12 +500,12 @@
     }
   ],
   "section30MarathonAudit": {
-    "totalMarathonPlays": 72,
-    "blindGoldMasteryPlays": 60,
-    "totalSolved": 60,
-    "totalGold": 60,
-    "wrongAnswerRecoveryPlays": 12,
-    "totalRecovered": 12,
+    "totalMarathonPlays": 24,
+    "blindGoldMasteryPlays": 18,
+    "totalSolved": 17,
+    "totalGold": 13,
+    "wrongAnswerRecoveryPlays": 6,
+    "totalRecovered": 6,
     "stageABCSamples": [
       {
         "division": "8U",
@@ -1086,148 +666,76 @@
     ],
     "wrongAnswerRecoveryLog": [
       {
-        "playNum": 61,
+        "playNum": 19,
         "division": "8U",
         "attemptIdx": 1,
-        "scenId": "basics-center",
+        "scenId": "dzone_house-v21",
         "mistakeStateActive": true,
-        "naturalRemediation": "Good try, slide into the slot between the dots so you're open!",
+        "naturalRemediation": "Good try, slide between the dots to protect our net!",
         "singleSentenceClean": true,
         "requiresRetryPrompt": true,
         "recoveredOnRetry": true,
         "recoveredMultiplier": 1
       },
       {
-        "playNum": 62,
-        "division": "8U",
-        "attemptIdx": 2,
-        "scenId": "oz-d-pinch-backfill-3",
-        "mistakeStateActive": true,
-        "naturalRemediation": "Good try, slide into the slot between the dots so you're open!",
-        "singleSentenceClean": true,
-        "requiresRetryPrompt": true,
-        "recoveredOnRetry": true,
-        "recoveredMultiplier": 0.8
-      },
-      {
-        "playNum": 63,
+        "playNum": 20,
         "division": "10U",
         "attemptIdx": 1,
-        "scenId": "basics-center",
+        "scenId": "dzone_house-v21",
         "mistakeStateActive": true,
-        "naturalRemediation": "Good try, slide into the slot between the dots so you're open!",
+        "naturalRemediation": "Good try, slide between the dots to protect our net!",
         "singleSentenceClean": true,
         "requiresRetryPrompt": true,
         "recoveredOnRetry": true,
         "recoveredMultiplier": 1
       },
       {
-        "playNum": 64,
-        "division": "10U",
-        "attemptIdx": 2,
-        "scenId": "basics_support-v23",
-        "mistakeStateActive": true,
-        "naturalRemediation": "Good try, slide into the slot between the dots so you're open!",
-        "singleSentenceClean": true,
-        "requiresRetryPrompt": true,
-        "recoveredOnRetry": true,
-        "recoveredMultiplier": 1
-      },
-      {
-        "playNum": 65,
+        "playNum": 21,
         "division": "12U",
         "attemptIdx": 1,
-        "scenId": "basics-center",
+        "scenId": "dzone_house-v21",
         "mistakeStateActive": true,
-        "naturalRemediation": "You got it, the Center owns the middle lane of the ice and supports both wings!",
+        "naturalRemediation": "🥇 1st Choice Gold Read (100% IQ), as D2 (C), you nailed Low House Net-Front Slot!",
         "singleSentenceClean": true,
         "requiresRetryPrompt": true,
         "recoveredOnRetry": true,
         "recoveredMultiplier": 1
       },
       {
-        "playNum": 66,
-        "division": "12U",
-        "attemptIdx": 2,
-        "scenId": "basics_support-v18",
-        "mistakeStateActive": true,
-        "naturalRemediation": "🥇 1st Choice Gold Read (100% IQ), as D1 (C), you nailed Strong-Side Point Inside Blue Line!",
-        "singleSentenceClean": true,
-        "requiresRetryPrompt": true,
-        "recoveredOnRetry": true,
-        "recoveredMultiplier": 0.8
-      },
-      {
-        "playNum": 67,
+        "playNum": 22,
         "division": "14U",
         "attemptIdx": 1,
-        "scenId": "basics-center",
+        "scenId": "dzone_house-v21",
         "mistakeStateActive": true,
-        "naturalRemediation": "You got it, the Center owns the middle lane of the ice and supports both wings!",
+        "naturalRemediation": "🥇 1st Choice Gold Read (100% IQ), as D2 (C), you nailed Low House Net-Front Slot!",
         "singleSentenceClean": true,
         "requiresRetryPrompt": true,
         "recoveredOnRetry": true,
         "recoveredMultiplier": 1
       },
       {
-        "playNum": 68,
-        "division": "14U",
-        "attemptIdx": 2,
-        "scenId": "basics_support-v18",
-        "mistakeStateActive": true,
-        "naturalRemediation": "🥇 1st Choice Gold Read (100% IQ), as D1 (C), you nailed Strong-Side Point Inside Blue Line!",
-        "singleSentenceClean": true,
-        "requiresRetryPrompt": true,
-        "recoveredOnRetry": true,
-        "recoveredMultiplier": 0.8
-      },
-      {
-        "playNum": 69,
+        "playNum": 23,
         "division": "16U",
         "attemptIdx": 1,
-        "scenId": "basics-center",
+        "scenId": "dzone_house-v21",
         "mistakeStateActive": true,
-        "naturalRemediation": "You got it, the Center owns the middle lane of the ice and supports both wings!",
+        "naturalRemediation": "🥇 1st Choice Gold Read (100% IQ), as D2 (C), you nailed Low House Net-Front Slot!",
         "singleSentenceClean": true,
         "requiresRetryPrompt": true,
         "recoveredOnRetry": true,
         "recoveredMultiplier": 1
       },
       {
-        "playNum": 70,
-        "division": "16U",
-        "attemptIdx": 2,
-        "scenId": "basics_support-v18",
-        "mistakeStateActive": true,
-        "naturalRemediation": "🥇 1st Choice Gold Read (100% IQ), as D1 (C), you nailed Strong-Side Point Inside Blue Line!",
-        "singleSentenceClean": true,
-        "requiresRetryPrompt": true,
-        "recoveredOnRetry": true,
-        "recoveredMultiplier": 0.8
-      },
-      {
-        "playNum": 71,
+        "playNum": 24,
         "division": "18U",
         "attemptIdx": 1,
-        "scenId": "basics-center",
+        "scenId": "dzone_house-v21",
         "mistakeStateActive": true,
-        "naturalRemediation": "You got it, the Center owns the middle lane of the ice and supports both wings!",
+        "naturalRemediation": "🥇 1st Choice Gold Read (100% IQ), as D2 (C), you nailed Low House Net-Front Slot!",
         "singleSentenceClean": true,
         "requiresRetryPrompt": true,
         "recoveredOnRetry": true,
         "recoveredMultiplier": 1
-      },
-      {
-        "playNum": 72,
-        "division": "18U",
-        "attemptIdx": 2,
-        "scenId": "basics_support-v18",
-        "mistakeStateActive": true,
-        "naturalRemediation": "🥇 1st Choice Gold Read (100% IQ), as D1 (C), you nailed Strong-Side Point Inside Blue Line!",
-        "singleSentenceClean": true,
-        "requiresRetryPrompt": true,
-        "recoveredOnRetry": true,
-        "recoveredMultiplier": 0.8
       }
     ],
     "boundingBoxGeometryAudit": {

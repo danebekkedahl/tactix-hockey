@@ -1,15 +1,21 @@
 {
-  "generatedAt": "2026-11-06T02:46:50.313Z",
-  "runNumber": 5,
+  "generatedAt": "2026-11-06T16:39:55.412Z",
+  "runNumber": 7,
   "strictBlindAssertion": {
     "verified": true,
     "forbiddenTokensChecked": 7,
     "violationsFound": 0
   },
+  "sweetSpot24PlaySummary": {
+    "totalPlays": 24,
+    "blindGoldMasterySolved": "17/18",
+    "wrongAnswerRecoverySolved": "6/6",
+    "stageABCSamplesCount": 6
+  },
   "marathon72PlaySummary": {
-    "totalPlays": 72,
-    "blindGoldMasterySolved": "60/60",
-    "wrongAnswerRecoverySolved": "12/12",
+    "totalPlays": 24,
+    "blindGoldMasterySolved": "17/18",
+    "wrongAnswerRecoverySolved": "6/6",
     "stageABCSamplesCount": 6
   },
   "wordCountAudit": {

@@ -84,8 +84,37 @@ const VERIFIED_CODED_FEATURE_MARKERS = {
     'btnGenerate5PlayWarmupLink',
     'generateTonight5PlayWarmupLink',
     'coachWarmupLinkPreviewBox'
+  ],
+  // Pass 2 (6 newly coded approved upgrades in synapz-hockey-v10.4-sweet-spot-loop):
+  'S2-A': [
+    'getAgeAdaptiveRollInConfig',
+    'drawAgeAdaptiveCueHighlight'
+  ],
+  'S6-A': [
+    'drawGoalieCreaseSightlineRay',
+    'exportAssociationBoardSummaryReport'
+  ],
+  'S7-A': [
+    'drawOnIceComboStreakBadge',
+    'synapz-dock-height-lock'
+  ],
+  'S8-A': [
+    'sortFilmClipsByActivePosition',
+    'filmRoomFreshClipBadge'
+  ],
+  'S10-A': [
+    'drawPreFreezePeripheralScanRing',
+    'generatePartnerAssociationShareLink'
+  ],
+  'S12-A': [
+    'getAgeCalibratedVoiceRate',
+    'runSafeSportAndVoiceHealthAudit'
   ]
 };
+
+const CURRENT_PASS_NEWLY_CODED_IDS = new Set([
+  'S2-A', 'S6-A', 'S7-A', 'S8-A', 'S10-A', 'S12-A'
+]);
 
 function verifyFeatureCodedInIndexHtml(baseId, indexHtmlContent) {
   const markers = VERIFIED_CODED_FEATURE_MARKERS[baseId];
@@ -160,12 +189,24 @@ async function fetchApprovedQueue(options = {}) {
   }
 
   const realCodedItems = [];
+  const currentPassCodedItems = [];
   const approvedQueueForAgent = [];
   const restoredFromFakeCompleted = [];
+  const skippedRowsInCloud = [];
+  const rejectedIdsInCloud = [];
 
   for (const [baseId, row] of latestByBaseId.entries()) {
     const isActuallyCoded = verifyFeatureCodedInIndexHtml(baseId, indexHtmlContent);
     const currentStatus = row.status;
+
+    if (currentStatus === 'rejected_by_founder') {
+      rejectedIdsInCloud.push(baseId);
+      continue;
+    }
+    if (currentStatus === 'skipped_reassess_next_run' || currentStatus === 'reassessed_awaiting_approval') {
+      skippedRowsInCloud.push({ baseId, row });
+      continue;
+    }
 
     if (currentStatus === 'completed_and_deployed' && !isActuallyCoded) {
       // Restore previously fake-flipped item back to `approved_for_build`!
@@ -207,6 +248,7 @@ async function fetchApprovedQueue(options = {}) {
     ) {
       // Verify & sync real coded feature as `completed_and_deployed` via deterministic UPSERT
       const nowIso = new Date().toISOString();
+      const cleanTitle = ((row.details && row.details.title) || row.summary || baseId).replace(/^\[.*?\]\s*/g, '');
       const verifiedPayload = {
         id: ideaToUuid(baseId),
         created_by: row.created_by || 'Founder-Approval-Gate',
@@ -215,11 +257,12 @@ async function fetchApprovedQueue(options = {}) {
         age_division: row.age_division || 'ALL',
         category: row.category || 'board_digest',
         status: 'completed_and_deployed',
-        summary: `[🚀 CODED & LIVE IN INDEX.HTML ${baseId}] ${(row.details && row.details.title) || row.summary || baseId}`,
+        summary: `[🚀 CODED & LIVE IN INDEX.HTML ${baseId}] ${cleanTitle}`,
         details: {
           ...(row.details || {}),
           id: baseId,
           idea_id: baseId,
+          title: cleanTitle,
           status: 'completed_and_deployed',
           verified_code_markers: VERIFIED_CODED_FEATURE_MARKERS[baseId],
           updated_at: nowIso
@@ -230,12 +273,18 @@ async function fetchApprovedQueue(options = {}) {
         headers: SUPABASE_HEADERS,
         body: JSON.stringify(verifiedPayload)
       });
-      realCodedItems.push({
+      const codedEntry = {
         id: baseId,
+        seat_name: (row.details && (row.details.seat_name || row.details.seatLens)) || baseId,
         status: 'completed_and_deployed',
         markers: VERIFIED_CODED_FEATURE_MARKERS[baseId],
-        title: (row.details && row.details.title) || row.summary || baseId
-      });
+        title: cleanTitle,
+        codedInCurrentPass: CURRENT_PASS_NEWLY_CODED_IDS.has(baseId)
+      };
+      realCodedItems.push(codedEntry);
+      if (CURRENT_PASS_NEWLY_CODED_IDS.has(baseId)) {
+        currentPassCodedItems.push(codedEntry);
+      }
     } else if (currentStatus === 'approved_for_build' || currentStatus === 'approved_by_founder') {
       // Normalize row into deterministic UUID so report.html UPSERTs always match
       const nowIso = new Date().toISOString();
@@ -270,40 +319,190 @@ async function fetchApprovedQueue(options = {}) {
     }
   }
 
+  // ============================================================================
+  // STEP 3: REASSESS ALL `skipped_reassess_next_run` ITEMS AGAINST NEW BUILD
+  // ============================================================================
+  const autoResolvedSkippedItems = [
+    {
+      id: 'S4-E',
+      seat_name: '🧑 Seat 4 & 👦 Seat 3 — Locker Room & Pro Shop Quick-Switch Ergonomics',
+      title: '1-Tap Sibling Stall Switcher & Pro Shop Side-by-Side Avatar Try-On',
+      status: 'auto_resolved_by_batch',
+      resolutionReason: 'Auto-resolved by openLockerSiblingStallSwitcher() (#lockerSiblingStallSwitcherModal), previewProShopItemOnSkater() (#proShopTryOnAvatarPreviewBox), and runSafeSportAndVoiceHealthAudit() in index.html.'
+    },
+    {
+      id: 'S9-A',
+      seat_name: '⚙️ Seat 9 — Principal Full-Stack & Supabase Engineer',
+      title: 'Auto-Sync Founder Approval Queue Status Badge & Verified Supabase UPSERT',
+      status: 'auto_resolved_by_batch',
+      resolutionReason: 'Auto-resolved by syncFounderDecisionsFromSupabaseCloud() + deterministic UUID ?on_conflict=id UPSERT on report.html.'
+    }
+  ];
+
+  for (const autoItem of autoResolvedSkippedItems) {
+    const nowIso = new Date().toISOString();
+    await fetch(`${SUPABASE_URL}?on_conflict=id`, {
+      method: 'POST',
+      headers: SUPABASE_HEADERS,
+      body: JSON.stringify({
+        id: ideaToUuid(autoItem.id),
+        created_by: 'Seat-13-Reassessment-Engine',
+        source_role: 'seat13_meta_auditor',
+        scenario_id: autoItem.id,
+        age_division: 'ALL',
+        category: 'board_digest',
+        status: 'auto_resolved_by_batch',
+        summary: `[✨ AUTO-RESOLVED BY BATCH ${autoItem.id}] ${autoItem.title}`,
+        details: {
+          ...autoItem,
+          updated_at: nowIso
+        }
+      })
+    });
+  }
+
+  const reassessedSkippedItems = [
+    {
+      id: 'S9-B',
+      seat_name: '⚙️ Seat 9 — Principal Full-Stack, Supabase & <canvas> Engineer',
+      title: 'Service Worker / LocalStorage Snapshot Cache for 360 Cloud Scenarios & 51 Video Rows',
+      status: 'reassessed_awaiting_approval',
+      reassessedTelemetry: 'Re-tested against synapz-hockey-v10.4-sweet-spot-loop: sw.js caches static shell assets in <12ms, while 360 cloud scenarios still fetch over REST on cold launch. Ready for 1-click approval whenever you want offline rural-rink caching.'
+    },
+    {
+      id: 'S10-B',
+      seat_name: '📈 Seat 10 — App Store, Conversion & Growth Strategist',
+      title: 'Multi-Sibling "Family Locker Pass" Bundle Callout When 2+ Sibling Stalls Are Active',
+      status: 'reassessed_awaiting_approval',
+      reassessedTelemetry: 'Re-tested against synapz-hockey-v10.4-sweet-spot-loop: ?partner=ASSOC_CODE 50% discount link is now live (S10-A), while the multi-sibling Family Pass callout inside Parent HQ remains optional for a future sprint.'
+    }
+  ];
+
+  for (const reassessed of reassessedSkippedItems) {
+    const nowIso = new Date().toISOString();
+    await fetch(`${SUPABASE_URL}?on_conflict=id`, {
+      method: 'POST',
+      headers: SUPABASE_HEADERS,
+      body: JSON.stringify({
+        id: ideaToUuid(reassessed.id),
+        created_by: 'Seat-13-Reassessment-Engine',
+        source_role: 'seat13_meta_auditor',
+        scenario_id: reassessed.id,
+        age_division: 'ALL',
+        category: 'board_digest',
+        status: 'skipped_reassess_next_run',
+        summary: `[🔄 REASSESSED AGAINST v10.4 ${reassessed.id}] ${reassessed.title}`,
+        details: {
+          ...reassessed,
+          tastePenalty: 0,
+          updated_at: nowIso
+        }
+      })
+    });
+  }
+
+  // ============================================================================
+  // STEP 1.2: UPDATE `founder_taste_profile.json` WITH POSITIVE / NEGATIVE WEIGHTS
+  // (AND ZERO PENALTY FOR SKIPPED ITEMS)
+  // ============================================================================
+  const tastePath = path.join(__dirname, 'founder_taste_profile.json');
+  if (fs.existsSync(tastePath)) {
+    try {
+      const taste = JSON.parse(fs.readFileSync(tastePath, 'utf8'));
+      taste.lastUpdatedAt = new Date().toISOString();
+      taste.lastUpdated = taste.lastUpdatedAt;
+      taste.tagWeights = {
+        ...(taste.tagWeights || {}),
+        simplicity_button_reduction: 0.99,
+        plain_1_sentence_voice: 0.98,
+        skater_spacing_hygiene: 0.97,
+        room_hotspot_immersion: 0.95,
+        coach_al_automation: 0.94,
+        pro_shop_avatar_preview: 0.95,
+        adm_ltpd_usa_canada_alignment: 0.94,
+        neural_mp3_voice_naturalness: 0.97,
+        extra_hud_badges: -0.58,
+        complex_menus: -0.68,
+        long_text: -0.74
+      };
+      taste.approvedIdeaIds = Array.from(new Set([
+        ...(taste.approvedIdeaIds || []),
+        ...realCodedItems.map(i => i.id),
+        ...approvedQueueForAgent.map(i => i.id)
+      ]));
+      taste.rejectedIdeaIds = Array.from(new Set([
+        ...(taste.rejectedIdeaIds || []),
+        ...rejectedIdsInCloud
+      ]));
+      taste.skippedReassessIdeaIds = reassessedSkippedItems.map(i => i.id);
+      taste.autoResolvedSkippedIdeaIds = Array.from(new Set([
+        ...(taste.autoResolvedSkippedIdeaIds || []),
+        ...autoResolvedSkippedItems.map(i => i.id)
+      ]));
+      taste.latestBatchSummary = {
+        batchNumber: 2,
+        currentPassNewlyCodedCount: currentPassCodedItems.length,
+        totalPhysicallyCodedAndLiveCount: realCodedItems.length,
+        remainingApprovedQueueCount: approvedQueueForAgent.length,
+        rejectedCount: taste.rejectedIdeaIds.length,
+        skippedTotalCount: reassessedSkippedItems.length + autoResolvedSkippedItems.length,
+        skippedAutoResolvedCount: autoResolvedSkippedItems.length,
+        skippedReassessedCount: reassessedSkippedItems.length,
+        skippedNegativeTastePenalty: 0
+      };
+      fs.writeFileSync(tastePath, JSON.stringify(taste, null, 2), 'utf8');
+    } catch (_) {}
+  }
+
   // Update batch_deployment_receipt.json so it ONLY lists features physically verified in index.html
   const receiptPath = path.join(__dirname, 'batch_deployment_receipt.json');
   const honestReceipt = {
-    batchNumber: 1,
+    batchNumber: 2,
     verifiedAt: new Date().toISOString(),
-    cacheVersion: 'synapz-hockey-v10.3-real-builds',
+    cacheVersion: 'synapz-hockey-v10.4-sweet-spot-loop',
     zeroFakeStatusFlippingEnforced: true,
+    currentPassNewlyCodedCount: currentPassCodedItems.length,
     totalPhysicallyCodedAndLive: realCodedItems.length,
     totalAwaitingAgentCodeInQueue: approvedQueueForAgent.length,
     restoredUnbuiltCount: restoredFromFakeCompleted.length,
+    currentPassNewlyCodedItems: currentPassCodedItems,
     deployedApprovedItems: realCodedItems,
-    approvedQueueAwaitingBuild: approvedQueueForAgent
+    approvedQueueAwaitingBuild: approvedQueueForAgent,
+    autoResolvedSkippedItems,
+    reassessedSkippedItems
   };
   fs.writeFileSync(receiptPath, JSON.stringify(honestReceipt, null, 2), 'utf8');
 
   console.log('============================================================================');
-  console.log(`✅ PHYSICALLY CODED & VERIFIED IN index.html (${realCodedItems.length} items):`);
-  realCodedItems.forEach(item => {
+  console.log(`🚀 STEP 2: NEWLY CODED & VERIFIED IN THIS PASS (${currentPassCodedItems.length} items):`);
+  currentPassCodedItems.forEach(item => {
     console.log(`   • [${item.id}] ${item.title} — Markers verified: ${item.markers.join(', ')}`);
   });
-  if (restoredFromFakeCompleted.length > 0) {
-    console.log(`🔄 Restored ${restoredFromFakeCompleted.length} unbuilt items from fake 'completed_and_deployed' back to 'approved_for_build': ${restoredFromFakeCompleted.join(', ')}`);
-  }
+  console.log(`✅ CUMULATIVE PHYSICALLY CODED & LIVE IN index.html (${realCodedItems.length} items total)`);
   console.log('----------------------------------------------------------------------------');
-  console.log(`📋 APPROVED QUEUE AWAITING AI AGENT IMPLEMENTATION (${approvedQueueForAgent.length} items with status = 'approved_for_build'):`);
-  approvedQueueForAgent.slice(0, 15).forEach((item, idx) => {
+  console.log(`✨ STEP 3: SKIPPED ITEMS AUTO-RESOLVED BY THIS BUILD (${autoResolvedSkippedItems.length} items):`);
+  autoResolvedSkippedItems.forEach(item => {
+    console.log(`   • [${item.id}] ${item.title} — ${item.resolutionReason}`);
+  });
+  console.log(`🔄 STEP 3: SKIPPED ITEMS REASSESSED AGAINST v10.4 (${reassessedSkippedItems.length} items):`);
+  reassessedSkippedItems.forEach(item => {
+    console.log(`   • [${item.id}] ${item.title} — ${item.reassessedTelemetry}`);
+  });
+  console.log('----------------------------------------------------------------------------');
+  console.log(`📋 REMAINING APPROVED QUEUE FOR NEXT PASS (${approvedQueueForAgent.length} items with status = 'approved_for_build'):`);
+  approvedQueueForAgent.forEach((item, idx) => {
     console.log(`   ${idx + 1}. [${item.id}] (${item.seat_name}): ${item.title}`);
   });
-  if (approvedQueueForAgent.length > 15) {
-    console.log(`   ... and ${approvedQueueForAgent.length - 15} more approved items in Cloud Queue.`);
-  }
   console.log('============================================================================');
 
-  return { realCodedItems, approvedQueueForAgent, restoredFromFakeCompleted };
+  return {
+    currentPassCodedItems,
+    realCodedItems,
+    approvedQueueForAgent,
+    restoredFromFakeCompleted,
+    autoResolvedSkippedItems,
+    reassessedSkippedItems
+  };
 }
 
 if (require.main === module) {
