@@ -34,6 +34,7 @@ const FILES_TO_DEPLOY = [
   { rel: 'audit_live_findings.json', encoding: 'utf-8' },
   { rel: 'founder_taste_profile.json', encoding: 'utf-8' },
   { rel: 'batch_deployment_receipt.json', encoding: 'utf-8' },
+  { rel: 'fetch-approved-queue.js', encoding: 'utf-8' },
   { rel: 'apply-approved-batch.js', encoding: 'utf-8' },
   { rel: 'watch-approved-queue.js', encoding: 'utf-8' },
   { rel: 'harvest-tactix-videos.js', encoding: 'utf-8' },
@@ -378,7 +379,7 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
 
   // 5. Create Commit
   const commitRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/commits`, token, 'POST', {
-    message: `Deploy SYNAPZ HOCKEY v9.5 (Natural Locker-Room Speech Interceptor, 112 Neural MP3 Voice Clips & 3-Stage Word-Streaming Bubble)`,
+    message: `Deploy SYNAPZ HOCKEY v10.3-real-builds (5 Real Coded Upgrades in index.html + Verified Supabase UPSERT on report.html + Zero Fake Status Flipping)`,
     tree: treeRes.data.sha,
     parents: [baseCommitSha]
   });

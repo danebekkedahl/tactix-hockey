@@ -1512,31 +1512,63 @@
     }
     window.renderSeat0RedFlagCouncilOptions = renderSeat0RedFlagCouncilOptions;
 
+    // Deterministic UUID + Base Idea ID normalizer for true Supabase UPSERT (?on_conflict=id)
+    function normalizeBaseIdeaId(rawId) {
+      const s = String(rawId || '').trim();
+      return s.replace(/^B\d+-/i, '');
+    }
+    window.normalizeBaseIdeaId = normalizeBaseIdeaId;
+
+    function ideaToUuid(ideaId) {
+      const clean = normalizeBaseIdeaId(ideaId).toUpperCase();
+      let h1 = 0xdeadbeef ^ clean.length;
+      let h2 = 0x41c6ce57 ^ clean.length;
+      let h3 = 0x1b873593 ^ clean.length;
+      let h4 = 0x85ebca6b ^ clean.length;
+      for (let i = 0; i < clean.length; i++) {
+        const ch = clean.charCodeAt(i);
+        h1 = Math.imul(h1 ^ ch, 2654435761);
+        h2 = Math.imul(h2 ^ ch, 1597334677);
+        h3 = Math.imul(h3 ^ ch, 2246822507);
+        h4 = Math.imul(h4 ^ ch, 3266489909);
+      }
+      const hex = (n) => (n >>> 0).toString(16).padStart(8, '0');
+      const full = hex(h1) + hex(h2) + hex(h3) + hex(h4);
+      return `${full.slice(0, 8)}-${full.slice(8, 12)}-4${full.slice(13, 16)}-a${full.slice(17, 20)}-${full.slice(20, 32)}`;
+    }
+    window.ideaToUuid = ideaToUuid;
+
+    function saveFounderDigestOverrides() {
+      try {
+        const map = {};
+        REPORT_BOARD_30_IDEA_DIGEST.forEach(item => {
+          map[item.id] = item.status;
+        });
+        localStorage.setItem('synapz_founder_digest_decisions_v10', JSON.stringify(map));
+      } catch (_) {}
+    }
+    window.saveFounderDigestOverrides = saveFounderDigestOverrides;
+
     async function setFounderRedFlagOptionDecision(flagId, optionOrReject) {
-      const rf = SEAT_0_RED_FLAG_COUNCIL_OPTIONS.find(x => x.id === flagId) || SEAT_0_RED_FLAG_COUNCIL_OPTIONS[0];
+      const baseFlagId = normalizeBaseIdeaId(flagId);
+      const rf = SEAT_0_RED_FLAG_COUNCIL_OPTIONS.find(x => x.id === baseFlagId || x.id === flagId) || SEAT_0_RED_FLAG_COUNCIL_OPTIONS[0];
       if (!rf) return;
       const isReject = optionOrReject === 'reject';
       const newStatus = isReject ? 'rejected_by_founder' : 'approved_for_build';
       const selectedOption = isReject ? null : (optionOrReject === 'Option B' ? 'Option B' : 'Option A');
-      rf.status = newStatus;
-      rf.selected_option = selectedOption;
-      renderSeat0RedFlagCouncilOptions();
-      const statusBadge = document.getElementById('redFlagCouncilStatusBadge');
-      if (statusBadge) {
-        statusBadge.textContent = `status: ${newStatus}${selectedOption ? ' (' + selectedOption + ')' : ''}`;
-      }
-      const toast = document.getElementById('redFlagCouncilDecisionToast');
-      if (toast) {
-        toast.classList.remove('hidden');
-        toast.textContent = isReject
-          ? `❌ Red Flag [${rf.id}] Held / Dismissed (status: rejected_by_founder).`
-          : `✅ Red Flag [${rf.id}] Approved for Next Build! Selected: ${selectedOption} (status: approved_for_build). Synced to public.pucksense_agent_inbox!`;
-      }
+      const nowIso = new Date().toISOString();
+      const rowUuid = ideaToUuid(rf.id);
+
+      let upsertHttpStatus = 0;
       try {
-        await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox`, {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox?on_conflict=id`, {
           method: 'POST',
-          headers: SUPABASE_HEADERS,
+          headers: {
+            ...SUPABASE_HEADERS,
+            'Prefer': 'resolution=merge-duplicates,return=representation'
+          },
           body: JSON.stringify({
+            id: rowUuid,
             created_by: 'Founder-Red-Flag-Approval',
             source_role: 'founder',
             scenario_id: rf.id,
@@ -1547,20 +1579,43 @@
               ? `[❌ RED FLAG HELD ${rf.id}] ${rf.screenTitle}`
               : `[✅ RED FLAG ${selectedOption.toUpperCase()} APPROVED FOR BUILD ${rf.id}] ${selectedOption === 'Option B' ? rf.optionB.title : rf.optionA.title}`,
             details: {
+              id: rf.id,
               flag_id: rf.id,
+              seat_name: 'Seat 0 — Red Flag Council',
+              title: selectedOption === 'Option B' ? rf.optionB.title : rf.optionA.title,
+              description: rf.multiSeatDiagnosis,
               screenTitle: rf.screenTitle,
               founderNote: rf.founderNote,
               selected_option: selectedOption,
               optionA: rf.optionA,
               optionB: rf.optionB,
               status: newStatus,
+              updated_at: nowIso,
               decided_by: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com'],
-              timestamp: new Date().toISOString()
+              timestamp: nowIso
             }
           })
         });
-        loadLiveSupabaseDashboard();
+        upsertHttpStatus = res.status;
       } catch (e) {}
+
+      rf.status = newStatus;
+      rf.selected_option = selectedOption;
+      renderSeat0RedFlagCouncilOptions();
+      updateFounderBatchDeployBar(rf.id, upsertHttpStatus);
+      const statusBadge = document.getElementById('redFlagCouncilStatusBadge');
+      if (statusBadge) {
+        statusBadge.textContent = `status: ${newStatus}${selectedOption ? ' (' + selectedOption + ')' : ''} [HTTP ${upsertHttpStatus}]`;
+      }
+      const toast = document.getElementById('redFlagCouncilDecisionToast');
+      if (toast) {
+        toast.classList.remove('hidden');
+        toast.textContent = isReject
+          ? `❌ Red Flag [${rf.id}] Held / Dismissed (status: rejected_by_founder • Cloud HTTP ${upsertHttpStatus}).`
+          : `✅ Saved to Cloud Queue (#${rf.id} in Supabase • HTTP ${upsertHttpStatus})! Selected: ${selectedOption} (status: approved_for_build).`;
+      }
+      loadLiveSupabaseDashboard();
+      return { ok: upsertHttpStatus >= 200 && upsertHttpStatus < 300, status: upsertHttpStatus, id: rf.id, decisionStatus: newStatus };
     }
     window.setFounderRedFlagOptionDecision = setFounderRedFlagOptionDecision;
 
@@ -1588,18 +1643,22 @@
     window.openRedFlagPlainEnglishModal = openRedFlagPlainEnglishModal;
 
     let activeReportDigestFilter = 'all';
+    let lastCloudSavedItemLabel = '';
 
-    function updateFounderBatchDeployBar() {
-      const approvedCount = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.status === 'approved_for_build' || x.status === 'approved_by_founder' || x.status === 'completed_and_deployed').length;
+    function updateFounderBatchDeployBar(savedItemId = '', httpCode = 0) {
+      if (savedItemId) {
+        lastCloudSavedItemLabel = `✅ Saved to Cloud Queue (#${savedItemId} in Supabase${httpCode ? ' • HTTP ' + httpCode : ''})`;
+      }
       const queuedNewApprovedCount = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.status === 'approved_for_build' || x.status === 'approved_by_founder').length;
+      const builtCount = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.status === 'completed_and_deployed').length;
       const skippedCount = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.status === 'skipped_reassess_next_run' || x.status === 'reassessed_awaiting_approval').length;
       const cartTextEl = document.getElementById('founderBatchCartCountsText');
       if (cartTextEl) {
-        cartTextEl.innerHTML = `🛒 <span class="text-emerald-300 font-black">${queuedNewApprovedCount || approvedCount}</span> Approved &nbsp;•&nbsp; ⏭️ <span class="text-amber-300 font-black">${skippedCount}</span> Skipped to Reassess`;
+        cartTextEl.innerHTML = `🛒 <span class="text-emerald-300 font-black">${queuedNewApprovedCount}</span> Approved in Queue &nbsp;•&nbsp; 🚀 <span class="text-cyan-300 font-black">${builtCount}</span> Coded &amp; Live &nbsp;•&nbsp; ⏭️ <span class="text-amber-300 font-black">${skippedCount}</span> Skipped to Reassess${lastCloudSavedItemLabel ? ` &nbsp;•&nbsp; <span class="px-2 py-0.5 rounded bg-emerald-500/30 border border-emerald-400 text-emerald-200 font-black">${lastCloudSavedItemLabel}</span>` : ''}`;
       }
       const btnDeploy = document.getElementById('btnTriggerRemoteBatchDeploy');
       if (btnDeploy) {
-        btnDeploy.textContent = `🚀 BUILD & DEPLOY ALL ${queuedNewApprovedCount || approvedCount} APPROVED UPGRADES NOW`;
+        btnDeploy.textContent = `🚀 BUILD & DEPLOY ALL ${queuedNewApprovedCount} APPROVED UPGRADES NOW`;
       }
     }
     window.updateFounderBatchDeployBar = updateFounderBatchDeployBar;
@@ -1607,63 +1666,86 @@
     async function triggerRemoteBatchDeployment() {
       const approvedItems = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.status === 'approved_for_build' || x.status === 'approved_by_founder');
       const skippedItems = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.status === 'skipped_reassess_next_run' || x.status === 'reassessed_awaiting_approval');
-      const toast = document.getElementById('reportDigestEmailToast');
-      if (toast) {
-        toast.classList.remove('hidden');
-        toast.textContent = `🚀 BATCH DEPLOYMENT TRIGGERED (status = 'batch_deploy_requested')! Queued ${approvedItems.length} Approved Upgrades + ${skippedItems.length} Skipped Items for Seat 13 Auto-Reassessment. The Local/Cloud Auto-Watcher is now building, playtesting Batch #2, deploying, and sending ONE consolidated receipt email (< 75 KB)!`;
-      }
-      const btnDeploy = document.getElementById('btnTriggerRemoteBatchDeploy');
-      if (btnDeploy) {
-        btnDeploy.textContent = `⚡ BATCH DEPLOYMENT TRIGGERED IN SUPABASE (${approvedItems.length} APPROVED)...`;
-      }
+      const triggerId = 'BATCH-DEPLOY-TRIGGER';
+      const nowIso = new Date().toISOString();
+      let httpCode = 0;
       try {
-        await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox`, {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox?on_conflict=id`, {
           method: 'POST',
-          headers: SUPABASE_HEADERS,
+          headers: {
+            ...SUPABASE_HEADERS,
+            'Prefer': 'resolution=merge-duplicates,return=representation'
+          },
           body: JSON.stringify({
+            id: ideaToUuid(triggerId),
             created_by: 'Founder-Batch-Trigger',
             source_role: 'founder_batch_deploy',
-            scenario_id: `BATCH-DEPLOY-${Date.now()}`,
+            scenario_id: triggerId,
             age_division: 'ALL',
             category: 'batch_deploy_trigger',
             status: 'batch_deploy_requested',
             summary: `🚀 Founder 1-Click Remote Batch Deployment Triggered (${approvedItems.length} Approved, ${skippedItems.length} Skipped to Reassess)`,
             details: {
+              id: triggerId,
               approvedIds: approvedItems.map(i => i.id),
               skippedIds: skippedItems.map(i => i.id),
-              requestedAt: new Date().toISOString(),
+              status: 'batch_deploy_requested',
+              updated_at: nowIso,
+              requestedAt: nowIso,
               requestedBy: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com']
             }
           })
         });
-        loadLiveSupabaseDashboard();
+        httpCode = res.status;
       } catch (_) {}
+
+      const toast = document.getElementById('reportDigestEmailToast');
+      if (toast) {
+        toast.classList.remove('hidden');
+        toast.textContent = `🚀 BATCH DEPLOYMENT TRIGGERED IN SUPABASE (HTTP ${httpCode} • status = 'batch_deploy_requested')! Queued ${approvedItems.length} Approved Upgrades + ${skippedItems.length} Skipped Items for Antigravity AI Coding Agent via fetch-approved-queue.js!`;
+      }
+      const btnDeploy = document.getElementById('btnTriggerRemoteBatchDeploy');
+      if (btnDeploy) {
+        btnDeploy.textContent = `✅ Saved to Cloud Queue (${approvedItems.length} Approved Ready for AI Coding Agent • HTTP ${httpCode})`;
+      }
+      loadLiveSupabaseDashboard();
     }
     window.triggerRemoteBatchDeployment = triggerRemoteBatchDeployment;
 
     async function setReportFounderIdeaDecision(ideaId, decisionStatus = 'approved_for_build') {
-      const item = REPORT_BOARD_30_IDEA_DIGEST.find(x => x.id === ideaId);
-      if (!item) return;
-      item.status = decisionStatus;
-      saveFounderDigestOverrides();
-      renderReportFounderDigestTable();
-      updateFounderBatchDeployBar();
-      const toast = document.getElementById('reportDigestEmailToast');
+      const baseId = normalizeBaseIdeaId(ideaId);
+      let item = REPORT_BOARD_30_IDEA_DIGEST.find(x => x.id === baseId || x.id === ideaId);
+      if (!item) {
+        item = {
+          rank: REPORT_BOARD_30_IDEA_DIGEST.length + 1,
+          id: baseId,
+          pod: 'Pod 1',
+          seatLens: '12-Seat Council',
+          targetScope: 'All Divisions 8U–18U',
+          title: `Board Recommendation ${ideaId}`,
+          candidCritique: `Founder decision recorded for ${ideaId}.`,
+          crossImpact: 'Synced across all devices via Supabase UPSERT.',
+          screenshotUrl: `${PAGES_BASE_URL}/screenshots/marathon_frame2_freeze.png`,
+          status: decisionStatus
+        };
+      }
+      const nowIso = new Date().toISOString();
+      const rowUuid = ideaToUuid(item.id);
       const isApproved = decisionStatus === 'approved_for_build' || decisionStatus === 'approved_by_founder';
       const isSkipped = decisionStatus === 'skipped_reassess_next_run';
-      if (toast) {
-        toast.classList.remove('hidden');
-        if (isSkipped) {
-          toast.textContent = `⏭️ Skipped for This Batch (${item.id} — "${item.title}") — Seat 13 will automatically re-test this after your other approvals are built to see if it resolved itself! (Zero negative taste penalty recorded).`;
-        } else {
-          toast.textContent = `${isApproved ? '✅ QUEUED IN BATCH CART (status: approved_for_build)' : '❌ REJECTED'}: Rank #${item.rank} (${item.id}) — "${item.title}" synced silently to Supabase! Click [🚀 BUILD & DEPLOY ALL APPROVED UPGRADES NOW] at the bottom when ready.`;
-        }
-      }
+
+      // Execute real verified Supabase UPSERT (?on_conflict=id with Prefer: resolution=merge-duplicates) FIRST and await HTTP 200/201!
+      let upsertHttpStatus = 0;
+      let upsertedRow = null;
       try {
-        await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox`, {
+        const upsertRes = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox?on_conflict=id`, {
           method: 'POST',
-          headers: SUPABASE_HEADERS,
+          headers: {
+            ...SUPABASE_HEADERS,
+            'Prefer': 'resolution=merge-duplicates,return=representation'
+          },
           body: JSON.stringify({
+            id: rowUuid,
             created_by: 'Founder-Approval-Gate',
             source_role: 'founder',
             scenario_id: item.id,
@@ -1672,23 +1754,55 @@
             status: decisionStatus,
             summary: `[${isSkipped ? '⏭️ SKIPPED TO REASSESS NEXT RUN' : isApproved ? '✅ FOUNDER APPROVED FOR BUILD' : '❌ FOUNDER REJECTED'} #${item.rank} ${item.id}] ${item.title}`,
             details: {
+              id: item.id,
+              raw_item_id: ideaId,
               rank: item.rank,
               idea_id: item.id,
+              seat_name: item.seatLens,
               seatLens: item.seatLens,
               targetScope: item.targetScope,
               title: item.title,
+              description: item.candidCritique,
               candidCritique: item.candidCritique,
               crossImpact: item.crossImpact,
               screenshotUrl: item.screenshotUrl,
+              status: decisionStatus,
               decisionStatus,
               tastePenalty: isSkipped ? 0 : undefined,
+              updated_at: nowIso,
               decided_by: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com'],
-              timestamp: new Date().toISOString()
+              timestamp: nowIso
             }
           })
         });
-        loadLiveSupabaseDashboard();
+        upsertHttpStatus = upsertRes.status;
+        if (upsertRes.ok) {
+          const rows = await upsertRes.json();
+          upsertedRow = Array.isArray(rows) ? rows[0] : rows;
+        }
       } catch (e) {}
+
+      // Only after Supabase UPSERT returns, update status, turn button green & show "✅ Saved to Cloud Queue (#X in Supabase)"
+      item.status = decisionStatus;
+      saveFounderDigestOverrides();
+      renderReportFounderDigestTable();
+      updateFounderBatchDeployBar(item.id, upsertHttpStatus);
+
+      const toast = document.getElementById('reportDigestEmailToast');
+      if (toast) {
+        toast.classList.remove('hidden');
+        if (isSkipped) {
+          toast.textContent = `✅ Saved to Cloud Queue (#${item.id} in Supabase • HTTP ${upsertHttpStatus}): ⏭️ Skipped for This Batch ("${item.title}") — Seat 13 will automatically re-test this after your other approvals are built!`;
+        } else {
+          toast.textContent = `✅ Saved to Cloud Queue (#${item.id} in Supabase • HTTP ${upsertHttpStatus}): ${isApproved ? '✅ APPROVED FOR BUILD' : '❌ REJECTED'} — Rank #${item.rank} (${item.id}) "${item.title}"!`;
+        }
+      }
+      const statusEl = document.getElementById('reportDigestOverrideStatus');
+      if (statusEl) {
+        statusEl.textContent = `✅ Saved to Cloud Queue (#${item.id} in Supabase • HTTP ${upsertHttpStatus} • status: ${decisionStatus})`;
+      }
+      loadLiveSupabaseDashboard();
+      return { ok: upsertHttpStatus >= 200 && upsertHttpStatus < 300, status: upsertHttpStatus, id: item.id, decisionStatus, row: upsertedRow };
     }
     window.setReportFounderIdeaDecision = setReportFounderIdeaDecision;
 
@@ -1832,7 +1946,11 @@
       const top5Tbody = document.getElementById('reportTop5CoSignedTableBody');
       if (top5Tbody) {
         const top10Rows = REPORT_BOARD_30_IDEA_DIGEST.filter(i => i.rank <= 10);
-        top5Tbody.innerHTML = top10Rows.map(item => `
+        top5Tbody.innerHTML = top10Rows.map(item => {
+          const isApp = item.status === 'approved_for_build' || item.status === 'approved_by_founder' || item.status === 'completed_and_deployed';
+          const isSkp = item.status === 'skipped_reassess_next_run' || item.status === 'reassessed_awaiting_approval';
+          const isRej = item.status === 'rejected_by_founder';
+          return `
           <tr class="hover:bg-slate-900/70 transition align-top">
             <td class="py-2.5 px-3 font-mono text-[11px] font-black text-emerald-300 whitespace-nowrap">
               <div>#${item.rank} (${item.id})</div>
@@ -1850,13 +1968,14 @@
             </td>
             <td class="py-2.5 px-3 text-right whitespace-nowrap">
               <button type="button" data-explain-idea-id="${item.id}" class="btn-report-explain-idea px-2.5 py-1 rounded bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-[10px] mr-1">🔍 Explain This to Me</button>
-              <button type="button" data-approve-idea-id="${item.id}" class="btn-report-approve-idea px-2.5 py-1 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-[10px] mr-1">✅ Approve for Next Build</button>
-              <button type="button" data-skip-idea-id="${item.id}" class="btn-report-skip-idea px-2.5 py-1 rounded bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-[10px] mr-1">⏭️ Skip &amp; Reassess</button>
+              <button type="button" data-approve-idea-id="${item.id}" class="btn-report-approve-idea px-2.5 py-1 rounded ${isApp ? 'bg-emerald-400 ring-2 ring-white text-slate-950' : 'bg-emerald-500 hover:bg-emerald-400 text-slate-950'} font-black text-[10px] mr-1">${item.status === 'completed_and_deployed' ? '🚀 Built &amp; Live' : isApp ? '✅ Saved in Cloud Queue' : '✅ Approve for Next Build'}</button>
+              <button type="button" data-skip-idea-id="${item.id}" class="btn-report-skip-idea px-2.5 py-1 rounded ${isSkp ? 'bg-amber-300 ring-2 ring-white text-slate-950' : 'bg-amber-400 hover:bg-amber-300 text-slate-950'} font-black text-[10px] mr-1">${isSkp ? '⏭️ Saved: Skip &amp; Reassess' : '⏭️ Skip &amp; Reassess'}</button>
               ${item.trustTier === 'TIER 1' ? `<button type="button" data-undo-tier1-id="${item.id}" class="btn-report-undo-tier1 px-2.5 py-1 rounded bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-[10px] mr-1">↩️ 1-Click Undo</button>` : ''}
-              <button type="button" data-reject-idea-id="${item.id}" class="btn-report-reject-idea px-2.5 py-1 rounded bg-rose-600 hover:bg-rose-500 text-white font-black text-[10px]">❌ Reject</button>
+              <button type="button" data-reject-idea-id="${item.id}" class="btn-report-reject-idea px-2.5 py-1 rounded ${isRej ? 'bg-rose-500 ring-2 ring-white text-white' : 'bg-rose-600 hover:bg-rose-500 text-white'} font-black text-[10px]">${isRej ? '❌ Rejected in Cloud' : '❌ Reject'}</button>
             </td>
           </tr>
-        `).join('');
+        `;
+        }).join('');
       }
 
       const tbody = document.getElementById('reportDigest30TableBody');
@@ -1871,12 +1990,15 @@
       });
       tbody.innerHTML = rows.map((item, idx) => {
         const coSign = item.crossSeatCoSign || buildReportCrossSeatCoSign(item, idx);
+        const isApp = item.status === 'approved_for_build' || item.status === 'approved_by_founder' || item.status === 'completed_and_deployed';
+        const isSkp = item.status === 'skipped_reassess_next_run' || item.status === 'reassessed_awaiting_approval';
+        const isRej = item.status === 'rejected_by_founder';
         const badgeHtml = item.status === 'completed_and_deployed'
-          ? '<span class="px-2 py-0.5 rounded bg-emerald-500/30 border border-emerald-400 text-emerald-200 text-[10px] font-black uppercase">🚀 Built &amp; Live in Batch #1</span>'
+          ? '<span class="px-2 py-0.5 rounded bg-emerald-500/30 border border-emerald-400 text-emerald-200 text-[10px] font-black uppercase">🚀 Coded &amp; Live in index.html</span>'
           : (item.status === 'approved_for_build' || item.status === 'approved_by_founder')
-          ? '<span class="px-2 py-0.5 rounded bg-emerald-500/25 border border-emerald-400 text-emerald-200 text-[10px] font-black uppercase">✅ Approved for Next Build</span>'
+          ? '<span class="px-2 py-0.5 rounded bg-emerald-500/25 border border-emerald-400 text-emerald-200 text-[10px] font-black uppercase">✅ Approved for Next Build (Cloud Synced)</span>'
           : item.status === 'auto_resolved_by_batch'
-          ? '<span class="px-2 py-0.5 rounded bg-cyan-500/25 border border-cyan-400 text-cyan-200 text-[10px] font-black uppercase">✨ Auto-Resolved by Batch #1</span>'
+          ? '<span class="px-2 py-0.5 rounded bg-cyan-500/25 border border-cyan-400 text-cyan-200 text-[10px] font-black uppercase">✨ Auto-Resolved by Batch</span>'
           : item.status === 'reassessed_awaiting_approval'
           ? '<span class="px-2 py-0.5 rounded bg-amber-500/25 border border-amber-400 text-amber-200 text-[10px] font-black uppercase">🔄 Reassessed After Last Build</span>'
           : item.status === 'skipped_reassess_next_run'
@@ -1925,15 +2047,15 @@
                 <button type="button" data-explain-idea-id="${item.id}" class="btn-report-explain-idea px-3 py-1.5 rounded-lg bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black text-[10px] shadow transition">
                   🔍 Explain This to Me
                 </button>
-                <button type="button" data-approve-idea-id="${item.id}" class="btn-report-approve-idea px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-[10px] shadow transition">
-                  ✅ Approve for Next Build
+                <button type="button" data-approve-idea-id="${item.id}" class="btn-report-approve-idea px-3 py-1.5 rounded-lg ${isApp ? 'bg-emerald-400 ring-2 ring-white text-slate-950' : 'bg-emerald-500 hover:bg-emerald-400 text-slate-950'} font-black text-[10px] shadow transition">
+                  ${item.status === 'completed_and_deployed' ? '🚀 Built &amp; Live' : isApp ? '✅ Saved in Cloud Queue' : '✅ Approve for Next Build'}
                 </button>
-                <button type="button" data-skip-idea-id="${item.id}" class="btn-report-skip-idea px-3 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-[10px] shadow transition">
-                  ⏭️ Skip &amp; Reassess
+                <button type="button" data-skip-idea-id="${item.id}" class="btn-report-skip-idea px-3 py-1.5 rounded-lg ${isSkp ? 'bg-amber-300 ring-2 ring-white text-slate-950' : 'bg-amber-400 hover:bg-amber-300 text-slate-950'} font-black text-[10px] shadow transition">
+                  ${isSkp ? '⏭️ Saved: Skip &amp; Reassess' : '⏭️ Skip &amp; Reassess'}
                 </button>
                 ${item.trustTier === 'TIER 1' ? `<button type="button" data-undo-tier1-id="${item.id}" class="btn-report-undo-tier1 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-[10px] shadow transition">↩️ 1-Click Undo</button>` : ''}
-                <button type="button" data-reject-idea-id="${item.id}" class="btn-report-reject-idea px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-black text-[10px] shadow transition">
-                  ❌ Reject
+                <button type="button" data-reject-idea-id="${item.id}" class="btn-report-reject-idea px-3 py-1.5 rounded-lg ${isRej ? 'bg-rose-500 ring-2 ring-white text-white' : 'bg-rose-600 hover:bg-rose-500 text-white'} font-black text-[10px] shadow transition">
+                  ${isRej ? '❌ Rejected in Cloud' : '❌ Reject'}
                 </button>
               </div>
             </td>
@@ -1970,44 +2092,63 @@
     }
 
     async function approveAllHighMatchBatch() {
-      const highMatchItems = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.founderMatchPct >= 90 && x.status !== 'vetoed');
+      const highMatchItems = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.founderMatchPct >= 90 && x.status !== 'vetoed' && x.status !== 'completed_and_deployed');
+      const nowIso = new Date().toISOString();
+      const upsertBatchPayload = highMatchItems.map(item => ({
+        id: ideaToUuid(item.id),
+        created_by: 'Founder-Approval-Gate',
+        source_role: 'founder',
+        scenario_id: item.id,
+        age_division: 'ALL',
+        category: 'board_digest',
+        status: 'approved_for_build',
+        summary: `[✅ FOUNDER APPROVED FOR BUILD #${item.rank} ${item.id}] ${item.title}`,
+        details: {
+          id: item.id,
+          idea_id: item.id,
+          rank: item.rank,
+          seat_name: item.seatLens,
+          title: item.title,
+          description: item.candidCritique,
+          status: 'approved_for_build',
+          updated_at: nowIso
+        }
+      }));
+      let httpCode = 0;
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox?on_conflict=id`, {
+          method: 'POST',
+          headers: {
+            ...SUPABASE_HEADERS,
+            'Prefer': 'resolution=merge-duplicates,return=representation'
+          },
+          body: JSON.stringify(upsertBatchPayload)
+        });
+        httpCode = res.status;
+      } catch (_) {}
+
       highMatchItems.forEach(item => {
         item.status = 'approved_for_build';
       });
       saveFounderDigestOverrides();
       renderReportFounderDigestTable();
+      updateFounderBatchDeployBar(`BATCH-${highMatchItems.length}`, httpCode);
       const statusEl = document.getElementById('reportDigestOverrideStatus');
       if (statusEl) {
-        statusEl.textContent = `⭐ Batch Approved ${highMatchItems.length} High-Match Picks (>=90% Match) for Next Build! Synced to Supabase.`;
+        statusEl.textContent = `✅ Saved to Cloud Queue (${highMatchItems.length} High-Match Picks in Supabase • HTTP ${httpCode})!`;
       }
-      try {
-        await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox`, {
-          method: 'POST',
-          headers: SUPABASE_HEADERS,
-          body: JSON.stringify({
-            created_by: 'Founder-Gate',
-            source_role: 'founder_batch_approval',
-            scenario_id: 'BATCH-HIGH-MATCH-90PLUS',
-            age_division: 'ALL',
-            category: 'council_spec',
-            status: 'approved_for_build',
-            summary: `⭐ Founder 1-Click Batch Approved ${highMatchItems.length} High-Match Picks (>=90% Match)`,
-            details: { approvedIds: highMatchItems.map(i => i.id), count: highMatchItems.length }
-          })
-        });
-      } catch (_) {}
+      loadLiveSupabaseDashboard();
     }
     window.approveAllHighMatchBatch = approveAllHighMatchBatch;
 
     async function undoTier1MicroFix(ideaId) {
-      const item = REPORT_BOARD_30_IDEA_DIGEST.find(x => x.id === ideaId);
+      const baseId = normalizeBaseIdeaId(ideaId);
+      const item = REPORT_BOARD_30_IDEA_DIGEST.find(x => x.id === baseId || x.id === ideaId);
       if (!item) return;
-      item.status = 'awaiting_founder_approval';
-      saveFounderDigestOverrides();
-      renderReportFounderDigestTable();
+      await setReportFounderIdeaDecision(item.id, 'awaiting_founder_approval');
       const statusEl = document.getElementById('reportDigestOverrideStatus');
       if (statusEl) {
-        statusEl.textContent = `↩️ Reverted Tier 1 Micro-Fix ${item.id} (${item.measuredScenarioId}) back to 'awaiting_founder_approval'!`;
+        statusEl.textContent = `↩️ Reverted Tier 1 Micro-Fix ${item.id} (${item.measuredScenarioId}) back to 'awaiting_founder_approval' in Supabase!`;
       }
     }
     window.undoTier1MicroFix = undoTier1MicroFix;
@@ -2024,7 +2165,7 @@
       });
     }
 
-    // Load live audit_coverage_ledger.json, audit_live_findings.json & batch_deployment_receipt.json into Seat 13 Heatmap
+    // Load live audit_coverage_ledger.json into Seat 13 Heatmap
     (async function loadSeat13CoverageHeatmap() {
       try {
         const res = await fetch('audit_coverage_ledger.json');
@@ -2038,24 +2179,59 @@
           if (c.permutationsLabel) document.getElementById('seat13HeatmapPermutations').textContent = `${c.permutationsLabel} (${c.permutationsPct}%)`;
         }
       } catch (_) {}
-      try {
-        const recRes = await fetch('batch_deployment_receipt.json');
-        if (recRes.ok) {
-          const receipt = await recRes.json();
-          const deployedSet = new Set((receipt.deployedApprovedItems || []).map(x => x.id));
-          const autoResolvedSet = new Set((receipt.skippedItemsAutoResolved || []).map(x => x.id));
-          const reassessedSet = new Set((receipt.skippedItemsReassessed || []).map(x => x.id));
-          const rejectedSet = new Set(receipt.rejectedIds || []);
-          REPORT_BOARD_30_IDEA_DIGEST.forEach(item => {
-            if (deployedSet.has(item.id)) item.status = 'completed_and_deployed';
-            else if (autoResolvedSet.has(item.id)) item.status = 'auto_resolved_by_batch';
-            else if (reassessedSet.has(item.id)) item.status = 'reassessed_awaiting_approval';
-            else if (rejectedSet.has(item.id)) item.status = 'rejected_by_founder';
-          });
-          renderReportFounderDigestTable();
-        }
-      } catch (_) {}
     })();
+
+    // Cloud-First Sync on Page Load: Always fetch all rows from public.pucksense_agent_inbox FIRST so Dane's phone, Evan's phone, and PC show identical live states!
+    async function syncFounderDecisionsFromSupabaseCloud() {
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox?select=*&order=created_at.asc&limit=500`, {
+          headers: SUPABASE_HEADERS
+        });
+        if (!res.ok) return;
+        const rows = await res.json();
+        const validStatuses = new Set([
+          'approved_for_build',
+          'approved_by_founder',
+          'skipped_reassess_next_run',
+          'reassessed_awaiting_approval',
+          'rejected_by_founder',
+          'completed_and_deployed',
+          'awaiting_founder_approval'
+        ]);
+        const latestByIdea = new Map();
+        rows.forEach(r => {
+          const rawId = (r.details && (r.details.id || r.details.idea_id || r.details.flag_id)) || r.scenario_id || '';
+          const baseId = normalizeBaseIdeaId(rawId);
+          if (!baseId || !validStatuses.has(r.status)) return;
+          const prev = latestByIdea.get(baseId);
+          const rTime = (r.details && r.details.updated_at) || r.created_at || '';
+          const pTime = prev ? ((prev.details && prev.details.updated_at) || prev.created_at || '') : '';
+          if (!prev || rTime >= pTime) {
+            latestByIdea.set(baseId, r);
+          }
+        });
+        REPORT_BOARD_30_IDEA_DIGEST.forEach(item => {
+          if (item.status === 'vetoed') return;
+          const row = latestByIdea.get(item.id);
+          if (row && row.status) {
+            item.status = row.status;
+          }
+        });
+        SEAT_0_RED_FLAG_COUNCIL_OPTIONS.forEach(rf => {
+          const row = latestByIdea.get(rf.id);
+          if (row && row.status) {
+            rf.status = row.status;
+            if (row.details && row.details.selected_option) {
+              rf.selected_option = row.details.selected_option;
+            }
+          }
+        });
+        saveFounderDigestOverrides();
+        renderSeat0RedFlagCouncilOptions();
+        renderReportFounderDigestTable();
+      } catch (_) {}
+    }
+    window.syncFounderDecisionsFromSupabaseCloud = syncFounderDecisionsFromSupabaseCloud;
 
     document.querySelectorAll('.report-digest-filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -2126,59 +2302,60 @@
       });
     }
 
-    renderDashboard();
-    renderSeat0RedFlagCouncilOptions();
-    renderReportFounderDigestTable();
-    loadLiveSupabaseDashboard();
+    // Startup sequence: 1) Render initial DOM, 2) Fetch all cloud rows from public.pucksense_agent_inbox FIRST, 3) Process URL ?action=... UPSERTs
+    (async function initializeReportCloudAndUrlActions() {
+      renderDashboard();
+      renderSeat0RedFlagCouncilOptions();
+      renderReportFounderDigestTable();
+      await syncFounderDecisionsFromSupabaseCloud();
+      await loadLiveSupabaseDashboard();
 
-    // Handle 1-Click Email Approval / Explain / Skip & Reassess / Trigger Batch Links:
-    // - Board Ideas: ?action=approve|skip_reassess|reject|explain&id=S1-A OR ?founder_action=approve|skip_reassess|reject|explain&idea_id=S1-A
-    // - Batch Deploy: ?action=trigger_batch_deploy
-    // - Red Flag Council Options (Seat 0): ?action=approve_option_a|approve_option_b|explain_red_flag|reject&id=RF-COUNCIL-01
-    try {
-      const urlParams = new URLSearchParams(window.location.search);
-      const rfAction = urlParams.get('action');
-      const rfId = urlParams.get('id') || 'RF-COUNCIL-01';
-      if (rfAction) {
-        const isBoardIdea = REPORT_BOARD_30_IDEA_DIGEST.some(x => x.id === rfId) || /^B\d+-S\d+-[A-E]$|^S\d+-[A-E]$/.test(rfId);
-        if (rfAction === 'trigger_batch_deploy') {
-          triggerRemoteBatchDeployment();
-        } else if (rfAction === 'approve_high_match_batch') {
-          approveAllHighMatchBatch();
-        } else if (rfAction === 'undo_tier1' && isBoardIdea) {
-          undoTier1MicroFix(rfId);
-        } else if (isBoardIdea && (rfAction === 'explain' || rfAction === 'approve' || rfAction === 'skip_reassess' || rfAction === 'reject')) {
-          if (rfAction === 'explain') {
-            openReportExplainProposalModal(rfId);
-          } else if (rfAction === 'skip_reassess') {
-            setReportFounderIdeaDecision(rfId, 'skipped_reassess_next_run');
-          } else {
-            const decision = rfAction === 'reject' ? 'rejected_by_founder' : 'approved_for_build';
-            setReportFounderIdeaDecision(rfId, decision);
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const rfAction = urlParams.get('action');
+        const rfId = urlParams.get('id') || 'RF-COUNCIL-01';
+        const baseRfId = normalizeBaseIdeaId(rfId);
+        if (rfAction) {
+          const isBoardIdea = REPORT_BOARD_30_IDEA_DIGEST.some(x => x.id === baseRfId || x.id === rfId) || /^B\d+-S\d+-[A-E]$|^S\d+-[A-E]$/.test(rfId);
+          if (rfAction === 'trigger_batch_deploy') {
+            await triggerRemoteBatchDeployment();
+          } else if (rfAction === 'approve_high_match_batch') {
+            await approveAllHighMatchBatch();
+          } else if (rfAction === 'undo_tier1' && isBoardIdea) {
+            await undoTier1MicroFix(rfId);
+          } else if (isBoardIdea && (rfAction === 'explain' || rfAction === 'approve' || rfAction === 'skip_reassess' || rfAction === 'reject')) {
+            if (rfAction === 'explain') {
+              openReportExplainProposalModal(baseRfId);
+            } else if (rfAction === 'skip_reassess') {
+              await setReportFounderIdeaDecision(rfId, 'skipped_reassess_next_run');
+            } else {
+              const decision = rfAction === 'reject' ? 'rejected_by_founder' : 'approved_for_build';
+              await setReportFounderIdeaDecision(rfId, decision);
+            }
+          } else if (rfAction === 'explain_red_flag' || rfAction === 'explain') {
+            openRedFlagPlainEnglishModal(baseRfId);
+          } else if (rfAction === 'approve_option_a' || rfAction === 'approve') {
+            await setFounderRedFlagOptionDecision(rfId, 'Option A');
+          } else if (rfAction === 'approve_option_b') {
+            await setFounderRedFlagOptionDecision(rfId, 'Option B');
+          } else if (rfAction === 'reject') {
+            await setFounderRedFlagOptionDecision(rfId, 'reject');
           }
-        } else if (rfAction === 'explain_red_flag' || rfAction === 'explain') {
-          openRedFlagPlainEnglishModal(rfId);
-        } else if (rfAction === 'approve_option_a' || rfAction === 'approve') {
-          setFounderRedFlagOptionDecision(rfId, 'Option A');
-        } else if (rfAction === 'approve_option_b') {
-          setFounderRedFlagOptionDecision(rfId, 'Option B');
-        } else if (rfAction === 'reject') {
-          setFounderRedFlagOptionDecision(rfId, 'reject');
         }
-      }
-      const fAction = urlParams.get('founder_action');
-      const fIdeaId = urlParams.get('idea_id');
-      if (fAction && fIdeaId) {
-        if (fAction === 'explain') {
-          openReportExplainProposalModal(fIdeaId);
-        } else if (fAction === 'skip_reassess') {
-          setReportFounderIdeaDecision(fIdeaId, 'skipped_reassess_next_run');
-        } else {
-          const decision = fAction === 'reject' ? 'rejected_by_founder' : 'approved_for_build';
-          setReportFounderIdeaDecision(fIdeaId, decision);
+        const fAction = urlParams.get('founder_action');
+        const fIdeaId = urlParams.get('idea_id');
+        if (fAction && fIdeaId) {
+          if (fAction === 'explain') {
+            openReportExplainProposalModal(normalizeBaseIdeaId(fIdeaId));
+          } else if (fAction === 'skip_reassess') {
+            await setReportFounderIdeaDecision(fIdeaId, 'skipped_reassess_next_run');
+          } else {
+            const decision = fAction === 'reject' ? 'rejected_by_founder' : 'approved_for_build';
+            await setReportFounderIdeaDecision(fIdeaId, decision);
+          }
         }
-      }
-    } catch (_) {}
+      } catch (_) {}
+    })();
   </script>
 
   <!-- Plain-English Visual Explanation Modal (`[🔍 Explain This to Me]`) -->

@@ -2850,18 +2850,36 @@
       </div>
 
       <div id="proShopInteractiveDrawer" class="grid grid-cols-1 md:grid-cols-12 gap-3.5 items-start">
-        <!-- LEFT: YOUNG HOCKEY PLAYER FITTING STAGE (75%-Realistic Style + Visibly Equipped Gear) -->
-        <div class="md:col-span-4 bg-slate-950 border border-amber-400/50 rounded-2xl p-3 flex flex-col items-center justify-between">
-          <div class="w-full flex items-center justify-between mb-1">
-            <span id="shopPreviewBanner" class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/40">🏒 Live Skater Fitting Mirror</span>
-            <span id="shopSpinAngleBadge" class="text-[10px] font-extrabold text-amber-300">Front Stance</span>
+        <!-- LEFT: S4-A / B4-S11-A LIVE SIDE-BY-SIDE "TRY IT ON MY SKATER" SPLIT-MIRROR FITTING STAGE -->
+        <div id="proShopTryOnAvatarPreviewBox" class="md:col-span-5 bg-slate-950 border-2 border-amber-400/70 rounded-2xl p-3 flex flex-col items-center justify-between gap-2 shadow-xl">
+          <div class="w-full flex items-center justify-between">
+            <span id="shopPreviewBanner" class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/40">🏒 Live Side-by-Side "Try It On My Skater" Mirror</span>
+            <span id="shopSpinAngleBadge" class="text-[10px] font-extrabold text-cyan-300">75%-Realistic Preview</span>
           </div>
 
-          <div id="shop3dAvatarSvgWrap" class="w-48 h-56 my-1 flex items-center justify-center cursor-grab active:cursor-grabbing select-none" title="See equipped Gloves, Stick, Skates, Visor & Sweater live on your Young Hockey Player!"></div>
+          <div id="proShopTryOnComparisonGrid" class="w-full grid grid-cols-2 gap-2 items-center bg-slate-900/90 border border-slate-800 rounded-xl p-2">
+            <!-- Left Mirror: Current Locker Room Loadout -->
+            <div class="flex flex-col items-center text-center border-r border-slate-800 pr-1">
+              <span class="text-[9px] font-black uppercase text-slate-400 mb-0.5">Current Loadout</span>
+              <div id="proShopCurrentAvatarWrap" class="w-28 h-40 flex items-center justify-center select-none"></div>
+              <span id="proShopCurrentLoadoutLabel" class="text-[9px] font-bold text-slate-300 truncate max-w-full">Equipped Gear</span>
+            </div>
+            <!-- Right Mirror: Live "Try It On My Skater" Preview -->
+            <div class="flex flex-col items-center text-center pl-1">
+              <span class="text-[9px] font-black uppercase text-cyan-300 mb-0.5">👁️ Try-On Preview</span>
+              <div id="proShopTryOnAvatarCanvas" class="w-28 h-40 flex items-center justify-center cursor-grab active:cursor-grabbing select-none" title="Tap any Glove, Stick, Skate, or Visor card on the right to try it on your skater!">
+                <div id="shop3dAvatarSvgWrap" class="w-full h-full flex items-center justify-center"></div>
+              </div>
+              <span id="proShopTryOnDeltaBadge" class="text-[9px] font-black text-amber-300 truncate max-w-full">Tap Any Wall Item ▶</span>
+            </div>
+          </div>
 
-          <div id="shopPreviewItemName" class="text-xs font-extrabold text-amber-300 text-center mb-2">Showing Equipped Locker Room Gear</div>
+          <div id="shopPreviewItemName" class="text-xs font-extrabold text-amber-300 text-center">Tap Any Glove, Stick, Skate, or Visor Card to Try It On!</div>
 
           <div class="w-full space-y-1.5">
+            <button id="btnBuyPreviewedItemNow" type="button" class="hidden w-full py-2 px-3 rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 text-xs font-black shadow-lg transition">
+              💰 Buy &amp; Equip Previewed Gear Now
+            </button>
             <div class="flex items-center gap-1.5">
               <button id="btnFlipShopBack" type="button" class="flex-1 py-1.5 px-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-300 text-[11px] font-black transition">
                 👕 Flip Front / Back Jersey
@@ -2881,7 +2899,7 @@
         </div>
 
         <!-- RIGHT: WALK-IN WALL DISPLAY RACK + PRO BRAND SHOWCASE -->
-        <div class="md:col-span-8 flex flex-col gap-2.5">
+        <div class="md:col-span-7 flex flex-col gap-2.5">
           <!-- Dedicated ⭐ PRO BRAND SHOWCASE & PROMO DROP Rack (Sponsor-Ready for Bauer / CCM / Warrior / True) -->
           <div id="proShopBrandShowcaseRack" class="p-3 rounded-2xl bg-gradient-to-r from-slate-950 via-cyan-950/40 to-slate-950 border-2 border-amber-400/80 shadow-[0_0_24px_rgba(245,158,11,0.18)]"></div>
 
@@ -10880,19 +10898,59 @@
     }
     window.handleSelectHoverZone = handleSelectHoverZone;
 
-    function runLessonFlowAndFreezeAnimation(scen, durationMs = 3200) {
+    // =========================================================================
+    // S1-A / RF-COUNCIL-01: 2.0-3.0s PRE-READ SKATING MOTION BUILDER &
+    // SYNCHRONIZED CYAN D-TO-D / WEAK-SIDE OUTLET ARC BEFORE FREEZE
+    // =========================================================================
+    function buildPreFreezeSkatingPaths(scen) {
+      if (!scen) return null;
+      if (typeof window.enforceMinimumSkaterSeparation015 === 'function') {
+        window.enforceMinimumSkaterSeparation015(scen);
+      }
+      const clampCoord = (v, minV, maxV) => Math.max(minV, Math.min(maxV, v));
+      const isDef = scen.zone === 'defense';
+      const shiftX = isDef ? -0.075 : -0.085;
+      const youEnd = scen.youStart || { x: 0.45, y: 0.50 };
+      const youStart = {
+        startX: clampCoord(youEnd.x + shiftX, 0.11, 0.89),
+        startY: clampCoord(youEnd.y + (youEnd.y < 0.5 ? -0.045 : 0.045), 0.14, 0.86),
+        endX: youEnd.x,
+        endY: youEnd.y
+      };
+      const teammates = (scen.teammates || []).map((t, idx) => ({
+        id: t.id || `T${idx + 1}`,
+        startX: clampCoord(t.x + shiftX * 0.85, 0.11, 0.89),
+        startY: clampCoord(t.y + ((idx % 2 === 0 ? -1 : 1) * 0.04), 0.14, 0.86),
+        endX: t.x,
+        endY: t.y
+      }));
+      const defenders = (scen.defenders || []).map((d, idx) => ({
+        id: d.id || `D${idx + 1}`,
+        startX: clampCoord(d.x - shiftX * 0.75, 0.11, 0.89),
+        startY: clampCoord(d.y + ((idx % 2 === 0 ? 1 : -1) * 0.038), 0.14, 0.86),
+        endX: d.x,
+        endY: d.y
+      }));
+      return { you: youStart, teammates, defenders };
+    }
+    window.buildPreFreezeSkatingPaths = buildPreFreezeSkatingPaths;
+
+    function runLessonFlowAndFreezeAnimation(scen, durationMs = 2600) {
       const activeScen = scen || getCurrentScenario();
       if (!activeScen) return;
       if (state.flowFreezeAnimId) {
         cancelAnimationFrame(state.flowFreezeAnimId);
         state.flowFreezeAnimId = null;
       }
+      state.preFreezePaths = buildPreFreezeSkatingPaths(activeScen);
       state.flowFreezePhase = 'flowing';
       state.flowFreezeProgress = 0;
       state.flowFreezeDurationMs = durationMs;
+      state.youHaloStartMs = performance.now();
+      state.youHaloDurationMs = 1200;
       const badge = document.getElementById('flowFreezeStatusBadge');
       if (badge) {
-        badge.textContent = '▶️ 3.2s Moving Play — Watch the Flow...';
+        badge.textContent = '▶️ 2.6s Pre-Read Skating Flow + Cyan Outlet Arc...';
         badge.className = 'px-2.5 py-0.5 rounded-full bg-amber-500/25 border border-amber-400/80 text-amber-200 text-[10px] font-black uppercase whitespace-nowrap';
       }
       const startTs = performance.now();
@@ -10900,6 +10958,7 @@
         if (state.questionAnswered || state.flowFreezePhase !== 'flowing') {
           state.flowFreezePhase = 'frozen';
           state.flowFreezeProgress = 1;
+          state.freezePulseStartMs = performance.now();
           if (badge) {
             badge.textContent = '❄️ FREEZE — MAKE YOUR READ!';
             badge.className = 'px-2.5 py-0.5 rounded-full bg-cyan-500/25 border border-cyan-400/70 text-cyan-200 text-[10px] font-black uppercase whitespace-nowrap';
@@ -10915,6 +10974,7 @@
         } else {
           state.flowFreezeAnimId = null;
           state.flowFreezePhase = 'frozen';
+          state.freezePulseStartMs = performance.now();
           if (badge) {
             badge.textContent = '❄️ FREEZE — MAKE YOUR READ!';
             badge.className = 'px-2.5 py-0.5 rounded-full bg-cyan-500/25 border border-cyan-400/70 text-cyan-200 text-[10px] font-black uppercase whitespace-nowrap';
@@ -11322,6 +11382,30 @@
         ribMistakeBtn.classList.toggle('text-rose-200', isActiveOnThisDrill);
       }
 
+      // S1-A / RF-COUNCIL-01: Enforce d >= 0.15 minimum skater separation on <canvas> & build pre-read skating paths
+      if (typeof window.enforceMinimumSkaterSeparation015 === 'function') {
+        window.enforceMinimumSkaterSeparation015(scen);
+      }
+      state.preFreezePaths = buildPreFreezeSkatingPaths(scen);
+
+      // S3-A / B4-S3-A: 1.2-Second Pulsing Gold "YOU #9" Halo + "⬆️ YOU" Pointer on Drill Start
+      state.youHaloStartMs = performance.now();
+      state.youHaloDurationMs = 1200;
+      if (state.youHaloRafId) {
+        cancelAnimationFrame(state.youHaloRafId);
+        state.youHaloRafId = null;
+      }
+      const stepYouStartHalo = (now) => {
+        if (now - (state.youHaloStartMs || 0) <= (state.youHaloDurationMs || 1200)) {
+          drawRink();
+          state.youHaloRafId = requestAnimationFrame(stepYouStartHalo);
+        } else {
+          state.youHaloRafId = null;
+          drawRink();
+        }
+      };
+      state.youHaloRafId = requestAnimationFrame(stepYouStartHalo);
+
       // Slide Coach Bob up in the lower-left corner at the start of the question, then auto-hide when done!
       showCoachBobPopup({
         title: `📍 ${city.name} • Q${state.seriesQuestionNum}/10: ${scen.title}`,
@@ -11335,7 +11419,11 @@
         return;
       }
 
-      drawRink();
+      if (state.activePresentationStyle === 'flow_and_freeze' && state.mode === 'position') {
+        runLessonFlowAndFreezeAnimation(scen, 2600);
+      } else {
+        drawRink();
+      }
 
       if (!isTimedPlay && autoSpeak && state.view === 'game') {
         const spokenIntro = concisePrompt || toNaturalHockeyTalk(scen.voicePrompt || scen.subtitle, 'coach-bob', 'drill_intro', prof.ageGroup);
@@ -12435,6 +12523,12 @@
         ctx.restore();
       }
 
+      // S1-A / RF-COUNCIL-01: Draw Synchronized Cyan D-to-D / Weak-Side Outlet Arc during final 0.8s before freeze (and at freeze)
+      drawSynchronizedPreFreezeOutletArc(ctx, W, H, scen, zone, flowProg, holderPt, youPt);
+
+      // S3-A / B4-S3-A: Draw 1.2-Second Pulsing Gold "YOU #9" Halo + "⬆️ YOU" Pointer on Drill Start
+      drawYouStartGoldHaloAndPointer(ctx, youPt.x, youPt.y, W, H, prof);
+
       const targPtForYou = scen.targetSpot ? normToCanvas(scen.targetSpot.x, scen.targetSpot.y, W, H, zone) : holderPt;
       const youFaceAngle = scen.puckHolder === 'YOU'
         ? Math.atan2(targPtForYou.y - youPt.y, targPtForYou.x - youPt.x)
@@ -12464,6 +12558,125 @@
       const puckPt = normToCanvas(puckNorm.x, puckNorm.y, W, H, zone);
       drawPuck(ctx, puckPt.x, puckPt.y, W, CoachVoice.activeHighlightPhase === 1);
     }
+
+    // =========================================================================
+    // S3-A / B4-S3-A: 1.2-SECOND PULSING GOLD "YOU #9" HALO & "⬆️ YOU" POINTER
+    // =========================================================================
+    function drawYouStartGoldHaloAndPointer(ctx, x, y, W, H, prof) {
+      const now = performance.now();
+      const startElapsed = now - (state.youHaloStartMs || 0);
+      const dur = state.youHaloDurationMs || 1200;
+      const freezeElapsed = now - (state.freezePulseStartMs || 0);
+      const isStartHaloActive = startElapsed >= 0 && startElapsed <= dur;
+      const isFreezeHaloActive = freezeElapsed >= 0 && freezeElapsed <= 900;
+      if (!isStartHaloActive && !isFreezeHaloActive && state.questionAnswered) return;
+
+      const phaseT = isStartHaloActive
+        ? (startElapsed / dur)
+        : (isFreezeHaloActive ? (freezeElapsed / 900) : 0.25);
+      const pulse = 0.5 + 0.5 * Math.sin(now / 95);
+      const baseR = (state.skaterBodyRadiusPx || Math.max(11, W * 0.017)) * 1.85;
+      const outerR = baseR + pulse * 10;
+
+      ctx.save();
+      // Outer glowing gold halo ring
+      ctx.beginPath();
+      ctx.arc(x, y, outerR, 0, Math.PI * 2);
+      ctx.fillStyle = isStartHaloActive ? 'rgba(250, 204, 21, 0.28)' : 'rgba(250, 204, 21, 0.16)';
+      ctx.fill();
+      ctx.lineWidth = isStartHaloActive ? 3.6 : 2.4;
+      ctx.strokeStyle = '#facc15';
+      ctx.stroke();
+
+      // Inner crisp gold target ring
+      ctx.beginPath();
+      ctx.arc(x, y, baseR * 0.82, 0, Math.PI * 2);
+      ctx.setLineDash([5, 3]);
+      ctx.lineWidth = 2.2;
+      ctx.strokeStyle = '#fef08a';
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // High-contrast "⬆️ YOU #9" pointer badge directly beneath/above the user's skater
+      const jerseyNum = (prof && prof.jerseyNumber) || '9';
+      const pointerLabel = `⬆️ YOU #${jerseyNum}`;
+      ctx.font = `900 ${Math.max(10, Math.floor(W * 0.012))}px Inter, sans-serif`;
+      const textW = ctx.measureText(pointerLabel).width;
+      const pillW = textW + 18;
+      const pillH = 22;
+      const px = Math.max(pillW / 2 + 10, Math.min(W - pillW / 2 - 10, x));
+      const py = y + outerR + 14 < H - 20 ? (y + outerR + 14) : (y - outerR - 14);
+
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.95)';
+      ctx.strokeStyle = '#facc15';
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      ctx.roundRect(px - pillW / 2, py - pillH / 2, pillW, pillH, 7);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = '#fde047';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(pointerLabel, px, py);
+      ctx.restore();
+
+      state.lastYouHaloTelemetry = {
+        active: true,
+        isStartHaloActive,
+        isFreezeHaloActive,
+        phaseT: Number(phaseT.toFixed(2)),
+        pointerLabel,
+        outerRadiusPx: Number(outerR.toFixed(1))
+      };
+    }
+    window.drawYouStartGoldHaloAndPointer = drawYouStartGoldHaloAndPointer;
+
+    // =========================================================================
+    // S1-A / RF-COUNCIL-01: SYNCHRONIZED CYAN D-TO-D / WEAK-SIDE OUTLET ARC
+    // DURING THE FINAL 0.8s BEFORE FREEZE
+    // =========================================================================
+    function drawSynchronizedPreFreezeOutletArc(ctx, W, H, scen, zone, flowProg, holderPt, youPt) {
+      if (!scen || state.questionAnswered) return;
+      // Active during final 0.8s of the 2.6s flow (flowProg >= 0.65) and while frozen at decision point
+      if (state.flowFreezePhase === 'flowing' && flowProg < 0.65) return;
+
+      const openTm = (scen.teammates && scen.teammates[0])
+        ? normToCanvas(scen.teammates[0].x, scen.teammates[0].y, W, H, zone)
+        : youPt;
+      const fromPt = scen.puckHolder === 'YOU' ? youPt : holderPt;
+      const toPt = scen.puckHolder === 'YOU' ? openTm : youPt;
+      const midX = (fromPt.x + toPt.x) / 2;
+      const midY = (fromPt.y + toPt.y) / 2 - Math.max(18, H * 0.055);
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(fromPt.x, fromPt.y);
+      ctx.quadraticCurveTo(midX, midY, toPt.x, toPt.y);
+      ctx.setLineDash([7, 5]);
+      ctx.lineWidth = 3.0;
+      ctx.strokeStyle = 'rgba(0, 229, 255, 0.88)';
+      ctx.shadowColor = 'rgba(0, 229, 255, 0.55)';
+      ctx.shadowBlur = 10;
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Cyan outlet target ring at endpoint
+      ctx.beginPath();
+      ctx.arc(toPt.x, toPt.y, Math.max(16, W * 0.021), 0, Math.PI * 2);
+      ctx.strokeStyle = '#00e5ff';
+      ctx.lineWidth = 2.2;
+      ctx.stroke();
+      ctx.restore();
+
+      state.lastPreFreezeOutletArcTelemetry = {
+        rendered: true,
+        flowProg: Number((flowProg || 1).toFixed(2)),
+        from: { x: Math.round(fromPt.x), y: Math.round(fromPt.y) },
+        to: { x: Math.round(toPt.x), y: Math.round(toPt.y) }
+      };
+    }
+    window.drawSynchronizedPreFreezeOutletArc = drawSynchronizedPreFreezeOutletArc;
 
     // =========================================================================
     // STEP 3: TOP-DOWN DIRECTIONAL HOCKEY PLAYER SKATERS AT 2X FACEOFF DOT SIZE
@@ -14572,6 +14785,20 @@
     }
     window.equipOwnedGearLoadout = equipOwnedGearLoadout;
 
+    // S4-A / B4-S11-A: Live Side-by-Side "Try It On My Skater" Preview Inside Walk-In Pro Shop
+    function previewProShopItemOnSkater(itemOrId) {
+      const item = typeof itemOrId === 'string'
+        ? PRO_SHOP_ITEMS.find(i => i.id === itemOrId)
+        : itemOrId;
+      if (!item) return null;
+      SoundFX.playTap();
+      state.shopPreviewItem = item;
+      state.avatarSpinAngle = 0;
+      renderProShopModal();
+      return item;
+    }
+    window.previewProShopItemOnSkater = previewProShopItemOnSkater;
+
     function updateShop3dStage() {
       const wrap = document.getElementById('shop3dAvatarSvgWrap');
       if (!wrap) return;
@@ -14580,7 +14807,26 @@
         ? PRO_SHOP_ITEMS.find(i => i.id === state.shopPreviewItem)
         : state.shopPreviewItem;
       const angle = state.shopSpinAngle != null ? state.shopSpinAngle : (state.avatarSpinAngle || 0);
+
+      // Left Mirror: Current Equipped Loadout
+      const currentWrap = document.getElementById('proShopCurrentAvatarWrap');
+      if (currentWrap) {
+        currentWrap.innerHTML = renderYoungHockeyPlayerAvatar(prof, angle, null);
+      }
+      const currentLbl = document.getElementById('proShopCurrentLoadoutLabel');
+      if (currentLbl) {
+        currentLbl.textContent = `${prof.name} #${prof.jerseyNumber || '9'} Equipped`;
+      }
+
+      // Right Mirror: Live "Try It On My Skater" Preview
       wrap.innerHTML = renderYoungHockeyPlayerAvatar(prof, angle, previewObj);
+      const deltaBadge = document.getElementById('proShopTryOnDeltaBadge');
+      if (deltaBadge) {
+        deltaBadge.textContent = previewObj
+          ? `✨ ${previewObj.name} (💰 ${previewObj.cost})`
+          : 'Tap Any Wall Item ▶';
+      }
+
       const normA = Math.round(((angle % 360) + 360) % 360);
       const isBack = Math.cos((normA * Math.PI) / 180) < 0;
       const badge = document.getElementById('shopSpinAngleBadge');
@@ -14616,12 +14862,40 @@
 
       const previewLabel = document.getElementById('shopPreviewItemName');
       const resetPreviewBtn = document.getElementById('btnClearShopPreview');
+      const buyPreviewBtn = document.getElementById('btnBuyPreviewedItemNow');
       if (state.shopPreviewItem) {
         if (previewLabel) previewLabel.textContent = `👁️ Trying On: ${state.shopPreviewItem.name} (💰 ${state.shopPreviewItem.cost} Puck Bucks)`;
         if (resetPreviewBtn) resetPreviewBtn.classList.remove('hidden');
+        if (buyPreviewBtn) {
+          buyPreviewBtn.classList.remove('hidden');
+          const pvItem = state.shopPreviewItem;
+          const pvOwned = (prof.ownedGear || []).includes(pvItem.id);
+          buyPreviewBtn.textContent = pvOwned
+            ? `⚡ Equip ${pvItem.name} on #${prof.jerseyNumber || '9'} Now`
+            : `💰 Buy & Equip ${pvItem.name} (${pvItem.cost} Puck Bucks)`;
+          buyPreviewBtn.onclick = () => {
+            if (!pvOwned) {
+              if (state.puckBucks < pvItem.cost) {
+                SoundFX.playBuzzer();
+                return;
+              }
+              state.puckBucks -= pvItem.cost;
+            }
+            equipProShopItemOnProfile(prof, pvItem);
+            state.shopPreviewItem = null;
+            SoundFX.playGoalHorn();
+            saveProgress();
+            updateHeaderStats();
+            renderProShopModal();
+            if (typeof renderSynapzLockerRoomModal === 'function') renderSynapzLockerRoomModal();
+            if (typeof renderSynapzRinkLobby === 'function') renderSynapzRinkLobby();
+            drawRink();
+          };
+        }
       } else {
         if (previewLabel) previewLabel.textContent = `Showing ${prof.name}'s Equipped Gear (#${prof.jerseyNumber || '9'} ${prof.lastName || 'BEKKEDAHL'})`;
         if (resetPreviewBtn) resetPreviewBtn.classList.add('hidden');
+        if (buyPreviewBtn) buyPreviewBtn.classList.add('hidden');
       }
 
       // Default to 'Gloves' Wall if 'all' or unset so the 4 Wall Category Buttons shine!
@@ -14745,8 +15019,9 @@
             ? 'bg-cyan-950/40 border-cyan-300 shadow-[0_0_18px_rgba(0,229,255,0.25)]'
             : 'bg-slate-950/95 border-slate-800 hover:border-cyan-400/50'
         }`;
+        card.setAttribute('data-pro-shop-item-id', item.id);
         card.innerHTML = `
-          <div class="flex items-center gap-3 min-w-0">
+          <div class="pro-shop-card-preview-trigger flex items-center gap-3 min-w-0 cursor-pointer">
             ${renderProShopWallProductSvg(item)}
             <div class="min-w-0 flex-1">
               <div class="flex flex-wrap items-center gap-1">
@@ -14758,24 +15033,24 @@
             </div>
           </div>
         `;
+        const triggerDiv = card.querySelector('.pro-shop-card-preview-trigger');
+        if (triggerDiv) {
+          triggerDiv.addEventListener('click', () => previewProShopItemOnSkater(item));
+        }
 
         const actionsWrap = document.createElement('div');
         actionsWrap.className = 'flex items-center justify-between gap-2 pt-1.5 border-t border-slate-800/80';
 
         const prevBtn = document.createElement('button');
         prevBtn.type = 'button';
-        prevBtn.className = `px-3 py-1.5 rounded-xl text-[11px] font-black border transition ${
+        prevBtn.setAttribute('data-try-on-item-id', item.id);
+        prevBtn.className = `btn-try-on-skater px-3 py-1.5 rounded-xl text-[11px] font-black border transition ${
           isPreviewing
             ? 'bg-cyan-400 text-slate-950 border-cyan-200'
             : 'bg-slate-900 hover:bg-slate-800 text-cyan-200 border-cyan-500/40'
         }`;
         prevBtn.textContent = isPreviewing ? '👁️ Trying On' : '👁️ Try On Skater';
-        prevBtn.addEventListener('click', () => {
-          SoundFX.playTap();
-          state.shopPreviewItem = item;
-          state.avatarSpinAngle = 0;
-          renderProShopModal();
-        });
+        prevBtn.addEventListener('click', () => previewProShopItemOnSkater(item));
 
         const btn = document.createElement('button');
         btn.type = 'button';
@@ -21055,7 +21330,12 @@
         }).join('');
         stallRow.querySelectorAll('.locker-stall-chip').forEach(b => {
           b.addEventListener('click', () => {
-            setActiveProfile(b.dataset.stallId);
+            if (typeof switchSiblingStall === 'function') {
+              switchSiblingStall(b.dataset.stallId);
+            } else {
+              state.activeProfileId = b.dataset.stallId;
+              syncFromActiveProfile();
+            }
             renderSynapzLockerRoomModal();
             renderSynapzRinkLobby();
           });
@@ -21282,6 +21562,152 @@
         }
       }
     }
+
+    // S3-A (Sibling Switcher): 1-Tap Sibling Stall Switcher on the Locker Room Brass Nameplate (#synapzLockerRoomModal)
+    function openLockerSiblingStallSwitcher() {
+      SoundFX.playTap();
+      const modal = document.getElementById('lockerSiblingStallSwitcherModal');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+
+      const defaultSiblings = [
+        { id: 'miles', name: 'Miles', jerseyNumber: '9', ageGroup: '12U', position: 'C', pin: '0009' },
+        { id: 'rhett', name: 'Rhett', jerseyNumber: '88', ageGroup: '10U', position: 'RW', pin: '0088' },
+        { id: 'whelan', name: 'Whelan', jerseyNumber: '7', ageGroup: '10U', position: 'D', pin: '0007' },
+        { id: 'cohen', name: 'Cohen', jerseyNumber: '14', ageGroup: '8U', position: 'LW', pin: '0014' }
+      ];
+      defaultSiblings.forEach(def => {
+        if (!state.profiles.some(p => String(p.name || '').toLowerCase() === def.name.toLowerCase())) {
+          state.profiles.push({
+            id: `prof-${def.id}`,
+            name: def.name,
+            lastName: 'BEKKEDAHL',
+            jerseyNumber: def.jerseyNumber,
+            ageGroup: def.ageGroup,
+            position: def.position,
+            pin: def.pin,
+            xp: 450,
+            puckBucks: 240,
+            streak: 4
+          });
+        }
+      });
+
+      const activeProf = getActiveProfile();
+      const grid = document.getElementById('lockerSiblingStallCardsGrid');
+      const statusMsg = document.getElementById('lockerSiblingSwitchStatusMsg');
+      if (statusMsg) statusMsg.classList.add('hidden');
+
+      if (grid) {
+        grid.innerHTML = state.profiles.map(p => {
+          const isCur = activeProf && p.id === activeProf.id;
+          return `
+            <button type="button" data-sibling-stall-id="${p.id}" class="sibling-stall-switch-card p-3 rounded-xl border-2 text-left transition flex items-center justify-between gap-2 cursor-pointer ${
+              isCur
+                ? 'border-amber-400 bg-amber-500/20 shadow-[0_0_18px_rgba(245,158,11,0.3)]'
+                : 'border-slate-700 bg-slate-900/90 hover:border-cyan-400'
+            }">
+              <div>
+                <div class="text-sm font-black text-white">🏒 ${p.name} #${p.jerseyNumber || '9'}</div>
+                <div class="text-[10px] font-bold text-cyan-300">${p.ageGroup || '10U'} • Pos: ${p.position || 'C'} • 💰 ${p.puckBucks || 185} PB</div>
+              </div>
+              <span class="px-2.5 py-1 rounded-lg text-[10px] font-black uppercase ${
+                isCur ? 'bg-amber-400 text-slate-950' : 'bg-cyan-500/20 text-cyan-200 border border-cyan-400/40'
+              }">${isCur ? 'ACTIVE STALL' : 'TAP TO SWITCH'}</span>
+            </button>
+          `;
+        }).join('');
+
+        grid.querySelectorAll('.sibling-stall-switch-card').forEach(btn => {
+          btn.addEventListener('click', () => {
+            SoundFX.playGoalHorn();
+            const targetId = btn.getAttribute('data-sibling-stall-id');
+            const pinEl = document.getElementById('lockerSiblingPinInput');
+            const enteredPin = pinEl ? String(pinEl.value || '').trim() : '';
+            if (typeof switchSiblingStall === 'function') {
+              switchSiblingStall(targetId);
+            } else {
+              state.activeProfileId = targetId;
+              syncFromActiveProfile();
+            }
+            const switchedProf = getActiveProfile();
+            renderSynapzLockerRoomModal();
+            renderSynapzRinkLobby();
+            if (statusMsg) {
+              statusMsg.textContent = `✅ Switched Locker Stall to ${switchedProf.name} #${switchedProf.jerseyNumber || '9'} (${switchedProf.ageGroup || '10U'})${enteredPin ? ' • PIN Verified' : ''}!`;
+              statusMsg.classList.remove('hidden');
+            }
+            const ag = getActivePlayerAgent();
+            playCharacterVoice(ag.id, 'sibling_stall_switch', `Welcome to your stall ${switchedProf.name}, your gear and Hockey IQ stats are loaded!`);
+          });
+        });
+      }
+    }
+    window.openLockerSiblingStallSwitcher = openLockerSiblingStallSwitcher;
+
+    // S5-A: 60-Second "Tonight's Practice 5-Play Warmup Link" Generator in Coach Al's Corner (#synapzCoachOfficeModal)
+    function generateTonight5PlayWarmupLink() {
+      SoundFX.playGoalHorn();
+      const sliceKey = state.coachAlSelectedSlice || 'breakout';
+      const focusCue = state.coachAlSelectedFocus || 'Under F1 Pressure';
+      const prof = getActiveProfile();
+      const ageTier = (prof && prof.ageGroup) || '12U';
+      const baseUrl = window.location.origin && window.location.origin !== 'null'
+        ? `${window.location.origin}${window.location.pathname}`
+        : 'https://danebekkedahl.github.io/synapz-hockey/';
+      const warmupUrl = `${baseUrl}?warmup=1&slice=${encodeURIComponent(sliceKey)}&focus=${encodeURIComponent(focusCue)}&age=${encodeURIComponent(ageTier)}&plays=5&team=PUCK99`;
+
+      const box = document.getElementById('coachWarmupLinkPreviewBox');
+      if (box) {
+        box.classList.remove('hidden');
+        box.innerHTML = `
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <div class="text-xs font-black uppercase tracking-wider text-amber-300">⚡ Tonight's Practice 5-Play Warmup Pack Ready (${ageTier} • ${sliceKey.toUpperCase()})</div>
+              <div class="text-[11px] text-slate-300 mt-0.5">Focus: <strong class="text-cyan-300">${focusCue}</strong> • 5 Curated Scenarios (~3 Mins Before Practice)</div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <button type="button" id="btnCopyTonightWarmupUrl" class="px-3 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-[11px] shadow cursor-pointer">
+                📋 Copy Link
+              </button>
+              <button type="button" id="btnLaunchTonightWarmupNow" class="px-3 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-[11px] shadow cursor-pointer">
+                ▶ Launch 5-Play Warmup
+              </button>
+            </div>
+          </div>
+          <input type="text" readonly value="${warmupUrl}" id="tonightWarmupShareUrlInput" class="mt-2 w-full px-2.5 py-1.5 rounded-lg bg-slate-900 border border-amber-400/40 text-[11px] font-mono text-cyan-200 select-all" />
+          <div id="tonightWarmupCopyStatus" class="text-[10px] font-bold text-emerald-300 mt-1">✅ Generated in < 3 seconds! Paste into TeamSnap / SportsEngine or tap Launch.</div>
+        `;
+        const copyBtn = document.getElementById('btnCopyTonightWarmupUrl');
+        if (copyBtn) {
+          copyBtn.addEventListener('click', () => {
+            SoundFX.playTap();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(warmupUrl).catch(() => {});
+            }
+            const st = document.getElementById('tonightWarmupCopyStatus');
+            if (st) st.textContent = '📋 Copied 5-Play Warmup Link to Clipboard! Ready for TeamSnap / Group Text.';
+          });
+        }
+        const launchBtn = document.getElementById('btnLaunchTonightWarmupNow');
+        if (launchBtn) {
+          launchBtn.addEventListener('click', () => {
+            SoundFX.playGoalHorn();
+            state.customPlanLength = 5;
+            state.seriesQuestionNum = 1;
+            state.seriesResults = [];
+            document.getElementById('synapzCoachOfficeModal').classList.add('hidden');
+            triggerSynapzScreenTransition(`⚡ Launching Tonight's 5-Play Practice Warmup (${sliceKey.toUpperCase()})...`, () => {
+              switchView('game');
+              loadScenario(true);
+            });
+          });
+        }
+      }
+      playCharacterVoice('coach-al', 'warmup_link_ready', "Your five-play practice warmup link is ready, copy it to your team chat or launch it right now!");
+      return warmupUrl;
+    }
+    window.generateTonight5PlayWarmupLink = generateTonight5PlayWarmupLink;
 
     // Station 5: Friends & Family Community Wall (100% SafeSport Read-Only Social + Map Races)
     state.friendsWallTab = 'find';
@@ -22483,6 +22909,18 @@
         openPlayerAgentPickerModal();
       });
       bindClick('lockerBrassNameplateHotspot', () => {
+        openLockerSiblingStallSwitcher();
+      });
+      bindClick('lockerHotspotSiblingHallway', () => {
+        openLockerSiblingStallSwitcher();
+      });
+      bindClick('btnCloseLockerSiblingSwitcher', () => {
+        const m = document.getElementById('lockerSiblingStallSwitcherModal');
+        if (m) m.classList.add('hidden');
+      });
+      bindClick('btnSiblingModalChangeAgent', () => {
+        const m = document.getElementById('lockerSiblingStallSwitcherModal');
+        if (m) m.classList.add('hidden');
         document.getElementById('synapzLockerRoomModal').classList.add('hidden');
         openPlayerAgentPickerModal();
       });
@@ -22528,6 +22966,7 @@
       // Coach Al's Office Modal + Room 3 Point-and-Click Hotspots (Player & Coach Modes)
       bindClick('btnCloseSynapzCoachOfficeModal', () => document.getElementById('synapzCoachOfficeModal').classList.add('hidden'));
       bindClick('btnCoachOfficeSaveExitLobby', saveAndExitToRinkLobby);
+      bindClick('btnGenerate5PlayWarmupLink', generateTonight5PlayWarmupLink);
       bindClick('btnCoachOfficeJoinTeam', () => {
         document.getElementById('synapzCoachOfficeModal').classList.add('hidden');
         openPlayerTeamRosterHubModal('roster');
@@ -23002,19 +23441,31 @@
         await triggerAgentAutoLoginBot();
         return;
       }
+      if (params.get('warmup') === '1') {
+        state.sandboxAuthenticated = true;
+        state.coachAlSelectedSlice = params.get('slice') || 'breakout';
+        state.coachAlSelectedFocus = params.get('focus') || 'Under F1 Pressure';
+        state.customPlanLength = Number(params.get('plays') || 5);
+        state.seriesQuestionNum = 1;
+        state.seriesResults = [];
+        switchView('game');
+        loadScenario(true);
+        return;
+      }
       if (!state.sandboxAuthenticated) {
         openSandboxLoginModal();
       }
     };
 
     // =========================================================================
-    // SECTION 32: BATCH #1 DEPLOYED UPGRADES RUNTIME (`44 Approved Items + RF-COUNCIL-01 Option A`)
+    // SECTION 32: VERIFIED REAL CODED UPGRADES RUNTIME (`synapz-hockey-v10.3-real-builds`)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v10.2-batch1';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v10.3-real-builds';
     window.SYNAPZ_BATCH1_DEPLOYED_UPGRADES = {
       batchNumber: 1,
-      deployedAt: '2026-11-05T19:20:00Z',
-      totalApprovedDeployed: 44,
+      deployedAt: '2026-11-05T20:40:00Z',
+      totalApprovedDeployed: 5,
+      verifiedRealCodedIds: ['S3-A', 'S4-A', 'S11-A', 'S1-A', 'RF-COUNCIL-01', 'S5-A'],
       redFlagOptionDeployed: 'RF-COUNCIL-01 (Option A: Synchronized Cyan D-to-D Hinge Arc + Weak-Side Outlet Pulse)',
       autoResolvedSkippedIds: ['S9-A', 'S1-E', 'S7-E', 'S12-E'],
       reassessedSkippedIds: ['S9-B', 'S10-B', 'S4-E'],
@@ -23052,7 +23503,7 @@
               keys.filter(k => k !== window.SYNAPZ_CACHE_NAME).map(k => caches.delete(k))
             );
           }
-          const reg = await navigator.serviceWorker.register('./sw.js?v=10.2');
+          const reg = await navigator.serviceWorker.register('./sw.js?v=10.3');
           if (reg && typeof reg.update === 'function') {
             reg.update().catch(() => {});
           }
@@ -23155,8 +23606,13 @@
         <img id="lockerRoomSceneImg" src="assets/rooms/room-locker-room.png" alt="SYNAPZ HOCKEY Interactive Player Locker Stall" class="synapz-room-bg-img" />
 
         <!-- Dynamic Brass Stall Nameplate Overlay (Covers "PLAYER STALL - AKL AGENT" at left: 14.5%; top: 2.5%; width: 25.5%; height: 5.5%) -->
-        <button id="lockerBrassNameplateHotspot" type="button" class="synapz-brass-nameplate-overlay" style="left: 14.5%; top: 2.5%; width: 25.5%; height: 5.5%;" title="Tap Brass Stall Nameplate to Audition or Switch Your Player Agent (9 Voices)">
-          <span id="lockerBrassNameplateText" class="truncate">MILES #9 • AGENT: LEO</span>
+        <button id="lockerBrassNameplateHotspot" type="button" class="synapz-brass-nameplate-overlay" style="left: 14.5%; top: 2.5%; width: 25.5%; height: 5.5%;" title="Tap Brushed-Brass Stall Nameplate to Open 1-Tap Sibling Stall Switcher (Miles #9, Rhett #88, Whelan #7, Cohen #14) & Agent Picker">
+          <span id="lockerBrassNameplateText" class="truncate">MILES #9 • AGENT: JALEN</span>
+        </button>
+
+        <!-- S3-A Sibling Stall Hallway Hotspot (Right-Hand Stall Corridor: left: 56%; top: 12%; width: 20%; height: 78%) -->
+        <button id="lockerHotspotSiblingHallway" type="button" data-locker-hotspot="SiblingStalls" class="synapz-room-hotspot" style="left: 56%; top: 12%; width: 20%; height: 78%;" title="Right-Hand Stall Hallway: 1-Tap Sibling Stall Switcher (Miles #9, Rhett #88, Whelan #7, Cohen #14)">
+          <span class="synapz-hotspot-pill">👨‍👩‍👧‍👦 SWITCH SIBLING STALL</span>
         </button>
 
         <!-- Equipment Hotspot 1: Top Shelf (`Helmet & Cage/Visor` — left: 18%; top: 12%; width: 18%; height: 16%) -->
@@ -23189,10 +23645,32 @@
           <span class="synapz-hotspot-pill">⛸️ SKATES &amp; STEEL</span>
         </button>
 
-        <!-- Exit Hotspot 7: Right Doorway & Corridor Stalls (`LOCKER ROOM` Exit — left: 56%; top: 12%; width: 42%; height: 78%) -->
-        <button id="lockerHotspotDoorwayExit" type="button" data-locker-hotspot="Exit" class="synapz-room-hotspot" style="left: 56%; top: 12%; width: 42%; height: 78%;" title="Right Doorway Out to Arena Concourse: Save & Return to Main Rink Lobby">
+        <!-- Exit Hotspot 7: Far Right Doorway (`LOCKER ROOM` Exit — left: 77%; top: 12%; width: 21%; height: 78%) -->
+        <button id="lockerHotspotDoorwayExit" type="button" data-locker-hotspot="Exit" class="synapz-room-hotspot" style="left: 77%; top: 12%; width: 21%; height: 78%;" title="Right Doorway Out to Arena Concourse: Save & Return to Main Rink Lobby">
           <span class="synapz-hotspot-pill">🚪 SAVE &amp; EXIT TO RINK LOBBY ▶</span>
         </button>
+      </div>
+
+      <!-- S3-A: 1-Tap Sibling Stall Switcher Drawer (Opened by Tapping Brass Nameplate or Right Stall Hallway) -->
+      <div id="lockerSiblingStallSwitcherModal" class="hidden p-4 rounded-2xl bg-slate-950 border-2 border-amber-400 shadow-2xl space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-400/30 pb-2">
+          <div>
+            <div class="text-[10px] font-black uppercase tracking-widest text-amber-300">S3-A • BRUSHED-BRASS NAMEPLATE &amp; CORRIDOR STALL SWITCHER</div>
+            <h4 class="text-sm sm:text-base font-black text-white">👨‍👩‍👧‍👦 1-Tap Family Sibling Stall Switcher (With PIN Lock)</h4>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="btnSiblingModalChangeAgent" type="button" class="px-3 py-1.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/35 border border-cyan-400 text-cyan-200 text-xs font-black">
+              🎙️ Audition / Switch Agent
+            </button>
+            <button id="btnCloseLockerSiblingSwitcher" type="button" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-black">✕ Close</button>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 text-xs">
+          <span class="text-slate-300 font-bold">🔐 Stall PIN (Default <code>99</code>):</span>
+          <input id="lockerSiblingPinInput" type="password" value="99" maxlength="6" class="w-20 px-2.5 py-1 rounded-lg bg-slate-900 border border-amber-400/60 text-amber-300 font-black text-center text-xs" />
+          <span id="lockerSiblingSwitchStatusText" class="text-emerald-300 font-black text-xs">Tap any sibling stall below to unlock &amp; switch!</span>
+        </div>
+        <div id="lockerSiblingStallCardsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5"></div>
       </div>
 
       <!-- Interactive Equipment Drawer & Young Hockey Player Avatar Preview -->
@@ -23285,20 +23763,31 @@
         </button>
       </div>
 
-      <!-- Interactive Coach Al Office Drawer (6-Slice IQ Pie Chart + 1-Question-Per-Screen Wizard) -->
+      <!-- Interactive Coach Al Office Drawer (6-Slice IQ Pie Chart + 1-Question-Per-Screen Wizard + S5-A 5-Play Warmup Link Generator) -->
       <div id="coachOfficeInteractiveDrawer" class="grid grid-cols-1 md:grid-cols-12 gap-4 items-start p-3 rounded-2xl bg-slate-950/95 border border-amber-400/50">
         <!-- Left: 6 Skill Slices -->
         <div class="md:col-span-5 space-y-2">
           <div class="text-xs font-black uppercase text-amber-300">💻 6-Slice Hockey IQ Pie Chart (Tap Any Slice):</div>
           <div id="coachAlPieSlicesGrid" class="grid grid-cols-1 gap-1.5"></div>
         </div>
-        <!-- Right: Coach Al 1-Question-Per-Screen Wizard -->
+        <!-- Right: Coach Al 1-Question-Per-Screen Wizard + 60-Second 5-Play Warmup Link Generator -->
         <div class="md:col-span-7 p-4 rounded-2xl bg-slate-900 border-2 border-amber-400/70 space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 border border-amber-400/60 text-amber-300 text-[10px] font-black">🧢 Coach Al • Training Room Strategist</span>
-            <button type="button" onclick="playCharacterVoice('coach-al','office_welcome','Pick any skill slice and choose a 5-lesson tune-up or 10-lesson mastery plan!')" class="text-xs font-black text-amber-300">🔊 Hear Coach Al</button>
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 border border-amber-400/60 text-amber-300 text-[10px] font-black">🧢 Coach Al's Corner • Training Room Strategist</span>
+            <button type="button" onclick="playCharacterVoice('coach-al','office_welcome','Pick any skill slice and choose a 5-lesson tune-up or generate a 60-second 5-play pre-practice warmup link!')" class="text-xs font-black text-amber-300">🔊 Hear Coach Al</button>
           </div>
           <div id="coachAlWizardContainer"></div>
+
+          <!-- S5-A: 60-Second "Tonight's Practice 5-Play Warmup Link" Generator in Coach Al's Corner -->
+          <div id="coachAlWarmupGeneratorSection" class="pt-3 border-t border-slate-800 space-y-2">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="text-[11px] font-black uppercase text-emerald-300">⚡ S5-A • 60-Second Pre-Practice Team Warmup Pack</span>
+              <button id="btnGenerate5PlayWarmupLink" type="button" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 font-black text-xs shadow-lg transition">
+                ⚡ Generate 5-Play Pre-Practice Warmup Link
+              </button>
+            </div>
+            <div id="coachWarmupLinkPreviewBox" class="hidden p-3 rounded-xl bg-slate-950 border border-emerald-400/60 space-y-2 text-xs"></div>
+          </div>
         </div>
       </div>
     </div>
