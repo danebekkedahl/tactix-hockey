@@ -43,8 +43,7 @@ const FILES_TO_DEPLOY = [
   { rel: 'deploy-github-pages.js', encoding: 'utf-8' },
   { rel: 'generate-natural-voices.js', encoding: 'utf-8' },
   { rel: 'assets/audio/voices/voice-manifest.json', encoding: 'utf-8' },
-  { rel: '.github/workflows/nightly-tactix-harvest.yml', encoding: 'utf-8' },
-  { rel: '.github/workflows/deploy-approved-batch.yml', encoding: 'utf-8' },
+  { rel: '.nojekyll', encoding: 'utf-8' },
   { rel: '.gitignore', encoding: 'utf-8' },
   { rel: 'assets/synapz-logo.png', encoding: 'base64' },
   { rel: 'assets/synapz-splash-bg.png', encoding: 'base64' },
@@ -199,7 +198,9 @@ function mirrorAndChecksumVerifyWorkspaces(filesList) {
   const extraMirrorFiles = [
     'FOUNDER_EMAIL_DIGEST_LATEST.html',
     'deep_playtest_telemetry.json',
-    'generate-tactix-bank.js'
+    'generate-tactix-bank.js',
+    '.github/workflows/nightly-tactix-harvest.yml',
+    '.github/workflows/deploy-approved-batch.yml'
   ];
   const allRelativePaths = Array.from(new Set([
     ...filesList.map(f => f.rel),
@@ -379,7 +380,7 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
 
   // 5. Create Commit
   const commitRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/commits`, token, 'POST', {
-    message: `Deploy SYNAPZ HOCKEY v10.3-real-builds (5 Real Coded Upgrades in index.html + Verified Supabase UPSERT on report.html + Zero Fake Status Flipping)`,
+    message: `Deploy SYNAPZ HOCKEY v10.7-phone-card-layout (390px Full-Width Vertical Phone Cards + 2x2 Tactile Decision Grid + Clean Single-Run Pages Deployment)`,
     tree: treeRes.data.sha,
     parents: [baseCommitSha]
   });
@@ -387,7 +388,8 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
     throw new Error(`Failed to create commit: ${JSON.stringify(commitRes.data)}`);
   }
 
-  // 6. Update refs/heads/main
+  // 6. Update refs/heads/main (NOTE: this automatically triggers GitHub's native 'pages build and deployment' workflow!
+  //    Do NOT call POST /pages/builds right after PATCH /refs/heads/main, or a second concurrent Pages build will cancel the first!)
   const updateRefRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/refs/heads/main`, token, 'PATCH', {
     sha: commitRes.data.sha,
     force: true
@@ -397,7 +399,7 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
   }
   console.log(`✅ Pushed commit ${commitRes.data.sha.slice(0, 7)} to ${owner}/${REPO_NAME}@main!`);
 
-  // 7. Enable GitHub Pages on main branch & trigger immediate Pages build
+  // 7. Ensure GitHub Pages is enabled on main branch (without triggering a conflicting duplicate build)
   const pagesCheck = await ghApi(`/repos/${owner}/${REPO_NAME}/pages`, token);
   if (!pagesCheck.ok) {
     const enablePages = await ghApi(`/repos/${owner}/${REPO_NAME}/pages`, token, 'POST', {
@@ -405,15 +407,59 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
     });
     console.log(`🌐 Enabled GitHub Pages (HTTP ${enablePages.status})`);
   } else {
-    console.log(`🌐 GitHub Pages already active at ${pagesCheck.data.html_url}`);
+    console.log(`🌐 GitHub Pages active at ${pagesCheck.data.html_url}`);
   }
-  await ghApi(`/repos/${owner}/${REPO_NAME}/pages/builds`, token, 'POST');
+
+  // 8. Monitor the commit's 'pages build and deployment' workflow run to ensure it completes with conclusion === 'success'
+  console.log(`⏳ Waiting for GitHub Actions 'pages build and deployment' for ${commitRes.data.sha.slice(0, 7)}...`);
+  await new Promise(r => setTimeout(r, 4000));
+  const maxPollMs = 150000;
+  const pollStart = Date.now();
+  let retriedOnce = false;
+  while (Date.now() - pollStart < maxPollMs) {
+    const runsRes = await ghApi(`/repos/${owner}/${REPO_NAME}/actions/runs?per_page=5`, token);
+    if (runsRes.ok && runsRes.data && Array.isArray(runsRes.data.workflow_runs)) {
+      const matchingRun = runsRes.data.workflow_runs.find(r => r.head_sha === commitRes.data.sha && r.name === 'pages build and deployment') || runsRes.data.workflow_runs[0];
+      if (matchingRun) {
+        if (matchingRun.status === 'completed') {
+          if (matchingRun.conclusion === 'success') {
+            console.log(`✅ GitHub Actions 'pages build and deployment' SUCCEEDED for ${owner}/${REPO_NAME} (${commitRes.data.sha.slice(0, 7)})!`);
+            break;
+          } else if (!retriedOnce) {
+            retriedOnce = true;
+            console.log(`⚠️ Run ${matchingRun.id} finished with conclusion=${matchingRun.conclusion}; triggering a single clean Pages build after 3s...`);
+            await new Promise(r => setTimeout(r, 3000));
+            await ghApi(`/repos/${owner}/${REPO_NAME}/pages/builds`, token, 'POST');
+            await new Promise(r => setTimeout(r, 5000));
+            continue;
+          } else {
+            console.log(`⚠️ Run ${matchingRun.id} conclusion: ${matchingRun.conclusion}`);
+            break;
+          }
+        }
+      }
+    }
+    await new Promise(r => setTimeout(r, 5000));
+  }
 
   const liveUrl = `https://${owner}.github.io/${REPO_NAME}/`;
   const reportUrl = `https://${owner}.github.io/${REPO_NAME}/report.html`;
+  if (REPO_NAME === 'synapz-hockey') {
+    for (let attempt = 1; attempt <= 12; attempt++) {
+      try {
+        const res = await fetch(`${reportUrl}?t=${Date.now()}`, { headers: { 'Cache-Control': 'no-cache' } });
+        const html = await res.text();
+        if (html.includes('V10.7 PHONE-FIRST AUTONOMOUS LOOP')) {
+          console.log(`✅ Verified live ${reportUrl} is serving V10.7 PHONE-FIRST AUTONOMOUS LOOP!`);
+          break;
+        }
+      } catch (_) {}
+      await new Promise(r => setTimeout(r, 3000));
+    }
+  }
   console.log(`🚀 LIVE PRODUCTION URL: ${liveUrl}`);
   console.log(`📊 LIVE ANALYTICS URL:  ${reportUrl}`);
-  return { owner, repo: REPO_NAME, liveUrl, reportUrl };
+  return { owner, repo: REPO_NAME, commitSha: commitRes.data.sha, liveUrl, reportUrl };
 }
 
 async function deployToGitHubPages(token) {

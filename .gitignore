@@ -1,4 +1,4 @@
-# Tactix Hockey — Security & Credential Ignore Rules
+# Tactix / Synapz Hockey — Security, Temp & Credential Ignore Rules
 .tactix_gh_token
 **/.tactix_gh_token
 .env
@@ -7,3 +7,7 @@
 *.key
 *service_role*
 node_modules/
+.tmp*
+**/.tmp*
+chromium-user-data*/
+.playwright*/

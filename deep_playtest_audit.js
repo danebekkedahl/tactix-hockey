@@ -3178,6 +3178,87 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     await reportPage.goto('http://localhost:8080/report.html', { waitUntil: 'networkidle', timeout: 30000 });
     await reportPage.waitForTimeout(900);
 
+    // ISSUE 4: 390×844 Headless Chrome Visual Overflow & Button Bounding-Box Assertion
+    const phone390VisualAudit = await reportPage.evaluate(() => {
+      const docScrollWidth = document.documentElement.scrollWidth;
+      const bodyScrollWidth = document.body.scrollWidth;
+      const headerText = (document.querySelector('header')?.innerText || '').toUpperCase();
+      const deployBtnEl = document.getElementById('btnTriggerRemoteBatchDeploy');
+      const deployBtnTextInitial = (deployBtnEl?.textContent || '').trim();
+
+      const decisionSelectors = [
+        '.founder-decision-btn',
+        '.btn-report-approve-idea',
+        '.btn-report-skip-idea',
+        '.btn-report-explain-idea',
+        '.btn-report-reject-idea',
+        '#btnTriggerRemoteBatchDeploy'
+      ];
+      const allDecisionBtns = Array.from(document.querySelectorAll(decisionSelectors.join(',')));
+      const clippedButtons = [];
+      allDecisionBtns.forEach((btn, idx) => {
+        const style = window.getComputedStyle(btn);
+        if (style.display === 'none' || style.visibility === 'hidden') return;
+        const rect = btn.getBoundingClientRect();
+        if (rect.width === 0 && rect.height === 0) return;
+        if (rect.left < -0.5 || rect.right > 390.5) {
+          clippedButtons.push({
+            idx,
+            text: (btn.textContent || '').trim().slice(0, 40),
+            left: Number(rect.left.toFixed(1)),
+            right: Number(rect.right.toFixed(1)),
+            width: Number(rect.width.toFixed(1))
+          });
+        }
+      });
+
+      const overflowingElements = [];
+      if (docScrollWidth > 390) {
+        document.querySelectorAll('*').forEach(el => {
+          const r = el.getBoundingClientRect();
+          if (r.right > 390.5) {
+            overflowingElements.push({
+              tag: el.tagName,
+              id: el.id || '',
+              cls: (el.className && typeof el.className === 'string') ? el.className.slice(0, 60) : '',
+              right: Number(r.right.toFixed(1)),
+              width: Number(r.width.toFixed(1))
+            });
+          }
+        });
+      }
+
+      return {
+        viewportWidth: window.innerWidth,
+        viewportHeight: window.innerHeight,
+        docScrollWidth,
+        bodyScrollWidth,
+        zeroHorizontalOverflow: docScrollWidth <= 390,
+        decisionButtonsChecked: allDecisionBtns.length,
+        clippedButtonsCount: clippedButtons.length,
+        clippedButtons: clippedButtons.slice(0, 10),
+        overflowingElements: overflowingElements.slice(0, 10),
+        hasV107Header: headerText.includes('V10.7 PHONE-FIRST AUTONOMOUS LOOP'),
+        hasNoLegacyV91Header: !headerText.includes('V9.1 SYNAPZ REBRAND'),
+        deployBtnTextInitial,
+        hasNoDeadAgentText: !deployBtnTextInitial.includes('Ready for AI Coding Agent')
+      };
+    });
+
+    console.log('📱 390×844 Phone Card Layout Visual Audit:', JSON.stringify(phone390VisualAudit));
+    if (!phone390VisualAudit.zeroHorizontalOverflow) {
+      throw new Error(`390px Horizontal Overflow Detected: documentElement.scrollWidth=${phone390VisualAudit.docScrollWidth} > 390! Overflowing: ${JSON.stringify(phone390VisualAudit.overflowingElements)}`);
+    }
+    if (phone390VisualAudit.clippedButtonsCount > 0) {
+      throw new Error(`390px Clipped Decision Buttons Detected (${phone390VisualAudit.clippedButtonsCount}): ${JSON.stringify(phone390VisualAudit.clippedButtons)}`);
+    }
+    if (!phone390VisualAudit.hasV107Header || !phone390VisualAudit.hasNoLegacyV91Header) {
+      throw new Error(`Header Badge Mismatch on report.html: hasV107Header=${phone390VisualAudit.hasV107Header}, hasNoLegacyV91Header=${phone390VisualAudit.hasNoLegacyV91Header}`);
+    }
+    if (!phone390VisualAudit.hasNoDeadAgentText) {
+      throw new Error(`#btnTriggerRemoteBatchDeploy contains forbidden 'Ready for AI Coding Agent' text!`);
+    }
+
     const reportUpsertVerification = await reportPage.evaluate(async () => {
       // Simulate Coach Dane & Coach Evan on 390x844 iPhone:
       // 1) Approve 3 items (S1-F, S3-F, S9-F)
@@ -3188,23 +3269,28 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       const skp1 = await window.setReportFounderIdeaDecision('S2-F', 'skipped_reassess_next_run');
       const skp2 = await window.setReportFounderIdeaDecision('S5-F', 'skipped_reassess_next_run');
       const barBeforeDeploy = document.getElementById('founderBatchCartCountsText')?.textContent || '';
+      const deployBtnWhenApproved = (document.getElementById('btnTriggerRemoteBatchDeploy')?.textContent || '').trim();
 
-      // 3) Tap #btnTriggerRemoteBatchDeploy ([🚀 DEPLOY APPROVED & GENERATE NEXT 12-IDEA AUDIT NOW])
+      // 3) Tap #btnTriggerRemoteBatchDeploy ([🚀 DEPLOY 3 APPROVED & GENERATE NEXT 12-IDEA AUDIT NOW])
       const loopResult = await window.runCloudBatchDeployAndNextAuditFromPhone();
       const firstRowIdAfterDeploy = window.REPORT_BOARD_30_IDEA_DIGEST && window.REPORT_BOARD_30_IDEA_DIGEST[0] ? window.REPORT_BOARD_30_IDEA_DIGEST[0].id : '';
       const heatmapScenariosAfter = document.getElementById('seat13HeatmapScenarios')?.textContent || '';
       const receiptHeadlineAfter = document.getElementById('batchReceiptHeadline')?.textContent || '';
+      const deployBtnWhenZeroApproved = (document.getElementById('btnTriggerRemoteBatchDeploy')?.textContent || '').trim();
 
       return {
         approveCloudSaved: Boolean(app1?.ok && app2?.ok && app3?.ok && skp1?.ok && skp2?.ok),
         approveHttpStatus: app1 ? app1.status : 0,
         barBeforeDeploy,
+        deployBtnWhenApproved,
+        deployBtnWhenZeroApproved,
         phoneAutonomousLoopResult: loopResult,
         firstRowIdAfterDeploy,
         heatmapScenariosAfter,
         receiptHeadlineAfter
       };
     });
+    reportUpsertVerification.phone390VisualAudit = phone390VisualAudit;
 
     await reportPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_phone_autonomous_loop_v106.png') });
     capturedScreenshots.audit_phone_autonomous_loop_v106 = 'screenshots/audit_phone_autonomous_loop_v106.png';

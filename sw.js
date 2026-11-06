@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v10.6-phone-autonomous-loop';
+const CACHE_NAME = 'synapz-hockey-v10.7-phone-card-layout';
 const ASSETS = [
   './',
   './index.html',

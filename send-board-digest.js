@@ -1807,20 +1807,20 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
 </head>
 <body>
 <div class="wrap">
-  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • SWEET-SPOT CONTINUOUS LOOP (RUN #${batchNum} • 6 NEW FIXES CODED • 24 FRESH BLIND PLAYS • 12 SEAT RECOMMENDATIONS • &lt; 35 KB)</div>
-  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">🚀 ${newlyCodedThisPass.length} Approved Fixes Coded &amp; Verified in Chrome (${cumulativeCoded.length} Cumulative Live) + 12 Fresh Seat Recommendations</h1>
+  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • V10.7 PHONE-FIRST AUTONOMOUS LOOP • 12-SEAT SWEET-SPOT BOARD • ZERO PC REQUIRED (&lt; 35 KB)</div>
+  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">🚀 v10.7 Phone Card Layout Live (0px Overflow on 390px Phones • 2×2 Decision Grid) + 12 Fresh Seat Recommendations</h1>
   <p style="margin:0 0 10px;font-size:11px;color:#cbd5e1;">
     Prepared for <strong>Coach Dane (danebekkedahl@gmail.com)</strong> &amp; <strong>Coach Evan (evanbekk@gmail.com)</strong> • ${timestamp}<br/>
     🌐 <strong>Live App:</strong> <a href="${PAGES_BASE_URL}/" class="b-ex">${PAGES_BASE_URL}/</a> •
-    📊 <strong>Interactive Report:</strong> <a href="${rpt}#founder-approval-board" class="b-ap">${rpt}</a> •
-    📱 <strong>1-Tap Phone Loop:</strong> <a href="${triggerBatchUrl}" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">🚀 DEPLOY APPROVED &amp; GENERATE NEXT 12-IDEA AUDIT NOW</a>
+    📊 <strong>Interactive Phone Report:</strong> <a href="${rpt}#founder-approval-board" class="b-ap">${rpt}</a> •
+    📱 <strong>1-Tap Phone Loop:</strong> <a href="${triggerBatchUrl}" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">🔄 RUN NEXT 24-PLAY AUDIT &amp; GENERATE 12 NEW IDEAS NOW (FROM PHONE)</a>
   </p>
 
   <!-- SECTION 1: ✅ BATCH FIX RECEIPT & CHROME TEST VERIFICATION -->
   <div style="background:#022c22;border:2px solid #10b981;border-radius:10px;padding:11px;margin-bottom:12px;">
     <div style="font-size:11px;font-weight:900;color:#34d399;text-transform:uppercase;">SECTION 1 • ✅ BATCH FIX RECEIPT &amp; CHROME VERIFICATION: ${newlyCodedThisPass.length} NEW FIXES CODED IN index.html (${cumulativeCoded.length} CUMULATIVE LIVE + 60-FEATURE PHONE BANK READY)</div>
     <div style="font-size:11px;color:#a7f3d0;margin:4px 0;">
-      <strong>Service Worker Cache Bumped:</strong> <code>synapz-hockey-v10.6-phone-autonomous-loop</code> • Verified on <code>390×844 Phone</code> &amp; <code>768×1024 iPad</code> (<code>&lt;= 4</code> primary buttons on all player screens)
+      <strong>Service Worker Cache Bumped:</strong> <code>synapz-hockey-v10.7-phone-card-layout</code> • Verified on <code>390×844 Phone</code> (<code>scrollWidth &lt;= 390px</code>, 0 clipped buttons) &amp; <code>768×1024 iPad</code> (<code>&lt;= 4</code> primary buttons on all player screens)
     </div>
     <table style="margin:6px 0;">
       <thead>
@@ -1958,7 +1958,7 @@ async function main() {
     status: 'awaiting_founder_approval',
     summary: `🚀 SYNAPZ HOCKEY — Sweet-Spot Run #${batchNum} Receipt (${newlyCodedCount} New Fixes Coded, ${cumulativeCodedCount} Cumulative Live, ${summaryCounts.skippedAutoResolvedInThisPass} Auto-Resolved, ${summaryCounts.skippedReassessedAwaitingDecision} Reassessed) + 24-Play Audit & 12 Fresh Seat Recommendations (${emailSizeKb} KB < 35 KB) -> ${RECIPIENTS.join(', ')}`,
     details: {
-      version: 'v10.4-sweet-spot-loop',
+      version: 'v10.7-phone-card-layout',
       recipients: RECIPIENTS,
       counts: summaryCounts,
       batchDeploymentReceipt: BATCH_DEPLOYMENT_RECEIPT,
@@ -2038,7 +2038,7 @@ async function main() {
     second: '2-digit'
   });
   const senderDisplayName = 'Synapz Hockey 12-Seat Council & Seat 13 Meta-Auditor';
-  const emailSubject = `SYNAPZ HOCKEY — ${newlyCodedCount} Fixes Coded & Live (${cumulativeCodedCount} Total) + 24-Play Audit & 12 Fresh Seat Recommendations [${uniqueTimestampLabel}]`;
+  const emailSubject = `SYNAPZ HOCKEY v10.7 — 390px Full-Width Phone Cards + 12-Seat Sweet-Spot Board [${uniqueTimestampLabel}]`;
   try {
     const gmailRes = await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
       method: 'POST',

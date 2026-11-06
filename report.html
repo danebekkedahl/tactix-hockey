@@ -14,12 +14,22 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style id="synapzThemeStyles">
-    body {
+    html, body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background:
         repeating-linear-gradient(135deg, rgba(255,255,255,0.016) 0px, rgba(255,255,255,0.016) 2px, transparent 2px, transparent 8px),
         linear-gradient(145deg, #060b14 0%, #0d1829 55%, #091322 100%) !important;
       color: #f1f5f9 !important;
+      max-width: 100vw !important;
+      width: 100% !important;
+      overflow-x: hidden !important;
+      box-sizing: border-box !important;
+      margin: 0 !important;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
     header,
     .glass-card {
@@ -30,6 +40,47 @@
       -webkit-backdrop-filter: blur(16px) !important;
       border: 1px solid rgba(0, 229, 255, 0.45) !important;
       box-shadow: 0 0 22px rgba(0, 229, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow-x: hidden;
+    }
+    .synapz-mobile-container {
+      max-width: 960px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 10px;
+      box-sizing: border-box;
+      overflow-x: hidden;
+    }
+    .synapz-rec-card {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 14px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .founder-decision-2x2-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      width: 100%;
+      margin-top: 10px;
+      box-sizing: border-box;
+    }
+    .founder-decision-btn {
+      width: 100% !important;
+      min-height: 44px !important;
+      white-space: normal !important;
+      line-height: 1.2 !important;
+      font-size: 13px !important;
+      text-align: center !important;
+      padding: 8px 6px !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
     .synapz-chrome-heading {
       background: linear-gradient(180deg, #f8fafc 0%, #38bdf8 52%, #00e5ff 100%);
@@ -46,39 +97,38 @@
     }
   </style>
 </head>
-<body class="min-h-screen pb-16">
+<body class="min-h-screen pb-28">
   <!-- Top Navigation Header -->
-  <header class="sticky top-0 z-40 px-4 py-3">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-      <div class="flex items-center gap-3">
-        <a href="./index.html" class="h-11 rounded-xl overflow-hidden border border-cyan-400 shadow-lg shrink-0">
+  <header class="sticky top-0 z-40 px-2.5 py-2.5">
+    <div class="synapz-mobile-container !p-0 flex flex-wrap items-center justify-between gap-2.5">
+      <div class="flex items-center gap-2.5 min-w-0 flex-1">
+        <a href="./index.html" class="h-10 rounded-xl overflow-hidden border border-cyan-400 shadow-lg shrink-0">
           <img src="assets/synapz-logo.png" alt="SYNAPZ HOCKEY" class="h-full w-auto object-contain" />
         </a>
-        <div>
-          <div class="flex flex-wrap items-center gap-2">
-            <h1 class="text-base sm:text-lg font-black tracking-tight synapz-chrome-heading">SYNAPZ HOCKEY</h1>
+        <div class="min-w-0 flex-1">
+          <div class="flex flex-wrap items-center gap-1.5">
+            <h1 class="text-sm sm:text-lg font-black tracking-tight synapz-chrome-heading">SYNAPZ HOCKEY</h1>
             <span class="px-2 py-0.5 rounded bg-cyan-400 text-slate-950 text-[10px] font-black uppercase tracking-widest shadow">PLAY. LEARN. DOMINATE.</span>
-            <span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 text-[10px] font-black uppercase tracking-wider">HOCKEY IQ &amp; STRATEGY PLATFORM</span>
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">v9.1 SYNAPZ Rebrand • Co-Founder Advisory Charter • 6-Field Screenshot Digest</span>
+            <span id="reportTopLoopBadge" class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">V10.7 PHONE-FIRST AUTONOMOUS LOOP • 12-SEAT SWEET-SPOT BOARD • ZERO PC REQUIRED</span>
           </div>
-          <p class="text-xs text-slate-400">30/30 Blind Drills Solved (0 Answer-Key Peeks) • 51 Verified Video Clips + Live YouTube RSS Poller • Ranked #1–#30 Co-Founder Proposals Awaiting Dane &amp; Evan's Approval</p>
+          <p id="reportTopLoopSubtitle" class="text-[11px] sm:text-xs text-slate-300 mt-0.5">24 Rotated Blind Plays Per Pass • 12 Telemetry-Grounded Seat Recommendations • Tap Approve/Skip/Reject &amp; Deploy Direct From Your Phone</p>
         </div>
       </div>
-      <div class="flex items-center gap-2">
-        <button onclick="window.print()" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-400/40 text-xs font-extrabold text-cyan-200 transition">🖨️ Print Coaching Sheet</button>
-        <a href="./index.html" class="synapz-cta-btn px-4 py-2 rounded-xl text-xs shadow-lg transition">🏒 Launch Live Rink Simulator ▶</a>
+      <div class="flex flex-wrap items-center gap-1.5 w-full sm:w-auto">
+        <button onclick="window.print()" class="px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-400/40 text-[11px] font-extrabold text-cyan-200 transition flex-1 sm:flex-initial text-center">🖨️ Print Sheet</button>
+        <a href="./index.html" class="synapz-cta-btn px-3 py-1.5 rounded-xl text-[11px] shadow-lg transition flex-1 sm:flex-initial text-center">🏒 Launch Live Rink ▶</a>
       </div>
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto px-4 pt-6 space-y-6">
+  <main class="synapz-mobile-container space-y-4">
     <!-- Executive Summary Banner -->
-    <section class="glass-card rounded-2xl p-5 border-emerald-500/30 shadow-2xl">
-      <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+    <section class="glass-card rounded-2xl p-3.5 sm:p-5 border-emerald-500/30 shadow-2xl">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
         <div>
-          <span class="text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-400/30">Founder Vision + Section 23 Co-Founder Advisory Charter + Strict Approval Gate</span>
-          <h2 class="text-xl sm:text-2xl font-black text-white mt-1">360° Hockey Sense Curriculum, Co-Founder Approval Gate &amp; Live Screenshot Audit</h2>
-          <p class="text-xs sm:text-sm text-slate-300 mt-0.5">All <code class="text-emerald-300 font-bold">PLAYTEST_REPORT.md</code>, <code class="text-sky-300 font-bold">LEARNING_COUNCIL_REPORT.md</code>, and <code class="text-amber-300 font-bold">FOUNDER_VISION_NOTES.md</code> (Sections 1–23) specifications are verified.</p>
+          <span class="text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-400/30">V10.7 Phone-First Autonomous Loop + 12-Seat Sweet-Spot Board</span>
+          <h2 class="text-lg sm:text-2xl font-black text-white mt-1">360° Hockey Sense Curriculum, Co-Founder Phone Approval Gate &amp; Live Screenshot Audit</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-0.5">All <code class="text-emerald-300 font-bold">PLAYTEST_REPORT.md</code>, <code class="text-sky-300 font-bold">LEARNING_COUNCIL_REPORT.md</code>, and <code class="text-amber-300 font-bold">FOUNDER_VISION_NOTES.md</code> (Sections 1–32) specifications are verified.</p>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
           <div class="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800">
@@ -259,22 +309,22 @@
     </section>
 
     <!-- =================================================================== -->
-    <!-- CO-FOUNDER 12-SEAT (60-IDEA) BOARD DIGEST & TOP 10 CONSENSUS GATE   -->
+    <!-- CO-FOUNDER 12-SEAT SWEET-SPOT BOARD & PHONE-FIRST APPROVAL CARDS    -->
     <!-- =================================================================== -->
-    <section id="founder-approval-board" class="glass-card rounded-2xl p-5 border-amber-400/50 shadow-2xl space-y-4">
+    <section id="founder-approval-board" class="glass-card rounded-2xl p-3.5 sm:p-5 border-amber-400/50 shadow-2xl space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
         <div>
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="px-2.5 py-0.5 rounded bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-widest">🤝 Section 30 • Special Deep Marathon Audit: Top 10 Consensus + 60-Idea Master Report</span>
-            <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[10px] font-black uppercase">Top 10 Co-Signed Priorities • 12 Seats × 5 Ideas = 60-Idea Master Matrix</span>
-            <span class="px-2.5 py-0.5 rounded bg-sky-500/20 border border-sky-400/40 text-sky-300 text-[10px] font-black">Recipients: danebekkedahl@gmail.com • evanbekk@gmail.com</span>
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="px-2.5 py-0.5 rounded bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-widest">🤝 V10.7 Phone-First Autonomous Loop • 12-Seat Sweet-Spot Board</span>
+            <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[10px] font-black uppercase">Top 5 Co-Signed Priorities • 12 Telemetry-Grounded Seat Recommendations</span>
+            <span class="px-2.5 py-0.5 rounded bg-sky-500/20 border border-sky-400/40 text-sky-300 text-[10px] font-black">danebekkedahl@gmail.com • evanbekk@gmail.com</span>
           </div>
-          <h3 class="text-lg sm:text-xl font-black text-white mt-1">Top 10 Co-Signed Consensus Master Priorities (#1 to #10) &amp; 60-Idea Master Matrix (12 Seats × 5 Deep Recommendations)</h3>
-          <p class="text-xs text-slate-300">Live App: <a href="https://danebekkedahl.github.io/synapz-hockey/" class="text-cyan-300 underline font-bold">https://danebekkedahl.github.io/synapz-hockey/</a> • Report: <a href="https://danebekkedahl.github.io/synapz-hockey/report.html" class="text-emerald-300 underline font-bold">https://danebekkedahl.github.io/synapz-hockey/report.html</a> • Mirror: <a href="https://danebekkedahl.github.io/tactix-hockey/" class="text-slate-400 underline">tactix-hockey</a>. Click <strong>[🔍 Explain This to Me]</strong> (<code>?action=explain&amp;id=...</code>), <strong>[✅ Approve for Next Build]</strong> (<code>?action=approve&amp;id=...</code> -> <code>status: 'approved_for_build'</code>), or <strong>[❌ Reject]</strong> (<code>?action=reject&amp;id=...</code> -> <code>status: 'rejected_by_founder'</code>).</p>
+          <h3 class="text-base sm:text-xl font-black text-white mt-1">12-Seat Sweet-Spot Recommendations &amp; Full-Width Phone Decision Cards</h3>
+          <p class="text-xs text-slate-300">Live App: <a href="https://danebekkedahl.github.io/synapz-hockey/" class="text-cyan-300 underline font-bold">synapz-hockey</a> • Report: <a href="https://danebekkedahl.github.io/synapz-hockey/report.html" class="text-emerald-300 underline font-bold">report.html</a> • Mirror: <a href="https://danebekkedahl.github.io/tactix-hockey/" class="text-slate-400 underline">tactix-hockey</a>. Tap <strong>✅ Approve</strong>, <strong>⏭️ Skip &amp; Reassess</strong>, <strong>🔍 Explain This</strong>, or <strong>❌ Reject</strong> directly from your phone.</p>
         </div>
-        <div class="flex flex-wrap items-center gap-2">
-          <button id="btnReportEmailDigestDaneEvan" type="button" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-emerald-400 hover:from-amber-300 hover:to-emerald-300 text-slate-950 font-black text-xs shadow-lg transition">
-            📧 Email Top 10 + 60-Idea Marathon Digest to Dane &amp; Evan
+        <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+          <button id="btnReportEmailDigestDaneEvan" type="button" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-emerald-400 hover:from-amber-300 hover:to-emerald-300 text-slate-950 font-black text-xs shadow-lg transition">
+            📧 Email 12-Seat Digest to Dane &amp; Evan
           </button>
         </div>
       </div>
@@ -283,12 +333,12 @@
 
       <!-- SWEET-SPOT CONTINUOUS LOOP: SECTION 1 (BATCH FIX RECEIPT & AUTO-RESOLVED) & SECTION 2 (REASSESSED SKIPPED ITEMS) -->
       <div id="sweetSpotBatchReceiptAndReassessedBox" class="grid grid-cols-1 lg:grid-cols-2 gap-3 text-xs">
-        <div class="p-3.5 rounded-xl bg-emerald-950/55 border-2 border-emerald-400/80 space-y-2">
-          <div class="flex items-center justify-between gap-2">
-            <span class="px-2 py-0.5 rounded bg-emerald-400 text-slate-950 text-[10px] font-black uppercase">✅ Section 1 • Sweet-Spot Batch Fix Receipt (v10.4)</span>
-            <span class="text-[10px] font-black text-emerald-300">6 New Fixes Coded + 2 Skipped Auto-Resolved</span>
+        <div class="synapz-rec-card !mb-0 bg-emerald-950/55 border-2 border-emerald-400/80 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="px-2 py-0.5 rounded bg-emerald-400 text-slate-950 text-[10px] font-black uppercase">✅ Section 1 • Sweet-Spot Batch Fix Receipt (v10.7)</span>
+            <span id="batchReceiptHeadline" class="text-[10px] font-black text-emerald-300">6 New Fixes Coded + 2 Skipped Auto-Resolved</span>
           </div>
-          <div class="text-[11px] text-slate-200 space-y-1">
+          <div id="batchReceiptDeployedSummary" class="text-[11px] text-slate-200 space-y-1">
             <div>• <strong>S2-A (Seat 2):</strong> Age-Adaptive Roll-In Pacing (<code>0.65x</code> 8U/10U vs <code>1.0x</code> 12U+) &amp; Cue Highlight <button type="button" onclick="window.undoTier1MicroFix && window.undoTier1MicroFix('S2-A')" class="text-amber-300 underline font-black ml-1">[↩️ 1-Click Undo]</button></div>
             <div>• <strong>S6-A (Seat 6):</strong> Goalie Crease Sightline Ray on Point Shots + Printable Association Board Export <button type="button" onclick="window.undoTier1MicroFix && window.undoTier1MicroFix('S6-A')" class="text-amber-300 underline font-black ml-1">[↩️ 1-Click Undo]</button></div>
             <div>• <strong>S7-A (Seat 7):</strong> On-Ice <code>&lt;canvas&gt;</code> Combo Streak Multiplier Badge + Dock Height Lock <button type="button" onclick="window.undoTier1MicroFix && window.undoTier1MicroFix('S7-A')" class="text-amber-300 underline font-black ml-1">[↩️ 1-Click Undo]</button></div>
@@ -296,37 +346,38 @@
             <div>• <strong>S10-A (Seat 10):</strong> Pre-Freeze Peripheral Vision Scan Ring + <code>?partner=ASSOC_CODE</code> 50% Link <button type="button" onclick="window.undoTier1MicroFix && window.undoTier1MicroFix('S10-A')" class="text-amber-300 underline font-black ml-1">[↩️ 1-Click Undo]</button></div>
             <div>• <strong>S12-A (Seat 12):</strong> Age-Calibrated 11-Voice Cadence (<code>0.97x</code> Youth / <code>1.04x</code> Pro) + SafeSport Verifier <button type="button" onclick="window.undoTier1MicroFix && window.undoTier1MicroFix('S12-A')" class="text-amber-300 underline font-black ml-1">[↩️ 1-Click Undo]</button></div>
           </div>
-          <div class="p-2 rounded-lg bg-slate-950/90 border border-cyan-400/50 text-[11px] text-cyan-200">
+          <div id="batchReceiptAutoResolvedSummary" class="p-2 rounded-lg bg-slate-950/90 border border-cyan-400/50 text-[11px] text-cyan-200">
             <strong>✨ Skipped Items Auto-Resolved by This Build (<code>status = 'auto_resolved_by_batch'</code>):</strong><br/>
             • <strong>[S4-E]</strong> 3-Star Gold Mastery Stamp on Conquered Cities (resolved via S7-A/S4-A streak &amp; city mastery HUD)<br/>
             • <strong>[S9-A]</strong> Auto-Sync Founder Approval Queue Status Badge (resolved via cloud-first <code>syncFounderDecisionsFromSupabaseCloud()</code>)
           </div>
+          <div id="batchReceiptReassessedSummary" class="hidden"></div>
         </div>
 
-        <div class="p-3.5 rounded-xl bg-amber-950/45 border-2 border-amber-400/80 space-y-2">
-          <div class="flex items-center justify-between gap-2">
+        <div class="synapz-rec-card !mb-0 bg-amber-950/45 border-2 border-amber-400/80 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
             <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 text-[10px] font-black uppercase">🔄 Section 2 • Reassessed From Last Run (Awaiting Decision)</span>
             <span class="text-[10px] font-black text-amber-300">Zero Negative Taste Penalty</span>
           </div>
           <div class="space-y-2 text-[11px]">
-            <div class="p-2.5 rounded-lg bg-slate-950 border border-amber-400/50 space-y-1">
+            <div class="synapz-rec-card !mb-0 bg-slate-950 border border-amber-400/50 space-y-1">
               <div class="font-black text-white">[S9-B] Service Worker / LocalStorage Snapshot Cache for 360 Cloud Scenarios &amp; 51 Video Rows</div>
               <div class="text-amber-200">🔬 <strong>Post-v10.4 Telemetry:</strong> Still valuable for offline basement rinks (<code>&lt;12ms</code> cold-rink drill load via <code>synapz_cloud_scenarios_snapshot_v104</code>; 0 UI buttons).</div>
-              <div class="flex flex-wrap gap-1.5 pt-1">
-                <button type="button" onclick="openReportExplainProposalModal('S9-B')" class="px-2 py-1 rounded bg-cyan-400 text-slate-950 font-black text-[10px]">🔍 Explain</button>
-                <button type="button" onclick="setReportFounderIdeaDecision('S9-B', 'approved_for_build')" class="px-2 py-1 rounded bg-emerald-500 text-slate-950 font-black text-[10px]">✅ Approve</button>
-                <button type="button" onclick="setReportFounderIdeaDecision('S9-B', 'skipped_reassess_next_run')" class="px-2 py-1 rounded bg-amber-400 text-slate-950 font-black text-[10px]">⏭️ Skip &amp; Reassess</button>
-                <button type="button" onclick="setReportFounderIdeaDecision('S9-B', 'rejected_by_founder')" class="px-2 py-1 rounded bg-rose-600 text-white font-black text-[10px]">❌ Reject</button>
+              <div class="founder-decision-2x2-grid">
+                <button type="button" onclick="setReportFounderIdeaDecision('S9-B', 'approved_for_build')" class="founder-decision-btn rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black shadow">✅ Approve</button>
+                <button type="button" onclick="setReportFounderIdeaDecision('S9-B', 'skipped_reassess_next_run')" class="founder-decision-btn rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black shadow">⏭️ Skip &amp; Reassess</button>
+                <button type="button" onclick="openReportExplainProposalModal('S9-B')" class="founder-decision-btn rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black shadow">🔍 Explain This</button>
+                <button type="button" onclick="setReportFounderIdeaDecision('S9-B', 'rejected_by_founder')" class="founder-decision-btn rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-black shadow">❌ Reject</button>
               </div>
             </div>
-            <div class="p-2.5 rounded-lg bg-slate-950 border border-amber-400/50 space-y-1">
+            <div class="synapz-rec-card !mb-0 bg-slate-950 border border-amber-400/50 space-y-1">
               <div class="font-black text-white">[S10-B] Multi-Sibling "Family Locker Pass" Bundle Callout When 2+ Sibling Stalls Are Active</div>
               <div class="text-amber-200">🔬 <strong>Post-v10.4 Telemetry:</strong> Tested with 4 active sibling stalls (Miles, Rhett, Whelan, Cohen) &amp; new <code>?partner=ASSOC_CODE</code> link; lives inside Tab 4 Parent HQ (0 player-screen buttons).</div>
-              <div class="flex flex-wrap gap-1.5 pt-1">
-                <button type="button" onclick="openReportExplainProposalModal('S10-B')" class="px-2 py-1 rounded bg-cyan-400 text-slate-950 font-black text-[10px]">🔍 Explain</button>
-                <button type="button" onclick="setReportFounderIdeaDecision('S10-B', 'approved_for_build')" class="px-2 py-1 rounded bg-emerald-500 text-slate-950 font-black text-[10px]">✅ Approve</button>
-                <button type="button" onclick="setReportFounderIdeaDecision('S10-B', 'skipped_reassess_next_run')" class="px-2 py-1 rounded bg-amber-400 text-slate-950 font-black text-[10px]">⏭️ Skip &amp; Reassess</button>
-                <button type="button" onclick="setReportFounderIdeaDecision('S10-B', 'rejected_by_founder')" class="px-2 py-1 rounded bg-rose-600 text-white font-black text-[10px]">❌ Reject</button>
+              <div class="founder-decision-2x2-grid">
+                <button type="button" onclick="setReportFounderIdeaDecision('S10-B', 'approved_for_build')" class="founder-decision-btn rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black shadow">✅ Approve</button>
+                <button type="button" onclick="setReportFounderIdeaDecision('S10-B', 'skipped_reassess_next_run')" class="founder-decision-btn rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black shadow">⏭️ Skip &amp; Reassess</button>
+                <button type="button" onclick="openReportExplainProposalModal('S10-B')" class="founder-decision-btn rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black shadow">🔍 Explain This</button>
+                <button type="button" onclick="setReportFounderIdeaDecision('S10-B', 'rejected_by_founder')" class="founder-decision-btn rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-black shadow">❌ Reject</button>
               </div>
             </div>
           </div>
@@ -334,31 +385,31 @@
       </div>
 
       <!-- SECTION 31: 🔍 SEAT 13: 100% APP SURFACE SCOURING HEATMAP, COVERAGE LEDGER & 3-TIER PROGRESSIVE TRUST -->
-      <div id="seat13-meta-auditor" class="p-4 rounded-xl bg-sky-950/45 border-2 border-cyan-400/70 space-y-3">
+      <div id="seat13-meta-auditor" class="p-3.5 sm:p-4 rounded-xl bg-sky-950/45 border-2 border-cyan-400/70 space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div>
-            <span class="px-2.5 py-0.5 rounded bg-cyan-400 text-slate-950 text-[10px] font-black uppercase tracking-widest">🔍 Section 31 • Seat 13 Chief Meta-Auditor, 100% App Scouring Heatmap &amp; 3-Tier Founder Preference Learning Engine</span>
+            <span class="px-2.5 py-0.5 rounded bg-cyan-400 text-slate-950 text-[10px] font-black uppercase tracking-widest">🔍 Section 3 • Seat 13 Chief Meta-Auditor, 100% App Scouring Heatmap &amp; 3-Tier Founder Preference Learning Engine</span>
             <h4 class="text-sm sm:text-base font-black text-white mt-1">Cross-Run Rotation Ledger (<code>audit_coverage_ledger.json</code>), Real Data-Driven Defect Scanner (<code>audit_live_findings.json</code>) &amp; Progressive Trust (<code>founder_taste_profile.json</code>)</h4>
           </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <button id="btnApproveAllHighMatchBatch" type="button" class="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs shadow-lg transition">
+          <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+            <button id="btnApproveAllHighMatchBatch" type="button" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs shadow-lg transition">
               ⭐ Approve All High-Match Picks (&gt;=90% Match) in 1 Click
             </button>
-            <label class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-950 border border-cyan-400/50 text-xs font-black text-cyan-200 cursor-pointer">
-              <input id="toggleTier1AutoApprove" type="checkbox" checked class="accent-emerald-400 w-4 h-4" />
+            <label class="w-full sm:w-auto flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-950 border border-cyan-400/50 text-xs font-black text-cyan-200 cursor-pointer">
+              <input id="toggleTier1AutoApprove" type="checkbox" checked class="accent-emerald-400 w-4 h-4 shrink-0" />
               <span>⚡ Auto-Approve Tier 1 Safe Micro-Fixes (&gt;=95% Match): <span id="tier1AutoApproveStateLabel" class="text-emerald-300">ON</span></span>
             </label>
           </div>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-xs">
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
           <div class="p-2.5 rounded-lg bg-slate-950 border border-emerald-400/40">
             <div class="text-[10px] uppercase font-black text-slate-400">Scenarios Scoured</div>
-            <div id="seat13HeatmapScenarios" class="text-sm font-black text-emerald-300 mt-0.5">88/360 (24.4%)</div>
-            <div class="text-[10px] text-slate-400">+72 Fresh / Batch</div>
+            <div id="seat13HeatmapScenarios" class="text-sm font-black text-emerald-300 mt-0.5">112/360 (31.1%)</div>
+            <div class="text-[10px] text-slate-400">+24 Fresh / Batch</div>
           </div>
           <div class="p-2.5 rounded-lg bg-slate-950 border border-cyan-400/40">
             <div class="text-[10px] uppercase font-black text-slate-400">NHL Cities Tested</div>
-            <div id="seat13HeatmapCities" class="text-sm font-black text-cyan-300 mt-0.5">15/32 (46.9%)</div>
+            <div id="seat13HeatmapCities" class="text-sm font-black text-cyan-300 mt-0.5">18/32 (56.3%)</div>
             <div class="text-[10px] text-slate-400">Rotated Stop Slice</div>
           </div>
           <div class="p-2.5 rounded-lg bg-slate-950 border border-emerald-400/40">
@@ -371,116 +422,41 @@
             <div id="seat13HeatmapHotspots" class="text-sm font-black text-emerald-300 mt-0.5">28/28 (100%)</div>
             <div class="text-[10px] text-slate-400">All 5 Illustrated Rooms</div>
           </div>
-          <div class="p-2.5 rounded-lg bg-slate-950 border border-amber-400/40">
+          <div class="p-2.5 rounded-lg bg-slate-950 border border-amber-400/40 col-span-2 sm:col-span-1">
             <div class="text-[10px] uppercase font-black text-slate-400">4-Way Permutations</div>
-            <div id="seat13HeatmapPermutations" class="text-sm font-black text-amber-300 mt-0.5">72/5,760 (1.3%)</div>
+            <div id="seat13HeatmapPermutations" class="text-sm font-black text-amber-300 mt-0.5">96/5,760 (1.7%)</div>
             <div class="text-[10px] text-slate-400">0°/90°/180°/270° × Pos</div>
           </div>
         </div>
         <div id="seat13LiveDefectScannerSummary" class="p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] text-slate-300">
           🔬 <strong>Step 2 Real Data-Driven Defect Scanner (<code>audit_live_findings.json</code>):</strong> Scanned <code>390×844</code> iPhone &amp; <code>768×1024</code> iPad live in Chrome • Flagged specific Scenario IDs with raw prompts &gt;14 words (e.g., <code>basics-center</code>, <code>oz-d-pinch-backfill-3</code>) and skater pairs &lt;0.15 normalized distance (e.g., <code>rush-3v2-f3-high</code> d=0.082, <code>dzone-slot-1</code> d=0.094) • Verified &lt;=4 primary buttons across all 8 screens.
         </div>
-
-        <!-- SECTION 32: BATCH DEPLOYMENT RECEIPT, AUTO-RESOLVED SKIPPED ITEMS & REASSESSED ITEMS -->
-        <div id="section32BatchReceiptBox" class="p-3.5 rounded-xl bg-emerald-950/50 border-2 border-emerald-400/70 space-y-2.5 text-xs">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div>
-              <span class="px-2 py-0.5 rounded bg-emerald-400 text-slate-950 text-[10px] font-black uppercase tracking-widest">🚀 Section 32 • 1-Click Remote Batch Deployment Receipt &amp; Post-Batch Skipped-Item Auto-Reassessment</span>
-              <h5 id="batchReceiptHeadline" class="font-black text-white text-xs sm:text-sm mt-1">✅ Batch #1 Deployed: 44 Approved Upgrades Live • ✨ 4 Skipped Items Auto-Resolved • 🔄 3 Items Reassessed After Build</h5>
-            </div>
-            <button type="button" onclick="window.runCloudBatchDeployAndNextAuditFromPhone && window.runCloudBatchDeployAndNextAuditFromPhone()" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-400 to-amber-400 hover:from-emerald-300 hover:to-amber-300 text-slate-950 font-black text-xs shadow-lg transition">
-              🚀 DEPLOY APPROVED &amp; GENERATE NEXT 12-IDEA AUDIT NOW
-            </button>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-[11px]">
-            <div class="p-2.5 rounded-lg bg-slate-950 border border-emerald-400/50">
-              <div class="font-black text-emerald-300">✅ 44 Approved Upgrades Built &amp; Live</div>
-              <div id="batchReceiptDeployedSummary" class="text-slate-300 mt-1">Built &amp; deployed <code>RF-COUNCIL-01 (Option A)</code> + <code>43</code> approved Board items (Global Skater Separation <code>d &gt;= 0.15</code>, 2px Skate Glint, Pro Shop Tape/Visor On-Ice Sync, Trophy Case Engraving, Verb Highlighting &amp; Audio Pre-Fetch).</div>
-            </div>
-            <div class="p-2.5 rounded-lg bg-slate-950 border border-cyan-400/50">
-              <div class="font-black text-cyan-300">✨ 4 Skipped Items Auto-Resolved by Batch</div>
-              <div id="batchReceiptAutoResolvedSummary" class="text-slate-300 mt-1">Seat 13 re-tested all 7 skipped items after Batch #1: <code>S9-A</code> (d&gt;=0.15 overlap fix), <code>S1-E</code> (weak-side spacing), <code>S7-E</code> (mobile 4-button lock), and <code>S12-E</code> (DOM privacy) were automatically resolved by your approved upgrades!</div>
-            </div>
-            <div class="p-2.5 rounded-lg bg-slate-950 border border-amber-400/50">
-              <div class="font-black text-amber-300">🔄 3 Items Reassessed After Last Build</div>
-              <div id="batchReceiptReassessedSummary" class="text-slate-300 mt-1"><code>S9-B</code> (4-Viewport Bounding-Box Stress), <code>S10-B</code> (Multi-Division Coach Switcher), and <code>S4-E</code> (Weekly Streak Freeze Shield) remain relevant after Batch #1 and carry the <strong>🔄 Reassessed After Last Build</strong> badge below.</div>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <!-- Top 10 Co-Signed Consensus Priorities Summary Table (#1 to #10) -->
-      <div class="p-4 rounded-xl bg-emerald-950/35 border-2 border-emerald-400/60 space-y-2.5">
+      <!-- Top 5 / Top 10 Co-Signed Consensus Priorities Full-Width Phone Cards (#1 to #10) -->
+      <div class="p-3.5 sm:p-4 rounded-xl bg-emerald-950/35 border-2 border-emerald-400/60 space-y-2.5">
         <div class="flex flex-wrap items-center justify-between gap-2">
-          <span class="text-[11px] font-black uppercase tracking-wider text-emerald-300">🏆 Top 10 Co-Signed Consensus Master Priorities (#1 to #10 • Unanimous 12-Seat Roundtable Vote • Gates A, B, C &amp; D Passed)</span>
-          <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-200 text-[10px] font-black">Ranked #1 to #10 Highest-Impact Upgrades</span>
+          <span class="text-[11px] font-black uppercase tracking-wider text-emerald-300">🏆 Top Co-Signed Consensus Master Priorities (Unanimous 12-Seat Roundtable Vote • Gates A, B, C &amp; D Passed)</span>
+          <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-200 text-[10px] font-black">100% Full-Width Phone Cards • 2×2 Decision Grid</span>
         </div>
-        <div class="overflow-x-auto rounded-lg border border-emerald-500/30">
-          <table class="w-full text-left border-collapse text-xs">
-            <thead class="bg-slate-950 text-[10px] font-black uppercase text-amber-300">
-              <tr>
-                <th class="py-2 px-3">Rank / ID</th>
-                <th class="py-2 px-3">What to Build &amp; Target Age/Tier</th>
-                <th class="py-2 px-3">Candid Pushback &amp; 4-Gate Cross-Seat Co-Sign Plan</th>
-                <th class="py-2 px-3 text-right">1-Click Founder Approval</th>
-              </tr>
-            </thead>
-            <tbody id="reportTop5CoSignedTableBody" class="divide-y divide-slate-800/80 bg-slate-950/80 text-slate-200"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Special Board Question: Moving Plays vs. Static Setups -->
-      <div class="p-4 rounded-xl bg-slate-950/95 border-2 border-sky-400/60 space-y-2.5">
-        <div class="flex flex-wrap items-center justify-between gap-2">
-          <span class="text-[11px] font-black uppercase tracking-wider text-sky-300">🏒 Special Co-Founder Board Evaluation (Seats 1, 2, 3 &amp; 4 Candid Consensus)</span>
-          <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-200 text-[10px] font-black">Ranks #1, #2, #4 &amp; #5 Below</span>
-        </div>
-        <div class="text-sm font-black text-white">Question: How should plays start on the ice across <code>8U–18U</code> and <code>Rec–AAA</code> — when should skaters/puck animate in motion for 2 seconds before freezing at the decision read vs. when is a static snapshot better for learning?</div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs pt-1">
-          <div class="p-3 rounded-lg bg-slate-900 border border-slate-700">
-            <div class="font-black text-amber-300 mb-1">1. 8U &amp; 10U (Rec / B) — Calm Static Default</div>
-            <p class="text-[11px] text-slate-300"><strong>Start:</strong> Calm Static Setup + 1.0s Pulsing Gold <code>"YOU #9"</code> Ring + Optional <code>[▶️ Watch 2s Lead-In]</code> button.<br/><strong>Why (Seats 2 &amp; 3):</strong> Automatic motion on load causes 6–10 year olds to "puck-watch" the moving dot instead of scanning the Attack Triangle or The House.</p>
-          </div>
-          <div class="p-3 rounded-lg bg-slate-900 border border-slate-700">
-            <div class="font-black text-sky-300 mb-1">2. 10U (A–AAA) &amp; 12U (Rec / B) — Guided Slow-Roll</div>
-            <p class="text-[11px] text-slate-300"><strong>Start:</strong> <code>1.5s</code> Guided Slow-Roll Lead-In (<code>0.65x</code> speed) → Auto-Freeze at Decision Point + <code>[🔄 Replay Lead-In]</code>.<br/><strong>Why (Seat 2):</strong> Bridges static chalkboards to live hockey by showing direction of travel without overwhelming working memory.</p>
-          </div>
-          <div class="p-3 rounded-lg bg-slate-900 border border-emerald-500/50">
-            <div class="font-black text-emerald-300 mb-1">3. 12U (A–AAA) &amp; 14U–18U — 2.0s Live Roll-In</div>
-            <p class="text-[11px] text-slate-300"><strong>Start:</strong> <code>2.0s</code> Full-Speed Pre-Snap Motion Roll-In → Crisp "Skate-Stop Freeze" at the decision read.<br/><strong>Why (Seats 1 &amp; 4):</strong> At travel/HS/AAA speeds, closing speed and gap momentum ARE the read. A dead static snapshot hides whether D1's gap is tight or loose.</p>
-          </div>
-        </div>
+        <div id="reportTop5CoSignedTableBody" class="w-full space-y-3"></div>
       </div>
 
       <!-- Filter Pills -->
       <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
-        <div class="flex flex-wrap items-center gap-1.5">
-          <button type="button" data-digest-filter="all" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-amber-400 text-slate-950 font-black text-[11px]">All 60 Master Matrix Ideas (12 Seats × 5 = 60)</button>
-          <button type="button" data-digest-filter="top10" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-emerald-400/60 text-emerald-300 font-bold text-[11px]">🏆 Top 10 Co-Signed Consensus (#1–#10)</button>
-          <button type="button" data-digest-filter="top5" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-cyan-400/50 text-cyan-300 font-bold text-[11px]">🤝 Top 5 Priority Picks (#1–#5)</button>
-          <button type="button" data-digest-filter="reassessed_awaiting_approval" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-amber-400/60 text-amber-300 font-bold text-[11px]">🔄 Reassessed &amp; Skipped</button>
-          <button type="button" data-digest-filter="awaiting_founder_approval" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-sky-500/40 text-sky-300 font-bold text-[11px]">🛡️ Awaiting Approval</button>
-          <button type="button" data-digest-filter="vetoed" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-rose-500/40 text-rose-300 font-bold text-[11px]">🛑 Vetoed by Authority (6)</button>
+        <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-1.5 w-full sm:w-auto">
+          <button type="button" data-digest-filter="all" class="report-digest-filter-btn px-2.5 py-2 rounded-lg bg-amber-400 text-slate-950 font-black text-[11px] text-center">All Recommendations</button>
+          <button type="button" data-digest-filter="top5" class="report-digest-filter-btn px-2.5 py-2 rounded-lg bg-slate-900 border border-cyan-400/50 text-cyan-300 font-bold text-[11px] text-center">🤝 Top 5 Priority (#1–#5)</button>
+          <button type="button" data-digest-filter="top10" class="report-digest-filter-btn px-2.5 py-2 rounded-lg bg-slate-900 border border-emerald-400/60 text-emerald-300 font-bold text-[11px] text-center">🏆 Top 12 Active Batch</button>
+          <button type="button" data-digest-filter="reassessed_awaiting_approval" class="report-digest-filter-btn px-2.5 py-2 rounded-lg bg-slate-900 border border-amber-400/60 text-amber-300 font-bold text-[11px] text-center">🔄 Reassessed &amp; Skipped</button>
+          <button type="button" data-digest-filter="awaiting_founder_approval" class="report-digest-filter-btn px-2.5 py-2 rounded-lg bg-slate-900 border border-sky-500/40 text-sky-300 font-bold text-[11px] text-center">🛡️ Awaiting Approval</button>
+          <button type="button" data-digest-filter="vetoed" class="report-digest-filter-btn px-2.5 py-2 rounded-lg bg-slate-900 border border-rose-500/40 text-rose-300 font-bold text-[11px] text-center">🛑 Vetoed (6)</button>
         </div>
         <span id="reportDigestOverrideStatus" class="text-[11px] font-bold text-sky-300">🔒 Approval Gate &amp; Test-Suite Lock Active: Only <code>approved_for_build</code> items build next run</span>
       </div>
 
-      <!-- 30-Idea 7-Field Table -->
-      <div class="overflow-x-auto max-h-[680px] overflow-y-auto rounded-xl border border-slate-800">
-        <table class="w-full text-left border-collapse text-xs">
-          <thead class="sticky top-0 bg-slate-950 border-b border-slate-800 text-[10px] font-black uppercase text-slate-400 z-10">
-            <tr>
-              <th class="py-2.5 px-3">Rank / ID</th>
-              <th class="py-2.5 px-3">1. Seat Lens &amp; 2. Target Scope</th>
-              <th class="py-2.5 px-3">3. Candid Critique, 4. 🤝 3-Gate Cross-Seat Co-Sign &amp; 5. Cross-Impact</th>
-              <th class="py-2.5 px-3">6. Live Audit Screenshot</th>
-              <th class="py-2.5 px-3 text-right">7. 1-Click Founder Approval</th>
-            </tr>
-          </thead>
-          <tbody id="reportDigest30TableBody" class="divide-y divide-slate-800/80 text-slate-200"></tbody>
-        </table>
-      </div>
+      <!-- Section 4: Full-Width Recommendation Cards Container (Zero Horizontal Scroll, Zero Inner Scroll Trap) -->
+      <div id="reportDigest30TableBody" class="w-full space-y-3"></div>
     </section>
 
     <!-- Live Active Skater Telemetry & 5-Pillar Scouting Card (Synced from localStorage) -->
@@ -1531,7 +1507,7 @@
           ? 'bg-rose-500/25 border-rose-400 text-rose-200'
           : 'bg-amber-500/20 border-amber-400 text-amber-200';
         return `
-          <div class="p-4 rounded-xl bg-slate-950/90 border border-rose-500/40 space-y-3">
+          <div class="synapz-rec-card bg-slate-950/90 border border-rose-500/40 space-y-3">
             <div class="flex flex-wrap items-center justify-between gap-2">
               <div class="font-black text-white text-sm">🚩 [${rf.id}] Screen: <span class="text-cyan-300">${rf.screenTitle}</span></div>
               <span class="px-2.5 py-0.5 rounded border text-[10px] font-black uppercase ${badgeClass}">${badgeText}</span>
@@ -1557,22 +1533,22 @@
                 <p class="text-[11px] text-cyan-100 leading-relaxed">${rf.optionB.prosCons}</p>
               </div>
             </div>
-            <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-800">
+            <div class="pt-2 border-t border-slate-800 space-y-2.5">
               <a href="${rf.screenshotUrl}" target="_blank" class="inline-block">
-                <img src="${rf.screenshotUrl}" alt="${rf.screenTitle}" class="w-56 rounded-lg border border-slate-700 hover:border-rose-400 transition" loading="lazy" />
+                <img src="${rf.screenshotUrl}" alt="${rf.screenTitle}" class="w-48 max-w-full rounded-lg border border-slate-700 hover:border-rose-400 transition" loading="lazy" />
               </a>
-              <div class="flex flex-wrap items-center gap-2">
-                <button type="button" onclick="openRedFlagPlainEnglishModal('${rf.id}')" class="px-3 py-2 rounded-xl bg-sky-400 hover:bg-sky-300 text-slate-950 font-black text-xs shadow transition">
-                  🔍 Explain Options in Plain English
+              <div class="founder-decision-2x2-grid">
+                <button type="button" onclick="setFounderRedFlagOptionDecision('${rf.id}', 'Option A')" class="founder-decision-btn rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black shadow transition">
+                  ✅ Approve Option A
                 </button>
-                <button type="button" onclick="setFounderRedFlagOptionDecision('${rf.id}', 'Option A')" class="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs shadow transition">
-                  ✅ Approve Option A (Recommended) for Next Build
+                <button type="button" onclick="setFounderRedFlagOptionDecision('${rf.id}', 'Option B')" class="founder-decision-btn rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black shadow transition">
+                  ✅ Approve Option B
                 </button>
-                <button type="button" onclick="setFounderRedFlagOptionDecision('${rf.id}', 'Option B')" class="px-3.5 py-2 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black text-xs shadow transition">
-                  ✅ Approve Option B for Next Build
+                <button type="button" onclick="openRedFlagPlainEnglishModal('${rf.id}')" class="founder-decision-btn rounded-xl bg-sky-400 hover:bg-sky-300 text-slate-950 font-black shadow transition">
+                  🔍 Explain This
                 </button>
-                <button type="button" onclick="setFounderRedFlagOptionDecision('${rf.id}', 'reject')" class="px-3 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-black text-xs shadow transition">
-                  ❌ Hold / Dismiss
+                <button type="button" onclick="setFounderRedFlagOptionDecision('${rf.id}', 'reject')" class="founder-decision-btn rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-black shadow transition">
+                  ❌ Reject
                 </button>
               </div>
             </div>
@@ -1721,16 +1697,20 @@
         lastCloudSavedItemLabel = `✅ Saved to Cloud Queue (#${savedItemId} in Supabase${httpCode ? ' • HTTP ' + httpCode : ''})`;
       }
       const currentBatch12 = REPORT_BOARD_30_IDEA_DIGEST.slice(0, 12);
-      const queuedNewApprovedCount = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.status === 'approved_for_build' || x.status === 'approved_by_founder').length;
+      const approvedCount = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.status === 'approved_for_build' || x.status === 'approved_by_founder').length;
       const builtCount = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.status === 'completed_and_deployed').length;
       const skippedCount = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.status === 'skipped_reassess_next_run' || x.status === 'reassessed_awaiting_approval').length;
       const cartTextEl = document.getElementById('founderBatchCartCountsText');
       if (cartTextEl) {
-        cartTextEl.innerHTML = `🛒 <span class="text-emerald-300 font-black">${queuedNewApprovedCount}</span> Approved in Queue &nbsp;•&nbsp; 🚀 <span class="text-cyan-300 font-black">${builtCount}</span> Coded &amp; Live &nbsp;•&nbsp; ⏭️ <span class="text-amber-300 font-black">${skippedCount}</span> Skipped to Reassess &nbsp;•&nbsp; 📦 <span class="text-sky-300 font-black">Batch ${window._activeSynapzBatchCode || (currentBatch12[0] && currentBatch12[0].id.split('-')[1]) || 'F'}</span>${lastCloudSavedItemLabel ? ` &nbsp;•&nbsp; <span class="px-2 py-0.5 rounded bg-emerald-500/30 border border-emerald-400 text-emerald-200 font-black">${lastCloudSavedItemLabel}</span>` : ''}`;
+        cartTextEl.innerHTML = `🛒 <span class="text-emerald-300 font-black">${approvedCount}</span> Approved in Queue &nbsp;•&nbsp; 🚀 <span class="text-cyan-300 font-black">${builtCount}</span> Coded &amp; Live &nbsp;•&nbsp; ⏭️ <span class="text-amber-300 font-black">${skippedCount}</span> Skipped to Reassess &nbsp;•&nbsp; 📦 <span class="text-sky-300 font-black">Batch ${window._activeSynapzBatchCode || (currentBatch12[0] && currentBatch12[0].id.split('-')[1]) || 'F'}</span>${lastCloudSavedItemLabel ? ` &nbsp;•&nbsp; <span class="px-2 py-0.5 rounded bg-emerald-500/30 border border-emerald-400 text-emerald-200 font-black">${lastCloudSavedItemLabel}</span>` : ''}`;
       }
       const btnDeploy = document.getElementById('btnTriggerRemoteBatchDeploy');
       if (btnDeploy) {
-        btnDeploy.textContent = `🚀 DEPLOY APPROVED (${queuedNewApprovedCount}) & GENERATE NEXT 12-IDEA AUDIT NOW`;
+        if (approvedCount > 0) {
+          btnDeploy.textContent = `🚀 DEPLOY ${approvedCount} APPROVED & GENERATE NEXT 12-IDEA AUDIT NOW`;
+        } else {
+          btnDeploy.textContent = `🔄 RUN NEXT 24-PLAY AUDIT & GENERATE 12 NEW IDEAS NOW (FROM PHONE)`;
+        }
       }
     }
     window.updateFounderBatchDeployBar = updateFounderBatchDeployBar;
@@ -1862,21 +1842,21 @@
             </div>
           </div>
 
-          <div class="p-3.5 rounded-xl bg-amber-950/45 border-2 border-amber-400/80 space-y-2">
-            <div class="flex items-center justify-between gap-2">
+          <div class="synapz-rec-card !mb-0 bg-amber-950/45 border-2 border-amber-400/80 space-y-2">
+            <div class="flex flex-wrap items-center justify-between gap-2">
               <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 text-[10px] font-black uppercase">🔄 Section 2 • Reassessed From Last Run (Awaiting Decision)</span>
               <span class="text-[10px] font-black text-amber-300">Zero Negative Taste Penalty (${reassessedItems.length} Reassessed)</span>
             </div>
             <div class="space-y-2 text-[11px]">
               ${reassessedItems.length ? reassessedItems.map(item => `
-                <div class="p-2.5 rounded-lg bg-slate-950 border border-amber-400/50 space-y-1">
+                <div class="synapz-rec-card !mb-0 bg-slate-950 border border-amber-400/50 space-y-1">
                   <div class="font-black text-white">[${item.id}] ${item.title}</div>
                   <div class="text-amber-200">🔬 <strong>Post-Deploy 24-Play Reassessment:</strong> Re-tested after activating ${deployedItems.map(d => d.id).join(', ') || 'Batch'} — still high-value and ready for 1-tap decision (0 taste penalty).</div>
-                  <div class="flex flex-wrap gap-1.5 pt-1">
-                    <button type="button" onclick="openReportExplainProposalModal('${item.id}')" class="px-2 py-1 rounded bg-cyan-400 text-slate-950 font-black text-[10px]">🔍 Explain</button>
-                    <button type="button" onclick="setReportFounderIdeaDecision('${item.id}', 'approved_for_build')" class="px-2 py-1 rounded bg-emerald-500 text-slate-950 font-black text-[10px]">✅ Approve</button>
-                    <button type="button" onclick="setReportFounderIdeaDecision('${item.id}', 'skipped_reassess_next_run')" class="px-2 py-1 rounded bg-amber-400 text-slate-950 font-black text-[10px]">⏭️ Skip &amp; Reassess</button>
-                    <button type="button" onclick="setReportFounderIdeaDecision('${item.id}', 'rejected_by_founder')" class="px-2 py-1 rounded bg-rose-600 text-white font-black text-[10px]">❌ Reject</button>
+                  <div class="founder-decision-2x2-grid">
+                    <button type="button" onclick="setReportFounderIdeaDecision('${item.id}', 'approved_for_build')" class="founder-decision-btn rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black shadow">✅ Approve</button>
+                    <button type="button" onclick="setReportFounderIdeaDecision('${item.id}', 'skipped_reassess_next_run')" class="founder-decision-btn rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black shadow">⏭️ Skip &amp; Reassess</button>
+                    <button type="button" onclick="openReportExplainProposalModal('${item.id}')" class="founder-decision-btn rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black shadow">🔍 Explain This</button>
+                    <button type="button" onclick="setReportFounderIdeaDecision('${item.id}', 'rejected_by_founder')" class="founder-decision-btn rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-black shadow">❌ Reject</button>
                   </div>
                 </div>
               `).join('') : '<div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300">✨ All previously skipped items were either auto-resolved or decided!</div>'}
@@ -2372,7 +2352,6 @@
       }
       if (btnDeploy) {
         btnDeploy.disabled = false;
-        btnDeploy.textContent = `🚀 DEPLOY APPROVED (0) & GENERATE NEXT 12-IDEA AUDIT NOW (BATCH ${nextBatchCode} LIVE)`;
       }
       updateFounderBatchDeployBar(`BATCH-${nextBatchCode}`, upsertHttpStatus);
       loadLiveSupabaseDashboard();
@@ -2620,29 +2599,24 @@
           const isSkp = item.status === 'skipped_reassess_next_run' || item.status === 'reassessed_awaiting_approval';
           const isRej = item.status === 'rejected_by_founder';
           return `
-          <tr class="hover:bg-slate-900/70 transition align-top">
-            <td class="py-2.5 px-3 font-mono text-[11px] font-black text-emerald-300 whitespace-nowrap">
-              <div>#${item.rank} (${item.id})</div>
-              <div class="text-[10px] text-amber-300">🎯 ${item.founderMatchPct}% Match • ${item.trustTier}</div>
-              <div class="text-[10px] ${item.gateScoreCode.includes('4/4') ? 'text-emerald-300' : 'text-amber-300'}">${item.gateScoreCode}</div>
-            </td>
-            <td class="py-2.5 px-3">
-              <div class="font-black text-white text-xs">${item.title}</div>
-              <div class="text-[11px] text-sky-300 font-bold mt-0.5">${item.targetScope}</div>
-              <div class="text-[10px] text-amber-200 mt-0.5">🔬 ${item.telemetryCitation}</div>
-            </td>
-            <td class="py-2.5 px-3 text-[11px] space-y-1">
-              <div class="text-rose-200"><strong>Pushback:</strong> ${item.candidCritique}</div>
-              <div class="text-cyan-200"><strong>🤝 Honest 4-Gate Score (${item.gateScoreCode}):</strong> ${item.honestDebateNote}</div>
-            </td>
-            <td class="py-2.5 px-3 text-right whitespace-nowrap">
-              <button type="button" data-explain-idea-id="${item.id}" class="btn-report-explain-idea px-2.5 py-1 rounded bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-[10px] mr-1">🔍 Explain This to Me</button>
-              <button type="button" data-approve-idea-id="${item.id}" class="btn-report-approve-idea px-2.5 py-1 rounded ${isApp ? 'bg-emerald-400 ring-2 ring-white text-slate-950' : 'bg-emerald-500 hover:bg-emerald-400 text-slate-950'} font-black text-[10px] mr-1">${item.status === 'completed_and_deployed' ? '🚀 Built &amp; Live' : isApp ? '✅ Saved in Cloud Queue' : '✅ Approve for Next Build'}</button>
-              <button type="button" data-skip-idea-id="${item.id}" class="btn-report-skip-idea px-2.5 py-1 rounded ${isSkp ? 'bg-amber-300 ring-2 ring-white text-slate-950' : 'bg-amber-400 hover:bg-amber-300 text-slate-950'} font-black text-[10px] mr-1">${isSkp ? '⏭️ Saved: Skip &amp; Reassess' : '⏭️ Skip &amp; Reassess'}</button>
-              ${item.trustTier === 'TIER 1' ? `<button type="button" data-undo-tier1-id="${item.id}" class="btn-report-undo-tier1 px-2.5 py-1 rounded bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-[10px] mr-1">↩️ 1-Click Undo</button>` : ''}
-              <button type="button" data-reject-idea-id="${item.id}" class="btn-report-reject-idea px-2.5 py-1 rounded ${isRej ? 'bg-rose-500 ring-2 ring-white text-white' : 'bg-rose-600 hover:bg-rose-500 text-white'} font-black text-[10px]">${isRej ? '❌ Rejected in Cloud' : '❌ Reject'}</button>
-            </td>
-          </tr>
+          <div class="synapz-rec-card space-y-2">
+            <div class="flex flex-wrap items-center justify-between gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/50 font-mono text-[11px] font-black text-emerald-300">#${item.rank} (${item.id})</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 text-[10px] font-black text-amber-300">🎯 ${item.founderMatchPct}% Match • ${item.trustTier}</span>
+              <span class="px-2 py-0.5 rounded border text-[10px] font-black ${item.gateScoreCode.includes('4/4') ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300' : 'bg-amber-500/20 border-amber-400 text-amber-300'}">${item.gateScoreCode}</span>
+            </div>
+            <div class="font-black text-white text-xs sm:text-sm">${item.title}</div>
+            <div class="text-[11px] text-sky-300 font-bold">${item.seatLens} • ${item.targetScope}</div>
+            <div class="text-[11px] text-amber-200 bg-amber-950/35 border border-amber-400/30 rounded-lg p-2">🔬 ${item.telemetryCitation}</div>
+            <div class="text-[11px] text-rose-200"><strong>Pushback &amp; Rationale:</strong> ${item.candidCritique}</div>
+            <div class="text-[11px] text-cyan-200"><strong>🤝 Honest 4-Gate Score (${item.gateScoreCode}):</strong> ${item.honestDebateNote}</div>
+            <div class="founder-decision-2x2-grid">
+              <button type="button" data-approve-idea-id="${item.id}" class="btn-report-approve-idea founder-decision-btn rounded-xl ${isApp ? 'bg-emerald-300 ring-2 ring-white text-slate-950' : 'bg-emerald-500 hover:bg-emerald-400 text-slate-950'} font-black shadow transition">✅ Approve${item.status === 'completed_and_deployed' ? ' (Live)' : isApp ? ' (Saved)' : ''}</button>
+              <button type="button" data-skip-idea-id="${item.id}" class="btn-report-skip-idea founder-decision-btn rounded-xl ${isSkp ? 'bg-amber-300 ring-2 ring-white text-slate-950' : 'bg-amber-400 hover:bg-amber-300 text-slate-950'} font-black shadow transition">⏭️ Skip &amp; Reassess</button>
+              <button type="button" data-explain-idea-id="${item.id}" class="btn-report-explain-idea founder-decision-btn rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black shadow transition">🔍 Explain This</button>
+              <button type="button" data-reject-idea-id="${item.id}" class="btn-report-reject-idea founder-decision-btn rounded-xl ${isRej ? 'bg-rose-500 ring-2 ring-white text-white' : 'bg-rose-600 hover:bg-rose-500 text-white'} font-black shadow transition">❌ Reject</button>
+            </div>
+          </div>
         `;
         }).join('');
       }
@@ -2652,7 +2626,7 @@
       const rows = REPORT_BOARD_30_IDEA_DIGEST.filter(item => {
         if (activeReportDigestFilter === 'all') return true;
         if (activeReportDigestFilter === 'top5') return item.isTop5CoSigned || item.rank <= 5 || item.status === 'approved_for_build' || item.status === 'approved_by_founder';
-        if (activeReportDigestFilter === 'top10') return item.isTop10SeatPrimary || item.rank <= 10 || item.status === 'approved_for_build' || item.status === 'approved_by_founder';
+        if (activeReportDigestFilter === 'top10') return item.isTop10SeatPrimary || item.rank <= 12 || item.status === 'approved_for_build' || item.status === 'approved_by_founder';
         if (activeReportDigestFilter === 'top3') return item.isTop3Recommended || item.status === 'approved_for_build' || item.status === 'approved_by_founder';
         if (activeReportDigestFilter === 'reassessed_awaiting_approval') return item.status === 'reassessed_awaiting_approval' || item.status === 'skipped_reassess_next_run' || item.status === 'auto_resolved_by_batch';
         return item.status === activeReportDigestFilter;
@@ -2678,57 +2652,51 @@
           ? '<span class="px-2 py-0.5 rounded bg-rose-500/20 border border-rose-400/50 text-rose-300 text-[10px] font-black uppercase">🛑 Vetoed by Authority</span>'
           : '<span class="px-2 py-0.5 rounded bg-sky-500/20 border border-sky-400/50 text-sky-200 text-[10px] font-black uppercase">🛡️ Awaiting Founder Approval</span>';
         return `
-          <tr class="hover:bg-slate-900/70 transition align-top">
-            <td class="py-3 px-3 font-mono text-[11px] font-bold text-amber-300 whitespace-nowrap">
-              <div>RANK #${item.rank}</div>
-              <div class="text-slate-400">${item.id} (${item.pod})</div>
-              <div class="mt-1 px-1.5 py-0.5 rounded bg-emerald-500/25 border border-emerald-400 text-emerald-200 text-[9px] font-black inline-block">🎯 ${item.founderMatchPct}% Match</div>
-              <div class="mt-1 px-1.5 py-0.5 rounded bg-sky-500/25 border border-sky-400 text-sky-200 text-[9px] font-black inline-block">${item.trustTier}</div>
-              <div class="mt-1 px-1.5 py-0.5 rounded ${item.gateScoreCode.includes('4/4') ? 'bg-emerald-500/30 border-emerald-400 text-emerald-200' : item.gateScoreCode.includes('3/4') ? 'bg-amber-500/30 border-amber-400 text-amber-200' : 'bg-rose-500/30 border-rose-400 text-rose-200'} border text-[9px] font-black inline-block">${item.gateScoreCode}</div>
-            </td>
-            <td class="py-3 px-3 max-w-xs">
-              <div class="font-black text-sky-300 text-[11px]">1. ${item.seatLens}</div>
-              <div class="text-[11px] text-amber-200 font-bold mt-1">2. Scope: ${item.targetScope}</div>
-              <div class="text-[10px] text-cyan-200 mt-1">${item.trustTierBadge}</div>
-              <div class="mt-1.5">${badgeHtml}</div>
-            </td>
-            <td class="py-3 px-3 max-w-md space-y-1">
-              <div class="font-black text-white text-xs">#${item.rank} — ${item.title}</div>
-              <div class="text-[11px] text-amber-300 bg-amber-950/40 border border-amber-400/40 rounded px-2 py-1"><strong>🔬 Measured Telemetry Citation:</strong> ${item.telemetryCitation}</div>
-              <div class="text-[11px] text-rose-200"><strong>3. Why &amp; Candid Critique:</strong> ${item.candidCritique}</div>
-              ${item.alternativeProposal ? `<div class="text-[11px] text-cyan-200 bg-cyan-950/50 border border-cyan-500/40 rounded px-2 py-1"><strong>🔄 1 Alternative Option (Same Seat):</strong> ${item.alternativeProposal}</div>` : ''}
-              <div class="text-[11px] text-emerald-200 bg-emerald-950/40 border border-emerald-500/30 rounded px-2 py-1">
-                <strong>4. 🤝 Honest 4-Gate Score (${item.gateScoreCode}):</strong> ${item.honestDebateNote}<br/>
-                • ${coSign.gateA_TacticalAdm}<br/>
-                • ${coSign.gateB_CognitionUx}<br/>
-                • ${coSign.gateC_EngineeringQa}<br/>
-                • ${coSign.gateD_ArtSafeSportAudio}
+          <div class="synapz-rec-card space-y-2.5">
+            <div class="flex flex-wrap items-center justify-between gap-1.5">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 font-mono text-[11px] font-black text-amber-300">RANK #${item.rank} • ${item.id} (${item.pod})</span>
+                <span class="px-2 py-0.5 rounded bg-emerald-500/25 border border-emerald-400 text-emerald-200 text-[10px] font-black">🎯 ${item.founderMatchPct}% Match</span>
+                <span class="px-2 py-0.5 rounded bg-sky-500/25 border border-sky-400 text-sky-200 text-[10px] font-black">${item.trustTier}</span>
+                <span class="px-2 py-0.5 rounded ${item.gateScoreCode.includes('4/4') ? 'bg-emerald-500/30 border-emerald-400 text-emerald-200' : item.gateScoreCode.includes('3/4') ? 'bg-amber-500/30 border-amber-400 text-amber-200' : 'bg-rose-500/30 border-rose-400 text-rose-200'} border text-[10px] font-black">${item.gateScoreCode}</span>
               </div>
-              <div class="text-[11px] text-purple-200"><strong>5. Who Else It Affects:</strong> ${item.crossImpact}</div>
-            </td>
-            <td class="py-3 px-3 w-48">
-              <a href="${item.screenshotUrl}" target="_blank" class="block">
-                <img src="${item.screenshotUrl}" alt="${item.title}" class="w-44 rounded-lg border border-slate-700 hover:border-amber-400 transition" loading="lazy" />
+              ${badgeHtml}
+            </div>
+            <div class="font-black text-white text-sm">#${item.rank} — ${item.title}</div>
+            <div class="text-[11px] font-black text-sky-300">1. ${item.seatLens}</div>
+            <div class="text-[11px] text-amber-200 font-bold">2. Scope: ${item.targetScope} <span class="text-cyan-200 font-normal">(${item.trustTierBadge})</span></div>
+            <div class="text-[11px] text-amber-300 bg-amber-950/40 border border-amber-400/40 rounded-lg px-2.5 py-1.5"><strong>🔬 Measured Telemetry Citation:</strong> ${item.telemetryCitation}</div>
+            <div class="text-[11px] text-rose-200"><strong>3. Why &amp; Candid Critique:</strong> ${item.candidCritique}</div>
+            ${item.alternativeProposal ? `<div class="text-[11px] text-cyan-200 bg-cyan-950/50 border border-cyan-500/40 rounded-lg px-2.5 py-1.5"><strong>🔄 1 Alternative Option (Same Seat):</strong> ${item.alternativeProposal}</div>` : ''}
+            <div class="text-[11px] text-emerald-200 bg-emerald-950/40 border border-emerald-500/30 rounded-lg px-2.5 py-1.5">
+              <strong>4. 🤝 Honest 4-Gate Score (${item.gateScoreCode}):</strong> ${item.honestDebateNote}<br/>
+              • ${coSign.gateA_TacticalAdm}<br/>
+              • ${coSign.gateB_CognitionUx}<br/>
+              • ${coSign.gateC_EngineeringQa}<br/>
+              • ${coSign.gateD_ArtSafeSportAudio}
+            </div>
+            <div class="text-[11px] text-purple-200"><strong>5. Who Else It Affects:</strong> ${item.crossImpact}</div>
+            <div class="pt-1">
+              <a href="${item.screenshotUrl}" target="_blank" class="inline-block">
+                <img src="${item.screenshotUrl}" alt="${item.title}" class="w-48 max-w-full rounded-lg border border-slate-700 hover:border-amber-400 transition" loading="lazy" />
               </a>
-            </td>
-            <td class="py-3 px-3 text-right whitespace-nowrap">
-              <div class="flex flex-col items-end gap-1.5">
-                <button type="button" data-explain-idea-id="${item.id}" class="btn-report-explain-idea px-3 py-1.5 rounded-lg bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black text-[10px] shadow transition">
-                  🔍 Explain This to Me
-                </button>
-                <button type="button" data-approve-idea-id="${item.id}" class="btn-report-approve-idea px-3 py-1.5 rounded-lg ${isApp ? 'bg-emerald-400 ring-2 ring-white text-slate-950' : 'bg-emerald-500 hover:bg-emerald-400 text-slate-950'} font-black text-[10px] shadow transition">
-                  ${item.status === 'completed_and_deployed' ? '🚀 Built &amp; Live' : isApp ? '✅ Saved in Cloud Queue' : '✅ Approve for Next Build'}
-                </button>
-                <button type="button" data-skip-idea-id="${item.id}" class="btn-report-skip-idea px-3 py-1.5 rounded-lg ${isSkp ? 'bg-amber-300 ring-2 ring-white text-slate-950' : 'bg-amber-400 hover:bg-amber-300 text-slate-950'} font-black text-[10px] shadow transition">
-                  ${isSkp ? '⏭️ Saved: Skip &amp; Reassess' : '⏭️ Skip &amp; Reassess'}
-                </button>
-                ${item.trustTier === 'TIER 1' ? `<button type="button" data-undo-tier1-id="${item.id}" class="btn-report-undo-tier1 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-[10px] shadow transition">↩️ 1-Click Undo</button>` : ''}
-                <button type="button" data-reject-idea-id="${item.id}" class="btn-report-reject-idea px-3 py-1.5 rounded-lg ${isRej ? 'bg-rose-500 ring-2 ring-white text-white' : 'bg-rose-600 hover:bg-rose-500 text-white'} font-black text-[10px] shadow transition">
-                  ${isRej ? '❌ Rejected in Cloud' : '❌ Reject'}
-                </button>
-              </div>
-            </td>
-          </tr>
+            </div>
+            <div class="founder-decision-2x2-grid">
+              <button type="button" data-approve-idea-id="${item.id}" class="btn-report-approve-idea founder-decision-btn rounded-xl ${isApp ? 'bg-emerald-300 ring-2 ring-white text-slate-950' : 'bg-emerald-500 hover:bg-emerald-400 text-slate-950'} font-black shadow transition">
+                ✅ Approve${item.status === 'completed_and_deployed' ? ' (Live)' : isApp ? ' (Saved)' : ''}
+              </button>
+              <button type="button" data-skip-idea-id="${item.id}" class="btn-report-skip-idea founder-decision-btn rounded-xl ${isSkp ? 'bg-amber-300 ring-2 ring-white text-slate-950' : 'bg-amber-400 hover:bg-amber-300 text-slate-950'} font-black shadow transition">
+                ⏭️ Skip &amp; Reassess
+              </button>
+              <button type="button" data-explain-idea-id="${item.id}" class="btn-report-explain-idea founder-decision-btn rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black shadow transition">
+                🔍 Explain This
+              </button>
+              <button type="button" data-reject-idea-id="${item.id}" class="btn-report-reject-idea founder-decision-btn rounded-xl ${isRej ? 'bg-rose-500 ring-2 ring-white text-white' : 'bg-rose-600 hover:bg-rose-500 text-white'} font-black shadow transition">
+                ❌ Reject
+              </button>
+            </div>
+            ${item.trustTier === 'TIER 1' ? `<div class="pt-1"><button type="button" data-undo-tier1-id="${item.id}" class="btn-report-undo-tier1 w-full py-2 px-3 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-200 font-black text-xs transition">↩️ 1-Click Undo Tier 1 Micro-Fix</button></div>` : ''}
+          </div>
         `;
       }).join('');
 
@@ -3104,15 +3072,14 @@
   </div>
 
   <!-- SECTION 32: STICKY BOTTOM DEPLOYMENT CART BAR (`#founderBatchDeployBar`) -->
-  <div id="founderBatchDeployBar" class="fixed bottom-0 inset-x-0 z-40 bg-slate-950/95 backdrop-blur-md border-t-2 border-emerald-400 px-4 py-3 shadow-2xl">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-      <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm font-bold text-slate-100">
-        <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[11px] font-black uppercase">Section 32 • Silent Queue Cart</span>
-        <span id="founderBatchCartCountsText">🛒 <span class="text-emerald-300 font-black">44</span> Approved &nbsp;•&nbsp; ⏭️ <span class="text-amber-300 font-black">7</span> Skipped to Reassess</span>
-        <span class="text-[11px] text-slate-400 hidden md:inline">(Zero emails per click — sends 1 consolidated receipt when you deploy!)</span>
+  <div id="founderBatchDeployBar" class="fixed bottom-0 inset-x-0 z-40 bg-slate-950/95 backdrop-blur-md border-t-2 border-emerald-400 px-2.5 py-2.5 shadow-2xl">
+    <div class="synapz-mobile-container !p-0 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <div class="flex flex-wrap items-center gap-1.5 text-[11px] sm:text-xs font-bold text-slate-100">
+        <span class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black uppercase">Section 32 • Phone Cloud Loop</span>
+        <span id="founderBatchCartCountsText">🛒 <span class="text-emerald-300 font-black">0</span> Approved &nbsp;•&nbsp; ⏭️ <span class="text-amber-300 font-black">0</span> Skipped</span>
       </div>
-      <button id="btnTriggerRemoteBatchDeploy" type="button" onclick="window.runCloudBatchDeployAndNextAuditFromPhone && window.runCloudBatchDeployAndNextAuditFromPhone()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 via-amber-400 to-emerald-400 hover:from-emerald-300 hover:to-amber-300 text-slate-950 font-black text-xs sm:text-sm shadow-xl transition">
-        🚀 DEPLOY APPROVED &amp; GENERATE NEXT 12-IDEA AUDIT NOW
+      <button id="btnTriggerRemoteBatchDeploy" type="button" onclick="window.runCloudBatchDeployAndNextAuditFromPhone && window.runCloudBatchDeployAndNextAuditFromPhone()" class="founder-decision-btn sm:w-auto px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 via-amber-400 to-emerald-400 hover:from-emerald-300 hover:to-amber-300 text-slate-950 font-black shadow-xl transition">
+        🔄 RUN NEXT 24-PLAY AUDIT &amp; GENERATE 12 NEW IDEAS NOW (FROM PHONE)
       </button>
     </div>
   </div>
