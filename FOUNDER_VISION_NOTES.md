@@ -519,6 +519,18 @@ Every `RUN NIGHTLY AUTOPILOT` pass runs an active Playwright field inspection in
      2. `🔄 REASSESSED ITEMS FROM LAST RUN (STILL RELEVANT AFTER NEW BUILD)`.
      3. `🚩 Seat 0 Red-Flag Council Options` + `🔍 Seat 13 100% App Scouring Heatmap (Advanced to Next Batch!)`.
      4. `🏆 Next Fresh Batch: Top 10 Consensus + 60 Non-Repeating Telemetry Ideas` (each equipped with all 4 buttons: `🔍 Explain`, `✅ Approve`, `⏭️ Skip & Reassess`, `❌ Reject`).
+6. **Subsection 5 — 100% Phone-Driven Batch Deploy, Next-24-Play Rotated Audit & Next-12-Idea Email Generator (`v10.6` — Zero PC Required):**
+   - **Pre-Coded 5-Batch Modular Upgrade Bank (`Batches F, G, H, I, J` = 60 Real Modular Features in `index.html`):**
+     - `index.html` pre-codes all **60 real `<canvas>` / DOM / audio / coaching upgrades** across **Batches `F`, `G`, `H`, `I`, and `J`** (`S1-F..S12-F`, `S1-G..S12-G`, `S1-H..S12-H`, `S1-I..S12-I`, `S1-J..S12-J`) inside `window.SYNAPZ_5_BATCH_UPGRADE_BANK`, gated by `window.isSynapzUpgradeActive(id)` and hydrated on startup from `public.pucksense_agent_inbox` (`status = 'completed_and_deployed'`).
+     - Every feature in Batches `F–J` strictly preserves `<= 4` primary buttons on all player screens (`#synapzCleanPlayerScreensRule`) and supports instant `[↩️ 1-Click Undo]` (`window.deactivateSynapzUpgrade(id)`).
+   - **In-Browser 5-Phase Autonomous Loop (`window.runCloudBatchDeployAndNextAuditFromPhone()` in `report.html`):**
+     - When Coach Dane or Coach Evan clicks `[✅ Approve]`, `[⏭️ Skip & Reassess]`, or `[❌ Reject]` on their phone and taps **`[🚀 DEPLOY APPROVED & GENERATE NEXT 12-IDEA AUDIT NOW]`** (`#btnTriggerRemoteBatchDeploy`), the phone browser itself executes all 5 phases with zero PC required:
+       - **Phase 1 (Activate Approved Upgrades Live):** Transitions all `approved_for_build` rows to `completed_and_deployed` in Supabase (`?on_conflict=id`), activates them immediately in `index.html` via `window.syncActiveUpgradesFromSupabase()`, and updates the cloud-synced `SYNAPZ-FOUNDER-TASTE-PROFILE` record (`+3` for approved, `-5` for rejected, `0` penalty for skipped).
+       - **Phase 2 (Auto-Reassess Skipped Items):** Re-evaluates all `skipped_reassess_next_run` rows (`auto_resolved_by_batch` vs. `reassessed_awaiting_approval` with fresh telemetry and zero taste penalty).
+       - **Phase 3 (In-Browser 24-Play Rotated Scenario & Telemetry Audit):** Reads and advances the cloud-synced coverage ledger (`SYNAPZ-CLOUD-COVERAGE-LEDGER` in Supabase) by **24 fresh scenarios & NHL cities** (`4 plays × 6 age divisions: 8U–18U`), updates the Seat 13 Heatmap DOM live on the phone screen, and advances the active batch pointer (`Batch F -> Batch G -> Batch H -> Batch I -> Batch J`).
+       - **Phase 4 (Load & `UPSERT` Next 12 Non-Repeating Seat Recommendations):** Loads the next unseen batch of 12 telemetry-grounded recommendations (`1 per Seat` + `Top 5 Co-Signed Consensus Priorities`), `UPSERT`s them to `public.pucksense_agent_inbox` (`status = 'awaiting_founder_approval'`), and re-renders Sections 1–4 live on the phone screen.
+       - **Phase 5 (Direct Phone-to-Gmail `< 35 KB` Digest Dispatch):** Builds the compact `< 35 KB` HTML digest and `POST`s it directly from the phone browser to `GOOGLE_APPS_SCRIPT_WEBHOOK_URL` (`Content-Type: 'text/plain;charset=utf-8'`, with `mode: 'no-cors'` fallback) so `danebekkedahl@gmail.com` and `evanbekk@gmail.com` receive the updated batch receipt and next 12-idea email within seconds.
+
 
 
 

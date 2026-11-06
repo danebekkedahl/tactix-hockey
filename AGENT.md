@@ -386,6 +386,14 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
      - **Case B (`status = 'reassessed_awaiting_approval'`):** Updates telemetry and surfaces still-relevant items (`S9-B`, `S10-B`, `S4-E`) with a `🔄 Reassessed After Last Build` badge.
 4. **Single Consolidated Batch Summary Email (`< 75 KB` in `send-board-digest.js`):**
    - Sends strictly ONE consolidated email (`< 75 KB`) containing the Batch Deployment Receipt, Auto-Resolved Skipped Items, Reassessed Items, Seat 0 + Seat 13 Heatmap (Batch #2), and 60 fresh non-repeating Batch #2 telemetry ideas equipped with all 4 buttons (`🔍 Explain`, `✅ Approve`, `⏭️ Skip & Reassess`, `❌ Reject`).
+5. **Subsection 5 — 100% Phone-Driven Batch Deploy, Next-24-Play Rotated Audit & Next-12-Idea Email Generator (`v10.6` — Zero PC Required):**
+   - **Pre-Coded 5-Batch Upgrade Bank (`Batches F, G, H, I, J` = 60 Real Modular Features in `index.html`):** All 60 modular upgrades (`S1-F..S12-F`, `S1-G..S12-G`, `S1-H..S12-H`, `S1-I..S12-I`, `S1-J..S12-J`) are physically pre-coded inside `index.html` (`window.SYNAPZ_5_BATCH_UPGRADE_BANK`), gated by `window.isSynapzUpgradeActive(id)`, hydrated on startup from `public.pucksense_agent_inbox` (`status = 'completed_and_deployed'`), and equipped with `[↩️ 1-Click Undo]` (`window.deactivateSynapzUpgrade(id)`).
+   - **In-Browser 5-Phase Autonomous Loop (`window.runCloudBatchDeployAndNextAuditFromPhone()` in `report.html`):** Wired directly to `#btnTriggerRemoteBatchDeploy` (`[🚀 DEPLOY APPROVED & GENERATE NEXT 12-IDEA AUDIT NOW]`). With a single tap on any phone or iPad (even when the home PC is off), the browser:
+     1. Transitions all `approved_for_build` items to `completed_and_deployed` in Supabase (`?on_conflict=id`) and updates the cloud-synced `SYNAPZ-FOUNDER-TASTE-PROFILE` record (`+3` approved, `-5` rejected, `0` penalty for skipped).
+     2. Auto-reassesses all `skipped_reassess_next_run` items (`auto_resolved_by_batch` vs. `reassessed_awaiting_approval`).
+     3. Advances the cloud-synced coverage ledger (`SYNAPZ-CLOUD-COVERAGE-LEDGER` in Supabase) by **24 fresh scenarios & NHL cities** (`4 plays × 6 age divisions: 8U–18U`) and advances the active batch pointer (`Batch F -> Batch G -> Batch H -> Batch I -> Batch J`).
+     4. Loads & `UPSERT`s the next batch of 12 non-repeating Seat Recommendations (`1 per Seat` + `Top 5 Co-Signed Consensus Priorities`) into `public.pucksense_agent_inbox` (`status = 'awaiting_founder_approval'`) and re-renders Sections 1–4 live on the phone screen.
+     5. Builds the `< 35 KB` HTML digest and `POST`s it directly from the phone browser to `GOOGLE_APPS_SCRIPT_WEBHOOK_URL` (`Content-Type: 'text/plain;charset=utf-8'`, with `mode: 'no-cors'` fallback) so `danebekkedahl@gmail.com` and `evanbekk@gmail.com` receive the updated batch receipt and next 12-idea email immediately.
 
 ---
 

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v10.4-sweet-spot-loop';
+const CACHE_NAME = 'synapz-hockey-v10.6-phone-autonomous-loop';
 const ASSETS = [
   './',
   './index.html',

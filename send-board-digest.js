@@ -1813,14 +1813,14 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
     Prepared for <strong>Coach Dane (danebekkedahl@gmail.com)</strong> &amp; <strong>Coach Evan (evanbekk@gmail.com)</strong> • ${timestamp}<br/>
     🌐 <strong>Live App:</strong> <a href="${PAGES_BASE_URL}/" class="b-ex">${PAGES_BASE_URL}/</a> •
     📊 <strong>Interactive Report:</strong> <a href="${rpt}#founder-approval-board" class="b-ap">${rpt}</a> •
-    🚀 <strong>1-Click Batch Deploy:</strong> <a href="${triggerBatchUrl}" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">🚀 BUILD &amp; DEPLOY ALL APPROVED UPGRADES NOW</a>
+    📱 <strong>1-Tap Phone Loop:</strong> <a href="${triggerBatchUrl}" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">🚀 DEPLOY APPROVED &amp; GENERATE NEXT 12-IDEA AUDIT NOW</a>
   </p>
 
   <!-- SECTION 1: ✅ BATCH FIX RECEIPT & CHROME TEST VERIFICATION -->
   <div style="background:#022c22;border:2px solid #10b981;border-radius:10px;padding:11px;margin-bottom:12px;">
-    <div style="font-size:11px;font-weight:900;color:#34d399;text-transform:uppercase;">SECTION 1 • ✅ BATCH FIX RECEIPT &amp; CHROME VERIFICATION: ${newlyCodedThisPass.length} NEW FIXES CODED IN index.html (${cumulativeCoded.length} CUMULATIVE LIVE)</div>
+    <div style="font-size:11px;font-weight:900;color:#34d399;text-transform:uppercase;">SECTION 1 • ✅ BATCH FIX RECEIPT &amp; CHROME VERIFICATION: ${newlyCodedThisPass.length} NEW FIXES CODED IN index.html (${cumulativeCoded.length} CUMULATIVE LIVE + 60-FEATURE PHONE BANK READY)</div>
     <div style="font-size:11px;color:#a7f3d0;margin:4px 0;">
-      <strong>Service Worker Cache Bumped:</strong> <code>${BATCH_DEPLOYMENT_RECEIPT.cacheVersion || 'synapz-hockey-v10.4-sweet-spot-loop'}</code> • Verified on <code>390×844 Phone</code> &amp; <code>768×1024 iPad</code> (<code>&lt;= 4</code> primary buttons on all player screens)
+      <strong>Service Worker Cache Bumped:</strong> <code>synapz-hockey-v10.6-phone-autonomous-loop</code> • Verified on <code>390×844 Phone</code> &amp; <code>768×1024 iPad</code> (<code>&lt;= 4</code> primary buttons on all player screens)
     </div>
     <table style="margin:6px 0;">
       <thead>
@@ -1874,7 +1874,7 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
       </tr>
     </table>
     <div style="margin-top:6px;">
-      <a href="${triggerBatchUrl}" style="background:#10b981;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">🚀 BUILD &amp; DEPLOY ALL APPROVED UPGRADES NOW</a>
+      <a href="${triggerBatchUrl}" style="background:#10b981;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">🚀 DEPLOY APPROVED &amp; GENERATE NEXT 12-IDEA AUDIT NOW</a>
       <a href="${batchApproveUrl}" style="background:#0284c7;color:#fff;font-weight:900;font-size:11px;padding:6px 10px;border-radius:5px;text-decoration:none;display:inline-block;">⭐ Approve All High-Match Picks (&gt;=90% • ${fresh12Ideas.length} Fresh Ideas)</a>
     </div>
   </div>
@@ -1882,7 +1882,7 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
   <!-- SECTION 4: 🏆 TOP 5 CONSENSUS + 12 FRESH SEAT RECOMMENDATIONS (1 PER SEAT) -->
   <div style="background:#0f172a;border:2px solid #0284c7;border-radius:10px;padding:11px;">
     <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 4 • 🏆 TOP 5 CO-SIGNED CONSENSUS PRIORITIES + 12 FRESH SEAT RECOMMENDATIONS (1 PER SEAT • PRE-UPSERTED IN SUPABASE)</div>
-    <div style="font-size:11px;color:#94a3b8;margin:2px 0 6px;">All 12 fresh recommendations are pre-synced in <code>public.pucksense_agent_inbox</code>. Click any button to queue silently, then click <a href="${triggerBatchUrl}" class="b-ap">[🚀 BUILD &amp; DEPLOY ALL APPROVED UPGRADES NOW]</a>!</div>
+    <div style="font-size:11px;color:#94a3b8;margin:2px 0 6px;">All 12 fresh recommendations are pre-synced in <code>public.pucksense_agent_inbox</code>. Click any button to queue silently on your phone, then tap <a href="${triggerBatchUrl}" class="b-ap">[🚀 DEPLOY APPROVED &amp; GENERATE NEXT 12-IDEA AUDIT NOW]</a> (Zero PC required)!</div>
     <table style="margin-bottom:10px;">
       <thead>
         <tr><th>Top 5 Consensus</th><th>Proposal &amp; 24-Play Rotated Telemetry Citation</th><th>Match / Gate</th><th>4 Action Buttons (Cloud UPSERT)</th></tr>

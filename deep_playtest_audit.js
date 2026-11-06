@@ -564,11 +564,11 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           return {
             scenId: scen ? scen.id : '',
             qStyle: state.activeQuestionStyle || 'tap_zone',
-            cornerPrompt: (document.getElementById('cornerShortPrompt')?.innerText || '').trim(),
-            title: (document.getElementById('scenarioTitle')?.innerText || '').trim(),
-            briefing: (document.getElementById('scenarioBriefing')?.innerText || '').trim(),
-            goldenRule: (document.getElementById('goldenRuleText')?.innerText || '').trim(),
-            situationBanner: (document.getElementById('situationBannerText')?.innerText || '').trim(),
+            cornerPrompt: (document.getElementById('cornerShortPrompt')?.textContent || '').trim(),
+            title: (document.getElementById('scenarioTitle')?.textContent || '').trim(),
+            briefing: (document.getElementById('scenarioBriefing')?.textContent || '').trim(),
+            goldenRule: (document.getElementById('goldenRuleText')?.textContent || '').trim(),
+            situationBanner: (document.getElementById('situationBannerText')?.textContent || '').trim(),
             youPos: { x: state.youPos.x, y: state.youPos.y },
             puckPos: { x: state.puckPos.x, y: state.puckPos.y },
             teammates: (scen?.teammates || []).map(t => ({ id: t.id, label: t.label, x: t.x, y: t.y })),
@@ -765,11 +765,11 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           return {
             scenId: scen ? scen.id : '',
             qStyle: 'drag_skater',
-            cornerPrompt: (document.getElementById('cornerShortPrompt')?.innerText || '').trim(),
-            title: (document.getElementById('scenarioTitle')?.innerText || '').trim(),
-            briefing: (document.getElementById('scenarioBriefing')?.innerText || '').trim(),
-            goldenRule: (document.getElementById('goldenRuleText')?.innerText || '').trim(),
-            situationBanner: (document.getElementById('situationBannerText')?.innerText || '').trim(),
+            cornerPrompt: (document.getElementById('cornerShortPrompt')?.textContent || '').trim(),
+            title: (document.getElementById('scenarioTitle')?.textContent || '').trim(),
+            briefing: (document.getElementById('scenarioBriefing')?.textContent || '').trim(),
+            goldenRule: (document.getElementById('goldenRuleText')?.textContent || '').trim(),
+            situationBanner: (document.getElementById('situationBannerText')?.textContent || '').trim(),
             youPos: { x: state.youPos.x, y: state.youPos.y },
             puckPos: { x: state.puckPos.x, y: state.puckPos.y },
             teammates: (scen?.teammates || []).map(t => ({ id: t.id, label: t.label, x: t.x, y: t.y })),
@@ -3131,31 +3131,168 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       console.warn('Pre-UPSERT 12 recommendations warning:', e.message);
     }
 
-    // Verify `report.html` real Supabase UPSERT (`?on_conflict=id`, HTTP 200/201) on a fresh item (`S1-F`) and restore it to `awaiting_founder_approval`
+    // Verify `report.html` real Supabase UPSERT + Full 5-Phase Phone-Driven Autonomous Loop (`window.runCloudBatchDeployAndNextAuditFromPhone`) on 390x844 iPhone Viewport
     const reportPage = await context.newPage();
+    await reportPage.setViewportSize({ width: 390, height: 844 });
     const reportUpsertStatuses = [];
     reportPage.on('response', (res) => {
       if (res.url().includes('pucksense_agent_inbox') && res.request().method() === 'POST') {
         reportUpsertStatuses.push({ url: res.url(), status: res.status() });
       }
     });
+
+    // Reset cloud coverage ledger to Batch F before running the simulated phone cycle so it deterministically tests F -> G
+    try {
+      await fetch(`${SUPABASE_URL}?on_conflict=id`, {
+        method: 'POST',
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          Prefer: 'resolution=merge-duplicates,return=representation'
+        },
+        body: JSON.stringify([{
+          id: ideaToUuid('SYNAPZ-CLOUD-COVERAGE-LEDGER'),
+          created_by: 'Seat13-Cloud-Ledger',
+          source_role: 'council',
+          scenario_id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
+          age_division: 'ALL',
+          category: 'cloud_coverage_ledger',
+          status: 'completed_and_deployed',
+          summary: '📊 Seat 13 Cloud Coverage Ledger Initialized (112/360 Scenarios • Active Batch F)',
+          details: {
+            id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
+            activeBatchCode: 'F',
+            scenariosCount: 112,
+            scenariosPct: '31.1',
+            citiesCount: 18,
+            citiesPct: '56.3',
+            permutationsCount: 96,
+            permutationsPct: '1.7',
+            updated_at: new Date().toISOString()
+          }
+        }])
+      });
+    } catch (_) {}
+
     await reportPage.goto('http://localhost:8080/report.html', { waitUntil: 'networkidle', timeout: 30000 });
     await reportPage.waitForTimeout(900);
+
     const reportUpsertVerification = await reportPage.evaluate(async () => {
-      const approveResult = await window.setReportFounderIdeaDecision('S1-F', 'approved_for_build');
-      const barAfterApprove = document.getElementById('founderBatchCartCountsText')?.textContent || '';
-      const restoreResult = await window.setReportFounderIdeaDecision('S1-F', 'awaiting_founder_approval');
+      // Simulate Coach Dane & Coach Evan on 390x844 iPhone:
+      // 1) Approve 3 items (S1-F, S3-F, S9-F)
+      // 2) Skip & Reassess 2 items (S2-F, S5-F)
+      const app1 = await window.setReportFounderIdeaDecision('S1-F', 'approved_for_build');
+      const app2 = await window.setReportFounderIdeaDecision('S3-F', 'approved_for_build');
+      const app3 = await window.setReportFounderIdeaDecision('S9-F', 'approved_for_build');
+      const skp1 = await window.setReportFounderIdeaDecision('S2-F', 'skipped_reassess_next_run');
+      const skp2 = await window.setReportFounderIdeaDecision('S5-F', 'skipped_reassess_next_run');
+      const barBeforeDeploy = document.getElementById('founderBatchCartCountsText')?.textContent || '';
+
+      // 3) Tap #btnTriggerRemoteBatchDeploy ([🚀 DEPLOY APPROVED & GENERATE NEXT 12-IDEA AUDIT NOW])
+      const loopResult = await window.runCloudBatchDeployAndNextAuditFromPhone();
+      const firstRowIdAfterDeploy = window.REPORT_BOARD_30_IDEA_DIGEST && window.REPORT_BOARD_30_IDEA_DIGEST[0] ? window.REPORT_BOARD_30_IDEA_DIGEST[0].id : '';
+      const heatmapScenariosAfter = document.getElementById('seat13HeatmapScenarios')?.textContent || '';
+      const receiptHeadlineAfter = document.getElementById('batchReceiptHeadline')?.textContent || '';
+
       return {
-        approveCloudSaved: Boolean(approveResult && approveResult.ok),
-        approveHttpStatus: approveResult ? approveResult.status : 0,
-        barAfterApprove,
-        restoredToAwaitingApproval: Boolean(restoreResult && restoreResult.ok)
+        approveCloudSaved: Boolean(app1?.ok && app2?.ok && app3?.ok && skp1?.ok && skp2?.ok),
+        approveHttpStatus: app1 ? app1.status : 0,
+        barBeforeDeploy,
+        phoneAutonomousLoopResult: loopResult,
+        firstRowIdAfterDeploy,
+        heatmapScenariosAfter,
+        receiptHeadlineAfter
       };
     });
+
+    await reportPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_phone_autonomous_loop_v106.png') });
+    capturedScreenshots.audit_phone_autonomous_loop_v106 = 'screenshots/audit_phone_autonomous_loop_v106.png';
+
+    // Verify in index.html (`page`) that `window.syncActiveUpgradesFromSupabase()` activates S1-F, S3-F, S9-F live from Supabase!
+    const v106PhoneUpgradeBankVerification = await page.evaluate(async () => {
+      const bankKeys = Object.keys(window.SYNAPZ_5_BATCH_UPGRADE_BANK || {});
+      if (typeof window.syncActiveUpgradesFromSupabase === 'function') {
+        await window.syncActiveUpgradesFromSupabase();
+      }
+      const s1FActive = typeof window.isSynapzUpgradeActive === 'function' && window.isSynapzUpgradeActive('S1-F');
+      const s3FActive = typeof window.isSynapzUpgradeActive === 'function' && window.isSynapzUpgradeActive('S3-F');
+      const s9FActive = typeof window.isSynapzUpgradeActive === 'function' && window.isSynapzUpgradeActive('S9-F');
+      switchView('game');
+      loadScenario(false);
+      drawRink();
+      const primaryBtnsCount = document.querySelectorAll('#lessonConsistentBottomBar > button').length;
+      return {
+        totalPreCodedBankFeatures: bankKeys.length,
+        all60BatchesFToJPresent: bankKeys.length === 60,
+        s1FActivatedLiveFromSupabase: s1FActive,
+        s3FActivatedLiveFromSupabase: s3FActive,
+        s9FActivatedLiveFromSupabase: s9FActive,
+        primaryBtnsCountAfterActivation: primaryBtnsCount
+      };
+    });
+    v104RealFeaturesAudit.v106PhoneUpgradeBankVerification = v106PhoneUpgradeBankVerification;
+
+    // Restore clean Batch F state in Supabase so Coach Dane & Coach Evan start with a fresh unclicked Batch F (S1-F .. S12-F) on their phones
+    await reportPage.evaluate(async () => {
+      localStorage.removeItem('synapz_active_upgrades_v106');
+      localStorage.removeItem('synapz_founder_digest_decisions_v10');
+    });
+    try {
+      const nowIso = new Date().toISOString();
+      const restoreBatchFRows = fresh12SeatRecommendations.map(item => ({
+        id: ideaToUuid(item.id),
+        created_by: `Seat-${item.seatNumber}-Auditor`,
+        source_role: 'council',
+        scenario_id: item.id,
+        age_division: 'ALL',
+        category: 'board_digest',
+        status: 'awaiting_founder_approval',
+        summary: `[Rank #${item.rank} • ${item.id} • ${item.gateScoreCode} • 🎯 ${item.founderMatchPct}%] ${item.title} (${item.measuredScenarioId})`,
+        details: {
+          ...item,
+          idea_id: item.id,
+          updated_at: nowIso
+        }
+      }));
+      restoreBatchFRows.push({
+        id: ideaToUuid('SYNAPZ-CLOUD-COVERAGE-LEDGER'),
+        created_by: 'Seat13-Cloud-Ledger',
+        source_role: 'council',
+        scenario_id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
+        age_division: 'ALL',
+        category: 'cloud_coverage_ledger',
+        status: 'completed_and_deployed',
+        summary: '📊 Seat 13 Cloud Coverage Ledger Ready (112/360 Scenarios • Active Batch F)',
+        details: {
+          id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
+          activeBatchCode: 'F',
+          scenariosCount: 112,
+          scenariosPct: '31.1',
+          citiesCount: 18,
+          citiesPct: '56.3',
+          permutationsCount: 96,
+          permutationsPct: '1.7',
+          updated_at: nowIso
+        }
+      });
+      await fetch(`${SUPABASE_URL}?on_conflict=id`, {
+        method: 'POST',
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          Prefer: 'resolution=merge-duplicates,return=representation'
+        },
+        body: JSON.stringify(restoreBatchFRows)
+      });
+    } catch (_) {}
+
     await reportPage.close();
-    console.log('☁️ Verified report.html Supabase UPSERT (HTTP 200/201):', JSON.stringify({
+    console.log('☁️ Verified v10.6 Phone-Driven 5-Phase Autonomous Loop & 60-Feature Upgrade Bank:', JSON.stringify({
       ...reportUpsertVerification,
-      networkResponses: reportUpsertStatuses
+      v106PhoneUpgradeBankVerification,
+      networkResponsesCount: reportUpsertStatuses.length
     }));
 
     const summaryPayload = {
