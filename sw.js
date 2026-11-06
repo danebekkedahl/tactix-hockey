@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v9.5-natural-voice';
+const CACHE_NAME = 'synapz-hockey-v10.2-batch1';
 const ASSETS = [
   './',
   './index.html',

@@ -328,6 +328,33 @@
         <div id="seat13LiveDefectScannerSummary" class="p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] text-slate-300">
           🔬 <strong>Step 2 Real Data-Driven Defect Scanner (<code>audit_live_findings.json</code>):</strong> Scanned <code>390×844</code> iPhone &amp; <code>768×1024</code> iPad live in Chrome • Flagged specific Scenario IDs with raw prompts &gt;14 words (e.g., <code>basics-center</code>, <code>oz-d-pinch-backfill-3</code>) and skater pairs &lt;0.15 normalized distance (e.g., <code>rush-3v2-f3-high</code> d=0.082, <code>dzone-slot-1</code> d=0.094) • Verified &lt;=4 primary buttons across all 8 screens.
         </div>
+
+        <!-- SECTION 32: BATCH DEPLOYMENT RECEIPT, AUTO-RESOLVED SKIPPED ITEMS & REASSESSED ITEMS -->
+        <div id="section32BatchReceiptBox" class="p-3.5 rounded-xl bg-emerald-950/50 border-2 border-emerald-400/70 space-y-2.5 text-xs">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <span class="px-2 py-0.5 rounded bg-emerald-400 text-slate-950 text-[10px] font-black uppercase tracking-widest">🚀 Section 32 • 1-Click Remote Batch Deployment Receipt &amp; Post-Batch Skipped-Item Auto-Reassessment</span>
+              <h5 id="batchReceiptHeadline" class="font-black text-white text-xs sm:text-sm mt-1">✅ Batch #1 Deployed: 44 Approved Upgrades Live • ✨ 4 Skipped Items Auto-Resolved • 🔄 3 Items Reassessed After Build</h5>
+            </div>
+            <button type="button" onclick="window.triggerRemoteBatchDeployment && window.triggerRemoteBatchDeployment()" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-400 to-amber-400 hover:from-emerald-300 hover:to-amber-300 text-slate-950 font-black text-xs shadow-lg transition">
+              🚀 BUILD &amp; DEPLOY ALL APPROVED UPGRADES NOW
+            </button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-[11px]">
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-emerald-400/50">
+              <div class="font-black text-emerald-300">✅ 44 Approved Upgrades Built &amp; Live</div>
+              <div id="batchReceiptDeployedSummary" class="text-slate-300 mt-1">Built &amp; deployed <code>RF-COUNCIL-01 (Option A)</code> + <code>43</code> approved Board items (Global Skater Separation <code>d &gt;= 0.15</code>, 2px Skate Glint, Pro Shop Tape/Visor On-Ice Sync, Trophy Case Engraving, Verb Highlighting &amp; Audio Pre-Fetch).</div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-cyan-400/50">
+              <div class="font-black text-cyan-300">✨ 4 Skipped Items Auto-Resolved by Batch</div>
+              <div id="batchReceiptAutoResolvedSummary" class="text-slate-300 mt-1">Seat 13 re-tested all 7 skipped items after Batch #1: <code>S9-A</code> (d&gt;=0.15 overlap fix), <code>S1-E</code> (weak-side spacing), <code>S7-E</code> (mobile 4-button lock), and <code>S12-E</code> (DOM privacy) were automatically resolved by your approved upgrades!</div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-amber-400/50">
+              <div class="font-black text-amber-300">🔄 3 Items Reassessed After Last Build</div>
+              <div id="batchReceiptReassessedSummary" class="text-slate-300 mt-1"><code>S9-B</code> (4-Viewport Bounding-Box Stress), <code>S10-B</code> (Multi-Division Coach Switcher), and <code>S4-E</code> (Weekly Streak Freeze Shield) remain relevant after Batch #1 and carry the <strong>🔄 Reassessed After Last Build</strong> badge below.</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Top 10 Co-Signed Consensus Priorities Summary Table (#1 to #10) -->
@@ -380,7 +407,8 @@
           <button type="button" data-digest-filter="all" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-amber-400 text-slate-950 font-black text-[11px]">All 60 Master Matrix Ideas (12 Seats × 5 = 60)</button>
           <button type="button" data-digest-filter="top10" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-emerald-400/60 text-emerald-300 font-bold text-[11px]">🏆 Top 10 Co-Signed Consensus (#1–#10)</button>
           <button type="button" data-digest-filter="top5" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-cyan-400/50 text-cyan-300 font-bold text-[11px]">🤝 Top 5 Priority Picks (#1–#5)</button>
-          <button type="button" data-digest-filter="awaiting_founder_approval" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-sky-500/40 text-sky-300 font-bold text-[11px]">🛡️ Awaiting Approval (54)</button>
+          <button type="button" data-digest-filter="reassessed_awaiting_approval" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-amber-400/60 text-amber-300 font-bold text-[11px]">🔄 Reassessed &amp; Skipped</button>
+          <button type="button" data-digest-filter="awaiting_founder_approval" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-sky-500/40 text-sky-300 font-bold text-[11px]">🛡️ Awaiting Approval</button>
           <button type="button" data-digest-filter="vetoed" class="report-digest-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-rose-500/40 text-rose-300 font-bold text-[11px]">🛑 Vetoed by Authority (6)</button>
         </div>
         <span id="reportDigestOverrideStatus" class="text-[11px] font-bold text-sky-300">🔒 Approval Gate &amp; Test-Suite Lock Active: Only <code>approved_for_build</code> items build next run</span>
@@ -1561,16 +1589,75 @@
 
     let activeReportDigestFilter = 'all';
 
+    function updateFounderBatchDeployBar() {
+      const approvedCount = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.status === 'approved_for_build' || x.status === 'approved_by_founder' || x.status === 'completed_and_deployed').length;
+      const queuedNewApprovedCount = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.status === 'approved_for_build' || x.status === 'approved_by_founder').length;
+      const skippedCount = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.status === 'skipped_reassess_next_run' || x.status === 'reassessed_awaiting_approval').length;
+      const cartTextEl = document.getElementById('founderBatchCartCountsText');
+      if (cartTextEl) {
+        cartTextEl.innerHTML = `🛒 <span class="text-emerald-300 font-black">${queuedNewApprovedCount || approvedCount}</span> Approved &nbsp;•&nbsp; ⏭️ <span class="text-amber-300 font-black">${skippedCount}</span> Skipped to Reassess`;
+      }
+      const btnDeploy = document.getElementById('btnTriggerRemoteBatchDeploy');
+      if (btnDeploy) {
+        btnDeploy.textContent = `🚀 BUILD & DEPLOY ALL ${queuedNewApprovedCount || approvedCount} APPROVED UPGRADES NOW`;
+      }
+    }
+    window.updateFounderBatchDeployBar = updateFounderBatchDeployBar;
+
+    async function triggerRemoteBatchDeployment() {
+      const approvedItems = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.status === 'approved_for_build' || x.status === 'approved_by_founder');
+      const skippedItems = REPORT_BOARD_30_IDEA_DIGEST.filter(x => x.status === 'skipped_reassess_next_run' || x.status === 'reassessed_awaiting_approval');
+      const toast = document.getElementById('reportDigestEmailToast');
+      if (toast) {
+        toast.classList.remove('hidden');
+        toast.textContent = `🚀 BATCH DEPLOYMENT TRIGGERED (status = 'batch_deploy_requested')! Queued ${approvedItems.length} Approved Upgrades + ${skippedItems.length} Skipped Items for Seat 13 Auto-Reassessment. The Local/Cloud Auto-Watcher is now building, playtesting Batch #2, deploying, and sending ONE consolidated receipt email (< 75 KB)!`;
+      }
+      const btnDeploy = document.getElementById('btnTriggerRemoteBatchDeploy');
+      if (btnDeploy) {
+        btnDeploy.textContent = `⚡ BATCH DEPLOYMENT TRIGGERED IN SUPABASE (${approvedItems.length} APPROVED)...`;
+      }
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox`, {
+          method: 'POST',
+          headers: SUPABASE_HEADERS,
+          body: JSON.stringify({
+            created_by: 'Founder-Batch-Trigger',
+            source_role: 'founder_batch_deploy',
+            scenario_id: `BATCH-DEPLOY-${Date.now()}`,
+            age_division: 'ALL',
+            category: 'batch_deploy_trigger',
+            status: 'batch_deploy_requested',
+            summary: `🚀 Founder 1-Click Remote Batch Deployment Triggered (${approvedItems.length} Approved, ${skippedItems.length} Skipped to Reassess)`,
+            details: {
+              approvedIds: approvedItems.map(i => i.id),
+              skippedIds: skippedItems.map(i => i.id),
+              requestedAt: new Date().toISOString(),
+              requestedBy: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com']
+            }
+          })
+        });
+        loadLiveSupabaseDashboard();
+      } catch (_) {}
+    }
+    window.triggerRemoteBatchDeployment = triggerRemoteBatchDeployment;
+
     async function setReportFounderIdeaDecision(ideaId, decisionStatus = 'approved_for_build') {
       const item = REPORT_BOARD_30_IDEA_DIGEST.find(x => x.id === ideaId);
       if (!item) return;
       item.status = decisionStatus;
+      saveFounderDigestOverrides();
       renderReportFounderDigestTable();
+      updateFounderBatchDeployBar();
       const toast = document.getElementById('reportDigestEmailToast');
       const isApproved = decisionStatus === 'approved_for_build' || decisionStatus === 'approved_by_founder';
+      const isSkipped = decisionStatus === 'skipped_reassess_next_run';
       if (toast) {
         toast.classList.remove('hidden');
-        toast.textContent = `${isApproved ? '✅ APPROVED FOR NEXT BUILD (status: approved_for_build)' : '❌ REJECTED'}: Rank #${item.rank} (${item.id}) — "${item.title}" synced to Supabase public.pucksense_agent_inbox! Next RUN NIGHTLY AUTOPILOT will execute this first.`;
+        if (isSkipped) {
+          toast.textContent = `⏭️ Skipped for This Batch (${item.id} — "${item.title}") — Seat 13 will automatically re-test this after your other approvals are built to see if it resolved itself! (Zero negative taste penalty recorded).`;
+        } else {
+          toast.textContent = `${isApproved ? '✅ QUEUED IN BATCH CART (status: approved_for_build)' : '❌ REJECTED'}: Rank #${item.rank} (${item.id}) — "${item.title}" synced silently to Supabase! Click [🚀 BUILD & DEPLOY ALL APPROVED UPGRADES NOW] at the bottom when ready.`;
+        }
       }
       try {
         await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox`, {
@@ -1583,7 +1670,7 @@
             age_division: 'ALL',
             category: 'board_digest',
             status: decisionStatus,
-            summary: `[${isApproved ? '✅ FOUNDER APPROVED FOR BUILD' : '❌ FOUNDER REJECTED'} #${item.rank} ${item.id}] ${item.title}`,
+            summary: `[${isSkipped ? '⏭️ SKIPPED TO REASSESS NEXT RUN' : isApproved ? '✅ FOUNDER APPROVED FOR BUILD' : '❌ FOUNDER REJECTED'} #${item.rank} ${item.id}] ${item.title}`,
             details: {
               rank: item.rank,
               idea_id: item.id,
@@ -1594,6 +1681,7 @@
               crossImpact: item.crossImpact,
               screenshotUrl: item.screenshotUrl,
               decisionStatus,
+              tastePenalty: isSkipped ? 0 : undefined,
               decided_by: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com'],
               timestamp: new Date().toISOString()
             }
@@ -1763,6 +1851,7 @@
             <td class="py-2.5 px-3 text-right whitespace-nowrap">
               <button type="button" data-explain-idea-id="${item.id}" class="btn-report-explain-idea px-2.5 py-1 rounded bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-[10px] mr-1">🔍 Explain This to Me</button>
               <button type="button" data-approve-idea-id="${item.id}" class="btn-report-approve-idea px-2.5 py-1 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-[10px] mr-1">✅ Approve for Next Build</button>
+              <button type="button" data-skip-idea-id="${item.id}" class="btn-report-skip-idea px-2.5 py-1 rounded bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-[10px] mr-1">⏭️ Skip &amp; Reassess</button>
               ${item.trustTier === 'TIER 1' ? `<button type="button" data-undo-tier1-id="${item.id}" class="btn-report-undo-tier1 px-2.5 py-1 rounded bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-[10px] mr-1">↩️ 1-Click Undo</button>` : ''}
               <button type="button" data-reject-idea-id="${item.id}" class="btn-report-reject-idea px-2.5 py-1 rounded bg-rose-600 hover:bg-rose-500 text-white font-black text-[10px]">❌ Reject</button>
             </td>
@@ -1777,12 +1866,21 @@
         if (activeReportDigestFilter === 'top5') return item.isTop5CoSigned || item.rank <= 5 || item.status === 'approved_for_build' || item.status === 'approved_by_founder';
         if (activeReportDigestFilter === 'top10') return item.isTop10SeatPrimary || item.rank <= 10 || item.status === 'approved_for_build' || item.status === 'approved_by_founder';
         if (activeReportDigestFilter === 'top3') return item.isTop3Recommended || item.status === 'approved_for_build' || item.status === 'approved_by_founder';
+        if (activeReportDigestFilter === 'reassessed_awaiting_approval') return item.status === 'reassessed_awaiting_approval' || item.status === 'skipped_reassess_next_run' || item.status === 'auto_resolved_by_batch';
         return item.status === activeReportDigestFilter;
       });
       tbody.innerHTML = rows.map((item, idx) => {
         const coSign = item.crossSeatCoSign || buildReportCrossSeatCoSign(item, idx);
-        const badgeHtml = (item.status === 'approved_for_build' || item.status === 'approved_by_founder')
+        const badgeHtml = item.status === 'completed_and_deployed'
+          ? '<span class="px-2 py-0.5 rounded bg-emerald-500/30 border border-emerald-400 text-emerald-200 text-[10px] font-black uppercase">🚀 Built &amp; Live in Batch #1</span>'
+          : (item.status === 'approved_for_build' || item.status === 'approved_by_founder')
           ? '<span class="px-2 py-0.5 rounded bg-emerald-500/25 border border-emerald-400 text-emerald-200 text-[10px] font-black uppercase">✅ Approved for Next Build</span>'
+          : item.status === 'auto_resolved_by_batch'
+          ? '<span class="px-2 py-0.5 rounded bg-cyan-500/25 border border-cyan-400 text-cyan-200 text-[10px] font-black uppercase">✨ Auto-Resolved by Batch #1</span>'
+          : item.status === 'reassessed_awaiting_approval'
+          ? '<span class="px-2 py-0.5 rounded bg-amber-500/25 border border-amber-400 text-amber-200 text-[10px] font-black uppercase">🔄 Reassessed After Last Build</span>'
+          : item.status === 'skipped_reassess_next_run'
+          ? '<span class="px-2 py-0.5 rounded bg-amber-500/25 border border-amber-400 text-amber-200 text-[10px] font-black uppercase">⏭️ Skipped — Seat 13 Will Reassess After Build</span>'
           : item.status === 'rejected_by_founder'
           ? '<span class="px-2 py-0.5 rounded bg-rose-500/25 border border-rose-400 text-rose-200 text-[10px] font-black uppercase">❌ Rejected by Founder</span>'
           : item.status === 'vetoed'
@@ -1830,6 +1928,9 @@
                 <button type="button" data-approve-idea-id="${item.id}" class="btn-report-approve-idea px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-[10px] shadow transition">
                   ✅ Approve for Next Build
                 </button>
+                <button type="button" data-skip-idea-id="${item.id}" class="btn-report-skip-idea px-3 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-[10px] shadow transition">
+                  ⏭️ Skip &amp; Reassess
+                </button>
                 ${item.trustTier === 'TIER 1' ? `<button type="button" data-undo-tier1-id="${item.id}" class="btn-report-undo-tier1 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-[10px] shadow transition">↩️ 1-Click Undo</button>` : ''}
                 <button type="button" data-reject-idea-id="${item.id}" class="btn-report-reject-idea px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-black text-[10px] shadow transition">
                   ❌ Reject
@@ -1850,6 +1951,11 @@
           setReportFounderIdeaDecision(btn.getAttribute('data-approve-idea-id'), 'approved_for_build');
         });
       });
+      document.querySelectorAll('.btn-report-skip-idea').forEach(btn => {
+        btn.addEventListener('click', () => {
+          setReportFounderIdeaDecision(btn.getAttribute('data-skip-idea-id'), 'skipped_reassess_next_run');
+        });
+      });
       document.querySelectorAll('.btn-report-undo-tier1').forEach(btn => {
         btn.addEventListener('click', () => {
           undoTier1MicroFix(btn.getAttribute('data-undo-tier1-id'));
@@ -1860,6 +1966,7 @@
           setReportFounderIdeaDecision(btn.getAttribute('data-reject-idea-id'), 'rejected_by_founder');
         });
       });
+      updateFounderBatchDeployBar();
     }
 
     async function approveAllHighMatchBatch() {
@@ -1917,7 +2024,7 @@
       });
     }
 
-    // Load live audit_coverage_ledger.json & audit_live_findings.json into Seat 13 Heatmap
+    // Load live audit_coverage_ledger.json, audit_live_findings.json & batch_deployment_receipt.json into Seat 13 Heatmap
     (async function loadSeat13CoverageHeatmap() {
       try {
         const res = await fetch('audit_coverage_ledger.json');
@@ -1929,6 +2036,23 @@
           if (c.bucketsLabel) document.getElementById('seat13HeatmapBuckets').textContent = `${c.bucketsLabel} (${c.bucketsPct}%)`;
           if (c.roomHotspotsLabel) document.getElementById('seat13HeatmapHotspots').textContent = `${c.roomHotspotsLabel} (${c.roomHotspotsPct}%)`;
           if (c.permutationsLabel) document.getElementById('seat13HeatmapPermutations').textContent = `${c.permutationsLabel} (${c.permutationsPct}%)`;
+        }
+      } catch (_) {}
+      try {
+        const recRes = await fetch('batch_deployment_receipt.json');
+        if (recRes.ok) {
+          const receipt = await recRes.json();
+          const deployedSet = new Set((receipt.deployedApprovedItems || []).map(x => x.id));
+          const autoResolvedSet = new Set((receipt.skippedItemsAutoResolved || []).map(x => x.id));
+          const reassessedSet = new Set((receipt.skippedItemsReassessed || []).map(x => x.id));
+          const rejectedSet = new Set(receipt.rejectedIds || []);
+          REPORT_BOARD_30_IDEA_DIGEST.forEach(item => {
+            if (deployedSet.has(item.id)) item.status = 'completed_and_deployed';
+            else if (autoResolvedSet.has(item.id)) item.status = 'auto_resolved_by_batch';
+            else if (reassessedSet.has(item.id)) item.status = 'reassessed_awaiting_approval';
+            else if (rejectedSet.has(item.id)) item.status = 'rejected_by_founder';
+          });
+          renderReportFounderDigestTable();
         }
       } catch (_) {}
     })();
@@ -2007,22 +2131,27 @@
     renderReportFounderDigestTable();
     loadLiveSupabaseDashboard();
 
-    // Handle 1-Click Email Approval / Explain Links:
-    // - Board Ideas: ?action=approve|reject|explain&id=S1-A OR ?founder_action=approve|reject|explain&idea_id=S1-A
+    // Handle 1-Click Email Approval / Explain / Skip & Reassess / Trigger Batch Links:
+    // - Board Ideas: ?action=approve|skip_reassess|reject|explain&id=S1-A OR ?founder_action=approve|skip_reassess|reject|explain&idea_id=S1-A
+    // - Batch Deploy: ?action=trigger_batch_deploy
     // - Red Flag Council Options (Seat 0): ?action=approve_option_a|approve_option_b|explain_red_flag|reject&id=RF-COUNCIL-01
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const rfAction = urlParams.get('action');
       const rfId = urlParams.get('id') || 'RF-COUNCIL-01';
       if (rfAction) {
-        const isBoardIdea = REPORT_BOARD_30_IDEA_DIGEST.some(x => x.id === rfId);
-        if (rfAction === 'approve_high_match_batch') {
+        const isBoardIdea = REPORT_BOARD_30_IDEA_DIGEST.some(x => x.id === rfId) || /^B\d+-S\d+-[A-E]$|^S\d+-[A-E]$/.test(rfId);
+        if (rfAction === 'trigger_batch_deploy') {
+          triggerRemoteBatchDeployment();
+        } else if (rfAction === 'approve_high_match_batch') {
           approveAllHighMatchBatch();
         } else if (rfAction === 'undo_tier1' && isBoardIdea) {
           undoTier1MicroFix(rfId);
-        } else if (isBoardIdea && (rfAction === 'explain' || rfAction === 'approve' || rfAction === 'reject')) {
+        } else if (isBoardIdea && (rfAction === 'explain' || rfAction === 'approve' || rfAction === 'skip_reassess' || rfAction === 'reject')) {
           if (rfAction === 'explain') {
             openReportExplainProposalModal(rfId);
+          } else if (rfAction === 'skip_reassess') {
+            setReportFounderIdeaDecision(rfId, 'skipped_reassess_next_run');
           } else {
             const decision = rfAction === 'reject' ? 'rejected_by_founder' : 'approved_for_build';
             setReportFounderIdeaDecision(rfId, decision);
@@ -2042,6 +2171,8 @@
       if (fAction && fIdeaId) {
         if (fAction === 'explain') {
           openReportExplainProposalModal(fIdeaId);
+        } else if (fAction === 'skip_reassess') {
+          setReportFounderIdeaDecision(fIdeaId, 'skipped_reassess_next_run');
         } else {
           const decision = fAction === 'reject' ? 'rejected_by_founder' : 'approved_for_build';
           setReportFounderIdeaDecision(fIdeaId, decision);
@@ -2082,6 +2213,20 @@
           Close
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- SECTION 32: STICKY BOTTOM DEPLOYMENT CART BAR (`#founderBatchDeployBar`) -->
+  <div id="founderBatchDeployBar" class="fixed bottom-0 inset-x-0 z-40 bg-slate-950/95 backdrop-blur-md border-t-2 border-emerald-400 px-4 py-3 shadow-2xl">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm font-bold text-slate-100">
+        <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[11px] font-black uppercase">Section 32 • Silent Queue Cart</span>
+        <span id="founderBatchCartCountsText">🛒 <span class="text-emerald-300 font-black">44</span> Approved &nbsp;•&nbsp; ⏭️ <span class="text-amber-300 font-black">7</span> Skipped to Reassess</span>
+        <span class="text-[11px] text-slate-400 hidden md:inline">(Zero emails per click — sends 1 consolidated receipt when you deploy!)</span>
+      </div>
+      <button id="btnTriggerRemoteBatchDeploy" type="button" onclick="window.triggerRemoteBatchDeployment && window.triggerRemoteBatchDeployment()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 via-amber-400 to-emerald-400 hover:from-emerald-300 hover:to-amber-300 text-slate-950 font-black text-xs sm:text-sm shadow-xl transition">
+        🚀 BUILD &amp; DEPLOY ALL 44 APPROVED UPGRADES NOW
+      </button>
     </div>
   </div>
 </body>

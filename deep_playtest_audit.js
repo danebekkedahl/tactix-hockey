@@ -2387,7 +2387,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           });
         }
 
-        // Pairwise skater distance check
+        // Pairwise skater distance check (plus post-repulsion check via window.enforceMinimumSkaterSeparation015)
         const pts = [];
         if (scen.startPos) pts.push({ id: 'YOU', x: Number(scen.startPos.x || 0.5), y: Number(scen.startPos.y || 0.5) });
         (scen.teammates || []).forEach(t => pts.push({ id: t.id || t.label || 'TM', x: Number(t.x || 0.5), y: Number(t.y || 0.5) }));
@@ -2403,13 +2403,26 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
             }
           }
         }
+        const separatedPts = typeof window.enforceMinimumSkaterSeparation015 === 'function'
+          ? window.enforceMinimumSkaterSeparation015(pts)
+          : pts;
+        let postRepulsionMinDist = 999;
+        for (let i = 0; i < separatedPts.length; i++) {
+          for (let j = i + 1; j < separatedPts.length; j++) {
+            const d = Math.hypot(separatedPts[i].x - separatedPts[j].x, separatedPts[i].y - separatedPts[j].y);
+            if (d < postRepulsionMinDist) postRepulsionMinDist = d;
+          }
+        }
         if (minDist < 0.15) {
           skaterCrowdingViolations.push({
             scenarioId: scen.id,
             title: scen.title || scen.id,
             closestPair,
             minNormalizedDist: Number(minDist.toFixed(3)),
+            postRepulsionNormalizedDist: Number(postRepulsionMinDist.toFixed(3)),
+            repulsionAutoResolved: postRepulsionMinDist >= 0.15,
             mobilePixelDist390w: Math.round(minDist * 366),
+            postRepulsionPixelDist390w: Math.round(postRepulsionMinDist * 366),
             thresholdNormalized: 0.15
           });
         }

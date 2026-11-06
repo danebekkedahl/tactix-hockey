@@ -371,6 +371,23 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
    - `🔴 TIER 3: CORE ARCHITECTURE, PRICING & 🚩 RED-FLAG OPTIONS` — Explicit individual Founder click required.
 4. **Honest 4-Gate Scoring (`4/4 Unanimous` vs. `3/4 Conditional` vs. `2/4 Vetoed`) & Guaranteed `< 75 KB` Email Payload (`send-board-digest.js`).**
 
+---
+
+## 32. 1-Click Remote Batch Deployment (`[🚀 BUILD & DEPLOY ALL X APPROVED UPGRADES NOW]`), 4th Button `[⏭️ Skip & Reassess]`, Post-Batch Skipped-Item Auto-Reassessment & Single Consolidated Batch Summary Email (`v10.2`)
+1. **Silent Instant Queueing + Sticky Bottom Deployment Cart Bar (`#founderBatchDeployBar`):**
+   - Individual clicks on `[✅ Approve]`, `[⏭️ Skip & Reassess]`, or `[❌ Reject]` queue silently in Supabase (`0` emails per click) and update `#founderBatchDeployBar` (`🛒 [X] Approved • ⏭️ [Y] Skipped to Reassess | [🚀 BUILD & DEPLOY ALL [X] APPROVED UPGRADES NOW]`).
+   - Clicking `#btnTriggerRemoteBatchDeploy` (or `?action=trigger_batch_deploy`) posts `status = 'batch_deploy_requested'` to `public.pucksense_agent_inbox`.
+2. **Local/Cloud Auto-Watcher (`watch-approved-queue.js`) & `.github/workflows/deploy-approved-batch.yml`:**
+   - Polls `public.pucksense_agent_inbox` for `status = 'batch_deploy_requested'` and runs:
+     `node apply-approved-batch.js && node deep_playtest_audit.js --marathon && node deploy-github-pages.js && node send-board-digest.js --marathon`
+3. **`apply-approved-batch.js` & Post-Batch Auto-Reassessment (`reassessSkippedItemsAfterBatch`):**
+   - Applies all `approved_for_build` items to `index.html` and `sw.js`, updates `founder_taste_profile.json` (`0` negative penalty for skipped items), marks approved items `completed_and_deployed`, and evaluates all skipped/unclicked items:
+     - **Case A (`status = 'auto_resolved_by_batch'`):** Automatically closes items fixed or superseded by the newly built batch (`S9-A`, `S1-E`, `S7-E`, `S12-E`).
+     - **Case B (`status = 'reassessed_awaiting_approval'`):** Updates telemetry and surfaces still-relevant items (`S9-B`, `S10-B`, `S4-E`) with a `🔄 Reassessed After Last Build` badge.
+4. **Single Consolidated Batch Summary Email (`< 75 KB` in `send-board-digest.js`):**
+   - Sends strictly ONE consolidated email (`< 75 KB`) containing the Batch Deployment Receipt, Auto-Resolved Skipped Items, Reassessed Items, Seat 0 + Seat 13 Heatmap (Batch #2), and 60 fresh non-repeating Batch #2 telemetry ideas equipped with all 4 buttons (`🔍 Explain`, `✅ Approve`, `⏭️ Skip & Reassess`, `❌ Reject`).
+
+
 
 
 

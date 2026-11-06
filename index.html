@@ -23006,6 +23006,43 @@
         openSandboxLoginModal();
       }
     };
+
+    // =========================================================================
+    // SECTION 32: BATCH #1 DEPLOYED UPGRADES RUNTIME (`44 Approved Items + RF-COUNCIL-01 Option A`)
+    // =========================================================================
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v10.2-batch1';
+    window.SYNAPZ_BATCH1_DEPLOYED_UPGRADES = {
+      batchNumber: 1,
+      deployedAt: '2026-11-05T19:20:00Z',
+      totalApprovedDeployed: 44,
+      redFlagOptionDeployed: 'RF-COUNCIL-01 (Option A: Synchronized Cyan D-to-D Hinge Arc + Weak-Side Outlet Pulse)',
+      autoResolvedSkippedIds: ['S9-A', 'S1-E', 'S7-E', 'S12-E'],
+      reassessedSkippedIds: ['S9-B', 'S10-B', 'S4-E'],
+      enforceMinimumSkaterSeparation015(points) {
+        if (!Array.isArray(points)) return [];
+        const cloned = points.map(p => ({ ...p, x: Number(p.x || 0.5), y: Number(p.y || 0.5) }));
+        for (let pass = 0; pass < 4; pass++) {
+          for (let i = 0; i < cloned.length; i++) {
+            for (let j = i + 1; j < cloned.length; j++) {
+              const dx = cloned[j].x - cloned[i].x;
+              const dy = cloned[j].y - cloned[i].y;
+              const dist = Math.hypot(dx, dy);
+              if (dist < 0.152) {
+                const angle = dist > 0.0001 ? Math.atan2(dy, dx) : (j * 1.1);
+                const push = (0.154 - dist) * 0.55;
+                cloned[i].x = Math.max(0.08, Math.min(0.92, cloned[i].x - Math.cos(angle) * push));
+                cloned[i].y = Math.max(0.12, Math.min(0.88, cloned[i].y - Math.sin(angle) * push));
+                cloned[j].x = Math.max(0.08, Math.min(0.92, cloned[j].x + Math.cos(angle) * push));
+                cloned[j].y = Math.max(0.12, Math.min(0.88, cloned[j].y + Math.sin(angle) * push));
+              }
+            }
+          }
+        }
+        return cloned;
+      }
+    };
+    window.enforceMinimumSkaterSeparation015 = window.SYNAPZ_BATCH1_DEPLOYED_UPGRADES.enforceMinimumSkaterSeparation015;
+
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', async () => {
         try {
@@ -23015,7 +23052,7 @@
               keys.filter(k => k !== window.SYNAPZ_CACHE_NAME).map(k => caches.delete(k))
             );
           }
-          const reg = await navigator.serviceWorker.register('./sw.js?v=9.5');
+          const reg = await navigator.serviceWorker.register('./sw.js?v=10.2');
           if (reg && typeof reg.update === 'function') {
             reg.update().catch(() => {});
           }

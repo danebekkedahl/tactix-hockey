@@ -20,7 +20,7 @@
     "neural_mp3_voice_naturalness": 0.96,
     "extra_hud_badges": -0.52,
     "complex_menus": -0.65,
-    "long_text": -0.70
+    "long_text": -0.7
   },
   "historicalDecisionSignal": {
     "approvedPatterns": [
@@ -68,5 +68,84 @@
         "New database tables or authentication flows"
       ]
     }
-  }
+  },
+  "lastUpdated": "2026-11-06T01:26:23.914Z",
+  "latestBatchSummary": {
+    "batchNumber": 1,
+    "approvedAndBuiltCount": 44,
+    "rejectedCount": 10,
+    "skippedTotalCount": 7,
+    "skippedAutoResolvedCount": 4,
+    "skippedReassessedCount": 3,
+    "skippedNegativeTastePenalty": 0
+  },
+  "approvedIdeaIds": [
+    "RF-COUNCIL-01",
+    "S1-A",
+    "S1-B",
+    "S1-D",
+    "S2-A",
+    "S2-B",
+    "S2-D",
+    "S2-E",
+    "S3-A",
+    "S3-D",
+    "S3-E",
+    "S4-B",
+    "S4-D",
+    "S5-A",
+    "S5-B",
+    "S5-D",
+    "S5-E",
+    "S6-A",
+    "S6-B",
+    "S6-D",
+    "S6-E",
+    "S7-A",
+    "S7-B",
+    "S7-D",
+    "S8-A",
+    "S8-B",
+    "S8-C",
+    "S8-D",
+    "S8-E",
+    "S9-C",
+    "S9-D",
+    "S9-E",
+    "S10-A",
+    "S10-C",
+    "S10-D",
+    "S11-A",
+    "S11-B",
+    "S11-C",
+    "S11-D",
+    "S11-E",
+    "S12-A",
+    "S12-B",
+    "S12-C",
+    "S12-D"
+  ],
+  "rejectedIdeaIds": [
+    "S10-E",
+    "S7-C",
+    "S5-C",
+    "S4-C",
+    "S3-C",
+    "S2-C",
+    "S1-C",
+    "S6-C",
+    "S3-B",
+    "S4-A"
+  ],
+  "skippedReassessIdeaIds": [
+    "S4-E",
+    "S9-B",
+    "S10-B"
+  ],
+  "autoResolvedSkippedIdeaIds": [
+    "S1-E",
+    "S7-E",
+    "S9-A",
+    "S12-E"
+  ]
 }

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-05T04:27:38.291Z",
-  "runNumber": 1,
+  "generatedAt": "2026-11-06T01:29:07.514Z",
+  "runNumber": 2,
   "strictBlindAssertion": {
     "verified": true,
     "forbiddenTokensChecked": 7,
@@ -583,7 +583,10 @@
         "title": "Hockey 101: Identify the Center (C) in the Offensive Zone",
         "closestPair": "T3 vs D4",
         "minNormalizedDist": 0.036,
+        "postRepulsionNormalizedDist": 0.152,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 13,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -591,7 +594,10 @@
         "title": "Hockey 101: Hold the Offensive Blue Line (Left Point D)",
         "closestPair": "T2 vs D2",
         "minNormalizedDist": 0.061,
+        "postRepulsionNormalizedDist": 0.153,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 22,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -599,7 +605,10 @@
         "title": "Hockey 101: Tag Up at the Blue Line (Stay Onsides!)",
         "closestPair": "T4 vs D5",
         "minNormalizedDist": 0.073,
+        "postRepulsionNormalizedDist": 0.153,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 27,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -607,7 +616,10 @@
         "title": "Build the Offensive Triangle (Stop Puck-Chasing!)",
         "closestPair": "T3 vs D4",
         "minNormalizedDist": 0.058,
+        "postRepulsionNormalizedDist": 0.152,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 21,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -615,7 +627,10 @@
         "title": "On-Puck Decision: Corner Cycle & Slot Pass Read!",
         "closestPair": "T2 vs D2",
         "minNormalizedDist": 0.022,
+        "postRepulsionNormalizedDist": 0.155,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 8,
+        "postRepulsionPixelDist390w": 57,
         "thresholdNormalized": 0.15
       },
       {
@@ -623,7 +638,10 @@
         "title": "In the Skates 3D POV: Corner Cycle vs. Slot Read",
         "closestPair": "T2 vs D1",
         "minNormalizedDist": 0.02,
+        "postRepulsionNormalizedDist": 0.153,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 7,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -631,7 +649,10 @@
         "title": "Protect \"The House\" (Defensive Net-Side Positioning)",
         "closestPair": "T1 vs D1",
         "minNormalizedDist": 0.05,
+        "postRepulsionNormalizedDist": 0.153,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 18,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -639,7 +660,10 @@
         "title": "Weak-Side Winger: Drop to the High House",
         "closestPair": "T2 vs D5",
         "minNormalizedDist": 0.054,
+        "postRepulsionNormalizedDist": 0.129,
+        "repulsionAutoResolved": false,
         "mobilePixelDist390w": 20,
+        "postRepulsionPixelDist390w": 47,
         "thresholdNormalized": 0.15
       },
       {
@@ -647,7 +671,10 @@
         "title": "Winger Breakout: Get to the Hashmarks on the Wall!",
         "closestPair": "T4 vs D5",
         "minNormalizedDist": 0.063,
+        "postRepulsionNormalizedDist": 0.152,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 23,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -655,7 +682,10 @@
         "title": "Center Breakout: \"Low and Slow\" Support Curl",
         "closestPair": "T2 vs D2",
         "minNormalizedDist": 0.041,
+        "postRepulsionNormalizedDist": 0.135,
+        "repulsionAutoResolved": false,
         "mobilePixelDist390w": 15,
+        "postRepulsionPixelDist390w": 49,
         "thresholdNormalized": 0.15
       },
       {
@@ -663,7 +693,10 @@
         "title": "Breakout Decision: Strong-Side Winger Jumped! Who Do You Pass To?",
         "closestPair": "T2 vs D3",
         "minNormalizedDist": 0.022,
+        "postRepulsionNormalizedDist": 0.136,
+        "repulsionAutoResolved": false,
         "mobilePixelDist390w": 8,
+        "postRepulsionPixelDist390w": 50,
         "thresholdNormalized": 0.15
       },
       {
@@ -671,7 +704,10 @@
         "title": "Neutral Zone Regroup: Hinge D-to-D & Hit the Stretch Seam!",
         "closestPair": "T4 vs D2",
         "minNormalizedDist": 0.022,
+        "postRepulsionNormalizedDist": 0.153,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 8,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -679,7 +715,10 @@
         "title": "2-on-1 Odd-Man Rush: Drive the Back Post Wide!",
         "closestPair": "T3 vs D4",
         "minNormalizedDist": 0.072,
+        "postRepulsionNormalizedDist": 0.15,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 26,
+        "postRepulsionPixelDist390w": 55,
         "thresholdNormalized": 0.15
       },
       {
@@ -687,7 +726,10 @@
         "title": "2-on-1 Decision: Defender Charges YOU — Dish or Shoot?",
         "closestPair": "T3 vs D4",
         "minNormalizedDist": 0.041,
+        "postRepulsionNormalizedDist": 0.153,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 15,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -695,7 +737,10 @@
         "title": "2-on-1 Decision: Defender Slides to Cover #14 — Shoot!",
         "closestPair": "T3 vs D4",
         "minNormalizedDist": 0.041,
+        "postRepulsionNormalizedDist": 0.152,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 15,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -703,7 +748,10 @@
         "title": "3-on-2 Rush: F3 High Slot Trailer (\"Delay into Soft Ice\")",
         "closestPair": "T2 vs D2",
         "minNormalizedDist": 0.045,
+        "postRepulsionNormalizedDist": 0.152,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 16,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -711,7 +759,10 @@
         "title": "2-1-2 Forecheck: F1 Angles, YOU (F2) Seal the Wall!",
         "closestPair": "T2 vs D3",
         "minNormalizedDist": 0.081,
+        "postRepulsionNormalizedDist": 0.153,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 30,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -719,7 +770,10 @@
         "title": "Backcheck IQ: Skate Hard Through the Middle to Pick Up the Trailer!",
         "closestPair": "T2 vs D2",
         "minNormalizedDist": 0.045,
+        "postRepulsionNormalizedDist": 0.153,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 16,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -727,7 +781,10 @@
         "title": "3v3 Small-Area Transition: Give-and-Go into Open Space",
         "closestPair": "T4 vs D5",
         "minNormalizedDist": 0.022,
+        "postRepulsionNormalizedDist": 0.152,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 8,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -735,7 +792,10 @@
         "title": "3v3 Escape Valve: Hinge Back to Keep Possession",
         "closestPair": "T3 vs D4",
         "minNormalizedDist": 0.028,
+        "postRepulsionNormalizedDist": 0.153,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 10,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -743,7 +803,10 @@
         "title": "5-on-4 Power Play: One-Timer Flank in the Umbrella",
         "closestPair": "T4 vs D4",
         "minNormalizedDist": 0.05,
+        "postRepulsionNormalizedDist": 0.14,
+        "repulsionAutoResolved": false,
         "mobilePixelDist390w": 18,
+        "postRepulsionPixelDist390w": 51,
         "thresholdNormalized": 0.15
       },
       {
@@ -751,7 +814,10 @@
         "title": "4-on-5 Penalty Kill: Hold the High Box & Block the Seam!",
         "closestPair": "T4 vs D4",
         "minNormalizedDist": 0.028,
+        "postRepulsionNormalizedDist": 0.146,
+        "repulsionAutoResolved": false,
         "mobilePixelDist390w": 10,
+        "postRepulsionPixelDist390w": 53,
         "thresholdNormalized": 0.15
       },
       {
@@ -759,7 +825,10 @@
         "title": "Puck Protection: All Outlets Covered — Cut Back to High Ice!",
         "closestPair": "T1 vs D2",
         "minNormalizedDist": 0.02,
+        "postRepulsionNormalizedDist": 0.152,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 7,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -767,7 +836,10 @@
         "title": "Deception & Delay: Look Off D1 & Hit the High Trailer!",
         "closestPair": "T2 vs D2",
         "minNormalizedDist": 0.045,
+        "postRepulsionNormalizedDist": 0.153,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 16,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       },
       {
@@ -775,7 +847,10 @@
         "title": "Defenseman IQ: 1v1 Rush Gap Control & Inside-Out Angling",
         "closestPair": "T2 vs D3",
         "minNormalizedDist": 0.057,
+        "postRepulsionNormalizedDist": 0.153,
+        "repulsionAutoResolved": true,
         "mobilePixelDist390w": 21,
+        "postRepulsionPixelDist390w": 56,
         "thresholdNormalized": 0.15
       }
     ]

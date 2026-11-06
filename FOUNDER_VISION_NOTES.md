@@ -494,6 +494,33 @@ Every `RUN NIGHTLY AUTOPILOT` pass runs an active Playwright field inspection in
    - Every proposal that adds any UI element or control is honestly scored `3/4 Conditional (Gate B: Must replace an existing element or live inside a modal so primary screen buttons stay <= 4)`.
    - `send-board-digest.js` enforces `Buffer.byteLength(htmlBody, 'utf8') < 75,000` bytes (`< 75 KB`) across the 4 clean sections so Google Apps Script (`GmailApp.sendEmail`) delivers 100% of the time (`SYNAPZ HOCKEY — Seat 13 Audited Deep Report: Top 10 + 60 Telemetry Ideas [...]`).
 
+---
+
+## 32. 1-Click Remote Batch Deployment (`[🚀 BUILD & DEPLOY ALL X APPROVED UPGRADES NOW]`), 4th Button `[⏭️ Skip & Reassess]`, Post-Batch Skipped-Item Auto-Reassessment & Single Consolidated Batch Summary Email (`v10.2` Charter)
+1. **Silent Instant Queueing + Sticky Bottom Deployment Cart Bar (`#founderBatchDeployBar`):**
+   - Clicking `[✅ Approve]`, `[⏭️ Skip & Reassess]`, or `[❌ Reject]` on individual items in `report.html` or the Email Digest **never** triggers an email per click—each decision queues silently in `public.pucksense_agent_inbox` and updates the sticky bottom Deployment Cart Bar (`#founderBatchDeployBar`):
+     **`🛒 [X] Approved  •  ⏭️ [Y] Skipped to Reassess  |  [🚀 BUILD & DEPLOY ALL [X] APPROVED UPGRADES NOW]`** (`#btnTriggerRemoteBatchDeploy`).
+   - Clicking `#btnTriggerRemoteBatchDeploy` (or `?action=trigger_batch_deploy`) posts `status = 'batch_deploy_requested'` to `public.pucksense_agent_inbox`.
+2. **Local/Cloud Auto-Watcher (`watch-approved-queue.js`) & GitHub Actions Workflow (`.github/workflows/deploy-approved-batch.yml`):**
+   - Polls `public.pucksense_agent_inbox` for `status = 'batch_deploy_requested'` and automatically executes the 4-stage pipeline:
+     `node apply-approved-batch.js && node deep_playtest_audit.js --marathon && node deploy-github-pages.js && node send-board-digest.js --marathon`
+3. **`apply-approved-batch.js` & `batch_deployment_receipt.json`:**
+   - Pulls all items marked `status = 'approved_for_build'`, applies them cleanly to `index.html` and `sw.js` (strictly keeping primary buttons `<= 4` on all player screens), updates `founder_taste_profile.json`, and transitions them to `status = 'completed_and_deployed'`.
+4. **Subsection 4 — The 4th Decision Button `[⏭️ Skip & Reassess]` (`status = 'skipped_reassess_next_run'`) & Post-Batch Auto-Reassessment (`reassessSkippedItemsAfterBatch`):**
+   - Alongside `[🔍 Explain]`, `[✅ Approve]`, and `[❌ Reject]`, every recommendation includes **`[⏭️ Skip & Reassess]`** (`?action=skip_reassess&id=...`).
+   - Clicking `[⏭️ Skip & Reassess]` records **zero negative taste penalty** in `founder_taste_profile.json`, does **not** blacklist the item in `previousRecommendationHashes[]`, and displays:
+     **`"⏭️ Skipped for This Batch — Seat 13 will automatically re-test this after your other approvals are built to see if it resolved itself!"`**
+   - Immediately after `apply-approved-batch.js` builds the approved batch, `Seat 13` re-evaluates all skipped/unclicked items against the newly updated codebase:
+     - **Case A (`status = 'auto_resolved_by_batch'`):** If the newly built upgrades already fixed or superseded that issue (e.g. `S9-A`, `S1-E`, `S7-E`, `S12-E`), automatically closes it and lists it under **`✨ Skipped Items Auto-Resolved by Your Approved Batch`**.
+     - **Case B (`status = 'reassessed_awaiting_approval'`):** If still relevant after the new build (e.g. `S9-B`, `S10-B`, `S4-E`), updates its telemetry citation and surfaces it in the next report with a **`🔄 Reassessed After Last Build`** badge.
+5. **Single Consolidated Batch Summary Email (`< 75 KB` in `send-board-digest.js`):**
+   - Dispatches strictly **ONE** consolidated email (`< 75 KB`) containing:
+     1. `✅ BATCH DEPLOYMENT RECEIPT: [N] APPROVED UPGRADES NOW LIVE` + `✨ [M] SKIPPED ITEMS AUTO-RESOLVED BY THIS BATCH` (with `[↩️ 1-Click Undo]` links).
+     2. `🔄 REASSESSED ITEMS FROM LAST RUN (STILL RELEVANT AFTER NEW BUILD)`.
+     3. `🚩 Seat 0 Red-Flag Council Options` + `🔍 Seat 13 100% App Scouring Heatmap (Advanced to Next Batch!)`.
+     4. `🏆 Next Fresh Batch: Top 10 Consensus + 60 Non-Repeating Telemetry Ideas` (each equipped with all 4 buttons: `🔍 Explain`, `✅ Approve`, `⏭️ Skip & Reassess`, `❌ Reject`).
+
+
 
 
 
