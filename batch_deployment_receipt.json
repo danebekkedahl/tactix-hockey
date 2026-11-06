@@ -1,6 +1,6 @@
 {
   "batchNumber": 1,
-  "deployedAt": "2026-11-06T01:26:23.924Z",
+  "deployedAt": "2026-11-06T01:42:35.135Z",
   "cacheVersion": "synapz-hockey-v10.2-batch1",
   "totalApprovedAndBuilt": 44,
   "totalRejected": 10,
@@ -13,7 +13,7 @@
       "summary": "600ms Golden Ice-Crease Pulse Under Active User Skater on Freeze + Crisp Whistle Cue (Zero Extra HUD Buttons)",
       "seatLens": "🚩 Seat 0 • Red-Flag Council Option A",
       "targetScope": "All Divisions (8U–18U)",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=RF-COUNCIL-01"
     },
@@ -22,7 +22,7 @@
       "summary": "2.0-Second Pre-Read Motion Roll-In Before Decision Freeze for 12U–18U (A/AA/AAA)",
       "seatLens": "Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director (WHAT Authority)",
       "targetScope": "12U–18U (A / AA / AAA) • On-Ice Rush, Breakout, Forecheck & Cycle Drills",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S1-A"
     },
@@ -31,7 +31,7 @@
       "summary": "Synchronized Weak-Side D2 Hinge & Center \"Low-and-Slow\" Timing Vector Lines",
       "seatLens": "Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director (WHAT Authority)",
       "targetScope": "12U–18U (B / A / AA / AAA) • Breakout & Neutral Zone Regroup Drills",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S1-B"
     },
@@ -40,7 +40,7 @@
       "summary": "Post-Freeze Stick-on-Puck vs. Stick-in-Lane Gap Indicator for D1/D2 Defenders",
       "seatLens": "Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director (WHAT Authority)",
       "targetScope": "14U–18U (AA / AAA) • On-Ice Lesson Screen (#gameViewSection) • D-Zone & Breakout Reads",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S1-D"
     },
@@ -49,7 +49,7 @@
       "summary": "Tier-Scaled Motion Policy: Static Default + [▶️ Watch 2s Lead-In] for 8U/10U Rec–B vs. Auto Roll-In for 12U+ A–AAA",
       "seatLens": "Seat 2 — Master Instructional Designer & Sports Teaching Strategist (HOW Authority)",
       "targetScope": "All Divisions 8U–18U (Rec -> AAA) • Tier-Scaled Pre-Play Motion Policy",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S2-A"
     },
@@ -58,7 +58,7 @@
       "summary": "3-Second \"Why My Mistake Broke the Play\" Micro-Replay Inside Tab 3 Personal Improvement Plan",
       "seatLens": "Seat 2 — Master Instructional Designer & Sports Teaching Strategist (HOW Authority)",
       "targetScope": "8U–18U (All Tiers) • Locker Room Tab 3 (My IQ Pie Chart & Custom Lessons)",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S2-B"
     },
@@ -67,7 +67,7 @@
       "summary": "1-Tap \"Show Me the Open Ice\" Ghost Skater Glide After a <50% IQ Mistake Read",
       "seatLens": "Seat 2 — Master Instructional Designer & Sports Teaching Strategist (HOW Authority)",
       "targetScope": "8U–18U (All Divisions) • Track 3 Wrong-Answer / Confused Kid Recovery Flow",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S2-D"
     },
@@ -76,7 +76,7 @@
       "summary": "Highlight the Action Verb & Landmark Keyword in Gold Inside Live Word-Streaming Bubble",
       "seatLens": "Seat 2 — Master Instructional Designer & Sports Teaching Strategist (HOW Authority)",
       "targetScope": "8U–12U • Stage A Live Word-Streaming Speech Bubble (#cornerShortPrompt)",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S2-E"
     },
@@ -85,7 +85,7 @@
       "summary": "1.0-Second \"Find YOU #9\" Pulsing Gold Halo Before Prompt Or Motion Appears on 8U/10U",
       "seatLens": "Seat 3 — Pediatric Cognitive & Family/Parent Specialist (HOW Authority)",
       "targetScope": "8U & 10U (Rec / B / A) • Kids & Hockey Parents",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S3-A"
     },
@@ -94,7 +94,7 @@
       "summary": "Zero-Penalty \"Mulligan Rep\" Encouragement Badge on First Mistake for 8U/10U Beginners",
       "seatLens": "Seat 3 — Pediatric Cognitive & Family/Parent Specialist (HOW Authority)",
       "targetScope": "8U & 10U Divisions • Wrong-Answer Recovery & <50% IQ Retry Prompt",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S3-D"
     },
@@ -103,7 +103,7 @@
       "summary": "Active Sibling Jersey Badge Pill in Top-Left Corner of Locker Room & Clubhouse Scenes",
       "seatLens": "Seat 3 — Pediatric Cognitive & Family/Parent Specialist (HOW Authority)",
       "targetScope": "Locker Room (#synapzLockerRoomModal) & Clubhouse (#synapzFriendsWallModal) • Shared Family Devices",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S3-E"
     },
@@ -112,7 +112,7 @@
       "summary": "3v3 Overtime Sudden-Death \"Clutch Winner\" Jersey Patch & Stick Tape Unlock",
       "seatLens": "Seat 4 — Hit Mobile Game & EdTech Retention Designer (HOW FUN Authority)",
       "targetScope": "8U–16U (All Tiers) • 3v3 Overtime Sudden-Death & Pro Shop (Tab 2)",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S4-B"
     },
@@ -121,7 +121,7 @@
       "summary": "Animated Puck Bucks Counter Roll-Up (+0 -> +95 Coins) With Player Agent Voice High-Five",
       "seatLens": "Seat 4 — Hit Mobile Game & EdTech Retention Designer (HOW FUN Authority)",
       "targetScope": "8U–18U • Post-Lesson IQ-Tied Puck Bucks Celebration & Agent High-Five",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S4-D"
     },
@@ -130,7 +130,7 @@
       "summary": "Coach-Pinned Film Clip + 3-Scenario Practice Pack in Weekly Homework Push",
       "seatLens": "Seat 5 — Youth, Travel & HS/Jr Team Head Coach Playtester (Levels A–C — WHAT Authority)",
       "targetScope": "Coach Portal Tab 2 + Player Login Inbox (10U–18U Teams)",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S5-A"
     },
@@ -139,7 +139,7 @@
       "summary": "Line-Specific & D-Pair-Specific Playbook Presets in Coach Tab 3",
       "seatLens": "Seat 5 — Youth, Travel & HS/Jr Team Head Coach Playtester (Levels A–C — WHAT Authority)",
       "targetScope": "Coach Portal Tab 3 (Roster, Lines & Playbook) • 12U–18U Travel & HS Coaches",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S5-B"
     },
@@ -148,7 +148,7 @@
       "summary": "1-Click \"Send Weekend Bench 3 Keys to Assistant Coaches\" Printable Locker-Room Card",
       "seatLens": "Seat 5 — Youth, Travel & HS/Jr Team Head Coach Playtester (Levels A–C — WHAT Authority)",
       "targetScope": "Coach's Office Room (#synapzCoachOfficeModal) • Station 3 Opponent Scouting & Counter-Strategy",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S5-D"
     },
@@ -157,7 +157,7 @@
       "summary": "Position-Filtered \"Send 5-Lesson Plan to Defensemen Only vs. Forwards Only\" Quick Pill",
       "seatLens": "Seat 5 — Youth, Travel & HS/Jr Team Head Coach Playtester (Levels A–C — WHAT Authority)",
       "targetScope": "Coach's Office Room (#synapzCoachOfficeModal) • Station 2 Coach Al's Corner",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S5-E"
     },
@@ -166,7 +166,7 @@
       "summary": "1-Click \"Board Meeting PDF / CSV Monthly IQ Report\" Export in Director HQ (Tab 4)",
       "seatLens": "Seat 6 — Association Hockey Director & Club GM Playtester (Level D — WHAT Authority)",
       "targetScope": "Association Director HQ (#teamManagerModal Tab 4)",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S6-A"
     },
@@ -175,7 +175,7 @@
       "summary": "Division-to-Division Progression Readiness Alert (e.g., 10U -> 12U Special Teams Readiness)",
       "seatLens": "Seat 6 — Association Hockey Director & Club GM Playtester (Level D — WHAT Authority)",
       "targetScope": "Coach Portal Tab 4 (Director HQ) • Association Coaching Directors",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S6-B"
     },
@@ -184,7 +184,7 @@
       "summary": "Association-Wide Concept Bucket Mastery Heatmap (8U–18U Across All 16 Buckets)",
       "seatLens": "Seat 6 — Association Hockey Director & Club GM Playtester (Level D — WHAT Authority)",
       "targetScope": "Coach Portal Tab 4 (Director HQ) & Concept Bucket Coverage Modal (#conceptBucketCoverageReportModal)",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S6-D"
     },
@@ -193,7 +193,7 @@
       "summary": "1-Click \"Apply Association Terminology Template Across All Club Teams\" in Director HQ",
       "seatLens": "Seat 6 — Association Hockey Director & Club GM Playtester (Level D — WHAT Authority)",
       "targetScope": "Coach's Office Station 1 (Upload Association Playbook & Terminology)",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S6-E"
     },
@@ -202,7 +202,7 @@
       "summary": "Collapse Top-Right Secondary Utility Pills Into a Single \"⚙️ Rink Tools\" Drawer on 390px Phones",
       "seatLens": "Seat 7 — Principal UX Architect & 4-Tab Anti-Clutter Lead (WHERE Authority)",
       "targetScope": "All Divisions 8U–18U • Phone Portrait (390x844) & iPad HUD Ergonomics",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S7-A"
     },
@@ -211,7 +211,7 @@
       "summary": "Adaptive Dock Height Lock During Question Transitions (Zero Vertical Layout Shift)",
       "seatLens": "Seat 7 — Principal UX Architect & 4-Tab Anti-Clutter Lead (WHERE Authority)",
       "targetScope": "iPad Landscape (1024x768) & Desktop (1280x800) • #multiFormatControlsBar",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S7-B"
     },
@@ -220,7 +220,7 @@
       "summary": "Subtle 1.5s Golden Edge Shimmer on Interactive Room Hotspots Upon Room Entry (Then Fade)",
       "seatLens": "Seat 7 — Principal UX Architect & 4-Tab Anti-Clutter Lead (WHERE Authority)",
       "targetScope": "All 5 Interactive Point-and-Click Illustrated Rooms (assets/rooms/*.png) • 4 Viewports",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S7-D"
     },
@@ -229,7 +229,7 @@
       "summary": "Role-Mapped Coach Bob Video Takeaway Captions + Live RSS \"New This Week\" Badge",
       "seatLens": "Seat 8 — Automated Video Harvester & Film-Room QC Auditor",
       "targetScope": "10U–18U (Rec -> AAA) • Q5 Film Room (#videoExampleModal)",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S8-A"
     },
@@ -238,7 +238,7 @@
       "summary": "Position-First Video Sorting in Q5 Film Room (Goalies See Crease/Rebound Clips First)",
       "seatLens": "Seat 8 — Automated Video Harvester & Film-Room QC Auditor",
       "targetScope": "All 5 Positions (Especially Goalie G & Defense D) • Q5 Film Room",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S8-B"
     },
@@ -247,7 +247,7 @@
       "summary": "Transcript Auto-Timestamp Window Refiner for Newly Polled YouTube RSS Clips",
       "seatLens": "Seat 8 — Automated Video Harvester & Film-Room QC Auditor",
       "targetScope": "10U–18U • Q5 Film Room & Nightly YouTube RSS Harvester",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S8-C"
     },
@@ -256,7 +256,7 @@
       "summary": "1-Sentence Natural Coach Bob Voice Intro Before Playing Any [🎬 Watch Video] Clip",
       "seatLens": "Seat 8 — Automated Video Harvester & Film-Room QC Auditor",
       "targetScope": "On-Ice Lesson Screen (#btnLessonWatchVideoPopup) • All 16 Concept Buckets",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S8-D"
     },
@@ -265,7 +265,7 @@
       "summary": "Dedicated Curated Video Tagging for Bucket #16 (Coach Playbook Systems & Custom Reads)",
       "seatLens": "Seat 8 — Automated Video Harvester & Film-Room QC Auditor",
       "targetScope": "harvest-tactix-videos.js & public.tactix_video_library • 16th Bucket (Coach Playbook Custom)",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S8-E"
     },
@@ -274,7 +274,7 @@
       "summary": "Automated Geometry & Bounding-Box Collision Linter Across All 360 Cloud Scenarios",
       "seatLens": "Seat 9 — Principal Full-Stack, Supabase & <canvas> Engineer (WHERE Authority)",
       "targetScope": "All 30 Age × Talent Levels & 360 Cloud Scenarios • Nightly Autopilot Stage 1",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S9-C"
     },
@@ -283,7 +283,7 @@
       "summary": "Permanent Stage A/B/C Dwell & 4-Viewport Bounding-Box Regression Gate in Nightly Autopilot",
       "seatLens": "Seat 9 — Principal Full-Stack, Supabase & <canvas> Engineer (WHERE Authority)",
       "targetScope": "deep_playtest_audit.js (--marathon) & CI Regression Gate • All 4 Viewports",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S9-D"
     },
@@ -292,7 +292,7 @@
       "summary": "Lazy Pre-Fetch of Active Profile's Hired Player Agent & Coach Bob .mp3 Clips on Profile Unlock",
       "seatLens": "Seat 9 — Principal Full-Stack, Supabase & <canvas> Engineer (WHERE Authority)",
       "targetScope": "assets/audio/voices/voice-manifest.json & sw.js • Instant Preload Cache for Active Agent",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S9-E"
     },
@@ -301,7 +301,7 @@
       "summary": "Self-Serve \"Claim Your Association's 50% Partner Link\" Generator (?partner=ASSOC_CODE)",
       "seatLens": "Seat 10 — App Store, Conversion & Growth Strategist",
       "targetScope": "4-Tier Pricing Modal (#pricingAndPlansModal) & Coach Tab 4 Director HQ",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S10-A"
     },
@@ -310,7 +310,7 @@
       "summary": "Shareable \"Division & City Tour Certificate\" PNG Card for Team Group Chats",
       "seatLens": "Seat 10 — App Store, Conversion & Growth Strategist",
       "targetScope": "8U–14U Families • Trophy Room (#trophyRoomModal) & Parent HQ (Tab 4)",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S10-C"
     },
@@ -319,7 +319,7 @@
       "summary": "\"Featured Partner Gear Drop of the Month\" Analytics Counter for Equipment Brand Sponsors",
       "seatLens": "Seat 10 — App Store, Conversion & Growth Strategist",
       "targetScope": "Walk-In Pro Shop (#proShopModal) • Sponsor-Ready Brand Showcase Wall",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S10-D"
     },
@@ -328,7 +328,7 @@
       "summary": "Side-by-Side \"Current vs. Pro Shop Preview\" Split-Mirror Comparison Card Before Spending Puck Bucks",
       "seatLens": "🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist",
       "targetScope": "Locker Room (#synapzLockerRoomModal) & Synapz Pro Shop (#proShopModal) • 8U–18U",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S11-A"
     },
@@ -337,7 +337,7 @@
       "summary": "Sync Equipped Pro Shop Stick Tape Color & Visor Tint Onto the Active On-Ice 2x-Dot Player Token",
       "seatLens": "🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist",
       "targetScope": "On-Ice Skater Tokens (drawTopDownSkaterToken) & Locker Room Jersey Numbers",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S11-B"
     },
@@ -346,7 +346,7 @@
       "summary": "Seasonal \"Stanley Cup Playoffs & Winter Classic\" Limited-Edition Pro Brand Showcase Wall Theme",
       "seatLens": "🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist",
       "targetScope": "Synapz Pro Shop (#proShopModal) • Sponsor Showcase Rack",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S11-C"
     },
@@ -355,7 +355,7 @@
       "summary": "Subtle Skate-Blade Ice Glint & Puck Shadow Depth on 2.0x Faceoff-Dot Directional Skaters",
       "seatLens": "🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist",
       "targetScope": "On-Ice Rink Canvas (#rinkCanvas) • 2.0x Faceoff-Dot Top-Down Skaters",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S11-D"
     },
@@ -364,7 +364,7 @@
       "summary": "Dynamic Championship Banner Engraving Inside the Illustrated Clubhouse Trophy Case",
       "seatLens": "🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist",
       "targetScope": "Clubhouse Room (#synapzFriendsWallModal • room-clubhouse.png) • Trophy Case & Banners",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S11-E"
     },
@@ -373,7 +373,7 @@
       "summary": "1-Tap \"Parent & SafeSport Audio/Privacy Audit Log\" Inside Profile Lock & Team Roster Hub",
       "seatLens": "🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist",
       "targetScope": "All 11 Character Voice Channels & SafeSport Notification Center • 8U–18U",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S12-A"
     },
@@ -382,7 +382,7 @@
       "summary": "Optional \"Auto-Lock Profile After 15 Minutes of Inactivity\" Toggle for Shared Family iPads",
       "seatLens": "🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist",
       "targetScope": "Step 2 Player Profile Credential Lock (#playerProfileCredentialLockBox)",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S12-B"
     },
@@ -391,7 +391,7 @@
       "summary": "Automated Nightly Speech-Rate & Word-Count Verifier Across All 11 Character Voice Channels",
       "seatLens": "🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist",
       "targetScope": "11-Channel Voice Registry (window.SYNAPZ_VOICE_REGISTRY) • 9 Agents + Coach Bob + Coach Al",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S12-C"
     },
@@ -400,7 +400,7 @@
       "summary": "CI Build Gate Blocking Any Prompt String With [Brackets], Role Tags, or >1 Sentence From Speech Engine",
       "seatLens": "🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist",
       "targetScope": "11-Channel Neural .mp3 Voice Bank (assets/audio/voices/) & Natural Speech Interceptor",
-      "previousStatus": "approved_for_build",
+      "previousStatus": "completed_and_deployed",
       "newStatus": "completed_and_deployed",
       "undoLink": "https://danebekkedahl.github.io/synapz-hockey/report.html?action=undo_tier1&id=S12-D"
     }
