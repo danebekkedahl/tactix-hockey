@@ -1763,8 +1763,7 @@ function renderRedFlagCouncilOptionsHtml(rf) {
 //   Section 4: 🏆 Top 5 Consensus + 12 Fresh Seat Recommendations (1 per Seat, All 4 Action Buttons)
 // ============================================================================
 function buildEmailHtml(fresh12Ideas, timestamp) {
-  const top5Consensus = fresh12Ideas.filter(i => i.rank <= 5);
-  const remaining7Seats = fresh12Ideas.filter(i => i.rank > 5);
+  const ordered12Ideas = [...fresh12Ideas].sort((a, b) => Number(a.rank || 99) - Number(b.rank || 99));
   const cov = AUDIT_COVERAGE_LEDGER.coverageSummary || {
     scenariosLabel: '136/360',
     scenariosPct: 37.8,
@@ -1777,7 +1776,6 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
     permutationsLabel: '120/5,760',
     permutationsPct: 2.1
   };
-  const batchNum = AUDIT_COVERAGE_LEDGER.runNumber || 6;
   const rpt = `${PAGES_BASE_URL}/report.html`;
   const triggerBatchUrl = `${rpt}?action=trigger_batch_deploy#founderBatchDeployBar`;
   const batchApproveUrl = `${rpt}?action=approve_high_match_batch#seat13-meta-auditor`;
@@ -1792,7 +1790,7 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<title>SYNAPZ HOCKEY v10.8 — 22 Upgrades Live (10 Newly Deployed from Phone) &amp; Batch G 12-Seat Audit</title>
+<title>SYNAPZ HOCKEY v10.9.1 — Clean 3-Tab Inbox Zero (12 To Review | 0 Queued | 22 Live in App) &amp; Single-Listing Batch G</title>
 <style>
   body { font-family: Inter, Arial, sans-serif; background:#020617; color:#f8fafc; padding:12px; line-height:1.38; }
   .wrap { max-width:920px; margin:0 auto; background:#090d16; border:2px solid #00e5ff; border-radius:14px; padding:16px; }
@@ -1808,20 +1806,20 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
 </head>
 <body>
 <div class="wrap">
-  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • V10.8 CLOUD BATCH PERSISTENCE • 12-SEAT SWEET-SPOT BOARD • ZERO PC REQUIRED (&lt; 35 KB)</div>
-  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">🚀 v10.8 Cloud Batch Persistence Live (${cumulativeCoded.length} Cumulative Upgrades Live • Active Board: Batch G [S1-G..S12-G])</h1>
+  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • V10.9.1 CLEAN 3-TAB INBOX ZERO • SINGLE-LISTING 12 CARDS • ZERO TEST SPAM (&lt; 35 KB)</div>
+  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">🚀 v10.9.1 Clean 3-Tab Phone Inbox Live (📥 To Review: 12 | 🛠️ Queued: 0 | ✅ Live in App: ${cumulativeCoded.length})</h1>
   <p style="margin:0 0 10px;font-size:11px;color:#cbd5e1;">
     Prepared for <strong>Coach Dane (danebekkedahl@gmail.com)</strong> &amp; <strong>Coach Evan (evanbekk@gmail.com)</strong> • ${timestamp}<br/>
     🌐 <strong>Live App:</strong> <a href="${PAGES_BASE_URL}/" class="b-ex">${PAGES_BASE_URL}/</a> •
-    📊 <strong>Interactive Phone Report:</strong> <a href="${rpt}#founder-approval-board" class="b-ap">${rpt}</a> •
-    📱 <strong>1-Tap Phone Loop:</strong> <a href="${triggerBatchUrl}" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">🔄 RUN NEXT 24-PLAY AUDIT &amp; GENERATE 12 NEW IDEAS NOW (FROM PHONE)</a>
+    📊 <strong>3-Tab Phone Inbox:</strong> <a href="${rpt}#founder-approval-board" class="b-ap">${rpt}</a> •
+    📱 <strong>1-Tap Phone Loop:</strong> <a href="${triggerBatchUrl}" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">🚀 DEPLOY QUEUED &amp; SEND NEW VERSION NOW (FROM PHONE)</a>
   </p>
 
-  <!-- SECTION 1: ✅ BATCH FIX RECEIPT & CHROME TEST VERIFICATION -->
+  <!-- SECTION 1: ✅ LIVE IN APP (22 CUMULATIVE UPGRADES) + WHAT'S NEW IN V10.9.1 -->
   <div style="background:#022c22;border:2px solid #10b981;border-radius:10px;padding:11px;margin-bottom:12px;">
-    <div style="font-size:11px;font-weight:900;color:#34d399;text-transform:uppercase;">SECTION 1 • ✅ BATCH FIX RECEIPT &amp; CHROME VERIFICATION: ${newlyCodedThisPass.length} PHONE APPROVALS DEPLOYED (${cumulativeCoded.length} CUMULATIVE LIVE IN index.html)</div>
+    <div style="font-size:11px;font-weight:900;color:#34d399;text-transform:uppercase;">SECTION 1 • ✅ ${cumulativeCoded.length} CUMULATIVE UPGRADES LIVE IN APP + V10.9.1 CLEAN 3-TAB INBOX ZERO UPGRADE</div>
     <div style="font-size:11px;color:#a7f3d0;margin:4px 0;">
-      <strong>Service Worker Cache Bumped:</strong> <code>synapz-hockey-v10.8-cloud-batch-persistence</code> • Cloud Batch Persistence Verified (<code>Batch G &rarr; Reload &rarr; Batch H &rarr; Reload &rarr; Batch I</code>) on <code>390×844 Phone</code> (<code>scrollWidth &lt;= 390px</code>, 0 clipped buttons)
+      <strong>Service Worker Cache Bumped:</strong> <code>synapz-hockey-v10.9-clean-3tab-inbox</code> • <strong>3 Sticky Phone Tabs:</strong> <code>📥 To Review (12)</code> | <code>🛠️ Queued (0)</code> | <code>✅ Live in App (${cumulativeCoded.length})</code> • Tapping Approve/Skip/Reject immediately moves the card out of To Review into Queued!
     </div>
     <table style="margin:6px 0;">
       <thead>
@@ -1829,46 +1827,25 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
       </thead>
       <tbody>
         ${newlyCodedThisPass.map(item => `<tr>
-          <td class="nw"><strong style="color:#34d399;">${item.id}</strong><br/><span style="font-size:10px;color:#a7f3d0;">${item.seat || item.seat_name || ''}</span></td>
-          <td><strong style="color:#fff;">${item.title}</strong><br/><span style="color:#cbd5e1;font-size:10px;">Markers verified: <code>${(item.markers || []).join(', ')}</code></span></td>
-          <td class="nw"><a href="${rpt}?action=undo_deploy&id=${item.id}" class="b-sk">[↩️ 1-Click Undo]</a></td>
+          <td class="nw"><strong style="color:#34d399;">${item.id}</strong></td>
+          <td><strong style="color:#fff;">${item.title}</strong> <span style="color:#a7f3d0;font-size:10px;">(${(item.seat || item.seat_name || '').split('—')[0].trim()})</span></td>
+          <td class="nw"><a href="${rpt}?action=undo_deploy&id=${item.id}" class="b-sk">[↩️ Undo]</a></td>
         </tr>`).join('')}
       </tbody>
     </table>
-    <div style="background:#064e3b;border:1px solid #10b981;border-radius:8px;padding:8px;font-size:11px;margin-top:6px;">
-      <strong style="color:#a7f3d0;">📦 Plus ${priorLiveItems.length} Prior Live Upgrades (Total = ${cumulativeCoded.length} Cumulative Live, Each With 1-Click Undo):</strong>
-      <div style="margin-top:3px;color:#ecfdf5;">
-        ${priorLiveItems.map(p => `<span style="display:inline-block;margin-right:8px;"><strong>${p.id}</strong> <a href="${rpt}?action=undo_tier1&id=${p.id}" class="b-sk">[↩️ Undo]</a></span>`).join('')}
-      </div>
+    <div style="background:#064e3b;border:1px solid #10b981;border-radius:8px;padding:7px;font-size:11px;margin-top:5px;">
+      <strong style="color:#a7f3d0;">📦 Plus ${priorLiveItems.length} Prior Live Upgrades (${cumulativeCoded.length} Total in ✅ Live in App Tab):</strong>
+      ${priorLiveItems.map(p => `<a href="${rpt}?action=undo_tier1&id=${p.id}" class="b-sk" style="margin-right:6px;">[${p.id} ↩️]</a>`).join('')}
     </div>
-    <div style="background:#064e3b;border:1px solid #34d399;border-radius:8px;padding:8px;font-size:11px;margin-top:6px;">
-      <strong style="color:#fde047;">✨ ${autoResolvedItems.length} Skipped Items Auto-Resolved by This Build (<code>status = 'auto_resolved_by_batch'</code>):</strong>
-      <ul style="margin:4px 0 0 16px;padding:0;color:#ecfdf5;">
-        ${autoResolvedItems.map(ar => `<li><strong>[${ar.id}] ${ar.title}:</strong> ${ar.resolutionReason}</li>`).join('')}
-      </ul>
+    <div style="background:#064e3b;border:1px solid #34d399;border-radius:8px;padding:7px;font-size:11px;margin-top:5px;">
+      <strong style="color:#fde047;">✨ ${autoResolvedItems.length} Skipped Items Auto-Resolved:</strong>
+      ${autoResolvedItems.map(ar => `<span><strong>[${ar.id}]</strong> ${ar.title} • </span>`).join('')}
     </div>
   </div>
 
-  <!-- SECTION 2: 🔄 REASSESSED SKIPPED ITEMS (AWAITING DECISION) -->
-  <div style="background:#271705;border:2px solid #f59e0b;border-radius:10px;padding:11px;margin-bottom:12px;">
-    <div style="font-size:11px;font-weight:900;color:#fbbf24;text-transform:uppercase;">SECTION 2 • 🔄 ${reassessedItems.length} REASSESSED SKIPPED ITEMS FROM BATCH F (<code>status = 'reassessed_awaiting_approval'</code> • ZERO TASTE PENALTY)</div>
-    <table style="margin-top:5px;">
-      <thead>
-        <tr><th>ID / Badge</th><th>Reassessed Proposal &amp; Updated v10.8 Telemetry</th><th>4 Decision Buttons</th></tr>
-      </thead>
-      <tbody>
-        ${reassessedItems.map(ri => `<tr>
-          <td class="nw"><strong style="color:#fbbf24;">${ri.id}</strong><br/><span style="color:#fde047;font-size:10px;">🔄 Reassessed</span></td>
-          <td><strong style="color:#fff;">${ri.title}</strong> (${ri.seatLens || ri.seat_name || ''})<br/><span style="color:#cbd5e1;">🔬 ${ri.updatedTelemetryCitation || ri.reassessedTelemetry || ''}</span></td>
-          <td class="nw"><a href="${rpt}?action=explain&id=${ri.id}" class="b-ex">🔍 Explain</a> | <a href="${rpt}?action=approve&id=${ri.id}" class="b-ap">✅ Approve</a><br/><a href="${rpt}?action=skip_reassess&id=${ri.id}" class="b-sk">⏭️ Skip &amp; Reassess</a> | <a href="${rpt}?action=reject&id=${ri.id}" class="b-rj">❌ Reject</a></td>
-        </tr>`).join('')}
-      </tbody>
-    </table>
-  </div>
-
-  <!-- SECTION 3: 🚩 SEAT 0 RED-FLAG COUNCIL OPTIONS + 🔍 SEAT 13 CUMULATIVE COVERAGE HEATMAP -->
+  <!-- SECTION 2: 🚩 SEAT 0 RED-FLAG COUNCIL + 🔍 SEAT 13 CUMULATIVE COVERAGE HEATMAP -->
   <div id="seat13-meta-auditor" style="background:#0c192c;border:2px solid #38bdf8;border-radius:10px;padding:11px;margin-bottom:12px;">
-    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 3 • 🚩 SEAT 0 RED-FLAG COUNCIL &amp; 🔍 SEAT 13 CUMULATIVE COVERAGE HEATMAP (ACTIVE BOARD: BATCH G • 136/360 PLAYS)</div>
+    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 2 • 🚩 SEAT 0 RED-FLAG COUNCIL &amp; 🔍 SEAT 13 CUMULATIVE COVERAGE HEATMAP (ACTIVE BOARD: BATCH G • 136/360 PLAYS)</div>
     ${SEAT_0_RED_FLAG_COUNCIL_OPTIONS.map(rf => renderRedFlagCouncilOptionsHtml(rf)).join('')}
     <table style="margin:6px 0;">
       <tr><th>Scenarios Scoured</th><th>NHL Cities</th><th>Concept Buckets</th><th>5-Room Hotspots</th><th>4-Way Permutations</th></tr>
@@ -1881,39 +1858,32 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
       </tr>
     </table>
     <div style="margin-top:6px;">
-      <a href="${triggerBatchUrl}" style="background:#10b981;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">🚀 DEPLOY APPROVED &amp; GENERATE NEXT 12-IDEA AUDIT NOW (ADVANCES TO BATCH H)</a>
-      <a href="${batchApproveUrl}" style="background:#0284c7;color:#fff;font-weight:900;font-size:11px;padding:6px 10px;border-radius:5px;text-decoration:none;display:inline-block;">⭐ Approve All High-Match Picks (&gt;=90% • ${fresh12Ideas.length} Batch G Ideas)</a>
+      <a href="${triggerBatchUrl}" style="background:#10b981;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">🚀 DEPLOY QUEUED &amp; SEND NEW VERSION NOW (ADVANCES TO BATCH H)</a>
+      <a href="${batchApproveUrl}" style="background:#0284c7;color:#fff;font-weight:900;font-size:11px;padding:6px 10px;border-radius:5px;text-decoration:none;display:inline-block;">⭐ Approve All High-Match Picks (&gt;=90% • ${ordered12Ideas.length} Batch G Ideas)</a>
     </div>
   </div>
 
-  <!-- SECTION 4: 🏆 TOP 5 CONSENSUS + 12 FRESH SEAT RECOMMENDATIONS (1 PER SEAT) -->
+  <!-- SECTION 3: 📥 TO REVIEW (12) — SINGLE-LISTING 12 CARDS (#1–#5 TOP 5 CONSENSUS BADGED + #6–#12) -->
   <div style="background:#0f172a;border:2px solid #0284c7;border-radius:10px;padding:11px;">
-    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 4 • 🏆 ACTIVE CLOUD BOARD: BATCH G (S1-G..S12-G • TOP 5 CONSENSUS + 12 FRESH SEAT RECOMMENDATIONS)</div>
-    <div style="font-size:11px;color:#94a3b8;margin:2px 0 6px;">All 12 Batch G recommendations are persisted in <code>public.pucksense_agent_inbox</code> and auto-hydrate on page refresh. Click any button to queue on your phone, then tap <a href="${triggerBatchUrl}" class="b-ap">[🚀 DEPLOY APPROVED &amp; GENERATE NEXT 12-IDEA AUDIT NOW]</a> to advance to Batch H!</div>
-    <table style="margin-bottom:10px;">
-      <thead>
-        <tr><th>Top 5 Consensus</th><th>Proposal &amp; 24-Play Rotated Telemetry Citation</th><th>Match / Gate</th><th>4 Action Buttons (Cloud UPSERT)</th></tr>
-      </thead>
-      <tbody>
-        ${top5Consensus.map(item => `<tr>
-          <td class="nw"><strong style="color:#34d399;">#${item.rank} ${item.id}</strong><br/>Seat ${item.seatNumber}</td>
-          <td><strong style="color:#fff;">${item.title}</strong> (${item.targetScope})<br/><span style="color:#fde047;">🔬 ${item.telemetryCitation}</span></td>
-          <td class="nw">🎯 ${item.founderMatchPct}% • ${item.trustTier}<br/>${item.gateScoreCode}</td>
-          <td class="nw"><a href="${rpt}?action=explain&id=${item.id}" class="b-ex">🔍 Explain</a> | <a href="${rpt}?action=approve&id=${item.id}" class="b-ap">✅ Approve</a><br/><a href="${rpt}?action=skip_reassess&id=${item.id}" class="b-sk">⏭️ Skip &amp; Reassess</a> | <a href="${rpt}?action=reject&id=${item.id}" class="b-rj">❌ Reject</a></td>
-        </tr>`).join('')}
-      </tbody>
-    </table>
+    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 3 • 📥 TO REVIEW (12) — SINGLE-LISTING 12 RECOMMENDATIONS (#1–#5 🏆 TOP 5 CONSENSUS BADGED + #6–#12)</div>
+    <div style="font-size:11px;color:#94a3b8;margin:2px 0 6px;">Zero duplicate Top-5 tables! Each of the 12 Batch G recommendations appears strictly ONCE below. Tapping <strong>[✅ Approve]</strong>, <strong>[⏭️ Skip]</strong>, or <strong>[❌ Reject]</strong> opens <code>report.html</code>, moves that card out of <strong>📥 To Review</strong> into <strong>🛠️ Queued</strong>, and shows how many remain!</div>
     <table>
       <thead>
-        <tr><th>Ranks #6–#12</th><th>Remaining 7 Seat Recommendations &amp; Telemetry Citation</th><th>Match / Gate</th><th>4 Action Buttons (Cloud UPSERT)</th></tr>
+        <tr><th>Rank &amp; ID (Single Listing)</th><th>Proposal &amp; 24-Play Rotated Telemetry Citation</th><th>Match / Gate</th><th>4 Action Buttons (Moves to 🛠️ Queued)</th></tr>
       </thead>
       <tbody>
-        ${remaining7Seats.map(item => `<tr>
-          <td class="nw"><strong style="color:#38bdf8;">#${item.rank} ${item.id}</strong><br/>Seat ${item.seatNumber}</td>
+        ${ordered12Ideas.map(item => {
+          const isTop5 = Number(item.rank) <= 5;
+          const top5Badge = isTop5
+            ? `<div style="background:#fbbf24;color:#020617;font-size:9px;font-weight:900;padding:1px 6px;border-radius:99px;display:inline-block;margin-bottom:2px;">🏆 TOP 5 CONSENSUS (#${item.rank})</div><br/>`
+            : '';
+          return `<tr style="${isTop5 ? 'background:rgba(245,158,11,0.07);' : ''}">
+          <td class="nw">${top5Badge}<strong style="color:${isTop5 ? '#34d399' : '#38bdf8'};">#${item.rank} ${item.id}</strong><br/>Seat ${item.seatNumber}</td>
           <td><strong style="color:#fff;">${item.title}</strong> (${item.targetScope})<br/><span style="color:#fde047;">🔬 ${item.telemetryCitation}</span></td>
           <td class="nw">🎯 ${item.founderMatchPct}% • ${item.trustTier}<br/>${item.gateScoreCode}</td>
           <td class="nw"><a href="${rpt}?action=explain&id=${item.id}" class="b-ex">🔍 Explain</a> | <a href="${rpt}?action=approve&id=${item.id}" class="b-ap">✅ Approve</a><br/><a href="${rpt}?action=skip_reassess&id=${item.id}" class="b-sk">⏭️ Skip &amp; Reassess</a> | <a href="${rpt}?action=reject&id=${item.id}" class="b-rj">❌ Reject</a></td>
-        </tr>`).join('')}
+        </tr>`;
+        }).join('')}
       </tbody>
     </table>
   </div>
@@ -1963,10 +1933,11 @@ async function main() {
     scenario_id: `SYNAPZ-SWEETSPOT-RUN${batchNum}-DIGEST`,
     age_division: 'ALL',
     category: 'board_digest',
-    status: 'awaiting_founder_approval',
-    summary: `🚀 SYNAPZ HOCKEY v10.8 — Cloud Batch Persistence Receipt (${newlyCodedCount} Phone Approvals Deployed, ${cumulativeCodedCount} Cumulative Live, ${summaryCounts.skippedAutoResolvedInThisPass} Auto-Resolved, ${summaryCounts.skippedReassessedAwaitingDecision} Reassessed) + Batch G 12-Seat Audit (${emailSizeKb} KB < 35 KB) -> ${RECIPIENTS.join(', ')}`,
+    status: 'completed_and_deployed',
+    summary: `🚀 SYNAPZ HOCKEY v10.9.1 — Clean 3-Tab Inbox Zero (12 To Review | 0 Queued | ${cumulativeCodedCount} Live in App) + Single-Listing Batch G (${emailSizeKb} KB < 35 KB) -> ${RECIPIENTS.join(', ')}`,
     details: {
-      version: 'v10.8-cloud-batch-persistence',
+      version: 'v10.9-clean-3tab-inbox',
+      versionLabel: 'v10.9.1',
       activeBatchLetter: 'G',
       recipients: RECIPIENTS,
       counts: summaryCounts,
@@ -1995,8 +1966,28 @@ async function main() {
     });
     supabaseStatus = `HTTP ${res.status}`;
 
+    // Clean up any leftover automated test rows (`Batch H`, `Batch I`, `Batch J`) so ONLY Batch G (`S1-G..S12-G`) is in `📥 To Review (12)`
+    const testBatchLetters = ['H', 'I', 'J'];
+    const cleanupRows = [];
+    for (const bL of testBatchLetters) {
+      for (let s = 1; s <= 12; s++) {
+        const testId = `S${s}-${bL}`;
+        cleanupRows.push({
+          id: ideaToUuid(testId),
+          created_by: 'Seat13-Test-Cleanup-v10.9',
+          source_role: 'council',
+          scenario_id: testId,
+          age_division: 'ALL',
+          category: 'board_digest',
+          status: 'superseded_test_batch',
+          summary: `🧹 Archived Automated Test Row (${testId})`,
+          details: { idea_id: testId, status: 'superseded_test_batch', updated_at: timestamp }
+        });
+      }
+    }
+
     // Pre-UPSERT all 12 fresh Seat recommendations (`S1-G..S12-G`), all 22 live upgrades (`completed_and_deployed`), and `SYNAPZ-CLOUD-COVERAGE-LEDGER` (`activeBatchLetter: 'G'`)
-    const proposalRows = FRESH_12_SEAT_RECOMMENDATIONS.map(item => ({
+    const proposalRows = [...cleanupRows, ...FRESH_12_SEAT_RECOMMENDATIONS.map(item => ({
       id: ideaToUuid(item.id),
       created_by: `Seat-${item.seatNumber}-Telemetry`,
       source_role: 'council',
@@ -2010,13 +2001,13 @@ async function main() {
         idea_id: item.id,
         updated_at: timestamp
       }
-    }));
+    }))];
 
     const deployedItems = BATCH_DEPLOYMENT_RECEIPT.deployedApprovedItems || [];
     deployedItems.forEach(dep => {
       proposalRows.push({
         id: ideaToUuid(dep.id),
-        created_by: 'Phone-Batch-Deployer-v10.8',
+        created_by: 'Phone-Batch-Deployer-v10.9',
         source_role: 'council',
         scenario_id: dep.id,
         age_division: 'ALL',
@@ -2037,7 +2028,7 @@ async function main() {
     reassessedItems.forEach(ri => {
       proposalRows.push({
         id: ideaToUuid(ri.id),
-        created_by: 'Phone-Batch-Reassessor-v10.8',
+        created_by: 'Phone-Batch-Reassessor-v10.9',
         source_role: 'council',
         scenario_id: ri.id,
         age_division: 'ALL',
@@ -2057,7 +2048,7 @@ async function main() {
     autoResolvedItems.forEach(ar => {
       proposalRows.push({
         id: ideaToUuid(ar.id),
-        created_by: 'Phone-Batch-Reassessor-v10.8',
+        created_by: 'Phone-Batch-Reassessor-v10.9',
         source_role: 'council',
         scenario_id: ar.id,
         age_division: 'ALL',
@@ -2081,9 +2072,11 @@ async function main() {
       age_division: 'ALL',
       category: 'cloud_coverage_ledger',
       status: 'completed_and_deployed',
-      summary: '📊 Seat 13 Cloud Coverage Ledger Updated (136/360 Scenarios • Active Batch G)',
+      summary: '📊 Seat 13 Cloud Coverage Ledger Updated (v10.9.1 • 136/360 Scenarios • Active Batch G)',
       details: {
         id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
+        versionLabel: 'v10.9.1',
+        batchRunCount: 1,
         activeBatchLetter: 'G',
         activeBatchCode: 'G',
         scenariosScoured: 136,
@@ -2110,7 +2103,7 @@ async function main() {
       body: JSON.stringify(proposalRows)
     });
 
-    const recountRes = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox?status=eq.awaiting_founder_approval&select=id`, {
+    const recountRes = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox?status=eq.awaiting_founder_approval&select=id,scenario_id`, {
       headers: {
         apikey: SUPABASE_KEY,
         Authorization: `Bearer ${SUPABASE_KEY}`
@@ -2118,7 +2111,9 @@ async function main() {
     });
     if (recountRes.ok) {
       const rows2 = await recountRes.json();
-      awaitingApprovalRowCountInSupabase = Array.isArray(rows2) ? rows2.length : 0;
+      awaitingApprovalRowCountInSupabase = Array.isArray(rows2)
+        ? rows2.filter(r => /^S\d+-G$/i.test(String(r.scenario_id || ''))).length
+        : 0;
     }
   } catch (err) {
     supabaseStatus = `Error: ${err.message}`;
@@ -2135,7 +2130,7 @@ async function main() {
     second: '2-digit'
   });
   const senderDisplayName = 'Synapz Hockey 12-Seat Council & Seat 13 Meta-Auditor';
-  const emailSubject = `SYNAPZ HOCKEY v10.8 — 22 Upgrades Live (10 Newly Deployed from Phone) + Next 12-Seat Audit (Batch G: 136/360 Plays) [${uniqueTimestampLabel}]`;
+  const emailSubject = `SYNAPZ HOCKEY v10.9.1 — Clean 3-Tab Inbox Zero (12 To Review | 0 Queued | 22 Live) + Single-Listing Batch G [${uniqueTimestampLabel}]`;
   try {
     const gmailRes = await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
       method: 'POST',

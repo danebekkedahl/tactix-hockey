@@ -4342,7 +4342,7 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v9.5-natural-voice';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v10.9-clean-3tab-inbox';
     window._naturalSpeechStats = {
       totalInterceptedLines: 0,
       lastRawText: '',
@@ -24322,6 +24322,7 @@
     }
     window.drawSynapzActiveBatchCanvasUpgrades = drawSynapzActiveBatchCanvasUpgrades;
 
+    window.SYNAPZ_DYNAMIC_VERSION = 'v10.9.1';
     async function syncActiveUpgradesFromSupabase() {
       try {
         const sbUrl = 'https://jrusjgpfcnptozfehcrv.supabase.co';
@@ -24332,11 +24333,17 @@
         if (res.ok) {
           const rows = await res.json();
           if (Array.isArray(rows)) {
+            let activeBatchCode = 'G';
             rows.forEach(r => {
               const rawId = (r.details && r.details.idea_id) || r.scenario_id || '';
+              if (rawId === 'SYNAPZ-CLOUD-COVERAGE-LEDGER' && r.details && r.details.activeBatchLetter) {
+                activeBatchCode = String(r.details.activeBatchLetter).toUpperCase();
+              }
               const clean = normalizeSynapzUpgradeId(rawId);
               if (clean) window.SYNAPZ_ACTIVE_UPGRADES.add(clean);
             });
+            const batchRunCount = Math.max(1, ['G', 'H', 'I', 'J'].indexOf(activeBatchCode) + 1);
+            window.SYNAPZ_DYNAMIC_VERSION = `v10.9.${batchRunCount}`;
             persistSynapzActiveUpgrades();
             applyAllActiveSynapzUpgrades();
             if (typeof drawRink === 'function') {
@@ -24394,7 +24401,7 @@
               keys.filter(k => k !== window.SYNAPZ_CACHE_NAME).map(k => caches.delete(k))
             );
           }
-          const reg = await navigator.serviceWorker.register('./sw.js?v=10.6');
+          const reg = await navigator.serviceWorker.register('./sw.js?v=10.9');
           if (reg && typeof reg.update === 'function') {
             reg.update().catch(() => {});
           }

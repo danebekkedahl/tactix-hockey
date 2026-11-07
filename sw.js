@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v10.8-cloud-batch-persistence';
+const CACHE_NAME = 'synapz-hockey-v10.9-clean-3tab-inbox';
 const ASSETS = [
   './',
   './index.html',
