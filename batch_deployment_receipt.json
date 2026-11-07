@@ -1,81 +1,236 @@
 {
-  "batchNumber": 2,
-  "verifiedAt": "2026-11-06T16:23:55.567Z",
-  "cacheVersion": "synapz-hockey-v10.4-sweet-spot-loop",
+  "batchNumber": 6,
+  "activeBatchLetter": "G",
+  "verifiedAt": "2026-11-06T21:30:00.000Z",
+  "cacheVersion": "synapz-hockey-v10.8-cloud-batch-persistence",
   "zeroFakeStatusFlippingEnforced": true,
-  "currentPassNewlyCodedCount": 6,
-  "totalPhysicallyCodedAndLive": 12,
-  "totalAwaitingAgentCodeInQueue": 2,
+  "currentPassNewlyCodedCount": 10,
+  "totalPhysicallyCodedAndLive": 22,
+  "totalAwaitingAgentCodeInQueue": 0,
   "restoredUnbuiltCount": 0,
   "currentPassNewlyCodedItems": [
     {
-      "id": "S2-A",
-      "seat_name": "🇺🇸 Seat 2 — USA Hockey ADM & Youth Development Director",
+      "id": "S1-F",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director",
       "status": "completed_and_deployed",
       "markers": [
-        "getAgeAdaptiveRollInConfig",
-        "drawAgeAdaptiveCueHighlight"
+        "executeSynapzUpgradeFeature('S1-F')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S1-F']"
       ],
-      "title": "Age-Adaptive Prompt Pacing & Visual Cue Highlighting for 8U–12U",
+      "title": "Dynamic Weak-Side F3 High-Slot Backfill Vector When D1 Pinches on Offensive Blue Line",
       "codedInCurrentPass": true
     },
     {
-      "id": "S7-A",
-      "seat_name": "🎮 Seat 7 — Principal Game Designer",
+      "id": "S3-F",
+      "seat_name": "👨‍👩‍👧‍👦 Seat 3 — Pediatric Cognitive & Family/Parent Specialist",
       "status": "completed_and_deployed",
       "markers": [
-        "drawOnIceComboStreakBadge",
-        "synapz-dock-height-lock"
+        "executeSynapzUpgradeFeature('S3-F')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S3-F']"
       ],
-      "title": "Combo Streak Multiplier Badge on Consecutive First-Try Gold Reads",
+      "title": "Visual Direction-of-Attack Net Goal-Frame Glow on 8U/10U Rotated Rink Drills (90°/180°/270°)",
       "codedInCurrentPass": true
     },
     {
-      "id": "S8-A",
-      "seat_name": "📱 Seat 8 — Mobile/Tablet Touch UX Architect",
+      "id": "S9-F",
+      "seat_name": "⚙️ Seat 9 — Principal Full-Stack, Supabase & <canvas> Performance Engineer",
       "status": "completed_and_deployed",
       "markers": [
-        "sortFilmClipsByActivePosition",
-        "filmRoomFreshClipBadge"
+        "synapz_offline_outbox_v1",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S9-F']"
       ],
-      "title": " ergonomic Thumb-Arc Target Sizing on Portrait & Landscape Tablets",
+      "title": "Offline Outbox Queue (synapz_offline_outbox_v1) for In-App Red Flags & Homework Completion in Rural Arenas",
       "codedInCurrentPass": true
     },
     {
-      "id": "S6-A",
-      "seat_name": "🥅 Seat 6 — Goalie & Net-Front Specialist",
+      "id": "S5-F",
+      "seat_name": "📋 Seat 5 — Youth, Travel & HS/Jr Team Head Coach Playtester",
       "status": "completed_and_deployed",
       "markers": [
-        "drawGoalieCreaseSightlineRay",
-        "exportAssociationBoardSummaryReport"
+        "executeSynapzUpgradeFeature('S5-F')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S5-F']"
       ],
-      "title": "Goalie Crease Depth & Screen Sightline Ray Indicator on Point Shots",
+      "title": "1-Tap \"Push 3 Counter-Trap Breakout Drills\" Preset Inside Coach Al's Opponent Scouting Cards",
       "codedInCurrentPass": true
     },
     {
-      "id": "S10-A",
-      "seat_name": "🧠 Seat 10 — Cognitive Neuroscientist",
+      "id": "S11-F",
+      "seat_name": "🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist",
       "status": "completed_and_deployed",
       "markers": [
-        "drawPreFreezePeripheralScanRing",
-        "generatePartnerAssociationShareLink"
+        "executeSynapzUpgradeFeature('S11-F')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S11-F']"
       ],
-      "title": "Pre-Freeze Peripheral Vision Cueing Before Decision Freeze",
+      "title": "Dynamic Championship Division Banner Engraving Inside the Illustrated Clubhouse Trophy Case",
       "codedInCurrentPass": true
     },
     {
-      "id": "S12-A",
-      "seat_name": "🛡️ Seat 12 — SafeSport & 11-Voice Audio QA Specialist",
+      "id": "S2-F",
+      "seat_name": "🎓 Seat 2 — Master Instructional Designer & Sports Teaching Strategist",
       "status": "completed_and_deployed",
       "markers": [
-        "getAgeCalibratedVoiceRate",
-        "runSafeSportAndVoiceHealthAudit"
+        "executeSynapzUpgradeFeature('S2-F')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S2-F']"
       ],
-      "title": "100% Natural Conversational Locker-Room Voice Cadence Across All 11 Characters",
+      "title": "Post-Mistake 2.0-Second \"Ghost Skater Gold Path\" Comparison Vector on Retry Attempts",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S4-F",
+      "seat_name": "🎮 Seat 4 — Hit Mobile Game & EdTech Retention Designer",
+      "status": "completed_and_deployed",
+      "markers": [
+        "executeSynapzUpgradeFeature('S4-F')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S4-F']"
+      ],
+      "title": "Metallic \"City Conquered Stamp\" Animation on 32-City Tour Map Node After Q5 Mastery",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S8-F",
+      "seat_name": "🎬 Seat 8 — Automated Video Harvester & Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "markers": [
+        "executeSynapzUpgradeFeature('S8-F')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S8-F']"
+      ],
+      "title": "3-Second Key-Frame Tactical Callout Banner Synchronized to Clip Peak Timestamp in Q5 Film Room",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S9-B",
+      "seat_name": "⚙️ Seat 9 — Principal Full-Stack, Supabase & <canvas> Engineer",
+      "status": "completed_and_deployed",
+      "markers": [
+        "executeSynapzUpgradeFeature('S9-B')",
+        "synapz_cloud_scenarios_snapshot_v1"
+      ],
+      "title": "Service Worker / LocalStorage Snapshot Cache for 360 Cloud Scenarios & 51 Video Rows",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S10-B",
+      "seat_name": "📈 Seat 10 — App Store, Conversion & Growth Strategist",
+      "status": "completed_and_deployed",
+      "markers": [
+        "executeSynapzUpgradeFeature('S10-B')",
+        "CORE_DEPLOYED_UPGRADE_IDS"
+      ],
+      "title": "Multi-Sibling \"Family Locker Pass\" Bundle Callout When 2+ Sibling Stalls Are Active",
       "codedInCurrentPass": true
     }
   ],
   "deployedApprovedItems": [
+    {
+      "id": "S1-F",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director",
+      "status": "completed_and_deployed",
+      "markers": [
+        "executeSynapzUpgradeFeature('S1-F')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S1-F']"
+      ],
+      "title": "Dynamic Weak-Side F3 High-Slot Backfill Vector When D1 Pinches on Offensive Blue Line",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S3-F",
+      "seat_name": "👨‍👩‍👧‍👦 Seat 3 — Pediatric Cognitive & Family/Parent Specialist",
+      "status": "completed_and_deployed",
+      "markers": [
+        "executeSynapzUpgradeFeature('S3-F')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S3-F']"
+      ],
+      "title": "Visual Direction-of-Attack Net Goal-Frame Glow on 8U/10U Rotated Rink Drills (90°/180°/270°)",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S9-F",
+      "seat_name": "⚙️ Seat 9 — Principal Full-Stack, Supabase & <canvas> Performance Engineer",
+      "status": "completed_and_deployed",
+      "markers": [
+        "synapz_offline_outbox_v1",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S9-F']"
+      ],
+      "title": "Offline Outbox Queue (synapz_offline_outbox_v1) for In-App Red Flags & Homework Completion in Rural Arenas",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S5-F",
+      "seat_name": "📋 Seat 5 — Youth, Travel & HS/Jr Team Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "markers": [
+        "executeSynapzUpgradeFeature('S5-F')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S5-F']"
+      ],
+      "title": "1-Tap \"Push 3 Counter-Trap Breakout Drills\" Preset Inside Coach Al's Opponent Scouting Cards",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S11-F",
+      "seat_name": "🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist",
+      "status": "completed_and_deployed",
+      "markers": [
+        "executeSynapzUpgradeFeature('S11-F')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S11-F']"
+      ],
+      "title": "Dynamic Championship Division Banner Engraving Inside the Illustrated Clubhouse Trophy Case",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S2-F",
+      "seat_name": "🎓 Seat 2 — Master Instructional Designer & Sports Teaching Strategist",
+      "status": "completed_and_deployed",
+      "markers": [
+        "executeSynapzUpgradeFeature('S2-F')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S2-F']"
+      ],
+      "title": "Post-Mistake 2.0-Second \"Ghost Skater Gold Path\" Comparison Vector on Retry Attempts",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S4-F",
+      "seat_name": "🎮 Seat 4 — Hit Mobile Game & EdTech Retention Designer",
+      "status": "completed_and_deployed",
+      "markers": [
+        "executeSynapzUpgradeFeature('S4-F')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S4-F']"
+      ],
+      "title": "Metallic \"City Conquered Stamp\" Animation on 32-City Tour Map Node After Q5 Mastery",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S8-F",
+      "seat_name": "🎬 Seat 8 — Automated Video Harvester & Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "markers": [
+        "executeSynapzUpgradeFeature('S8-F')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S8-F']"
+      ],
+      "title": "3-Second Key-Frame Tactical Callout Banner Synchronized to Clip Peak Timestamp in Q5 Film Room",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S9-B",
+      "seat_name": "⚙️ Seat 9 — Principal Full-Stack, Supabase & <canvas> Engineer",
+      "status": "completed_and_deployed",
+      "markers": [
+        "executeSynapzUpgradeFeature('S9-B')",
+        "synapz_cloud_scenarios_snapshot_v1"
+      ],
+      "title": "Service Worker / LocalStorage Snapshot Cache for 360 Cloud Scenarios & 51 Video Rows",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S10-B",
+      "seat_name": "📈 Seat 10 — App Store, Conversion & Growth Strategist",
+      "status": "completed_and_deployed",
+      "markers": [
+        "executeSynapzUpgradeFeature('S10-B')",
+        "CORE_DEPLOYED_UPGRADE_IDS"
+      ],
+      "title": "Multi-Sibling \"Family Locker Pass\" Bundle Callout When 2+ Sibling Stalls Are Active",
+      "codedInCurrentPass": true
+    },
     {
       "id": "S1-A",
       "seat_name": "🏒 Seat 1 — NHL Pro Scout & Tactical Hockey IQ Director",
@@ -96,7 +251,7 @@
         "drawAgeAdaptiveCueHighlight"
       ],
       "title": "Age-Adaptive Prompt Pacing & Visual Cue Highlighting for 8U–12U",
-      "codedInCurrentPass": true
+      "codedInCurrentPass": false
     },
     {
       "id": "S5-A",
@@ -144,7 +299,7 @@
         "synapz-dock-height-lock"
       ],
       "title": "Combo Streak Multiplier Badge on Consecutive First-Try Gold Reads",
-      "codedInCurrentPass": true
+      "codedInCurrentPass": false
     },
     {
       "id": "S8-A",
@@ -154,8 +309,8 @@
         "sortFilmClipsByActivePosition",
         "filmRoomFreshClipBadge"
       ],
-      "title": " ergonomic Thumb-Arc Target Sizing on Portrait & Landscape Tablets",
-      "codedInCurrentPass": true
+      "title": "Position-First Video Sorting & Fresh Clip Badge in Q5 Film Room",
+      "codedInCurrentPass": false
     },
     {
       "id": "S6-A",
@@ -166,7 +321,7 @@
         "exportAssociationBoardSummaryReport"
       ],
       "title": "Goalie Crease Depth & Screen Sightline Ray Indicator on Point Shots",
-      "codedInCurrentPass": true
+      "codedInCurrentPass": false
     },
     {
       "id": "S10-A",
@@ -177,7 +332,7 @@
         "generatePartnerAssociationShareLink"
       ],
       "title": "Pre-Freeze Peripheral Vision Cueing Before Decision Freeze",
-      "codedInCurrentPass": true
+      "codedInCurrentPass": false
     },
     {
       "id": "S11-A",
@@ -200,7 +355,7 @@
         "runSafeSportAndVoiceHealthAudit"
       ],
       "title": "100% Natural Conversational Locker-Room Voice Cadence Across All 11 Characters",
-      "codedInCurrentPass": true
+      "codedInCurrentPass": false
     },
     {
       "id": "RF-COUNCIL-01",
@@ -214,23 +369,22 @@
       "codedInCurrentPass": false
     }
   ],
-  "approvedQueueAwaitingBuild": [
+  "approvedQueueAwaitingBuild": [],
+  "autoResolvedSkippedItems": [
     {
-      "id": "S11-C",
-      "status": "approved_for_build",
-      "seat_name": "🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist",
-      "title": "Seasonal \"Stanley Cup Playoffs & Winter Classic\" Limited-Edition Pro Brand Showcase Wall Theme",
-      "description": "CANDID CRITIQUE ON SPONSOR WALL FRESHNESS: Rotating seasonal pro showcase header badges keeps players coming back to the Pro Shop after every 3-city division milestone."
+      "id": "S7-F",
+      "seat_name": "📱 Seat 7 — Principal UX Architect & 4-Tab Anti-Clutter Lead",
+      "title": "Auto-Dim Top Subheader Metadata to 35% Opacity During Active 2.5s Skating Roll-In on 390px Phones",
+      "status": "auto_resolved_by_batch",
+      "resolutionReason": "Auto-resolved by the newly deployed Batch F <canvas> & HUD visual focus upgrades (S1-F, S3-F, S2-F)."
     },
     {
-      "id": "S12-C",
-      "status": "approved_for_build",
+      "id": "S12-F",
       "seat_name": "🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist",
-      "title": "Automated Nightly Speech-Rate & Word-Count Verifier Across All 11 Character Voice Channels",
-      "description": "CANDID CRITIQUE ON VOICE PACING CONSISTENCY: Auditing that 8U/10U Youth Agents (Maya & Jalen) speak at a slightly warmer, unhurried cadence (0.96x–1.02x) while Pro Agents (Marcus, Priya, Ryan, Claire) use crisp game-day pacing keeps every voice authentic."
-    }
-  ],
-  "autoResolvedSkippedItems": [
+      "title": "Permanent CI Build Gate Asserting Zero [Brackets] in Spoken Strings & Zero Diagnostic Leaks in Social DOM",
+      "status": "auto_resolved_by_batch",
+      "resolutionReason": "Auto-resolved by deep_playtest_audit.js Stage 1–3 spoken-string & SafeSport CI gates."
+    },
     {
       "id": "S4-E",
       "seat_name": "🧑 Seat 4 & 👦 Seat 3 — Locker Room & Pro Shop Quick-Switch Ergonomics",
@@ -248,18 +402,18 @@
   ],
   "reassessedSkippedItems": [
     {
-      "id": "S9-B",
-      "seat_name": "⚙️ Seat 9 — Principal Full-Stack, Supabase & <canvas> Engineer",
-      "title": "Service Worker / LocalStorage Snapshot Cache for 360 Cloud Scenarios & 51 Video Rows",
+      "id": "S6-F",
+      "seat_name": "🏛️ Seat 6 — Association Hockey Director & Club GM Playtester (Level D)",
+      "title": "Division-to-Division Curriculum Readiness Badge (Offsides & House >=80%) in Director HQ Table",
       "status": "reassessed_awaiting_approval",
-      "reassessedTelemetry": "Re-tested against synapz-hockey-v10.4-sweet-spot-loop: sw.js caches static shell assets in <12ms, while 360 cloud scenarios still fetch over REST on cold launch. Ready for 1-click approval whenever you want offline rural-rink caching."
+      "reassessedTelemetry": "Re-tested on Batch G (136/360 Scenarios): Director HQ Tab 4 multi-team rollup is ready for an optional readiness column with 0 player-screen impact."
     },
     {
-      "id": "S10-B",
+      "id": "S10-F",
       "seat_name": "📈 Seat 10 — App Store, Conversion & Growth Strategist",
-      "title": "Multi-Sibling \"Family Locker Pass\" Bundle Callout When 2+ Sibling Stalls Are Active",
+      "title": "1-Click \"Copy Team GroupMe / SportsEngine Message (5-Play Warmup + 50% Partner Link)\" in Coach Office",
       "status": "reassessed_awaiting_approval",
-      "reassessedTelemetry": "Re-tested against synapz-hockey-v10.4-sweet-spot-loop: ?partner=ASSOC_CODE 50% discount link is now live (S10-A), while the multi-sibling Family Pass callout inside Parent HQ remains optional for a future sprint."
+      "reassessedTelemetry": "Re-tested on Batch G (136/360 Scenarios): S5-A Warmup Link & S10-A 50% Partner Link are live; ready to combine into a 1-click GroupMe copy button inside Coach Al's Office whenever desired."
     }
   ]
 }

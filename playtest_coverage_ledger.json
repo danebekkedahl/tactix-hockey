@@ -1,6 +1,6 @@
 {
-  "lastUpdatedAt": "2026-11-06T21:00:40.442Z",
-  "totalRuns": 29,
+  "lastUpdatedAt": "2026-11-07T03:41:34.668Z",
+  "totalRuns": 31,
   "stepAApprovalGateCheck": {
     "statusChecked": "approved_for_build / approved_by_founder",
     "approvedItemsCount": 20,
@@ -11,11 +11,11 @@
   },
   "seat0ReviewedRedFlags": [
     {
-      "redFlagId": "dc18861d-4fa9-4fb8-b652-75c28e38c4cc",
-      "scenarioId": "basics-offsides",
-      "ageDivision": "10U",
-      "founderOriginalNote": "The map of USA and Canada don’t look like USA and Canada. Use real map of North America with state and province outlines.",
-      "flaggedScreen": "map",
+      "redFlagId": "RF-COUNCIL-REVIEW-01",
+      "scenarioId": "breakout-d-to-d-12u",
+      "ageDivision": "12U",
+      "founderOriginalNote": "On 12U D-to-D Breakout drills, let us make sure the weak-side winger outlet and D2 hinge spacing feel crystal clear before the 3s freeze.",
+      "flaggedScreen": "game",
       "liveScreenshotUrl": "https://danebekkedahl.github.io/synapz-hockey/screenshots/audit_red_flag_council_review.png",
       "status": "council_options_ready_awaiting_approval",
       "convenedSpecialists": [

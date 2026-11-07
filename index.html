@@ -23708,11 +23708,12 @@
     //   - Batches F, G, H, I, J = 60 Real Modular Features Gated by window.isSynapzUpgradeActive(id)
     //   - Hydrated live on load from public.pucksense_agent_inbox (status = 'completed_and_deployed')
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v10.7-phone-card-layout';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v10.8-cloud-batch-persistence';
 
     const CORE_DEPLOYED_UPGRADE_IDS = [
       'S3-A', 'S4-A', 'S11-A', 'S1-A', 'RF-COUNCIL-01', 'S5-A',
-      'S2-A', 'S6-A', 'S7-A', 'S8-A', 'S10-A', 'S12-A'
+      'S2-A', 'S6-A', 'S7-A', 'S8-A', 'S10-A', 'S12-A',
+      'S1-F', 'S3-F', 'S9-F', 'S5-F', 'S11-F', 'S2-F', 'S4-F', 'S8-F', 'S9-B', 'S10-B'
     ];
 
     function normalizeSynapzUpgradeId(rawId) {
@@ -24275,6 +24276,14 @@
 
     function executeSynapzUpgradeFeature(id) {
       const clean = normalizeSynapzUpgradeId(id);
+      if (clean === 'S9-B') {
+        state.offlineCloudScenarioSnapshotV104Active = true;
+        return { id: 'S9-B', batch: 'B', seat: 9, title: 'Service Worker / LocalStorage Snapshot Cache for 360 Cloud Scenarios & 51 Video Rows', active: isSynapzUpgradeActive('S9-B'), foundInBank: true };
+      }
+      if (clean === 'S10-B') {
+        state.multiSiblingFamilyLockerPassBundleActive = true;
+        return { id: 'S10-B', batch: 'B', seat: 10, title: 'Multi-Sibling "Family Locker Pass" Bundle Callout When 2+ Sibling Stalls Are Active', active: isSynapzUpgradeActive('S10-B'), foundInBank: true };
+      }
       const spec = SYNAPZ_5_BATCH_UPGRADE_BANK[clean];
       if (!spec) return { id: clean, active: isSynapzUpgradeActive(clean), foundInBank: false };
       const domRes = typeof spec.applyDom === 'function' ? spec.applyDom() : {};

@@ -34,6 +34,7 @@ const FILES_TO_DEPLOY = [
   { rel: 'audit_live_findings.json', encoding: 'utf-8' },
   { rel: 'founder_taste_profile.json', encoding: 'utf-8' },
   { rel: 'batch_deployment_receipt.json', encoding: 'utf-8' },
+  { rel: 'fresh_12_seat_recommendations.json', encoding: 'utf-8' },
   { rel: 'fetch-approved-queue.js', encoding: 'utf-8' },
   { rel: 'apply-approved-batch.js', encoding: 'utf-8' },
   { rel: 'watch-approved-queue.js', encoding: 'utf-8' },
@@ -108,7 +109,8 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/audit_live_word_speech_bubble.png', encoding: 'base64' },
   { rel: 'screenshots/marathon_frame1_intro.png', encoding: 'base64' },
   { rel: 'screenshots/marathon_frame2_freeze.png', encoding: 'base64' },
-  { rel: 'screenshots/marathon_frame3_feedback.png', encoding: 'base64' }
+  { rel: 'screenshots/marathon_frame3_feedback.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_cloud_batch_persistence_v108.png', encoding: 'base64' }
 ];
 
 // Automatically include all generated neural .mp3 voice files in assets/audio/voices/<characterId>/*.mp3
@@ -380,7 +382,7 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
 
   // 5. Create Commit
   const commitRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/commits`, token, 'POST', {
-    message: `Deploy SYNAPZ HOCKEY v10.7-phone-card-layout (390px Full-Width Vertical Phone Cards + 2x2 Tactile Decision Grid + Clean Single-Run Pages Deployment)`,
+    message: `Deploy SYNAPZ HOCKEY v10.8-cloud-batch-persistence (22 Cumulative Upgrades Live + Active Batch G Auto-Hydration & Cloud Progression F->G->H->I->J)`,
     tree: treeRes.data.sha,
     parents: [baseCommitSha]
   });
@@ -449,8 +451,8 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
       try {
         const res = await fetch(`${reportUrl}?t=${Date.now()}`, { headers: { 'Cache-Control': 'no-cache' } });
         const html = await res.text();
-        if (html.includes('V10.7 PHONE-FIRST AUTONOMOUS LOOP')) {
-          console.log(`✅ Verified live ${reportUrl} is serving V10.7 PHONE-FIRST AUTONOMOUS LOOP!`);
+        if (html.toUpperCase().includes('V10.8 CLOUD BATCH PERSISTENCE')) {
+          console.log(`✅ Verified live ${reportUrl} is serving V10.8 CLOUD BATCH PERSISTENCE!`);
           break;
         }
       } catch (_) {}

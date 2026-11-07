@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v10.7-phone-card-layout';
+const CACHE_NAME = 'synapz-hockey-v10.8-cloud-batch-persistence';
 const ASSETS = [
   './',
   './index.html',

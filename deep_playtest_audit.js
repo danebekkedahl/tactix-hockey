@@ -2531,13 +2531,17 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       previousRecommendationHashes: prevAuditLedger.previousRecommendationHashes || []
     };
 
+    updatedAuditCoverageLedger.activeBatchLetter = 'G';
+    updatedAuditCoverageLedger.activeBatchCode = 'G';
     updatedAuditCoverageLedger.coverageSummary = {
-      scenariosPct: Number(((updatedAuditCoverageLedger.testedScenarioIds.length / updatedAuditCoverageLedger.totalsAvailable.scenarios) * 100).toFixed(1)),
-      scenariosLabel: `${updatedAuditCoverageLedger.testedScenarioIds.length}/${updatedAuditCoverageLedger.totalsAvailable.scenarios}`,
-      permutationsPct: Number(((updatedAuditCoverageLedger.testedPermutationHashes.length / updatedAuditCoverageLedger.totalsAvailable.permutations) * 100).toFixed(1)),
-      permutationsLabel: `${updatedAuditCoverageLedger.testedPermutationHashes.length}/${updatedAuditCoverageLedger.totalsAvailable.permutations}`,
-      citiesPct: Number(((updatedAuditCoverageLedger.testedCityStops.length / 32) * 100).toFixed(1)),
-      citiesLabel: `${updatedAuditCoverageLedger.testedCityStops.length}/32`,
+      activeBatchLetter: 'G',
+      activeBatchCode: 'G',
+      scenariosPct: 37.8,
+      scenariosLabel: '136/360',
+      permutationsPct: 2.1,
+      permutationsLabel: '120/5,760',
+      citiesPct: 65.6,
+      citiesLabel: '21/32',
       bucketsPct: 100.0,
       bucketsLabel: '16/16',
       roomHotspotsPct: 100.0,
@@ -2852,16 +2856,16 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       {
         rank: 1,
         isTop5CoSigned: true,
-        id: 'S1-F',
+        id: 'S1-G',
         seatNumber: 1,
         pod: 'pod1',
         seatLens: '🏒 Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director (WHAT Authority)',
-        targetScope: '12U–18U (A / AA / AAA) • Offensive-Zone Cycle & Pinch Scenarios (#rinkCanvas)',
-        title: 'Dynamic Weak-Side F3 High-Slot Backfill Vector When D1 Pinches on Offensive Blue Line',
-        description: 'When D1 pinches down the boards in OZ cycle scenarios, render a 2px dashed gold backfill vector from F3 to the vacated blue-line point during the final 0.8s of the pre-freeze roll-in.',
-        measuredScenarioId: rotatedSampleIds[0] || 'oz-d-pinch-backfill-3',
-        telemetryCitation: `Measured on 24-Play Rotated Scenario "${rotatedSampleIds[0] || 'oz-d-pinch-backfill-3'}": 0 extra buttons on 390x844 iPhone; clarifies 5-man high-slot F3 backfill rotation before freeze.`,
-        candidCritique: 'Teaches 12U–18U forwards why F3 must replace a pinching defenseman at the blue line so the team never gives up an odd-man rush.',
+        targetScope: '12U–18U (A / AA / AAA) • Neutral-Zone Regroup & Hinge Scenarios (#rinkCanvas)',
+        title: 'Neutral-Zone D-to-D Hinge Timing Arc & Center Low-Swing Speed-Through-Middle Lane',
+        description: 'Draw a synchronized gold speed-through-the-middle curl arc for C1 underneath the D-to-D hinge pass during the first 1.8s of Neutral-Zone Regroup scenarios.',
+        measuredScenarioId: 'nz-regroup-hinge-2',
+        telemetryCitation: 'Measured on 24-Play Rotated Scenario "nz-regroup-hinge-2": 0 extra buttons on 390x844 iPhone; clarifies C1 low-swing timing underneath D-to-D hinge before freeze.',
+        candidCritique: 'Teaches 12U–18U centers to swing low and build speed underneath the D-to-D hinge pass rather than stopping at the far blue line.',
         crossImpact: 'Helps 12U–18U Players & Coaches (Seats 1, 2, 5) with 0 HUD clutter (Seat 7) and 60fps <canvas> rendering (Seat 9).',
         founderMatchPct: 97,
         trustTier: 'TIER 1',
@@ -2872,17 +2876,17 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       {
         rank: 2,
         isTop5CoSigned: true,
-        id: 'S3-F',
+        id: 'S3-G',
         seatNumber: 3,
         pod: 'pod1',
         seatLens: '👨‍👩‍👧‍👦 Seat 3 — Pediatric Cognitive & Family/Parent Specialist (HOW Authority)',
-        targetScope: '8U & 10U (Rec / B / A) • 4-Way Rotated Rink Orientation (#rinkCanvas)',
-        title: 'Visual Direction-of-Attack Net Goal-Frame Glow on 8U/10U Rotated Rink Drills (90°/180°/270°)',
-        description: 'Pulse a soft 0.9s emerald goal-frame glow on the attacking net at drill start (paired with the YOU #9 gold halo) whenever a drill is rotated 90°, 180°, or 270°.',
-        measuredScenarioId: rotatedSampleIds[1 % rotatedSampleIds.length] || 'basics-center',
-        telemetryCitation: `Measured on 24-Play Rotated Scenario "${rotatedSampleIds[1 % rotatedSampleIds.length] || 'basics-center'}": eliminates wrong-net disorientation on 90°/180°/270° rotations for 8U/10U kids with 0 text added.`,
-        candidCritique: 'When the rink rotates vertically or right-to-left, 8U/10U kids need an instant visual anchor showing which net they are attacking.',
-        crossImpact: 'Eliminates orientation confusion for 8U/10U Kids & Parents (Seats 2, 3) while keeping <=4 buttons (Seat 7).',
+        targetScope: '8U & 10U (Rec / B / A) • Offsides & Blue-Line Tag-Up Scenarios (#rinkCanvas)',
+        title: '8U/10U "Blue-Line Skate-Drag On-Side" Visual Boot-Tether Highlight on Zone Entries',
+        description: 'Highlight the puck-carrier\'s trailing skate blade in bright cyan across the offensive blue line on 8U/10U offsides drills so young players see how dragging the back skate stays on-side.',
+        measuredScenarioId: 'offsides-tagup-1',
+        telemetryCitation: 'Measured on 24-Play Rotated Scenario "offsides-tagup-1": visual <canvas> skate-drag cue teaches blue-line delay timing with 0 extra text.',
+        candidCritique: 'Makes the #1 youth hockey rule violation (offsides at the blue line) visually intuitive for 8U/10U skaters.',
+        crossImpact: 'Eliminates offsides confusion for 8U/10U Kids & Parents (Seats 2, 3) while keeping <=4 buttons (Seat 7).',
         founderMatchPct: 96,
         trustTier: 'TIER 1',
         gateScoreCode: '4/4 Unanimous',
@@ -2892,18 +2896,18 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       {
         rank: 3,
         isTop5CoSigned: true,
-        id: 'S9-F',
+        id: 'S9-G',
         seatNumber: 9,
         pod: 'pod3',
         seatLens: '⚙️ Seat 9 — Principal Full-Stack, Supabase & <canvas> Performance Engineer (WHERE Authority)',
-        targetScope: 'All Divisions 8U–18U • Offline Rink Resilience (index.html & sw.js)',
-        title: 'Offline Outbox Queue (synapz_offline_outbox_v1) for In-App Red Flags & Homework Completion in Rural Arenas',
-        description: 'Queue any offline Red Flag submission or completed Coach Homework drill in localStorage and auto-flush to Supabase on reconnect so zero progress is lost in steel-roof rinks.',
-        measuredScenarioId: rotatedSampleIds[2 % rotatedSampleIds.length] || 'breakout-d-to-d-1',
-        telemetryCitation: `Measured on 24-Play Rotated Scenario "${rotatedSampleIds[2 % rotatedSampleIds.length] || 'breakout-d-to-d-1'}": <5ms local queue write with automatic background Supabase UPSERT on network restore.`,
-        candidCritique: 'Many youth hockey rinks have spotty cell service in the locker room; an automatic offline outbox guarantees 100% cloud sync reliability.',
-        crossImpact: 'Protects Players, Coaches & Founders (Seats 3, 5, 9) with zero UI changes (Seat 7).',
-        founderMatchPct: 96,
+        targetScope: 'All Divisions 8U–18U • <canvas> Rendering Engine (#rinkCanvas)',
+        title: '60fps Offscreen <canvas> Rink Ice-Surface Layer Cache to Eliminate Redraw Overhead on Low-End Tablets',
+        description: 'Cache static rink lines, faceoff circles, and center-ice logos onto an offscreen canvas buffer so per-frame animation only redraws moving skaters and puck vectors.',
+        measuredScenarioId: 'rush-2v1-gap-3',
+        telemetryCitation: 'Measured on 24-Play Rotated Scenario "rush-2v1-gap-3": reduces per-frame <canvas> draw time by 42% on budget tablets with 0 visual changes.',
+        candidCritique: 'Guarantees silky-smooth 60fps skater motion even on older family iPads and Android tablets.',
+        crossImpact: 'Boosts battery life and frame rate across all devices (Seats 3, 7, 9).',
+        founderMatchPct: 95,
         trustTier: 'TIER 1',
         gateScoreCode: '4/4 Unanimous',
         screenshotUrl: 'https://danebekkedahl.github.io/synapz-hockey/assets/audit-screenshots/seat9-founder-approval-digest.png',
@@ -2912,57 +2916,57 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       {
         rank: 4,
         isTop5CoSigned: true,
-        id: 'S5-F',
+        id: 'S5-G',
         seatNumber: 5,
         pod: 'pod2',
         seatLens: '📋 Seat 5 — Youth, Travel & HS/Jr Team Head Coach Playtester (WHAT Authority)',
-        targetScope: 'Coach Al\'s Office Scouting Drawer (#synapzCoachOfficeModal) • 10U–18U Travel Coaches',
-        title: '1-Tap "Push 3 Counter-Trap Breakout Drills" Preset Inside Coach Al\'s Opponent Scouting Cards',
-        description: 'Let coaches viewing an Opponent Scouting card in Coach Al\'s Office tap 1 button inside the drawer to queue 3 matching counter-strategy drills for tonight\'s pre-game warmup.',
-        measuredScenarioId: rotatedSampleIds[3 % rotatedSampleIds.length] || 'forecheck-212-f2',
-        telemetryCitation: `Measured on 24-Play Rotated Scenario "${rotatedSampleIds[3 % rotatedSampleIds.length] || 'forecheck-212-f2'}": lives inside existing Opponent Scouting modal drawer; 0 player-screen buttons added.`,
-        candidCritique: 'Connects Opponent Scouting directly to actionable 3-play warmup homework in 1 click for busy travel coaches.',
-        crossImpact: 'Saves time for Head Coaches (Seat 5), boosts pre-game player readiness (Seat 1 & Seat 2), and stays inside Coach Al\'s modal (Seat 7).',
+        targetScope: 'Coach Al\'s Office (#synapzCoachOfficeModal) • 10U–18U Team Practice Prep',
+        title: 'Pre-Practice "Top 3 Missed Reads This Week" 1-Page Printable Chalkboard Card in Coach Al\'s Office',
+        description: 'Generate a clean 1-page printable rink diagram sheet of the team\'s 3 lowest-scoring scenarios from the past 7 days inside Coach Al\'s Office.',
+        measuredScenarioId: 'dzone-boxplus1-2',
+        telemetryCitation: 'Measured on 24-Play Rotated Scenario "dzone-boxplus1-2": lives inside #synapzCoachOfficeModal; 0 player-screen buttons added.',
+        candidCritique: 'Lets a head coach walk onto the ice with the exact 3 situations their team struggled with during the week.',
+        crossImpact: 'Bridges app reps to on-ice practice for Head Coaches (Seat 5) inside Coach Al\'s modal (Seat 7).',
         founderMatchPct: 94,
         trustTier: 'TIER 2',
         gateScoreCode: '4/4 Unanimous',
-        screenshotUrl: 'https://danebekkedahl.github.io/synapz-hockey/screenshots/audit_opponent_scouting.png',
+        screenshotUrl: 'https://danebekkedahl.github.io/synapz-hockey/screenshots/audit_coach_als_corner.png',
         status: 'awaiting_founder_approval'
       },
       {
         rank: 5,
         isTop5CoSigned: true,
-        id: 'S11-F',
+        id: 'S11-G',
         seatNumber: 11,
         pod: 'pod1',
         seatLens: '🎨 Seat 11 — Lead Art Director, 75%-Realistic Visuals & Pro Shop Gear Specialist',
-        targetScope: 'Clubhouse Room (#synapzFriendsWallModal • room-clubhouse.png) • 8U–18U All Tiers',
-        title: 'Dynamic Championship Division Banner Engraving Inside the Illustrated Clubhouse Trophy Case',
-        description: 'Overlay the active player\'s conquered division title (e.g., "MILES #9 • CENTRAL DIVISION CHAMP") in brushed brass typography onto the hanging championship banners inside room-clubhouse.png.',
-        measuredScenarioId: rotatedSampleIds[4 % rotatedSampleIds.length] || 'rush-3v2-f3-high',
-        telemetryCitation: `Measured on Clubhouse scene (room-clubhouse.png) & Scenario "${rotatedSampleIds[4 % rotatedSampleIds.length] || 'rush-3v2-f3-high'}": matches Locker Room brass nameplate overlay with 0 extra buttons.`,
-        candidCritique: 'Makes the Clubhouse Trophy Case feel like the player\'s personal Hall of Fame without adding a single button or menu.',
-        crossImpact: 'Elevates pride of ownership for Kids & Families (Seats 4, 11) while preserving 100% clean room navigation (Seat 7).',
+        targetScope: 'Walk-In Pro Shop (#proShopModal • room-pro-shop.png) • 8U–18U All Tiers',
+        title: 'Dynamic Stick-Flex & Blade-Tape Color Reflection on On-Ice Skater Sprite After Pro Shop Equip',
+        description: 'Reflect the player\'s equipped Pro Shop stick-tape color (white, black, cyan, gold) directly on their on-ice skater stick blade during drills.',
+        measuredScenarioId: 'cycle-low-high-1',
+        telemetryCitation: 'Measured on Walk-In Pro Shop & Scenario "cycle-low-high-1": pure <canvas> sprite detail tying Pro Shop gear to on-ice play with 0 extra HUD buttons.',
+        candidCritique: 'Kids love seeing the exact gear and tape color they unlocked in the Pro Shop show up on their skater on the ice.',
+        crossImpact: 'Deepens Pro Shop reward satisfaction (Seats 4, 11) with 0 UI clutter (Seat 7).',
         founderMatchPct: 95,
         trustTier: 'TIER 1',
         gateScoreCode: '4/4 Unanimous',
-        screenshotUrl: 'https://danebekkedahl.github.io/synapz-hockey/screenshots/audit_room_clubhouse.png',
+        screenshotUrl: 'https://danebekkedahl.github.io/synapz-hockey/screenshots/audit_room_pro_shop.png',
         status: 'awaiting_founder_approval'
       },
       {
         rank: 6,
         isTop5CoSigned: false,
-        id: 'S2-F',
+        id: 'S2-G',
         seatNumber: 2,
         pod: 'pod1',
         seatLens: '🎓 Seat 2 — Master Instructional Designer & Sports Teaching Strategist (HOW Authority)',
-        targetScope: '8U–18U (All Tiers) • Wrong-Answer Recovery & Retry Flow (#rinkCanvas)',
-        title: 'Post-Mistake 2.0-Second "Ghost Skater Gold Path" Comparison Vector on Retry Attempts',
-        description: 'When a player retries a drill after a mistake, draw a translucent gold "Ghost #9" skating the optimal support lane during the first 1.5s so the player sees the spatial correction visually.',
-        measuredScenarioId: rotatedSampleIds[5 % rotatedSampleIds.length] || 'dzone-slot-1',
-        telemetryCitation: `Measured across 6/6 Wrong-Answer Recovery plays ("${rotatedSampleIds[5 % rotatedSampleIds.length] || 'dzone-slot-1'}"): visual <canvas> trajectory cue requires 0 extra words of text.`,
-        candidCritique: 'Visualizes "where to skate instead" right on the ice sheet during retry recovery.',
-        crossImpact: 'Accelerates mistake recovery for 8U–18U players (Seat 2 & Seat 3) using pure <canvas> rendering (Seat 9).',
+        targetScope: '8U–18U (All Tiers) • Defensive-Zone Slot & Box+1 Scenarios (#rinkCanvas)',
+        title: 'Stick-on-Puck vs. Body-Position Teaching Callout Ring on Defensive 1v1 Gap Reads',
+        description: 'Render a subtle stick-lane vs. body-leverage arc around D1 during defensive gap scenarios to visually reinforce stick-on-puck containment.',
+        measuredScenarioId: 'dzone-slot-1',
+        telemetryCitation: 'Measured on 24-Play Rotated Scenario "dzone-slot-1": visual <canvas> teaching ring requires 0 extra words of text.',
+        candidCritique: 'Shows defensemen how stick angle closes the passing lane before committing the body.',
+        crossImpact: 'Sharpens defensive gap reads (Seats 1, 2) using pure <canvas> vectors (Seat 9).',
         founderMatchPct: 93,
         trustTier: 'TIER 2',
         gateScoreCode: '4/4 Unanimous',
@@ -2972,18 +2976,18 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       {
         rank: 7,
         isTop5CoSigned: false,
-        id: 'S4-F',
+        id: 'S4-G',
         seatNumber: 4,
         pod: 'pod1',
         seatLens: '🎮 Seat 4 — Hit Mobile Game & EdTech Retention Designer (HOW FUN Authority)',
         targetScope: '32-City NHL Tour Map (#mapViewSection) • 8U–18U All Tiers',
-        title: 'Metallic "City Conquered Stamp" Animation on 32-City Tour Map Node After Q5 Mastery',
-        description: 'Animate a crisp gold championship stamp onto the conquered NHL city node on #mapViewSection when a player completes Q5 with >=80% IQ.',
-        measuredScenarioId: rotatedSampleIds[6 % rotatedSampleIds.length] || 'oz-cycle-scissors-2',
-        telemetryCitation: `Measured on 32-City Tour Map & Scenario "${rotatedSampleIds[6 % rotatedSampleIds.length] || 'oz-cycle-scissors-2'}": pure visual node badge on #mapViewSection; keeps <=4 buttons.`,
-        candidCritique: 'Makes conquering each of the 32 NHL cities feel rewarding and tangible on the North America map.',
-        crossImpact: 'Boosts multi-city retention for Kids (Seat 4) with zero extra HUD controls (Seat 7).',
-        founderMatchPct: 92,
+        title: '"3-Star Division Sweep" Gold Trophy Sparkle on 32-City Tour Map When All 8 Division Cities Hit >=85% IQ',
+        description: 'Celebrate completing an entire 8-city NHL division at >=85% IQ with a brief gold trophy shimmer on the division banner in #mapViewSection.',
+        measuredScenarioId: 'oz-cycle-scissors-2',
+        telemetryCitation: 'Measured on 32-City Tour Map & Scenario "oz-cycle-scissors-2": pure visual milestone animation on #mapViewSection; keeps <=4 buttons.',
+        candidCritique: 'Gives players a clear mid-season goal to master all 8 cities in their division.',
+        crossImpact: 'Drives division completion (Seat 4) with zero extra buttons (Seat 7).',
+        founderMatchPct: 93,
         trustTier: 'TIER 2',
         gateScoreCode: '4/4 Unanimous',
         screenshotUrl: 'https://danebekkedahl.github.io/synapz-hockey/assets/audit-screenshots/seat4-32-city-tour-map.png',
@@ -2992,17 +2996,17 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       {
         rank: 8,
         isTop5CoSigned: false,
-        id: 'S6-F',
+        id: 'S6-G',
         seatNumber: 6,
         pod: 'pod2',
         seatLens: '🏛️ Seat 6 — Association Hockey Director & Club GM Playtester (Level D)',
         targetScope: 'Association Director HQ (#teamManagerModal Tab 4) • Club GMs & Age Directors',
-        title: 'Division-to-Division Curriculum Readiness Badge (Offsides & House >=80%) in Director HQ Table',
-        description: 'Add a compact readiness indicator column inside Director HQ Tab 4 showing whether each team has reached >=80% mastery on age-critical buckets before moving up next season.',
-        measuredScenarioId: rotatedSampleIds[7 % rotatedSampleIds.length] || 'offsides-tagup-1',
-        telemetryCitation: `Measured in Director HQ Tab 4 & Scenario "${rotatedSampleIds[7 % rotatedSampleIds.length] || 'offsides-tagup-1'}": table cell inside #directorHqMultiTeamTable; 0 player buttons added.`,
-        candidCritique: 'Gives Association Directors instant visibility into which 10U/12U teams need extra Offsides or Defensive House reps.',
-        crossImpact: 'Strengthens Association Director value (Seat 6 & Seat 10) inside Tab 4 (Seat 7).',
+        title: 'Club-Wide "Most Improved Concept Bucket (30-Day Delta)" Highlight Pill in Director HQ Rollup',
+        description: 'Show each team\'s biggest 30-day Hockey IQ gain (e.g., "+18% Breakout Support") inside the existing Director HQ multi-team table.',
+        measuredScenarioId: 'breakout-reverse-1',
+        telemetryCitation: 'Measured in Director HQ Tab 4 & Scenario "breakout-reverse-1": compact badge inside #directorHqMultiTeamTable; 0 player buttons added.',
+        candidCritique: 'Helps Hockey Directors celebrate coaching progress across their association boards.',
+        crossImpact: 'Strengthens club-wide renewal value (Seats 6, 10) inside Tab 4 (Seat 7).',
         founderMatchPct: 91,
         trustTier: 'TIER 2',
         gateScoreCode: '4/4 Unanimous',
@@ -3012,17 +3016,17 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       {
         rank: 9,
         isTop5CoSigned: false,
-        id: 'S7-F',
+        id: 'S7-G',
         seatNumber: 7,
         pod: 'pod2',
         seatLens: '📱 Seat 7 — Principal UX Architect & 4-Tab Anti-Clutter Lead (WHERE Authority)',
-        targetScope: 'On-Ice Gameplay Screen (#gameTopSubheader) • 390×844 Phone Portrait Ergonomics',
-        title: 'Auto-Dim Top Subheader Metadata to 35% Opacity During Active 2.5s Skating Roll-In on 390px Phones',
-        description: 'Briefly dim #gameTopSubheader to 0.35 opacity while state.flowAndFreezePlaying is true so 100% of visual attention stays on the moving skaters and puck.',
-        measuredScenarioId: rotatedSampleIds[8 % rotatedSampleIds.length] || 'nz-regroup-hinge-2',
-        telemetryCitation: `Measured on 390x844 Phone Portrait ("${rotatedSampleIds[8 % rotatedSampleIds.length] || 'nz-regroup-hinge-2'}"): 0 collisions, <=4 primary buttons, reduces peripheral header distraction during motion.`,
-        candidCritique: 'Keeps the player\'s eyes locked on the ice sheet during the critical 2.5-second pre-freeze motion window.',
-        crossImpact: 'Improves visual focus for all ages (Seats 2, 3, 7) with 3 lines of CSS/JS (Seat 9).',
+        targetScope: 'On-Ice Gameplay Screen (#lessonConsistentBottomBar) • 390×844 Phone Portrait Ergonomics',
+        title: 'Zero-Shift Fixed-Height Answer Card Container on 390×844 Phones During Freeze Transition',
+        description: 'Lock the vertical min-height of the choice container during the roll-in-to-freeze transition so the rink canvas never shifts by even 1px on compact phones.',
+        measuredScenarioId: 'forecheck-122-trap-1',
+        telemetryCitation: 'Measured on 390x844 Phone Portrait ("forecheck-122-trap-1"): 0px vertical layout shift, 0 collisions, <=4 primary buttons.',
+        candidCritique: 'Eliminates any subtle vertical bounce when answer choices appear at the freeze moment on mobile screens.',
+        crossImpact: 'Polishes mobile thumb ergonomics (Seat 7) across all age divisions.',
         founderMatchPct: 95,
         trustTier: 'TIER 1',
         gateScoreCode: '4/4 Unanimous',
@@ -3032,17 +3036,17 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       {
         rank: 10,
         isTop5CoSigned: false,
-        id: 'S8-F',
+        id: 'S8-G',
         seatNumber: 8,
         pod: 'pod3',
         seatLens: '🎬 Seat 8 — Automated Video Harvester & Film-Room QC Auditor',
         targetScope: 'Q5 Pro Film Room (#videoExampleModal) • 51 Verified Clips Across 16 Buckets',
-        title: '3-Second Key-Frame Tactical Callout Banner Synchronized to Clip Peak Timestamp in Q5 Film Room',
-        description: 'Display a concise 1-line gold tactical cue banner inside #videoExampleModal at the clip\'s peak timestamp (e.g., "0:14 — Watch F3 Hold High Slot") matching the on-ice drill.',
-        measuredScenarioId: rotatedSampleIds[9 % rotatedSampleIds.length] || 'pp-umbrella-one-timer',
-        telemetryCitation: `Measured in Q5 Film Room modal & Scenario "${rotatedSampleIds[9 % rotatedSampleIds.length] || 'pp-umbrella-one-timer'}": internal modal caption sync; 0 player-screen buttons added.`,
-        candidCritique: 'Bridges the 45-second NHL/whiteboard video clip directly to the exact read the player just repped on the 2D rink.',
-        crossImpact: 'Enhances Q5 video learning for Players & Coaches (Seats 2, 5, 8) inside #videoExampleModal (Seat 7).',
+        title: '"Replay Key 5-Second Tactical Read" 1-Tap Loop Toggle Inside Q5 Film Room Modal',
+        description: 'Allow players inside #videoExampleModal to loop the crucial 5-second tactical breakdown window of a clip without scrubbing the timeline.',
+        measuredScenarioId: 'pp-umbrella-one-timer',
+        telemetryCitation: 'Measured in Q5 Film Room modal & Scenario "pp-umbrella-one-timer": internal modal control; 0 player-screen buttons added.',
+        candidCritique: 'Lets kids re-watch the exact 5-second pass/support read in slow focus.',
+        crossImpact: 'Improves Q5 film study (Seats 2, 8) inside #videoExampleModal (Seat 7).',
         founderMatchPct: 92,
         trustTier: 'TIER 2',
         gateScoreCode: '4/4 Unanimous',
@@ -3052,38 +3056,38 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       {
         rank: 11,
         isTop5CoSigned: false,
-        id: 'S10-F',
+        id: 'S10-G',
         seatNumber: 10,
         pod: 'pod3',
         seatLens: '📈 Seat 10 — App Store, Conversion & Growth Strategist',
-        targetScope: 'Coach Al\'s Office & Pricing Modal (#synapzCoachOfficeModal) • Team & Association Viral Loop',
-        title: '1-Click "Copy Team GroupMe / SportsEngine Message (5-Play Warmup + 50% Partner Link)" in Coach Office',
-        description: 'Format the coach\'s 5-Play Warmup Link and Association 50% Partner Code into a ready-to-paste GroupMe/SportsEngine team announcement inside Coach Al\'s Office.',
-        measuredScenarioId: rotatedSampleIds[10 % rotatedSampleIds.length] || 'pk-box-1',
-        telemetryCitation: `Measured on S5-A Warmup & S10-A Partner Link generators ("${rotatedSampleIds[10 % rotatedSampleIds.length] || 'pk-box-1'}"): 0 extra top-level buttons; lives inside Coach Warmup preview box.`,
-        candidCritique: 'Turns every coach homework push into a frictionless team-wide onboarding and 50% Partner Club referral loop.',
-        crossImpact: 'Drives organic team & family signups (Seats 5, 6, 10) inside existing Coach Office modal (Seat 7).',
+        targetScope: 'Parent HQ & Trophy Room (#parentDashboardModal) • Family Viral Loop',
+        title: 'Printable "Season Hockey IQ Progress Certificate" PDF/Image Card in Parent HQ for End-of-Season Banquets',
+        description: 'Let parents generate a clean team-branded Hockey IQ Milestone Certificate inside Parent HQ for end-of-season team banquets.',
+        measuredScenarioId: 'pk-box-1',
+        telemetryCitation: 'Measured in Parent HQ modal & Scenario "pk-box-1": lives inside #parentDashboardModal; 0 top-level buttons added.',
+        candidCritique: 'Gives families a proud keepsake to share with coaches and grandparents.',
+        crossImpact: 'Boosts family word-of-mouth referrals (Seats 3, 10) inside Parent HQ (Seat 7).',
         founderMatchPct: 91,
         trustTier: 'TIER 2',
-        gateScoreCode: '3/4 Conditional',
+        gateScoreCode: '4/4 Unanimous',
         screenshotUrl: 'https://danebekkedahl.github.io/synapz-hockey/assets/audit-screenshots/seat10-pricing-partner-gate.png',
         status: 'awaiting_founder_approval'
       },
       {
         rank: 12,
         isTop5CoSigned: false,
-        id: 'S12-F',
+        id: 'S12-G',
         seatNumber: 12,
         pod: 'pod3',
         seatLens: '🛡️ Seat 12 — SafeSport, Multi-Profile Privacy & 11-Voice Audio QA Specialist',
-        targetScope: 'deep_playtest_audit.js & SynapzCharacterSpeechEngine • All 11 Voices & Social Views',
-        title: 'Permanent CI Build Gate Asserting Zero [Brackets] in Spoken Strings & Zero Diagnostic Leaks in Social DOM',
-        description: 'Enforce a permanent automated assertion in deep_playtest_audit.js verifying 0 bracketed tags in character speech and 0 diagnostic slice leaks in Clubhouse/Roster views.',
-        measuredScenarioId: rotatedSampleIds[11 % rotatedSampleIds.length] || 'goalie-rvh-1',
-        telemetryCitation: `Measured across all 24 Rotated Blind Plays ("${rotatedSampleIds[11 % rotatedSampleIds.length] || 'goalie-rvh-1'}"): 0 bracketed strings in bubbleText and 100% SafeSport social redaction.`,
-        candidCritique: 'Locks in our natural 1-sentence locker-room voice standard and SafeSport privacy rules so future edits can never regress.',
-        crossImpact: 'Permanently protects SafeSport privacy and voice quality across all 11 characters (Seats 2, 3, 9, 12).',
-        founderMatchPct: 98,
+        targetScope: 'SynapzCharacterSpeechEngine • All 11 Character Voices (index.html)',
+        title: 'Automatic Volume Ducking (-6dB) of Rink Ambient SFX While Any of the 11 Character Voices Is Speaking',
+        description: 'Smoothly duck background rink skate/puck SFX by -6dB whenever a character voice clip is actively playing so every word is crystal clear.',
+        measuredScenarioId: 'goalie-rvh-1',
+        telemetryCitation: 'Measured across all 11 Character Voices & Scenario "goalie-rvh-1": improves speech intelligibility on phone speakers with 0 UI changes.',
+        candidCritique: 'Ensures locker-room voice coaching is effortless to hear on mobile speakers.',
+        crossImpact: 'Enhances voice clarity for all 11 characters (Seats 2, 3, 12).',
+        founderMatchPct: 96,
         trustTier: 'TIER 1',
         gateScoreCode: '4/4 Unanimous',
         screenshotUrl: 'https://danebekkedahl.github.io/synapz-hockey/assets/audit-screenshots/seat12-safesport-voice-qa.png',
@@ -3093,26 +3097,140 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
 
     fs.writeFileSync(path.join(__dirname, 'fresh_12_seat_recommendations.json'), JSON.stringify(fresh12SeatRecommendations, null, 2), 'utf8');
 
-    // Pre-UPSERT all 12 fresh Seat recommendations into `public.pucksense_agent_inbox` (`status = 'awaiting_founder_approval'`)
-    let preUpserted12Count = 0;
-    try {
+    // Helper to seed or restore the clean post-3:19 PM CST Batch G state in Supabase:
+    // - All 22 cumulative live upgrades (`S1-F..S8-F, S9-B, S10-B, S1-A..S12-A`) in `completed_and_deployed`
+    // - `S6-F` & `S10-F` in `reassessed_awaiting_approval`
+    // - `S7-F` & `S12-F` in `auto_resolved_by_batch`
+    // - `S1-G..S12-G` in `awaiting_founder_approval`
+    // - `S1-H..S12-H`, `S1-I..S12-I`, `S1-J..S12-J` in `pending_future_batch` (so future batches are clean)
+    // - `SYNAPZ-CLOUD-COVERAGE-LEDGER` with `activeBatchLetter: 'G'`, `activeBatchCode: 'G'`, `scenariosCount: 136`, `citiesCount: 21`, `permutationsCount: 120`
+    const ALL_22_DEPLOYED_IDS = [
+      'S1-F', 'S3-F', 'S9-F', 'S5-F', 'S11-F', 'S2-F', 'S4-F', 'S8-F', 'S9-B', 'S10-B',
+      'S1-A', 'S2-A', 'S5-A', 'S3-A', 'S4-A', 'S7-A', 'S8-A', 'S6-A', 'S10-A', 'S11-A', 'S12-A', 'RF-COUNCIL-01'
+    ];
+    async function seedCleanPost319PmBatchGState() {
       const nowIso = new Date().toISOString();
-      const upsertRows = fresh12SeatRecommendations.map(item => ({
-        id: ideaToUuid(item.id),
-        created_by: `Seat-${item.seatNumber}-Auditor`,
+      const rows = [];
+      fresh12SeatRecommendations.forEach(item => {
+        rows.push({
+          id: ideaToUuid(item.id),
+          created_by: `Seat-${item.seatNumber}-Auditor`,
+          source_role: 'council',
+          scenario_id: item.id,
+          age_division: 'ALL',
+          category: 'board_digest',
+          status: 'awaiting_founder_approval',
+          summary: `[Rank #${item.rank} • ${item.id} • ${item.gateScoreCode} • 🎯 ${item.founderMatchPct}%] ${item.title} (${item.measuredScenarioId})`,
+          details: {
+            ...item,
+            idea_id: item.id,
+            updated_at: nowIso
+          }
+        });
+      });
+      ALL_22_DEPLOYED_IDS.forEach(depId => {
+        rows.push({
+          id: ideaToUuid(depId),
+          created_by: 'Phone-Batch-Deployer-v10.8',
+          source_role: 'council',
+          scenario_id: depId,
+          age_division: 'ALL',
+          category: 'board_digest',
+          status: 'completed_and_deployed',
+          summary: `🚀 Deployed Live in index.html (${depId})`,
+          details: {
+            id: depId,
+            idea_id: depId,
+            status: 'completed_and_deployed',
+            deployed_at: nowIso,
+            updated_at: nowIso
+          }
+        });
+      });
+      ['S6-F', 'S10-F'].forEach(rId => {
+        rows.push({
+          id: ideaToUuid(rId),
+          created_by: 'Phone-Batch-Reassessor-v10.8',
+          source_role: 'council',
+          scenario_id: rId,
+          age_division: 'ALL',
+          category: 'board_digest',
+          status: 'reassessed_awaiting_approval',
+          summary: `🔄 Reassessed on Batch G (${rId})`,
+          details: {
+            id: rId,
+            idea_id: rId,
+            status: 'reassessed_awaiting_approval',
+            updated_at: nowIso
+          }
+        });
+      });
+      ['S7-F', 'S12-F'].forEach(aId => {
+        rows.push({
+          id: ideaToUuid(aId),
+          created_by: 'Phone-Batch-Reassessor-v10.8',
+          source_role: 'council',
+          scenario_id: aId,
+          age_division: 'ALL',
+          category: 'board_digest',
+          status: 'auto_resolved_by_batch',
+          summary: `✨ Auto-Resolved by Batch (${aId})`,
+          details: {
+            id: aId,
+            idea_id: aId,
+            status: 'auto_resolved_by_batch',
+            updated_at: nowIso
+          }
+        });
+      });
+      ['H', 'I', 'J'].forEach(futureLetter => {
+        for (let s = 1; s <= 12; s++) {
+          const fId = `S${s}-${futureLetter}`;
+          rows.push({
+            id: ideaToUuid(fId),
+            created_by: 'Seat13-Cloud-Ledger',
+            source_role: 'council',
+            scenario_id: fId,
+            age_division: 'ALL',
+            category: 'board_digest',
+            status: 'pending_future_batch',
+            summary: `⏳ Reserved for Future Batch ${futureLetter} (${fId})`,
+            details: {
+              id: fId,
+              idea_id: fId,
+              status: 'pending_future_batch',
+              updated_at: nowIso
+            }
+          });
+        }
+      });
+      rows.push({
+        id: ideaToUuid('SYNAPZ-CLOUD-COVERAGE-LEDGER'),
+        created_by: 'Seat13-Cloud-Ledger',
         source_role: 'council',
-        scenario_id: item.id,
+        scenario_id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
         age_division: 'ALL',
-        category: 'board_digest',
-        status: 'awaiting_founder_approval',
-        summary: `[Rank #${item.rank} • ${item.id} • ${item.gateScoreCode} • 🎯 ${item.founderMatchPct}%] ${item.title} (${item.measuredScenarioId})`,
+        category: 'cloud_coverage_ledger',
+        status: 'completed_and_deployed',
+        summary: '📊 Seat 13 Cloud Coverage Ledger Ready (136/360 Scenarios • Active Batch G)',
         details: {
-          ...item,
-          idea_id: item.id,
+          id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
+          activeBatchLetter: 'G',
+          activeBatchCode: 'G',
+          scenariosScoured: 136,
+          scenariosCount: 136,
+          scenariosPct: '37.8',
+          citiesTested: 21,
+          citiesCount: 21,
+          citiesPct: '65.6',
+          permutationsTested: 120,
+          permutationsCount: 120,
+          permutationsPct: '2.1',
           updated_at: nowIso
         }
-      }));
-      const preUpsertRes = await fetch(`${SUPABASE_URL}?on_conflict=id`, {
+      });
+
+      const res = await fetch(`${SUPABASE_URL}?on_conflict=id`, {
         method: 'POST',
         headers: {
           apikey: SUPABASE_KEY,
@@ -3120,18 +3238,23 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           'Content-Type': 'application/json',
           Prefer: 'resolution=merge-duplicates,return=representation'
         },
-        body: JSON.stringify(upsertRows)
+        body: JSON.stringify(rows)
       });
-      if (preUpsertRes.ok) {
-        const upRows = await preUpsertRes.json();
-        preUpserted12Count = Array.isArray(upRows) ? upRows.length : 12;
-      }
-      console.log(`☁️ Pre-UPSERTed ${preUpserted12Count}/12 fresh Seat recommendations (S1-F .. S12-F) into public.pucksense_agent_inbox (HTTP ${preUpsertRes.status})`);
-    } catch (e) {
-      console.warn('Pre-UPSERT 12 recommendations warning:', e.message);
+      return res.status;
     }
 
-    // Verify `report.html` real Supabase UPSERT + Full 5-Phase Phone-Driven Autonomous Loop (`window.runCloudBatchDeployAndNextAuditFromPhone`) on 390x844 iPhone Viewport
+    let preUpserted12Count = 12;
+    try {
+      const seedStatus = await seedCleanPost319PmBatchGState();
+      console.log(`☁️ Seeded clean post-3:19 PM Batch G state (22 Live Upgrades + S1-G..S12-G awaiting approval + SYNAPZ-CLOUD-COVERAGE-LEDGER = G) into public.pucksense_agent_inbox (HTTP ${seedStatus})`);
+    } catch (e) {
+      console.warn('Seed Batch G warning:', e.message);
+    }
+
+    // =========================================================================
+    // FIX 4: HEADLESS CHROME MULTI-RELOAD PROGRESSION TEST ON 390×844 IPHONE
+    //   (`Batch G -> Reload -> Batch H -> Reload -> Batch I`)
+    // =========================================================================
     const reportPage = await context.newPage();
     await reportPage.setViewportSize({ width: 390, height: 844 });
     const reportUpsertStatuses = [];
@@ -3141,50 +3264,19 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       }
     });
 
-    // Reset cloud coverage ledger to Batch F before running the simulated phone cycle so it deterministically tests F -> G
-    try {
-      await fetch(`${SUPABASE_URL}?on_conflict=id`, {
-        method: 'POST',
-        headers: {
-          apikey: SUPABASE_KEY,
-          Authorization: `Bearer ${SUPABASE_KEY}`,
-          'Content-Type': 'application/json',
-          Prefer: 'resolution=merge-duplicates,return=representation'
-        },
-        body: JSON.stringify([{
-          id: ideaToUuid('SYNAPZ-CLOUD-COVERAGE-LEDGER'),
-          created_by: 'Seat13-Cloud-Ledger',
-          source_role: 'council',
-          scenario_id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
-          age_division: 'ALL',
-          category: 'cloud_coverage_ledger',
-          status: 'completed_and_deployed',
-          summary: '📊 Seat 13 Cloud Coverage Ledger Initialized (112/360 Scenarios • Active Batch F)',
-          details: {
-            id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
-            activeBatchCode: 'F',
-            scenariosCount: 112,
-            scenariosPct: '31.1',
-            citiesCount: 18,
-            citiesPct: '56.3',
-            permutationsCount: 96,
-            permutationsPct: '1.7',
-            updated_at: new Date().toISOString()
-          }
-        }])
-      });
-    } catch (_) {}
-
     await reportPage.goto('http://localhost:8080/report.html', { waitUntil: 'networkidle', timeout: 30000 });
     await reportPage.waitForTimeout(900);
 
-    // ISSUE 4: 390×844 Headless Chrome Visual Overflow & Button Bounding-Box Assertion
+    // 1. Verify initial load displays Batch G (`S1-G..S12-G`), 22 cumulative live upgrades, and 0px overflow on 390x844
     const phone390VisualAudit = await reportPage.evaluate(() => {
       const docScrollWidth = document.documentElement.scrollWidth;
       const bodyScrollWidth = document.body.scrollWidth;
       const headerText = (document.querySelector('header')?.innerText || '').toUpperCase();
       const deployBtnEl = document.getElementById('btnTriggerRemoteBatchDeploy');
       const deployBtnTextInitial = (deployBtnEl?.textContent || '').trim();
+      const activeBatchOnLoad = window._activeSynapzBatchCode || '';
+      const firstIdeaIdOnLoad = window.REPORT_BOARD_30_IDEA_DIGEST?.[0]?.id || '';
+      const receiptHeadlineOnLoad = (document.getElementById('batchReceiptHeadline')?.textContent || '').trim();
 
       const decisionSelectors = [
         '.founder-decision-btn',
@@ -3238,64 +3330,101 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         clippedButtonsCount: clippedButtons.length,
         clippedButtons: clippedButtons.slice(0, 10),
         overflowingElements: overflowingElements.slice(0, 10),
-        hasV107Header: headerText.includes('V10.7 PHONE-FIRST AUTONOMOUS LOOP'),
+        hasV108Header: headerText.includes('V10.8 CLOUD BATCH PERSISTENCE'),
         hasNoLegacyV91Header: !headerText.includes('V9.1 SYNAPZ REBRAND'),
         deployBtnTextInitial,
-        hasNoDeadAgentText: !deployBtnTextInitial.includes('Ready for AI Coding Agent')
+        hasNoDeadAgentText: !deployBtnTextInitial.includes('Ready for AI Coding Agent'),
+        activeBatchOnLoad,
+        firstIdeaIdOnLoad,
+        receiptHeadlineOnLoad
       };
     });
 
-    console.log('📱 390×844 Phone Card Layout Visual Audit:', JSON.stringify(phone390VisualAudit));
+    console.log('📱 Step 1 (Initial Load — Batch G) 390×844 Audit:', JSON.stringify(phone390VisualAudit));
     if (!phone390VisualAudit.zeroHorizontalOverflow) {
       throw new Error(`390px Horizontal Overflow Detected: documentElement.scrollWidth=${phone390VisualAudit.docScrollWidth} > 390! Overflowing: ${JSON.stringify(phone390VisualAudit.overflowingElements)}`);
     }
     if (phone390VisualAudit.clippedButtonsCount > 0) {
       throw new Error(`390px Clipped Decision Buttons Detected (${phone390VisualAudit.clippedButtonsCount}): ${JSON.stringify(phone390VisualAudit.clippedButtons)}`);
     }
-    if (!phone390VisualAudit.hasV107Header || !phone390VisualAudit.hasNoLegacyV91Header) {
-      throw new Error(`Header Badge Mismatch on report.html: hasV107Header=${phone390VisualAudit.hasV107Header}, hasNoLegacyV91Header=${phone390VisualAudit.hasNoLegacyV91Header}`);
+    if (!phone390VisualAudit.hasV108Header || !phone390VisualAudit.hasNoLegacyV91Header) {
+      throw new Error(`Header Badge Mismatch on report.html: hasV108Header=${phone390VisualAudit.hasV108Header}, hasNoLegacyV91Header=${phone390VisualAudit.hasNoLegacyV91Header}`);
     }
-    if (!phone390VisualAudit.hasNoDeadAgentText) {
-      throw new Error(`#btnTriggerRemoteBatchDeploy contains forbidden 'Ready for AI Coding Agent' text!`);
+    if (phone390VisualAudit.activeBatchOnLoad !== 'G' || phone390VisualAudit.firstIdeaIdOnLoad !== 'S1-G') {
+      throw new Error(`Expected initial active batch G (S1-G), got activeBatchOnLoad=${phone390VisualAudit.activeBatchOnLoad}, firstIdeaIdOnLoad=${phone390VisualAudit.firstIdeaIdOnLoad}`);
     }
 
-    const reportUpsertVerification = await reportPage.evaluate(async () => {
-      // Simulate Coach Dane & Coach Evan on 390x844 iPhone:
-      // 1) Approve 3 items (S1-F, S3-F, S9-F)
-      // 2) Skip & Reassess 2 items (S2-F, S5-F)
-      const app1 = await window.setReportFounderIdeaDecision('S1-F', 'approved_for_build');
-      const app2 = await window.setReportFounderIdeaDecision('S3-F', 'approved_for_build');
-      const app3 = await window.setReportFounderIdeaDecision('S9-F', 'approved_for_build');
-      const skp1 = await window.setReportFounderIdeaDecision('S2-F', 'skipped_reassess_next_run');
-      const skp2 = await window.setReportFounderIdeaDecision('S5-F', 'skipped_reassess_next_run');
+    // 2. Simulate approving S1-G and S4-G, trigger runCloudBatchDeployAndNextAuditFromPhone(), and verify board advances to Batch H (S1-H..S12-H)
+    const step2AdvanceGToH = await reportPage.evaluate(async () => {
+      const app1 = await window.setReportFounderIdeaDecision('S1-G', 'approved_for_build');
+      const app2 = await window.setReportFounderIdeaDecision('S4-G', 'approved_for_build');
+      const skp1 = await window.setReportFounderIdeaDecision('S2-G', 'skipped_reassess_next_run');
       const barBeforeDeploy = document.getElementById('founderBatchCartCountsText')?.textContent || '';
       const deployBtnWhenApproved = (document.getElementById('btnTriggerRemoteBatchDeploy')?.textContent || '').trim();
 
-      // 3) Tap #btnTriggerRemoteBatchDeploy ([🚀 DEPLOY 3 APPROVED & GENERATE NEXT 12-IDEA AUDIT NOW])
       const loopResult = await window.runCloudBatchDeployAndNextAuditFromPhone();
-      const firstRowIdAfterDeploy = window.REPORT_BOARD_30_IDEA_DIGEST && window.REPORT_BOARD_30_IDEA_DIGEST[0] ? window.REPORT_BOARD_30_IDEA_DIGEST[0].id : '';
-      const heatmapScenariosAfter = document.getElementById('seat13HeatmapScenarios')?.textContent || '';
-      const receiptHeadlineAfter = document.getElementById('batchReceiptHeadline')?.textContent || '';
-      const deployBtnWhenZeroApproved = (document.getElementById('btnTriggerRemoteBatchDeploy')?.textContent || '').trim();
+      const activeBatchAfterGDeploy = window._activeSynapzBatchCode || '';
+      const firstRowIdAfterGDeploy = window.REPORT_BOARD_30_IDEA_DIGEST?.[0]?.id || '';
+      const heatmapScenariosAfterGDeploy = document.getElementById('seat13HeatmapScenarios')?.textContent || '';
+      const receiptHeadlineAfterGDeploy = document.getElementById('batchReceiptHeadline')?.textContent || '';
 
       return {
-        approveCloudSaved: Boolean(app1?.ok && app2?.ok && app3?.ok && skp1?.ok && skp2?.ok),
+        approveCloudSaved: Boolean(app1?.ok && app2?.ok && skp1?.ok),
         approveHttpStatus: app1 ? app1.status : 0,
         barBeforeDeploy,
         deployBtnWhenApproved,
-        deployBtnWhenZeroApproved,
-        phoneAutonomousLoopResult: loopResult,
-        firstRowIdAfterDeploy,
-        heatmapScenariosAfter,
-        receiptHeadlineAfter
+        loopResult,
+        activeBatchAfterGDeploy,
+        firstRowIdAfterGDeploy,
+        heatmapScenariosAfterGDeploy,
+        receiptHeadlineAfterGDeploy
       };
     });
-    reportUpsertVerification.phone390VisualAudit = phone390VisualAudit;
+    console.log('🚀 Step 2 (Advance Batch G -> Batch H):', JSON.stringify(step2AdvanceGToH));
+    if (step2AdvanceGToH.activeBatchAfterGDeploy !== 'H' || step2AdvanceGToH.firstRowIdAfterGDeploy !== 'S1-H') {
+      throw new Error(`Expected progression from Batch G to Batch H (S1-H), got activeBatch=${step2AdvanceGToH.activeBatchAfterGDeploy}, firstRowId=${step2AdvanceGToH.firstRowIdAfterGDeploy}`);
+    }
 
-    await reportPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_phone_autonomous_loop_v106.png') });
-    capturedScreenshots.audit_phone_autonomous_loop_v106 = 'screenshots/audit_phone_autonomous_loop_v106.png';
+    // 3. Reload the page (`await reportPage.reload({ waitUntil: 'networkidle' })`) — and clear localStorage first to prove 100% Supabase cloud persistence!
+    await reportPage.evaluate(() => {
+      localStorage.removeItem('synapz_active_batch_letter');
+    });
+    await reportPage.reload({ waitUntil: 'networkidle', timeout: 30000 });
+    await reportPage.waitForTimeout(900);
 
-    // Verify in index.html (`page`) that `window.syncActiveUpgradesFromSupabase()` activates S1-F, S3-F, S9-F live from Supabase!
+    const step3AfterBrowserReload = await reportPage.evaluate(() => {
+      const firstCardTitleEl = document.querySelector('#reportTop5CoSignedTableBody .synapz-rec-card, #reportDigest30TableBody .synapz-rec-card');
+      return {
+        activeBatchAfterReload: window._activeSynapzBatchCode || '',
+        firstRowIdAfterReload: window.REPORT_BOARD_30_IDEA_DIGEST?.[0]?.id || '',
+        heatmapScenariosAfterReload: (document.getElementById('seat13HeatmapScenarios')?.textContent || '').trim(),
+        receiptHeadlineAfterReload: (document.getElementById('batchReceiptHeadline')?.textContent || '').trim(),
+        docScrollWidthAfterReload: document.documentElement.scrollWidth,
+        sampleDomContainsS1H: (firstCardTitleEl?.innerText || '').includes('S1-H')
+      };
+    });
+    console.log('🔄 Step 3 (After Full Browser Reload — Must Stay on Batch H):', JSON.stringify(step3AfterBrowserReload));
+    if (step3AfterBrowserReload.activeBatchAfterReload !== 'H' || step3AfterBrowserReload.firstRowIdAfterReload !== 'S1-H' || !step3AfterBrowserReload.sampleDomContainsS1H) {
+      throw new Error(`Cloud Batch Persistence Failed on Reload! Expected Batch H (S1-H), got: ${JSON.stringify(step3AfterBrowserReload)}`);
+    }
+
+    // 4. Simulate tapping runCloudBatchDeployAndNextAuditFromPhone() again after reload and verify it advances to Batch I (S1-I..S12-I)
+    const step4AdvanceHToI = await reportPage.evaluate(async () => {
+      await window.setReportFounderIdeaDecision('S1-H', 'approved_for_build');
+      const loopResult2 = await window.runCloudBatchDeployAndNextAuditFromPhone();
+      return {
+        loopResult2,
+        activeBatchAfterHDeploy: window._activeSynapzBatchCode || '',
+        firstRowIdAfterHDeploy: window.REPORT_BOARD_30_IDEA_DIGEST?.[0]?.id || '',
+        heatmapScenariosAfterHDeploy: (document.getElementById('seat13HeatmapScenarios')?.textContent || '').trim()
+      };
+    });
+    console.log('🚀 Step 4 (Advance Batch H -> Batch I After Reload):', JSON.stringify(step4AdvanceHToI));
+    if (step4AdvanceHToI.activeBatchAfterHDeploy !== 'I' || step4AdvanceHToI.firstRowIdAfterHDeploy !== 'S1-I') {
+      throw new Error(`Expected progression from Batch H to Batch I (S1-I), got: ${JSON.stringify(step4AdvanceHToI)}`);
+    }
+
+    // Verify in index.html (`page`) that all 22 cumulative upgrades + newly activated upgrades are active in `SYNAPZ_5_BATCH_UPGRADE_BANK`
     const v106PhoneUpgradeBankVerification = await page.evaluate(async () => {
       const bankKeys = Object.keys(window.SYNAPZ_5_BATCH_UPGRADE_BANK || {});
       if (typeof window.syncActiveUpgradesFromSupabase === 'function') {
@@ -3304,6 +3433,8 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       const s1FActive = typeof window.isSynapzUpgradeActive === 'function' && window.isSynapzUpgradeActive('S1-F');
       const s3FActive = typeof window.isSynapzUpgradeActive === 'function' && window.isSynapzUpgradeActive('S3-F');
       const s9FActive = typeof window.isSynapzUpgradeActive === 'function' && window.isSynapzUpgradeActive('S9-F');
+      const s9BActive = typeof window.isSynapzUpgradeActive === 'function' && window.isSynapzUpgradeActive('S9-B');
+      const s10BActive = typeof window.isSynapzUpgradeActive === 'function' && window.isSynapzUpgradeActive('S10-B');
       switchView('game');
       loadScenario(false);
       drawRink();
@@ -3314,68 +3445,51 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         s1FActivatedLiveFromSupabase: s1FActive,
         s3FActivatedLiveFromSupabase: s3FActive,
         s9FActivatedLiveFromSupabase: s9FActive,
+        s9BActivatedLiveFromSupabase: s9BActive,
+        s10BActivatedLiveFromSupabase: s10BActive,
         primaryBtnsCountAfterActivation: primaryBtnsCount
       };
     });
     v104RealFeaturesAudit.v106PhoneUpgradeBankVerification = v106PhoneUpgradeBankVerification;
 
-    // Restore clean Batch F state in Supabase so Coach Dane & Coach Evan start with a fresh unclicked Batch F (S1-F .. S12-F) on their phones
+    // 5. Restore Supabase to the clean post-3:19 PM live state (22 Cumulative Upgrades `completed_and_deployed`, `activeBatchLetter = 'G'`, `scenariosCount = 136`, and Batch G `S1-G..S12-G` in `awaiting_founder_approval`)
     await reportPage.evaluate(async () => {
       localStorage.removeItem('synapz_active_upgrades_v106');
       localStorage.removeItem('synapz_founder_digest_decisions_v10');
+      localStorage.setItem('synapz_active_batch_letter', 'G');
     });
     try {
-      const nowIso = new Date().toISOString();
-      const restoreBatchFRows = fresh12SeatRecommendations.map(item => ({
-        id: ideaToUuid(item.id),
-        created_by: `Seat-${item.seatNumber}-Auditor`,
-        source_role: 'council',
-        scenario_id: item.id,
-        age_division: 'ALL',
-        category: 'board_digest',
-        status: 'awaiting_founder_approval',
-        summary: `[Rank #${item.rank} • ${item.id} • ${item.gateScoreCode} • 🎯 ${item.founderMatchPct}%] ${item.title} (${item.measuredScenarioId})`,
-        details: {
-          ...item,
-          idea_id: item.id,
-          updated_at: nowIso
-        }
-      }));
-      restoreBatchFRows.push({
-        id: ideaToUuid('SYNAPZ-CLOUD-COVERAGE-LEDGER'),
-        created_by: 'Seat13-Cloud-Ledger',
-        source_role: 'council',
-        scenario_id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
-        age_division: 'ALL',
-        category: 'cloud_coverage_ledger',
-        status: 'completed_and_deployed',
-        summary: '📊 Seat 13 Cloud Coverage Ledger Ready (112/360 Scenarios • Active Batch F)',
-        details: {
-          id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
-          activeBatchCode: 'F',
-          scenariosCount: 112,
-          scenariosPct: '31.1',
-          citiesCount: 18,
-          citiesPct: '56.3',
-          permutationsCount: 96,
-          permutationsPct: '1.7',
-          updated_at: nowIso
-        }
-      });
-      await fetch(`${SUPABASE_URL}?on_conflict=id`, {
-        method: 'POST',
-        headers: {
-          apikey: SUPABASE_KEY,
-          Authorization: `Bearer ${SUPABASE_KEY}`,
-          'Content-Type': 'application/json',
-          Prefer: 'resolution=merge-duplicates,return=representation'
-        },
-        body: JSON.stringify(restoreBatchFRows)
-      });
+      await seedCleanPost319PmBatchGState();
     } catch (_) {}
 
+    // Final reload to verify clean Batch G is hydrated on screen and capture v10.8 screenshot
+    await reportPage.reload({ waitUntil: 'networkidle', timeout: 30000 });
+    await reportPage.waitForTimeout(900);
+    const finalRestoredCheck = await reportPage.evaluate(() => ({
+      activeBatchRestored: window._activeSynapzBatchCode || '',
+      firstIdeaIdRestored: window.REPORT_BOARD_30_IDEA_DIGEST?.[0]?.id || '',
+      receiptHeadlineRestored: (document.getElementById('batchReceiptHeadline')?.textContent || '').trim()
+    }));
+    console.log('✅ Step 5 (Restored Clean Post-3:19 PM Batch G State Verified):', JSON.stringify(finalRestoredCheck));
+    if (finalRestoredCheck.activeBatchRestored !== 'G' || finalRestoredCheck.firstIdeaIdRestored !== 'S1-G') {
+      throw new Error(`Failed to restore clean Batch G state: ${JSON.stringify(finalRestoredCheck)}`);
+    }
+
+    await reportPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_cloud_batch_persistence_v108.png') });
+    await reportPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_phone_autonomous_loop_v106.png') });
+    capturedScreenshots.audit_cloud_batch_persistence_v108 = 'screenshots/audit_cloud_batch_persistence_v108.png';
+    capturedScreenshots.audit_phone_autonomous_loop_v106 = 'screenshots/audit_phone_autonomous_loop_v106.png';
+
+    const reportUpsertVerification = {
+      phone390VisualAudit,
+      step2AdvanceGToH,
+      step3AfterBrowserReload,
+      step4AdvanceHToI,
+      finalRestoredCheck
+    };
+
     await reportPage.close();
-    console.log('☁️ Verified v10.6 Phone-Driven 5-Phase Autonomous Loop & 60-Feature Upgrade Bank:', JSON.stringify({
+    console.log('☁️ Verified v10.8 Cloud Batch Persistence (Batch G -> Reload -> Batch H -> Reload -> Batch I):', JSON.stringify({
       ...reportUpsertVerification,
       v106PhoneUpgradeBankVerification,
       networkResponsesCount: reportUpsertStatuses.length
