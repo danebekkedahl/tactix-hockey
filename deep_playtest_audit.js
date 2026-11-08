@@ -306,6 +306,40 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
   }
   const capturedScreenshots = {};
 
+  // Ensure local static HTTP server is listening on 8080
+  const http = require('http');
+  const mimeMap = {
+    '.html': 'text/html; charset=utf-8',
+    '.js': 'application/javascript; charset=utf-8',
+    '.json': 'application/json; charset=utf-8',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.svg': 'image/svg+xml',
+    '.mp3': 'audio/mpeg',
+    '.css': 'text/css; charset=utf-8'
+  };
+  let localStaticServer = null;
+  await new Promise((resolve) => {
+    const srv = http.createServer((req, res) => {
+      const cleanUrl = decodeURIComponent((req.url || '/').split('?')[0]);
+      const relPath = cleanUrl === '/' ? 'index.html' : cleanUrl.replace(/^\/+/, '');
+      const fullPath = path.join(__dirname, relPath);
+      if (fs.existsSync(fullPath) && fs.statSync(fullPath).isFile()) {
+        const ext = path.extname(fullPath).toLowerCase();
+        res.writeHead(200, { 'Content-Type': mimeMap[ext] || 'application/octet-stream', 'Cache-Control': 'no-store' });
+        fs.createReadStream(fullPath).pipe(res);
+      } else {
+        res.writeHead(404);
+        res.end('Not found');
+      }
+    });
+    srv.on('error', () => resolve()); // Port 8080 already in use
+    srv.listen(8080, () => {
+      localStaticServer = srv;
+      resolve();
+    });
+  });
+
   const browser = await chromium.launch({
     executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
     headless: true
@@ -2876,26 +2910,6 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       {
         rank: 2,
         isTop5CoSigned: true,
-        id: 'S3-G',
-        seatNumber: 3,
-        pod: 'pod1',
-        seatLens: '👨‍👩‍👧‍👦 Seat 3 — Pediatric Cognitive & Family/Parent Specialist (HOW Authority)',
-        targetScope: '8U & 10U (Rec / B / A) • Offsides & Blue-Line Tag-Up Scenarios (#rinkCanvas)',
-        title: '8U/10U "Blue-Line Skate-Drag On-Side" Visual Boot-Tether Highlight on Zone Entries',
-        description: 'Highlight the puck-carrier\'s trailing skate blade in bright cyan across the offensive blue line on 8U/10U offsides drills so young players see how dragging the back skate stays on-side.',
-        measuredScenarioId: 'offsides-tagup-1',
-        telemetryCitation: 'Measured on 24-Play Rotated Scenario "offsides-tagup-1": visual <canvas> skate-drag cue teaches blue-line delay timing with 0 extra text.',
-        candidCritique: 'Makes the #1 youth hockey rule violation (offsides at the blue line) visually intuitive for 8U/10U skaters.',
-        crossImpact: 'Eliminates offsides confusion for 8U/10U Kids & Parents (Seats 2, 3) while keeping <=4 buttons (Seat 7).',
-        founderMatchPct: 96,
-        trustTier: 'TIER 1',
-        gateScoreCode: '4/4 Unanimous',
-        screenshotUrl: 'https://danebekkedahl.github.io/synapz-hockey/assets/audit-screenshots/seat3-8u-adm-cognitive-load.png',
-        status: 'awaiting_founder_approval'
-      },
-      {
-        rank: 3,
-        isTop5CoSigned: true,
         id: 'S9-G',
         seatNumber: 9,
         pod: 'pod3',
@@ -2914,7 +2928,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         status: 'awaiting_founder_approval'
       },
       {
-        rank: 4,
+        rank: 3,
         isTop5CoSigned: true,
         id: 'S5-G',
         seatNumber: 5,
@@ -2934,7 +2948,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         status: 'awaiting_founder_approval'
       },
       {
-        rank: 5,
+        rank: 4,
         isTop5CoSigned: true,
         id: 'S11-G',
         seatNumber: 11,
@@ -2954,8 +2968,8 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         status: 'awaiting_founder_approval'
       },
       {
-        rank: 6,
-        isTop5CoSigned: false,
+        rank: 5,
+        isTop5CoSigned: true,
         id: 'S2-G',
         seatNumber: 2,
         pod: 'pod1',
@@ -2974,7 +2988,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         status: 'awaiting_founder_approval'
       },
       {
-        rank: 7,
+        rank: 6,
         isTop5CoSigned: false,
         id: 'S4-G',
         seatNumber: 4,
@@ -2994,7 +3008,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         status: 'awaiting_founder_approval'
       },
       {
-        rank: 8,
+        rank: 7,
         isTop5CoSigned: false,
         id: 'S6-G',
         seatNumber: 6,
@@ -3014,7 +3028,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         status: 'awaiting_founder_approval'
       },
       {
-        rank: 9,
+        rank: 8,
         isTop5CoSigned: false,
         id: 'S7-G',
         seatNumber: 7,
@@ -3034,7 +3048,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         status: 'awaiting_founder_approval'
       },
       {
-        rank: 10,
+        rank: 9,
         isTop5CoSigned: false,
         id: 'S8-G',
         seatNumber: 8,
@@ -3054,7 +3068,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         status: 'awaiting_founder_approval'
       },
       {
-        rank: 11,
+        rank: 10,
         isTop5CoSigned: false,
         id: 'S10-G',
         seatNumber: 10,
@@ -3074,7 +3088,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         status: 'awaiting_founder_approval'
       },
       {
-        rank: 12,
+        rank: 11,
         isTop5CoSigned: false,
         id: 'S12-G',
         seatNumber: 12,
@@ -3092,21 +3106,47 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         gateScoreCode: '4/4 Unanimous',
         screenshotUrl: 'https://danebekkedahl.github.io/synapz-hockey/assets/audit-screenshots/seat12-safesport-voice-qa.png',
         status: 'awaiting_founder_approval'
+      },
+      {
+        rank: 12,
+        isTop5CoSigned: false,
+        isTopUpCard: true,
+        topUpBatchCode: 'H',
+        id: 'S1-H',
+        seatNumber: 1,
+        pod: 'pod1',
+        seatLens: '🏒 Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director (WHAT Authority)',
+        targetScope: '12U–18U (A / AA / AAA) • Weak-Side D-Man Net-Front Box-Out & Stick-Lift (#rinkCanvas)',
+        title: 'Weak-Side D-Man Net-Front Stick-Lift & Box-Out Leverage Ring on Low-to-High Point Shots',
+        description: 'Draw a compact gold stick-lift leverage arc at the crease when the puck moves low-to-high so weak-side D2 learns to tie up the net-front screen\'s stick before the point shot.',
+        measuredScenarioId: 'dzone-boxplus1-2',
+        telemetryCitation: '🆕 TOP-UP FROM BATCH H (Replaced approved S3-G slot): Measured on Scenario "dzone-boxplus1-2": 0 extra HUD buttons; pure <canvas> crease leverage cue.',
+        candidCritique: 'Teaches defensemen to lift the stick and clear sightlines for the goalie without taking an interference penalty.',
+        crossImpact: 'Helps 12U–18U Defensemen & Coaches (Seats 1, 2, 5) with 0 HUD clutter (Seat 7).',
+        founderMatchPct: 97,
+        trustTier: 'TIER 1',
+        gateScoreCode: '4/4 Unanimous',
+        screenshotUrl: 'https://danebekkedahl.github.io/synapz-hockey/assets/audit-screenshots/seat1-on-ice-drill-setup.png',
+        status: 'awaiting_founder_approval'
       }
     ];
 
     fs.writeFileSync(path.join(__dirname, 'fresh_12_seat_recommendations.json'), JSON.stringify(fresh12SeatRecommendations, null, 2), 'utf8');
 
-    // Helper to seed or restore the clean post-3:19 PM CST Batch G state in Supabase:
-    // - All 22 cumulative live upgrades (`S1-F..S8-F, S9-B, S10-B, S1-A..S12-A`) in `completed_and_deployed`
+    // Helper to seed or restore the clean post-S3-G Top-Up Mode state in Supabase:
+    // - All 23 cumulative live upgrades (`S3-G` + `S1-F..S8-F, S9-B, S10-B, S1-A..S12-A`) in `completed_and_deployed`
     // - `S6-F` & `S10-F` in `reassessed_awaiting_approval`
     // - `S7-F` & `S12-F` in `auto_resolved_by_batch`
-    // - `S1-G..S12-G` in `awaiting_founder_approval`
-    // - `S1-H..S12-H`, `S1-I..S12-I`, `S1-J..S12-J` in `pending_future_batch` (so future batches are clean)
-    // - `SYNAPZ-CLOUD-COVERAGE-LEDGER` with `activeBatchLetter: 'G'`, `activeBatchCode: 'G'`, `scenariosCount: 136`, `citiesCount: 21`, `permutationsCount: 120`
-    const ALL_22_DEPLOYED_IDS = [
+    // - Active 12-card inbox (`11 untouched Batch G cards + S1-H Top-Up`) in `awaiting_founder_approval`
+    // - `S2-H..S12-H`, `S1-I..S12-I`, `S1-J..S12-J` in `pending_future_batch` (so Top-Up pulls cleanly)
+    // - `SYNAPZ-CLOUD-COVERAGE-LEDGER` with `versionLabel: 'v10.9.4'`, `activeBatchLetter: 'G'`, `activeInboxIds: ['S1-G', 'S9-G', 'S5-G', 'S11-G', 'S2-G', 'S4-G', 'S6-G', 'S7-G', 'S8-G', 'S10-G', 'S12-G', 'S1-H']`
+    const ALL_23_DEPLOYED_IDS = [
+      'S3-G',
       'S1-F', 'S3-F', 'S9-F', 'S5-F', 'S11-F', 'S2-F', 'S4-F', 'S8-F', 'S9-B', 'S10-B',
       'S1-A', 'S2-A', 'S5-A', 'S3-A', 'S4-A', 'S7-A', 'S8-A', 'S6-A', 'S10-A', 'S11-A', 'S12-A', 'RF-COUNCIL-01'
+    ];
+    const DEFAULT_POST_S3G_ACTIVE_INBOX_IDS = [
+      'S1-G', 'S9-G', 'S5-G', 'S11-G', 'S2-G', 'S4-G', 'S6-G', 'S7-G', 'S8-G', 'S10-G', 'S12-G', 'S1-H'
     ];
     async function seedCleanPost319PmBatchGState() {
       const nowIso = new Date().toISOString();
@@ -3128,10 +3168,10 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           }
         });
       });
-      ALL_22_DEPLOYED_IDS.forEach(depId => {
+      ALL_23_DEPLOYED_IDS.forEach(depId => {
         rows.push({
           id: ideaToUuid(depId),
-          created_by: 'Phone-Batch-Deployer-v10.8',
+          created_by: 'Phone-Batch-Deployer-v10.9.4',
           source_role: 'council',
           scenario_id: depId,
           age_division: 'ALL',
@@ -3150,7 +3190,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       ['S6-F', 'S10-F'].forEach(rId => {
         rows.push({
           id: ideaToUuid(rId),
-          created_by: 'Phone-Batch-Reassessor-v10.8',
+          created_by: 'Phone-Batch-Reassessor-v10.9.4',
           source_role: 'council',
           scenario_id: rId,
           age_division: 'ALL',
@@ -3168,7 +3208,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       ['S7-F', 'S12-F'].forEach(aId => {
         rows.push({
           id: ideaToUuid(aId),
-          created_by: 'Phone-Batch-Reassessor-v10.8',
+          created_by: 'Phone-Batch-Reassessor-v10.9.4',
           source_role: 'council',
           scenario_id: aId,
           age_division: 'ALL',
@@ -3183,7 +3223,26 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           }
         });
       });
-      ['H', 'I', 'J'].forEach(futureLetter => {
+      for (let s = 2; s <= 12; s++) {
+        const fId = `S${s}-H`;
+        rows.push({
+          id: ideaToUuid(fId),
+          created_by: 'Seat13-Cloud-Ledger',
+          source_role: 'council',
+          scenario_id: fId,
+          age_division: 'ALL',
+          category: 'board_digest',
+          status: 'pending_future_batch',
+          summary: `⏳ Reserved for Future Batch H (${fId})`,
+          details: {
+            id: fId,
+            idea_id: fId,
+            status: 'pending_future_batch',
+            updated_at: nowIso
+          }
+        });
+      }
+      ['I', 'J'].forEach(futureLetter => {
         for (let s = 1; s <= 12; s++) {
           const fId = `S${s}-${futureLetter}`;
           rows.push({
@@ -3212,13 +3271,14 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         age_division: 'ALL',
         category: 'cloud_coverage_ledger',
         status: 'completed_and_deployed',
-        summary: '📊 Seat 13 Cloud Coverage Ledger Ready (v10.9.1 • 136/360 Scenarios • Active Batch G)',
+        summary: '📊 Seat 13 Cloud Coverage Ledger Ready (v10.9.4 • 136/360 Scenarios • Active Inbox Top-Up Mode)',
         details: {
           id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
-          versionLabel: 'v10.9.1',
-          batchRunCount: 1,
+          versionLabel: 'v10.9.4',
+          batchRunCount: 2,
           activeBatchLetter: 'G',
           activeBatchCode: 'G',
+          activeInboxIds: DEFAULT_POST_S3G_ACTIVE_INBOX_IDS,
           scenariosScoured: 136,
           scenariosCount: 136,
           scenariosPct: '37.8',
@@ -3248,13 +3308,13 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     let preUpserted12Count = 12;
     try {
       const seedStatus = await seedCleanPost319PmBatchGState();
-      console.log(`☁️ Seeded clean post-3:19 PM Batch G state (22 Live Upgrades + S1-G..S12-G awaiting approval + SYNAPZ-CLOUD-COVERAGE-LEDGER = G) into public.pucksense_agent_inbox (HTTP ${seedStatus})`);
+      console.log(`☁️ Seeded clean post-S3-G Top-Up Mode state (23 Live Upgrades + 11 untouched Batch G + S1-H Top-Up = 12 in To Review) into public.pucksense_agent_inbox (HTTP ${seedStatus})`);
     } catch (e) {
-      console.warn('Seed Batch G warning:', e.message);
+      console.warn('Seed Top-Up state warning:', e.message);
     }
 
     // =========================================================================
-    // V10.9 CLEAN 3-TAB INBOX ZERO + TEST-MODE EMAIL GUARD + CLOUD PERSISTENCE
+    // V10.9.4 INBOX TOP-UP MODE + 0-REVIEWED DOUBLE-TAP GUARD + CLOUD PERSISTENCE
     // VERIFICATION ON 390×844 IPHONE (`window.__SYNAPZ_TEST_MODE__ = true`)
     // =========================================================================
     const reportPage = await context.newPage();
@@ -3272,7 +3332,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     await reportPage.goto('http://localhost:8080/report.html', { waitUntil: 'networkidle', timeout: 30000 });
     await reportPage.waitForTimeout(900);
 
-    // 1. Verify initial load displays V10.9.1, 3 Tabs (`📥 To Review (12)`, `🛠️ Queued (0)`, `✅ Live in App (22)`), <= 56 decision buttons, and 0px overflow on 390x844
+    // 1. Verify initial load displays V10.9.4, 3 Tabs (`📥 To Review (12)`, `🛠️ Queued (0)`, `✅ Live in App (23)`), <= 56 decision buttons, and 0px overflow on 390x844
     const phone390VisualAudit = await reportPage.evaluate(() => {
       const docScrollWidth = document.documentElement.scrollWidth;
       const bodyScrollWidth = document.body.scrollWidth;
@@ -3280,8 +3340,12 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       const deployBtnEl = document.getElementById('btnTriggerRemoteBatchDeploy');
       const deployBtnTextInitial = (deployBtnEl?.textContent || '').trim();
       const activeBatchOnLoad = window._activeSynapzBatchCode || '';
-      const firstIdeaIdOnLoad = window.REPORT_BOARD_30_IDEA_DIGEST?.[0]?.id || '';
+      const activeInboxIdsOnLoad = Array.from(document.querySelectorAll('#inboxToReviewCardsContainer [data-inbox-card-id]')).map(el => el.getAttribute('data-inbox-card-id'));
+      const firstIdeaIdOnLoad = activeInboxIdsOnLoad[0] || '';
+      const lastIdeaIdOnLoad = activeInboxIdsOnLoad[activeInboxIdsOnLoad.length - 1] || '';
       const receiptHeadlineOnLoad = (document.getElementById('batchReceiptHeadline')?.textContent || '').trim();
+      const hasTopUpBadgeOnS1H = (document.getElementById('inboxToReviewCardsContainer')?.textContent || '').includes('TOP-UP FROM BATCH H');
+      const s3GInLiveTab = (document.getElementById('inboxLiveUpgradesList')?.textContent || '').includes('S3-G');
 
       const legacyDigest30Removed = !document.getElementById('reportDigest30TableBody');
       const legacyTop5DuplicateRemoved = !document.getElementById('reportTop5CoSignedTableBody');
@@ -3351,17 +3415,21 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         clippedButtonsCount: clippedButtons.length,
         clippedButtons: clippedButtons.slice(0, 10),
         overflowingElements: overflowingElements.slice(0, 10),
-        hasV109Header: headerText.includes('V10.9') && headerText.includes('CLEAN 3-TAB INBOX'),
+        hasV1094Header: headerText.includes('V10.9.4') && headerText.includes('INBOX TOP-UP MODE'),
         hasNoLegacyV91Header: !headerText.includes('V9.1 SYNAPZ REBRAND'),
         deployBtnTextInitial,
         hasNoDeadAgentText: !deployBtnTextInitial.includes('Ready for AI Coding Agent'),
         activeBatchOnLoad,
+        activeInboxIdsOnLoad,
         firstIdeaIdOnLoad,
+        lastIdeaIdOnLoad,
+        hasTopUpBadgeOnS1H,
+        s3GInLiveTab,
         receiptHeadlineOnLoad
       };
     });
 
-    console.log('📱 Step 1 (Initial Load — V10.9 Clean 3-Tab Inbox Batch G) 390×844 Audit:', JSON.stringify(phone390VisualAudit));
+    console.log('📱 Step 1 (Initial Load — V10.9.4 Top-Up Mode: 11 Batch G + S1-H Top-Up, 23 Live) 390×844 Audit:', JSON.stringify(phone390VisualAudit));
     if (!phone390VisualAudit.zeroHorizontalOverflow) {
       throw new Error(`390px Horizontal Overflow Detected: documentElement.scrollWidth=${phone390VisualAudit.docScrollWidth} > 390! Overflowing: ${JSON.stringify(phone390VisualAudit.overflowingElements)}`);
     }
@@ -3374,11 +3442,41 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     if (phone390VisualAudit.clippedButtonsCount > 0) {
       throw new Error(`390px Clipped Decision Buttons Detected (${phone390VisualAudit.clippedButtonsCount}): ${JSON.stringify(phone390VisualAudit.clippedButtons)}`);
     }
-    if (!phone390VisualAudit.hasV109Header || !phone390VisualAudit.hasNoLegacyV91Header) {
-      throw new Error(`Header Badge Mismatch on report.html: hasV109Header=${phone390VisualAudit.hasV109Header}, hasNoLegacyV91Header=${phone390VisualAudit.hasNoLegacyV91Header}`);
+    if (!phone390VisualAudit.hasV1094Header || !phone390VisualAudit.hasNoLegacyV91Header) {
+      throw new Error(`Header Badge Mismatch on report.html: hasV1094Header=${phone390VisualAudit.hasV1094Header}, hasNoLegacyV91Header=${phone390VisualAudit.hasNoLegacyV91Header}`);
     }
-    if (phone390VisualAudit.activeBatchOnLoad !== 'G' || phone390VisualAudit.firstIdeaIdOnLoad !== 'S1-G' || phone390VisualAudit.toReviewCardsCountInitial !== 12) {
-      throw new Error(`Expected initial active batch G (12 cards in To Review), got activeBatchOnLoad=${phone390VisualAudit.activeBatchOnLoad}, toReviewCardsCountInitial=${phone390VisualAudit.toReviewCardsCountInitial}`);
+    if (
+      phone390VisualAudit.firstIdeaIdOnLoad !== 'S1-G' ||
+      phone390VisualAudit.lastIdeaIdOnLoad !== 'S1-H' ||
+      phone390VisualAudit.toReviewCardsCountInitial !== 12 ||
+      phone390VisualAudit.tabCountLiveInitial !== '23' ||
+      !phone390VisualAudit.hasTopUpBadgeOnS1H ||
+      !phone390VisualAudit.s3GInLiveTab
+    ) {
+      throw new Error(`Expected initial post-S3-G Top-Up inbox (11 Batch G + S1-H = 12 in To Review, 23 Live including S3-G), got: ${JSON.stringify(phone390VisualAudit)}`);
+    }
+
+    // 1A. Test 1 (0-Reviewed Double-Tap Guard): Call `runCloudBatchDeployAndNextAuditFromPhone()` with 0 cards queued and assert it blocks launch (`blockedZeroReviewed: true`) and keeps all 12 untouched cards intact!
+    const step1aZeroReviewedGuardTest = await reportPage.evaluate(async () => {
+      const guardRes = await window.runCloudBatchDeployAndNextAuditFromPhone({ suppressEmail: true });
+      const inboxIdsAfterBlocked = Array.from(document.querySelectorAll('#inboxToReviewCardsContainer [data-inbox-card-id]')).map(el => el.getAttribute('data-inbox-card-id'));
+      const toReviewCountAfterBlocked = (document.getElementById('tabCountToReview')?.textContent || '').trim();
+      const statusTextAfterBlocked = (document.getElementById('remoteBatchDeployStatusText')?.textContent || '').trim();
+      return {
+        guardRes,
+        blockedZeroReviewed: Boolean(guardRes && guardRes.blockedZeroReviewed === true),
+        inboxIdsAfterBlocked,
+        toReviewCountAfterBlocked,
+        statusTextAfterBlocked
+      };
+    });
+    console.log('🛡️ Step 1A (0-Reviewed Double-Tap Guard Test):', JSON.stringify(step1aZeroReviewedGuardTest));
+    if (
+      !step1aZeroReviewedGuardTest.blockedZeroReviewed ||
+      step1aZeroReviewedGuardTest.toReviewCountAfterBlocked !== '12' ||
+      step1aZeroReviewedGuardTest.inboxIdsAfterBlocked.length !== 12
+    ) {
+      throw new Error(`0-Reviewed Double-Tap Guard Failed! Expected blockedZeroReviewed=true and 12 untouched cards kept, got: ${JSON.stringify(step1aZeroReviewedGuardTest)}`);
     }
 
     // 1B. Verify "Inbox Zero" behavior: Tapping [✅ Approve] on #1 S1-G immediately moves it out of `📥 To Review` (12 -> 11) and into `🛠️ Queued` (0 -> 1), and [↩️ Move Back to Review] moves it back (11 -> 12)!
@@ -3430,89 +3528,95 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       throw new Error(`Inbox Zero Card Transition Failed: ${JSON.stringify(step1bInboxZeroCardMoveTest)}`);
     }
 
-    // 2. Simulate approving S1-G and S4-G, trigger runCloudBatchDeployAndNextAuditFromPhone({ suppressEmail: true }), and verify board advances to Batch H (S1-H..S12-H) with ZERO test email sent (`SUPPRESSED_TEST_MODE`)
-    const step2AdvanceGToH = await reportPage.evaluate(async () => {
+    // 2. Test 2 (Partial Approval Top-Up Mode):
+    // Approve 2 cards (`S1-G` and `S9-G`) and reject 1 card (`S6-G`), leaving 9 untouched cards (`S5-G, S11-G, S2-G, S4-G, S7-G, S8-G, S10-G, S12-G, S1-H`) in `📥 To Review`.
+    // Trigger `runCloudBatchDeployAndNextAuditFromPhone({ suppressEmail: true })` and verify:
+    // - `S1-G` and `S9-G` move into `✅ Live in App` (23 -> 25),
+    // - All 9 untouched cards remain in `📥 To Review`,
+    // - Strictly 3 new unseen cards (`S3-H`, `S5-H`, `S9-H`) are pulled in to top `📥 To Review` back up to 12 cards!
+    const step2PartialApprovalTopUp = await reportPage.evaluate(async () => {
       const app1 = await window.setReportFounderIdeaDecision('S1-G', 'approved_for_build');
-      const app2 = await window.setReportFounderIdeaDecision('S4-G', 'approved_for_build');
-      const skp1 = await window.setReportFounderIdeaDecision('S2-G', 'skipped_reassess_next_run');
+      const app2 = await window.setReportFounderIdeaDecision('S9-G', 'approved_for_build');
+      const rej1 = await window.setReportFounderIdeaDecision('S6-G', 'rejected_by_founder');
       const barBeforeDeploy = document.getElementById('founderBatchCartCountsText')?.textContent || '';
-      const deployBtnWhenApproved = (document.getElementById('btnTriggerRemoteBatchDeploy')?.textContent || '').trim();
+      const deployBtnWhenQueued = (document.getElementById('btnTriggerRemoteBatchDeploy')?.textContent || '').trim();
+      const toReviewCountBeforeDeploy = (document.getElementById('tabCountToReview')?.textContent || '').trim();
+      const queuedCountBeforeDeploy = (document.getElementById('tabCountQueued')?.textContent || '').trim();
 
       const loopResult = await window.runCloudBatchDeployAndNextAuditFromPhone({ suppressEmail: true });
-      const activeBatchAfterGDeploy = window._activeSynapzBatchCode || '';
-      const firstRowIdAfterGDeploy = window.REPORT_BOARD_30_IDEA_DIGEST?.[0]?.id || '';
-      const heatmapScenariosAfterGDeploy = document.getElementById('seat13HeatmapScenarios')?.textContent || '';
-      const receiptHeadlineAfterGDeploy = document.getElementById('batchReceiptHeadline')?.textContent || '';
+      const activeInboxIdsAfterTopUp = Array.from(document.querySelectorAll('#inboxToReviewCardsContainer [data-inbox-card-id]')).map(el => el.getAttribute('data-inbox-card-id'));
+      const toReviewCountAfterTopUp = (document.getElementById('tabCountToReview')?.textContent || '').trim();
+      const queuedCountAfterTopUp = (document.getElementById('tabCountQueued')?.textContent || '').trim();
+      const liveCountAfterTopUp = (document.getElementById('tabCountLive')?.textContent || '').trim();
+      const receiptHeadlineAfterTopUp = document.getElementById('batchReceiptHeadline')?.textContent || '';
       const simulatedEmailPayload = window.__lastSimulatedPhoneEmailPayload || null;
 
       return {
-        approveCloudSaved: Boolean(app1?.ok && app2?.ok && skp1?.ok),
+        approveCloudSaved: Boolean(app1?.ok && app2?.ok && rej1?.ok),
         approveHttpStatus: app1 ? app1.status : 0,
         barBeforeDeploy,
-        deployBtnWhenApproved,
+        deployBtnWhenQueued,
+        toReviewCountBeforeDeploy,
+        queuedCountBeforeDeploy,
         loopResult,
         emailSuppressedInTestMode: loopResult?.gmailWebhookStatus === 'SUPPRESSED_TEST_MODE',
         simulatedEmailUnder35Kb: Boolean(simulatedEmailPayload && simulatedEmailPayload.sizeBytes < 35840),
-        activeBatchAfterGDeploy,
-        firstRowIdAfterGDeploy,
-        heatmapScenariosAfterGDeploy,
-        receiptHeadlineAfterGDeploy
+        activeInboxIdsAfterTopUp,
+        toReviewCountAfterTopUp,
+        queuedCountAfterTopUp,
+        liveCountAfterTopUp,
+        receiptHeadlineAfterTopUp
       };
     });
-    console.log('🚀 Step 2 (Advance Batch G -> Batch H with Test-Mode Email Guard):', JSON.stringify(step2AdvanceGToH));
-    if (step2AdvanceGToH.activeBatchAfterGDeploy !== 'H' || step2AdvanceGToH.firstRowIdAfterGDeploy !== 'S1-H') {
-      throw new Error(`Expected progression from Batch G to Batch H (S1-H), got activeBatch=${step2AdvanceGToH.activeBatchAfterGDeploy}, firstRowId=${step2AdvanceGToH.firstRowIdAfterGDeploy}`);
+    console.log('🚀 Step 2 (Partial Approval Top-Up Mode: 9 Untouched Preserved + 3 Top-Up Pulled = 12 in To Review, 25 Live):', JSON.stringify(step2PartialApprovalTopUp));
+    const expectedToppedUp12Ids = ['S5-G', 'S11-G', 'S2-G', 'S4-G', 'S7-G', 'S8-G', 'S10-G', 'S12-G', 'S1-H', 'S3-H', 'S5-H', 'S9-H'];
+    if (
+      step2PartialApprovalTopUp.toReviewCountAfterTopUp !== '12' ||
+      step2PartialApprovalTopUp.queuedCountAfterTopUp !== '0' ||
+      step2PartialApprovalTopUp.liveCountAfterTopUp !== '25' ||
+      JSON.stringify(step2PartialApprovalTopUp.activeInboxIdsAfterTopUp) !== JSON.stringify(expectedToppedUp12Ids)
+    ) {
+      throw new Error(`Top-Up Mode Failed! Expected 12 topped-up cards ${JSON.stringify(expectedToppedUp12Ids)} and 25 Live, got: ${JSON.stringify(step2PartialApprovalTopUp)}`);
     }
-    if (!step2AdvanceGToH.emailSuppressedInTestMode) {
-      throw new Error(`Expected SUPPRESSED_TEST_MODE during automated Playwright run, got: ${step2AdvanceGToH.loopResult?.gmailWebhookStatus}`);
+    if (!step2PartialApprovalTopUp.emailSuppressedInTestMode) {
+      throw new Error(`Expected SUPPRESSED_TEST_MODE during automated Playwright run, got: ${step2PartialApprovalTopUp.loopResult?.gmailWebhookStatus}`);
     }
 
-    // 3. Reload the page (`await reportPage.reload({ waitUntil: 'networkidle' })`) — and clear localStorage first to prove 100% Supabase cloud persistence!
+    // 3. Reload the page (`await reportPage.reload({ waitUntil: 'networkidle' })`) — and clear localStorage first to prove 100% Supabase cloud persistence of the exact 12 topped-up cards!
     await reportPage.evaluate(() => {
       localStorage.removeItem('synapz_active_batch_letter');
+      localStorage.removeItem('synapz_active_inbox_ids_v1094');
     });
     await reportPage.reload({ waitUntil: 'networkidle', timeout: 30000 });
     await reportPage.waitForTimeout(900);
 
     const step3AfterBrowserReload = await reportPage.evaluate(() => {
-      const firstCardTitleEl = document.querySelector('#inboxToReviewCardsContainer .synapz-rec-card');
+      const activeInboxIdsAfterReload = Array.from(document.querySelectorAll('#inboxToReviewCardsContainer [data-inbox-card-id]')).map(el => el.getAttribute('data-inbox-card-id'));
       return {
-        activeBatchAfterReload: window._activeSynapzBatchCode || '',
-        firstRowIdAfterReload: window.REPORT_BOARD_30_IDEA_DIGEST?.[0]?.id || '',
-        heatmapScenariosAfterReload: (document.getElementById('seat13HeatmapScenarios')?.textContent || '').trim(),
+        activeInboxIdsAfterReload,
+        toReviewCountAfterReload: (document.getElementById('tabCountToReview')?.textContent || '').trim(),
+        queuedCountAfterReload: (document.getElementById('tabCountQueued')?.textContent || '').trim(),
+        liveCountAfterReload: (document.getElementById('tabCountLive')?.textContent || '').trim(),
         receiptHeadlineAfterReload: (document.getElementById('batchReceiptHeadline')?.textContent || '').trim(),
-        docScrollWidthAfterReload: document.documentElement.scrollWidth,
-        sampleDomContainsS1H: (firstCardTitleEl?.innerText || '').includes('S1-H')
+        docScrollWidthAfterReload: document.documentElement.scrollWidth
       };
     });
-    console.log('🔄 Step 3 (After Full Browser Reload — Must Stay on Batch H):', JSON.stringify(step3AfterBrowserReload));
-    if (step3AfterBrowserReload.activeBatchAfterReload !== 'H' || step3AfterBrowserReload.firstRowIdAfterReload !== 'S1-H' || !step3AfterBrowserReload.sampleDomContainsS1H) {
-      throw new Error(`Cloud Batch Persistence Failed on Reload! Expected Batch H (S1-H), got: ${JSON.stringify(step3AfterBrowserReload)}`);
+    console.log('🔄 Step 3 (After Full Browser Reload — Exact 12 Topped-Up Cards & 25 Live Persist from Supabase):', JSON.stringify(step3AfterBrowserReload));
+    if (
+      JSON.stringify(step3AfterBrowserReload.activeInboxIdsAfterReload) !== JSON.stringify(expectedToppedUp12Ids) ||
+      step3AfterBrowserReload.toReviewCountAfterReload !== '12' ||
+      step3AfterBrowserReload.liveCountAfterReload !== '25'
+    ) {
+      throw new Error(`Cloud Top-Up Inbox Persistence Failed on Reload! Expected ${JSON.stringify(expectedToppedUp12Ids)} and 25 Live, got: ${JSON.stringify(step3AfterBrowserReload)}`);
     }
 
-    // 4. Simulate tapping runCloudBatchDeployAndNextAuditFromPhone({ suppressEmail: true }) again after reload and verify it advances to Batch I (S1-I..S12-I) with ZERO email sent
-    const step4AdvanceHToI = await reportPage.evaluate(async () => {
-      await window.setReportFounderIdeaDecision('S1-H', 'approved_for_build');
-      const loopResult2 = await window.runCloudBatchDeployAndNextAuditFromPhone({ suppressEmail: true });
-      return {
-        loopResult2,
-        emailSuppressedInTestMode2: loopResult2?.gmailWebhookStatus === 'SUPPRESSED_TEST_MODE',
-        activeBatchAfterHDeploy: window._activeSynapzBatchCode || '',
-        firstRowIdAfterHDeploy: window.REPORT_BOARD_30_IDEA_DIGEST?.[0]?.id || '',
-        heatmapScenariosAfterHDeploy: (document.getElementById('seat13HeatmapScenarios')?.textContent || '').trim()
-      };
-    });
-    console.log('🚀 Step 4 (Advance Batch H -> Batch I After Reload with Test-Mode Email Guard):', JSON.stringify(step4AdvanceHToI));
-    if (step4AdvanceHToI.activeBatchAfterHDeploy !== 'I' || step4AdvanceHToI.firstRowIdAfterHDeploy !== 'S1-I' || !step4AdvanceHToI.emailSuppressedInTestMode2) {
-      throw new Error(`Expected progression from Batch H to Batch I (S1-I) with SUPPRESSED_TEST_MODE, got: ${JSON.stringify(step4AdvanceHToI)}`);
-    }
-
-    // Verify in index.html (`page`) that all 22 cumulative upgrades + newly activated upgrades are active in `SYNAPZ_5_BATCH_UPGRADE_BANK`
+    // Verify in index.html (`page`) that all 23 cumulative upgrades (`S3-G` + 22 prior) are active in `SYNAPZ_5_BATCH_UPGRADE_BANK`
     const v106PhoneUpgradeBankVerification = await page.evaluate(async () => {
       const bankKeys = Object.keys(window.SYNAPZ_5_BATCH_UPGRADE_BANK || {});
       if (typeof window.syncActiveUpgradesFromSupabase === 'function') {
         await window.syncActiveUpgradesFromSupabase();
       }
+      const s3GActive = typeof window.isSynapzUpgradeActive === 'function' && window.isSynapzUpgradeActive('S3-G');
       const s1FActive = typeof window.isSynapzUpgradeActive === 'function' && window.isSynapzUpgradeActive('S1-F');
       const s3FActive = typeof window.isSynapzUpgradeActive === 'function' && window.isSynapzUpgradeActive('S3-F');
       const s9FActive = typeof window.isSynapzUpgradeActive === 'function' && window.isSynapzUpgradeActive('S9-F');
@@ -3525,6 +3629,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       return {
         totalPreCodedBankFeatures: bankKeys.length,
         all60BatchesFToJPresent: bankKeys.length === 60,
+        s3GActivatedLiveFromSupabase: s3GActive,
         s1FActivatedLiveFromSupabase: s1FActive,
         s3FActivatedLiveFromSupabase: s3FActive,
         s9FActivatedLiveFromSupabase: s9FActive,
@@ -3535,56 +3640,65 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     });
     v104RealFeaturesAudit.v106PhoneUpgradeBankVerification = v106PhoneUpgradeBankVerification;
 
-    // 5. Restore Supabase to the clean post-3:19 PM live state (22 Cumulative Upgrades `completed_and_deployed`, `activeBatchLetter = 'G'`, `versionLabel = 'v10.9.1'`, `scenariosCount = 136`, and Batch G `S1-G..S12-G` in `awaiting_founder_approval`)
+    // 5. Restore Supabase to Coach Dane's clean post-S3-G state (23 Cumulative Upgrades `completed_and_deployed`, and 11 untouched Batch G + S1-H Top-Up = 12 in `📥 To Review`)
     await reportPage.evaluate(async () => {
       localStorage.removeItem('synapz_active_upgrades_v106');
       localStorage.removeItem('synapz_founder_digest_decisions_v10');
+      localStorage.removeItem('synapz_active_inbox_ids_v1094');
       localStorage.setItem('synapz_active_batch_letter', 'G');
     });
     try {
       await seedCleanPost319PmBatchGState();
     } catch (_) {}
 
-    // Final reload to verify clean Batch G (`📥 To Review (12) | 🛠️ Queued (0) | ✅ Live in App (22)`) is hydrated on screen and capture v10.9 screenshot
+    // Final reload to verify clean post-S3-G state (`📥 To Review (12) | 🛠️ Queued (0) | ✅ Live in App (23)`) is hydrated on screen and capture v10.9.4 screenshot
     await reportPage.reload({ waitUntil: 'networkidle', timeout: 30000 });
     await reportPage.waitForTimeout(900);
-    const finalRestoredCheck = await reportPage.evaluate(() => ({
-      activeBatchRestored: window._activeSynapzBatchCode || '',
-      firstIdeaIdRestored: window.REPORT_BOARD_30_IDEA_DIGEST?.[0]?.id || '',
-      toReviewCountRestored: (document.getElementById('tabCountToReview')?.textContent || '').trim(),
-      queuedCountRestored: (document.getElementById('tabCountQueued')?.textContent || '').trim(),
-      liveCountRestored: (document.getElementById('tabCountLive')?.textContent || '').trim(),
-      decisionButtonsCountRestored: document.querySelectorAll('.founder-decision-btn').length,
-      receiptHeadlineRestored: (document.getElementById('batchReceiptHeadline')?.textContent || '').trim()
-    }));
-    console.log('✅ Step 5 (Restored Clean V10.9 3-Tab Batch G State Verified):', JSON.stringify(finalRestoredCheck));
+    const finalRestoredCheck = await reportPage.evaluate(() => {
+      const activeInboxIdsRestored = Array.from(document.querySelectorAll('#inboxToReviewCardsContainer [data-inbox-card-id]')).map(el => el.getAttribute('data-inbox-card-id'));
+      return {
+        activeBatchRestored: window._activeSynapzBatchCode || '',
+        activeInboxIdsRestored,
+        firstIdeaIdRestored: activeInboxIdsRestored[0] || '',
+        lastIdeaIdRestored: activeInboxIdsRestored[11] || '',
+        toReviewCountRestored: (document.getElementById('tabCountToReview')?.textContent || '').trim(),
+        queuedCountRestored: (document.getElementById('tabCountQueued')?.textContent || '').trim(),
+        liveCountRestored: (document.getElementById('tabCountLive')?.textContent || '').trim(),
+        decisionButtonsCountRestored: document.querySelectorAll('.founder-decision-btn').length,
+        receiptHeadlineRestored: (document.getElementById('batchReceiptHeadline')?.textContent || '').trim()
+      };
+    });
+    console.log('✅ Step 5 (Restored Clean V10.9.4 Post-S3-G Top-Up State Verified):', JSON.stringify(finalRestoredCheck));
     if (
-      finalRestoredCheck.activeBatchRestored !== 'G' ||
       finalRestoredCheck.firstIdeaIdRestored !== 'S1-G' ||
+      finalRestoredCheck.lastIdeaIdRestored !== 'S1-H' ||
       finalRestoredCheck.toReviewCountRestored !== '12' ||
-      finalRestoredCheck.queuedCountRestored !== '0'
+      finalRestoredCheck.queuedCountRestored !== '0' ||
+      finalRestoredCheck.liveCountRestored !== '23'
     ) {
-      throw new Error(`Failed to restore clean Batch G state: ${JSON.stringify(finalRestoredCheck)}`);
+      throw new Error(`Failed to restore clean post-S3-G Top-Up state: ${JSON.stringify(finalRestoredCheck)}`);
     }
 
+    await reportPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_inbox_topup_mode_v1094.png') });
     await reportPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_clean_3tab_inbox_v109.png') });
     await reportPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_cloud_batch_persistence_v108.png') });
     await reportPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_phone_autonomous_loop_v106.png') });
+    capturedScreenshots.audit_inbox_topup_mode_v1094 = 'screenshots/audit_inbox_topup_mode_v1094.png';
     capturedScreenshots.audit_clean_3tab_inbox_v109 = 'screenshots/audit_clean_3tab_inbox_v109.png';
     capturedScreenshots.audit_cloud_batch_persistence_v108 = 'screenshots/audit_cloud_batch_persistence_v108.png';
     capturedScreenshots.audit_phone_autonomous_loop_v106 = 'screenshots/audit_phone_autonomous_loop_v106.png';
 
     const reportUpsertVerification = {
       phone390VisualAudit,
+      step1aZeroReviewedGuardTest,
       step1bInboxZeroCardMoveTest,
-      step2AdvanceGToH,
+      step2PartialApprovalTopUp,
       step3AfterBrowserReload,
-      step4AdvanceHToI,
       finalRestoredCheck
     };
 
     await reportPage.close();
-    console.log('☁️ Verified v10.9 Clean 3-Tab Inbox Zero + Suppressed Test Emails (Batch G -> Reload -> Batch H -> Reload -> Batch I):', JSON.stringify({
+    console.log('☁️ Verified v10.9.4 Inbox Top-Up Mode + 0-Reviewed Double-Tap Guard + Suppressed Test Emails:', JSON.stringify({
       ...reportUpsertVerification,
       v106PhoneUpgradeBankVerification,
       networkResponsesCount: reportUpsertStatuses.length
@@ -3651,5 +3765,8 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
 
   } finally {
     await browser.close();
+    if (localStaticServer) {
+      try { localStaticServer.close(); } catch (_) {}
+    }
   }
 })();

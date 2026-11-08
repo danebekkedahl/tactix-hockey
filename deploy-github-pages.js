@@ -111,7 +111,8 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/marathon_frame2_freeze.png', encoding: 'base64' },
   { rel: 'screenshots/marathon_frame3_feedback.png', encoding: 'base64' },
   { rel: 'screenshots/audit_cloud_batch_persistence_v108.png', encoding: 'base64' },
-  { rel: 'screenshots/audit_clean_3tab_inbox_v109.png', encoding: 'base64' }
+  { rel: 'screenshots/audit_clean_3tab_inbox_v109.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_inbox_topup_mode_v1094.png', encoding: 'base64' }
 ];
 
 // Automatically include all generated neural .mp3 voice files in assets/audio/voices/<characterId>/*.mp3
@@ -383,7 +384,7 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
 
   // 5. Create Commit
   const commitRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/commits`, token, 'POST', {
-    message: `Deploy SYNAPZ HOCKEY v10.9-clean-3tab-inbox (Clean 3-Tab Inbox Zero: 12 To Review | 0 Queued | 22 Live + Single-Listing 12 Cards + Test-Mode Email Guard)`,
+    message: `Deploy SYNAPZ HOCKEY v10.9.4-inbox-topup-mode (Top-Up Mode: Preserve Untouched Cards in To Review + Pull Only Reviewed Slots + 0-Reviewed Double-Tap Guard + 23 Live Including S3-G)`,
     tree: treeRes.data.sha,
     parents: [baseCommitSha]
   });
@@ -452,8 +453,8 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
       try {
         const res = await fetch(`${reportUrl}?t=${Date.now()}`, { headers: { 'Cache-Control': 'no-cache' } });
         const html = await res.text();
-        if (html.toUpperCase().includes('CLEAN 3-TAB INBOX')) {
-          console.log(`✅ Verified live ${reportUrl} is serving V10.9 CLEAN 3-TAB INBOX!`);
+        if (html.toUpperCase().includes('INBOX TOP-UP MODE')) {
+          console.log(`✅ Verified live ${reportUrl} is serving V10.9.4 INBOX TOP-UP MODE!`);
           break;
         }
       } catch (_) {}

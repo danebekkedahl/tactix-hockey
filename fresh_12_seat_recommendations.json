@@ -22,26 +22,6 @@
   {
     "rank": 2,
     "isTop5CoSigned": true,
-    "id": "S3-G",
-    "seatNumber": 3,
-    "pod": "pod1",
-    "seatLens": "👨‍👩‍👧‍👦 Seat 3 — Pediatric Cognitive & Family/Parent Specialist (HOW Authority)",
-    "targetScope": "8U & 10U (Rec / B / A) • Offsides & Blue-Line Tag-Up Scenarios (#rinkCanvas)",
-    "title": "8U/10U \"Blue-Line Skate-Drag On-Side\" Visual Boot-Tether Highlight on Zone Entries",
-    "description": "Highlight the puck-carrier's trailing skate blade in bright cyan across the offensive blue line on 8U/10U offsides drills so young players see how dragging the back skate stays on-side.",
-    "measuredScenarioId": "offsides-tagup-1",
-    "telemetryCitation": "Measured on 24-Play Rotated Scenario \"offsides-tagup-1\": visual <canvas> skate-drag cue teaches blue-line delay timing with 0 extra text.",
-    "candidCritique": "Makes the #1 youth hockey rule violation (offsides at the blue line) visually intuitive for 8U/10U skaters.",
-    "crossImpact": "Eliminates offsides confusion for 8U/10U Kids & Parents (Seats 2, 3) while keeping <=4 buttons (Seat 7).",
-    "founderMatchPct": 96,
-    "trustTier": "TIER 1",
-    "gateScoreCode": "4/4 Unanimous",
-    "screenshotUrl": "https://danebekkedahl.github.io/synapz-hockey/assets/audit-screenshots/seat3-8u-adm-cognitive-load.png",
-    "status": "awaiting_founder_approval"
-  },
-  {
-    "rank": 3,
-    "isTop5CoSigned": true,
     "id": "S9-G",
     "seatNumber": 9,
     "pod": "pod3",
@@ -60,7 +40,7 @@
     "status": "awaiting_founder_approval"
   },
   {
-    "rank": 4,
+    "rank": 3,
     "isTop5CoSigned": true,
     "id": "S5-G",
     "seatNumber": 5,
@@ -80,7 +60,7 @@
     "status": "awaiting_founder_approval"
   },
   {
-    "rank": 5,
+    "rank": 4,
     "isTop5CoSigned": true,
     "id": "S11-G",
     "seatNumber": 11,
@@ -100,8 +80,8 @@
     "status": "awaiting_founder_approval"
   },
   {
-    "rank": 6,
-    "isTop5CoSigned": false,
+    "rank": 5,
+    "isTop5CoSigned": true,
     "id": "S2-G",
     "seatNumber": 2,
     "pod": "pod1",
@@ -120,7 +100,7 @@
     "status": "awaiting_founder_approval"
   },
   {
-    "rank": 7,
+    "rank": 6,
     "isTop5CoSigned": false,
     "id": "S4-G",
     "seatNumber": 4,
@@ -140,7 +120,7 @@
     "status": "awaiting_founder_approval"
   },
   {
-    "rank": 8,
+    "rank": 7,
     "isTop5CoSigned": false,
     "id": "S6-G",
     "seatNumber": 6,
@@ -160,7 +140,7 @@
     "status": "awaiting_founder_approval"
   },
   {
-    "rank": 9,
+    "rank": 8,
     "isTop5CoSigned": false,
     "id": "S7-G",
     "seatNumber": 7,
@@ -180,7 +160,7 @@
     "status": "awaiting_founder_approval"
   },
   {
-    "rank": 10,
+    "rank": 9,
     "isTop5CoSigned": false,
     "id": "S8-G",
     "seatNumber": 8,
@@ -200,7 +180,7 @@
     "status": "awaiting_founder_approval"
   },
   {
-    "rank": 11,
+    "rank": 10,
     "isTop5CoSigned": false,
     "id": "S10-G",
     "seatNumber": 10,
@@ -220,7 +200,7 @@
     "status": "awaiting_founder_approval"
   },
   {
-    "rank": 12,
+    "rank": 11,
     "isTop5CoSigned": false,
     "id": "S12-G",
     "seatNumber": 12,
@@ -237,6 +217,28 @@
     "trustTier": "TIER 1",
     "gateScoreCode": "4/4 Unanimous",
     "screenshotUrl": "https://danebekkedahl.github.io/synapz-hockey/assets/audit-screenshots/seat12-safesport-voice-qa.png",
+    "status": "awaiting_founder_approval"
+  },
+  {
+    "rank": 12,
+    "isTop5CoSigned": false,
+    "isTopUpCard": true,
+    "topUpBatchCode": "H",
+    "id": "S1-H",
+    "seatNumber": 1,
+    "pod": "pod1",
+    "seatLens": "🏒 Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director (WHAT Authority)",
+    "targetScope": "12U–18U (A / AA / AAA) • Weak-Side D-Man Net-Front Box-Out & Stick-Lift (#rinkCanvas)",
+    "title": "Weak-Side D-Man Net-Front Stick-Lift & Box-Out Leverage Ring on Low-to-High Point Shots",
+    "description": "Draw a compact gold stick-lift leverage arc at the crease when the puck moves low-to-high so weak-side D2 learns to tie up the net-front screen's stick before the point shot.",
+    "measuredScenarioId": "dzone-boxplus1-2",
+    "telemetryCitation": "🆕 TOP-UP FROM BATCH H (Replaced approved S3-G slot): Measured on Scenario \"dzone-boxplus1-2\": 0 extra HUD buttons; pure <canvas> crease leverage cue.",
+    "candidCritique": "Teaches defensemen to lift the stick and clear sightlines for the goalie without taking an interference penalty.",
+    "crossImpact": "Helps 12U–18U Defensemen & Coaches (Seats 1, 2, 5) with 0 HUD clutter (Seat 7).",
+    "founderMatchPct": 97,
+    "trustTier": "TIER 1",
+    "gateScoreCode": "4/4 Unanimous",
+    "screenshotUrl": "https://danebekkedahl.github.io/synapz-hockey/assets/audit-screenshots/seat1-on-ice-drill-setup.png",
     "status": "awaiting_founder_approval"
   }
 ]

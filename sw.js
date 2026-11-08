@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v10.9-clean-3tab-inbox';
+const CACHE_NAME = 'synapz-hockey-v10.9.4-inbox-topup-mode';
 const ASSETS = [
   './',
   './index.html',

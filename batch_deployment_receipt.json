@@ -1,14 +1,25 @@
 {
   "batchNumber": 6,
   "activeBatchLetter": "G",
-  "verifiedAt": "2026-11-06T21:30:00.000Z",
-  "cacheVersion": "synapz-hockey-v10.8-cloud-batch-persistence",
+  "verifiedAt": "2026-11-08T14:45:00.000Z",
+  "cacheVersion": "synapz-hockey-v10.9.4-inbox-topup-mode",
   "zeroFakeStatusFlippingEnforced": true,
-  "currentPassNewlyCodedCount": 10,
-  "totalPhysicallyCodedAndLive": 22,
+  "currentPassNewlyCodedCount": 11,
+  "totalPhysicallyCodedAndLive": 23,
   "totalAwaitingAgentCodeInQueue": 0,
   "restoredUnbuiltCount": 0,
   "currentPassNewlyCodedItems": [
+    {
+      "id": "S3-G",
+      "seat_name": "👨‍👩‍👧‍👦 Seat 3 — Pediatric Cognitive & Family/Parent Specialist",
+      "status": "completed_and_deployed",
+      "markers": [
+        "executeSynapzUpgradeFeature('S3-G')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S3-G']"
+      ],
+      "title": "Pulsing Blue-Line \"Stay Onside Boots\" Indicator for 8U/10U Zone-Entry Drills",
+      "codedInCurrentPass": true
+    },
     {
       "id": "S1-F",
       "seat_name": "🏒 Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director",
@@ -121,6 +132,17 @@
     }
   ],
   "deployedApprovedItems": [
+    {
+      "id": "S3-G",
+      "seat_name": "👨‍👩‍👧‍👦 Seat 3 — Pediatric Cognitive & Family/Parent Specialist",
+      "status": "completed_and_deployed",
+      "markers": [
+        "executeSynapzUpgradeFeature('S3-G')",
+        "SYNAPZ_5_BATCH_UPGRADE_BANK['S3-G']"
+      ],
+      "title": "Pulsing Blue-Line \"Stay Onside Boots\" Indicator for 8U/10U Zone-Entry Drills",
+      "codedInCurrentPass": true
+    },
     {
       "id": "S1-F",
       "seat_name": "🏒 Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director",

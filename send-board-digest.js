@@ -1515,24 +1515,6 @@ const FRESH_12_SEAT_RECOMMENDATIONS = loadJsonSafe(path.join(__dirname, 'fresh_1
   {
     rank: 2,
     isTop5CoSigned: true,
-    id: 'S3-G',
-    seatNumber: 3,
-    pod: 'pod1',
-    seatLens: '👨‍👩‍👧‍👦 Seat 3 — Pediatric Cognitive & Family/Parent Specialist (HOW Authority)',
-    targetScope: '8U & 10U (Rec / B / A) • Offsides & Blue-Line Tag-Up Scenarios (#rinkCanvas)',
-    title: '8U/10U "Blue-Line Skate-Drag On-Side" Visual Boot-Tether Highlight on Zone Entries',
-    description: 'Highlight the puck-carrier\'s trailing skate blade in bright cyan across the offensive blue line on 8U/10U offsides drills so young players see how dragging the back skate stays on-side.',
-    measuredScenarioId: 'offsides-tagup-1',
-    telemetryCitation: 'Measured on 24-Play Rotated Scenario "offsides-tagup-1": visual <canvas> skate-drag cue teaches blue-line delay timing with 0 extra text.',
-    founderMatchPct: 96,
-    trustTier: 'TIER 1',
-    gateScoreCode: '4/4 Unanimous',
-    screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat3-8u-adm-cognitive-load.png`,
-    status: 'awaiting_founder_approval'
-  },
-  {
-    rank: 3,
-    isTop5CoSigned: true,
     id: 'S9-G',
     seatNumber: 9,
     pod: 'pod3',
@@ -1549,7 +1531,7 @@ const FRESH_12_SEAT_RECOMMENDATIONS = loadJsonSafe(path.join(__dirname, 'fresh_1
     status: 'awaiting_founder_approval'
   },
   {
-    rank: 4,
+    rank: 3,
     isTop5CoSigned: true,
     id: 'S5-G',
     seatNumber: 5,
@@ -1567,7 +1549,7 @@ const FRESH_12_SEAT_RECOMMENDATIONS = loadJsonSafe(path.join(__dirname, 'fresh_1
     status: 'awaiting_founder_approval'
   },
   {
-    rank: 5,
+    rank: 4,
     isTop5CoSigned: true,
     id: 'S11-G',
     seatNumber: 11,
@@ -1585,8 +1567,8 @@ const FRESH_12_SEAT_RECOMMENDATIONS = loadJsonSafe(path.join(__dirname, 'fresh_1
     status: 'awaiting_founder_approval'
   },
   {
-    rank: 6,
-    isTop5CoSigned: false,
+    rank: 5,
+    isTop5CoSigned: true,
     id: 'S2-G',
     seatNumber: 2,
     pod: 'pod1',
@@ -1603,7 +1585,7 @@ const FRESH_12_SEAT_RECOMMENDATIONS = loadJsonSafe(path.join(__dirname, 'fresh_1
     status: 'awaiting_founder_approval'
   },
   {
-    rank: 7,
+    rank: 6,
     isTop5CoSigned: false,
     id: 'S4-G',
     seatNumber: 4,
@@ -1621,7 +1603,7 @@ const FRESH_12_SEAT_RECOMMENDATIONS = loadJsonSafe(path.join(__dirname, 'fresh_1
     status: 'awaiting_founder_approval'
   },
   {
-    rank: 8,
+    rank: 7,
     isTop5CoSigned: false,
     id: 'S6-G',
     seatNumber: 6,
@@ -1639,7 +1621,7 @@ const FRESH_12_SEAT_RECOMMENDATIONS = loadJsonSafe(path.join(__dirname, 'fresh_1
     status: 'awaiting_founder_approval'
   },
   {
-    rank: 9,
+    rank: 8,
     isTop5CoSigned: false,
     id: 'S7-G',
     seatNumber: 7,
@@ -1657,7 +1639,7 @@ const FRESH_12_SEAT_RECOMMENDATIONS = loadJsonSafe(path.join(__dirname, 'fresh_1
     status: 'awaiting_founder_approval'
   },
   {
-    rank: 10,
+    rank: 9,
     isTop5CoSigned: false,
     id: 'S8-G',
     seatNumber: 8,
@@ -1675,7 +1657,7 @@ const FRESH_12_SEAT_RECOMMENDATIONS = loadJsonSafe(path.join(__dirname, 'fresh_1
     status: 'awaiting_founder_approval'
   },
   {
-    rank: 11,
+    rank: 10,
     isTop5CoSigned: false,
     id: 'S10-G',
     seatNumber: 10,
@@ -1693,7 +1675,7 @@ const FRESH_12_SEAT_RECOMMENDATIONS = loadJsonSafe(path.join(__dirname, 'fresh_1
     status: 'awaiting_founder_approval'
   },
   {
-    rank: 12,
+    rank: 11,
     isTop5CoSigned: false,
     id: 'S12-G',
     seatNumber: 12,
@@ -1708,6 +1690,27 @@ const FRESH_12_SEAT_RECOMMENDATIONS = loadJsonSafe(path.join(__dirname, 'fresh_1
     trustTier: 'TIER 1',
     gateScoreCode: '4/4 Unanimous',
     screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat12-safesport-voice-qa.png`,
+    status: 'awaiting_founder_approval'
+  },
+  {
+    rank: 12,
+    isTop5CoSigned: false,
+    isTopUpCard: true,
+    sourceBatchLetter: 'H',
+    topUpBadgeText: '🆕 TOP-UP FROM BATCH H',
+    id: 'S1-H',
+    seatNumber: 1,
+    pod: 'pod1',
+    seatLens: '🏒 Seat 1 — NCAA D1 / AAA & USA Hockey Systems Director (WHAT Authority)',
+    targetScope: '12U–18U (A / AA / AAA) • Neutral-Zone Regroup & Hinge Timing (#rinkCanvas)',
+    title: 'Center "Low-and-Slow Swing Arc" Timing Curve on Neutral-Zone Regroup & Breakout Drills',
+    description: 'Render a smooth gold swing arc under C1 during D-to-D regroups to visually teach centers not to skate ahead of the puck carrier.',
+    measuredScenarioId: 'nz-regroup-hinge-2',
+    telemetryCitation: 'Measured on 24-Play Rotated Scenario "nz-regroup-hinge-2": pure <canvas> timing arc clarifies Center low-swing support with 0 extra buttons.',
+    founderMatchPct: 96,
+    trustTier: 'TIER 1',
+    gateScoreCode: '4/4 Unanimous',
+    screenshotUrl: `${PAGES_BASE_URL}/assets/audit-screenshots/seat1-on-ice-drill-setup.png`,
     status: 'awaiting_founder_approval'
   }
 ]);
@@ -1790,7 +1793,7 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<title>SYNAPZ HOCKEY v10.9.1 — Clean 3-Tab Inbox Zero (12 To Review | 0 Queued | 22 Live in App) &amp; Single-Listing Batch G</title>
+<title>SYNAPZ HOCKEY v10.9.4 — Inbox Top-Up Mode (11 Untouched Batch G + S1-H Top-Up = 12 To Review | 23 Live in App)</title>
 <style>
   body { font-family: Inter, Arial, sans-serif; background:#020617; color:#f8fafc; padding:12px; line-height:1.38; }
   .wrap { max-width:920px; margin:0 auto; background:#090d16; border:2px solid #00e5ff; border-radius:14px; padding:16px; }
@@ -1806,20 +1809,20 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
 </head>
 <body>
 <div class="wrap">
-  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • V10.9.1 CLEAN 3-TAB INBOX ZERO • SINGLE-LISTING 12 CARDS • ZERO TEST SPAM (&lt; 35 KB)</div>
-  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">🚀 v10.9.1 Clean 3-Tab Phone Inbox Live (📥 To Review: 12 | 🛠️ Queued: 0 | ✅ Live in App: ${cumulativeCoded.length})</h1>
+  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • V10.9.4 INBOX TOP-UP MODE • PRESERVE UNTOUCHED CARDS &amp; TOP UP TO 12 (&lt; 35 KB)</div>
+  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">🚀 v10.9.4 Inbox Top-Up Mode Live (📥 To Review: 12 | 🛠️ Queued: 0 | ✅ Live in App: ${cumulativeCoded.length} Including S3-G)</h1>
   <p style="margin:0 0 10px;font-size:11px;color:#cbd5e1;">
     Prepared for <strong>Coach Dane (danebekkedahl@gmail.com)</strong> &amp; <strong>Coach Evan (evanbekk@gmail.com)</strong> • ${timestamp}<br/>
     🌐 <strong>Live App:</strong> <a href="${PAGES_BASE_URL}/" class="b-ex">${PAGES_BASE_URL}/</a> •
     📊 <strong>3-Tab Phone Inbox:</strong> <a href="${rpt}#founder-approval-board" class="b-ap">${rpt}</a> •
-    📱 <strong>1-Tap Phone Loop:</strong> <a href="${triggerBatchUrl}" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">🚀 DEPLOY QUEUED &amp; SEND NEW VERSION NOW (FROM PHONE)</a>
+    📱 <strong>1-Tap Phone Loop:</strong> <a href="${rpt}#founderBatchDeployBar" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">📥 OPEN 3-TAB PHONE INBOX TO REVIEW &amp; TOP UP</a>
   </p>
 
-  <!-- SECTION 1: ✅ LIVE IN APP (22 CUMULATIVE UPGRADES) + WHAT'S NEW IN V10.9.1 -->
+  <!-- SECTION 1: ✅ LIVE IN APP (23 CUMULATIVE UPGRADES INCLUDING S3-G) + TOP-UP MODE -->
   <div style="background:#022c22;border:2px solid #10b981;border-radius:10px;padding:11px;margin-bottom:12px;">
-    <div style="font-size:11px;font-weight:900;color:#34d399;text-transform:uppercase;">SECTION 1 • ✅ ${cumulativeCoded.length} CUMULATIVE UPGRADES LIVE IN APP + V10.9.1 CLEAN 3-TAB INBOX ZERO UPGRADE</div>
+    <div style="font-size:11px;font-weight:900;color:#34d399;text-transform:uppercase;">SECTION 1 • ✅ ${cumulativeCoded.length} CUMULATIVE UPGRADES LIVE IN APP (INCLUDING S3-G) + V10.9.4 INBOX TOP-UP MODE</div>
     <div style="font-size:11px;color:#a7f3d0;margin:4px 0;">
-      <strong>Service Worker Cache Bumped:</strong> <code>synapz-hockey-v10.9-clean-3tab-inbox</code> • <strong>3 Sticky Phone Tabs:</strong> <code>📥 To Review (12)</code> | <code>🛠️ Queued (0)</code> | <code>✅ Live in App (${cumulativeCoded.length})</code> • Tapping Approve/Skip/Reject immediately moves the card out of To Review into Queued!
+      <strong>Service Worker Cache Bumped:</strong> <code>synapz-hockey-v10.9.4-inbox-topup-mode</code> • <strong>Top-Up Mode:</strong> Launching a partial batch keeps all untouched cards in <code>📥 To Review</code> and pulls only <code>12 - untouchedCount</code> new unseen cards to top up back to 12! Includes 0-Reviewed Double-Tap Guard.
     </div>
     <table style="margin:6px 0;">
       <thead>
@@ -1845,7 +1848,7 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
 
   <!-- SECTION 2: 🚩 SEAT 0 RED-FLAG COUNCIL + 🔍 SEAT 13 CUMULATIVE COVERAGE HEATMAP -->
   <div id="seat13-meta-auditor" style="background:#0c192c;border:2px solid #38bdf8;border-radius:10px;padding:11px;margin-bottom:12px;">
-    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 2 • 🚩 SEAT 0 RED-FLAG COUNCIL &amp; 🔍 SEAT 13 CUMULATIVE COVERAGE HEATMAP (ACTIVE BOARD: BATCH G • 136/360 PLAYS)</div>
+    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 2 • 🚩 SEAT 0 RED-FLAG COUNCIL &amp; 🔍 SEAT 13 CUMULATIVE COVERAGE HEATMAP (TOP-UP MODE: 11 BATCH G + S1-H)</div>
     ${SEAT_0_RED_FLAG_COUNCIL_OPTIONS.map(rf => renderRedFlagCouncilOptionsHtml(rf)).join('')}
     <table style="margin:6px 0;">
       <tr><th>Scenarios Scoured</th><th>NHL Cities</th><th>Concept Buckets</th><th>5-Room Hotspots</th><th>4-Way Permutations</th></tr>
@@ -1858,15 +1861,15 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
       </tr>
     </table>
     <div style="margin-top:6px;">
-      <a href="${triggerBatchUrl}" style="background:#10b981;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">🚀 DEPLOY QUEUED &amp; SEND NEW VERSION NOW (ADVANCES TO BATCH H)</a>
-      <a href="${batchApproveUrl}" style="background:#0284c7;color:#fff;font-weight:900;font-size:11px;padding:6px 10px;border-radius:5px;text-decoration:none;display:inline-block;">⭐ Approve All High-Match Picks (&gt;=90% • ${ordered12Ideas.length} Batch G Ideas)</a>
+      <a href="${rpt}#founder-approval-board" style="background:#10b981;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">📥 OPEN 3-TAB PHONE INBOX TO REVIEW &amp; TOP UP</a>
+      <a href="${batchApproveUrl}" style="background:#0284c7;color:#fff;font-weight:900;font-size:11px;padding:6px 10px;border-radius:5px;text-decoration:none;display:inline-block;">⭐ Approve All High-Match Picks (&gt;=90% • ${ordered12Ideas.length} Cards)</a>
     </div>
   </div>
 
-  <!-- SECTION 3: 📥 TO REVIEW (12) — SINGLE-LISTING 12 CARDS (#1–#5 TOP 5 CONSENSUS BADGED + #6–#12) -->
+  <!-- SECTION 3: 📥 TO REVIEW (12) — 11 UNTOUCHED BATCH G CARDS + S1-H TOP-UP -->
   <div style="background:#0f172a;border:2px solid #0284c7;border-radius:10px;padding:11px;">
-    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 3 • 📥 TO REVIEW (12) — SINGLE-LISTING 12 RECOMMENDATIONS (#1–#5 🏆 TOP 5 CONSENSUS BADGED + #6–#12)</div>
-    <div style="font-size:11px;color:#94a3b8;margin:2px 0 6px;">Zero duplicate Top-5 tables! Each of the 12 Batch G recommendations appears strictly ONCE below. Tapping <strong>[✅ Approve]</strong>, <strong>[⏭️ Skip]</strong>, or <strong>[❌ Reject]</strong> opens <code>report.html</code>, moves that card out of <strong>📥 To Review</strong> into <strong>🛠️ Queued</strong>, and shows how many remain!</div>
+    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 3 • 📥 TO REVIEW (12) — 11 UNTOUCHED BATCH G CARDS + 1 TOP-UP CARD FROM BATCH H (S1-H)</div>
+    <div style="font-size:11px;color:#94a3b8;margin:2px 0 6px;">Coach Dane's approved <code>S3-G</code> is now in <strong>✅ Live in App (23)</strong>, all 11 untouched <code>Batch G</code> cards remain right here in <strong>📥 To Review</strong>, and <code>S1-H</code> has topped up the 12th slot!</div>
     <table>
       <thead>
         <tr><th>Rank &amp; ID (Single Listing)</th><th>Proposal &amp; 24-Play Rotated Telemetry Citation</th><th>Match / Gate</th><th>4 Action Buttons (Moves to 🛠️ Queued)</th></tr>
@@ -1874,11 +1877,14 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
       <tbody>
         ${ordered12Ideas.map(item => {
           const isTop5 = Number(item.rank) <= 5;
-          const top5Badge = isTop5
+          const isTopUp = Boolean(item.isTopUpCard || String(item.id).endsWith('-H'));
+          const topBadge = isTopUp
+            ? `<div style="background:#00e5ff;color:#020617;font-size:9px;font-weight:900;padding:1px 6px;border-radius:99px;display:inline-block;margin-bottom:2px;">🆕 TOP-UP FROM BATCH H</div><br/>`
+            : isTop5
             ? `<div style="background:#fbbf24;color:#020617;font-size:9px;font-weight:900;padding:1px 6px;border-radius:99px;display:inline-block;margin-bottom:2px;">🏆 TOP 5 CONSENSUS (#${item.rank})</div><br/>`
             : '';
-          return `<tr style="${isTop5 ? 'background:rgba(245,158,11,0.07);' : ''}">
-          <td class="nw">${top5Badge}<strong style="color:${isTop5 ? '#34d399' : '#38bdf8'};">#${item.rank} ${item.id}</strong><br/>Seat ${item.seatNumber}</td>
+          return `<tr style="${isTop5 ? 'background:rgba(245,158,11,0.07);' : isTopUp ? 'background:rgba(0,229,255,0.08);' : ''}">
+          <td class="nw">${topBadge}<strong style="color:${isTop5 ? '#34d399' : '#38bdf8'};">#${item.rank} ${item.id}</strong><br/>Seat ${item.seatNumber}</td>
           <td><strong style="color:#fff;">${item.title}</strong> (${item.targetScope})<br/><span style="color:#fde047;">🔬 ${item.telemetryCitation}</span></td>
           <td class="nw">🎯 ${item.founderMatchPct}% • ${item.trustTier}<br/>${item.gateScoreCode}</td>
           <td class="nw"><a href="${rpt}?action=explain&id=${item.id}" class="b-ex">🔍 Explain</a> | <a href="${rpt}?action=approve&id=${item.id}" class="b-ap">✅ Approve</a><br/><a href="${rpt}?action=skip_reassess&id=${item.id}" class="b-sk">⏭️ Skip &amp; Reassess</a> | <a href="${rpt}?action=reject&id=${item.id}" class="b-rj">❌ Reject</a></td>
@@ -1907,8 +1913,9 @@ async function main() {
   fs.writeFileSync(outPath, htmlContent, 'utf8');
 
   const batchNum = AUDIT_COVERAGE_LEDGER.runNumber || 6;
-  const newlyCodedCount = (BATCH_DEPLOYMENT_RECEIPT.currentPassNewlyCodedItems || BATCH_DEPLOYMENT_RECEIPT.newlyCodedInThisPassItems || []).length || 10;
-  const cumulativeCodedCount = (BATCH_DEPLOYMENT_RECEIPT.deployedApprovedItems || []).length || 22;
+  const newlyCodedCount = (BATCH_DEPLOYMENT_RECEIPT.currentPassNewlyCodedItems || BATCH_DEPLOYMENT_RECEIPT.newlyCodedInThisPassItems || []).length || 11;
+  const cumulativeCodedCount = (BATCH_DEPLOYMENT_RECEIPT.deployedApprovedItems || []).length || 23;
+  const activeInboxIds = FRESH_12_SEAT_RECOMMENDATIONS.map(i => i.id);
   const summaryCounts = {
     batchNumber: batchNum,
     activeBatchLetter: 'G',
@@ -1934,11 +1941,12 @@ async function main() {
     age_division: 'ALL',
     category: 'board_digest',
     status: 'completed_and_deployed',
-    summary: `🚀 SYNAPZ HOCKEY v10.9.1 — Clean 3-Tab Inbox Zero (12 To Review | 0 Queued | ${cumulativeCodedCount} Live in App) + Single-Listing Batch G (${emailSizeKb} KB < 35 KB) -> ${RECIPIENTS.join(', ')}`,
+    summary: `🚀 SYNAPZ HOCKEY v10.9.4 — Inbox Top-Up Mode (11 Untouched Batch G + S1-H Top-Up = 12 To Review | 0 Queued | ${cumulativeCodedCount} Live in App) (${emailSizeKb} KB < 35 KB) -> ${RECIPIENTS.join(', ')}`,
     details: {
-      version: 'v10.9-clean-3tab-inbox',
-      versionLabel: 'v10.9.1',
+      version: 'v10.9.4-inbox-topup-mode',
+      versionLabel: 'v10.9.4',
       activeBatchLetter: 'G',
+      activeInboxIds,
       recipients: RECIPIENTS,
       counts: summaryCounts,
       batchDeploymentReceipt: BATCH_DEPLOYMENT_RECEIPT,
@@ -1966,27 +1974,28 @@ async function main() {
     });
     supabaseStatus = `HTTP ${res.status}`;
 
-    // Clean up any leftover automated test rows (`Batch H`, `Batch I`, `Batch J`) so ONLY Batch G (`S1-G..S12-G`) is in `📥 To Review (12)`
+    // Reset future bank cards (`S2-H..S12-H`, `S1-I..S12-I`, `S1-J..S12-J`) to `pending_future_batch` so they are ready for future top-ups!
     const testBatchLetters = ['H', 'I', 'J'];
     const cleanupRows = [];
     for (const bL of testBatchLetters) {
       for (let s = 1; s <= 12; s++) {
         const testId = `S${s}-${bL}`;
+        if (testId === 'S1-H') continue; // S1-H is the 12th top-up card in active inbox!
         cleanupRows.push({
           id: ideaToUuid(testId),
-          created_by: 'Seat13-Test-Cleanup-v10.9',
+          created_by: 'Seat13-Bank-Reset-v10.9.4',
           source_role: 'council',
           scenario_id: testId,
           age_division: 'ALL',
           category: 'board_digest',
-          status: 'superseded_test_batch',
-          summary: `🧹 Archived Automated Test Row (${testId})`,
-          details: { idea_id: testId, status: 'superseded_test_batch', updated_at: timestamp }
+          status: 'pending_future_batch',
+          summary: `🏦 Queued in Future Top-Up Bank (${testId})`,
+          details: { idea_id: testId, status: 'pending_future_batch', updated_at: timestamp }
         });
       }
     }
 
-    // Pre-UPSERT all 12 fresh Seat recommendations (`S1-G..S12-G`), all 22 live upgrades (`completed_and_deployed`), and `SYNAPZ-CLOUD-COVERAGE-LEDGER` (`activeBatchLetter: 'G'`)
+    // Pre-UPSERT the 12 active inbox cards (`11 untouched Batch G + S1-H`), all 23 live upgrades (`completed_and_deployed`), and `SYNAPZ-CLOUD-COVERAGE-LEDGER`
     const proposalRows = [...cleanupRows, ...FRESH_12_SEAT_RECOMMENDATIONS.map(item => ({
       id: ideaToUuid(item.id),
       created_by: `Seat-${item.seatNumber}-Telemetry`,
@@ -2007,7 +2016,7 @@ async function main() {
     deployedItems.forEach(dep => {
       proposalRows.push({
         id: ideaToUuid(dep.id),
-        created_by: 'Phone-Batch-Deployer-v10.9',
+        created_by: 'Phone-Batch-Deployer-v10.9.4',
         source_role: 'council',
         scenario_id: dep.id,
         age_division: 'ALL',
@@ -2024,31 +2033,11 @@ async function main() {
       });
     });
 
-    const reassessedItems = BATCH_DEPLOYMENT_RECEIPT.reassessedSkippedItems || [];
-    reassessedItems.forEach(ri => {
-      proposalRows.push({
-        id: ideaToUuid(ri.id),
-        created_by: 'Phone-Batch-Reassessor-v10.9',
-        source_role: 'council',
-        scenario_id: ri.id,
-        age_division: 'ALL',
-        category: 'board_digest',
-        status: 'reassessed_awaiting_approval',
-        summary: `🔄 Reassessed on Batch G (${ri.id}): ${ri.title}`,
-        details: {
-          ...ri,
-          idea_id: ri.id,
-          status: 'reassessed_awaiting_approval',
-          updated_at: timestamp
-        }
-      });
-    });
-
     const autoResolvedItems = BATCH_DEPLOYMENT_RECEIPT.autoResolvedSkippedItems || [];
     autoResolvedItems.forEach(ar => {
       proposalRows.push({
         id: ideaToUuid(ar.id),
-        created_by: 'Phone-Batch-Reassessor-v10.9',
+        created_by: 'Phone-Batch-Reassessor-v10.9.4',
         source_role: 'council',
         scenario_id: ar.id,
         age_division: 'ALL',
@@ -2072,13 +2061,17 @@ async function main() {
       age_division: 'ALL',
       category: 'cloud_coverage_ledger',
       status: 'completed_and_deployed',
-      summary: '📊 Seat 13 Cloud Coverage Ledger Updated (v10.9.1 • 136/360 Scenarios • Active Batch G)',
+      summary: '📊 Seat 13 Cloud Coverage Ledger Updated (v10.9.4 • Top-Up Mode • 11 Batch G + S1-H = 12 in To Review)',
       details: {
         id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
-        versionLabel: 'v10.9.1',
+        versionLabel: 'v10.9.4',
         batchRunCount: 1,
         activeBatchLetter: 'G',
         activeBatchCode: 'G',
+        activeInboxIds,
+        untouchedPreservedIds: activeInboxIds.filter(id => id !== 'S1-H'),
+        pulledTopUpIds: ['S1-H'],
+        slotsReplacedCount: 1,
         scenariosScoured: 136,
         scenariosCount: 136,
         scenariosPct: '37.8',
@@ -2111,8 +2104,9 @@ async function main() {
     });
     if (recountRes.ok) {
       const rows2 = await recountRes.json();
+      const activeSet = new Set(activeInboxIds);
       awaitingApprovalRowCountInSupabase = Array.isArray(rows2)
-        ? rows2.filter(r => /^S\d+-G$/i.test(String(r.scenario_id || ''))).length
+        ? rows2.filter(r => activeSet.has(String(r.scenario_id || ''))).length
         : 0;
     }
   } catch (err) {
@@ -2130,7 +2124,7 @@ async function main() {
     second: '2-digit'
   });
   const senderDisplayName = 'Synapz Hockey 12-Seat Council & Seat 13 Meta-Auditor';
-  const emailSubject = `SYNAPZ HOCKEY v10.9.1 — Clean 3-Tab Inbox Zero (12 To Review | 0 Queued | 22 Live) + Single-Listing Batch G [${uniqueTimestampLabel}]`;
+  const emailSubject = `SYNAPZ HOCKEY v10.9.4 — Inbox Top-Up Mode (11 Untouched Batch G + S1-H Top-Up = 12 To Review | 23 Live) [${uniqueTimestampLabel}]`;
   try {
     const gmailRes = await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
       method: 'POST',

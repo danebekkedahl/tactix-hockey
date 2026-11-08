@@ -23708,12 +23708,13 @@
     //   - Batches F, G, H, I, J = 60 Real Modular Features Gated by window.isSynapzUpgradeActive(id)
     //   - Hydrated live on load from public.pucksense_agent_inbox (status = 'completed_and_deployed')
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v10.8-cloud-batch-persistence';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v10.9.4-inbox-topup-mode';
 
     const CORE_DEPLOYED_UPGRADE_IDS = [
       'S3-A', 'S4-A', 'S11-A', 'S1-A', 'RF-COUNCIL-01', 'S5-A',
       'S2-A', 'S6-A', 'S7-A', 'S8-A', 'S10-A', 'S12-A',
-      'S1-F', 'S3-F', 'S9-F', 'S5-F', 'S11-F', 'S2-F', 'S4-F', 'S8-F', 'S9-B', 'S10-B'
+      'S1-F', 'S3-F', 'S9-F', 'S5-F', 'S11-F', 'S2-F', 'S4-F', 'S8-F', 'S9-B', 'S10-B',
+      'S3-G'
     ];
 
     function normalizeSynapzUpgradeId(rawId) {
@@ -23952,10 +23953,22 @@
       },
       /* [REAL-CODED-FEATURE: S3-G] */
       'S3-G': {
-        id: 'S3-G', batch: 'G', seat: 3, title: 'Parent Car-Ride "1 Positive Praise Question" Banner Inside Locker Room Stall Switcher',
+        id: 'S3-G', batch: 'G', seat: 3, title: 'Pulsing Blue-Line "Stay Onside Boots" Indicator for 8U/10U Zone-Entry Drills',
+        drawCanvas(ctx, W, H, scen, zone, flowProg, holderPt, youPt) {
+          if (!youPt) return;
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(youPt.x - 6, youPt.y + 8, 5, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.85)';
+          ctx.lineWidth = 2.0;
+          ctx.stroke();
+          ctx.restore();
+          state.lastBatchUpgradeCanvasTelemetry = { ...(state.lastBatchUpgradeCanvasTelemetry || {}), 'S3-G': { active: true, mode: 'stay_onside_boots' } };
+        },
         applyDom() {
+          state.stayOnsideBootsIndicatorEnabled = true;
           state.carRidePraiseBannerEnabled = true;
-          return { id: 'S3-G', active: true, prompt: 'Ask on the drive home: "How did your low-and-slow Center curl help your defenseman beat F1?"' };
+          return { id: 'S3-G', active: true, mode: 'stay_onside_boots' };
         }
       },
       /* [REAL-CODED-FEATURE: S4-G] */
@@ -24322,7 +24335,7 @@
     }
     window.drawSynapzActiveBatchCanvasUpgrades = drawSynapzActiveBatchCanvasUpgrades;
 
-    window.SYNAPZ_DYNAMIC_VERSION = 'v10.9.1';
+    window.SYNAPZ_DYNAMIC_VERSION = 'v10.9.4';
     async function syncActiveUpgradesFromSupabase() {
       try {
         const sbUrl = 'https://jrusjgpfcnptozfehcrv.supabase.co';
@@ -24333,17 +24346,16 @@
         if (res.ok) {
           const rows = await res.json();
           if (Array.isArray(rows)) {
-            let activeBatchCode = 'G';
+            let activeVersionLabel = 'v10.9.4';
             rows.forEach(r => {
               const rawId = (r.details && r.details.idea_id) || r.scenario_id || '';
-              if (rawId === 'SYNAPZ-CLOUD-COVERAGE-LEDGER' && r.details && r.details.activeBatchLetter) {
-                activeBatchCode = String(r.details.activeBatchLetter).toUpperCase();
+              if (rawId === 'SYNAPZ-CLOUD-COVERAGE-LEDGER' && r.details && r.details.versionLabel) {
+                activeVersionLabel = String(r.details.versionLabel);
               }
               const clean = normalizeSynapzUpgradeId(rawId);
               if (clean) window.SYNAPZ_ACTIVE_UPGRADES.add(clean);
             });
-            const batchRunCount = Math.max(1, ['G', 'H', 'I', 'J'].indexOf(activeBatchCode) + 1);
-            window.SYNAPZ_DYNAMIC_VERSION = `v10.9.${batchRunCount}`;
+            window.SYNAPZ_DYNAMIC_VERSION = activeVersionLabel;
             persistSynapzActiveUpgrades();
             applyAllActiveSynapzUpgrades();
             if (typeof drawRink === 'function') {
@@ -24401,7 +24413,7 @@
               keys.filter(k => k !== window.SYNAPZ_CACHE_NAME).map(k => caches.delete(k))
             );
           }
-          const reg = await navigator.serviceWorker.register('./sw.js?v=10.9');
+          const reg = await navigator.serviceWorker.register('./sw.js?v=10.9.4');
           if (reg && typeof reg.update === 'function') {
             reg.update().catch(() => {});
           }
