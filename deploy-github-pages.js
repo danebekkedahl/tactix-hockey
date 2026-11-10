@@ -35,6 +35,7 @@ const FILES_TO_DEPLOY = [
   { rel: 'founder_taste_profile.json', encoding: 'utf-8' },
   { rel: 'batch_deployment_receipt.json', encoding: 'utf-8' },
   { rel: 'fresh_12_seat_recommendations.json', encoding: 'utf-8' },
+  { rel: 'v110_63_upgrades_audit.json', encoding: 'utf-8' },
   { rel: 'fetch-approved-queue.js', encoding: 'utf-8' },
   { rel: 'apply-approved-batch.js', encoding: 'utf-8' },
   { rel: 'watch-approved-queue.js', encoding: 'utf-8' },
@@ -112,7 +113,8 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/marathon_frame3_feedback.png', encoding: 'base64' },
   { rel: 'screenshots/audit_cloud_batch_persistence_v108.png', encoding: 'base64' },
   { rel: 'screenshots/audit_clean_3tab_inbox_v109.png', encoding: 'base64' },
-  { rel: 'screenshots/audit_inbox_topup_mode_v1094.png', encoding: 'base64' }
+  { rel: 'screenshots/audit_inbox_topup_mode_v1094.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_v110_63_verified_dial_in.png', encoding: 'base64' }
 ];
 
 // Automatically include all generated neural .mp3 voice files in assets/audio/voices/<characterId>/*.mp3
@@ -384,7 +386,7 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
 
   // 5. Create Commit
   const commitRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/commits`, token, 'POST', {
-    message: `Deploy SYNAPZ HOCKEY v10.9.4-inbox-topup-mode (Top-Up Mode: Preserve Untouched Cards in To Review + Pull Only Reviewed Slots + 0-Reviewed Double-Tap Guard + 23 Live Including S3-G)`,
+    message: `Deploy SYNAPZ HOCKEY v11.0-63-verified-and-dial-in-bank (63/63 Live Upgrades Chrome-Verified + Zero Visual Soup Max 1 Cue/Play Cap + 5-Batch Dial-In Bank Batches K–O + Batch K Loaded in To Review)`,
     tree: treeRes.data.sha,
     parents: [baseCommitSha]
   });
@@ -453,8 +455,8 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
       try {
         const res = await fetch(`${reportUrl}?t=${Date.now()}`, { headers: { 'Cache-Control': 'no-cache' } });
         const html = await res.text();
-        if (html.toUpperCase().includes('INBOX TOP-UP MODE')) {
-          console.log(`✅ Verified live ${reportUrl} is serving V10.9.4 INBOX TOP-UP MODE!`);
+        if (html.toUpperCase().includes('V11.0') && html.toUpperCase().includes('63/63 CHROME-VERIFIED')) {
+          console.log(`✅ Verified live ${reportUrl} is serving V11.0 • 63/63 CHROME-VERIFIED LIVE • DIAL-IN BANK (BATCHES K–O)!`);
           break;
         }
       } catch (_) {}

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v10.9.4-inbox-topup-mode';
+const CACHE_NAME = 'synapz-hockey-v11.0-63-verified-dial-in';
 const ASSETS = [
   './',
   './index.html',

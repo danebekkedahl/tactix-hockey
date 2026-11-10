@@ -1,6 +1,6 @@
 {
-  "version": "1.0-section31",
-  "lastUpdatedAt": "2026-11-06T16:23:55.566Z",
+  "version": "11.0-63-verified-dial-in-bank",
+  "lastUpdatedAt": "2026-11-10T18:20:00.000Z",
   "managedBy": "Seat 13 — Chief Meta-Auditor & Founder Preference Learning Engine",
   "founders": [
     "Coach Dane (danebekkedahl@gmail.com)",
@@ -10,21 +10,27 @@
   "tier1AutoApproveMinMatchPct": 95,
   "tier2BatchApproveMinMatchPct": 90,
   "tagWeights": {
+    "hockey_iq_realism": 1.00,
+    "drill_route_accuracy": 0.99,
     "simplicity_button_reduction": 0.99,
     "plain_1_sentence_voice": 0.98,
-    "skater_spacing_hygiene": 0.97,
-    "room_hotspot_immersion": 0.95,
-    "coach_al_automation": 0.94,
+    "skater_spacing_hygiene": 0.98,
+    "room_hotspot_immersion": 0.96,
+    "coach_al_automation": 0.95,
     "pro_shop_avatar_preview": 0.95,
-    "adm_ltpd_usa_canada_alignment": 0.94,
+    "adm_ltpd_usa_canada_alignment": 0.96,
     "neural_mp3_voice_naturalness": 0.97,
-    "extra_hud_badges": -0.58,
-    "complex_menus": -0.68,
-    "long_text": -0.74
+    "social_brag_share_cards": -0.95,
+    "b2b_sales_demo_popups": -0.95,
+    "extra_hud_badges": -0.88,
+    "complex_menus": -0.78,
+    "long_text": -0.82
   },
   "historicalDecisionSignal": {
     "approvedPatterns": [
-      "2-to-4 tactile buttons max per screen",
+      "100% Approval Rate on Seats 1–9 & 11–12 across Batches A, B, F, G, H, I, and J (63/63 Chrome-Verified)",
+      "Max 1 primary concept-matched teaching cue per drill (Zero Visual Soup on #rinkCanvas)",
+      "2-to-4 tactile buttons max per screen (<=4 primary gameplay buttons at 390x844)",
       "1-sentence natural locker-room speech (<=14 words for 8U/10U)",
       "Top-down 2x faceoff-dot skaters with >=0.15 normalized spacing",
       "Interactive point-and-click 3D illustrated room hotspots (Walnut Wood & Brushed Brass)",
@@ -32,123 +38,72 @@
       "Coach Al 60-second pre-practice focus links & opponent counter-strategy cards"
     ],
     "rejectedOrVetoedPatterns": [
-      "Adding >4 primary buttons or HUD ribbons inside active drills",
-      "Multi-sentence academic explanations or robotic bracketed tags",
-      "Unapproved code mutations on Red Flags without Option A vs. Option B review"
+      "Social/parent share certificates or brag cards (S10-G, S10-H, S5-I, S10-I rejected)",
+      "B2B sales demo or pricing ROI calculators inside the app (S10-H, S10-I rejected)",
+      "Extra visual clutter or non-essential HUD/canvas decorations (S11-I, S8-J rejected)",
+      "Adding >4 primary buttons or HUD ribbons inside active drills"
     ]
   },
   "progressiveTrustTiers": {
     "TIER_1": {
       "code": "TIER 1",
-      "badge": "🟢 TIER 1: SAFE HYGIENE / MICRO-FIX",
+      "badge": "🟢 TIER 1: DIAL-IN HOCKEY REALISM & MICRO-FIX",
       "policy": "Auto-Approve Eligible at >= 95% Match with [↩️ 1-Click Undo]",
       "examples": [
         "Trimming a wordy raw scenario prompt to <=12 plain words",
         "Nudging two crowded skaters from d=0.080 to d=0.165 (+18px mobile separation)",
-        "Fixing a Q5 YouTube clip start/end timestamp"
+        "Fixing a Q5 YouTube clip start/end timestamp or on-ice route vector"
       ]
     },
     "TIER_2": {
       "code": "TIER 2",
-      "badge": "🟡 TIER 2: HIGH-MATCH UI, ROOM & COACHING UPGRADE",
+      "badge": "🟡 TIER 2: HIGH-MATCH COACHING, ROOM & MOBILE UX POLISH",
       "policy": "Eligible for [⭐ Approve All High-Match Picks (>=90% Match) in 1 Click] or individual approval",
       "examples": [
         "1-tap Pro Shop jersey/stick preview on the 75%-realistic Young Hockey Player",
-        "Pre-snap Scan Pulse ring before passing",
+        "Pre-snap Scan Pulse ring before passing (subject to Max 1 Cue/Play cap)",
         "Coach Al 60-second Tonight's Focus link generator"
       ]
     },
     "TIER_3": {
       "code": "TIER 3",
-      "badge": "🔴 TIER 3: CORE ARCHITECTURE, PRICING & 🚩 RED-FLAG OPTIONS",
+      "badge": "🔴 TIER 3: CORE ARCHITECTURE & 🚩 RED-FLAG OPTIONS",
       "policy": "Explicit Individual Founder Click Required ([✅ Approve Option A] / [✅ Approve Option B] / [✅ Approve])",
       "examples": [
         "🚩 Seat 0 Red Flag Option A vs. Option B architectural changes",
-        "Pricing tier or Stripe checkout modifications",
         "New database tables or authentication flows"
       ]
     }
   },
-  "lastUpdated": "2026-11-06T16:23:55.566Z",
+  "lastUpdated": "2026-11-10T18:20:00.000Z",
   "latestBatchSummary": {
-    "batchNumber": 2,
-    "currentPassNewlyCodedCount": 6,
-    "totalPhysicallyCodedAndLiveCount": 12,
-    "remainingApprovedQueueCount": 2,
-    "rejectedCount": 10,
-    "skippedTotalCount": 4,
-    "skippedAutoResolvedCount": 2,
-    "skippedReassessedCount": 2,
+    "batchNumber": 11,
+    "activeBatchLetter": "K",
+    "currentPassNewlyCodedCount": 40,
+    "totalPhysicallyCodedAndLiveCount": 63,
+    "remainingApprovedQueueCount": 0,
+    "rejectedCount": 6,
+    "skippedTotalCount": 1,
+    "skippedAutoResolvedCount": 4,
+    "skippedReassessedCount": 1,
     "skippedNegativeTastePenalty": 0
   },
   "approvedIdeaIds": [
-    "RF-COUNCIL-01",
-    "S1-A",
-    "S1-B",
-    "S1-D",
-    "S2-A",
-    "S2-B",
-    "S2-D",
-    "S2-E",
-    "S3-A",
-    "S3-D",
-    "S3-E",
-    "S4-B",
-    "S4-D",
-    "S5-A",
-    "S5-B",
-    "S5-D",
-    "S5-E",
-    "S6-A",
-    "S6-B",
-    "S6-D",
-    "S6-E",
-    "S7-A",
-    "S7-B",
-    "S7-D",
-    "S8-A",
-    "S8-B",
-    "S8-C",
-    "S8-D",
-    "S8-E",
-    "S9-C",
-    "S9-D",
-    "S9-E",
-    "S10-A",
-    "S10-C",
-    "S10-D",
-    "S11-A",
-    "S11-B",
-    "S11-C",
-    "S11-D",
-    "S11-E",
-    "S12-A",
-    "S12-B",
-    "S12-C",
-    "S12-D",
-    "S4-A"
+    "S1-A", "S2-A", "S3-A", "S4-A", "S5-A", "S6-A", "S7-A", "S8-A", "S9-A", "S10-A", "S11-A", "S12-A",
+    "S9-B", "S10-B",
+    "S1-F", "S2-F", "S3-F", "S4-F", "S5-F", "S8-F", "S9-F", "S11-F",
+    "S1-G", "S2-G", "S3-G", "S4-G", "S5-G", "S6-G", "S7-G", "S8-G", "S9-G", "S11-G", "S12-G",
+    "S1-H", "S2-H", "S3-H", "S4-H", "S5-H", "S6-H", "S7-H", "S8-H", "S9-H", "S11-H", "S12-H",
+    "S1-I", "S2-I", "S3-I", "S4-I", "S6-I", "S7-I", "S8-I", "S9-I", "S12-I",
+    "S1-J", "S2-J", "S3-J", "S4-J", "S5-J", "S6-J", "S7-J", "S10-J", "S11-J", "S12-J"
   ],
   "rejectedIdeaIds": [
-    "S10-E",
-    "S7-C",
-    "S5-C",
-    "S4-C",
-    "S3-C",
-    "S2-C",
-    "S1-C",
-    "S6-C",
-    "S3-B",
-    "S4-A"
+    "S10-G", "S10-H", "S5-I", "S10-I", "S11-I", "S8-J"
   ],
   "skippedReassessIdeaIds": [
-    "S9-B",
-    "S10-B"
+    "S9-J"
   ],
   "autoResolvedSkippedIdeaIds": [
-    "S1-E",
-    "S7-E",
-    "S9-A",
-    "S12-E",
-    "S4-E"
+    "S7-F", "S12-F", "S4-E", "S9-A"
   ]
 }

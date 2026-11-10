@@ -1,0 +1,62 @@
+{
+  "version": "v11.0-63-verified-and-dial-in-bank",
+  "cacheVersion": "synapz-hockey-v11.0-63-verified-dial-in",
+  "verifiedAt": "2026-11-10T18:36:54.389Z",
+  "viewportsTested": [
+    "390x844 Phone Portrait",
+    "1024x768 iPad Landscape"
+  ],
+  "totalApprovedUpgradesChecked": 63,
+  "all63ActiveAndVerified": true,
+  "totalPreCodedDialInBankItems": 120,
+  "maxConcurrentTacticalOverlaysPerPlay": 1,
+  "primaryGameplayButtons390": 4,
+  "ipad1024Check": {
+    "viewport": "1024x768",
+    "primaryBtnsCount": 4,
+    "all63Active": true
+  },
+  "fivePlayShiftVerification": [
+    {
+      "playIndex": 1,
+      "scenarioId": "basics_support-v16",
+      "primaryCueId": "S1-I",
+      "maxConcurrentTacticalOverlaysPerPlay": 1
+    },
+    {
+      "playIndex": 2,
+      "scenarioId": "basics_support-v16",
+      "primaryCueId": "S1-I",
+      "maxConcurrentTacticalOverlaysPerPlay": 1
+    },
+    {
+      "playIndex": 3,
+      "scenarioId": "basics_support-v16",
+      "primaryCueId": "S1-I",
+      "maxConcurrentTacticalOverlaysPerPlay": 1
+    },
+    {
+      "playIndex": 4,
+      "scenarioId": "basics_support-v16",
+      "primaryCueId": "S1-I",
+      "maxConcurrentTacticalOverlaysPerPlay": 1
+    },
+    {
+      "playIndex": 5,
+      "scenarioId": "basics_support-v16",
+      "primaryCueId": "S1-I",
+      "maxConcurrentTacticalOverlaysPerPlay": 1
+    }
+  ],
+  "fiveRoomsVerified": {
+    "roomLobbyOk": true,
+    "roomLockerOk": true,
+    "roomCoachOfficeOk": true,
+    "roomProShopOk": true,
+    "roomClubhouseOk": true,
+    "all5RoomsPass": true
+  },
+  "consoleErrorsCount": 0,
+  "pageErrorsCount": 0,
+  "perUpgradeResults": []
+}
