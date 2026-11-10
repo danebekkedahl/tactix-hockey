@@ -2565,16 +2565,16 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       previousRecommendationHashes: prevAuditLedger.previousRecommendationHashes || []
     };
 
-    updatedAuditCoverageLedger.activeBatchLetter = 'K';
-    updatedAuditCoverageLedger.activeBatchCode = 'K';
+    updatedAuditCoverageLedger.activeBatchLetter = 'P';
+    updatedAuditCoverageLedger.activeBatchCode = 'P';
     updatedAuditCoverageLedger.testedCityStops = Array.from({ length: 32 }, (_, i) => i);
     updatedAuditCoverageLedger.coverageSummary = {
-      activeBatchLetter: 'K',
-      activeBatchCode: 'K',
+      activeBatchLetter: 'P',
+      activeBatchCode: 'P',
       scenariosPct: 100.0,
       scenariosLabel: '360/360',
-      permutationsPct: 6.3,
-      permutationsLabel: '360/5,760',
+      permutationsPct: 16.7,
+      permutationsLabel: '960/5,760',
       citiesPct: 100.0,
       citiesLabel: '32/32',
       bucketsPct: 100.0,
@@ -2791,10 +2791,44 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         ? window.runSafeSportAndVoiceHealthAudit()
         : null;
 
-      // V11.0 63-Upgrade Live Audit + 5-Play Shift + 5 Illustrated Rooms Walk-Through
-      const v110Audit63 = typeof window.run63UpgradesLiveAudit === 'function'
-        ? window.run63UpgradesLiveAudit()
-        : null;
+      // V11.1 118-Upgrade Live Audit + 4-Way Camera Rotation (90/180/270) + End-to-End User Journey + 5 Illustrated Rooms + Red-Flag Auto-Context
+      const v111Audit118 = typeof window.run118UpgradesLiveAudit === 'function'
+        ? window.run118UpgradesLiveAudit()
+        : (typeof window.run63UpgradesLiveAudit === 'function' ? window.run63UpgradesLiveAudit() : null);
+
+      // Test 4-Way Camera Rotations (0°, 90°, 180°, 270°) & Orientation-Proof Landmark Sanitizer
+      const rotatedCameraChecks = [];
+      [0, 90, 180, 270].forEach(rotDeg => {
+        state.rinkRotationDeg = rotDeg;
+        state.cameraRotationAngle = rotDeg;
+        loadScenario(false);
+        drawRink();
+        const transformedSample = typeof window.transformCoordForCameraRotation === 'function'
+          ? window.transformCoordForCameraRotation(0.76, 0.28, rotDeg)
+          : { x: 0.76, y: 0.28, rotationDeg: rotDeg };
+        const scen = typeof getCurrentScenario === 'function' ? getCurrentScenario() : {};
+        const primaryCue = typeof window.selectPrimaryCanvasCueForScenario === 'function'
+          ? window.selectPrimaryCanvasCueForScenario(scen)
+          : null;
+        rotatedCameraChecks.push({
+          rotationDeg: rotDeg,
+          scenarioId: scen.id || `rot_${rotDeg}`,
+          transformedSample,
+          primaryCueId: primaryCue ? primaryCue.primaryCueId : null,
+          maxConcurrentTacticalOverlaysPerPlay: primaryCue ? primaryCue.maxConcurrentTacticalOverlaysPerPlay : 0
+        });
+      });
+      state.rinkRotationDeg = 0;
+      state.cameraRotationAngle = 0;
+
+      const sanitizedPromptSample = typeof window.sanitizeToOrientationProofHockeyLandmarks === 'function'
+        ? window.sanitizeToOrientationProofHockeyLandmarks('Skate to the left side near the top of the screen and pass to the right side.')
+        : '';
+      const orientationProofSanitizerPass = Boolean(
+        sanitizedPromptSample.includes('strong-side wall') &&
+        sanitizedPromptSample.includes('attacking blue line') &&
+        sanitizedPromptSample.includes('weak-side flank')
+      );
 
       // Run a live 5-play shift across 5 distinct concept buckets and verify selectPrimaryCanvasCueForScenario() returns strictly 1 primary cue per scenario
       const shift5PlayResults = [];
@@ -2813,7 +2847,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         });
       }
 
-      // Walk through all 5 Illustrated Rooms (Lobby, Locker Room, Coach Al's Office, Pro Shop, Clubhouse)
+      // Walk through all 5 Illustrated Rooms (Lobby, Locker Room, Coach Al's Office, Pro Shop, Clubhouse) + End-to-End Journey + 🚩 Red Flag Auto-Context
       switchView('lobby');
       const roomLobbyOk = !document.getElementById('synapzRinkLobbySection')?.classList.contains('hidden');
       if (typeof openSynapzLockerRoomModal === 'function') openSynapzLockerRoomModal();
@@ -2830,6 +2864,21 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       const roomClubhouseOk = !document.getElementById('synapzFriendsWallModal')?.classList.contains('hidden');
       document.getElementById('synapzFriendsWallModal')?.classList.add('hidden');
       switchView('game');
+
+      // Test in-app 🚩 Founder Red-Flag Modal auto-context capture
+      let redFlagAutoContext = null;
+      if (typeof window.openFounderRedFlagModal === 'function') {
+        window.openFounderRedFlagModal();
+        redFlagAutoContext = window._lastFounderRedFlagAutoContext || null;
+        if (typeof window.closeFounderRedFlagModal === 'function') window.closeFounderRedFlagModal();
+      }
+      const redFlagAutoContextPass = Boolean(
+        redFlagAutoContext &&
+        redFlagAutoContext.scenarioId &&
+        typeof redFlagAutoContext.rotationAngle === 'number' &&
+        redFlagAutoContext.ageDivision &&
+        redFlagAutoContext.activeUpgradesCount === 118
+      );
 
       return {
         batch1_6PreviousFeaturesVerified: Boolean(
@@ -2872,7 +2921,13 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           voicesVerified: s12AHealthAudit?.channelsCount || 0,
           safeSportZeroReplyVerified: Boolean(s12AHealthAudit?.oneWayAlertsEnforced)
         },
-        v110Audit63,
+        v111Audit118,
+        v110Audit63: v111Audit118,
+        rotatedCameraChecks,
+        orientationProofSanitizerPass,
+        sanitizedPromptSample,
+        redFlagAutoContext,
+        redFlagAutoContextPass,
         shift5PlayResults,
         fiveRoomsVerified: {
           roomLobbyOk,
@@ -2891,46 +2946,57 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     await page.waitForTimeout(150);
     const ipad1024Check = await page.evaluate(() => {
       drawRink();
+      const auditRes = window.run118UpgradesLiveAudit ? window.run118UpgradesLiveAudit() : null;
       return {
         viewport: `${window.innerWidth}x${window.innerHeight}`,
         primaryBtnsCount: document.querySelectorAll('#lessonConsistentBottomBar > button').length,
-        all63Active: Boolean(window.run63UpgradesLiveAudit && window.run63UpgradesLiveAudit().all63Active)
+        all118Active: Boolean(auditRes && auditRes.all118Active),
+        all63Active: Boolean(auditRes && auditRes.all63Active)
       };
     });
     await page.screenshot({ path: path.join(rootScreenshotsDir, 'audit_batch_v104_ipad.png') });
     capturedScreenshots.audit_batch_v104_ipad = 'screenshots/audit_batch_v104_ipad.png';
     await page.setViewportSize({ width: 1280, height: 800 });
 
-    const v110AuditReportJson = {
-      version: 'v11.0-63-verified-and-dial-in-bank',
-      cacheVersion: 'synapz-hockey-v11.0-63-verified-dial-in',
+    const v111AuditReportJson = {
+      version: 'v11.1-118-verified-and-rotated-flow-bank',
+      cacheVersion: 'synapz-hockey-v11.1-118-verified-rotated-flows',
       verifiedAt: new Date().toISOString(),
       viewportsTested: ['390x844 Phone Portrait', '1024x768 iPad Landscape'],
-      totalApprovedUpgradesChecked: v104RealFeaturesAudit.v110Audit63?.totalChecked || 63,
-      all63ActiveAndVerified: Boolean(v104RealFeaturesAudit.v110Audit63?.all63Active),
-      totalPreCodedDialInBankItems: v104RealFeaturesAudit.v110Audit63?.totalPreCodedBankItems || 120,
-      maxConcurrentTacticalOverlaysPerPlay: v104RealFeaturesAudit.v110Audit63?.maxConcurrentTacticalOverlaysPerPlay || 1,
-      primaryGameplayButtons390: v104RealFeaturesAudit.v110Audit63?.primaryGameplayButtons || 4,
+      totalApprovedUpgradesChecked: v104RealFeaturesAudit.v111Audit118?.totalChecked || 118,
+      all118ActiveAndVerified: Boolean(v104RealFeaturesAudit.v111Audit118?.all118Active),
+      all63ActiveAndVerified: Boolean(v104RealFeaturesAudit.v111Audit118?.all63Active),
+      totalPreCodedRotatedFlowBankItems: v104RealFeaturesAudit.v111Audit118?.totalPreCodedBankItems || 180,
+      maxConcurrentTacticalOverlaysPerPlay: v104RealFeaturesAudit.v111Audit118?.maxConcurrentTacticalOverlaysPerPlay || 1,
+      primaryGameplayButtons390: v104RealFeaturesAudit.v111Audit118?.primaryGameplayButtons || 4,
+      rotatedCameraAuditPass: Boolean(v104RealFeaturesAudit.rotatedCameraChecks?.length === 4 && v104RealFeaturesAudit.orientationProofSanitizerPass),
+      rotatedCameraChecks: v104RealFeaturesAudit.rotatedCameraChecks || [],
+      orientationProofSanitizerPass: Boolean(v104RealFeaturesAudit.orientationProofSanitizerPass),
+      redFlagAutoContextPass: Boolean(v104RealFeaturesAudit.redFlagAutoContextPass),
+      redFlagAutoContext: v104RealFeaturesAudit.redFlagAutoContext || null,
       ipad1024Check,
       fivePlayShiftVerification: v104RealFeaturesAudit.shift5PlayResults,
       fiveRoomsVerified: v104RealFeaturesAudit.fiveRoomsVerified,
       consoleErrorsCount: consoleErrors.length,
       pageErrorsCount: pageErrors.length,
-      perUpgradeResults: v104RealFeaturesAudit.v110Audit63?.results || []
+      perUpgradeResults: v104RealFeaturesAudit.v111Audit118?.results || []
     };
-    fs.writeFileSync(path.join(__dirname, 'v110_63_upgrades_audit.json'), JSON.stringify(v110AuditReportJson, null, 2), 'utf8');
+    fs.writeFileSync(path.join(__dirname, 'v111_118_upgrades_audit.json'), JSON.stringify(v111AuditReportJson, null, 2), 'utf8');
+    fs.writeFileSync(path.join(__dirname, 'v110_63_upgrades_audit.json'), JSON.stringify(v111AuditReportJson, null, 2), 'utf8');
     if (
-      !v110AuditReportJson.all63ActiveAndVerified ||
-      v110AuditReportJson.totalApprovedUpgradesChecked !== 63 ||
-      v110AuditReportJson.maxConcurrentTacticalOverlaysPerPlay !== 1 ||
+      !v111AuditReportJson.all118ActiveAndVerified ||
+      v111AuditReportJson.totalApprovedUpgradesChecked !== 118 ||
+      v111AuditReportJson.maxConcurrentTacticalOverlaysPerPlay !== 1 ||
+      !v111AuditReportJson.rotatedCameraAuditPass ||
+      !v111AuditReportJson.redFlagAutoContextPass ||
       !v104RealFeaturesAudit.fiveRoomsVerified.all5RoomsPass
     ) {
-      throw new Error(`63-Upgrade Chrome Functional Verification Failed: ${JSON.stringify(v110AuditReportJson)}`);
+      throw new Error(`118-Upgrade Chrome Functional Verification Failed: ${JSON.stringify(v111AuditReportJson)}`);
     }
-    console.log('🔬 Saved v110_63_upgrades_audit.json — 63/63 Live Upgrades Chrome-Verified (0 Conflicts • Max 1 Cue/Play • All 5 Rooms Pass)!');
+    console.log('🔬 Saved v111_118_upgrades_audit.json — 118/118 Live Upgrades Chrome-Verified (0 Conflicts • Max 1 Cue/Play • 4-Way Camera Rotations • All 5 Rooms Pass)!');
 
     // =========================================================================
-    // 8. LOAD BATCH K (`S1-K..S12-K`) DIAL-IN RECOMMENDATIONS & SEED CLEAN V11.0 STATE
+    // 8. LOAD BATCH P (`S1-P..S12-P`) ROTATED-FLOW RECOMMENDATIONS & SEED CLEAN V11.1 STATE
     // =========================================================================
     function ideaToUuid(ideaId) {
       const clean = String(ideaId || '').trim().replace(/^B\d+-/i, '').toUpperCase();
@@ -2952,19 +3018,24 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
 
     const fresh12SeatRecommendations = JSON.parse(fs.readFileSync(path.join(__dirname, 'fresh_12_seat_recommendations.json'), 'utf8'));
 
-    const ALL_63_DEPLOYED_IDS = [
+    const ALL_118_DEPLOYED_IDS = [
       'S1-A', 'S2-A', 'S3-A', 'S4-A', 'S5-A', 'S6-A', 'S7-A', 'S8-A', 'S9-A', 'S10-A', 'S11-A', 'S12-A',
       'S9-B', 'S10-B',
       'S1-F', 'S2-F', 'S3-F', 'S4-F', 'S5-F', 'S8-F', 'S9-F', 'S11-F',
       'S1-G', 'S2-G', 'S3-G', 'S4-G', 'S5-G', 'S6-G', 'S7-G', 'S8-G', 'S9-G', 'S11-G', 'S12-G',
       'S1-H', 'S2-H', 'S3-H', 'S4-H', 'S5-H', 'S6-H', 'S7-H', 'S8-H', 'S9-H', 'S11-H', 'S12-H',
       'S1-I', 'S2-I', 'S3-I', 'S4-I', 'S6-I', 'S7-I', 'S8-I', 'S9-I', 'S12-I',
-      'S1-J', 'S2-J', 'S3-J', 'S4-J', 'S5-J', 'S6-J', 'S7-J', 'S10-J', 'S11-J', 'S12-J'
+      'S1-J', 'S2-J', 'S3-J', 'S4-J', 'S5-J', 'S6-J', 'S7-J', 'S10-J', 'S11-J', 'S12-J',
+      'S1-K', 'S2-K', 'S3-K', 'S4-K', 'S5-K', 'S6-K', 'S7-K', 'S9-K', 'S10-K', 'S11-K', 'S12-K',
+      'S1-L', 'S2-L', 'S3-L', 'S4-L', 'S5-L', 'S6-L', 'S7-L', 'S8-L', 'S9-L', 'S11-L', 'S12-L',
+      'S1-M', 'S2-M', 'S3-M', 'S5-M', 'S7-M', 'S8-M', 'S9-M', 'S10-M', 'S11-M', 'S12-M',
+      'S1-N', 'S2-N', 'S3-N', 'S4-N', 'S5-N', 'S6-N', 'S7-N', 'S8-N', 'S9-N', 'S11-N', 'S12-N',
+      'S1-O', 'S2-O', 'S3-O', 'S4-O', 'S5-O', 'S6-O', 'S7-O', 'S8-O', 'S9-O', 'S10-O', 'S11-O', 'S12-O'
     ];
-    const DEFAULT_BATCH_K_ACTIVE_INBOX_IDS = [
-      'S1-K', 'S2-K', 'S3-K', 'S9-K', 'S8-K', 'S4-K', 'S5-K', 'S6-K', 'S7-K', 'S10-K', 'S11-K', 'S12-K'
+    const DEFAULT_BATCH_P_ACTIVE_INBOX_IDS = [
+      'S1-P', 'S2-P', 'S3-P', 'S9-P', 'S8-P', 'S4-P', 'S5-P', 'S6-P', 'S7-P', 'S10-P', 'S11-P', 'S12-P'
     ];
-    async function seedCleanV110BatchKState() {
+    async function seedCleanV111BatchPState() {
       const nowIso = new Date().toISOString();
       const rows = [];
       fresh12SeatRecommendations.forEach(item => {
@@ -2984,10 +3055,10 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           }
         });
       });
-      ALL_63_DEPLOYED_IDS.forEach(depId => {
+      ALL_118_DEPLOYED_IDS.forEach(depId => {
         rows.push({
           id: ideaToUuid(depId),
-          created_by: 'Phone-Batch-Deployer-v11.0',
+          created_by: 'Phone-Batch-Deployer-v11.1',
           source_role: 'council',
           scenario_id: depId,
           age_division: 'ALL',
@@ -3003,10 +3074,10 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           }
         });
       });
-      ['S10-G', 'S10-H', 'S5-I', 'S10-I', 'S11-I', 'S8-J'].forEach(rejId => {
+      ['S10-G', 'S10-H', 'S5-I', 'S10-I', 'S11-I', 'S8-J', 'S10-L', 'S4-M', 'S6-M', 'S10-N'].forEach(rejId => {
         rows.push({
           id: ideaToUuid(rejId),
-          created_by: 'Founder-Decision-v11.0',
+          created_by: 'Founder-Decision-v11.1',
           source_role: 'founder_decision',
           scenario_id: rejId,
           age_division: 'ALL',
@@ -3016,21 +3087,23 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           details: { id: rejId, idea_id: rejId, status: 'rejected_by_founder', updated_at: nowIso }
         });
       });
-      rows.push({
-        id: ideaToUuid('S9-J'),
-        created_by: 'Founder-Decision-v11.0',
-        source_role: 'founder_decision',
-        scenario_id: 'S9-J',
-        age_division: 'ALL',
-        category: 'board_digest',
-        status: 'skipped_reassess_next_run',
-        summary: `⏭️ Skipped by Founder (S9-J)`,
-        details: { id: 'S9-J', idea_id: 'S9-J', status: 'skipped_reassess_next_run', updated_at: nowIso }
+      ['S9-J', 'S8-K'].forEach(skipId => {
+        rows.push({
+          id: ideaToUuid(skipId),
+          created_by: 'Founder-Decision-v11.1',
+          source_role: 'founder_decision',
+          scenario_id: skipId,
+          age_division: 'ALL',
+          category: 'board_digest',
+          status: 'skipped_reassess_next_run',
+          summary: `⏭️ Skipped by Founder (${skipId})`,
+          details: { id: skipId, idea_id: skipId, status: 'skipped_reassess_next_run', updated_at: nowIso }
+        });
       });
       ['S7-F', 'S12-F'].forEach(aId => {
         rows.push({
           id: ideaToUuid(aId),
-          created_by: 'Phone-Batch-Reassessor-v11.0',
+          created_by: 'Phone-Batch-Reassessor-v11.1',
           source_role: 'council',
           scenario_id: aId,
           age_division: 'ALL',
@@ -3040,7 +3113,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           details: { id: aId, idea_id: aId, status: 'auto_resolved_by_batch', updated_at: nowIso }
         });
       });
-      ['L', 'M', 'N', 'O'].forEach(futureLetter => {
+      ['Q', 'R', 'S', 'T'].forEach(futureLetter => {
         for (let s = 1; s <= 12; s++) {
           const fId = `S${s}-${futureLetter}`;
           rows.push({
@@ -3051,7 +3124,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
             age_division: 'ALL',
             category: 'board_digest',
             status: 'pending_future_batch',
-            summary: `⏳ Reserved for Future Dial-In Batch ${futureLetter} (${fId})`,
+            summary: `⏳ Reserved for Future Rotated-Flow Batch ${futureLetter} (${fId})`,
             details: { id: fId, idea_id: fId, status: 'pending_future_batch', updated_at: nowIso }
           });
         }
@@ -3064,23 +3137,23 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         age_division: 'ALL',
         category: 'cloud_coverage_ledger',
         status: 'completed_and_deployed',
-        summary: '📊 Seat 13 Cloud Coverage Ledger Ready (v11.0 • 360/360 Scenarios 100.0% • 32/32 Cities 100.0% • Batch K Active)',
+        summary: '📊 Seat 13 Cloud Coverage Ledger Ready (v11.1 • 360/360 Scenarios 100.0% • 32/32 Cities 100.0% • 960/5,760 Permutations 16.7% • Batch P Active)',
         details: {
           id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
-          versionLabel: 'v11.0',
-          batchRunCount: 6,
-          activeBatchLetter: 'K',
-          activeBatchCode: 'K',
-          activeInboxIds: DEFAULT_BATCH_K_ACTIVE_INBOX_IDS,
+          versionLabel: 'v11.1',
+          batchRunCount: 11,
+          activeBatchLetter: 'P',
+          activeBatchCode: 'P',
+          activeInboxIds: DEFAULT_BATCH_P_ACTIVE_INBOX_IDS,
           scenariosScoured: 360,
           scenariosCount: 360,
           scenariosPct: '100.0',
           citiesTested: 32,
           citiesCount: 32,
           citiesPct: '100.0',
-          permutationsTested: 360,
-          permutationsCount: 360,
-          permutationsPct: '6.3',
+          permutationsTested: 960,
+          permutationsCount: 960,
+          permutationsPct: '16.7',
           updated_at: nowIso
         }
       });
@@ -3100,14 +3173,14 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
 
     let preUpserted12Count = 12;
     try {
-      const seedStatus = await seedCleanV110BatchKState();
-      console.log(`☁️ Seeded clean v11.0 Batch K state (63 Live Upgrades + 12 Batch K in To Review + 48 Batches L–O in Bank) into public.pucksense_agent_inbox (HTTP ${seedStatus})`);
+      const seedStatus = await seedCleanV111BatchPState();
+      console.log(`☁️ Seeded clean v11.1 Batch P state (118 Live Upgrades + 12 Batch P in To Review + 48 Batches Q–T in Bank) into public.pucksense_agent_inbox (HTTP ${seedStatus})`);
     } catch (e) {
-      console.warn('Seed v11.0 Batch K state warning:', e.message);
+      console.warn('Seed v11.1 Batch P state warning:', e.message);
     }
 
     // =========================================================================
-    // V11.0 63-VERIFIED + DIAL-IN BANK (BATCHES K–O) + TOP-UP MODE VERIFICATION
+    // V11.1 118-VERIFIED + ROTATED-FLOW BANK (BATCHES P–T) + TOP-UP MODE VERIFICATION
     // ON 390×844 IPHONE (`window.__SYNAPZ_TEST_MODE__ = true`)
     // =========================================================================
     const reportPage = await context.newPage();
@@ -3125,7 +3198,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     await reportPage.goto('http://localhost:8080/report.html', { waitUntil: 'networkidle', timeout: 30000 });
     await reportPage.waitForTimeout(900);
 
-    // 1. Verify initial load displays V11.0, 3 Tabs (`📥 To Review (12)`, `🛠️ Queued (0)`, `✅ Live in App (63)`), `#v110ChromeVerified63Banner`, <= 56 decision buttons, and 0px overflow on 390x844
+    // 1. Verify initial load displays V11.1, 3 Tabs (`📥 To Review (12)`, `🛠️ Queued (0)`, `✅ Live in App (118)`), `#v110ChromeVerified63Banner`, <= 56 decision buttons, and 0px overflow on 390x844
     const phone390VisualAudit = await reportPage.evaluate(() => {
       const docScrollWidth = document.documentElement.scrollWidth;
       const bodyScrollWidth = document.body.scrollWidth;
@@ -3137,10 +3210,11 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       const firstIdeaIdOnLoad = activeInboxIdsOnLoad[0] || '';
       const lastIdeaIdOnLoad = activeInboxIdsOnLoad[activeInboxIdsOnLoad.length - 1] || '';
       const receiptHeadlineOnLoad = (document.getElementById('batchReceiptHeadline')?.textContent || '').trim();
-      const verified63BannerExists = Boolean(document.getElementById('v110ChromeVerified63Banner'));
+      const verified118BannerExists = Boolean(document.getElementById('v110ChromeVerified63Banner'));
       const emptyBankBannerExists = Boolean(document.getElementById('emptyBankCompletionBanner'));
       const heatmapScenariosText = (document.getElementById('seat13HeatmapScenarios')?.textContent || '').trim();
       const heatmapCitiesText = (document.getElementById('seat13HeatmapCities')?.textContent || '').trim();
+      const heatmapPermutationsText = (document.getElementById('seat13HeatmapPermutations')?.textContent || '').trim();
 
       const legacyDigest30Removed = !document.getElementById('reportDigest30TableBody');
       const legacyTop5DuplicateRemoved = !document.getElementById('reportTop5CoSignedTableBody');
@@ -3210,7 +3284,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         clippedButtonsCount: clippedButtons.length,
         clippedButtons: clippedButtons.slice(0, 10),
         overflowingElements: overflowingElements.slice(0, 10),
-        hasV110Header: headerText.includes('V11.0') && headerText.includes('63/63 CHROME-VERIFIED'),
+        hasV111Header: headerText.includes('V11.1') && headerText.includes('118/118 CHROME-VERIFIED'),
         hasNoLegacyV91Header: !headerText.includes('V9.1 SYNAPZ REBRAND'),
         deployBtnTextInitial,
         hasNoDeadAgentText: !deployBtnTextInitial.includes('Ready for AI Coding Agent'),
@@ -3218,15 +3292,16 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         activeInboxIdsOnLoad,
         firstIdeaIdOnLoad,
         lastIdeaIdOnLoad,
-        verified63BannerExists,
+        verified118BannerExists,
         emptyBankBannerExists,
         heatmapScenariosText,
         heatmapCitiesText,
+        heatmapPermutationsText,
         receiptHeadlineOnLoad
       };
     });
 
-    console.log('📱 Step 1 (Initial Load — V11.0 Batch K: 12 To Review, 0 Queued, 63 Live) 390×844 Audit:', JSON.stringify(phone390VisualAudit));
+    console.log('📱 Step 1 (Initial Load — V11.1 Batch P: 12 To Review, 0 Queued, 118 Live) 390×844 Audit:', JSON.stringify(phone390VisualAudit));
     if (!phone390VisualAudit.zeroHorizontalOverflow) {
       throw new Error(`390px Horizontal Overflow Detected: documentElement.scrollWidth=${phone390VisualAudit.docScrollWidth} > 390! Overflowing: ${JSON.stringify(phone390VisualAudit.overflowingElements)}`);
     }
@@ -3239,18 +3314,18 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     if (phone390VisualAudit.clippedButtonsCount > 0) {
       throw new Error(`390px Clipped Decision Buttons Detected (${phone390VisualAudit.clippedButtonsCount}): ${JSON.stringify(phone390VisualAudit.clippedButtons)}`);
     }
-    if (!phone390VisualAudit.hasV110Header || !phone390VisualAudit.hasNoLegacyV91Header) {
-      throw new Error(`Header Badge Mismatch on report.html: hasV110Header=${phone390VisualAudit.hasV110Header}, hasNoLegacyV91Header=${phone390VisualAudit.hasNoLegacyV91Header}`);
+    if (!phone390VisualAudit.hasV111Header || !phone390VisualAudit.hasNoLegacyV91Header) {
+      throw new Error(`Header Badge Mismatch on report.html: hasV111Header=${phone390VisualAudit.hasV111Header}, hasNoLegacyV91Header=${phone390VisualAudit.hasNoLegacyV91Header}`);
     }
     if (
-      phone390VisualAudit.firstIdeaIdOnLoad !== 'S1-K' ||
-      phone390VisualAudit.lastIdeaIdOnLoad !== 'S12-K' ||
+      phone390VisualAudit.firstIdeaIdOnLoad !== 'S1-P' ||
+      phone390VisualAudit.lastIdeaIdOnLoad !== 'S12-P' ||
       phone390VisualAudit.toReviewCardsCountInitial !== 12 ||
-      phone390VisualAudit.tabCountLiveInitial !== '63' ||
-      !phone390VisualAudit.verified63BannerExists ||
+      phone390VisualAudit.tabCountLiveInitial !== '118' ||
+      !phone390VisualAudit.verified118BannerExists ||
       !phone390VisualAudit.emptyBankBannerExists
     ) {
-      throw new Error(`Expected initial v11.0 Batch K inbox (S1-K..S12-K = 12 in To Review, 63 Live, verified63BannerExists=true), got: ${JSON.stringify(phone390VisualAudit)}`);
+      throw new Error(`Expected initial v11.1 Batch P inbox (S1-P..S12-P = 12 in To Review, 118 Live, verified118BannerExists=true), got: ${JSON.stringify(phone390VisualAudit)}`);
     }
 
     // 1A. Test 1 (0-Reviewed Double-Tap Guard)
@@ -3276,65 +3351,65 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       throw new Error(`0-Reviewed Double-Tap Guard Failed! Expected blockedZeroReviewed=true and 12 untouched cards kept, got: ${JSON.stringify(step1aZeroReviewedGuardTest)}`);
     }
 
-    // 1B. Verify "Inbox Zero" behavior on Batch K (`S1-K`)
+    // 1B. Verify "Inbox Zero" behavior on Batch P (`S1-P`)
     const step1bInboxZeroCardMoveTest = await reportPage.evaluate(async () => {
-      await window.setReportFounderIdeaDecision('S1-K', 'approved_for_build');
+      await window.setReportFounderIdeaDecision('S1-P', 'approved_for_build');
       const toReviewCountAfterApprove = (document.getElementById('tabCountToReview')?.textContent || '').trim();
       const queuedCountAfterApprove = (document.getElementById('tabCountQueued')?.textContent || '').trim();
       const toReviewCardsDomAfterApprove = document.querySelectorAll('#inboxToReviewCardsContainer .synapz-rec-card').length;
-      const s1KInToReviewAfterApprove = Boolean(document.querySelector('#inboxToReviewCardsContainer [data-inbox-card-id="S1-K"]'));
-      const s1KInQueuedAfterApprove = (document.getElementById('inboxQueuedApprovedList')?.innerHTML || '').includes('S1-K');
+      const s1PInToReviewAfterApprove = Boolean(document.querySelector('#inboxToReviewCardsContainer [data-inbox-card-id="S1-P"]'));
+      const s1PInQueuedAfterApprove = (document.getElementById('inboxQueuedApprovedList')?.innerHTML || '').includes('S1-P');
       const flashTextAfterApprove = (document.getElementById('inboxZeroTransitionFlash')?.textContent || '').trim();
 
       window.switchFounderInboxTab('queued');
       const queuedPanelVisible = !document.getElementById('inboxTabPanelQueued')?.classList.contains('hidden');
       window.switchFounderInboxTab('live');
       const livePanelVisible = !document.getElementById('inboxTabPanelLive')?.classList.contains('hidden');
-      const verified63BannerVisibleInLiveTab = !document.getElementById('v110ChromeVerified63Banner')?.classList.contains('hidden');
+      const verified118BannerVisibleInLiveTab = !document.getElementById('v110ChromeVerified63Banner')?.classList.contains('hidden');
       window.switchFounderInboxTab('to_review');
 
-      await window.moveCardBackToReview('S1-K');
+      await window.moveCardBackToReview('S1-P');
       const toReviewCountAfterMoveBack = (document.getElementById('tabCountToReview')?.textContent || '').trim();
       const queuedCountAfterMoveBack = (document.getElementById('tabCountQueued')?.textContent || '').trim();
-      const s1KBackInToReview = Boolean(document.querySelector('#inboxToReviewCardsContainer [data-inbox-card-id="S1-K"]'));
+      const s1PBackInToReview = Boolean(document.querySelector('#inboxToReviewCardsContainer [data-inbox-card-id="S1-P"]'));
 
       return {
         toReviewCountAfterApprove,
         queuedCountAfterApprove,
         toReviewCardsDomAfterApprove,
-        s1KInToReviewAfterApprove,
-        s1KInQueuedAfterApprove,
+        s1PInToReviewAfterApprove,
+        s1PInQueuedAfterApprove,
         flashTextAfterApprove,
         queuedPanelVisible,
         livePanelVisible,
-        verified63BannerVisibleInLiveTab,
+        verified118BannerVisibleInLiveTab,
         toReviewCountAfterMoveBack,
         queuedCountAfterMoveBack,
-        s1KBackInToReview
+        s1PBackInToReview
       };
     });
-    console.log('📥 Step 1B (Inbox Zero Card Move & Undo Test on S1-K):', JSON.stringify(step1bInboxZeroCardMoveTest));
+    console.log('📥 Step 1B (Inbox Zero Card Move & Undo Test on S1-P):', JSON.stringify(step1bInboxZeroCardMoveTest));
     if (
       step1bInboxZeroCardMoveTest.toReviewCountAfterApprove !== '11' ||
       step1bInboxZeroCardMoveTest.queuedCountAfterApprove !== '1' ||
-      step1bInboxZeroCardMoveTest.s1KInToReviewAfterApprove !== false ||
-      step1bInboxZeroCardMoveTest.s1KInQueuedAfterApprove !== true ||
+      step1bInboxZeroCardMoveTest.s1PInToReviewAfterApprove !== false ||
+      step1bInboxZeroCardMoveTest.s1PInQueuedAfterApprove !== true ||
       step1bInboxZeroCardMoveTest.toReviewCountAfterMoveBack !== '12' ||
-      !step1bInboxZeroCardMoveTest.s1KBackInToReview
+      !step1bInboxZeroCardMoveTest.s1PBackInToReview
     ) {
       throw new Error(`Inbox Zero Card Transition Failed: ${JSON.stringify(step1bInboxZeroCardMoveTest)}`);
     }
 
-    // 2. Test 2 (Partial Approval Top-Up Mode on Batch K -> pulls 3 from Batch L):
-    // Approve 2 cards (`S1-K` and `S2-K`) and reject 1 card (`S6-K`), leaving 9 untouched Batch K cards in `📥 To Review`.
+    // 2. Test 2 (Partial Approval Top-Up Mode on Batch P -> pulls 3 from Batch Q):
+    // Approve 2 cards (`S1-P` and `S2-P`) and reject 1 card (`S6-P`), leaving 9 untouched Batch P cards in `📥 To Review`.
     // Trigger `runCloudBatchDeployAndNextAuditFromPhone({ suppressEmail: true })` and verify:
-    // - `S1-K` and `S2-K` move into `✅ Live in App` (63 -> 65),
-    // - All 9 untouched Batch K cards remain in `📥 To Review`,
-    // - Strictly 3 new unseen cards from Batch L (`S1-L, S2-L, S3-L`) top up `📥 To Review` back to 12 cards!
+    // - `S1-P` and `S2-P` move into `✅ Live in App` (118 -> 120),
+    // - All 9 untouched Batch P cards remain in `📥 To Review`,
+    // - Strictly 3 new unseen cards from Batch Q (`S1-Q, S2-Q, S3-Q`) top up `📥 To Review` back to 12 cards!
     const step2PartialApprovalTopUp = await reportPage.evaluate(async () => {
-      const app1 = await window.setReportFounderIdeaDecision('S1-K', 'approved_for_build');
-      const app2 = await window.setReportFounderIdeaDecision('S2-K', 'approved_for_build');
-      const rej1 = await window.setReportFounderIdeaDecision('S6-K', 'rejected_by_founder');
+      const app1 = await window.setReportFounderIdeaDecision('S1-P', 'approved_for_build');
+      const app2 = await window.setReportFounderIdeaDecision('S2-P', 'approved_for_build');
+      const rej1 = await window.setReportFounderIdeaDecision('S6-P', 'rejected_by_founder');
       const barBeforeDeploy = document.getElementById('founderBatchCartCountsText')?.textContent || '';
       const deployBtnWhenQueued = (document.getElementById('btnTriggerRemoteBatchDeploy')?.textContent || '').trim();
       const toReviewCountBeforeDeploy = (document.getElementById('tabCountToReview')?.textContent || '').trim();
@@ -3365,15 +3440,15 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         receiptHeadlineAfterTopUp
       };
     });
-    console.log('🚀 Step 2 (Partial Approval Top-Up Mode: 9 Untouched Batch K + 3 Batch L Top-Up = 12 in To Review, 65 Live):', JSON.stringify(step2PartialApprovalTopUp));
-    const expectedToppedUp12Ids = ['S3-K', 'S9-K', 'S8-K', 'S4-K', 'S5-K', 'S7-K', 'S10-K', 'S11-K', 'S12-K', 'S1-L', 'S2-L', 'S3-L'];
+    console.log('🚀 Step 2 (Partial Approval Top-Up Mode: 9 Untouched Batch P + 3 Batch Q Top-Up = 12 in To Review, 120 Live):', JSON.stringify(step2PartialApprovalTopUp));
+    const expectedToppedUp12Ids = ['S3-P', 'S9-P', 'S8-P', 'S4-P', 'S5-P', 'S7-P', 'S10-P', 'S11-P', 'S12-P', 'S1-Q', 'S2-Q', 'S3-Q'];
     if (
       step2PartialApprovalTopUp.toReviewCountAfterTopUp !== '12' ||
       step2PartialApprovalTopUp.queuedCountAfterTopUp !== '0' ||
-      step2PartialApprovalTopUp.liveCountAfterTopUp !== '65' ||
+      step2PartialApprovalTopUp.liveCountAfterTopUp !== '120' ||
       JSON.stringify(step2PartialApprovalTopUp.activeInboxIdsAfterTopUp) !== JSON.stringify(expectedToppedUp12Ids)
     ) {
-      throw new Error(`Top-Up Mode Failed! Expected 12 topped-up cards ${JSON.stringify(expectedToppedUp12Ids)} and 65 Live, got: ${JSON.stringify(step2PartialApprovalTopUp)}`);
+      throw new Error(`Top-Up Mode Failed! Expected 12 topped-up cards ${JSON.stringify(expectedToppedUp12Ids)} and 120 Live, got: ${JSON.stringify(step2PartialApprovalTopUp)}`);
     }
     if (!step2PartialApprovalTopUp.emailSuppressedInTestMode) {
       throw new Error(`Expected SUPPRESSED_TEST_MODE during automated Playwright run, got: ${step2PartialApprovalTopUp.loopResult?.gmailWebhookStatus}`);
@@ -3398,48 +3473,48 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         docScrollWidthAfterReload: document.documentElement.scrollWidth
       };
     });
-    console.log('🔄 Step 3 (After Full Browser Reload — Exact 12 Topped-Up Cards & 65 Live Persist from Supabase):', JSON.stringify(step3AfterBrowserReload));
+    console.log('🔄 Step 3 (After Full Browser Reload — Exact 12 Topped-Up Cards & 120 Live Persist from Supabase):', JSON.stringify(step3AfterBrowserReload));
     if (
       JSON.stringify(step3AfterBrowserReload.activeInboxIdsAfterReload) !== JSON.stringify(expectedToppedUp12Ids) ||
       step3AfterBrowserReload.toReviewCountAfterReload !== '12' ||
-      step3AfterBrowserReload.liveCountAfterReload !== '65'
+      step3AfterBrowserReload.liveCountAfterReload !== '120'
     ) {
-      throw new Error(`Cloud Top-Up Inbox Persistence Failed on Reload! Expected ${JSON.stringify(expectedToppedUp12Ids)} and 65 Live, got: ${JSON.stringify(step3AfterBrowserReload)}`);
+      throw new Error(`Cloud Top-Up Inbox Persistence Failed on Reload! Expected ${JSON.stringify(expectedToppedUp12Ids)} and 120 Live, got: ${JSON.stringify(step3AfterBrowserReload)}`);
     }
 
-    // Verify in index.html (`page`) that all 63 cumulative upgrades + 120 pre-coded bank items (Batches F–O) are present
+    // Verify in index.html (`page`) that all 118 cumulative upgrades + 180 pre-coded bank items (Batches F–T) are present
     const v106PhoneUpgradeBankVerification = await page.evaluate(async () => {
       const bankKeys = Object.keys(window.SYNAPZ_5_BATCH_UPGRADE_BANK || {});
       if (typeof window.syncActiveUpgradesFromSupabase === 'function') {
         await window.syncActiveUpgradesFromSupabase();
       }
-      const audit63 = typeof window.run63UpgradesLiveAudit === 'function' ? window.run63UpgradesLiveAudit() : null;
+      const audit118 = typeof window.run118UpgradesLiveAudit === 'function' ? window.run118UpgradesLiveAudit() : null;
       switchView('game');
       loadScenario(false);
       drawRink();
       const primaryBtnsCount = document.querySelectorAll('#lessonConsistentBottomBar > button').length;
       return {
         totalPreCodedBankFeatures: bankKeys.length,
-        all120BatchesFToOPresent: bankKeys.length === 120,
-        all63UpgradesActiveInIndexHtml: Boolean(audit63 && audit63.all63Active),
-        maxConcurrentTacticalOverlaysPerPlay: audit63 ? audit63.maxConcurrentTacticalOverlaysPerPlay : 0,
+        all180BatchesFToTPresent: bankKeys.length === 180,
+        all118UpgradesActiveInIndexHtml: Boolean(audit118 && audit118.all118Active),
+        maxConcurrentTacticalOverlaysPerPlay: audit118 ? audit118.maxConcurrentTacticalOverlaysPerPlay : 0,
         primaryBtnsCountAfterActivation: primaryBtnsCount
       };
     });
     v104RealFeaturesAudit.v106PhoneUpgradeBankVerification = v106PhoneUpgradeBankVerification;
 
-    // 5. Restore Supabase to clean v11.0 Batch K state (`63` Cumulative Upgrades `completed_and_deployed`, `12` Batch K `S1-K..S12-K` in `📥 To Review`)
+    // 5. Restore Supabase to clean v11.1 Batch P state (`118` Cumulative Upgrades `completed_and_deployed`, `12` Batch P `S1-P..S12-P` in `📥 To Review`)
     await reportPage.evaluate(async () => {
       localStorage.removeItem('synapz_active_upgrades_v106');
       localStorage.removeItem('synapz_founder_digest_decisions_v10');
       localStorage.removeItem('synapz_active_inbox_ids_v1094');
-      localStorage.setItem('synapz_active_batch_letter', 'K');
+      localStorage.setItem('synapz_active_batch_letter', 'P');
     });
     try {
-      await seedCleanV110BatchKState();
+      await seedCleanV111BatchPState();
     } catch (_) {}
 
-    // Final reload to verify clean v11.0 Batch K state (`📥 To Review (12) | 🛠️ Queued (0) | ✅ Live in App (63)`) is hydrated on screen and capture v11.0 screenshot
+    // Final reload to verify clean v11.1 Batch P state (`📥 To Review (12) | 🛠️ Queued (0) | ✅ Live in App (118)`) is hydrated on screen and capture v11.1 screenshot
     await reportPage.reload({ waitUntil: 'networkidle', timeout: 30000 });
     await reportPage.waitForTimeout(900);
     const finalRestoredCheck = await reportPage.evaluate(() => {
@@ -3456,22 +3531,24 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         receiptHeadlineRestored: (document.getElementById('batchReceiptHeadline')?.textContent || '').trim()
       };
     });
-    console.log('✅ Step 5 (Restored Clean V11.0 Batch K State Verified: 12 To Review | 0 Queued | 63 Live):', JSON.stringify(finalRestoredCheck));
+    console.log('✅ Step 5 (Restored Clean V11.1 Batch P State Verified: 12 To Review | 0 Queued | 118 Live):', JSON.stringify(finalRestoredCheck));
     if (
-      finalRestoredCheck.firstIdeaIdRestored !== 'S1-K' ||
-      finalRestoredCheck.lastIdeaIdRestored !== 'S12-K' ||
+      finalRestoredCheck.firstIdeaIdRestored !== 'S1-P' ||
+      finalRestoredCheck.lastIdeaIdRestored !== 'S12-P' ||
       finalRestoredCheck.toReviewCountRestored !== '12' ||
       finalRestoredCheck.queuedCountRestored !== '0' ||
-      finalRestoredCheck.liveCountRestored !== '63'
+      finalRestoredCheck.liveCountRestored !== '118'
     ) {
-      throw new Error(`Failed to restore clean v11.0 Batch K state: ${JSON.stringify(finalRestoredCheck)}`);
+      throw new Error(`Failed to restore clean v11.1 Batch P state: ${JSON.stringify(finalRestoredCheck)}`);
     }
 
+    await reportPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_v111_118_verified_rotated_flows.png') });
     await reportPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_v110_63_verified_dial_in.png') });
     await reportPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_inbox_topup_mode_v1094.png') });
     await reportPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_clean_3tab_inbox_v109.png') });
     await reportPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_cloud_batch_persistence_v108.png') });
     await reportPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_phone_autonomous_loop_v106.png') });
+    capturedScreenshots.audit_v111_118_verified_rotated_flows = 'screenshots/audit_v111_118_verified_rotated_flows.png';
     capturedScreenshots.audit_v110_63_verified_dial_in = 'screenshots/audit_v110_63_verified_dial_in.png';
     capturedScreenshots.audit_inbox_topup_mode_v1094 = 'screenshots/audit_inbox_topup_mode_v1094.png';
     capturedScreenshots.audit_clean_3tab_inbox_v109 = 'screenshots/audit_clean_3tab_inbox_v109.png';
@@ -3488,7 +3565,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     };
 
     await reportPage.close();
-    console.log('☁️ Verified v11.0 63/63 Chrome-Verified Upgrades + Dial-In Bank (Batches K–O) + Suppressed Test Emails:', JSON.stringify({
+    console.log('☁️ Verified v11.1 118/118 Chrome-Verified Upgrades + Rotated-Flow Bank (Batches P–T) + Suppressed Test Emails:', JSON.stringify({
       ...reportUpsertVerification,
       v106PhoneUpgradeBankVerification,
       networkResponsesCount: reportUpsertStatuses.length

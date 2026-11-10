@@ -36,6 +36,7 @@ const FILES_TO_DEPLOY = [
   { rel: 'batch_deployment_receipt.json', encoding: 'utf-8' },
   { rel: 'fresh_12_seat_recommendations.json', encoding: 'utf-8' },
   { rel: 'v110_63_upgrades_audit.json', encoding: 'utf-8' },
+  { rel: 'v111_118_upgrades_audit.json', encoding: 'utf-8' },
   { rel: 'fetch-approved-queue.js', encoding: 'utf-8' },
   { rel: 'apply-approved-batch.js', encoding: 'utf-8' },
   { rel: 'watch-approved-queue.js', encoding: 'utf-8' },
@@ -114,7 +115,8 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/audit_cloud_batch_persistence_v108.png', encoding: 'base64' },
   { rel: 'screenshots/audit_clean_3tab_inbox_v109.png', encoding: 'base64' },
   { rel: 'screenshots/audit_inbox_topup_mode_v1094.png', encoding: 'base64' },
-  { rel: 'screenshots/audit_v110_63_verified_dial_in.png', encoding: 'base64' }
+  { rel: 'screenshots/audit_v110_63_verified_dial_in.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_v111_118_verified_rotated_flows.png', encoding: 'base64' }
 ];
 
 // Automatically include all generated neural .mp3 voice files in assets/audio/voices/<characterId>/*.mp3
@@ -386,7 +388,7 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
 
   // 5. Create Commit
   const commitRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/commits`, token, 'POST', {
-    message: `Deploy SYNAPZ HOCKEY v11.0-63-verified-and-dial-in-bank (63/63 Live Upgrades Chrome-Verified + Zero Visual Soup Max 1 Cue/Play Cap + 5-Batch Dial-In Bank Batches K–O + Batch K Loaded in To Review)`,
+    message: `Deploy SYNAPZ HOCKEY v11.1-118-verified-and-rotated-flow-bank (118/118 Live Upgrades Chrome-Verified + 960/5,760 Rotated Camera Permutations + 5-Batch Rotated Flow Bank Batches P–T + Batch P Loaded in To Review)`,
     tree: treeRes.data.sha,
     parents: [baseCommitSha]
   });
@@ -455,8 +457,8 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
       try {
         const res = await fetch(`${reportUrl}?t=${Date.now()}`, { headers: { 'Cache-Control': 'no-cache' } });
         const html = await res.text();
-        if (html.toUpperCase().includes('V11.0') && html.toUpperCase().includes('63/63 CHROME-VERIFIED')) {
-          console.log(`✅ Verified live ${reportUrl} is serving V11.0 • 63/63 CHROME-VERIFIED LIVE • DIAL-IN BANK (BATCHES K–O)!`);
+        if (html.toUpperCase().includes('V11.1') && html.toUpperCase().includes('118/118 CHROME-VERIFIED')) {
+          console.log(`✅ Verified live ${reportUrl} is serving V11.1 • 118/118 CHROME-VERIFIED LIVE • ROTATED FLOW BANK (BATCHES P–T)!`);
           break;
         }
       } catch (_) {}

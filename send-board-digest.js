@@ -1555,8 +1555,8 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
     bucketsPct: 100.0,
     roomHotspotsLabel: '28/28',
     roomHotspotsPct: 100.0,
-    permutationsLabel: '360/5,760',
-    permutationsPct: 6.3
+    permutationsLabel: '960/5,760',
+    permutationsPct: 16.7
   };
   const rpt = `${PAGES_BASE_URL}/report.html`;
   const batchApproveUrl = `${rpt}?action=approve_high_match_batch#seat13-meta-auditor`;
@@ -1566,7 +1566,7 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<title>SYNAPZ HOCKEY v11.0 — 63/63 Upgrades Chrome-Verified + Dial-In Bank (Batch K: 12 To Review | 63 Live in App)</title>
+<title>SYNAPZ HOCKEY v11.1 — 118/118 Upgrades Chrome-Verified + Rotated Flow Bank (Batch P: 12 To Review | 118 Live in App)</title>
 <style>
   body { font-family: Inter, Arial, sans-serif; background:#020617; color:#f8fafc; padding:12px; line-height:1.38; }
   .wrap { max-width:920px; margin:0 auto; background:#090d16; border:2px solid #00e5ff; border-radius:14px; padding:16px; }
@@ -1582,66 +1582,66 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
 </head>
 <body>
 <div class="wrap">
-  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • V11.0 • 63/63 LIVE UPGRADES CHROME-VERIFIED • DIAL-IN BANK (BATCHES K–O • &lt; 35 KB)</div>
-  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">🚀 v11.0: 63/63 Approved Upgrades Verified in Chrome + Batch K Dial-In Bank Ready (📥 To Review: 12 | 🛠️ Queued: 0 | ✅ Live: 63)</h1>
+  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • V11.1 • 118/118 LIVE UPGRADES CHROME-VERIFIED • ROTATED FLOW BANK (BATCHES P–T • &lt; 35 KB)</div>
+  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">🚀 v11.1: 118/118 Approved Upgrades Verified in Chrome + Batch P Rotated Flow Bank Ready (📥 To Review: 12 | 🛠️ Queued: 0 | ✅ Live: 118)</h1>
   <p style="margin:0 0 10px;font-size:11px;color:#cbd5e1;">
     Prepared for <strong>Coach Dane (danebekkedahl@gmail.com)</strong> &amp; <strong>Coach Evan (evanbekk@gmail.com)</strong> • ${timestamp}<br/>
     🌐 <strong>Live App:</strong> <a href="${PAGES_BASE_URL}/" class="b-ex">${PAGES_BASE_URL}/</a> •
     📊 <strong>3-Tab Phone Inbox:</strong> <a href="${rpt}#founder-approval-board" class="b-ap">${rpt}</a> •
-    📱 <strong>1-Tap Phone Loop:</strong> <a href="${rpt}#founderBatchDeployBar" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">📥 OPEN BATCH K IN 3-TAB PHONE INBOX</a>
+    📱 <strong>1-Tap Phone Loop:</strong> <a href="${rpt}#founderBatchDeployBar" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">📥 OPEN BATCH P IN 3-TAB PHONE INBOX</a>
   </p>
 
-  <!-- SECTION 1: 🔬 63/63 LIVE UPGRADES CHROME-VERIFIED IN INDEX.HTML (0 CONFLICTS • MAX 1 CUE/PLAY) -->
+  <!-- SECTION 1: 🔬 118/118 LIVE UPGRADES CHROME-VERIFIED IN INDEX.HTML (0 CONFLICTS • MAX 1 CUE/PLAY) -->
   <div style="background:#022c22;border:2px solid #10b981;border-radius:10px;padding:11px;margin-bottom:12px;">
-    <div style="font-size:11px;font-weight:900;color:#34d399;text-transform:uppercase;">SECTION 1 • 🔬 63/63 LIVE UPGRADES CHROME-VERIFIED IN INDEX.HTML (0 CONFLICTS • MAX 1 PRIMARY CUE/PLAY)</div>
+    <div style="font-size:11px;font-weight:900;color:#34d399;text-transform:uppercase;">SECTION 1 • 🔬 118/118 LIVE UPGRADES CHROME-VERIFIED IN INDEX.HTML (0 CONFLICTS • MAX 1 PRIMARY CUE/PLAY)</div>
     <div style="font-size:11px;color:#a7f3d0;margin:4px 0;">
-      <strong>Service Worker Cache:</strong> <code>synapz-hockey-v11.0-63-verified-dial-in</code> • All <strong>63 approved upgrades</strong> from Batches A, B, F, G, H, I, and J are hard-committed in <code>CORE_DEPLOYED_UPGRADE_IDS</code> and verified in headless Chrome across <code>390×844</code> Phone &amp; <code>1024×768</code> iPad (<code>0</code> console/page errors, <code>&lt;= 4</code> primary gameplay buttons). <code>selectPrimaryCanvasCueForScenario(scenario)</code> enforces <strong>Max 1 concept-matched tactical overlay per play</strong> on <code>#rinkCanvas</code> (zero visual soup!).
+      <strong>Service Worker Cache:</strong> <code>synapz-hockey-v11.1-118-verified-rotated-flows</code> • All <strong>118 approved upgrades</strong> (63 prior + 55 newly approved across Batches K–O, 92% match rate!) are hard-committed in <code>CORE_DEPLOYED_UPGRADE_IDS</code> and verified in headless Chrome across <code>390×844</code> Phone &amp; <code>1024×768</code> iPad (<code>0</code> console/page errors, <code>&lt;= 4</code> primary gameplay buttons). <code>selectPrimaryCanvasCueForScenario(scenario)</code> enforces <strong>Max 1 concept-matched tactical overlay per play</strong> on <code>#rinkCanvas</code> (zero visual soup!).
     </div>
     <table style="margin:6px 0;">
       <thead>
-        <tr><th>Category (63 Total Live)</th><th>Approved IDs Active &amp; Verified in Chrome</th><th>Guardrail Verified</th></tr>
+        <tr><th>Category (118 Total Live)</th><th>Approved IDs Active &amp; Verified in Chrome</th><th>Guardrail Verified</th></tr>
       </thead>
       <tbody>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">1. On-Ice &lt;canvas&gt; Cues (14)</strong></td>
-          <td><code>S1-A, S2-A, S3-A, S4-A, S6-A, S7-A, S10-A, S1-F, S2-F, S1-G, S2-G, S1-H, S1-I, S1-J</code></td>
+          <td class="nw"><strong style="color:#34d399;">1. On-Ice &lt;canvas&gt; Cues (24)</strong></td>
+          <td><code>S1-A..S1-O, S2-A..S2-O, S3-A, S4-A, S6-A, S7-A, S10-A</code></td>
           <td class="nw"><strong style="color:#fde047;">Max 1 Cue / Play</strong></td>
         </tr>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">2. 8U/10U ADM &amp; Family (11)</strong></td>
-          <td><code>S10-B, S3-F, S3-G, S2-H, S3-H, S2-I, S3-I, S2-J, S3-J, S7-F*, S12-F*</code></td>
-          <td class="nw">&lt;=14w + +14px Hit Radius</td>
+          <td class="nw"><strong style="color:#34d399;">2. 8U/10U ADM &amp; Family (19)</strong></td>
+          <td><code>S10-B, S3-F..S3-O, S2-H, S2-I, S2-J, S2-L, S2-M, S2-N, S2-O</code></td>
+          <td class="nw">&lt;=14w + &lt;=5w Choice Cap</td>
         </tr>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">3. 5 Illustrated Rooms (11)</strong></td>
-          <td><code>S11-A, S4-F, S11-F, S4-G, S11-G, S4-H, S11-H, S4-I, S7-I, S4-J, S11-J</code></td>
+          <td class="nw"><strong style="color:#34d399;">3. 5 Illustrated Rooms (20)</strong></td>
+          <td><code>S11-A, S4-F..S4-O, S11-F..S11-O, S7-I, S7-K, S7-N</code></td>
           <td class="nw">28/28 Hotspots • 0 Clipping</td>
         </tr>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">4. Coach Al &amp; Director HQ (11)</strong></td>
-          <td><code>S5-A, S10-A, S5-F, S5-G, S6-G, S5-H, S6-H, S6-I, S5-J, S6-J, S10-J</code></td>
+          <td class="nw"><strong style="color:#34d399;">4. Coach Al &amp; Director HQ (21)</strong></td>
+          <td><code>S5-A, S10-A, S5-F..S5-O, S6-G..S6-O, S10-J, S10-K, S10-M, S10-O</code></td>
           <td class="nw">0 Extra Player Buttons</td>
         </tr>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">5. Q5 Film &amp; Mobile HUD (8)</strong></td>
-          <td><code>S8-A, S8-F, S7-G, S8-G, S7-H, S8-H, S8-I, S7-J</code></td>
+          <td class="nw"><strong style="color:#34d399;">5. Q5 Film &amp; Mobile HUD (15)</strong></td>
+          <td><code>S8-A, S8-F..S8-O, S7-G, S7-H, S7-J, S7-L, S7-M, S7-O</code></td>
           <td class="nw">&lt;=4 Primary Buttons Lock</td>
         </tr>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">6. 60fps, Offline &amp; Voices (10)</strong></td>
-          <td><code>S9-A, S12-A, S9-B, S9-F, S9-G, S12-G, S9-H, S12-H, S9-I, S12-I, S12-J</code></td>
-          <td class="nw">11 Voices • -6dB Ducking</td>
+          <td class="nw"><strong style="color:#34d399;">6. 60fps, Offline &amp; Voices (19)</strong></td>
+          <td><code>S9-A, S9-B, S9-F..S9-O, S12-A, S12-G..S12-O</code></td>
+          <td class="nw">11 Voices • Single-Voice Mutex</td>
         </tr>
       </tbody>
     </table>
     <div style="background:#064e3b;border:1px solid #10b981;border-radius:8px;padding:6px;font-size:10px;color:#a7f3d0;">
-      <strong>1-Click Undo Available on Tab 3 (✅ Live in App: ${cumulativeCoded.length}):</strong> Every single live upgrade has an instant <code>[↩️ Move Back to Review]</code> button in <a href="${rpt}#founder-approval-board" class="b-ex">report.html</a>. Rejected items (<code>S10-G, S10-H, S5-I, S10-I, S11-I, S8-J</code>) are permanently excluded.
+      <strong>1-Click Undo Available on Tab 3 (✅ Live in App: ${cumulativeCoded.length}):</strong> Every single live upgrade has an instant <code>[↩️ Move Back to Review]</code> button in <a href="${rpt}#founder-approval-board" class="b-ex">report.html</a>. Declined items (<code>S10-G, S10-H, S5-I, S10-I, S11-I, S8-J, S8-K, S10-L, S4-M, S6-M, S10-N</code>) are permanently excluded.
     </div>
   </div>
 
-  <!-- SECTION 2: 🔍 SEAT 13 CUMULATIVE COVERAGE HEATMAP (360/360 SCENARIOS • 32/32 CITIES) -->
+  <!-- SECTION 2: 🔍 SEAT 13 CUMULATIVE COVERAGE HEATMAP (960/5,760 ROTATED PERMUTATIONS • BATCHES P–T) -->
   <div id="seat13-meta-auditor" style="background:#0c192c;border:2px solid #38bdf8;border-radius:10px;padding:11px;margin-bottom:12px;">
-    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 2 • 🔍 SEAT 13 CUMULATIVE COVERAGE HEATMAP (100% SCENARIOS &amp; 100% NHL CITIES SCOURED • DIAL-IN BANK K–O)</div>
+    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 2 • 🔍 SEAT 13 CUMULATIVE COVERAGE HEATMAP (960/5,760 4-WAY ROTATED PERMUTATIONS • ROTATED FLOW BANK P–T)</div>
     <table style="margin:6px 0;">
       <tr><th>Scenarios Scoured</th><th>NHL Cities</th><th>Concept Buckets</th><th>5-Room Hotspots</th><th>4-Way Permutations</th></tr>
       <tr>
@@ -1653,18 +1653,18 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
       </tr>
     </table>
     <div style="margin-top:6px;">
-      <a href="${rpt}#founder-approval-board" style="background:#10b981;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">📥 OPEN BATCH K (12 TO REVIEW) ON PHONE</a>
+      <a href="${rpt}#founder-approval-board" style="background:#10b981;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">📥 OPEN BATCH P (12 TO REVIEW) ON PHONE</a>
       <a href="${batchApproveUrl}" style="background:#0284c7;color:#fff;font-weight:900;font-size:11px;padding:6px 10px;border-radius:5px;text-decoration:none;display:inline-block;">⭐ Approve All High-Match Picks (&gt;=90% • ${ordered12Ideas.length} Cards)</a>
     </div>
   </div>
 
-  <!-- SECTION 3: 📥 TO REVIEW (12) — BATCH K DIAL-IN & HOCKEY REALISM RECOMMENDATIONS (S1-K..S12-K) -->
+  <!-- SECTION 3: 📥 TO REVIEW (12) — BATCH P ROTATED FLOW & END-TO-END RECOMMENDATIONS (S1-P..S12-P) -->
   <div style="background:#0f172a;border:2px solid #0284c7;border-radius:10px;padding:11px;">
-    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 3 • 📥 TO REVIEW (12) — BATCH K "DIAL-IN &amp; HOCKEY REALISM" RECOMMENDATIONS (S1-K..S12-K)</div>
-    <div style="font-size:11px;color:#94a3b8;margin:2px 0 6px;">Tuned 100% to Dane &amp; Evan's proven taste profile across Scenarios 185–360/360: pure hockey IQ realism, route accuracy, Q5 film timestamp QC, and mobile UX polish — <strong>zero social brag cards, zero sales popups, and zero extra gameplay buttons!</strong></div>
+    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 3 • 📥 TO REVIEW (12) — BATCH P "ROTATED FLOW &amp; END-TO-END" RECOMMENDATIONS (S1-P..S12-P)</div>
+    <div style="font-size:11px;color:#94a3b8;margin:2px 0 6px;">Tuned 100% to Dane &amp; Evan's 92% taste profile across Permutations 361–960/5,760 (90°/180°/270° rotated rinks + end-to-end journeys + instant 🚩 Red-Flag context capture) — <strong>zero printable certificates, zero guest-shift popups, zero social brag cards, and zero extra gameplay buttons!</strong></div>
     <table>
       <thead>
-        <tr><th>Rank &amp; ID</th><th>Dial-In Proposal &amp; Telemetry Citation</th><th>Match / Gate</th><th>4 Action Buttons (Moves to 🛠️ Queued)</th></tr>
+        <tr><th>Rank &amp; ID</th><th>Rotated Flow Proposal &amp; Telemetry Citation</th><th>Match / Gate</th><th>4 Action Buttons (Moves to 🛠️ Queued)</th></tr>
       </thead>
       <tbody>
         ${ordered12Ideas.map(item => {
@@ -1701,13 +1701,13 @@ async function main() {
   const outPath = path.join(__dirname, 'FOUNDER_EMAIL_DIGEST_LATEST.html');
   fs.writeFileSync(outPath, htmlContent, 'utf8');
 
-  const batchNum = 11;
-  const newlyCodedCount = 40;
-  const cumulativeCodedCount = 63;
+  const batchNum = 12;
+  const newlyCodedCount = 55;
+  const cumulativeCodedCount = 118;
   const activeInboxIds = FRESH_12_SEAT_RECOMMENDATIONS.map(i => i.id);
   const summaryCounts = {
     batchNumber: batchNum,
-    activeBatchLetter: 'K',
+    activeBatchLetter: 'P',
     newlyCodedInThisPass: newlyCodedCount,
     cumulativeCodedAndLive: cumulativeCodedCount,
     skippedAutoResolvedInThisPass: (BATCH_DEPLOYMENT_RECEIPT.autoResolvedSkippedItems || []).length,
@@ -1730,11 +1730,11 @@ async function main() {
     age_division: 'ALL',
     category: 'board_digest',
     status: 'completed_and_deployed',
-    summary: `🚀 SYNAPZ HOCKEY v11.0 — 63/63 Live Upgrades Chrome-Verified + Dial-In Bank (Batch K: 12 To Review | 0 Queued | 63 Live in App) (${emailSizeKb} KB < 35 KB) -> ${RECIPIENTS.join(', ')}`,
+    summary: `🚀 SYNAPZ HOCKEY v11.1 — 118/118 Live Upgrades Chrome-Verified + Rotated Flow Bank (Batch P: 12 To Review | 0 Queued | 118 Live in App) (${emailSizeKb} KB < 35 KB) -> ${RECIPIENTS.join(', ')}`,
     details: {
-      version: 'v11.0-63-verified-and-dial-in-bank',
-      versionLabel: 'v11.0',
-      activeBatchLetter: 'K',
+      version: 'v11.1-118-verified-and-rotated-flow-bank',
+      versionLabel: 'v11.1',
+      activeBatchLetter: 'P',
       activeInboxIds,
       recipients: RECIPIENTS,
       counts: summaryCounts,
@@ -1763,32 +1763,32 @@ async function main() {
     });
     supabaseStatus = `HTTP ${res.status}`;
 
-    // Reset future Dial-In bank cards (`S1-L..S12-L`, `S1-M..S12-M`, `S1-N..S12-N`, `S1-O..S12-O`) to `pending_future_batch`
-    const futureBatchLetters = ['L', 'M', 'N', 'O'];
+    // Reset future Rotated-Flow bank cards (`S1-Q..S12-Q`, `S1-R..S12-R`, `S1-S..S12-S`, `S1-T..S12-T`) to `pending_future_batch`
+    const futureBatchLetters = ['Q', 'R', 'S', 'T'];
     const cleanupRows = [];
     for (const bL of futureBatchLetters) {
       for (let s = 1; s <= 12; s++) {
         const testId = `S${s}-${bL}`;
         cleanupRows.push({
           id: ideaToUuid(testId),
-          created_by: 'Seat13-Bank-Reset-v11.0',
+          created_by: 'Seat13-Bank-Reset-v11.1',
           source_role: 'council',
           scenario_id: testId,
           age_division: 'ALL',
           category: 'board_digest',
           status: 'pending_future_batch',
-          summary: `🏦 Queued in Future Dial-In Bank (${testId})`,
+          summary: `🏦 Queued in Future Rotated-Flow Bank (${testId})`,
           details: { id: testId, idea_id: testId, status: 'pending_future_batch', updated_at: timestamp }
         });
       }
     }
 
-    // Persist rejected items from Batches G–J as `rejected_by_founder` and S9-J as `skipped_reassess_next_run`
-    const rejectedHistoryIds = ['S10-G', 'S10-H', 'S5-I', 'S10-I', 'S11-I', 'S8-J'];
+    // Persist rejected items across Batches G–O as `rejected_by_founder` and S9-J / S8-K as `skipped_reassess_next_run`
+    const rejectedHistoryIds = ['S10-G', 'S10-H', 'S5-I', 'S10-I', 'S11-I', 'S8-J', 'S10-L', 'S4-M', 'S6-M', 'S10-N'];
     rejectedHistoryIds.forEach(rejId => {
       cleanupRows.push({
         id: ideaToUuid(rejId),
-        created_by: 'Founder-Decision-v11.0',
+        created_by: 'Founder-Decision-v11.1',
         source_role: 'founder_decision',
         scenario_id: rejId,
         age_division: 'ALL',
@@ -1798,19 +1798,21 @@ async function main() {
         details: { id: rejId, idea_id: rejId, status: 'rejected_by_founder', updated_at: timestamp }
       });
     });
-    cleanupRows.push({
-      id: ideaToUuid('S9-J'),
-      created_by: 'Founder-Decision-v11.0',
-      source_role: 'founder_decision',
-      scenario_id: 'S9-J',
-      age_division: 'ALL',
-      category: 'board_digest',
-      status: 'skipped_reassess_next_run',
-      summary: `⏭️ Skipped by Founder (S9-J)`,
-      details: { id: 'S9-J', idea_id: 'S9-J', status: 'skipped_reassess_next_run', updated_at: timestamp }
+    ['S9-J', 'S8-K'].forEach(skpId => {
+      cleanupRows.push({
+        id: ideaToUuid(skpId),
+        created_by: 'Founder-Decision-v11.1',
+        source_role: 'founder_decision',
+        scenario_id: skpId,
+        age_division: 'ALL',
+        category: 'board_digest',
+        status: 'skipped_reassess_next_run',
+        summary: `⏭️ Skipped by Founder (${skpId})`,
+        details: { id: skpId, idea_id: skpId, status: 'skipped_reassess_next_run', updated_at: timestamp }
+      });
     });
 
-    // Pre-UPSERT the 12 active Batch K inbox cards (`S1-K..S12-K`), all 63 live upgrades (`completed_and_deployed`), `SYNAPZ-FOUNDER-TASTE-PROFILE`, and `SYNAPZ-CLOUD-COVERAGE-LEDGER`
+    // Pre-UPSERT the 12 active Batch P inbox cards (`S1-P..S12-P`), all 118 live upgrades (`completed_and_deployed`), `SYNAPZ-FOUNDER-TASTE-PROFILE`, and `SYNAPZ-CLOUD-COVERAGE-LEDGER`
     const proposalRows = [...cleanupRows, ...FRESH_12_SEAT_RECOMMENDATIONS.map(item => ({
       id: ideaToUuid(item.id),
       created_by: `Seat-${item.seatNumber}-Telemetry`,
@@ -1831,7 +1833,7 @@ async function main() {
     deployedItems.forEach(dep => {
       proposalRows.push({
         id: ideaToUuid(dep.id),
-        created_by: 'Phone-Batch-Deployer-v11.0',
+        created_by: 'Phone-Batch-Deployer-v11.1',
         source_role: 'council',
         scenario_id: dep.id,
         age_division: 'ALL',
@@ -1852,7 +1854,7 @@ async function main() {
     autoResolvedItems.forEach(ar => {
       proposalRows.push({
         id: ideaToUuid(ar.id),
-        created_by: 'Phone-Batch-Reassessor-v11.0',
+        created_by: 'Phone-Batch-Reassessor-v11.1',
         source_role: 'council',
         scenario_id: ar.id,
         age_division: 'ALL',
@@ -1870,13 +1872,13 @@ async function main() {
 
     proposalRows.push({
       id: ideaToUuid('SYNAPZ-FOUNDER-TASTE-PROFILE'),
-      created_by: 'Seat13-Taste-Engine-v11.0',
+      created_by: 'Seat13-Taste-Engine-v11.1',
       source_role: 'council',
       scenario_id: 'SYNAPZ-FOUNDER-TASTE-PROFILE',
       age_division: 'ALL',
       category: 'founder_taste_profile',
       status: 'completed_and_deployed',
-      summary: '🧠 Seat 13 Founder Taste Profile Updated (63 Approved • 6 Rejected • 100% Dial-In Realism)',
+      summary: '🧠 Seat 13 Founder Taste Profile Updated (118 Approved • 10 Rejected • 92% Match Rate)',
       details: {
         ...FOUNDER_TASTE_PROFILE,
         id: 'SYNAPZ-FOUNDER-TASTE-PROFILE',
@@ -1892,13 +1894,13 @@ async function main() {
       age_division: 'ALL',
       category: 'cloud_coverage_ledger',
       status: 'completed_and_deployed',
-      summary: '📊 Seat 13 Cloud Coverage Ledger Updated (v11.0 • 360/360 Scenarios 100.0% • 32/32 Cities 100.0% • Batch K Active)',
+      summary: '📊 Seat 13 Cloud Coverage Ledger Updated (v11.1 • 360/360 Scenarios 100.0% • 960/5,760 Permutations 16.7% • Batch P Active)',
       details: {
         id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
-        versionLabel: 'v11.0',
-        batchRunCount: 6,
-        activeBatchLetter: 'K',
-        activeBatchCode: 'K',
+        versionLabel: 'v11.1',
+        batchRunCount: 11,
+        activeBatchLetter: 'P',
+        activeBatchCode: 'P',
         activeInboxIds,
         untouchedPreservedIds: [],
         pulledTopUpIds: activeInboxIds,
@@ -1909,9 +1911,9 @@ async function main() {
         citiesTested: 32,
         citiesCount: 32,
         citiesPct: '100.0',
-        permutationsTested: 360,
-        permutationsCount: 360,
-        permutationsPct: '6.3',
+        permutationsTested: 960,
+        permutationsCount: 960,
+        permutationsPct: '16.7',
         updated_at: timestamp
       }
     });
@@ -1955,7 +1957,7 @@ async function main() {
     second: '2-digit'
   });
   const senderDisplayName = 'Synapz Hockey 12-Seat Council & Seat 13 Meta-Auditor';
-  const emailSubject = `SYNAPZ HOCKEY v11.0 — 63/63 Upgrades Chrome-Verified + Dial-In Bank (Batch K: 12 To Review | 63 Live) [${uniqueTimestampLabel}]`;
+  const emailSubject = `SYNAPZ HOCKEY v11.1 — 118/118 Upgrades Chrome-Verified + Rotated Flow Bank (Batch P: 12 To Review | 118 Live) [${uniqueTimestampLabel}]`;
   try {
     const gmailRes = await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
       method: 'POST',

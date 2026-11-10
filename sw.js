@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v11.0-63-verified-dial-in';
+const CACHE_NAME = 'synapz-hockey-v11.1-118-verified-rotated-flows';
 const ASSETS = [
   './',
   './index.html',
