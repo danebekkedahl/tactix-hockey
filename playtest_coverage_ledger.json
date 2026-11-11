@@ -1,6 +1,6 @@
 {
-  "lastUpdatedAt": "2026-11-11T12:24:43.172Z",
-  "totalRuns": 43,
+  "lastUpdatedAt": "2026-11-11T22:25:39.379Z",
+  "totalRuns": 48,
   "stepAApprovalGateCheck": {
     "statusChecked": "approved_for_build / approved_by_founder",
     "approvedItemsCount": 20,
@@ -764,7 +764,7 @@
           "viewport": "iPhone_390x844",
           "screen": "2-Button Entry",
           "checkedButtons": 2,
-          "checkedImages": 20,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -773,7 +773,7 @@
           "viewport": "iPhone_390x844",
           "screen": "Main Rink Lobby",
           "checkedButtons": 0,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -782,7 +782,7 @@
           "viewport": "iPhone_390x844",
           "screen": "Locker Room",
           "checkedButtons": 0,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -791,7 +791,7 @@
           "viewport": "iPhone_390x844",
           "screen": "Coaches Office",
           "checkedButtons": 0,
-          "checkedImages": 19,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -800,7 +800,7 @@
           "viewport": "iPhone_390x844",
           "screen": "Pro Shop",
           "checkedButtons": 0,
-          "checkedImages": 19,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -809,7 +809,7 @@
           "viewport": "iPhone_390x844",
           "screen": "Clubhouse",
           "checkedButtons": 0,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -818,7 +818,7 @@
           "viewport": "iPhone_390x844",
           "screen": "Map",
           "checkedButtons": 2,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -826,8 +826,8 @@
         {
           "viewport": "iPhone_390x844",
           "screen": "On-Ice Drill",
-          "checkedButtons": 4,
-          "checkedImages": 20,
+          "checkedButtons": 0,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -836,7 +836,7 @@
           "viewport": "iPad_Portrait_768x1024",
           "screen": "2-Button Entry",
           "checkedButtons": 2,
-          "checkedImages": 20,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -845,7 +845,7 @@
           "viewport": "iPad_Portrait_768x1024",
           "screen": "Main Rink Lobby",
           "checkedButtons": 0,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -854,7 +854,7 @@
           "viewport": "iPad_Portrait_768x1024",
           "screen": "Locker Room",
           "checkedButtons": 0,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -863,7 +863,7 @@
           "viewport": "iPad_Portrait_768x1024",
           "screen": "Coaches Office",
           "checkedButtons": 0,
-          "checkedImages": 19,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -872,7 +872,7 @@
           "viewport": "iPad_Portrait_768x1024",
           "screen": "Pro Shop",
           "checkedButtons": 0,
-          "checkedImages": 19,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -881,7 +881,7 @@
           "viewport": "iPad_Portrait_768x1024",
           "screen": "Clubhouse",
           "checkedButtons": 0,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -890,7 +890,7 @@
           "viewport": "iPad_Portrait_768x1024",
           "screen": "Map",
           "checkedButtons": 2,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -898,8 +898,8 @@
         {
           "viewport": "iPad_Portrait_768x1024",
           "screen": "On-Ice Drill",
-          "checkedButtons": 4,
-          "checkedImages": 20,
+          "checkedButtons": 0,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -908,7 +908,7 @@
           "viewport": "iPad_Landscape_1024x768",
           "screen": "2-Button Entry",
           "checkedButtons": 2,
-          "checkedImages": 20,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -917,7 +917,7 @@
           "viewport": "iPad_Landscape_1024x768",
           "screen": "Main Rink Lobby",
           "checkedButtons": 0,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -926,7 +926,7 @@
           "viewport": "iPad_Landscape_1024x768",
           "screen": "Locker Room",
           "checkedButtons": 0,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -935,7 +935,7 @@
           "viewport": "iPad_Landscape_1024x768",
           "screen": "Coaches Office",
           "checkedButtons": 0,
-          "checkedImages": 19,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -944,7 +944,7 @@
           "viewport": "iPad_Landscape_1024x768",
           "screen": "Pro Shop",
           "checkedButtons": 0,
-          "checkedImages": 19,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -953,7 +953,7 @@
           "viewport": "iPad_Landscape_1024x768",
           "screen": "Clubhouse",
           "checkedButtons": 0,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -962,7 +962,7 @@
           "viewport": "iPad_Landscape_1024x768",
           "screen": "Map",
           "checkedButtons": 2,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -970,8 +970,8 @@
         {
           "viewport": "iPad_Landscape_1024x768",
           "screen": "On-Ice Drill",
-          "checkedButtons": 4,
-          "checkedImages": 20,
+          "checkedButtons": 0,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -980,7 +980,7 @@
           "viewport": "Desktop_1280x800",
           "screen": "2-Button Entry",
           "checkedButtons": 2,
-          "checkedImages": 20,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -989,7 +989,7 @@
           "viewport": "Desktop_1280x800",
           "screen": "Main Rink Lobby",
           "checkedButtons": 0,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -998,7 +998,7 @@
           "viewport": "Desktop_1280x800",
           "screen": "Locker Room",
           "checkedButtons": 0,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -1007,7 +1007,7 @@
           "viewport": "Desktop_1280x800",
           "screen": "Coaches Office",
           "checkedButtons": 0,
-          "checkedImages": 19,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -1016,7 +1016,7 @@
           "viewport": "Desktop_1280x800",
           "screen": "Pro Shop",
           "checkedButtons": 0,
-          "checkedImages": 19,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -1025,7 +1025,7 @@
           "viewport": "Desktop_1280x800",
           "screen": "Clubhouse",
           "checkedButtons": 0,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -1034,7 +1034,7 @@
           "viewport": "Desktop_1280x800",
           "screen": "Map",
           "checkedButtons": 2,
-          "checkedImages": 21,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0
@@ -1042,8 +1042,8 @@
         {
           "viewport": "Desktop_1280x800",
           "screen": "On-Ice Drill",
-          "checkedButtons": 4,
-          "checkedImages": 20,
+          "checkedButtons": 0,
+          "checkedImages": 18,
           "brokenImgs": 0,
           "collisions": 0,
           "offscreen": 0

@@ -38,6 +38,7 @@ const FILES_TO_DEPLOY = [
   { rel: 'v110_63_upgrades_audit.json', encoding: 'utf-8' },
   { rel: 'v111_118_upgrades_audit.json', encoding: 'utf-8' },
   { rel: 'v112_173_upgrades_audit.json', encoding: 'utf-8' },
+  { rel: 'v120_242_upgrades_audit.json', encoding: 'utf-8' },
   { rel: 'fetch-approved-queue.js', encoding: 'utf-8' },
   { rel: 'apply-approved-batch.js', encoding: 'utf-8' },
   { rel: 'watch-approved-queue.js', encoding: 'utf-8' },
@@ -118,7 +119,8 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/audit_inbox_topup_mode_v1094.png', encoding: 'base64' },
   { rel: 'screenshots/audit_v110_63_verified_dial_in.png', encoding: 'base64' },
   { rel: 'screenshots/audit_v111_118_verified_rotated_flows.png', encoding: 'base64' },
-  { rel: 'screenshots/audit_v112_173_verified_6pos_pilot.png', encoding: 'base64' }
+  { rel: 'screenshots/audit_v112_173_verified_6pos_pilot.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_v120_clean_slate_portals.png', encoding: 'base64' }
 ];
 
 // Automatically include all generated neural .mp3 voice files in assets/audio/voices/<characterId>/*.mp3
@@ -320,26 +322,51 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
     refRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/ref/heads/main`, token);
   }
   const baseCommitSha = refRes.data.object.sha;
+  const baseCommitObj = await ghApi(`/repos/${owner}/${REPO_NAME}/git/commits/${baseCommitSha}`, token);
+  const baseTreeSha = (baseCommitObj.ok && baseCommitObj.data?.tree?.sha) ? baseCommitObj.data.tree.sha : baseCommitSha;
 
-  // 3. Create blobs for all files
-  const treeItems = [
-    {
-      path: '.nojekyll',
-      mode: '100644',
-      type: 'blob',
-      content: ''
+  const existingBlobShas = new Map();
+  const existingTreeRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/trees/${baseTreeSha}?recursive=1`, token);
+  if (existingTreeRes.ok && Array.isArray(existingTreeRes.data?.tree)) {
+    for (const entry of existingTreeRes.data.tree) {
+      if (entry.type === 'blob' && entry.path && entry.sha) {
+        existingBlobShas.set(entry.path, entry.sha);
+      }
     }
-  ];
+  }
 
+  function computeGitBlobSha(buf) {
+    const header = Buffer.from(`blob ${buf.length}\0`, 'utf8');
+    return crypto.createHash('sha1').update(header).update(buf).digest('hex');
+  }
+
+  // 3. Create blobs ONLY for changed or new files (deduplicated by path)
+  const uniqueDeployFiles = [];
+  const seenPaths = new Set();
+  for (const f of FILES_TO_DEPLOY) {
+    if (!seenPaths.has(f.rel)) {
+      seenPaths.add(f.rel);
+      uniqueDeployFiles.push(f);
+    }
+  }
+
+  const treeItems = [];
+  let unchangedSkippedCount = 0;
   let idxCursor = 0;
-  const BLOB_CONCURRENCY = 8;
+  const BLOB_CONCURRENCY = 6;
   async function blobWorker() {
-    while (idxCursor < FILES_TO_DEPLOY.length) {
-      const item = FILES_TO_DEPLOY[idxCursor++];
+    while (idxCursor < uniqueDeployFiles.length) {
+      const item = uniqueDeployFiles[idxCursor++];
       const fullPath = path.join(WORKSPACE_A, item.rel);
       if (!fs.existsSync(fullPath)) continue;
+      const rawBuf = fs.readFileSync(fullPath);
+      const localGitSha = computeGitBlobSha(rawBuf);
+      if (existingBlobShas.get(item.rel) === localGitSha) {
+        unchangedSkippedCount++;
+        continue;
+      }
       if (item.encoding === 'base64') {
-        const b64 = fs.readFileSync(fullPath).toString('base64');
+        const b64 = rawBuf.toString('base64');
         const blobRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/blobs`, token, 'POST', {
           content: b64,
           encoding: 'base64'
@@ -353,7 +380,7 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
           });
         }
       } else {
-        const txt = fs.readFileSync(fullPath, 'utf-8');
+        const txt = rawBuf.toString('utf-8');
         const blobRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/blobs`, token, 'POST', {
           content: txt,
           encoding: 'utf-8'
@@ -370,27 +397,36 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
     }
   }
   await Promise.all(Array.from({ length: BLOB_CONCURRENCY }, () => blobWorker()));
-  console.log(`  📄 Staged ${treeItems.length} files & neural .mp3 voice clips`);
+  console.log(`  📄 Delta-staged ${treeItems.length} changed/new files (${unchangedSkippedCount} unchanged assets reused via base_tree)`);
 
-  // 4. Create Git Tree
-  let treeRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/trees`, token, 'POST', {
-    base_tree: baseCommitSha,
-    tree: treeItems
-  });
-  if (!treeRes.ok && treeItems.some(t => t.path.startsWith('.github/workflows/'))) {
-    const filteredTree = treeItems.filter(t => !t.path.startsWith('.github/workflows/'));
-    treeRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/trees`, token, 'POST', {
-      base_tree: baseCommitSha,
-      tree: filteredTree
-    });
+  // 4. Create Git Tree incrementally in chunks of 35 to avoid GitHub API 422 timeouts
+  let currentTreeSha = baseTreeSha;
+  if (treeItems.length > 0) {
+    const CHUNK_SIZE = 35;
+    for (let offset = 0; offset < treeItems.length; offset += CHUNK_SIZE) {
+      const chunk = treeItems.slice(offset, offset + CHUNK_SIZE);
+      let treeRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/trees`, token, 'POST', {
+        base_tree: currentTreeSha,
+        tree: chunk
+      });
+      if (!treeRes.ok && chunk.some(t => t.path.startsWith('.github/workflows/'))) {
+        const filteredChunk = chunk.filter(t => !t.path.startsWith('.github/workflows/'));
+        treeRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/trees`, token, 'POST', {
+          base_tree: currentTreeSha,
+          tree: filteredChunk
+        });
+      }
+      if (!treeRes.ok) {
+        throw new Error(`Failed to create Git tree chunk at ${offset}: ${JSON.stringify(treeRes.data)}`);
+      }
+      currentTreeSha = treeRes.data.sha;
+    }
   }
-  if (!treeRes.ok) {
-    throw new Error(`Failed to create Git tree: ${JSON.stringify(treeRes.data)}`);
-  }
+  const treeRes = { ok: true, data: { sha: currentTreeSha } };
 
   // 5. Create Commit
   const commitRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/commits`, token, 'POST', {
-    message: `Deploy SYNAPZ HOCKEY v11.2-173-verified-and-6position-pilot-bank (173/173 Live Upgrades Chrome-Verified + 1,680/5,760 6-Position & Rotated Permutations + 6-Batch Pilot Bank Batches U–Z + Batch U Loaded in To Review)`,
+    message: `Deploy SYNAPZ HOCKEY v12.0-clean-slate-accounts-and-portals (242/242 Live Upgrades Chrome-Verified + Clean-Slate 3-Button Entry Gate + 4-Slot Player Profiles + Blooket Association->Coach->Player Portals + Batch AA Loaded in To Review)`,
     tree: treeRes.data.sha,
     parents: [baseCommitSha]
   });
@@ -459,8 +495,8 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
       try {
         const res = await fetch(`${reportUrl}?t=${Date.now()}`, { headers: { 'Cache-Control': 'no-cache' } });
         const html = await res.text();
-        if (html.toUpperCase().includes('V11.2') && html.toUpperCase().includes('173/173 CHROME-VERIFIED')) {
-          console.log(`✅ Verified live ${reportUrl} is serving V11.2 • 173/173 CHROME-VERIFIED LIVE • 6-POSITION & PILOT BANK (BATCHES U–Z)!`);
+        if (html.toUpperCase().includes('V12.0') && html.toUpperCase().includes('242/242 CHROME-VERIFIED')) {
+          console.log(`✅ Verified live ${reportUrl} is serving V12.0 • 242/242 CHROME-VERIFIED LIVE • PORTAL & 4-SLOT BANK (BATCHES AA–AD)!`);
           break;
         }
       } catch (_) {}

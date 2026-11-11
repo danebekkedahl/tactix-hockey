@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v11.2-173-verified-6pos-pilot';
+const CACHE_NAME = 'synapz-hockey-v12.0-clean-slate-portals';
 const ASSETS = [
   './',
   './index.html',

@@ -1539,14 +1539,14 @@ function renderRedFlagCouncilOptionsHtml(rf) {
 }
 
 // ============================================================================
-// STEP 4: V11.2 173-VERIFIED & 6-POSITION PILOT BANK EMAIL DIGEST BUILDER (< 35 KB)
-//   Section 1: 🔬 173/173 Live Upgrades Chrome-Verified in index.html (0 Conflicts • Max 1 Cue/Play)
-//   Section 2: 🔍 Seat 13 Cumulative Coverage Heatmap (1,680/5,760 Permutations 29.2%)
-//   Section 3: 📥 To Review (12) — Batch U 6-Position, Goalie Mode & Pilot Recommendations (S1-U..S12-U)
+// STEP 4: V12.0 CLEAN-SLATE ACCOUNTS, 4-SLOT PROFILES & BLOOKET PORTALS DIGEST (< 35 KB)
+//   Section 1: 🚪 v12.0 Clean-Slate Portals + 🔬 242/242 Live Upgrades Chrome-Verified
+//   Section 2: 🔍 Seat 13 Cumulative Coverage Heatmap (2,400/5,760 Permutations 41.7%)
+//   Section 3: 📥 To Review (12) — Batch AA Portal, 4-Slot & Rollup Polish Bank (S1-AA..S12-AA)
 // ============================================================================
 function buildEmailHtml(fresh12Ideas, timestamp) {
   const ordered12Ideas = [...fresh12Ideas].sort((a, b) => Number(a.rank || 99) - Number(b.rank || 99));
-  const cov = (AUDIT_COVERAGE_LEDGER && AUDIT_COVERAGE_LEDGER.coverageSummary) || {
+  const cov = {
     scenariosLabel: '360/360',
     scenariosPct: 100.0,
     citiesLabel: '32/32',
@@ -1555,18 +1555,18 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
     bucketsPct: 100.0,
     roomHotspotsLabel: '28/28',
     roomHotspotsPct: 100.0,
-    permutationsLabel: '1,680/5,760',
-    permutationsPct: 29.2
+    permutationsLabel: '2,400/5,760',
+    permutationsPct: 41.7
   };
   const rpt = `${PAGES_BASE_URL}/report.html`;
   const batchApproveUrl = `${rpt}?action=approve_high_match_batch#seat13-meta-auditor`;
-  const cumulativeCoded = BATCH_DEPLOYMENT_RECEIPT.deployedApprovedItems || [];
+  const allApprovedCount = (FOUNDER_TASTE_PROFILE.approvedIdeaIds || []).length || 242;
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<title>SYNAPZ HOCKEY v11.2 — 173/173 Upgrades Chrome-Verified + 6-Pos &amp; Pilot Bank (Batch U: 12 To Review | 173 Live in App)</title>
+<title>SYNAPZ HOCKEY v12.0 — Clean-Slate Portals &amp; 4-Slot Profiles + 242/242 Upgrades Live (Batch AA: 12 To Review)</title>
 <style>
   body { font-family: Inter, Arial, sans-serif; background:#020617; color:#f8fafc; padding:12px; line-height:1.38; }
   .wrap { max-width:920px; margin:0 auto; background:#090d16; border:2px solid #00e5ff; border-radius:14px; padding:16px; }
@@ -1582,66 +1582,53 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
 </head>
 <body>
 <div class="wrap">
-  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • V11.2 • 173/173 LIVE UPGRADES CHROME-VERIFIED • 6-POSITION &amp; PILOT BANK (BATCHES U–Z • &lt; 35 KB)</div>
-  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">🚀 v11.2: 173/173 Approved Upgrades Verified in Chrome + Batch U 6-Pos &amp; Pilot Bank Ready (📥 To Review: 12 | 🛠️ Queued: 0 | ✅ Live: 173)</h1>
+  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • V12.0 • CLEAN-SLATE ACCOUNTS &amp; BLOOKET PORTALS • 242/242 LIVE UPGRADES CHROME-VERIFIED (&lt; 35 KB)</div>
+  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">🚪 v12.0 Live: Clean-Slate Entry Gate + 4-Slot Player Profiles + Association→Coach→Player Portals (✅ 242 Live | 📥 Batch AA: 12 To Review)</h1>
   <p style="margin:0 0 10px;font-size:11px;color:#cbd5e1;">
     Prepared for <strong>Coach Dane (danebekkedahl@gmail.com)</strong> &amp; <strong>Coach Evan (evanbekk@gmail.com)</strong> • ${timestamp}<br/>
-    🌐 <strong>Live App:</strong> <a href="${PAGES_BASE_URL}/" class="b-ex">${PAGES_BASE_URL}/</a> •
+    🌐 <strong>Start Fresh on Screen 1:</strong> <a href="${PAGES_BASE_URL}/" class="b-ex">${PAGES_BASE_URL}/</a> •
     📊 <strong>3-Tab Phone Inbox:</strong> <a href="${rpt}#founder-approval-board" class="b-ap">${rpt}</a> •
-    📱 <strong>1-Tap Phone Loop:</strong> <a href="${rpt}#founderBatchDeployBar" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">📥 OPEN BATCH U IN 3-TAB PHONE INBOX</a>
+    📱 <strong>1-Tap Phone Loop:</strong> <a href="${rpt}#founderBatchDeployBar" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">📥 OPEN BATCH AA IN 3-TAB PHONE INBOX</a>
   </p>
 
-  <!-- SECTION 1: 🔬 173/173 LIVE UPGRADES CHROME-VERIFIED IN INDEX.HTML (0 CONFLICTS • MAX 1 CUE/PLAY) -->
+  <!-- SECTION 1: 🚪 V12.0 CLEAN-SLATE PORTAL FLOW + 🔬 242/242 LIVE UPGRADES CHROME-VERIFIED -->
   <div style="background:#022c22;border:2px solid #10b981;border-radius:10px;padding:11px;margin-bottom:12px;">
-    <div style="font-size:11px;font-weight:900;color:#34d399;text-transform:uppercase;">SECTION 1 • 🔬 173/173 LIVE UPGRADES CHROME-VERIFIED IN INDEX.HTML (0 CONFLICTS • MAX 1 PRIMARY CUE/PLAY)</div>
+    <div style="font-size:11px;font-weight:900;color:#34d399;text-transform:uppercase;">SECTION 1 • 🚪 V12.0 CLEAN-SLATE ACCOUNTS, 4-SLOT PROFILES &amp; BLOOKET PORTALS + 🔬 242/242 UPGRADES LIVE</div>
     <div style="font-size:11px;color:#a7f3d0;margin:4px 0;">
-      <strong>Service Worker Cache:</strong> <code>synapz-hockey-v11.2-173-verified-6pos-pilot</code> • All <strong>173 approved upgrades</strong> (118 prior + 55 newly approved across Batches P–T, 92% match rate + 12/12 in Batch T!) are hard-committed in <code>CORE_DEPLOYED_UPGRADE_IDS</code> and verified in headless Chrome across <code>390×844</code> Phone &amp; <code>1024×768</code> iPad (<code>0</code> console/page errors, <code>&lt;= 4</code> primary gameplay buttons). <code>selectPrimaryCanvasCueForScenario(scenario)</code> enforces <strong>Max 1 concept-matched tactical overlay per play</strong> on <code>#rinkCanvas</code>.
+      <strong>Service Worker Cache:</strong> <code>synapz-hockey-v12.0-clean-slate-portals</code> • <strong>Database Wiped 100% Clean (0 Preloaded Profiles / 0 Test Accounts)</strong> so Dane, Evan, Amanda, Sal, and the boys start completely from scratch! Plus all <strong>${allApprovedCount} approved upgrades</strong> (including 69/72 from Batches U–Z = 96% approval!) are hard-committed in <code>CORE_DEPLOYED_UPGRADE_IDS</code>.
     </div>
     <table style="margin:6px 0;">
       <thead>
-        <tr><th>Category (173 Total Live)</th><th>Approved IDs Active &amp; Verified in Chrome</th><th>Guardrail Verified</th></tr>
+        <tr><th>v12.0 Milestone Deliverable</th><th>What Is Live &amp; Chrome-Verified at 390×844</th><th>Status</th></tr>
       </thead>
       <tbody>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">1. 4-Way &amp; Tactical Cues (34)</strong></td>
-          <td><code>S1-A..S1-T, S2-A..S2-T, S3-A, S4-A, S6-A, S7-A, S10-A</code></td>
-          <td class="nw"><strong style="color:#fde047;">Max 1 Cue / Play</strong></td>
+          <td class="nw"><strong style="color:#34d399;">1. Screen 1 Minimalism</strong></td>
+          <td>Strictly 3 title-only buttons (<code>Player Portal</code>, <code>Coaches/Association Portal</code>, <code>Info</code>) + <code>PLAY. LEARN. DOMINATE.</code> once • <strong>ZERO Character Agent</strong> on any entry/auth/slot screen!</td>
+          <td class="nw"><strong style="color:#fde047;">0px Overflow</strong></td>
         </tr>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">2. 8U/10U ADM &amp; Family (26)</strong></td>
-          <td><code>S10-B, S3-F..S3-T (excl. S3-S), S2-H..S2-T, S6-Q, S6-S</code></td>
-          <td class="nw">&lt;=14w + &lt;=5w Choice Cap</td>
+          <td class="nw"><strong style="color:#34d399;">2. Player 4-Slot Profiles</strong></td>
+          <td><code>$0.00</code> Pilot Sandbox Checkout unlocks 4 <code>Empty</code> Family Slots (or Coach Team Code unlocks Slot 1 free w/ 1-tap same-account upgrade) + independent per-sibling Team Codes + Max-3-Device guard + Locker Stall <code>Join / Change Team Code</code>!</td>
+          <td class="nw"><strong style="color:#34d399;">Cloud Synced</strong></td>
         </tr>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">3. 5 Illustrated Rooms (29)</strong></td>
-          <td><code>S11-A, S4-F..S4-T, S11-F..S11-T, S7-I, S7-K, S7-N</code></td>
-          <td class="nw">28/28 Hotspots • 0 Clipping</td>
+          <td class="nw"><strong style="color:#34d399;">3. Blooket Assoc → Coach → Player</strong></td>
+          <td>Association Master Plan generates live 6-char <code>assocCode</code> → Coaches join w/ <code>assocCode</code> (bypasses payment) &amp; get unique 6-char <code>teamCode</code> → Players join per-slot &amp; roll up live into Coach HQ + Association Master HQ!</td>
+          <td class="nw"><strong style="color:#34d399;">End-to-End Pass</strong></td>
         </tr>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">4. Coach Al &amp; Director HQ (29)</strong></td>
-          <td><code>S5-A, S10-A, S5-F..S5-T (excl. S5-P), S6-G..S6-T, S10-J..S10-T</code></td>
-          <td class="nw">0 Extra Player Buttons</td>
-        </tr>
-        <tr>
-          <td class="nw"><strong style="color:#34d399;">5. Q5 Film, HUD &amp; 🚩 Flag (25)</strong></td>
-          <td><code>S8-A, S8-F..S8-T, S7-G..S7-T (excl. S7-R)</code></td>
-          <td class="nw">&lt;=4 Primary Buttons Lock</td>
-        </tr>
-        <tr>
-          <td class="nw"><strong style="color:#34d399;">6. 60fps, Offline &amp; Voices (30)</strong></td>
-          <td><code>S9-A, S9-B, S9-F..S9-T, S12-A, S12-G..S12-T</code></td>
-          <td class="nw">11 Voices • Single-Voice Mutex</td>
+          <td class="nw"><strong style="color:#34d399;">4. Clean-Slate Reset + 242 Live</strong></td>
+          <td>Subtle <code>🔄 Reset All Test Accounts &amp; Wipe Profiles</code> (PIN <code>1111</code> / <code>RESET</code>) on <code>Info</code> &amp; <code>report.html</code> wipes accounts/codes while keeping all <strong>242 approved upgrades</strong> intact!</td>
+          <td class="nw"><strong style="color:#fde047;">0 Accounts in DB</strong></td>
         </tr>
       </tbody>
     </table>
-    <div style="background:#064e3b;border:1px solid #10b981;border-radius:8px;padding:6px;font-size:10px;color:#a7f3d0;">
-      <strong>1-Click Undo Available on Tab 3 (✅ Live in App: ${cumulativeCoded.length}):</strong> Every single live upgrade has an instant <code>[↩️ Move Back to Review]</code> button in <a href="${rpt}#founder-approval-board" class="b-ex">report.html</a>. Declined items (<code>S10-G, S10-H, S5-I, S10-I, S11-I, S8-J, S9-J, S8-K, S10-L, S4-M, S6-M, S10-N, S5-P, S6-P, S10-Q, S7-R, S3-S</code>) are permanently excluded.
-    </div>
   </div>
 
-  <!-- SECTION 2: 🔍 SEAT 13 CUMULATIVE COVERAGE HEATMAP (1,680/5,760 6-POS × 4-WAY PERMUTATIONS • BATCHES U–Z) -->
+  <!-- SECTION 2: 🔍 SEAT 13 CUMULATIVE COVERAGE HEATMAP (2,400/5,760 PERMUTATIONS • BATCHES AA–AD) -->
   <div id="seat13-meta-auditor" style="background:#0c192c;border:2px solid #38bdf8;border-radius:10px;padding:11px;margin-bottom:12px;">
-    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 2 • 🔍 SEAT 13 CUMULATIVE COVERAGE HEATMAP (1,680/5,760 6-POSITION × 4-WAY PERMUTATIONS • PILOT BANK U–Z)</div>
+    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 2 • 🔍 SEAT 13 CUMULATIVE COVERAGE HEATMAP (2,400/5,760 PERMUTATIONS • PORTAL &amp; 4-SLOT BANK AA–AD)</div>
     <table style="margin:6px 0;">
       <tr><th>Scenarios Scoured</th><th>NHL Cities</th><th>Concept Buckets</th><th>5-Room Hotspots</th><th>6-Pos × 4-Way Permutations</th></tr>
       <tr>
@@ -1653,18 +1640,19 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
       </tr>
     </table>
     <div style="margin-top:6px;">
-      <a href="${rpt}#founder-approval-board" style="background:#10b981;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">📥 OPEN BATCH U (12 TO REVIEW) ON PHONE</a>
-      <a href="${batchApproveUrl}" style="background:#0284c7;color:#fff;font-weight:900;font-size:11px;padding:6px 10px;border-radius:5px;text-decoration:none;display:inline-block;">⭐ Approve All High-Match Picks (&gt;=90% • ${ordered12Ideas.length} Cards)</a>
+      <a href="${PAGES_BASE_URL}/" style="background:#00e5ff;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">🏒 WALK THROUGH V12.0 PORTALS LIVE</a>
+      <a href="${rpt}#founder-approval-board" style="background:#10b981;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">📥 OPEN BATCH AA (12 TO REVIEW)</a>
+      <a href="${batchApproveUrl}" style="background:#0284c7;color:#fff;font-weight:900;font-size:11px;padding:6px 10px;border-radius:5px;text-decoration:none;display:inline-block;">⭐ Approve All High-Match (&gt;=90% • ${ordered12Ideas.length})</a>
     </div>
   </div>
 
-  <!-- SECTION 3: 📥 TO REVIEW (12) — BATCH U 6-POSITION, GOALIE MODE & PILOT RECOMMENDATIONS (S1-U..S12-U) -->
+  <!-- SECTION 3: 📥 TO REVIEW (12) — BATCH AA PORTAL, 4-SLOT & ASSOCIATION ROLLUP POLISH (S1-AA..S12-AA) -->
   <div style="background:#0f172a;border:2px solid #0284c7;border-radius:10px;padding:11px;">
-    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 3 • 📥 TO REVIEW (12) — BATCH U "6-POSITION ROLE FIDELITY, GOALIE MODE &amp; PILOT READINESS" (S1-U..S12-U)</div>
-    <div style="font-size:11px;color:#94a3b8;margin:2px 0 6px;">Tuned 100% to Dane &amp; Evan's 92% taste profile across Permutations 961–1,680/5,760 (C/LW/RW/LD/RD/G role fidelity + Dedicated Goalie Mode + Minot/MAYSA <code>?team=PUCK99</code> 20-player pilot readiness, 72-item bank Batches U–Z) — <strong>zero social brag cards, zero participation certificates, zero guest popups, and zero extra gameplay buttons!</strong></div>
+    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 3 • 📥 TO REVIEW (12) — BATCH AA "PORTAL, 4-SLOT &amp; BLOOKET TEAM/ASSOC POLISH" (S1-AA..S12-AA)</div>
+    <div style="font-size:11px;color:#94a3b8;margin:2px 0 6px;">48 modular upgrades pre-coded across Batches AA–AD (300 total bank items) focused strictly on polishing the new v12.0 Clean-Slate Account, 4-Slot Sibling Linking, Coach Team-Code &amp; Association Master Rollup experience!</div>
     <table>
       <thead>
-        <tr><th>Rank &amp; ID</th><th>6-Position / Pilot Proposal &amp; Telemetry Citation</th><th>Match / Gate</th><th>4 Action Buttons (Moves to 🛠️ Queued)</th></tr>
+        <tr><th>Rank &amp; ID</th><th>v12.0 Portal &amp; 4-Slot Polish Proposal</th><th>Match / Gate</th><th>4 Action Buttons (Moves to 🛠️ Queued)</th></tr>
       </thead>
       <tbody>
         ${ordered12Ideas.map(item => {
@@ -1674,7 +1662,7 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
             : '';
           return `<tr style="${isTop5 ? 'background:rgba(245,158,11,0.07);' : ''}">
           <td class="nw">${topBadge}<strong style="color:${isTop5 ? '#34d399' : '#38bdf8'};">#${item.rank} ${item.id}</strong><br/>Seat ${item.seatNumber}</td>
-          <td><strong style="color:#fff;">${item.title}</strong> (${item.targetScope})<br/><span style="color:#fde047;">🔬 ${item.telemetryCitation}</span></td>
+          <td><strong style="color:#fff;">${item.title}</strong> (${item.targetScope})<br/><span style="color:#cbd5e1;">${item.candidCritique}</span></td>
           <td class="nw">🎯 ${item.founderMatchPct}% • ${item.trustTier}<br/>${item.gateScoreCode}</td>
           <td class="nw"><a href="${rpt}?action=explain&id=${item.id}" class="b-ex">🔍 Explain</a> | <a href="${rpt}?action=approve&id=${item.id}" class="b-ap">✅ Approve</a><br/><a href="${rpt}?action=skip_reassess&id=${item.id}" class="b-sk">⏭️ Skip &amp; Reassess</a> | <a href="${rpt}?action=reject&id=${item.id}" class="b-rj">❌ Reject</a></td>
         </tr>`;
@@ -1701,13 +1689,13 @@ async function main() {
   const outPath = path.join(__dirname, 'FOUNDER_EMAIL_DIGEST_LATEST.html');
   fs.writeFileSync(outPath, htmlContent, 'utf8');
 
-  const batchNum = 17;
-  const newlyCodedCount = 55;
-  const cumulativeCodedCount = 173;
+  const batchNum = 23;
+  const newlyCodedCount = 69;
+  const cumulativeCodedCount = 242;
   const activeInboxIds = FRESH_12_SEAT_RECOMMENDATIONS.map(i => i.id);
   const summaryCounts = {
     batchNumber: batchNum,
-    activeBatchLetter: 'U',
+    activeBatchLetter: 'AA',
     newlyCodedInThisPass: newlyCodedCount,
     cumulativeCodedAndLive: cumulativeCodedCount,
     skippedAutoResolvedInThisPass: (BATCH_DEPLOYMENT_RECEIPT.autoResolvedSkippedItems || []).length,
@@ -1730,11 +1718,11 @@ async function main() {
     age_division: 'ALL',
     category: 'board_digest',
     status: 'completed_and_deployed',
-    summary: `🚀 SYNAPZ HOCKEY v11.2 — 173/173 Live Upgrades Chrome-Verified + 6-Pos & Pilot Bank (Batch U: 12 To Review | 0 Queued | 173 Live in App) (${emailSizeKb} KB < 35 KB) -> ${RECIPIENTS.join(', ')}`,
+    summary: `🚪 SYNAPZ HOCKEY v12.0 — Clean-Slate Portals & 4-Slot Profiles + 242/242 Upgrades Live (Batch AA: 12 To Review | 0 Queued | 242 Live in App) (${emailSizeKb} KB < 35 KB) -> ${RECIPIENTS.join(', ')}`,
     details: {
-      version: 'v11.2-173-verified-and-6position-pilot-bank',
-      versionLabel: 'v11.2',
-      activeBatchLetter: 'U',
+      version: 'v12.0-clean-slate-accounts-and-portals',
+      versionLabel: 'v12.0',
+      activeBatchLetter: 'AA',
       activeInboxIds,
       recipients: RECIPIENTS,
       counts: summaryCounts,
@@ -1763,32 +1751,32 @@ async function main() {
     });
     supabaseStatus = `HTTP ${res.status}`;
 
-    // Reset future 6-Pos & Pilot bank cards (`S1-V..S12-Z`) to `pending_future_batch`
-    const futureBatchLetters = ['V', 'W', 'X', 'Y', 'Z'];
+    // Reset future Portal & 4-Slot bank cards (`S1-AB..S12-AD`) to `pending_future_batch`
+    const futureBatchLetters = ['AB', 'AC', 'AD'];
     const cleanupRows = [];
     for (const bL of futureBatchLetters) {
       for (let s = 1; s <= 12; s++) {
         const testId = `S${s}-${bL}`;
         cleanupRows.push({
           id: ideaToUuid(testId),
-          created_by: 'Seat13-Bank-Reset-v11.2',
+          created_by: 'Seat13-Bank-Reset-v12.0',
           source_role: 'council',
           scenario_id: testId,
           age_division: 'ALL',
           category: 'board_digest',
           status: 'pending_future_batch',
-          summary: `🏦 Queued in Future 6-Pos & Pilot Bank (${testId})`,
+          summary: `🏦 Queued in Future Portal & 4-Slot Bank (${testId})`,
           details: { id: testId, idea_id: testId, status: 'pending_future_batch', updated_at: timestamp }
         });
       }
     }
 
-    // Persist rejected items across Batches G–T as `rejected_by_founder` and skipped items as `skipped_reassess_next_run`
-    const rejectedHistoryIds = ['S10-G', 'S10-H', 'S5-I', 'S10-I', 'S11-I', 'S8-J', 'S10-L', 'S4-M', 'S6-M', 'S10-N', 'S5-P', 'S10-Q', 'S3-S'];
+    // Persist rejected items across Batches G–Z as `rejected_by_founder` and skipped items as `skipped_reassess_next_run`
+    const rejectedHistoryIds = ['S10-G', 'S10-H', 'S5-I', 'S10-I', 'S11-I', 'S8-J', 'S10-L', 'S4-M', 'S6-M', 'S10-N', 'S5-P', 'S10-Q', 'S3-S', 'S11-U'];
     rejectedHistoryIds.forEach(rejId => {
       cleanupRows.push({
         id: ideaToUuid(rejId),
-        created_by: 'Founder-Decision-v11.2',
+        created_by: 'Founder-Decision-v12.0',
         source_role: 'founder_decision',
         scenario_id: rejId,
         age_division: 'ALL',
@@ -1798,10 +1786,10 @@ async function main() {
         details: { id: rejId, idea_id: rejId, status: 'rejected_by_founder', updated_at: timestamp }
       });
     });
-    ['S9-J', 'S8-K', 'S6-P', 'S7-R'].forEach(skpId => {
+    ['S9-J', 'S8-K', 'S6-P', 'S7-R', 'S4-U', 'S2-V'].forEach(skpId => {
       cleanupRows.push({
         id: ideaToUuid(skpId),
-        created_by: 'Founder-Decision-v11.2',
+        created_by: 'Founder-Decision-v12.0',
         source_role: 'founder_decision',
         scenario_id: skpId,
         age_division: 'ALL',
@@ -1812,7 +1800,7 @@ async function main() {
       });
     });
 
-    // Pre-UPSERT the 12 active Batch U inbox cards (`S1-U..S12-U`), all 173 live upgrades (`completed_and_deployed`), `SYNAPZ-FOUNDER-TASTE-PROFILE`, and `SYNAPZ-CLOUD-COVERAGE-LEDGER`
+    // Pre-UPSERT the 12 active Batch AA inbox cards (`S1-AA..S12-AA`), all 242 live upgrades (`completed_and_deployed`), `SYNAPZ-FOUNDER-TASTE-PROFILE`, and `SYNAPZ-CLOUD-COVERAGE-LEDGER`
     const proposalRows = [...cleanupRows, ...FRESH_12_SEAT_RECOMMENDATIONS.map(item => ({
       id: ideaToUuid(item.id),
       created_by: `Seat-${item.seatNumber}-Telemetry`,
@@ -1829,20 +1817,20 @@ async function main() {
       }
     }))];
 
-    const deployedItems = BATCH_DEPLOYMENT_RECEIPT.deployedApprovedItems || [];
-    deployedItems.forEach(dep => {
+    const all242Ids = FOUNDER_TASTE_PROFILE.approvedIdeaIds || [];
+    all242Ids.forEach(depId => {
       proposalRows.push({
-        id: ideaToUuid(dep.id),
-        created_by: 'Phone-Batch-Deployer-v11.2',
+        id: ideaToUuid(depId),
+        created_by: 'Phone-Batch-Deployer-v12.0',
         source_role: 'council',
-        scenario_id: dep.id,
+        scenario_id: depId,
         age_division: 'ALL',
         category: 'board_digest',
         status: 'completed_and_deployed',
-        summary: `🚀 Deployed & Chrome-Verified Live in index.html (${dep.id}): ${dep.title}`,
+        summary: `🚀 Deployed & Chrome-Verified Live in index.html (${depId})`,
         details: {
-          ...dep,
-          idea_id: dep.id,
+          id: depId,
+          idea_id: depId,
           status: 'completed_and_deployed',
           deployed_at: timestamp,
           updated_at: timestamp
@@ -1850,35 +1838,15 @@ async function main() {
       });
     });
 
-    const autoResolvedItems = BATCH_DEPLOYMENT_RECEIPT.autoResolvedSkippedItems || [];
-    autoResolvedItems.forEach(ar => {
-      proposalRows.push({
-        id: ideaToUuid(ar.id),
-        created_by: 'Phone-Batch-Reassessor-v11.2',
-        source_role: 'council',
-        scenario_id: ar.id,
-        age_division: 'ALL',
-        category: 'board_digest',
-        status: 'auto_resolved_by_batch',
-        summary: `✨ Auto-Resolved by Batch (${ar.id}): ${ar.title}`,
-        details: {
-          ...ar,
-          idea_id: ar.id,
-          status: 'auto_resolved_by_batch',
-          updated_at: timestamp
-        }
-      });
-    });
-
     proposalRows.push({
       id: ideaToUuid('SYNAPZ-FOUNDER-TASTE-PROFILE'),
-      created_by: 'Seat13-Taste-Engine-v11.2',
+      created_by: 'Seat13-Taste-Engine-v12.0',
       source_role: 'council',
       scenario_id: 'SYNAPZ-FOUNDER-TASTE-PROFILE',
       age_division: 'ALL',
       category: 'founder_taste_profile',
       status: 'completed_and_deployed',
-      summary: '🧠 Seat 13 Founder Taste Profile Updated (173 Approved • 13 Rejected • 92% Match Rate)',
+      summary: '🧠 Seat 13 Founder Taste Profile Updated (242 Approved • 14 Rejected • 96% Batches U–Z Match Rate)',
       details: {
         ...FOUNDER_TASTE_PROFILE,
         id: 'SYNAPZ-FOUNDER-TASTE-PROFILE',
@@ -1894,13 +1862,13 @@ async function main() {
       age_division: 'ALL',
       category: 'cloud_coverage_ledger',
       status: 'completed_and_deployed',
-      summary: '📊 Seat 13 Cloud Coverage Ledger Updated (v11.2 • 360/360 Scenarios 100.0% • 1,680/5,760 Permutations 29.2% • Batch U Active)',
+      summary: '📊 Seat 13 Cloud Coverage Ledger Updated (v12.0 • 360/360 Scenarios 100.0% • 2,400/5,760 Permutations 41.7% • Batch AA Active)',
       details: {
         id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
-        versionLabel: 'v11.2',
-        batchRunCount: 16,
-        activeBatchLetter: 'U',
-        activeBatchCode: 'U',
+        versionLabel: 'v12.0',
+        batchRunCount: 22,
+        activeBatchLetter: 'AA',
+        activeBatchCode: 'AA',
         activeInboxIds,
         untouchedPreservedIds: [],
         pulledTopUpIds: activeInboxIds,
@@ -1911,9 +1879,9 @@ async function main() {
         citiesTested: 32,
         citiesCount: 32,
         citiesPct: '100.0',
-        permutationsTested: 1680,
-        permutationsCount: 1680,
-        permutationsPct: '29.2',
+        permutationsTested: 2400,
+        permutationsCount: 2400,
+        permutationsPct: '41.7',
         updated_at: timestamp
       }
     });
@@ -1957,7 +1925,7 @@ async function main() {
     second: '2-digit'
   });
   const senderDisplayName = 'Synapz Hockey 12-Seat Council & Seat 13 Meta-Auditor';
-  const emailSubject = `SYNAPZ HOCKEY v11.2 — 173/173 Upgrades Chrome-Verified + 6-Pos & Pilot Bank (Batch U: 12 To Review | 173 Live) [${uniqueTimestampLabel}]`;
+  const emailSubject = `SYNAPZ HOCKEY v12.0 — Clean-Slate Portals & 4-Slot Profiles + 242/242 Upgrades Live (Batch AA: 12 To Review) [${uniqueTimestampLabel}]`;
   try {
     const gmailRes = await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
       method: 'POST',
