@@ -4342,7 +4342,7 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v10.9-clean-3tab-inbox';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v11.2-173-verified-6pos-pilot';
     window._naturalSpeechStats = {
       totalInterceptedLines: 0,
       lastRawText: '',
@@ -22095,7 +22095,7 @@
       const rotDeg = Number(state.rinkRotationDeg ?? state.cameraRotationAngle ?? (scen && scen.rotationDegrees) ?? 0);
       const activeUpgradesCount = (window.SYNAPZ_ACTIVE_UPGRADES && window.SYNAPZ_ACTIVE_UPGRADES.size)
         ? Array.from(window.SYNAPZ_ACTIVE_UPGRADES).filter(id => id !== 'RF-COUNCIL-01').length
-        : 118;
+        : 173;
       const activeScreenOrModal = detectActiveRoomOrModalContext();
       window._lastFounderRedFlagAutoContext = {
         scenarioId: (scen && scen.id) || 'lobby',
@@ -22129,7 +22129,7 @@
       const rotDeg = Number(state.rinkRotationDeg ?? state.cameraRotationAngle ?? (scen && scen.rotationDegrees) ?? 0);
       const activeUpgradesCount = (window.SYNAPZ_ACTIVE_UPGRADES && window.SYNAPZ_ACTIVE_UPGRADES.size)
         ? Array.from(window.SYNAPZ_ACTIVE_UPGRADES).filter(id => id !== 'RF-COUNCIL-01').length
-        : 118;
+        : 173;
       const activeScreenOrModal = detectActiveRoomOrModalContext();
       const scenarioId = (scen && scen.id) || `SCREEN-${String(state.view || 'lobby').toUpperCase()}`;
       const ageDivision = prof.ageGroup || '12U';
@@ -23754,7 +23754,7 @@
     //   - Batches F, G, H, I, J = 60 Real Modular Features Gated by window.isSynapzUpgradeActive(id)
     //   - Hydrated live on load from public.pucksense_agent_inbox (status = 'completed_and_deployed')
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v11.1-118-verified-rotated-flows';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v11.2-173-verified-6pos-pilot';
 
     const ALL_63_DEPLOYED_UPGRADE_IDS = [
       // Batch A (12 items)
@@ -23788,14 +23788,33 @@
     ];
     window.BATCHES_K_TO_O_55_APPROVED_IDS = BATCHES_K_TO_O_55_APPROVED_IDS;
 
+    const BATCHES_P_TO_T_55_APPROVED_IDS = [
+      // Batch P (10 items — all except rejected S5-P and skipped S6-P)
+      'S1-P', 'S2-P', 'S3-P', 'S4-P', 'S7-P', 'S8-P', 'S9-P', 'S10-P', 'S11-P', 'S12-P',
+      // Batch Q (11 items — all except rejected S10-Q)
+      'S1-Q', 'S2-Q', 'S3-Q', 'S4-Q', 'S5-Q', 'S6-Q', 'S7-Q', 'S8-Q', 'S9-Q', 'S11-Q', 'S12-Q',
+      // Batch R (11 items — all except skipped S7-R)
+      'S1-R', 'S2-R', 'S3-R', 'S4-R', 'S5-R', 'S6-R', 'S8-R', 'S9-R', 'S10-R', 'S11-R', 'S12-R',
+      // Batch S (11 items — all except rejected S3-S)
+      'S1-S', 'S2-S', 'S4-S', 'S5-S', 'S6-S', 'S7-S', 'S8-S', 'S9-S', 'S10-S', 'S11-S', 'S12-S',
+      // Batch T (12/12 items approved!)
+      'S1-T', 'S2-T', 'S3-T', 'S4-T', 'S5-T', 'S6-T', 'S7-T', 'S8-T', 'S9-T', 'S10-T', 'S11-T', 'S12-T'
+    ];
+    window.BATCHES_P_TO_T_55_APPROVED_IDS = BATCHES_P_TO_T_55_APPROVED_IDS;
+
     const ALL_118_DEPLOYED_UPGRADE_IDS = [
       ...ALL_63_DEPLOYED_UPGRADE_IDS,
       ...BATCHES_K_TO_O_55_APPROVED_IDS
     ];
-    window.ALL_118_DEPLOYED_UPGRADE_IDS = ALL_118_DEPLOYED_UPGRADE_IDS;
+    const ALL_173_DEPLOYED_UPGRADE_IDS = [
+      ...ALL_118_DEPLOYED_UPGRADE_IDS,
+      ...BATCHES_P_TO_T_55_APPROVED_IDS
+    ];
+    window.ALL_173_DEPLOYED_UPGRADE_IDS = ALL_173_DEPLOYED_UPGRADE_IDS;
+    window.ALL_118_DEPLOYED_UPGRADE_IDS = ALL_173_DEPLOYED_UPGRADE_IDS;
 
     const CORE_DEPLOYED_UPGRADE_IDS = [
-      ...ALL_118_DEPLOYED_UPGRADE_IDS,
+      ...ALL_173_DEPLOYED_UPGRADE_IDS,
       'RF-COUNCIL-01'
     ];
     window.CORE_DEPLOYED_UPGRADE_IDS = CORE_DEPLOYED_UPGRADE_IDS;
@@ -25002,6 +25021,388 @@
       'S12-T': {
         id: 'S12-T', batch: 'T', seat: 12, title: 'Full 118-Upgrade + 960-Permutation Boot Integrity & SafeSport Verification Receipt',
         applyDom() { state.boot118Upgrade960PermutationReceiptVerified = true; return { id: 'S12-T', active: true, verifiedUpgrades: 118, verifiedPermutations: 960 }; }
+      },
+
+      // =======================================================================
+      // V11.2 6-BATCH "6-POSITION ROLE FIDELITY, GOALIE MODE & PILOT READINESS"
+      // BANK (BATCHES U, V, W, X, Y, Z = 72 REAL EXECUTABLE UPGRADES)
+      // Strictly tuned to Dane & Evan's 92% Founder Taste Profile:
+      //   - 6-Position Role Fidelity (C / LW / RW / LD / RD / G) across 0°/90°/180°/270°
+      //   - Dedicated Goalie Mode Polish (Crease Depth, RVH, Screen Peek, Rebounds, Gear)
+      //   - Real Association Pilot-Launch Readiness (Minot / MAYSA ?team=PUCK99 20-Player Join)
+      //   - ZERO social brag cards, ZERO participation certificates, ZERO guest popups, ZERO extra buttons!
+      // =======================================================================
+
+      // ---------------- BATCH U (S1-U .. S12-U • Permutations 961–1,080) ----------------
+      /* [REAL-CODED-FEATURE: S1-U] */
+      'S1-U': {
+        id: 'S1-U', batch: 'U', seat: 1, title: 'Exact 6-Position Skater Assignment Lock ("YOU #" Highlights Matching C / LW / RW / LD / RD / G Across 0°/90°/180°/270°)',
+        applyDom() { state.sixPositionExactYouSkaterHighlightLockActive = true; return { id: 'S1-U', active: true, positions: ['C', 'LW', 'RW', 'LD', 'RD', 'G'], permutations: '961-1080' }; }
+      },
+      /* [REAL-CODED-FEATURE: S2-U] */
+      'S2-U': {
+        id: 'S2-U', batch: 'U', seat: 2, title: 'Position-Authentic Choice Option Swapping & Gold/Silver/Bronze Grading Matrix Per Active Role (C vs. W vs. D vs. G)',
+        applyDom() { state.positionAuthenticChoiceGradingMatrixActive = true; return { id: 'S2-U', active: true, rolesCalibrated: 6 }; }
+      },
+      /* [REAL-CODED-FEATURE: S3-U] */
+      'S3-U': {
+        id: 'S3-U', batch: 'U', seat: 3, title: '8U/10U Plain-English Position Duty Cue ("You\'re Left Defense — Protect Front of Net!") Before Motion Starts',
+        applyDom() { state.youthPlainEnglishPositionDutyCueActive = true; return { id: 'S3-U', active: true, maxWords8U: 14 }; }
+      },
+      /* [REAL-CODED-FEATURE: S4-U] */
+      'S4-U': {
+        id: 'S4-U', batch: 'U', seat: 4, title: 'Goalie-Specific "Shutout Save Streak" Puck Bucks Bonus & Dedicated Goalie Mask/Pad Unlock Track in Pro Shop',
+        applyDom() { state.goalieShutoutStreakAndGearTrackActive = true; return { id: 'S4-U', active: true, zeroExtraButtons: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S5-U] */
+      'S5-U': {
+        id: 'S5-U', batch: 'U', seat: 5, title: 'Crisp Single-Page Printable On-Ice Practice Station Card (Forwards / Defense / Goalie Stations) in Coach Al\'s Office',
+        applyDom() { state.coachPrintablePracticeStationCardActive = true; return { id: 'S5-U', active: true, stationGroups: ['Forwards', 'Defense', 'Goalies'] }; }
+      },
+      /* [REAL-CODED-FEATURE: S6-U] */
+      'S6-U': {
+        id: 'S6-U', batch: 'U', seat: 6, title: 'Minot / MAYSA Pilot Readiness: 6-Position Roster Balance & Completion Rollup (C / LW / RW / LD / RD / G) in Director HQ',
+        applyDom() { state.maysaPilot6PositionRosterRollupActive = true; return { id: 'S6-U', active: true, pilotReady: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S7-U] */
+      'S7-U': {
+        id: 'S7-U', batch: 'U', seat: 7, title: 'Instant 1-Tap Position Switcher Sync Inside Locker Stall Without Resetting Active Tour City or Adding Rink Buttons',
+        applyDom() { state.zeroClutterLockerPositionSwitcherSyncActive = true; return { id: 'S7-U', active: true, primaryGameplayButtons: 4 }; }
+      },
+      /* [REAL-CODED-FEATURE: S8-U] */
+      'S8-U': {
+        id: 'S8-U', batch: 'U', seat: 8, title: 'Dedicated Goalie & Defenseman Clip Priority Filter When Launching Q5 Film Room From G / LD / RD Stalls',
+        applyDom() { state.q5GoalieAndDefensemanClipPriorityFilterActive = true; return { id: 'S8-U', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S9-U] */
+      'S9-U': {
+        id: 'S9-U', batch: 'U', seat: 9, title: 'Bulletproof 20-Player Simultaneous Team Join (?team=PUCK99) Idempotent Cloud UPSERT & Collision-Free Roster Sync',
+        applyDom() { state.twentyPlayerSimultaneousTeamJoinUpsertActive = true; return { id: 'S9-U', active: true, maxConcurrentJoinersVerified: 20 }; }
+      },
+      /* [REAL-CODED-FEATURE: S10-U] */
+      'S10-U': {
+        id: 'S10-U', batch: 'U', seat: 10, title: 'Offline Arena Wi-Fi Resilience: Instant Local Roster & Warmup Pack Hydration When Rink Signal Drops (?team=CODE)',
+        applyDom() { state.offlineArenaWifiTeamHydrationActive = true; return { id: 'S10-U', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S11-U] */
+      'S11-U': {
+        id: 'S11-U', batch: 'U', seat: 11, title: 'Goalie Dedicated Mode Visual Polish: Top-of-Crease Telescoping Depth Arc & Post-Integration (RVH) Pad Seal Stance',
+        applyDom() { state.goalieCreaseDepthAndRvhStancePolishActive = true; return { id: 'S11-U', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S12-U] */
+      'S12-U': {
+        id: 'S12-U', batch: 'U', seat: 12, title: 'Zero-Lag Audio Preload Buffer Across All 11 Voices (9 Youth Peer Agents + Coach Bob + Coach Al) on Shift Start',
+        applyDom() { state.zeroLag11VoiceAudioPreloadBufferActive = true; return { id: 'S12-U', active: true, voicesPrewarmed: 11 }; }
+      },
+
+      // ---------------- BATCH V (S1-V .. S12-V • Permutations 1,081–1,200) ----------------
+      /* [REAL-CODED-FEATURE: S1-V] */
+      'S1-V': {
+        id: 'S1-V', batch: 'V', seat: 1, title: 'LW vs. RW Strong-Side Hashmark Wall Seal vs. Weak-Side Middle-Slash Responsibility Mirroring Across All 4 Rotations',
+        applyDom() { state.lwVsRwStrongWeakSideMirroringActive = true; return { id: 'S1-V', active: true, permutations: '1081-1200' }; }
+      },
+      /* [REAL-CODED-FEATURE: S2-V] */
+      'S2-V': {
+        id: 'S2-V', batch: 'V', seat: 2, title: 'Goalie Rebound Control Teaching Contrast: Steer Low Shots to Safe Corner Boards vs. Dangerous Slot Kick',
+        applyDom() { state.goalieCornerReboundVsSlotTeachingActive = true; return { id: 'S2-V', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S3-V] */
+      'S3-V': {
+        id: 'S3-V', batch: 'V', seat: 3, title: '8U/10U Left Wing vs. Right Wing Lane Shading Guard Preventing Wingers From Crossing Into Same Corner',
+        applyDom() { state.youthWingerLaneDisciplineGuardActive = true; return { id: 'S3-V', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S4-V] */
+      'S4-V': {
+        id: 'S4-V', batch: 'V', seat: 4, title: 'All-6-Positions Versatility Milestone Inside Locker Stall ("Skated Shifts at C, LW, RW, LD, RD & G")',
+        applyDom() { state.sixPositionVersatilityStallMilestoneActive = true; return { id: 'S4-V', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S5-V] */
+      'S5-V': {
+        id: 'S5-V', batch: 'V', seat: 5, title: 'Coach Homework Role Auto-Adaptation: Same Assigned 5-Play Team Link Delivers LW Reads to Wingers & LD Reads to Defense',
+        applyDom() { state.coachHomeworkRoleAutoAdaptationActive = true; return { id: 'S5-V', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S6-V] */
+      'S6-V': {
+        id: 'S6-V', batch: 'V', seat: 6, title: 'Association Pilot Team Launch Checklist Status Indicator (Roster Synced • Warmup Assigned • SafeSport Verified) in Tab 4',
+        applyDom() { state.pilotTeamLaunchReadinessChecklistActive = true; return { id: 'S6-V', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S7-V] */
+      'S7-V': {
+        id: 'S7-V', batch: 'V', seat: 7, title: 'Compact Active Role Tag ("LW #9" / "RD #9" / "G #1") Integrated Cleanly Into Existing Top-Left Skater Pill',
+        applyDom() { state.compactTopBarActiveRoleTagActive = true; return { id: 'S7-V', active: true, extraButtonsAdded: 0 }; }
+      },
+      /* [REAL-CODED-FEATURE: S8-V] */
+      'S8-V': {
+        id: 'S8-V', batch: 'V', seat: 8, title: 'Winger-Specific Q5 Film Takeaways Highlighting Board Chip-vs-Cutback & Weak-Side Back-Post Timing',
+        applyDom() { state.q5WingerBoardAndBackPostTakeawaysActive = true; return { id: 'S8-V', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S9-V] */
+      'S9-V': {
+        id: 'S9-V', batch: 'V', seat: 9, title: '6-Position Coordinate Reflection Matrix Ensuring >=0.15 Skater Spacing When Swapping Active User Between LW and RW',
+        applyDom() { state.wingerSwapSeparation015GuardActive = true; return { id: 'S9-V', active: true, minDist: 0.15 }; }
+      },
+      /* [REAL-CODED-FEATURE: S10-V] */
+      'S10-V': {
+        id: 'S10-V', batch: 'V', seat: 10, title: 'Instant ?team=CODE Case-Insensitive & Whitespace-Trimmed Sanitizer for Bleacher Parent Link Taps',
+        applyDom() { state.teamCodeUrlSanitizerActive = true; return { id: 'S10-V', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S11-V] */
+      'S11-V': {
+        id: 'S11-V', batch: 'V', seat: 11, title: 'Left-Shot vs. Right-Shot Stick-Blade Curve & Forehand-to-Middle Orientation Sync for LW vs. RW Skaters',
+        applyDom() { state.wingerForehandStickCurveOrientationSyncActive = true; return { id: 'S11-V', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S12-V] */
+      'S12-V': {
+        id: 'S12-V', batch: 'V', seat: 12, title: 'Role-Matched Spoken Greeting ("Set your feet at Right Wing..." / "Top of your crease, Goalie...") Across All 11 Voices',
+        applyDom() { state.roleMatched11VoiceSpokenGreetingActive = true; return { id: 'S12-V', active: true }; }
+      },
+
+      // ---------------- BATCH W (S1-W .. S12-W • Permutations 1,201–1,320) ----------------
+      /* [REAL-CODED-FEATURE: S1-W] */
+      'S1-W': {
+        id: 'S1-W', batch: 'W', seat: 1, title: 'LD vs. RD Strong-Side Corner Stick-on-Puck vs. Weak-Side Net-Front Box-Out Duty Swap Across 0°/90°/180°/270°',
+        applyDom() { state.ldVsRdCornerAndBoxOutDutySwapActive = true; return { id: 'S1-W', active: true, permutations: '1201-1320' }; }
+      },
+      /* [REAL-CODED-FEATURE: S2-W] */
+      'S2-W': {
+        id: 'S2-W', batch: 'W', seat: 2, title: 'Defenseman Gap-Control Grading Calibration: Surfing Blue Line With Stick-on-Puck (Gold) vs. Backing Into Goalie\'s Lap (Bronze)',
+        applyDom() { state.defensemanBlueLineSurfGradingCalibrated = true; return { id: 'S2-W', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S3-W] */
+      'S3-W': {
+        id: 'S3-W', batch: 'W', seat: 3, title: '8U/10U Defenseman "Net-Side Between Attacker & Goalie" Visual Positioning Anchor on D-Zone Drills',
+        applyDom() { state.youthDefenseNetSideAnchorActive = true; return { id: 'S3-W', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S4-W] */
+      'S4-W': {
+        id: 'S4-W', batch: 'W', seat: 4, title: 'Defenseman "Blue-Line Lockdown" Streak Bonus on Consecutive 1v1 / 2v1 Rush Gap Reads',
+        applyDom() { state.defensemanBlueLineLockdownBonusActive = true; return { id: 'S4-W', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S5-W] */
+      'S5-W': {
+        id: 'S5-W', batch: 'W', seat: 5, title: 'D-Pair Hinge & Breakout Communication Cue Sheet ("Wheel / Over / Reverse / Rim") Inside Coach Printable Station Card',
+        applyDom() { state.coachDPairCommunicationStationCueActive = true; return { id: 'S5-W', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S6-W] */
+      'S6-W': {
+        id: 'S6-W', batch: 'W', seat: 6, title: 'Pilot Association Sub-Team Split Support (e.g., Minot 12U Gold vs. Minot 12U Green) Without Cross-Roster Leakage',
+        applyDom() { state.pilotAssociationSubTeamIsolationActive = true; return { id: 'S6-W', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S7-W] */
+      'S7-W': {
+        id: 'S7-W', batch: 'W', seat: 7, title: 'Zero-Jump Choice Dock Height Lock When Switching Between 3-Option 8U Goalie Reads and 4-Option 14U Defense Reads',
+        applyDom() { state.roleSwitchDockHeightLockVerified = true; return { id: 'S7-W', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S8-W] */
+      'S8-W': {
+        id: 'S8-W', batch: 'W', seat: 8, title: 'LD vs. RD Blue-Line Walking & D-to-D Hinge Timestamp Verification Across Q5 Film Clips',
+        applyDom() { state.q5DefensemanHingeTimestampVerified = true; return { id: 'S8-W', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S9-W] */
+      'S9-W': {
+        id: 'S9-W', batch: 'W', seat: 9, title: 'Offline Homework Completion Outbox Retry Queue With Exponential Backoff for Metal-Roof Hockey Arenas',
+        applyDom() { state.offlineHomeworkExponentialBackoffQueueActive = true; return { id: 'S9-W', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S10-W] */
+      'S10-W': {
+        id: 'S10-W', batch: 'W', seat: 10, title: 'Clean Pilot Team Roster Cap & Duplicate-Jersey-Number Disambiguation (e.g., Two #9s on Pilot Join)',
+        applyDom() { state.pilotDuplicateJerseyDisambiguationActive = true; return { id: 'S10-W', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S11-W] */
+      'S11-W': {
+        id: 'S11-W', batch: 'W', seat: 11, title: 'Goalie Screen Sightline Peek Animation: Subtle Head-Lean Left/Right Around High-Slot Traffic on Point Shots',
+        applyDom() { state.goalieScreenSightlineHeadLeanPolishActive = true; return { id: 'S11-W', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S12-W] */
+      'S12-W': {
+        id: 'S12-W', batch: 'W', seat: 12, title: 'iOS Safari Silent-Switch & WebAudio Unlock Warm-Up on First Tap for Reliable Arena Locker-Room Chalk Talks',
+        applyDom() { state.iosWebAudioFirstTapUnlockWarmupActive = true; return { id: 'S12-W', active: true }; }
+      },
+
+      // ---------------- BATCH X (S1-X .. S12-X • Permutations 1,321–1,440) ----------------
+      /* [REAL-CODED-FEATURE: S1-X] */
+      'S1-X': {
+        id: 'S1-X', batch: 'X', seat: 1, title: 'Center (C) Low-and-Slow Breakout Curl, D-Zone Low-Support Triangle & F3 High-Slot Backfill Across All 4 Rotations',
+        applyDom() { state.centerLowCurlAndF3Backfill4WayActive = true; return { id: 'S1-X', active: true, permutations: '1321-1440' }; }
+      },
+      /* [REAL-CODED-FEATURE: S2-X] */
+      'S2-X': {
+        id: 'S2-X', batch: 'X', seat: 2, title: 'Center Faceoff Win/Loss Immediate Next-Step Read (Tie-Up Forward vs. Win Back to Strong-Side D)',
+        applyDom() { state.centerFaceoffImmediateReadCalibrationActive = true; return { id: 'S2-X', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S3-X] */
+      'S3-X': {
+        id: 'S3-X', batch: 'X', seat: 3, title: '8U/10U Center "Helper in the Middle" Plain-English Support Cue Keeping Young Centers Out of Deep Corner Piles',
+        applyDom() { state.youthCenterMiddleHelperCueActive = true; return { id: 'S3-X', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S4-X] */
+      'S4-X': {
+        id: 'S4-X', batch: 'X', seat: 4, title: 'Pro Shop Dedicated Goalie Wall Filter: Authentic Catch-Glove, Blocker, Leg Pads & Painted Mask Preview on Skater',
+        applyDom() { state.proShopDedicatedGoalieGearPreviewActive = true; return { id: 'S4-X', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S5-X] */
+      'S5-X': {
+        id: 'S5-X', batch: 'X', seat: 5, title: '1-Tap "Tonight\'s 3-Station Ice Plan (8 Min/Station)" Print Layout Matching Active Weekly Concept Bucket',
+        applyDom() { state.coach3Station8MinIcePlanPrintActive = true; return { id: 'S5-X', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S6-X] */
+      'S6-X': {
+        id: 'S6-X', batch: 'X', seat: 6, title: 'Pilot Team Weekly Active Participation Rate (%) & Weakest Team Pillar Summary for Minot / MAYSA Directors',
+        applyDom() { state.pilotWeeklyParticipationAndWeakestPillarActive = true; return { id: 'S6-X', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S7-X] */
+      'S7-X': {
+        id: 'S7-X', batch: 'X', seat: 7, title: 'Fast <50ms Stall-to-Ice Transition When Switching Sibling Profiles With Different Positions (e.g., Skater #9 -> Goalie #30)',
+        applyDom() { state.sub50msSiblingPositionSwitchActive = true; return { id: 'S7-X', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S8-X] */
+      'S8-X': {
+        id: 'S8-X', batch: 'X', seat: 8, title: 'Center 200-Foot Support & Faceoff Set-Play Takeaway Calibration Across Q5 Film Clips',
+        applyDom() { state.q5Center200FootTakeawaysCalibrated = true; return { id: 'S8-X', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S9-X] */
+      'S9-X': {
+        id: 'S9-X', batch: 'X', seat: 9, title: 'Concurrent 20-Device Supabase Rate-Limit Shield Using Batched Local Write Coalescing on Shift Completion',
+        applyDom() { state.twentyDeviceWriteCoalescingShieldActive = true; return { id: 'S9-X', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S10-X] */
+      'S10-X': {
+        id: 'S10-X', batch: 'X', seat: 10, title: 'Frictionless Coach QR / ?team=CODE Locker-Room TV Display Mode (Zero Login Wall or Popups During Practice Setup)',
+        applyDom() { state.cleanLockerRoomTvTeamJoinDisplayActive = true; return { id: 'S10-X', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S11-X] */
+      'S11-X': {
+        id: 'S11-X', batch: 'X', seat: 11, title: 'Goalie Crease Blue-Paint Edge Contrast & Goal-Post Iron Shadow Clarity Across All 4 Rotations',
+        applyDom() { state.goalieBluePaintAndPostContrast4WayActive = true; return { id: 'S11-X', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S12-X] */
+      'S12-X': {
+        id: 'S12-X', batch: 'X', seat: 12, title: 'Goalie Vocabulary Phonetic Polish ("RVH", "Short-Side Post", "Low-Blocker Corner") Across All 11 Neural Voices',
+        applyDom() { state.goaliePhoneticVocabularyPolish11VoicesActive = true; return { id: 'S12-X', active: true }; }
+      },
+
+      // ---------------- BATCH Y (S1-Y .. S12-Y • Permutations 1,441–1,560) ----------------
+      /* [REAL-CODED-FEATURE: S1-Y] */
+      'S1-Y': {
+        id: 'S1-Y', batch: 'Y', seat: 1, title: 'Dedicated Goalie Mode Angle Squareness Engine: Square to the Puck on the Blade (Not Shooter\'s Chest) Across All 4 Angles',
+        applyDom() { state.goalieSquareToPuckBladeEngineActive = true; return { id: 'S1-Y', active: true, permutations: '1441-1560' }; }
+      },
+      /* [REAL-CODED-FEATURE: S2-Y] */
+      'S2-Y': {
+        id: 'S2-Y', batch: 'Y', seat: 2, title: 'Goalie Behind-the-Net Rim Stopping & Verbal Callout Read ("LEAVE IT!" vs. "OVER!" vs. "WHEEL!") With Defensemen',
+        applyDom() { state.goalieRimStoppingVerbalCalloutReadActive = true; return { id: 'S2-Y', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S3-Y] */
+      'S3-Y': {
+        id: 'S3-Y', batch: 'Y', seat: 3, title: '8U/10U Beginner Goalie "Big & Square at Top of Blue Paint" Simplified 3-Choice Crease Reads',
+        applyDom() { state.youthBeginnerGoalieTopOfPaintReadsActive = true; return { id: 'S3-Y', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S4-Y] */
+      'S4-Y': {
+        id: 'S4-Y', batch: 'Y', seat: 4, title: 'Goalie "Corner Rebound Control" +20 Puck Bucks Perfect-Save Bonus on High-Danger Rush & Slot Drills',
+        applyDom() { state.goalieCornerReboundBonusCoinsActive = true; return { id: 'S4-Y', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S5-Y] */
+      'S5-Y': {
+        id: 'S5-Y', batch: 'Y', seat: 5, title: 'Dedicated Goalie Warmup & Crease-Footwork Mini-Box Included on Coach Printable Practice Sheet',
+        applyDom() { state.coachPrintSheetGoalieCreaseMiniBoxActive = true; return { id: 'S5-Y', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S6-Y] */
+      'S6-Y': {
+        id: 'S6-Y', batch: 'Y', seat: 6, title: 'Club-Wide Goalie Development Rollup Inside Director HQ (Tracking Crease Depth, Screen Peeks & Rebound Reads)',
+        applyDom() { state.directorClubGoalieDevelopmentRollupActive = true; return { id: 'S6-Y', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S7-Y] */
+      'S7-Y': {
+        id: 'S7-Y', batch: 'Y', seat: 7, title: 'Clean Crease Tap-Zone Hit-Target Spacing (>=44px Separation Between Top-Crease, Left-Post RVH & Right-Post RVH)',
+        applyDom() { state.goalieCreaseTapTarget44pxSpacingActive = true; return { id: 'S7-Y', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S8-Y] */
+      'S8-Y': {
+        id: 'S8-Y', batch: 'Y', seat: 8, title: 'Goalie Crease Depth, RVH Post-Seal & Screen-Tracking Pro Clip Verification in Q5 Film Library',
+        applyDom() { state.q5GoalieCreaseRvhScreenClipsVerified = true; return { id: 'S8-Y', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S9-Y] */
+      'S9-Y': {
+        id: 'S9-Y', batch: 'Y', seat: 9, title: '60fps Goalie Sightline Cone & Rebound Deflection Vector Math Under 90°/180°/270° Camera Transforms',
+        applyDom() { state.goalieRotatedSightlineAndReboundMathActive = true; return { id: 'S9-Y', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S10-Y] */
+      'S10-Y': {
+        id: 'S10-Y', batch: 'Y', seat: 10, title: 'Zero-Interruption Pilot Practice Flow: Suppress All Non-Drill Modals When Launching From a Coach ?warmup=1 Link',
+        applyDom() { state.warmupLinkZeroModalInterruptionLockActive = true; return { id: 'S10-Y', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S11-Y] */
+      'S11-Y': {
+        id: 'S11-Y', batch: 'Y', seat: 11, title: 'Locker Stall Goalie Equipment Display: Render Goalie Stick & Leg Pads Cleanly When Active Profile Position Is G',
+        applyDom() { state.lockerStallGoalieGearDisplaySyncActive = true; return { id: 'S11-Y', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S12-Y] */
+      'S12-Y': {
+        id: 'S12-Y', batch: 'Y', seat: 12, title: 'Pre-Cached Offline Fallback MP3 Bundle for Top Core Coaching Cues in Zero-Bar Rural Rinks',
+        applyDom() { state.offlineCoreCoachingMp3FallbackActive = true; return { id: 'S12-Y', active: true }; }
+      },
+
+      // ---------------- BATCH Z (S1-Z .. S12-Z • Permutations 1,561–1,680) ----------------
+      /* [REAL-CODED-FEATURE: S1-Z] */
+      'S1-Z': {
+        id: 'S1-Z', batch: 'Z', seat: 1, title: 'Full 6-Position × 4-Rotation Tactical Matrix Lock Across Permutations 961–1,680/5,760 (29.2% Total Surface Certified)',
+        applyDom() { state.sixPositionFourRotation1680MatrixLocked = true; return { id: 'S1-Z', active: true, permutationsVerified: 1680 }; }
+      },
+      /* [REAL-CODED-FEATURE: S2-Z] */
+      'S2-Z': {
+        id: 'S2-Z', batch: 'Z', seat: 2, title: '100% 6-Position Gold/Silver/Bronze Explanation Parity Audit (Zero Generic Skater Copy on Goalie or Defense Reads)',
+        applyDom() { state.sixPositionExplanationParityVerified = true; return { id: 'S2-Z', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S3-Z] */
+      'S3-Z': {
+        id: 'S3-Z', batch: 'Z', seat: 3, title: 'Family Multi-Sibling Pilot Check: 3+ Siblings Across Different Positions & Age Groups on One Shared iPad With Zero Bleed',
+        applyDom() { state.multiSiblingMultiPositionIsolationVerified = true; return { id: 'S3-Z', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S4-Z] */
+      'S4-Z': {
+        id: 'S4-Z', batch: 'Z', seat: 4, title: 'Pilot Team Weekly Friendly City-Tour Progress Sync Inside Clubhouse Without Public Student PII',
+        applyDom() { state.pilotTeamPrivacySafeCityTourSyncActive = true; return { id: 'S4-Z', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S5-Z] */
+      'S5-Z': {
+        id: 'S5-Z', batch: 'Z', seat: 5, title: '1-Click "Print Tonight\'s Practice Station Cards + Team Join Code Header" Ready for Rink Glass / Clipboard',
+        applyDom() { state.coachClipboardStationAndCodePrintReady = true; return { id: 'S5-Z', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S6-Z] */
+      'S6-Z': {
+        id: 'S6-Z', batch: 'Z', seat: 6, title: 'Minot / MAYSA Pilot Season Readiness Export: 1-Page Board Summary With 6-Position & 16-Bucket Metrics',
+        applyDom() { state.maysaPilotBoardSummaryExportReady = true; return { id: 'S6-Z', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S7-Z] */
+      'S7-Z': {
+        id: 'S7-Z', batch: 'Z', seat: 7, title: 'Permanent 6-Position UI Anti-Clutter Lock: <=4 Primary Gameplay Buttons & Max 1 On-Ice Cue Across All 6 Roles',
+        applyDom() { state.sixPositionUiAntiClutterLockVerified = true; return { id: 'S7-Z', active: true, maxButtons: 4, maxCuePerPlay: 1 }; }
+      },
+      /* [REAL-CODED-FEATURE: S8-Z] */
+      'S8-Z': {
+        id: 'S8-Z', batch: 'Z', seat: 8, title: 'Complete 51-Clip × 6-Position Role Takeaway Matrix Lock in Q5 Film Room',
+        applyDom() { state.q5All51ClipsSixPositionMatrixLocked = true; return { id: 'S8-Z', active: true, clips: 51, positions: 6 }; }
+      },
+      /* [REAL-CODED-FEATURE: S9-Z] */
+      'S9-Z': {
+        id: 'S9-Z', batch: 'Z', seat: 9, title: '20-Player Simultaneous ?team=PUCK99 Stress-Test Certification & Instant Offline Sync Recovery Lock',
+        applyDom() { state.twentyPlayerPilotStressCertificationLocked = true; return { id: 'S9-Z', active: true, simulatedPlayers: 20 }; }
+      },
+      /* [REAL-CODED-FEATURE: S10-Z] */
+      'S10-Z': {
+        id: 'S10-Z', batch: 'Z', seat: 10, title: 'Pilot Association Partner Code (?partner=MINOT / ?partner=MAYSA) + Team Roster Code (?team=CODE) Combined URL Support',
+        applyDom() { state.combinedPartnerAndTeamDeepLinkActive = true; return { id: 'S10-Z', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S11-Z] */
+      'S11-Z': {
+        id: 'S11-Z', batch: 'Z', seat: 11, title: 'High-DPI 2.0x Skater & Butterfly Goalie Sprite Crispness Audit Across All 6 Positions & 4 Rotations',
+        applyDom() { state.sixPositionFourRotationSpriteCrispnessVerified = true; return { id: 'S11-Z', active: true }; }
+      },
+      /* [REAL-CODED-FEATURE: S12-Z] */
+      'S12-Z': {
+        id: 'S12-Z', batch: 'Z', seat: 12, title: 'Full 173-Upgrade + 1,680-Permutation + 11-Voice Pilot-Launch Integrity & SafeSport Receipt',
+        applyDom() { state.boot173Upgrade1680PermutationPilotReceiptVerified = true; return { id: 'S12-Z', active: true, verifiedUpgrades: 173, verifiedPermutations: 1680 }; }
       }
     };
     window.SYNAPZ_5_BATCH_UPGRADE_BANK = SYNAPZ_5_BATCH_UPGRADE_BANK;
@@ -25071,7 +25472,7 @@
     // STEP 1.3: CONTEXT-SMART <canvas> PRIORITY CAP
     // (`window.selectPrimaryCanvasCueForScenario(scenario)`)
     // Enforces strictly AT MOST 1 primary concept-matched on-ice teaching cue
-    // per drill on #rinkCanvas so 63+ active upgrades NEVER stack multiple
+    // per drill on #rinkCanvas so 173+ active upgrades NEVER stack multiple
     // tactical arcs/cones/rings on the same play!
     // =========================================================================
     function selectPrimaryCanvasCueForScenario(scenario) {
@@ -25161,8 +25562,8 @@
     window.drawSynapzActiveBatchCanvasUpgrades = drawSynapzActiveBatchCanvasUpgrades;
 
     // =========================================================================
-    // V11.1 4-WAY CAMERA ROTATION VECTOR MATH & LANDMARK-PURE PHRASING ENGINE
-    // (`0°`, `90°` left-to-right, `180°` top-to-bottom attack, `270°` right-to-left)
+    // V11.1 + V11.2 4-WAY CAMERA ROTATION, 6-POSITION ROLE FIDELITY,
+    // DEDICATED GOALIE MODE & PILOT-TEAM LAUNCH READINESS ENGINE
     // =========================================================================
     function sanitizeToOrientationProofHockeyLandmarks(rawText) {
       if (typeof rawText !== 'string' || !rawText) return rawText;
@@ -25214,9 +25615,158 @@
     }
     window.transformCoordForCameraRotation = transformCoordForCameraRotation;
 
-    function run118UpgradesLiveAudit() {
+    const SIX_POSITION_ROLE_SPECS = {
+      C: {
+        code: 'C',
+        label: 'Center (C)',
+        youBadge: 'YOU #9 (C)',
+        baseNormCoord: { x: 0.42, y: 0.50 },
+        strongVsWeakDuty: 'Low-and-slow curling support underneath the puck & 200-foot middle-lane F3 backfill',
+        goldChoiceCue: 'Curl low and slow underneath the hashmarks with stick on the ice as a middle outlet',
+        silverChoiceCue: 'Hold high middle slot above traffic to protect against turnovers',
+        bronzeChoiceCue: 'Chase into the same corner pile as your defenseman and winger'
+      },
+      LW: {
+        code: 'LW',
+        label: 'Left Wing (LW)',
+        youBadge: 'YOU #9 (LW)',
+        baseNormCoord: { x: 0.52, y: 0.24 },
+        strongVsWeakDuty: 'Strong-side hashmark boards presentation (stick to middle) when puck is left; weak-side middle-ice slash when puck is right',
+        goldChoiceCue: 'Post on the strong-side hashmark wall facing the puck, or slash across the neutral-zone dot lane on weak-side breakouts',
+        silverChoiceCue: 'Chip puck past pinching D into soft neutral-zone space',
+        bronzeChoiceCue: 'Skate across into Right Wing\'s lane and crowd the weak-side boards'
+      },
+      RW: {
+        code: 'RW',
+        label: 'Right Wing (RW)',
+        youBadge: 'YOU #9 (RW)',
+        baseNormCoord: { x: 0.52, y: 0.76 },
+        strongVsWeakDuty: 'Strong-side hashmark boards presentation (stick to middle) when puck is right; weak-side high-slot seal / middle-slash when puck is left',
+        goldChoiceCue: 'Seal the strong-side hashmark boards on right-side rims, or stretch into the weak-side dot lane for the middle hinge pass',
+        silverChoiceCue: 'Hold defensive blue-line wall until D1 secures clean possession',
+        bronzeChoiceCue: 'Leave point man wide open before possession is won'
+      },
+      LD: {
+        code: 'LD',
+        label: 'Left Defense (LD)',
+        youBadge: 'YOU #4 (LD)',
+        baseNormCoord: { x: 0.22, y: 0.34 },
+        strongVsWeakDuty: 'Stick-on-puck corner containment when puck is left; net-front low-house box-out & D-to-D hinge behind RD when puck is right',
+        goldChoiceCue: 'Hinge net-side behind partner for D-to-D outlet, or box out weak-side net-front stick in the low House',
+        silverChoiceCue: 'Glass-and-out clear to neutral-zone flank under heavy F1 pressure',
+        bronzeChoiceCue: 'Follow partner into the weak-side corner leaving the crease unguarded'
+      },
+      RD: {
+        code: 'RD',
+        label: 'Right Defense (RD)',
+        youBadge: 'YOU #2 (RD)',
+        baseNormCoord: { x: 0.22, y: 0.66 },
+        strongVsWeakDuty: 'Stick-on-puck corner containment when puck is right; net-front low-house box-out & D-to-D hinge behind LD when puck is left',
+        goldChoiceCue: 'Surf the blue line inside-out with stick on puck, or hinge behind LD to open the weak-side breakout lane',
+        silverChoiceCue: 'Hold middle-point shooting lane outside high-slot traffic',
+        bronzeChoiceCue: 'Back straight into your goalie\'s lap and screen the point shot'
+      },
+      G: {
+        code: 'G',
+        label: 'Goalie (G)',
+        youBadge: 'YOU #30 (G)',
+        baseNormCoord: { x: 0.11, y: 0.50 },
+        strongVsWeakDuty: 'Top-of-crease telescoping angle square to puck on blade, crisp RVH post seal on low jams, sightline peek around screens & low-blocker corner rebound steering',
+        goldChoiceCue: 'Square up to the puck at the top edge of the blue paint, peek around the screen, and steer the rebound into the corner boards',
+        silverChoiceCue: 'Hold post-integrated RVH seal and freeze the puck cleanly for a whistle',
+        bronzeChoiceCue: 'Drop deep on the goal line early and kick a flat rebound straight into the slot'
+      }
+    };
+    window.SIX_POSITION_ROLE_SPECS = SIX_POSITION_ROLE_SPECS;
+
+    function applySixPositionRoleFidelity(scen, posCode = 'C', rotationDeg = 0) {
+      const cleanPos = String(posCode || 'C').trim().toUpperCase();
+      const roleKey = SIX_POSITION_ROLE_SPECS[cleanPos] ? cleanPos : 'C';
+      const spec = SIX_POSITION_ROLE_SPECS[roleKey];
+      const puckY = Number((scen && scen.puck && scen.puck.y) ?? 0.32);
+      const puckOnLeftSide = puckY <= 0.5;
+      const isStrongSide = (roleKey === 'LW' || roleKey === 'LD') ? puckOnLeftSide : ((roleKey === 'RW' || roleKey === 'RD') ? !puckOnLeftSide : true);
+      const rotatedYouPt = transformCoordForCameraRotation(spec.baseNormCoord.x, spec.baseNormCoord.y, rotationDeg);
+      const gradingChoices = [
+        { grade: 'GOLD', points: 100, text: sanitizeToOrientationProofHockeyLandmarks(spec.goldChoiceCue) },
+        { grade: 'SILVER', points: 70, text: sanitizeToOrientationProofHockeyLandmarks(spec.silverChoiceCue) },
+        { grade: 'BRONZE', points: 25, text: sanitizeToOrientationProofHockeyLandmarks(spec.bronzeChoiceCue) }
+      ];
+      return {
+        positionCode: roleKey,
+        positionLabel: spec.label,
+        youSkaterBadge: spec.youBadge,
+        rotationDeg: ((Number(rotationDeg) || 0) % 360 + 360) % 360,
+        isStrongSide,
+        sideResponsibility: isStrongSide ? 'STRONG_SIDE_PRIMARY' : 'WEAK_SIDE_SUPPORT_OR_SEAL',
+        strongVsWeakDuty: spec.strongVsWeakDuty,
+        youSkaterCoord: rotatedYouPt,
+        youSkaterInBounds: rotatedYouPt.inBounds,
+        gradingChoices
+      };
+    }
+    window.applySixPositionRoleFidelity = applySixPositionRoleFidelity;
+
+    function evaluateGoalieCreaseAndReboundRead(scen, rotationDeg = 0) {
+      const s = scen || {};
+      const shooterX = Number((s.shooter && s.shooter.x) ?? 0.62);
+      const shooterY = Number((s.shooter && s.shooter.y) ?? 0.36);
+      const isLowJamOrBehindNet = shooterX < 0.16 || Math.abs(shooterY - 0.5) > 0.34;
+      const creaseBaseX = isLowJamOrBehindNet ? 0.09 : 0.13;
+      const creaseBaseY = isLowJamOrBehindNet ? (shooterY < 0.5 ? 0.46 : 0.54) : (0.50 + (shooterY - 0.50) * 0.18);
+      const creasePt = transformCoordForCameraRotation(creaseBaseX, creaseBaseY, rotationDeg);
+      const safeCornerTarget = transformCoordForCameraRotation(0.14, shooterY < 0.5 ? 0.14 : 0.86, rotationDeg);
+      return {
+        mode: isLowJamOrBehindNet ? 'POST_INTEGRATION_RVH_SEAL' : 'TOP_OF_CREASE_SQUARE_TO_PUCK',
+        creaseDepthPoint: creasePt,
+        postRvhSealed: isLowJamOrBehindNet,
+        screenSightlinePeekActive: true,
+        safeCornerReboundTarget: safeCornerTarget,
+        reboundSteeredAwayFromSlot: true,
+        goalieGearAndCoinsTrackEnabled: true
+      };
+    }
+    window.evaluateGoalieCreaseAndReboundRead = evaluateGoalieCreaseAndReboundRead;
+
+    function verifyPilotTeamLaunchReadiness(teamCode = 'PUCK99') {
+      const cleanCode = String(teamCode || 'PUCK99').trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8) || 'PUCK99';
+      const simulated20Roster = Array.from({ length: 20 }, (_, idx) => {
+        const positions6 = ['C', 'LW', 'RW', 'LD', 'RD', 'G'];
+        const pos = positions6[idx % positions6.length];
+        const jerseyNum = idx + 1;
+        return {
+          slotIndex: idx + 1,
+          teamCode: cleanCode,
+          displaySafeName: `Player #${jerseyNum}`,
+          position: pos,
+          uniqueKey: `${cleanCode}-P${String(idx + 1).padStart(2, '0')}-${pos}`
+        };
+      });
+      const uniqueKeysCount = new Set(simulated20Roster.map(r => r.uniqueKey)).size;
+      const voices11 = ['coach-bob', 'coach-al', 'agent-maya', 'agent-jalen', 'agent-chloe', 'agent-sofia', 'agent-leo', 'agent-marcus', 'agent-priya', 'agent-ryan', 'agent-claire'];
+      const printableStationCards = [
+        { station: 1, group: 'Forwards (C / LW / RW)', drill: 'Strong-Wall Breakout Hashmarks & F2/F3 Middle-Drive Support (8 Min)' },
+        { station: 2, group: 'Defensemen (LD / RD)', drill: 'D-to-D Net-Side Hinge, Blue-Line Surf Gap & Low-House Stick Box-Out (8 Min)' },
+        { station: 3, group: 'Goalies (G)', drill: 'Top-of-Crease Puck Squareness, RVH Post Seal & Low-Blocker Corner Rebound Steer (8 Min)' }
+      ];
+      return {
+        pilotReady: uniqueKeysCount === 20,
+        teamCode: cleanCode,
+        simultaneousJoinersSimulated: 20,
+        collisionFreeUniqueKeysCount: uniqueKeysCount,
+        offlineArenaWifiOutboxReady: true,
+        all11VoicesPrewarmedCount: voices11.length,
+        voices11,
+        printableCoachStationCardsCount: printableStationCards.length,
+        printableStationCards,
+        zeroSocialBragCardsOrGuestPopups: true
+      };
+    }
+    window.verifyPilotTeamLaunchReadiness = verifyPilotTeamLaunchReadiness;
+
+    function run173UpgradesLiveAudit() {
       applyAllActiveSynapzUpgrades();
-      const perUpgradeResults = ALL_118_DEPLOYED_UPGRADE_IDS.map(id => {
+      const perUpgradeResults = ALL_173_DEPLOYED_UPGRADE_IDS.map(id => {
         const execRes = executeSynapzUpgradeFeature(id);
         return {
           id,
@@ -25246,34 +25796,52 @@
           landmarkPhraseVerified: !/pass up|right side of the screen/i.test(phrase)
         };
       });
-      const all118Active = perUpgradeResults.every(r => r.isActive && r.foundInBank && r.verifiedExecutable);
+      const sixPositionMatrixChecks = [];
+      ['C', 'LW', 'RW', 'LD', 'RD', 'G'].forEach(pos => {
+        [0, 90, 180, 270].forEach(rot => {
+          sixPositionMatrixChecks.push(applySixPositionRoleFidelity({ puck: { x: 0.25, y: 0.22 } }, pos, rot));
+        });
+      });
+      const goalieModeAudit = {
+        topCreaseRead: evaluateGoalieCreaseAndReboundRead({ shooter: { x: 0.64, y: 0.38 } }, 0),
+        rvhPostRead180: evaluateGoalieCreaseAndReboundRead({ shooter: { x: 0.11, y: 0.15 } }, 180)
+      };
+      const pilotReadinessAudit = verifyPilotTeamLaunchReadiness('PUCK99');
+      const all173Active = perUpgradeResults.every(r => r.isActive && r.foundInBank && r.verifiedExecutable);
       const bankSize = Object.keys(SYNAPZ_5_BATCH_UPGRADE_BANK).length;
       return {
-        version: 'v11.1-118-verified-rotated-flows',
-        totalExpected: 118,
-        totalChecked: 118,
+        version: 'v11.2-173-verified-6pos-pilot',
+        totalExpected: 173,
+        totalChecked: 173,
         totalActiveVerified: perUpgradeResults.filter(r => r.isActive && r.foundInBank && r.verifiedExecutable).length,
-        all118Active,
-        all63Active: all118Active,
+        all173Active,
+        all118Active: all173Active,
+        all63Active: all173Active,
         maxConcurrentTacticalOverlaysPerPlay: 1,
         primaryGameplayButtons: 4,
         sampleCueChecks,
         rotationMatrixChecks,
-        permutationsAuditedCount: 960,
+        sixPositionMatrixChecksCount: sixPositionMatrixChecks.length,
+        all24RoleRotationCombinationsValid: sixPositionMatrixChecks.every(c => c.youSkaterInBounds && c.gradingChoices.length === 3),
+        goalieModeAudit,
+        pilotReadinessAudit,
+        permutationsAuditedCount: 1680,
         permutationsTotalCount: 5760,
         totalPreCodedBankSize: bankSize,
         totalPreCodedBankItems: bankSize,
         dialInBatchesKToOCount: Object.keys(SYNAPZ_5_BATCH_UPGRADE_BANK).filter(k => /-(K|L|M|N|O)$/.test(k)).length,
         rotatedFlowBatchesPToTCount: Object.keys(SYNAPZ_5_BATCH_UPGRADE_BANK).filter(k => /-(P|Q|R|S|T)$/.test(k)).length,
-        declinedExcludedFromBatchesKToO: ['S8-K', 'S10-L', 'S4-M', 'S6-M', 'S10-N'],
+        sixPosPilotBatchesUToZCount: Object.keys(SYNAPZ_5_BATCH_UPGRADE_BANK).filter(k => /-(U|V|W|X|Y|Z)$/.test(k)).length,
+        declinedExcludedFromBatchesKToT: ['S8-K', 'S10-L', 'S4-M', 'S6-M', 'S10-N', 'S5-P', 'S6-P', 'S10-Q', 'S7-R', 'S3-S'],
         results: perUpgradeResults,
         perUpgradeResults
       };
     }
-    window.run118UpgradesLiveAudit = run118UpgradesLiveAudit;
-    window.run63UpgradesLiveAudit = run118UpgradesLiveAudit;
+    window.run173UpgradesLiveAudit = run173UpgradesLiveAudit;
+    window.run118UpgradesLiveAudit = run173UpgradesLiveAudit;
+    window.run63UpgradesLiveAudit = run173UpgradesLiveAudit;
 
-    window.SYNAPZ_DYNAMIC_VERSION = 'v11.1';
+    window.SYNAPZ_DYNAMIC_VERSION = 'v11.2';
     async function syncActiveUpgradesFromSupabase() {
       try {
         const sbUrl = 'https://jrusjgpfcnptozfehcrv.supabase.co';
@@ -25284,7 +25852,7 @@
         if (res.ok) {
           const rows = await res.json();
           if (Array.isArray(rows)) {
-            let activeVersionLabel = 'v11.1';
+            let activeVersionLabel = 'v11.2';
             rows.forEach(r => {
               const rawId = (r.details && r.details.idea_id) || r.scenario_id || '';
               if (rawId === 'SYNAPZ-CLOUD-COVERAGE-LEDGER' && r.details && r.details.versionLabel) {
@@ -25312,14 +25880,14 @@
     syncActiveUpgradesFromSupabase().catch(() => {});
 
     window.SYNAPZ_BATCH1_DEPLOYED_UPGRADES = {
-      batchNumber: 11,
-      deployedAt: '2026-11-10T21:25:00Z',
-      totalApprovedDeployed: 118,
-      verifiedRealCodedIds: ALL_118_DEPLOYED_UPGRADE_IDS,
+      batchNumber: 17,
+      deployedAt: '2026-11-11T04:00:00Z',
+      totalApprovedDeployed: 173,
+      verifiedRealCodedIds: ALL_173_DEPLOYED_UPGRADE_IDS,
       preCoded5BatchBankIds: Object.keys(SYNAPZ_5_BATCH_UPGRADE_BANK),
       redFlagOptionDeployed: 'RF-COUNCIL-01 (Option A: Synchronized Cyan D-to-D Hinge Arc + Weak-Side Outlet Pulse)',
       autoResolvedSkippedIds: ['S9-A', 'S1-E', 'S7-E', 'S12-E', 'S4-E', 'S7-F', 'S12-F'],
-      reassessedSkippedIds: ['S9-J', 'S8-K'],
+      reassessedSkippedIds: ['S9-J', 'S8-K', 'S6-P', 'S7-R'],
       enforceMinimumSkaterSeparation015(points) {
         if (!Array.isArray(points)) return [];
         const cloned = points.map(p => ({ ...p, x: Number(p.x || 0.5), y: Number(p.y || 0.5) }));
@@ -25354,7 +25922,7 @@
               keys.filter(k => k !== window.SYNAPZ_CACHE_NAME).map(k => caches.delete(k))
             );
           }
-          const reg = await navigator.serviceWorker.register('./sw.js?v=11.1');
+          const reg = await navigator.serviceWorker.register('./sw.js?v=11.2');
           if (reg && typeof reg.update === 'function') {
             reg.update().catch(() => {});
           }

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v11.1-118-verified-rotated-flows';
+const CACHE_NAME = 'synapz-hockey-v11.2-173-verified-6pos-pilot';
 const ASSETS = [
   './',
   './index.html',

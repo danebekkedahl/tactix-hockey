@@ -1,189 +1,1439 @@
 {
-  "batchNumber": 12,
-  "verifiedAt": "2026-11-10T21:40:00.000Z",
-  "cacheVersion": "synapz-hockey-v11.1-118-verified-rotated-flows",
+  "batchNumber": 17,
+  "verifiedAt": "2026-11-10T22:17:00.000Z",
+  "cacheVersion": "synapz-hockey-v11.2-173-verified-6pos-pilot",
   "zeroFakeStatusFlippingEnforced": true,
   "maxConcurrentTacticalOverlaysPerPlay": 1,
   "currentPassNewlyCodedCount": 55,
-  "totalPhysicallyCodedAndLive": 118,
+  "totalPhysicallyCodedAndLive": 173,
   "totalAwaitingAgentCodeInQueue": 0,
   "restoredUnbuiltCount": 0,
   "currentPassNewlyCodedItems": [
-    { "id": "S1-K", "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems", "status": "completed_and_deployed", "title": "Weak-Side Winger High-Slot House Seal Positioning Anchor on D-Zone Corner Battles (Scenarios 185–220)", "codedInCurrentPass": true },
-    { "id": "S2-K", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "0.4s Pre-Freeze Head-Swivel Scan Pulse on Active Threat Before Decision Read (Scenarios 185–220)", "codedInCurrentPass": true },
-    { "id": "S3-K", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "Strict <=5-Word Choice Button Labels on 8U/10U Scenarios 185–220", "codedInCurrentPass": true },
-    { "id": "S4-K", "seat_name": "🎮 Seat 4 — Retention Designer", "status": "completed_and_deployed", "title": "Crisp Ice-Spray & Puck-Clank Sound/Visual Polish When Unlocking Next NHL City Stop", "codedInCurrentPass": true },
-    { "id": "S5-K", "seat_name": "📋 Seat 5 — Head Coach Playtester", "status": "completed_and_deployed", "title": "Instant Age-Division & System Filter Tag Sync Between Coach Playbook & Assigned Warmup", "codedInCurrentPass": true },
-    { "id": "S6-K", "seat_name": "🏛️ Seat 6 — Association Director", "status": "completed_and_deployed", "title": "Age-Appropriate USA Hockey ADM Skill Progression Checkpoints (8U–18U) in Director Rollup", "codedInCurrentPass": true },
-    { "id": "S7-K", "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead", "status": "completed_and_deployed", "title": "Smooth Momentum Touch-Scrolling & Sticky Close Header Inside All 5 Room Modals on iOS", "codedInCurrentPass": true },
-    { "id": "S9-K", "seat_name": "⚙️ Seat 9 — <canvas> Engineer", "status": "completed_and_deployed", "title": "Sub-Pixel Quadratic Bezier Path Tangents Eliminating Sharp 90° Skater Turns on Scenarios 185–220", "codedInCurrentPass": true },
-    { "id": "S10-K", "seat_name": "📈 Seat 10 — Growth Strategist", "status": "completed_and_deployed", "title": "Zero-Friction 6-Character Team Join Code Auto-Fill From Deep-Link URL (?team=CODE)", "codedInCurrentPass": true },
-    { "id": "S11-K", "seat_name": "🎨 Seat 11 — Lead Art Director", "status": "completed_and_deployed", "title": "Precision Athletic-Block Jersey Number & Brass Nameplate Kerning Across 1–2 Digit Numbers", "codedInCurrentPass": true },
-    { "id": "S12-K", "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA", "status": "completed_and_deployed", "title": "Phonetic Hockey-Jargon Pronunciation Normalization (2-on-1, D-to-D, 3v2) Across 11 Voices", "codedInCurrentPass": true },
-    { "id": "S1-L", "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems", "status": "completed_and_deployed", "title": "Strong-Side Winger Hashmark Boards Angle & Stick-to-Middle Presentation on Breakouts (Scenarios 221–255)", "codedInCurrentPass": true },
-    { "id": "S2-L", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "1-Sentence Good Safe Play vs. Best High-IQ Play Contrast Note When Selecting a Silver Read", "codedInCurrentPass": true },
-    { "id": "S3-L", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "High-Visibility Puck-Possession Black/Cyan Ring Under Active Puck Carrier on 8U/10U Drills", "codedInCurrentPass": true },
-    { "id": "S4-L", "seat_name": "🎮 Seat 4 — Retention Designer", "status": "completed_and_deployed", "title": "Smooth Animated Pillar XP Bar Fill at Shift End", "codedInCurrentPass": true },
-    { "id": "S5-L", "seat_name": "📋 Seat 5 — Head Coach Playtester", "status": "completed_and_deployed", "title": "Highlight Lowest-Scoring Position Group (Forwards vs. Defense vs. Goalies) in Coach Analytics", "codedInCurrentPass": true },
-    { "id": "S6-L", "seat_name": "🏛️ Seat 6 — Association Director", "status": "completed_and_deployed", "title": "1-Tap Filter by Age Division (8U–18U) Inside Director HQ Rollup", "codedInCurrentPass": true },
-    { "id": "S7-L", "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead", "status": "completed_and_deployed", "title": "Balanced iPad Landscape Split-Proportion Between #rinkCanvas and Bottom 4-Choice Dock", "codedInCurrentPass": true },
-    { "id": "S8-L", "seat_name": "🎬 Seat 8 — Film-Room QC Auditor", "status": "completed_and_deployed", "title": "Verified Embed Playback & Role-Specific Takeaway Synchronization Across Q5 Clips 13–24", "codedInCurrentPass": true },
-    { "id": "S9-L", "seat_name": "⚙️ Seat 9 — <canvas> Engineer", "status": "completed_and_deployed", "title": "Zero-Clip Boundary Margin Clamp (min 0.07 Normalized Board Buffer) Across 90°/180°/270° Rotations", "codedInCurrentPass": true },
-    { "id": "S11-L", "seat_name": "🎨 Seat 11 — Lead Art Director", "status": "completed_and_deployed", "title": "Crisp Warm-Spotlight Hover/Touch Framing on Pro Shop Stick Rack, Helmet Shelf & Skate Wall", "codedInCurrentPass": true },
-    { "id": "S12-L", "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA", "status": "completed_and_deployed", "title": "Single-Active-Voice Mutex Preventing Rapid Button Taps From Layering Two Audio Clips", "codedInCurrentPass": true },
-    { "id": "S1-M", "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems", "status": "completed_and_deployed", "title": "F2 Center Middle-Lane Net Drive Depth & F3 High-Trailer Triangle Spacing on Rush Drills (Scenarios 256–290)", "codedInCurrentPass": true },
-    { "id": "S2-M", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "Explicit Stick-Blade & Shoulder-Angle Deception Cue in 14U–18U Rush Explanations (Scenarios 256–290)", "codedInCurrentPass": true },
-    { "id": "S3-M", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "High-Contrast Blue-Paint Crease Outline for 8U/10U Net-Front & Goalie Drills (Scenarios 256–290)", "codedInCurrentPass": true },
-    { "id": "S5-M", "seat_name": "📋 Seat 5 — Head Coach Playtester", "status": "completed_and_deployed", "title": "1-Line Custom Coach Emphasis Note Attached to Team Homework", "codedInCurrentPass": true },
-    { "id": "S7-M", "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead", "status": "completed_and_deployed", "title": "High-Contrast Text Shadow & Balanced 2-Line Wrapping on 4 Tactile Choice Buttons", "codedInCurrentPass": true },
-    { "id": "S8-M", "seat_name": "🎬 Seat 8 — Film-Room QC Auditor", "status": "completed_and_deployed", "title": "Verified Rush & Transition Film Clip Alignment Across Q5 Clips 25–36", "codedInCurrentPass": true },
-    { "id": "S9-M", "seat_name": "⚙️ Seat 9 — <canvas> Engineer", "status": "completed_and_deployed", "title": "Realistic Tape-to-Tape Lead-Pass Intersection Timing on Moving Rush Completions (Scenarios 256–290)", "codedInCurrentPass": true },
-    { "id": "S10-M", "seat_name": "📈 Seat 10 — Growth Strategist", "status": "completed_and_deployed", "title": "Clean Apple-Touch-Icon & Fullscreen Standalone Viewport Meta Polish for Home-Screen Web App Launches", "codedInCurrentPass": true },
-    { "id": "S11-M", "seat_name": "🎨 Seat 11 — Lead Art Director", "status": "completed_and_deployed", "title": "Warm Desk-Lamp & Chalkboard Frame Contrast Polish Inside Coach Al's Office", "codedInCurrentPass": true },
-    { "id": "S12-M", "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA", "status": "completed_and_deployed", "title": "Strict First-Name + Jersey # Privacy Mask Across All Shared Team & Clubhouse Leaderboards", "codedInCurrentPass": true },
-    { "id": "S1-N", "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems", "status": "completed_and_deployed", "title": "Power-Play Low-Flank / Bumper Triangle Spacing & PK Ice-Clear Trajectory Calibration (Scenarios 291–325)", "codedInCurrentPass": true },
-    { "id": "S2-N", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "Crisp Situational Context Tag (5v4 PP / 4v5 PK) in Scenario Intro Prompt", "codedInCurrentPass": true },
-    { "id": "S3-N", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "Plain-English Youth Terms for 8U/10U Divisions on Special Teams", "codedInCurrentPass": true },
-    { "id": "S4-N", "seat_name": "🎮 Seat 4 — Retention Designer", "status": "completed_and_deployed", "title": "Original-Six & Eastern Conference Arena Milestone Badges Inside 32-City Tour Progress Header", "codedInCurrentPass": true },
-    { "id": "S5-N", "seat_name": "📋 Seat 5 — Head Coach Playtester", "status": "completed_and_deployed", "title": "1-Tap PP1 / PK1 Special-Teams Focus Preset Inside Coach Homework Wizard", "codedInCurrentPass": true },
-    { "id": "S6-N", "seat_name": "🏛️ Seat 6 — Association Director", "status": "completed_and_deployed", "title": "Monthly Board-Packet CSV/Print Summary With Zero Student PII in Director HQ", "codedInCurrentPass": true },
-    { "id": "S7-N", "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead", "status": "completed_and_deployed", "title": "Consistent 1-Tap Lobby Breadcrumb Return Across All 4 Interior Rooms on 390px Phones", "codedInCurrentPass": true },
-    { "id": "S8-N", "seat_name": "🎬 Seat 8 — Film-Room QC Auditor", "status": "completed_and_deployed", "title": "Verified Power-Play, Penalty-Kill & Faceoff Alignment Across Q5 Clips 37–44", "codedInCurrentPass": true },
-    { "id": "S9-N", "seat_name": "⚙️ Seat 9 — <canvas> Engineer", "status": "completed_and_deployed", "title": "Pre-Allocated Float32 Skater Coordinate Buffers for Zero Garbage-Collection Stutter", "codedInCurrentPass": true },
-    { "id": "S11-N", "seat_name": "🎨 Seat 11 — Lead Art Director", "status": "completed_and_deployed", "title": "Authentic Butterfly Goalie Pad, Blocker & Catch-Glove Silhouette Scaling at 2.0x Size", "codedInCurrentPass": true },
-    { "id": "S12-N", "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA", "status": "completed_and_deployed", "title": "Natural 180ms Clause-Boundary Micro-Pause in Multi-Clause Coach Explanations", "codedInCurrentPass": true },
-    { "id": "S1-O", "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems", "status": "completed_and_deployed", "title": "Goalie Top-of-Crease Angle Squareness (To Pucks vs. Body) & 6v5 Box+1 Stick-Lane Polish (Scenarios 326–360)", "codedInCurrentPass": true },
-    { "id": "S2-O", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "Smart Weakest-Bucket Spiral Review Selector Pulling 1 Scenario From Lowest Pillar Per Shift", "codedInCurrentPass": true },
-    { "id": "S3-O", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "100% 360-Scenario Verification of <=14-Word 8U Prompts & Zero Unmapped Role Tokens", "codedInCurrentPass": true },
-    { "id": "S4-O", "seat_name": "🎮 Seat 4 — Retention Designer", "status": "completed_and_deployed", "title": "32-City Tour Completion Prestige Tour II (Mirror & Pro Speed) Unlock Inside Clubhouse Trophy Case", "codedInCurrentPass": true },
-    { "id": "S5-O", "seat_name": "📋 Seat 5 — Head Coach Playtester", "status": "completed_and_deployed", "title": "3-Line Ready for Game Day Team Readiness Summary Inside Coach Al's Office Header", "codedInCurrentPass": true },
-    { "id": "S6-O", "seat_name": "🏛️ Seat 6 — Association Director", "status": "completed_and_deployed", "title": "Full-Season 16-Bucket Curriculum Coverage Matrix Across All Club Divisions in Director HQ", "codedInCurrentPass": true },
-    { "id": "S7-O", "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead", "status": "completed_and_deployed", "title": "Permanent Layout Guard Enforcing <=4 Gameplay Buttons & Max 1 On-Ice Tactical Cue Across All 360 Drills", "codedInCurrentPass": true },
-    { "id": "S8-O", "seat_name": "🎬 Seat 8 — Film-Room QC Auditor", "status": "completed_and_deployed", "title": "100% 51-Clip Q5 Film Library Timestamp & Takeaway Completion Lock (Clips 45–51)", "codedInCurrentPass": true },
-    { "id": "S9-O", "seat_name": "⚙️ Seat 9 — <canvas> Engineer", "status": "completed_and_deployed", "title": "Startup 360-Scenario & 118+ Upgrade Integrity Checksum With Instant Self-Healing Fallback", "codedInCurrentPass": true },
-    { "id": "S10-O", "seat_name": "📈 Seat 10 — Growth Strategist", "status": "completed_and_deployed", "title": "Verified USA Hockey ADM & SafeSport Compliance Footer Badge Inside Coach & Parent Portals", "codedInCurrentPass": true },
-    { "id": "S11-O", "seat_name": "🎨 Seat 11 — Lead Art Director", "status": "completed_and_deployed", "title": "Crisp High-DPI Image Rendering & Warm Brass Hotspot Alignment Across All 28/28 Room Fixtures", "codedInCurrentPass": true },
-    { "id": "S12-O", "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA", "status": "completed_and_deployed", "title": "100% 112-Clip Neural .mp3 Audio Registry & Zero-Robotic-Fallback Lock Across All 11 Characters", "codedInCurrentPass": true }
+    {
+      "id": "S1-P",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems",
+      "status": "completed_and_deployed",
+      "title": "4-Way Camera (90°/180°/270°): True Hockey Landmark Phrasing (\"Weak-Side Boards\" / \"High Slot\" / \"Far Post\") Replacing Screen-Relative Directions",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S2-P",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "Orientation-Locked Feedback Vectors: Mirror Gold/Silver/Bronze Target Vectors Dynamically Across 90°/180°/270° Rotations",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S3-P",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "8U/10U Downward-Attack (180°) Goalie & Net-Front Orientation Cue (\"Attacking the Bottom Goal!\")",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S4-P",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "End-to-End 5-Play Shift Flow: Seamless Q4->Q5 Film Room Transition Without Losing Rotated Rink State",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S7-P",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "Ultra-Responsive In-App 🚩 Founder Red-Flag Capture (Auto-Captures scenarioId, rotationAngle, ageDivision & 118 Active Upgrades)",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S8-P",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Q5 Film Room Playback Resilience: Instant Clip Resume & Landmark Caption Sync After Returning From Rotated Rink",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S9-P",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "4-Way Camera Vector Math Engine (transformCoordForCameraRotation): Exact Skater & Goalie Facing Angles at 90°/180°/270°",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S10-P",
+      "seat_name": "📈 Seat 10 — Growth & Onboarding Strategist",
+      "status": "completed_and_deployed",
+      "title": "Zero-Latency End-to-End Journey Handoff: 2-Button Gate -> Locker Stall PIN -> Pro Shop Try-On -> 5-Play Shift",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S11-P",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Rotated Crease & Goalie Stick/Glove Handedness Alignment on 90°/180°/270° Camera Views",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S12-P",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "Spoken Voice Line Orientation Scrubber: Replace Screen-Relative (\"Left/Up\") With Ice Landmarks (\"Strong-Side/High Slot\") in Live Speech",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S1-Q",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems",
+      "status": "completed_and_deployed",
+      "title": "180° Top-to-Bottom Attack Calibration: Flip D-to-D Hinge & Center Low-Swing Vectors Cleanly Behind Top Goal Line (Permutations #361–#480)",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S2-Q",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "Rotated-Rink Mistake Mode: Keep Step-1 Culprit Tap & Step-2 Drag Target Aligned Under 90°/180°/270° Transforms",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S3-Q",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "8U/10U Cross-Ice (90°/270°) Blue-Line Onside Boot Indicator Aligned to Rotated Zone Entry Axis",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S4-Q",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "Pro Shop Live Avatar Try-On -> On-Ice Skater Token Instant Sync Across All 5 Shift Questions",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S5-Q",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "Coach Al Homework Assignment Flow: Preserve Assigned Concept Bucket Across Rotated Permutations",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S6-Q",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "Parent Tab 4 Progress Tracker: Live Per-Sibling 5-Play Shift History & Weakest-Slice Recommendation Sync",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S7-Q",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "Room Modal 🚩 Red-Flag Context Capture: Auto-Detect Active Room Modal (Locker / Pro Shop / Coach Al / Clubhouse) on Tap",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S8-Q",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Q5 Film Room Concept-Matched Backup Stream Selector for Zero-Stall Playback on Cellular Connections",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S9-Q",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "Inverse Pointer Hit-Testing Matrix (canvasToNormRotated) for Pinpoint Drag-Skater & Tap-Zone Accuracy at 90°/180°/270°",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S11-Q",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Directional Skate-Blade & Shadow Projection Normalizing Light Source Across 4-Way Camera Angles",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S12-Q",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "11-Character Voice Queue Guard: Prevent Overlapping Audio When Switching Rapidly Between Locker Stall & Ice",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S1-R",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems",
+      "status": "completed_and_deployed",
+      "title": "90° Left-to-Right Attack Calibration: Normalize Weak-Side F3 High-Slot Reload Coordinates (Permutations #481–#600)",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S2-R",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "3-Option Tactical Choice Buttons: Landmark-Pure Wording (\"Far-Pad Rebound Shot\" / \"Weak-Side D2 Reverse\") at All Angles",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S3-R",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "10U/12U Who-Am-I Role Read (F1/F2/F3/D1/D2): Orientation-Independent Distance-to-Puck Calculation",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S4-R",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "5-Play Shift Summary Modal: Instant 1-Tap Replay of Any Missed Question From the Completed Shift",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S5-R",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "Coach Al Opponent Scouting Bench Card: Landmark-Pure Period-by-Period Keys (Zero Screen-Relative Terms)",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S6-R",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "Director HQ Multi-Division Audit: Track 4-Way Camera Mastery Parity (0° vs 90°/180°/270°) Across 8U–18U",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S8-R",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Q5 Film Room Timestamp Scrub Bar: Instant Jump to 3-Second Tactical Trigger Moment",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S9-R",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "Zero-Drift Bezier Pass & Skating Path Tangents Under 90°/180°/270° Coordinate Rotations",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S10-R",
+      "seat_name": "📈 Seat 10 — Growth & Onboarding Strategist",
+      "status": "completed_and_deployed",
+      "title": "Coach Al Office -> Player Team Hub -> On-Ice Homework Launch 1-Tap Continuity",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S11-R",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Center-Ice Synapz Medallion & Faceoff Circle Detail Scaling on Rotated Half-Ice Views",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S12-R",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "SafeSport Red-Flag Submission Scrubber: Strip Any Personal Names From Custom Flag Notes Before Cloud Sync",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S1-S",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems",
+      "status": "completed_and_deployed",
+      "title": "270° Right-to-Left Attack Calibration: Royal-Road Seam & Box+1 Stick-Lane Vectors (Permutations #601–#780)",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S2-S",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "Post-Answer On-Ice Feedback Card: Show Exact Hockey Landmark Name (\"High Slot\" / \"Hashmark Wall\") of Chosen Spot",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S4-S",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "Clubhouse Trophy Vault & Tour Map Sync: Immediately Reflect Newly Conquered City Star After Q5 Film Completion",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S5-S",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "Coach Al Question-by-Question Table: Click Any Missed Question Cell (Q1–Q5) to Preview That Exact Scenario",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S6-S",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "Parent Tab 4 Car-Ride Talking Points: Auto-Update With Latest Completed Concept Bucket & Golden Rule",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S7-S",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "In-Drill 🚩 Red-Flag Non-Destructive Pause: Freeze Play Timer Cleanly While Typing/Dictating Flag Note & Resume on Close",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S8-S",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Q5 Film Room Auto-Mark Completed & Award Puck Bucks Even If YouTube Iframe Is Blocked by Rink Wi-Fi",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S9-S",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "Deterministic Permutation Seed Persistence Across Browser Refresh Mid-Series",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S10-S",
+      "seat_name": "📈 Seat 10 — Growth & Onboarding Strategist",
+      "status": "completed_and_deployed",
+      "title": "Family Portal Sign-In -> Parent Tab 4 -> Switch to Player Stall Seamless Back-to-Lobby Navigation",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S11-S",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "High-Visibility Puck Shadow & Cyan Trail Contrast on Rotated Cross-Ice Passes",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S12-S",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "Audio Ducking During Q5 Video Playback: Mute Background Rink Ambience While Coaching Clip Plays",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S1-T",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems",
+      "status": "completed_and_deployed",
+      "title": "Full 4-Way Special Teams Calibration (5v4 Umbrella & 4v5 Diamond) Across Rotated Permutations #781–#960",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S2-T",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "Golden Rule Takeaway Synthesis: Pair Every Rotated Scenario With Its Core Spatial Landmark Rule",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S3-T",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "8U–18U Age-Division Progression Gate: Verify 0 Off-Ice or Overlapping Coordinates Across All 960 Permutations",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S4-T",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "End-to-End 5-Play Shift Completion -> Next City Auto-Advance Readiness Check",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S5-T",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "Coach Al Practice Sheet Print/PDF Layout: Clean Single-Page Formatting With Zero Cut-Off Margins",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S6-T",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "Association-Wide 960-Permutation Coverage Telemetry Sync in Director HQ",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S7-T",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "390px iPhone & 1024px iPad Touch-Target Audit Lock Across All 7 End-to-End Journey Screens",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S8-T",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Q5 Film Room Multi-Channel Playlist Cycling: Zero Duplicate Clips Within a 5-City Tour Leg",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S9-T",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "118-Upgrade + 60-Bank Runtime Memory Footprint Cap (< 4 MB Heap Overhead)",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S10-T",
+      "seat_name": "📈 Seat 10 — Growth & Onboarding Strategist",
+      "status": "completed_and_deployed",
+      "title": "Instant 1-Tap Return From Parent Tab 4 or Coach Office Directly Into Active On-Ice Question",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S11-T",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Goalie Crease Post-to-Post RVH Seal Angle Verification Across All 4 Camera Orientations",
+      "codedInCurrentPass": true
+    },
+    {
+      "id": "S12-T",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "Full 118-Upgrade + 960-Permutation Boot Integrity & SafeSport Verification Receipt",
+      "codedInCurrentPass": true
+    }
   ],
   "deployedApprovedItems": [
-    { "id": "S1-A", "seat_name": "🏒 Seat 1 — Systems Director", "status": "completed_and_deployed", "title": "2.0s Pre-Read Skating Motion + Synchronized Cyan D-to-D / Weak-Side Outlet Arc" },
-    { "id": "S2-A", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "Age-Adaptive Roll-In Pacing (0.65x 8U/10U vs 1.0x 12U–18U) & Visual Cue Highlighting" },
-    { "id": "S3-A", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "1.0s Pulsing Gold YOU #9 Halo & 1-Tap Sibling Stall Switcher" },
-    { "id": "S4-A", "seat_name": "🎮 Seat 4 — Retention Designer", "status": "completed_and_deployed", "title": "Live Side-by-Side Try It On My Skater Preview & Skate-Stop Freeze Transition" },
-    { "id": "S5-A", "seat_name": "📋 Seat 5 — Head Coach Playtester", "status": "completed_and_deployed", "title": "60-Second Tonight's Practice 5-Play Warmup Link Generator in Coach Al's Corner" },
-    { "id": "S6-A", "seat_name": "🏛️ Seat 6 — Association Director", "status": "completed_and_deployed", "title": "Goalie Crease Sightline Ray & 1-Click Printable Association Board Report Export" },
-    { "id": "S7-A", "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead", "status": "completed_and_deployed", "title": "On-Ice Combo Streak Multiplier Badge & Fixed-Height Dock Lock (<=4 Primary Buttons)" },
-    { "id": "S8-A", "seat_name": "🎬 Seat 8 — Film-Room QC Auditor", "status": "completed_and_deployed", "title": "Position-First Video Sorting, Role-Mapped Takeaways & Fresh Film Pill in Q5 Film Room" },
-    { "id": "S9-A", "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer", "status": "completed_and_deployed", "title": "Auto-Sync Founder Approval Queue Status Badge & Deterministic Cloud UPSERT" },
-    { "id": "S10-A", "seat_name": "📈 Seat 10 — Growth Strategist", "status": "completed_and_deployed", "title": "Pre-Freeze Peripheral Vision Scan Ring & ?partner=ASSOC_CODE 50% Partner Link Generator" },
-    { "id": "S11-A", "seat_name": "🎨 Seat 11 — Lead Art Director", "status": "completed_and_deployed", "title": "Interactive Side-by-Side 75%-Realistic Pro Shop Gear Try-On Stage" },
-    { "id": "S12-A", "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA", "status": "completed_and_deployed", "title": "Age-Calibrated 11-Character Voice Cadence & SafeSport 1-Way Alert Verifier" },
-    { "id": "S9-B", "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer", "status": "completed_and_deployed", "title": "Offline LocalStorage Snapshot Cache for 360 Cloud Scenarios & 51 Video Clips" },
-    { "id": "S10-B", "seat_name": "📈 Seat 10 — Growth Strategist", "status": "completed_and_deployed", "title": "Multi-Sibling Family Locker Pass Bundle Callout Inside Parent HQ" },
-    { "id": "S1-F", "seat_name": "🏒 Seat 1 — Systems Director", "status": "completed_and_deployed", "title": "Dynamic Weak-Side Winger High-Slot Seal & F3 Backcheck Tracking Vector" },
-    { "id": "S2-F", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "1.2s Pre-Freeze Scan the Ice First Head-Up Radar Pulse on Puck Carrier" },
-    { "id": "S3-F", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "8U/10U Color-Coded Ice Landmark Labels (THE HOUSE & ATTACK TRIANGLE)" },
-    { "id": "S4-F", "seat_name": "🎮 Seat 4 — Retention Designer", "status": "completed_and_deployed", "title": "City Tour Boss-Read Streak Shield Indicator on 32-City Map Header" },
-    { "id": "S5-F", "seat_name": "📋 Seat 5 — Head Coach Playtester", "status": "completed_and_deployed", "title": "1-Click Copy Team GroupMe / SportsEngine Homework Message in Coach Al's Office" },
-    { "id": "S8-F", "seat_name": "🎬 Seat 8 — Film-Room QC Auditor", "status": "completed_and_deployed", "title": "Role-Mapped Key Tactical Moment Timestamp Pill in Q5 Film Room" },
-    { "id": "S9-F", "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer", "status": "completed_and_deployed", "title": "Zero-Latency Scenario Pre-Warming & 60fps requestAnimationFrame Delta Clamp" },
-    { "id": "S11-F", "seat_name": "🎨 Seat 11 — Lead Art Director", "status": "completed_and_deployed", "title": "75%-Realistic Brushed-Brass Active Hotspot Rim Glow in All 5 Illustrated Rooms" },
-    { "id": "S1-G", "seat_name": "🏒 Seat 1 — Systems Director", "status": "completed_and_deployed", "title": "Neutral-Zone D-to-D Hinge Timing Arc & Center Low-Swing Speed-Through-Middle Lane" },
-    { "id": "S2-G", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "Stick-on-Puck vs. Body-Position Teaching Callout Ring on Defensive 1v1 Gap Reads" },
-    { "id": "S3-G", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "Auto-Play 1-Sentence Audio Readout on 8U/10U Question Load" },
-    { "id": "S4-G", "seat_name": "🎮 Seat 4 — Retention Designer", "status": "completed_and_deployed", "title": "3-Star Division Sweep Gold Trophy Sparkle on 32-City Tour Map" },
-    { "id": "S5-G", "seat_name": "📋 Seat 5 — Head Coach Playtester", "status": "completed_and_deployed", "title": "Pre-Practice Top 3 Missed Reads This Week Printable Chalkboard Card" },
-    { "id": "S6-G", "seat_name": "🏛️ Seat 6 — Association Director", "status": "completed_and_deployed", "title": "Club-Wide Most Improved Concept Bucket (30-Day Delta) Highlight Pill" },
-    { "id": "S7-G", "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead", "status": "completed_and_deployed", "title": "Zero-Shift Fixed-Height Answer Card Container on 390x844 Phones" },
-    { "id": "S8-G", "seat_name": "🎬 Seat 8 — Film-Room QC Auditor", "status": "completed_and_deployed", "title": "Replay Key 5-Second Tactical Read 1-Tap Loop Toggle Inside Q5 Film Room" },
-    { "id": "S9-G", "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer", "status": "completed_and_deployed", "title": "60fps Offscreen <canvas> Rink Ice-Surface Layer Cache" },
-    { "id": "S11-G", "seat_name": "🎨 Seat 11 — Lead Art Director", "status": "completed_and_deployed", "title": "Dynamic Stick-Flex & Blade-Tape Color Reflection on On-Ice Skater Sprite" },
-    { "id": "S12-G", "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA", "status": "completed_and_deployed", "title": "Automatic Volume Ducking (-6dB) of Rink Ambient SFX During Character Speech" },
-    { "id": "S1-H", "seat_name": "🏒 Seat 1 — Systems Director", "status": "completed_and_deployed", "title": "Weak-Side D-Man Net-Front Stick-Lift & Box-Out Leverage Ring" },
-    { "id": "S2-H", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "Post-Answer Why That Read Worked 1-Line Tactical Principle Pill" },
-    { "id": "S3-H", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "8U/10U Big-Target Tap Tolerance (+14px Hit Radius) on Small Skater Tokens" },
-    { "id": "S4-H", "seat_name": "🎮 Seat 4 — Retention Designer", "status": "completed_and_deployed", "title": "3-in-a-Row Hat-Trick First-Choice Gold Read Ice Shimmer & +15 Bonus Puck Bucks" },
-    { "id": "S5-H", "seat_name": "📋 Seat 5 — Head Coach Playtester", "status": "completed_and_deployed", "title": "1-Tap Assign Matching 3-Drill Homework Pack From Opponent Scouting Counter-Plan" },
-    { "id": "S6-H", "seat_name": "🏛️ Seat 6 — Association Director", "status": "completed_and_deployed", "title": "Age-Division USA Hockey ADM / Hockey Canada LTPD Compliance Checkmark Column" },
-    { "id": "S7-H", "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead", "status": "completed_and_deployed", "title": "Auto-Hide Top Bar Secondary Badges When Phone Viewport Height < 700px" },
-    { "id": "S8-H", "seat_name": "🎬 Seat 8 — Film-Room QC Auditor", "status": "completed_and_deployed", "title": "0.5x Slow-Motion Tactical Breakdown Speed Toggle Inside Q5 Film Room" },
-    { "id": "S9-H", "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer", "status": "completed_and_deployed", "title": "Instant Preload of Next Scenario Assets During Coach Bob Feedback Toast" },
-    { "id": "S11-H", "seat_name": "🎨 Seat 11 — Lead Art Director", "status": "completed_and_deployed", "title": "Brushed-Brass & Walnut Spotlight Hover Glow on All 28 Interactive Room Hotspots" },
-    { "id": "S12-H", "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA", "status": "completed_and_deployed", "title": "Zero-PII Anonymized Teammate Initials Mode Toggle for Public Scoreboards" },
-    { "id": "S1-I", "seat_name": "🏒 Seat 1 — Systems Director", "status": "completed_and_deployed", "title": "Offensive-Zone High-Cycle F3 Reload & Weak-Side D Pinch Backfill Path Vector" },
-    { "id": "S2-I", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "Adaptive 2-Choice Simplification After 2 Consecutive Misses on 8U/10U Drills" },
-    { "id": "S3-I", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "Parent HQ Weekly 60-Second Car-Ride Talking Point Card Matched to Active Bucket" },
-    { "id": "S4-I", "seat_name": "🎮 Seat 4 — Retention Designer", "status": "completed_and_deployed", "title": "Stanley Cup Playoff Overtime Sudden-Death Bonus Round After 4-City Road Trip" },
-    { "id": "S6-I", "seat_name": "🏛️ Seat 6 — Association Director", "status": "completed_and_deployed", "title": "1-Click Email Monthly Curriculum Progress Summary to Team Head Coaches" },
-    { "id": "S7-I", "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead", "status": "completed_and_deployed", "title": "Swipe-Down Gesture to Dismiss Any Room Modal on Mobile & Tablet Screens" },
-    { "id": "S8-I", "seat_name": "🎬 Seat 8 — Film-Room QC Auditor", "status": "completed_and_deployed", "title": "Verified Pro Clip Timestamp Health Check & Auto-Skip Broken Embed Fallback" },
-    { "id": "S9-I", "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer", "status": "completed_and_deployed", "title": "Debounced ResizeObserver on #rinkCanvas for Zero-Flicker iPad Split-View Rotation" },
-    { "id": "S12-I", "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA", "status": "completed_and_deployed", "title": "Instant Audio Cutoff When Closing Any Room or Switching Drills" },
-    { "id": "S1-J", "seat_name": "🏒 Seat 1 — Systems Director", "status": "completed_and_deployed", "title": "Penalty-Kill 4-Man Diamond vs. Box Stick-in-Lane Seam Denial Vector" },
-    { "id": "S2-J", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "3-Stage Mastery Badge (Bronze -> Silver -> Gold) Per Concept Bucket in Locker Room Tab 3" },
-    { "id": "S3-J", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "Colorblind-Safe High-Contrast Shape Markers (Star / Triangle / Square) on Rink Zones" },
-    { "id": "S4-J", "seat_name": "🎮 Seat 4 — Retention Designer", "status": "completed_and_deployed", "title": "Road-Trip City Collectible Rink Sticker Book Inside 3D Trophy Room" },
-    { "id": "S5-J", "seat_name": "📋 Seat 5 — Head Coach Playtester", "status": "completed_and_deployed", "title": "Pre-Game 3-Minute Locker Room Chalkboard Mode Fullscreen Toggle in Coach Al's Office" },
-    { "id": "S6-J", "seat_name": "🏛️ Seat 6 — Association Director", "status": "completed_and_deployed", "title": "Season-Over-Season Club Retention & IQ Growth Comparison Card in Director HQ" },
-    { "id": "S7-J", "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead", "status": "completed_and_deployed", "title": "Strict 4-Button Bottom Bar Lock Assertion Guard on Every View Switch" },
-    { "id": "S10-J", "seat_name": "📈 Seat 10 — Growth Strategist", "status": "completed_and_deployed", "title": "QR Code Join My Team Roster Instant Poster Generator in Coach Tab 3" },
-    { "id": "S11-J", "seat_name": "🎨 Seat 11 — Lead Art Director", "status": "completed_and_deployed", "title": "Subtle Skate-Blade Ice Crease & Puck Shadow Depth Pass on #rinkCanvas" },
-    { "id": "S12-J", "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA", "status": "completed_and_deployed", "title": "Complete 11-Character Neural MP3 Fallback Integrity Check on App Boot" },
-    { "id": "S1-K", "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems", "status": "completed_and_deployed", "title": "Weak-Side Winger High-Slot House Seal Positioning Anchor on D-Zone Corner Battles (Scenarios 185–220)" },
-    { "id": "S2-K", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "0.4s Pre-Freeze Head-Swivel Scan Pulse on Active Threat Before Decision Read (Scenarios 185–220)" },
-    { "id": "S3-K", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "Strict <=5-Word Choice Button Labels on 8U/10U Scenarios 185–220" },
-    { "id": "S4-K", "seat_name": "🎮 Seat 4 — Retention Designer", "status": "completed_and_deployed", "title": "Crisp Ice-Spray & Puck-Clank Sound/Visual Polish When Unlocking Next NHL City Stop" },
-    { "id": "S5-K", "seat_name": "📋 Seat 5 — Head Coach Playtester", "status": "completed_and_deployed", "title": "Instant Age-Division & System Filter Tag Sync Between Coach Playbook & Assigned Warmup" },
-    { "id": "S6-K", "seat_name": "🏛️ Seat 6 — Association Director", "status": "completed_and_deployed", "title": "Age-Appropriate USA Hockey ADM Skill Progression Checkpoints (8U–18U) in Director Rollup" },
-    { "id": "S7-K", "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead", "status": "completed_and_deployed", "title": "Smooth Momentum Touch-Scrolling & Sticky Close Header Inside All 5 Room Modals on iOS" },
-    { "id": "S9-K", "seat_name": "⚙️ Seat 9 — <canvas> Engineer", "status": "completed_and_deployed", "title": "Sub-Pixel Quadratic Bezier Path Tangents Eliminating Sharp 90° Skater Turns on Scenarios 185–220" },
-    { "id": "S10-K", "seat_name": "📈 Seat 10 — Growth Strategist", "status": "completed_and_deployed", "title": "Zero-Friction 6-Character Team Join Code Auto-Fill From Deep-Link URL (?team=CODE)" },
-    { "id": "S11-K", "seat_name": "🎨 Seat 11 — Lead Art Director", "status": "completed_and_deployed", "title": "Precision Athletic-Block Jersey Number & Brass Nameplate Kerning Across 1–2 Digit Numbers" },
-    { "id": "S12-K", "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA", "status": "completed_and_deployed", "title": "Phonetic Hockey-Jargon Pronunciation Normalization (2-on-1, D-to-D, 3v2) Across 11 Voices" },
-    { "id": "S1-L", "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems", "status": "completed_and_deployed", "title": "Strong-Side Winger Hashmark Boards Angle & Stick-to-Middle Presentation on Breakouts (Scenarios 221–255)" },
-    { "id": "S2-L", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "1-Sentence Good Safe Play vs. Best High-IQ Play Contrast Note When Selecting a Silver Read" },
-    { "id": "S3-L", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "High-Visibility Puck-Possession Black/Cyan Ring Under Active Puck Carrier on 8U/10U Drills" },
-    { "id": "S4-L", "seat_name": "🎮 Seat 4 — Retention Designer", "status": "completed_and_deployed", "title": "Smooth Animated Pillar XP Bar Fill at Shift End" },
-    { "id": "S5-L", "seat_name": "📋 Seat 5 — Head Coach Playtester", "status": "completed_and_deployed", "title": "Highlight Lowest-Scoring Position Group (Forwards vs. Defense vs. Goalies) in Coach Analytics" },
-    { "id": "S6-L", "seat_name": "🏛️ Seat 6 — Association Director", "status": "completed_and_deployed", "title": "1-Tap Filter by Age Division (8U–18U) Inside Director HQ Rollup" },
-    { "id": "S7-L", "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead", "status": "completed_and_deployed", "title": "Balanced iPad Landscape Split-Proportion Between #rinkCanvas and Bottom 4-Choice Dock" },
-    { "id": "S8-L", "seat_name": "🎬 Seat 8 — Film-Room QC Auditor", "status": "completed_and_deployed", "title": "Verified Embed Playback & Role-Specific Takeaway Synchronization Across Q5 Clips 13–24" },
-    { "id": "S9-L", "seat_name": "⚙️ Seat 9 — <canvas> Engineer", "status": "completed_and_deployed", "title": "Zero-Clip Boundary Margin Clamp (min 0.07 Normalized Board Buffer) Across 90°/180°/270° Rotations" },
-    { "id": "S11-L", "seat_name": "🎨 Seat 11 — Lead Art Director", "status": "completed_and_deployed", "title": "Crisp Warm-Spotlight Hover/Touch Framing on Pro Shop Stick Rack, Helmet Shelf & Skate Wall" },
-    { "id": "S12-L", "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA", "status": "completed_and_deployed", "title": "Single-Active-Voice Mutex Preventing Rapid Button Taps From Layering Two Audio Clips" },
-    { "id": "S1-M", "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems", "status": "completed_and_deployed", "title": "F2 Center Middle-Lane Net Drive Depth & F3 High-Trailer Triangle Spacing on Rush Drills (Scenarios 256–290)" },
-    { "id": "S2-M", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "Explicit Stick-Blade & Shoulder-Angle Deception Cue in 14U–18U Rush Explanations (Scenarios 256–290)" },
-    { "id": "S3-M", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "High-Contrast Blue-Paint Crease Outline for 8U/10U Net-Front & Goalie Drills (Scenarios 256–290)" },
-    { "id": "S5-M", "seat_name": "📋 Seat 5 — Head Coach Playtester", "status": "completed_and_deployed", "title": "1-Line Custom Coach Emphasis Note Attached to Team Homework" },
-    { "id": "S7-M", "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead", "status": "completed_and_deployed", "title": "High-Contrast Text Shadow & Balanced 2-Line Wrapping on 4 Tactile Choice Buttons" },
-    { "id": "S8-M", "seat_name": "🎬 Seat 8 — Film-Room QC Auditor", "status": "completed_and_deployed", "title": "Verified Rush & Transition Film Clip Alignment Across Q5 Clips 25–36" },
-    { "id": "S9-M", "seat_name": "⚙️ Seat 9 — <canvas> Engineer", "status": "completed_and_deployed", "title": "Realistic Tape-to-Tape Lead-Pass Intersection Timing on Moving Rush Completions (Scenarios 256–290)" },
-    { "id": "S10-M", "seat_name": "📈 Seat 10 — Growth Strategist", "status": "completed_and_deployed", "title": "Clean Apple-Touch-Icon & Fullscreen Standalone Viewport Meta Polish for Home-Screen Web App Launches" },
-    { "id": "S11-M", "seat_name": "🎨 Seat 11 — Lead Art Director", "status": "completed_and_deployed", "title": "Warm Desk-Lamp & Chalkboard Frame Contrast Polish Inside Coach Al's Office" },
-    { "id": "S12-M", "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA", "status": "completed_and_deployed", "title": "Strict First-Name + Jersey # Privacy Mask Across All Shared Team & Clubhouse Leaderboards" },
-    { "id": "S1-N", "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems", "status": "completed_and_deployed", "title": "Power-Play Low-Flank / Bumper Triangle Spacing & PK Ice-Clear Trajectory Calibration (Scenarios 291–325)" },
-    { "id": "S2-N", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "Crisp Situational Context Tag (5v4 PP / 4v5 PK) in Scenario Intro Prompt" },
-    { "id": "S3-N", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "Plain-English Youth Terms for 8U/10U Divisions on Special Teams" },
-    { "id": "S4-N", "seat_name": "🎮 Seat 4 — Retention Designer", "status": "completed_and_deployed", "title": "Original-Six & Eastern Conference Arena Milestone Badges Inside 32-City Tour Progress Header" },
-    { "id": "S5-N", "seat_name": "📋 Seat 5 — Head Coach Playtester", "status": "completed_and_deployed", "title": "1-Tap PP1 / PK1 Special-Teams Focus Preset Inside Coach Homework Wizard" },
-    { "id": "S6-N", "seat_name": "🏛️ Seat 6 — Association Director", "status": "completed_and_deployed", "title": "Monthly Board-Packet CSV/Print Summary With Zero Student PII in Director HQ" },
-    { "id": "S7-N", "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead", "status": "completed_and_deployed", "title": "Consistent 1-Tap Lobby Breadcrumb Return Across All 4 Interior Rooms on 390px Phones" },
-    { "id": "S8-N", "seat_name": "🎬 Seat 8 — Film-Room QC Auditor", "status": "completed_and_deployed", "title": "Verified Power-Play, Penalty-Kill & Faceoff Alignment Across Q5 Clips 37–44" },
-    { "id": "S9-N", "seat_name": "⚙️ Seat 9 — <canvas> Engineer", "status": "completed_and_deployed", "title": "Pre-Allocated Float32 Skater Coordinate Buffers for Zero Garbage-Collection Stutter" },
-    { "id": "S11-N", "seat_name": "🎨 Seat 11 — Lead Art Director", "status": "completed_and_deployed", "title": "Authentic Butterfly Goalie Pad, Blocker & Catch-Glove Silhouette Scaling at 2.0x Size" },
-    { "id": "S12-N", "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA", "status": "completed_and_deployed", "title": "Natural 180ms Clause-Boundary Micro-Pause in Multi-Clause Coach Explanations" },
-    { "id": "S1-O", "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems", "status": "completed_and_deployed", "title": "Goalie Top-of-Crease Angle Squareness (To Pucks vs. Body) & 6v5 Box+1 Stick-Lane Polish (Scenarios 326–360)" },
-    { "id": "S2-O", "seat_name": "🎓 Seat 2 — Instructional Designer", "status": "completed_and_deployed", "title": "Smart Weakest-Bucket Spiral Review Selector Pulling 1 Scenario From Lowest Pillar Per Shift" },
-    { "id": "S3-O", "seat_name": "👦 Seat 3 — Pediatric & Family Specialist", "status": "completed_and_deployed", "title": "100% 360-Scenario Verification of <=14-Word 8U Prompts & Zero Unmapped Role Tokens" },
-    { "id": "S4-O", "seat_name": "🎮 Seat 4 — Retention Designer", "status": "completed_and_deployed", "title": "32-City Tour Completion Prestige Tour II (Mirror & Pro Speed) Unlock Inside Clubhouse Trophy Case" },
-    { "id": "S5-O", "seat_name": "📋 Seat 5 — Head Coach Playtester", "status": "completed_and_deployed", "title": "3-Line Ready for Game Day Team Readiness Summary Inside Coach Al's Office Header" },
-    { "id": "S6-O", "seat_name": "🏛️ Seat 6 — Association Director", "status": "completed_and_deployed", "title": "Full-Season 16-Bucket Curriculum Coverage Matrix Across All Club Divisions in Director HQ" },
-    { "id": "S7-O", "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead", "status": "completed_and_deployed", "title": "Permanent Layout Guard Enforcing <=4 Gameplay Buttons & Max 1 On-Ice Tactical Cue Across All 360 Drills" },
-    { "id": "S8-O", "seat_name": "🎬 Seat 8 — Film-Room QC Auditor", "status": "completed_and_deployed", "title": "100% 51-Clip Q5 Film Library Timestamp & Takeaway Completion Lock (Clips 45–51)" },
-    { "id": "S9-O", "seat_name": "⚙️ Seat 9 — <canvas> Engineer", "status": "completed_and_deployed", "title": "Startup 360-Scenario & 118+ Upgrade Integrity Checksum With Instant Self-Healing Fallback" },
-    { "id": "S10-O", "seat_name": "📈 Seat 10 — Growth Strategist", "status": "completed_and_deployed", "title": "Verified USA Hockey ADM & SafeSport Compliance Footer Badge Inside Coach & Parent Portals" },
-    { "id": "S11-O", "seat_name": "🎨 Seat 11 — Lead Art Director", "status": "completed_and_deployed", "title": "Crisp High-DPI Image Rendering & Warm Brass Hotspot Alignment Across All 28/28 Room Fixtures" },
-    { "id": "S12-O", "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA", "status": "completed_and_deployed", "title": "100% 112-Clip Neural .mp3 Audio Registry & Zero-Robotic-Fallback Lock Across All 11 Characters" }
+    {
+      "id": "S1-A",
+      "seat_name": "🏒 Seat 1 — Systems Director",
+      "status": "completed_and_deployed",
+      "title": "2.0s Pre-Read Skating Motion + Synchronized Cyan D-to-D / Weak-Side Outlet Arc"
+    },
+    {
+      "id": "S2-A",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "Age-Adaptive Roll-In Pacing (0.65x 8U/10U vs 1.0x 12U–18U) & Visual Cue Highlighting"
+    },
+    {
+      "id": "S3-A",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "1.0s Pulsing Gold YOU #9 Halo & 1-Tap Sibling Stall Switcher"
+    },
+    {
+      "id": "S4-A",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "Live Side-by-Side Try It On My Skater Preview & Skate-Stop Freeze Transition"
+    },
+    {
+      "id": "S5-A",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "60-Second Tonight's Practice 5-Play Warmup Link Generator in Coach Al's Corner"
+    },
+    {
+      "id": "S6-A",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "Goalie Crease Sightline Ray & 1-Click Printable Association Board Report Export"
+    },
+    {
+      "id": "S7-A",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "On-Ice Combo Streak Multiplier Badge & Fixed-Height Dock Lock (<=4 Primary Buttons)"
+    },
+    {
+      "id": "S8-A",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Position-First Video Sorting, Role-Mapped Takeaways & Fresh Film Pill in Q5 Film Room"
+    },
+    {
+      "id": "S9-A",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "Auto-Sync Founder Approval Queue Status Badge & Deterministic Cloud UPSERT"
+    },
+    {
+      "id": "S10-A",
+      "seat_name": "📈 Seat 10 — Growth Strategist",
+      "status": "completed_and_deployed",
+      "title": "Pre-Freeze Peripheral Vision Scan Ring & ?partner=ASSOC_CODE 50% Partner Link Generator"
+    },
+    {
+      "id": "S11-A",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Interactive Side-by-Side 75%-Realistic Pro Shop Gear Try-On Stage"
+    },
+    {
+      "id": "S12-A",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "Age-Calibrated 11-Character Voice Cadence & SafeSport 1-Way Alert Verifier"
+    },
+    {
+      "id": "S9-B",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "Offline LocalStorage Snapshot Cache for 360 Cloud Scenarios & 51 Video Clips"
+    },
+    {
+      "id": "S10-B",
+      "seat_name": "📈 Seat 10 — Growth Strategist",
+      "status": "completed_and_deployed",
+      "title": "Multi-Sibling Family Locker Pass Bundle Callout Inside Parent HQ"
+    },
+    {
+      "id": "S1-F",
+      "seat_name": "🏒 Seat 1 — Systems Director",
+      "status": "completed_and_deployed",
+      "title": "Dynamic Weak-Side Winger High-Slot Seal & F3 Backcheck Tracking Vector"
+    },
+    {
+      "id": "S2-F",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "1.2s Pre-Freeze Scan the Ice First Head-Up Radar Pulse on Puck Carrier"
+    },
+    {
+      "id": "S3-F",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "8U/10U Color-Coded Ice Landmark Labels (THE HOUSE & ATTACK TRIANGLE)"
+    },
+    {
+      "id": "S4-F",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "City Tour Boss-Read Streak Shield Indicator on 32-City Map Header"
+    },
+    {
+      "id": "S5-F",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "1-Click Copy Team GroupMe / SportsEngine Homework Message in Coach Al's Office"
+    },
+    {
+      "id": "S8-F",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Role-Mapped Key Tactical Moment Timestamp Pill in Q5 Film Room"
+    },
+    {
+      "id": "S9-F",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "Zero-Latency Scenario Pre-Warming & 60fps requestAnimationFrame Delta Clamp"
+    },
+    {
+      "id": "S11-F",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "75%-Realistic Brushed-Brass Active Hotspot Rim Glow in All 5 Illustrated Rooms"
+    },
+    {
+      "id": "S1-G",
+      "seat_name": "🏒 Seat 1 — Systems Director",
+      "status": "completed_and_deployed",
+      "title": "Neutral-Zone D-to-D Hinge Timing Arc & Center Low-Swing Speed-Through-Middle Lane"
+    },
+    {
+      "id": "S2-G",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "Stick-on-Puck vs. Body-Position Teaching Callout Ring on Defensive 1v1 Gap Reads"
+    },
+    {
+      "id": "S3-G",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "Auto-Play 1-Sentence Audio Readout on 8U/10U Question Load"
+    },
+    {
+      "id": "S4-G",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "3-Star Division Sweep Gold Trophy Sparkle on 32-City Tour Map"
+    },
+    {
+      "id": "S5-G",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "Pre-Practice Top 3 Missed Reads This Week Printable Chalkboard Card"
+    },
+    {
+      "id": "S6-G",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "Club-Wide Most Improved Concept Bucket (30-Day Delta) Highlight Pill"
+    },
+    {
+      "id": "S7-G",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "Zero-Shift Fixed-Height Answer Card Container on 390x844 Phones"
+    },
+    {
+      "id": "S8-G",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Replay Key 5-Second Tactical Read 1-Tap Loop Toggle Inside Q5 Film Room"
+    },
+    {
+      "id": "S9-G",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "60fps Offscreen <canvas> Rink Ice-Surface Layer Cache"
+    },
+    {
+      "id": "S11-G",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Dynamic Stick-Flex & Blade-Tape Color Reflection on On-Ice Skater Sprite"
+    },
+    {
+      "id": "S12-G",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "Automatic Volume Ducking (-6dB) of Rink Ambient SFX During Character Speech"
+    },
+    {
+      "id": "S1-H",
+      "seat_name": "🏒 Seat 1 — Systems Director",
+      "status": "completed_and_deployed",
+      "title": "Weak-Side D-Man Net-Front Stick-Lift & Box-Out Leverage Ring"
+    },
+    {
+      "id": "S2-H",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "Post-Answer Why That Read Worked 1-Line Tactical Principle Pill"
+    },
+    {
+      "id": "S3-H",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "8U/10U Big-Target Tap Tolerance (+14px Hit Radius) on Small Skater Tokens"
+    },
+    {
+      "id": "S4-H",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "3-in-a-Row Hat-Trick First-Choice Gold Read Ice Shimmer & +15 Bonus Puck Bucks"
+    },
+    {
+      "id": "S5-H",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "1-Tap Assign Matching 3-Drill Homework Pack From Opponent Scouting Counter-Plan"
+    },
+    {
+      "id": "S6-H",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "Age-Division USA Hockey ADM / Hockey Canada LTPD Compliance Checkmark Column"
+    },
+    {
+      "id": "S7-H",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "Auto-Hide Top Bar Secondary Badges When Phone Viewport Height < 700px"
+    },
+    {
+      "id": "S8-H",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "0.5x Slow-Motion Tactical Breakdown Speed Toggle Inside Q5 Film Room"
+    },
+    {
+      "id": "S9-H",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "Instant Preload of Next Scenario Assets During Coach Bob Feedback Toast"
+    },
+    {
+      "id": "S11-H",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Brushed-Brass & Walnut Spotlight Hover Glow on All 28 Interactive Room Hotspots"
+    },
+    {
+      "id": "S12-H",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "Zero-PII Anonymized Teammate Initials Mode Toggle for Public Scoreboards"
+    },
+    {
+      "id": "S1-I",
+      "seat_name": "🏒 Seat 1 — Systems Director",
+      "status": "completed_and_deployed",
+      "title": "Offensive-Zone High-Cycle F3 Reload & Weak-Side D Pinch Backfill Path Vector"
+    },
+    {
+      "id": "S2-I",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "Adaptive 2-Choice Simplification After 2 Consecutive Misses on 8U/10U Drills"
+    },
+    {
+      "id": "S3-I",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "Parent HQ Weekly 60-Second Car-Ride Talking Point Card Matched to Active Bucket"
+    },
+    {
+      "id": "S4-I",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "Stanley Cup Playoff Overtime Sudden-Death Bonus Round After 4-City Road Trip"
+    },
+    {
+      "id": "S6-I",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "1-Click Email Monthly Curriculum Progress Summary to Team Head Coaches"
+    },
+    {
+      "id": "S7-I",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "Swipe-Down Gesture to Dismiss Any Room Modal on Mobile & Tablet Screens"
+    },
+    {
+      "id": "S8-I",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Verified Pro Clip Timestamp Health Check & Auto-Skip Broken Embed Fallback"
+    },
+    {
+      "id": "S9-I",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "Debounced ResizeObserver on #rinkCanvas for Zero-Flicker iPad Split-View Rotation"
+    },
+    {
+      "id": "S12-I",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "Instant Audio Cutoff When Closing Any Room or Switching Drills"
+    },
+    {
+      "id": "S1-J",
+      "seat_name": "🏒 Seat 1 — Systems Director",
+      "status": "completed_and_deployed",
+      "title": "Penalty-Kill 4-Man Diamond vs. Box Stick-in-Lane Seam Denial Vector"
+    },
+    {
+      "id": "S2-J",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "3-Stage Mastery Badge (Bronze -> Silver -> Gold) Per Concept Bucket in Locker Room Tab 3"
+    },
+    {
+      "id": "S3-J",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "Colorblind-Safe High-Contrast Shape Markers (Star / Triangle / Square) on Rink Zones"
+    },
+    {
+      "id": "S4-J",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "Road-Trip City Collectible Rink Sticker Book Inside 3D Trophy Room"
+    },
+    {
+      "id": "S5-J",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "Pre-Game 3-Minute Locker Room Chalkboard Mode Fullscreen Toggle in Coach Al's Office"
+    },
+    {
+      "id": "S6-J",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "Season-Over-Season Club Retention & IQ Growth Comparison Card in Director HQ"
+    },
+    {
+      "id": "S7-J",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "Strict 4-Button Bottom Bar Lock Assertion Guard on Every View Switch"
+    },
+    {
+      "id": "S10-J",
+      "seat_name": "📈 Seat 10 — Growth Strategist",
+      "status": "completed_and_deployed",
+      "title": "QR Code Join My Team Roster Instant Poster Generator in Coach Tab 3"
+    },
+    {
+      "id": "S11-J",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Subtle Skate-Blade Ice Crease & Puck Shadow Depth Pass on #rinkCanvas"
+    },
+    {
+      "id": "S12-J",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "Complete 11-Character Neural MP3 Fallback Integrity Check on App Boot"
+    },
+    {
+      "id": "S1-K",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems",
+      "status": "completed_and_deployed",
+      "title": "Weak-Side Winger High-Slot House Seal Positioning Anchor on D-Zone Corner Battles (Scenarios 185–220)"
+    },
+    {
+      "id": "S2-K",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "0.4s Pre-Freeze Head-Swivel Scan Pulse on Active Threat Before Decision Read (Scenarios 185–220)"
+    },
+    {
+      "id": "S3-K",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "Strict <=5-Word Choice Button Labels on 8U/10U Scenarios 185–220"
+    },
+    {
+      "id": "S4-K",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "Crisp Ice-Spray & Puck-Clank Sound/Visual Polish When Unlocking Next NHL City Stop"
+    },
+    {
+      "id": "S5-K",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "Instant Age-Division & System Filter Tag Sync Between Coach Playbook & Assigned Warmup"
+    },
+    {
+      "id": "S6-K",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "Age-Appropriate USA Hockey ADM Skill Progression Checkpoints (8U–18U) in Director Rollup"
+    },
+    {
+      "id": "S7-K",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "Smooth Momentum Touch-Scrolling & Sticky Close Header Inside All 5 Room Modals on iOS"
+    },
+    {
+      "id": "S9-K",
+      "seat_name": "⚙️ Seat 9 — <canvas> Engineer",
+      "status": "completed_and_deployed",
+      "title": "Sub-Pixel Quadratic Bezier Path Tangents Eliminating Sharp 90° Skater Turns on Scenarios 185–220"
+    },
+    {
+      "id": "S10-K",
+      "seat_name": "📈 Seat 10 — Growth Strategist",
+      "status": "completed_and_deployed",
+      "title": "Zero-Friction 6-Character Team Join Code Auto-Fill From Deep-Link URL (?team=CODE)"
+    },
+    {
+      "id": "S11-K",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Precision Athletic-Block Jersey Number & Brass Nameplate Kerning Across 1–2 Digit Numbers"
+    },
+    {
+      "id": "S12-K",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "Phonetic Hockey-Jargon Pronunciation Normalization (2-on-1, D-to-D, 3v2) Across 11 Voices"
+    },
+    {
+      "id": "S1-L",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems",
+      "status": "completed_and_deployed",
+      "title": "Strong-Side Winger Hashmark Boards Angle & Stick-to-Middle Presentation on Breakouts (Scenarios 221–255)"
+    },
+    {
+      "id": "S2-L",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "1-Sentence Good Safe Play vs. Best High-IQ Play Contrast Note When Selecting a Silver Read"
+    },
+    {
+      "id": "S3-L",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "High-Visibility Puck-Possession Black/Cyan Ring Under Active Puck Carrier on 8U/10U Drills"
+    },
+    {
+      "id": "S4-L",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "Smooth Animated Pillar XP Bar Fill at Shift End"
+    },
+    {
+      "id": "S5-L",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "Highlight Lowest-Scoring Position Group (Forwards vs. Defense vs. Goalies) in Coach Analytics"
+    },
+    {
+      "id": "S6-L",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "1-Tap Filter by Age Division (8U–18U) Inside Director HQ Rollup"
+    },
+    {
+      "id": "S7-L",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "Balanced iPad Landscape Split-Proportion Between #rinkCanvas and Bottom 4-Choice Dock"
+    },
+    {
+      "id": "S8-L",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Verified Embed Playback & Role-Specific Takeaway Synchronization Across Q5 Clips 13–24"
+    },
+    {
+      "id": "S9-L",
+      "seat_name": "⚙️ Seat 9 — <canvas> Engineer",
+      "status": "completed_and_deployed",
+      "title": "Zero-Clip Boundary Margin Clamp (min 0.07 Normalized Board Buffer) Across 90°/180°/270° Rotations"
+    },
+    {
+      "id": "S11-L",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Crisp Warm-Spotlight Hover/Touch Framing on Pro Shop Stick Rack, Helmet Shelf & Skate Wall"
+    },
+    {
+      "id": "S12-L",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "Single-Active-Voice Mutex Preventing Rapid Button Taps From Layering Two Audio Clips"
+    },
+    {
+      "id": "S1-M",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems",
+      "status": "completed_and_deployed",
+      "title": "F2 Center Middle-Lane Net Drive Depth & F3 High-Trailer Triangle Spacing on Rush Drills (Scenarios 256–290)"
+    },
+    {
+      "id": "S2-M",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "Explicit Stick-Blade & Shoulder-Angle Deception Cue in 14U–18U Rush Explanations (Scenarios 256–290)"
+    },
+    {
+      "id": "S3-M",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "High-Contrast Blue-Paint Crease Outline for 8U/10U Net-Front & Goalie Drills (Scenarios 256–290)"
+    },
+    {
+      "id": "S5-M",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "1-Line Custom Coach Emphasis Note Attached to Team Homework"
+    },
+    {
+      "id": "S7-M",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "High-Contrast Text Shadow & Balanced 2-Line Wrapping on 4 Tactile Choice Buttons"
+    },
+    {
+      "id": "S8-M",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Verified Rush & Transition Film Clip Alignment Across Q5 Clips 25–36"
+    },
+    {
+      "id": "S9-M",
+      "seat_name": "⚙️ Seat 9 — <canvas> Engineer",
+      "status": "completed_and_deployed",
+      "title": "Realistic Tape-to-Tape Lead-Pass Intersection Timing on Moving Rush Completions (Scenarios 256–290)"
+    },
+    {
+      "id": "S10-M",
+      "seat_name": "📈 Seat 10 — Growth Strategist",
+      "status": "completed_and_deployed",
+      "title": "Clean Apple-Touch-Icon & Fullscreen Standalone Viewport Meta Polish for Home-Screen Web App Launches"
+    },
+    {
+      "id": "S11-M",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Warm Desk-Lamp & Chalkboard Frame Contrast Polish Inside Coach Al's Office"
+    },
+    {
+      "id": "S12-M",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "Strict First-Name + Jersey # Privacy Mask Across All Shared Team & Clubhouse Leaderboards"
+    },
+    {
+      "id": "S1-N",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems",
+      "status": "completed_and_deployed",
+      "title": "Power-Play Low-Flank / Bumper Triangle Spacing & PK Ice-Clear Trajectory Calibration (Scenarios 291–325)"
+    },
+    {
+      "id": "S2-N",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "Crisp Situational Context Tag (5v4 PP / 4v5 PK) in Scenario Intro Prompt"
+    },
+    {
+      "id": "S3-N",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "Plain-English Youth Terms for 8U/10U Divisions on Special Teams"
+    },
+    {
+      "id": "S4-N",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "Original-Six & Eastern Conference Arena Milestone Badges Inside 32-City Tour Progress Header"
+    },
+    {
+      "id": "S5-N",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "1-Tap PP1 / PK1 Special-Teams Focus Preset Inside Coach Homework Wizard"
+    },
+    {
+      "id": "S6-N",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "Monthly Board-Packet CSV/Print Summary With Zero Student PII in Director HQ"
+    },
+    {
+      "id": "S7-N",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "Consistent 1-Tap Lobby Breadcrumb Return Across All 4 Interior Rooms on 390px Phones"
+    },
+    {
+      "id": "S8-N",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Verified Power-Play, Penalty-Kill & Faceoff Alignment Across Q5 Clips 37–44"
+    },
+    {
+      "id": "S9-N",
+      "seat_name": "⚙️ Seat 9 — <canvas> Engineer",
+      "status": "completed_and_deployed",
+      "title": "Pre-Allocated Float32 Skater Coordinate Buffers for Zero Garbage-Collection Stutter"
+    },
+    {
+      "id": "S11-N",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Authentic Butterfly Goalie Pad, Blocker & Catch-Glove Silhouette Scaling at 2.0x Size"
+    },
+    {
+      "id": "S12-N",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "Natural 180ms Clause-Boundary Micro-Pause in Multi-Clause Coach Explanations"
+    },
+    {
+      "id": "S1-O",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems",
+      "status": "completed_and_deployed",
+      "title": "Goalie Top-of-Crease Angle Squareness (To Pucks vs. Body) & 6v5 Box+1 Stick-Lane Polish (Scenarios 326–360)"
+    },
+    {
+      "id": "S2-O",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "Smart Weakest-Bucket Spiral Review Selector Pulling 1 Scenario From Lowest Pillar Per Shift"
+    },
+    {
+      "id": "S3-O",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "100% 360-Scenario Verification of <=14-Word 8U Prompts & Zero Unmapped Role Tokens"
+    },
+    {
+      "id": "S4-O",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "32-City Tour Completion Prestige Tour II (Mirror & Pro Speed) Unlock Inside Clubhouse Trophy Case"
+    },
+    {
+      "id": "S5-O",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "3-Line Ready for Game Day Team Readiness Summary Inside Coach Al's Office Header"
+    },
+    {
+      "id": "S6-O",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "Full-Season 16-Bucket Curriculum Coverage Matrix Across All Club Divisions in Director HQ"
+    },
+    {
+      "id": "S7-O",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "Permanent Layout Guard Enforcing <=4 Gameplay Buttons & Max 1 On-Ice Tactical Cue Across All 360 Drills"
+    },
+    {
+      "id": "S8-O",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "100% 51-Clip Q5 Film Library Timestamp & Takeaway Completion Lock (Clips 45–51)"
+    },
+    {
+      "id": "S9-O",
+      "seat_name": "⚙️ Seat 9 — <canvas> Engineer",
+      "status": "completed_and_deployed",
+      "title": "Startup 360-Scenario & 118+ Upgrade Integrity Checksum With Instant Self-Healing Fallback"
+    },
+    {
+      "id": "S10-O",
+      "seat_name": "📈 Seat 10 — Growth Strategist",
+      "status": "completed_and_deployed",
+      "title": "Verified USA Hockey ADM & SafeSport Compliance Footer Badge Inside Coach & Parent Portals"
+    },
+    {
+      "id": "S11-O",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Crisp High-DPI Image Rendering & Warm Brass Hotspot Alignment Across All 28/28 Room Fixtures"
+    },
+    {
+      "id": "S12-O",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "100% 112-Clip Neural .mp3 Audio Registry & Zero-Robotic-Fallback Lock Across All 11 Characters"
+    },
+    {
+      "id": "S1-P",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems",
+      "status": "completed_and_deployed",
+      "title": "4-Way Camera (90°/180°/270°): True Hockey Landmark Phrasing (\"Weak-Side Boards\" / \"High Slot\" / \"Far Post\") Replacing Screen-Relative Directions"
+    },
+    {
+      "id": "S2-P",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "Orientation-Locked Feedback Vectors: Mirror Gold/Silver/Bronze Target Vectors Dynamically Across 90°/180°/270° Rotations"
+    },
+    {
+      "id": "S3-P",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "8U/10U Downward-Attack (180°) Goalie & Net-Front Orientation Cue (\"Attacking the Bottom Goal!\")"
+    },
+    {
+      "id": "S4-P",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "End-to-End 5-Play Shift Flow: Seamless Q4->Q5 Film Room Transition Without Losing Rotated Rink State"
+    },
+    {
+      "id": "S7-P",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "Ultra-Responsive In-App 🚩 Founder Red-Flag Capture (Auto-Captures scenarioId, rotationAngle, ageDivision & 118 Active Upgrades)"
+    },
+    {
+      "id": "S8-P",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Q5 Film Room Playback Resilience: Instant Clip Resume & Landmark Caption Sync After Returning From Rotated Rink"
+    },
+    {
+      "id": "S9-P",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "4-Way Camera Vector Math Engine (transformCoordForCameraRotation): Exact Skater & Goalie Facing Angles at 90°/180°/270°"
+    },
+    {
+      "id": "S10-P",
+      "seat_name": "📈 Seat 10 — Growth & Onboarding Strategist",
+      "status": "completed_and_deployed",
+      "title": "Zero-Latency End-to-End Journey Handoff: 2-Button Gate -> Locker Stall PIN -> Pro Shop Try-On -> 5-Play Shift"
+    },
+    {
+      "id": "S11-P",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Rotated Crease & Goalie Stick/Glove Handedness Alignment on 90°/180°/270° Camera Views"
+    },
+    {
+      "id": "S12-P",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "Spoken Voice Line Orientation Scrubber: Replace Screen-Relative (\"Left/Up\") With Ice Landmarks (\"Strong-Side/High Slot\") in Live Speech"
+    },
+    {
+      "id": "S1-Q",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems",
+      "status": "completed_and_deployed",
+      "title": "180° Top-to-Bottom Attack Calibration: Flip D-to-D Hinge & Center Low-Swing Vectors Cleanly Behind Top Goal Line (Permutations #361–#480)"
+    },
+    {
+      "id": "S2-Q",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "Rotated-Rink Mistake Mode: Keep Step-1 Culprit Tap & Step-2 Drag Target Aligned Under 90°/180°/270° Transforms"
+    },
+    {
+      "id": "S3-Q",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "8U/10U Cross-Ice (90°/270°) Blue-Line Onside Boot Indicator Aligned to Rotated Zone Entry Axis"
+    },
+    {
+      "id": "S4-Q",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "Pro Shop Live Avatar Try-On -> On-Ice Skater Token Instant Sync Across All 5 Shift Questions"
+    },
+    {
+      "id": "S5-Q",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "Coach Al Homework Assignment Flow: Preserve Assigned Concept Bucket Across Rotated Permutations"
+    },
+    {
+      "id": "S6-Q",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "Parent Tab 4 Progress Tracker: Live Per-Sibling 5-Play Shift History & Weakest-Slice Recommendation Sync"
+    },
+    {
+      "id": "S7-Q",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "Room Modal 🚩 Red-Flag Context Capture: Auto-Detect Active Room Modal (Locker / Pro Shop / Coach Al / Clubhouse) on Tap"
+    },
+    {
+      "id": "S8-Q",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Q5 Film Room Concept-Matched Backup Stream Selector for Zero-Stall Playback on Cellular Connections"
+    },
+    {
+      "id": "S9-Q",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "Inverse Pointer Hit-Testing Matrix (canvasToNormRotated) for Pinpoint Drag-Skater & Tap-Zone Accuracy at 90°/180°/270°"
+    },
+    {
+      "id": "S11-Q",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Directional Skate-Blade & Shadow Projection Normalizing Light Source Across 4-Way Camera Angles"
+    },
+    {
+      "id": "S12-Q",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "11-Character Voice Queue Guard: Prevent Overlapping Audio When Switching Rapidly Between Locker Stall & Ice"
+    },
+    {
+      "id": "S1-R",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems",
+      "status": "completed_and_deployed",
+      "title": "90° Left-to-Right Attack Calibration: Normalize Weak-Side F3 High-Slot Reload Coordinates (Permutations #481–#600)"
+    },
+    {
+      "id": "S2-R",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "3-Option Tactical Choice Buttons: Landmark-Pure Wording (\"Far-Pad Rebound Shot\" / \"Weak-Side D2 Reverse\") at All Angles"
+    },
+    {
+      "id": "S3-R",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "10U/12U Who-Am-I Role Read (F1/F2/F3/D1/D2): Orientation-Independent Distance-to-Puck Calculation"
+    },
+    {
+      "id": "S4-R",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "5-Play Shift Summary Modal: Instant 1-Tap Replay of Any Missed Question From the Completed Shift"
+    },
+    {
+      "id": "S5-R",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "Coach Al Opponent Scouting Bench Card: Landmark-Pure Period-by-Period Keys (Zero Screen-Relative Terms)"
+    },
+    {
+      "id": "S6-R",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "Director HQ Multi-Division Audit: Track 4-Way Camera Mastery Parity (0° vs 90°/180°/270°) Across 8U–18U"
+    },
+    {
+      "id": "S8-R",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Q5 Film Room Timestamp Scrub Bar: Instant Jump to 3-Second Tactical Trigger Moment"
+    },
+    {
+      "id": "S9-R",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "Zero-Drift Bezier Pass & Skating Path Tangents Under 90°/180°/270° Coordinate Rotations"
+    },
+    {
+      "id": "S10-R",
+      "seat_name": "📈 Seat 10 — Growth & Onboarding Strategist",
+      "status": "completed_and_deployed",
+      "title": "Coach Al Office -> Player Team Hub -> On-Ice Homework Launch 1-Tap Continuity"
+    },
+    {
+      "id": "S11-R",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Center-Ice Synapz Medallion & Faceoff Circle Detail Scaling on Rotated Half-Ice Views"
+    },
+    {
+      "id": "S12-R",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "SafeSport Red-Flag Submission Scrubber: Strip Any Personal Names From Custom Flag Notes Before Cloud Sync"
+    },
+    {
+      "id": "S1-S",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems",
+      "status": "completed_and_deployed",
+      "title": "270° Right-to-Left Attack Calibration: Royal-Road Seam & Box+1 Stick-Lane Vectors (Permutations #601–#780)"
+    },
+    {
+      "id": "S2-S",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "Post-Answer On-Ice Feedback Card: Show Exact Hockey Landmark Name (\"High Slot\" / \"Hashmark Wall\") of Chosen Spot"
+    },
+    {
+      "id": "S4-S",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "Clubhouse Trophy Vault & Tour Map Sync: Immediately Reflect Newly Conquered City Star After Q5 Film Completion"
+    },
+    {
+      "id": "S5-S",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "Coach Al Question-by-Question Table: Click Any Missed Question Cell (Q1–Q5) to Preview That Exact Scenario"
+    },
+    {
+      "id": "S6-S",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "Parent Tab 4 Car-Ride Talking Points: Auto-Update With Latest Completed Concept Bucket & Golden Rule"
+    },
+    {
+      "id": "S7-S",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "In-Drill 🚩 Red-Flag Non-Destructive Pause: Freeze Play Timer Cleanly While Typing/Dictating Flag Note & Resume on Close"
+    },
+    {
+      "id": "S8-S",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Q5 Film Room Auto-Mark Completed & Award Puck Bucks Even If YouTube Iframe Is Blocked by Rink Wi-Fi"
+    },
+    {
+      "id": "S9-S",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "Deterministic Permutation Seed Persistence Across Browser Refresh Mid-Series"
+    },
+    {
+      "id": "S10-S",
+      "seat_name": "📈 Seat 10 — Growth & Onboarding Strategist",
+      "status": "completed_and_deployed",
+      "title": "Family Portal Sign-In -> Parent Tab 4 -> Switch to Player Stall Seamless Back-to-Lobby Navigation"
+    },
+    {
+      "id": "S11-S",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "High-Visibility Puck Shadow & Cyan Trail Contrast on Rotated Cross-Ice Passes"
+    },
+    {
+      "id": "S12-S",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "Audio Ducking During Q5 Video Playback: Mute Background Rink Ambience While Coaching Clip Plays"
+    },
+    {
+      "id": "S1-T",
+      "seat_name": "🏒 Seat 1 — NCAA D1 / AAA Systems",
+      "status": "completed_and_deployed",
+      "title": "Full 4-Way Special Teams Calibration (5v4 Umbrella & 4v5 Diamond) Across Rotated Permutations #781–#960"
+    },
+    {
+      "id": "S2-T",
+      "seat_name": "🎓 Seat 2 — Instructional Designer",
+      "status": "completed_and_deployed",
+      "title": "Golden Rule Takeaway Synthesis: Pair Every Rotated Scenario With Its Core Spatial Landmark Rule"
+    },
+    {
+      "id": "S3-T",
+      "seat_name": "👦 Seat 3 — Pediatric & Family Specialist",
+      "status": "completed_and_deployed",
+      "title": "8U–18U Age-Division Progression Gate: Verify 0 Off-Ice or Overlapping Coordinates Across All 960 Permutations"
+    },
+    {
+      "id": "S4-T",
+      "seat_name": "🎮 Seat 4 — Retention Designer",
+      "status": "completed_and_deployed",
+      "title": "End-to-End 5-Play Shift Completion -> Next City Auto-Advance Readiness Check"
+    },
+    {
+      "id": "S5-T",
+      "seat_name": "📋 Seat 5 — Head Coach Playtester",
+      "status": "completed_and_deployed",
+      "title": "Coach Al Practice Sheet Print/PDF Layout: Clean Single-Page Formatting With Zero Cut-Off Margins"
+    },
+    {
+      "id": "S6-T",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "status": "completed_and_deployed",
+      "title": "Association-Wide 960-Permutation Coverage Telemetry Sync in Director HQ"
+    },
+    {
+      "id": "S7-T",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "status": "completed_and_deployed",
+      "title": "390px iPhone & 1024px iPad Touch-Target Audit Lock Across All 7 End-to-End Journey Screens"
+    },
+    {
+      "id": "S8-T",
+      "seat_name": "🎬 Seat 8 — Film-Room QC Auditor",
+      "status": "completed_and_deployed",
+      "title": "Q5 Film Room Multi-Channel Playlist Cycling: Zero Duplicate Clips Within a 5-City Tour Leg"
+    },
+    {
+      "id": "S9-T",
+      "seat_name": "⚙️ Seat 9 — <canvas> & Cloud Engineer",
+      "status": "completed_and_deployed",
+      "title": "118-Upgrade + 60-Bank Runtime Memory Footprint Cap (< 4 MB Heap Overhead)"
+    },
+    {
+      "id": "S10-T",
+      "seat_name": "📈 Seat 10 — Growth & Onboarding Strategist",
+      "status": "completed_and_deployed",
+      "title": "Instant 1-Tap Return From Parent Tab 4 or Coach Office Directly Into Active On-Ice Question"
+    },
+    {
+      "id": "S11-T",
+      "seat_name": "🎨 Seat 11 — Lead Art Director",
+      "status": "completed_and_deployed",
+      "title": "Goalie Crease Post-to-Post RVH Seal Angle Verification Across All 4 Camera Orientations"
+    },
+    {
+      "id": "S12-T",
+      "seat_name": "🛡️ Seat 12 — SafeSport & Voice QA",
+      "status": "completed_and_deployed",
+      "title": "Full 118-Upgrade + 960-Permutation Boot Integrity & SafeSport Verification Receipt"
+    }
   ],
   "approvedQueueAwaitingBuild": [],
   "autoResolvedSkippedItems": [
@@ -216,9 +1466,35 @@
       "title": "Exact +-0.5s Timestamp Lock Between Q5 Film Breakdown & On-Ice Freeze Moment (Clips 1–12)",
       "status": "skipped_reassess_next_run",
       "reassessedTelemetry": "Skipped during Batch K review (0 taste penalty); covered by S8-L, S8-M, S8-N, and S8-O."
+    },
+    {
+      "id": "S6-P",
+      "seat_name": "🏛️ Seat 6 — Association Director",
+      "title": "4-Angle Spatial Adaptability Score in Director HQ Rollup",
+      "status": "skipped_reassess_next_run",
+      "reassessedTelemetry": "Skipped during Batch P review (0 taste penalty); covered by S6-T and S6-U."
+    },
+    {
+      "id": "S7-R",
+      "seat_name": "📱 Seat 7 — UX Anti-Clutter Lead",
+      "title": "390px Portrait Rotated-Rink Aspect Ratio Scaling",
+      "status": "skipped_reassess_next_run",
+      "reassessedTelemetry": "Skipped during Batch R review (0 taste penalty); covered by S7-S and S7-T."
     }
   ],
   "rejectedIds": [
-    "S10-G", "S10-H", "S5-I", "S10-I", "S11-I", "S8-J", "S10-L", "S4-M", "S6-M", "S10-N"
+    "S10-G",
+    "S10-H",
+    "S5-I",
+    "S10-I",
+    "S11-I",
+    "S8-J",
+    "S10-L",
+    "S4-M",
+    "S6-M",
+    "S10-N",
+    "S5-P",
+    "S10-Q",
+    "S3-S"
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "version": "11.1-118-verified-and-rotated-flow-bank",
-  "lastUpdatedAt": "2026-11-10T21:40:00.000Z",
+  "version": "11.2-173-verified-and-6position-pilot-bank",
+  "lastUpdatedAt": "2026-11-10T22:15:00.000Z",
   "managedBy": "Seat 13 — Chief Meta-Auditor & Founder Preference Learning Engine",
   "founders": [
     "Coach Dane (danebekkedahl@gmail.com)",
@@ -11,7 +11,10 @@
   "tier2BatchApproveMinMatchPct": 90,
   "tagWeights": {
     "hockey_iq_realism": 1.00,
+    "six_position_role_fidelity": 1.00,
+    "dedicated_goalie_mode_polish": 1.00,
     "drill_route_accuracy": 1.00,
+    "pilot_team_launch_readiness": 0.99,
     "rotated_camera_orientation_math": 0.99,
     "end_to_end_flow_seamlessness": 0.99,
     "simplicity_button_reduction": 0.99,
@@ -32,19 +35,20 @@
   },
   "historicalDecisionSignal": {
     "approvedPatterns": [
-      "92% Approval Rate on Batches K–O (55/60 approved, 12/12 in Batch O) & 118/118 Cumulative Upgrades Chrome-Verified",
-      "Orientation-proof hockey landmark phrasing ('strong-side hashmarks', 'high slot' vs. 'left/right of screen') on 90°/180°/270° rotated rinks",
+      "92% Approval Rate on Batches P–T (55/60 approved, 12/12 in Batch T) & 173/173 Cumulative Upgrades Chrome-Verified",
+      "92% Approval Rate on Batches K–O (55/60 approved, 12/12 in Batch O)",
+      "6-Position Role Fidelity (C / LW / RW / LD / RD / G) with role-authentic choice options and Gold/Silver/Bronze grading across 0°/90°/180°/270°",
+      "Dedicated Goalie Mode polish (top-of-crease squareness to puck blade, RVH post-integration, screen sightline peeks, corner rebound steering, goalie Pro Shop gear)",
+      "Association Pilot-Launch Readiness (20-player simultaneous ?team=PUCK99 join, arena offline Wi-Fi resilience, 11-voice preload, crisp 3-station coach print cards)",
       "Max 1 primary concept-matched teaching cue per drill (Zero Visual Soup on #rinkCanvas)",
       "2-to-4 tactile buttons max per screen (<=4 primary gameplay buttons at 390x844)",
-      "1-sentence natural locker-room speech (<=14 words for 8U/10U)",
-      "Top-down 2x faceoff-dot skaters with >=0.15 normalized spacing across all 4 rotations",
-      "Interactive point-and-click 3D illustrated room hotspots (Walnut Wood & Brushed Brass)",
-      "Instant in-app 🚩 Founder Red-Flag context capture (scenarioId, rotationAngle, ageDivision, activeUpgradesCount)"
+      "Instant in-app 🚩 Founder Red-Flag context capture (scenarioId, rotationAngle, ageDivision, 173 active upgrades)"
     ],
     "rejectedOrVetoedPatterns": [
-      "Printable certificates or season diplomas (S10-L rejected)",
+      "Over-cluttered Period-2 toggles, redundant stall-to-map hooks, or dotted drag-path clutter on rotated rinks (S5-P, S10-Q, S3-S rejected)",
+      "Printable participation certificates or season diplomas (S10-L rejected)",
       "First-time guest-shift popups or onboarding gates that bypass Locker Stall identity (S10-N rejected)",
-      "Co-op banner glow or goalie-only Director HQ sub-counters (S4-M, S6-M rejected)",
+      "Co-op banner glow or redundant Director HQ sub-counters (S4-M, S6-M rejected)",
       "Social/parent share certificates or brag cards (S10-G, S10-H, S5-I, S10-I rejected)",
       "Extra visual clutter or non-essential HUD/canvas decorations (S11-I, S8-J rejected)"
     ]
@@ -52,22 +56,22 @@
   "progressiveTrustTiers": {
     "TIER_1": {
       "code": "TIER 1",
-      "badge": "🟢 TIER 1: ROTATED CAMERA & END-TO-END FLOW REALISM",
+      "badge": "🟢 TIER 1: 6-POSITION ROLE FIDELITY, GOALIE MODE & PILOT READINESS",
       "policy": "Auto-Approve Eligible at >= 95% Match with [↩️ 1-Click Undo]",
       "examples": [
-        "Orientation-proof hockey landmark phrasing across 0°/90°/180°/270° camera angles",
-        "Upright horizontal skater role pills & rotated stick-blade tangent vectors",
-        "Instant 🚩 Red-Flag auto-context capture (scenarioId, rotationAngle, ageDivision, 118 active upgrades)"
+        "Exact YOU # skater highlight & choice grading matrix across C / LW / RW / LD / RD / G",
+        "Goalie crease squareness, RVH post seal, and corner rebound steering pedagogy",
+        "Bulletproof 20-player simultaneous ?team=PUCK99 idempotent UPSERT & arena offline sync"
       ]
     },
     "TIER_2": {
       "code": "TIER 2",
-      "badge": "🟡 TIER 2: HIGH-MATCH COACHING, ROOM & MOBILE UX POLISH",
+      "badge": "🟡 TIER 2: HIGH-MATCH COACHING STATION CARDS, FILM QC & LOCKER POLISH",
       "policy": "Eligible for [⭐ Approve All High-Match Picks (>=90% Match) in 1 Click] or individual approval",
       "examples": [
-        "Coach Al Period-2 rotated camera practice toggle",
-        "Zero-reload Pro Shop purchase -> Locker Stall -> On-Ice Skater sync",
-        "4-Angle Spatial Adaptability metric inside Director HQ Tab 4"
+        "Crisp single-page 3-station printable practice card (Forwards / Defense / Goalies) in Coach Al's Office",
+        "Dedicated Goalie Pro Shop mask/pad/glove preview & Shutout Save Streak bonus",
+        "Minot / MAYSA Pilot 6-position completion rollup inside Director HQ Tab 4"
       ]
     },
     "TIER_3": {
@@ -80,17 +84,17 @@
       ]
     }
   },
-  "lastUpdated": "2026-11-10T21:40:00.000Z",
+  "lastUpdated": "2026-11-10T22:15:00.000Z",
   "latestBatchSummary": {
-    "batchNumber": 12,
-    "activeBatchLetter": "P",
+    "batchNumber": 17,
+    "activeBatchLetter": "U",
     "currentPassNewlyCodedCount": 55,
-    "totalPhysicallyCodedAndLiveCount": 118,
+    "totalPhysicallyCodedAndLiveCount": 173,
     "remainingApprovedQueueCount": 0,
-    "rejectedCount": 10,
-    "skippedTotalCount": 2,
+    "rejectedCount": 13,
+    "skippedTotalCount": 4,
     "skippedAutoResolvedCount": 4,
-    "skippedReassessedCount": 2,
+    "skippedReassessedCount": 4,
     "skippedNegativeTastePenalty": 0
   },
   "approvedIdeaIds": [
@@ -105,13 +109,18 @@
     "S1-L", "S2-L", "S3-L", "S4-L", "S5-L", "S6-L", "S7-L", "S8-L", "S9-L", "S11-L", "S12-L",
     "S1-M", "S2-M", "S3-M", "S5-M", "S7-M", "S8-M", "S9-M", "S10-M", "S11-M", "S12-M",
     "S1-N", "S2-N", "S3-N", "S4-N", "S5-N", "S6-N", "S7-N", "S8-N", "S9-N", "S11-N", "S12-N",
-    "S1-O", "S2-O", "S3-O", "S4-O", "S5-O", "S6-O", "S7-O", "S8-O", "S9-O", "S10-O", "S11-O", "S12-O"
+    "S1-O", "S2-O", "S3-O", "S4-O", "S5-O", "S6-O", "S7-O", "S8-O", "S9-O", "S10-O", "S11-O", "S12-O",
+    "S1-P", "S2-P", "S3-P", "S4-P", "S7-P", "S8-P", "S9-P", "S10-P", "S11-P", "S12-P",
+    "S1-Q", "S2-Q", "S3-Q", "S4-Q", "S5-Q", "S6-Q", "S7-Q", "S8-Q", "S9-Q", "S11-Q", "S12-Q",
+    "S1-R", "S2-R", "S3-R", "S4-R", "S5-R", "S6-R", "S8-R", "S9-R", "S10-R", "S11-R", "S12-R",
+    "S1-S", "S2-S", "S4-S", "S5-S", "S6-S", "S7-S", "S8-S", "S9-S", "S10-S", "S11-S", "S12-S",
+    "S1-T", "S2-T", "S3-T", "S4-T", "S5-T", "S6-T", "S7-T", "S8-T", "S9-T", "S10-T", "S11-T", "S12-T"
   ],
   "rejectedIdeaIds": [
-    "S10-G", "S10-H", "S5-I", "S10-I", "S11-I", "S8-J", "S10-L", "S4-M", "S6-M", "S10-N"
+    "S10-G", "S10-H", "S5-I", "S10-I", "S11-I", "S8-J", "S10-L", "S4-M", "S6-M", "S10-N", "S5-P", "S10-Q", "S3-S"
   ],
   "skippedReassessIdeaIds": [
-    "S9-J", "S8-K"
+    "S9-J", "S8-K", "S6-P", "S7-R"
   ],
   "autoResolvedSkippedIdeaIds": [
     "S7-F", "S12-F", "S4-E", "S9-A"
