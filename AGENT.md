@@ -1,6 +1,7 @@
 # AGENT.md — Antigravity Builder & QA Handoff Specification
 **Project Name:** SYNAPZ HOCKEY — PLAY. LEARN. DOMINATE. (`HOCKEY IQ & STRATEGY PLATFORM` with Coach Bob)  
-**Live GitHub Pages Deployment (Free & Unlimited Deploys):** `https://danebekkedahl.github.io/tactix-hockey/` (Report: `https://danebekkedahl.github.io/tactix-hockey/report.html`)  
+**Live GitHub Pages Deployment (Free & Unlimited Deploys):** `https://danebekkedahl.github.io/synapz-hockey/` (Report: `https://danebekkedahl.github.io/synapz-hockey/report.html`) & Mirror `https://danebekkedahl.github.io/tactix-hockey/` (Report: `https://danebekkedahl.github.io/tactix-hockey/report.html`)  
+**Current Active Milestone:** Section 35 (`v11.2-173-verified-and-6position-pilot-bank` • `CACHE_NAME = 'synapz-hockey-v11.2-173-verified-6pos-pilot'`)  
 **Local Dev Server:** `http://localhost:8080`  
 **Architecture:** Self-Contained Single-Page Web Application + Installable PWA (`index.html`, `report.html`, `CONTEXT.md`, `assets/tactix-logo.png`, `assets/coach-bob.png`, `manifest.json`, `sw.js`, `deploy-github-pages.js`)
 
@@ -394,30 +395,60 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
      3. Advances the cloud-synced coverage ledger (`SYNAPZ-CLOUD-COVERAGE-LEDGER` in Supabase) by **24 fresh scenarios & NHL cities** (`4 plays × 6 age divisions: 8U–18U`) and advances the active batch pointer (`Batch F -> Batch G -> Batch H -> Batch I -> Batch J`).
      4. Loads & `UPSERT`s the next batch of 12 non-repeating Seat Recommendations (`1 per Seat` + `Top 5 Co-Signed Consensus Priorities`) into `public.pucksense_agent_inbox` (`status = 'awaiting_founder_approval'`) and re-renders Sections 1–4 live on the phone screen.
      5. Builds the `< 35 KB` HTML digest and `POST`s it directly from the phone browser to `GOOGLE_APPS_SCRIPT_WEBHOOK_URL` (`Content-Type: 'text/plain;charset=utf-8'`, with `mode: 'no-cors'` fallback) so `danebekkedahl@gmail.com` and `evanbekk@gmail.com` receive the updated batch receipt and next 12-idea email immediately.
+   - **Permanent 5-Step Continuous Improvement Loop (`RUN BUILD & NEXT DEEP AUDIT` 1-Command Alias — `v10.4`):**
+     Whenever the user types **`RUN BUILD & NEXT DEEP AUDIT`**, execute this exact 5-Step Sweet-Spot Continuous Improvement Loop across both `c:\Users\Dane\.gemini\antigravity\scratch\pucksense\` and `C:\Users\Dane\Documents\Hockey-IQ-App\`:
+     1. **Step 1 — Pull Current Founder Decisions From Supabase (`node fetch-approved-queue.js`):** Queries `public.pucksense_agent_inbox` (`https://jrusjgpfcnptozfehcrv.supabase.co`) for `approved_for_build`, `skipped_reassess_next_run`, `rejected_by_founder`, and `flagged_for_council_review`, writing `founder_approved_queue.json`, `founder_taste_profile.json`, and `batch_deployment_receipt.json` (never flipping items to `completed_and_deployed` unless physical `/* [REAL-CODED-FEATURE: <id>] */` markers are verified in `index.html`).
+     2. **Step 2 — Write Real Code for Up to 5–6 Approved Upgrades in `index.html`:** Codes approved items with real HTML/CSS/`<canvas>`/JS while keeping `<= 4` primary buttons on all player screens (`#synapzCleanPlayerScreensRule`) and bumping `CACHE_NAME` in `sw.js`.
+     3. **Step 3 — Auto-Reassess Previously Skipped Items:** Evaluates `skipped_reassess_next_run` rows (`auto_resolved_by_batch` vs. `reassessed_awaiting_approval` with `🔄 Reassessed After Last Build` badge).
+     4. **Step 4 — Run the 24-Play Rotated Blind Playtest & Pre-Upsert 12 Fresh Recommendations (`node deep_playtest_audit.js`):** Executes 24 fresh blind plays (`18` Blind Gold Mastery + `6` Wrong-Answer Recovery), 4-viewport geometry checks (`390x844`, `768x1024`, `1024x768`, `1280x800`), and pre-`UPSERT`s 12 telemetry-grounded recommendations (`ideaToUuid`) into `public.pucksense_agent_inbox`.
+     5. **Step 5 — Deploy Live & Send Single Focused `< 35 KB` Email Digest (`node deploy-github-pages.js && node send-board-digest.js`):** Mirrors both workspaces with SHA-256 verification, deploys to GitHub Pages, and sends strictly ONE `< 35 KB` HTML email to `danebekkedahl@gmail.com` and `evanbekk@gmail.com`.
+6. **Subsection 6 — 390px Full-Width Mobile Cards + 2×2 Decision Grid (`0px` Overflow) & Clean `.nojekyll` GitHub Pages Deploy (`v10.7`):**
+   - Full-width `.synapz-rec-card` mobile layout inside `.synapz-mobile-container` enforcing `document.documentElement.scrollWidth <= 390` (`0px` horizontal overflow on `390×844` iPhone), 2×2 `.founder-decision-2x2-grid` (`min-height: 44px` `.founder-decision-btn` with `0` clipped buttons), and clean `.nojekyll` GitHub Pages deployment across `danebekkedahl/synapz-hockey` and `danebekkedahl/tactix-hockey`.
+7. **Subsection 7 — Cloud-Hydrated Active Batch Persistence on `DOMContentLoaded` (`v10.8`):**
+   - On `DOMContentLoaded`, `report.html` queries `public.pucksense_agent_inbox` (`SYNAPZ-CLOUD-COVERAGE-LEDGER` + live card rows via `determineActiveCloudBatchLetter()` and `syncFounderDecisionsFromSupabaseCloud()`) *before* processing URL params or static HTML defaults so the active cloud batch (`G..Z`) persists across phone refreshes, tab closes, and email button taps.
+8. **Subsection 8 — Clean 3-Tab Phone Inbox (`📥 To Review (12)` | `🛠️ Queued` | `✅ Live in App`), `<= 56` Decision Buttons & `window.__SYNAPZ_TEST_MODE__` Email Guard (`v10.9`):**
+   - Sticky 3-Tab Phone Inbox (`#founderInbox3TabBar`: `📥 To Review (12)` | `🛠️ Queued` | `✅ Live in App`), instant Inbox Zero card moves (`#inboxZeroTransitionFlash` + 1-tap `[↩️ Move Back to Review]` via `window.moveCardBackToReview(id)`), and legacy `#reportDigest30TableBody` / duplicate `#reportTop5CoSignedTableBody` tables removed so `report.html` renders strictly ONE unified 12-Card List (`<= 56` decision buttons total).
+   - **Automated Test Email Mute Guard (`window.__SYNAPZ_TEST_MODE__`):** When `window.__SYNAPZ_TEST_MODE__ === true`, `navigator.webdriver === true`, or `{ suppressEmail: true }` is passed, `runCloudBatchDeployAndNextAuditFromPhone()` suppresses Gmail webhook calls (`gmailWebhookStatus: 'SUPPRESSED_TEST_MODE'`).
+9. **Subsection 9 — Top-Up Mode (Preserve Untouched Cards in `📥 To Review`) & 0-Reviewed Double-Tap Guard (`v10.9.4`):**
+   - **0-Reviewed Double-Tap Guard:** Blocks accidental launch taps when `reviewedOrQueuedCount === 0` (`{ ok: false, blockedZeroReviewed: true }`).
+   - **Top-Up Mode:** Launching a partial batch deploys `approved_for_build` items into `✅ Live in App`, keeps **100% of untouched cards** in `📥 To Review`, and pulls strictly `slotsNeeded = 12 - untouchedCount` unseen cards from the next pre-coded batch (`pending_future_batch`) to top `📥 To Review` back up to `12` (`activeInboxIds` persisted in `SYNAPZ-CLOUD-COVERAGE-LEDGER`).
 
 ---
 
-## 33. Permanent 5-Step Continuous Improvement Loop (`RUN BUILD & NEXT DEEP AUDIT` 1-Command Alias) (`v10.4`)
-Whenever the user types **`RUN BUILD & NEXT DEEP AUDIT`**, execute this exact 5-Step Sweet-Spot Continuous Improvement Loop across both `c:\Users\Dane\.gemini\antigravity\scratch\pucksense\` and `C:\Users\Dane\Documents\Hockey-IQ-App\`:
-1. **Step 1 — Pull Current Founder Decisions From Supabase (`node fetch-approved-queue.js`):**
-   - Queries `public.pucksense_agent_inbox` (`https://jrusjgpfcnptozfehcrv.supabase.co`) for `status = 'approved_for_build'`, `status = 'skipped_reassess_next_run'`, `status = 'rejected_by_founder'`, and `status = 'flagged_for_council_review'`.
-   - Prints the live queue summary and writes `founder_approved_queue.json`, `founder_taste_profile.json`, and `batch_deployment_receipt.json`.
-   - **Hard Safety Gate:** `fetch-approved-queue.js` and `apply-approved-batch.js` NEVER flip items to `completed_and_deployed` unless their physical `/* [REAL-CODED-FEATURE: <id>] */` markers are verified inside `index.html`.
-2. **Step 2 — Write Real Code for Up to 5–6 Approved Upgrades in `index.html`:**
-   - Directly code up to **5–6 approved items per pass** into `index.html` with real HTML/CSS/`<canvas>`/JS implementation (never fake status flags) while strictly preserving `<= 4` primary buttons on all player screens (`#synapzCleanPlayerScreensRule`).
-   - Bump `CACHE_NAME` in `sw.js` and mark only the physically coded & verified items `completed_and_deployed` in Supabase (`public.pucksense_agent_inbox`).
-3. **Step 3 — Auto-Reassess Previously Skipped Items:**
-   - Re-evaluate all `skipped_reassess_next_run` items against the newly updated `index.html`:
-     - **Case A (`status = 'auto_resolved_by_batch'`):** Automatically close skipped items whose root cause was fixed or superseded by the newly built batch.
-     - **Case B (`status = 'reassessed_awaiting_approval'`):** Keep still-relevant skipped items with updated telemetry and a `🔄 Reassessed After Last Build` badge.
-4. **Step 4 — Run the 24-Play Rotated Blind Playtest & Pre-Upsert 12 Fresh Recommendations (`node deep_playtest_audit.js`):**
-   - Executes **24 Fresh Blind Plays** (`4 plays × 6 Age Divisions: 8U–18U` = `18` Blind Gold Mastery plays + `6` Intentional Wrong-Answer Recovery plays) rotating through `audit_coverage_ledger.json`, plus 4-viewport geometry checks (`390x844`, `768x1024`, `1024x768`, `1280x800`) and live functional assertions for all newly coded features (`v104RealFeaturesAudit` / `v103RealFeaturesAudit`).
-   - Generates **12 Fresh Telemetry-Grounded Recommendations** (`1 best non-repeating finding per Seat` across Seats 1–12, with the `Top 5 Co-Signed Consensus Priorities` highlighted first) and **pre-`UPSERT`s all 12 rows into `public.pucksense_agent_inbox` (`status = 'awaiting_founder_approval'`)** with deterministic UUIDs (`ideaToUuid`) so every click on `report.html` or in the email (`✅ Approve`, `⏭️ Skip & Reassess`, `❌ Reject`) persists reliably via `UPSERT` (`Prefer: resolution=merge-duplicates,return=representation`).
-5. **Step 5 — Deploy Live & Send Single Focused `< 35 KB` Email Digest (`node deploy-github-pages.js && node send-board-digest.js`):**
-   - Mirrors all updated files across both workspaces, deploys `index.html`, `sw.js`, and `report.html` to `https://danebekkedahl.github.io/synapz-hockey/` and `https://danebekkedahl.github.io/tactix-hockey/`, and sends **strictly ONE focused `< 35 KB` HTML Email** to `danebekkedahl@gmail.com` and `evanbekk@gmail.com` containing:
-     - **Section 1:** Newly Coded Fixes Receipt + Auto-Resolved Skipped Items
-     - **Section 2:** Reassessed Skipped Items (`🔄 Reassessed After Last Build`)
-     - **Section 3:** `🚩 Seat 0` Red-Flag Council Options + `🔍 Seat 13` Cumulative Coverage Heatmap
-     - **Section 4:** `Top 5 Consensus Priorities` + `12 Fresh Seat Recommendations` (each with `[🔍 Explain]`, `[✅ Approve]`, `[⏭️ Skip & Reassess]`, `[❌ Reject]`, plus the bottom `[🚀 BUILD & DEPLOY ALL APPROVED UPGRADES NOW]` CTA).
+## 33. Hard-Committed `CORE_DEPLOYED_UPGRADE_IDS`, Single Primary Tactical Cue Arbitration (`selectPrimaryCanvasCueForScenario`), `#emptyBankCompletionBanner` & 5-Batch Dial-In Bank (`v11.0`)
+1. **Hard-Committed Core Live Upgrades (`CORE_DEPLOYED_UPGRADE_IDS` in `index.html` & `report.html`):**
+   - Hard-commits all cumulative `completed_and_deployed` IDs (strictly excluding rejected/skipped items) directly into `CORE_DEPLOYED_UPGRADE_IDS` so approved upgrades run immediately on first paint and offline, Chrome-verified across `390×844` iPhone and `1024×768` iPad (`#v110ChromeVerified63Banner` on `report.html` Tab 3).
+2. **Single Primary Canvas Cue Arbitration (`window.selectPrimaryCanvasCueForScenario(scen)`):**
+   - Enforces `maxConcurrentTacticalOverlaysPerPlay === 1` on `#rinkCanvas`, selecting strictly one primary tactical cue per scenario concept bucket (zero overlapping visual soup).
+3. **Empty-Bank Completion Banner (`#emptyBankCompletionBanner`):**
+   - Displays `🎉 All Pre-Coded Batches Reviewed!` cleanly on `report.html` when `0 Kept + 0 New` pre-coded items remain in the active bank.
+4. **5-Batch Dial-In & Hockey Realism Bank (`Batches K–O` = 60 Upgrades):**
+   - Tuned strictly to Dane & Evan's proven Founder Taste Profile (hockey IQ realism, drill route accuracy, Q5 film timestamp QC, 5-room hotspot polish, mobile UX — zero social brag cards, sales demos, or extra player-screen buttons).
+
+---
+
+## 34. 4-Way Camera Rotation (`0°/90°/180°/270°`), Orientation-Proof Hockey Landmark Phrasing (`sanitizeToOrientationProofHockeyLandmarks`), Auto-Context `🚩` Red-Flag Capture & Rotated-Flow Bank (`v11.1`)
+1. **4-Way Geometric Camera Rotation (`window.transformCoordForCameraRotation(x, y, rotationDeg)`):**
+   - Transforms normalized skater, puck, pass-lane, and goalie coordinates across `0°`, `90°`, `180°`, and `270°` while enforcing board containment (`inBounds: true`) and true ice facing vectors (`960/5,760` permutations verified in `v111_118_upgrades_audit.json`).
+2. **Orientation-Proof Hockey Landmark Phrasing (`window.sanitizeToOrientationProofHockeyLandmarks(text)`):**
+   - Replaces screen-relative terms (*"left/right/top/bottom of screen"*, *"skate up"*) in Coach Bob's prompts with orientation-invariant hockey landmarks (*"strong-side wall"*, *"weak-side flank"*, *"attacking blue line"*, *"high slot / House"*, *"net-front post"*).
+3. **Auto-Context `🚩` Founder Red-Flag Capture (`window.openFounderRedFlagModal()` -> `window._lastFounderRedFlagAutoContext`):**
+   - Automatically captures `{ scenarioId, rotationAngle, ageDivision, activeScreenOrModal, activeUpgradesCount }` on every in-app `🚩 Red Flag` submission so `Seat 0` reproduces the exact state in headless Chrome.
+4. **5-Batch Rotated-Flow Bank (`Batches P–T` = 60 Upgrades):**
+   - Added 60 rotated-flow & spatial awareness upgrades (`S1-P..S12-T`), achieving a `92%` Founder Approval Match Rate (`55/60` approved -> `173` cumulative live upgrades).
+
+---
+
+## 35. `173/173` Chrome-Verified Live Upgrades, 6-Position Role Switching (`C / LW / RW / LD / RD / G`), Dedicated Goalie Mode & Pilot-Team Launch Readiness Bank (`Batches U–Z`) (`v11.2`)
+1. **`173/173` Cumulative Upgrades Hard-Committed & Chrome-Verified (`v112_173_upgrades_audit.json` & `window.run173UpgradesLiveAudit()`):**
+   - Hard-commits all **173 `completed_and_deployed` upgrades** (`118` prior + `55` approved across Batches P–T, strictly excluding declined/skipped `S5-P, S6-P, S10-Q, S7-R, S3-S` and earlier declined items) into `CORE_DEPLOYED_UPGRADE_IDS` (`CACHE_NAME = 'synapz-hockey-v11.2-173-verified-6pos-pilot'`), verified across `390×844` iPhone and `1024×768` iPad with `0` console/page errors, `maxConcurrentTacticalOverlaysPerPlay === 1`, and `<= 4` primary gameplay buttons.
+2. **6-Position Role Switching (`C / LW / RW / LD / RD / G` × `0°/90°/180°/270°` = `1,680/5,760` Permutations `29.2%`):**
+   - Powered by `window.SIX_POSITION_ROLE_SPECS` and `window.applySixPositionRoleFidelity(scen, position, rotationDeg)`, verifying all **24 position × rotation combinations** (`youSkaterInBounds === true`, exact `YOU #` role highlight, strong-side vs. weak-side winger/defenseman responsibilities, and 3 role-authentic Gold/Silver/Bronze grading choices).
+3. **Dedicated Goalie Mode Polish (`window.evaluateGoalieCreaseAndReboundRead(scen, rotationDeg)`):**
+   - Implements dedicated `Goalie (G)` reads across all 4 rotations: top-of-crease puck squareness, post-integration `RVH` seal, screen sightline peeks, low-blocker corner rebound steering away from the slot, and goalie gear / Puck Bucks progression.
+4. **Association Pilot-Team Launch Readiness (`window.verifyPilotTeamLaunchReadiness('PUCK99')`) & 6-Batch Bank (`Batches U–Z` = 72 Upgrades / `252` Total Bank):**
+   - Pre-codes **72 real executable upgrades (`S1-U..S12-Z`)** in `window.SYNAPZ_5_BATCH_UPGRADE_BANK` (total bank size = `252`, with `Batch U` `S1-U..S12-U` loaded in `📥 To Review (12)`), verifying collision-free 20-player simultaneous `?team=PUCK99` roster joins, offline arena Wi-Fi outbox resilience, 11-voice audio prewarming, and printable 3-station coach practice cards — with **ZERO** social brag cards, **ZERO** printable participation certificates, **ZERO** guest-wall popups, and **ZERO** extra gameplay buttons.
+5. **Automated Startup Spec-Sync Assertion (`verifyFounderVisionAndAgentSpecsSync()` in `deep_playtest_audit.js`):**
+   - At the start of `deep_playtest_audit.js`, programmatically reads `FOUNDER_VISION_NOTES.md` and `AGENT.md` across both workspaces, asserts SHA-256 parity and Section 35 (`v11.2`) presence, and prints `📖 Spec Sync Verified: FOUNDER_VISION_NOTES.md & AGENT.md read and verified`.
 
 

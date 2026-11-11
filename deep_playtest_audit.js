@@ -14,7 +14,62 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { chromium } = require('C:/Users/Dane/.gemini/antigravity/brain/dcf2b5ee-cfe9-46ed-8620-e93e53a566b9/scratch/node_modules/playwright-core');
+
+const WORKSPACE_SCRATCH = 'c:\\Users\\Dane\\.gemini\\antigravity\\scratch\\pucksense';
+const WORKSPACE_DOCS = 'C:\\Users\\Dane\\Documents\\Hockey-IQ-App';
+const CURRENT_MILESTONE_SECTION = '## 35.';
+const CURRENT_MILESTONE_VERSION = 'v11.2';
+
+function verifyFounderVisionAndAgentSpecsSync() {
+  const requiredFiles = ['FOUNDER_VISION_NOTES.md', 'AGENT.md'];
+  const requiredTokens = [
+    '## 32.',
+    'window.__SYNAPZ_TEST_MODE__',
+    'Top-Up Mode',
+    '## 33.',
+    'CORE_DEPLOYED_UPGRADE_IDS',
+    'selectPrimaryCanvasCueForScenario',
+    '#emptyBankCompletionBanner',
+    '## 34.',
+    'sanitizeToOrientationProofHockeyLandmarks',
+    CURRENT_MILESTONE_SECTION,
+    CURRENT_MILESTONE_VERSION
+  ];
+  const fileResults = {};
+  for (const relName of requiredFiles) {
+    const pathScratch = path.join(WORKSPACE_SCRATCH, relName);
+    const pathDocs = path.join(WORKSPACE_DOCS, relName);
+    if (!fs.existsSync(pathScratch) || !fs.existsSync(pathDocs)) {
+      throw new Error(`SPEC SYNC ASSERTION FAILED: Missing ${relName} in one or both workspaces (${pathScratch} / ${pathDocs})`);
+    }
+    const contentScratch = fs.readFileSync(pathScratch, 'utf8');
+    const contentDocs = fs.readFileSync(pathDocs, 'utf8');
+    const hashScratch = crypto.createHash('sha256').update(Buffer.from(contentScratch, 'utf8')).digest('hex');
+    const hashDocs = crypto.createHash('sha256').update(Buffer.from(contentDocs, 'utf8')).digest('hex');
+    if (hashScratch !== hashDocs) {
+      throw new Error(`SPEC SYNC ASSERTION FAILED: Dual-workspace SHA-256 mismatch on ${relName} (${hashScratch} !== ${hashDocs})`);
+    }
+    const missingTokens = requiredTokens.filter(tok => !contentScratch.includes(tok));
+    if (missingTokens.length > 0) {
+      throw new Error(`SPEC SYNC ASSERTION FAILED: ${relName} missing current milestone tokens: ${missingTokens.join(', ')}`);
+    }
+    fileResults[relName] = {
+      existsBothWorkspaces: true,
+      sha256Identical: true,
+      sha256: hashScratch.slice(0, 16),
+      bytes: Buffer.byteLength(contentScratch, 'utf8'),
+      containsSection35V112: true
+    };
+  }
+  return {
+    verified: true,
+    milestoneSection: CURRENT_MILESTONE_SECTION,
+    milestoneVersion: CURRENT_MILESTONE_VERSION,
+    files: fileResults
+  };
+}
 
 const APP_URL = 'http://localhost:8080/index.html?bot=1';
 const SUPABASE_URL = 'https://jrusjgpfcnptozfehcrv.supabase.co/rest/v1/pucksense_agent_inbox';
@@ -266,6 +321,9 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
   console.log('===================================================================');
   console.log('🏒 TACTIX STAGE 1: STRICT BLIND 30-DRILL PLAYTEST & 10-SEAT AUDIT');
   console.log('===================================================================');
+
+  const specSyncAudit = verifyFounderVisionAndAgentSpecsSync();
+  console.log(`📖 Spec Sync Verified: FOUNDER_VISION_NOTES.md & AGENT.md read and verified (${specSyncAudit.milestoneSection} ${specSyncAudit.milestoneVersion})`);
 
   const selfAudit = verifyZeroAnswerKeyPeekingInSource();
   console.log(`✅ Self-Audit Zero-Answer-Key-Peeking Check: ${JSON.stringify(selfAudit)}`);
@@ -3638,6 +3696,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
 
     const summaryPayload = {
       timestamp: new Date().toISOString(),
+      specSyncAudit,
       selfAudit,
       stepAApprovalGateCheck: coverageLedger.stepAApprovalGateCheck,
       seat0ReviewedRedFlags,
