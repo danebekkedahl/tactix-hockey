@@ -295,18 +295,20 @@
     }
     #coachBobPopup.coach-bob-state-talking #coachBobAvatarImg {
       animation: coachBobTalking 0.72s ease-in-out infinite;
-      border-color: #38bdf8 !important;
-      box-shadow: 0 0 26px rgba(56, 189, 248, 0.75) !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.78)) drop-shadow(0 0 18px rgba(56, 189, 248, 0.65)) !important;
     }
     #coachBobPopup.coach-bob-state-talking #coachBobSoundwaveRing1,
     #coachBobPopup.coach-bob-state-talking #coachBobSoundwaveRing2 {
-      display: block !important;
-      animation: coachBobSoundwave 1.25s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+      display: none !important;
     }
-    #coachBobPopup.coach-bob-state-talking #coachBobSoundwaveRing2 {
-      animation-delay: 0.45s;
+    #coachBobPopup.coach-bob-state-mistake #coachBobAvatarImg {
+      animation: coachBobMistakeShake 0.55s ease-in-out 2;
+      border: 0 !important;
+      box-shadow: none !important;
+      filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.78)) drop-shadow(0 0 20px rgba(244, 63, 94, 0.68)) !important;
     }
-    #coachBobPopup.coach-bob-state-mistake #coachBobAvatarImg,
     #coachBobPopup.coach-bob-state-mistake #coachCornerFloating {
       animation: coachBobMistakeShake 0.55s ease-in-out 2;
       border-color: #fb7185 !important;
@@ -314,8 +316,9 @@
     }
     #coachBobPopup.coach-bob-state-celebrate #coachBobAvatarImg {
       animation: coachBobCelebrateBounce 0.65s ease-in-out infinite;
-      border-color: #facc15 !important;
-      box-shadow: 0 0 32px rgba(250, 204, 21, 0.95) !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.78)) drop-shadow(0 0 24px rgba(250, 204, 21, 0.88)) !important;
     }
     #coachBobPopup.coach-bob-state-celebrate #coachCornerFloating {
       border-color: #facc15 !important;
@@ -583,23 +586,77 @@
       max-width: 100% !important;
     }
 
-    /* 3. Stage 1: Full Lower-Left Quadrant Character Pop-Up (~25% Screen Height for Entire Speech) */
+    /* 3. Stage 1: Frameless Waist-Up 3D Cutouts (18%–28% Screen Height, Zero Rectangular Card Borders) */
     #coachBobPopup,
     #synapzUniversalCharSpeechOverlay {
-      min-height: clamp(165px, 25vh, 230px) !important;
+      min-height: clamp(148px, 23vh, 224px) !important;
       max-height: 30vh !important;
-      align-items: stretch !important;
+      align-items: flex-end !important;
       transform-origin: bottom left !important;
       transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.24s ease !important;
     }
     #coachBobAvatarImg,
+    #synapzUniversalCharAvatarImg,
+    .synapz-waistup-cutout-img,
+    #guidedSetupCutoutImg,
+    .step1-agent-cutout-img {
+      border: 0 !important;
+      border-width: 0 !important;
+      border-style: none !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      object-fit: contain !important;
+      filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.8));
+    }
+    #coachBobAvatarImg,
     #synapzUniversalCharAvatarImg {
-      width: clamp(104px, 18vh, 148px) !important;
-      height: clamp(104px, 18vh, 148px) !important;
-      border-radius: 1.25rem !important;
-      border: 3px solid #fbbf24 !important;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.85), 0 0 22px rgba(251, 191, 36, 0.55) !important;
-      object-fit: cover !important;
+      height: clamp(128px, 23vh, 212px) !important;
+      width: auto !important;
+      max-width: 175px !important;
+    }
+    .synapz-cutout-corner-bl {
+      left: 0.625rem !important;
+      right: auto !important;
+      bottom: 0.625rem !important;
+      top: auto !important;
+      flex-direction: row !important;
+      transform-origin: bottom left !important;
+    }
+    .synapz-cutout-corner-br {
+      right: 0.625rem !important;
+      left: auto !important;
+      bottom: 0.625rem !important;
+      top: auto !important;
+      flex-direction: row-reverse !important;
+      transform-origin: bottom right !important;
+    }
+    .synapz-cutout-corner-tl {
+      left: 0.625rem !important;
+      right: auto !important;
+      top: 0.625rem !important;
+      bottom: auto !important;
+      flex-direction: row !important;
+      transform-origin: top left !important;
+    }
+    .synapz-cutout-corner-tr {
+      right: 0.625rem !important;
+      left: auto !important;
+      top: 0.625rem !important;
+      bottom: auto !important;
+      flex-direction: row-reverse !important;
+      transform-origin: top right !important;
+    }
+    .synapz-cutout-corner-br .synapz-cutout-flip-wrap,
+    .synapz-cutout-corner-tr .synapz-cutout-flip-wrap,
+    .synapz-cutout-flipped {
+      transform: scaleX(-1) !important;
+    }
+    .synapz-guided-spotlight-target {
+      position: relative;
+      z-index: 65;
+      box-shadow: 0 0 0 9999px rgba(4, 9, 20, 0.72), 0 0 26px rgba(0, 229, 255, 0.42);
+      border-radius: 1rem;
     }
 
     /* 4. Stage 2: Live Word-by-Word Synchronized Speech Bubble ("Words Come Out As They Say Them") */
@@ -1035,7 +1092,7 @@
         <!-- 3. Lower-Left / Bottom Bar: Player Agent Lobby Greeter & 5-Step 1-Sentence Spotlight Tour -->
         <div id="lobbyActivePlayerAgentWidget" class="relative z-30 p-3 rounded-2xl bg-slate-950/95 border-2 border-amber-400/80 shadow-[0_0_28px_rgba(212,175,55,0.22)] flex flex-col sm:flex-row items-center justify-between gap-3">
           <div class="flex items-center gap-3 min-w-0">
-            <img id="lobbyAgentAvatarImg" src="assets/agents/agent-chloe.png" alt="Player Agent" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border-2 border-amber-400 shadow-lg shrink-0" />
+            <img id="lobbyAgentAvatarImg" src="assets/cutouts/agent-chloe.png" alt="Player Agent" class="synapz-waistup-cutout-img w-16 h-20 sm:w-20 sm:h-24 shrink-0" />
             <div class="min-w-0">
               <div class="flex flex-wrap items-center gap-1.5">
                 <span id="lobbyAgentNameBadge" class="px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/60 text-amber-200 text-[11px] font-black">🎙️ Agent Chloe • 10U–14U Teen Agent</span>
@@ -1466,28 +1523,30 @@
 
             <!-- STAGE 3: PERSISTENT BOTTOM-LEFT 64x64px COACH BOB CIRCLE MEDALLION (Tap Anytime to Re-Summon!) -->
             <button id="btnCallCoachBob" type="button" class="synapz-persistent-char-circle hidden absolute bottom-3 left-3 z-25" title="Tap Coach Bob anytime to re-hear the instruction & live word-streaming hint!">
-              <img src="assets/coach-bob.png" alt="Coach Bob" class="w-full h-full rounded-full object-cover" />
+              <img src="assets/cutouts/coach-bob.png" alt="Coach Bob" class="w-full h-full rounded-full object-contain bg-slate-900/90 pt-1" />
               <span class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[9px] font-black uppercase whitespace-nowrap shadow border border-slate-950">🧢 Coach Bob</span>
             </button>
 
-            <!-- STAGE 1 & STAGE 2: FULL QUADRANT POP-UP (~25% SCREEN HEIGHT) + LIVE WORD-STREAMING SPEECH BUBBLE (#coachBobPopup) -->
-            <div id="coachBobPopup" class="coach-bob-state-talking synapz-char-quadrant-popup absolute bottom-2.5 left-2.5 z-30 flex items-end gap-3 max-w-[95%] sm:max-w-[560px] transition-all duration-300 ease-out">
-              <!-- Large ~25% Screen-Height Character Portrait -->
-              <div class="relative shrink-0 flex flex-col items-center">
-                <span id="coachBobSoundwaveRing1" class="hidden absolute -inset-1.5 rounded-2xl border-2 border-sky-400/70 pointer-events-none"></span>
-                <span id="coachBobSoundwaveRing2" class="hidden absolute -inset-3 rounded-2xl border border-amber-300/60 pointer-events-none"></span>
-                <img id="coachBobAvatarImg" src="assets/coach-bob.png" alt="Coach Bob" class="relative z-10 bg-slate-900" />
-                <span id="cornerCoachPulseDot" class="hidden absolute -top-1 -right-1 z-20 w-4 h-4 rounded-full bg-emerald-400 border-2 border-slate-950 animate-ping"></span>
-                <span id="coachBobAnimStateBadge" class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 z-20 px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black uppercase whitespace-nowrap shadow border border-slate-950">🧢 Coach Bob</span>
+            <!-- STAGE 1 & STAGE 2: WAIST-UP CUTOUT POP-UP (18%–28% SCREEN HEIGHT, DYNAMIC CORNER) + NATURAL SPEECH BUBBLE (#coachBobPopup) -->
+            <div id="coachBobPopup" class="coach-bob-state-talking synapz-char-quadrant-popup synapz-cutout-corner-bl absolute bottom-2.5 left-2.5 z-30 flex items-end gap-2.5 max-w-[95%] sm:max-w-[560px] transition-all duration-300 ease-out">
+              <!-- Frameless Waist-Up Transparent 3D Cutout -->
+              <div class="relative shrink-0 flex flex-col items-center pointer-events-none">
+                <span id="coachBobSoundwaveRing1" class="hidden"></span>
+                <span id="coachBobSoundwaveRing2" class="hidden"></span>
+                <div id="coachBobCutoutFlipWrap" class="synapz-cutout-flip-wrap">
+                  <img id="coachBobAvatarImg" src="assets/cutouts/coach-bob.png" alt="Coach Bob" class="synapz-waistup-cutout-img relative z-10" />
+                </div>
+                <span id="cornerCoachPulseDot" class="hidden"></span>
+                <span id="coachBobAnimStateBadge" class="absolute -bottom-1 left-1/2 -translate-x-1/2 z-20 px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black uppercase whitespace-nowrap shadow border border-slate-950">🧢 Coach Bob</span>
               </div>
 
-              <!-- Live Word-by-Word Synchronized Speech Bubble Card -->
-              <div id="coachCornerFloating" class="bg-slate-950/96 border-2 border-amber-400 rounded-2xl p-3 sm:p-3.5 text-left shadow-2xl backdrop-blur-md flex-1 min-w-[220px] flex flex-col justify-between">
+              <!-- Live Word-by-Word Synchronized Speech Bubble Card (Clean Human Talk — Zero Metadata Tags!) -->
+              <div id="coachCornerFloating" class="bg-slate-950/96 border-2 border-amber-400 rounded-2xl p-3 sm:p-3.5 text-left shadow-2xl backdrop-blur-md flex-1 min-w-[215px] flex flex-col justify-between">
                 <div class="flex flex-wrap items-center justify-between gap-1.5 border-b border-slate-800 pb-1.5 mb-1.5">
                   <div class="flex flex-wrap items-center gap-1.5 min-w-0">
-                    <span id="cornerCoachTitle" class="text-xs font-black text-amber-300 whitespace-nowrap">🧢 Coach Bob • Live Dictation</span>
-                    <span id="coachBobRoleCalloutBadge" class="px-1.5 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 text-amber-300 text-[9px] font-black whitespace-nowrap">YOU = F1</span>
-                    <span id="coachBobSituationTag" class="px-1.5 py-0.5 rounded bg-sky-500/20 border border-sky-400/40 text-sky-300 text-[9px] font-black whitespace-nowrap">5v5 • OZ</span>
+                    <span id="cornerCoachTitle" class="text-xs font-black text-amber-300 whitespace-nowrap">🧢 Coach Bob</span>
+                    <span id="coachBobRoleCalloutBadge" class="hidden"></span>
+                    <span id="coachBobSituationTag" class="hidden"></span>
                   </div>
                   <div class="flex items-center gap-1.5 shrink-0">
                     <button id="btnCornerSpeakBtn" type="button" class="px-2 py-0.5 rounded bg-sky-500/25 hover:bg-sky-500/40 text-sky-200 text-[10px] font-black whitespace-nowrap" title="Replay Coach Bob Voice">🔊</button>
@@ -2886,7 +2945,7 @@
       <!-- Player Agent Plain-Language Economy Explanation Banner -->
       <div id="proShopAgentEconomyBanner" class="p-2.5 sm:p-3 rounded-2xl bg-slate-950/95 border border-amber-400/60 flex flex-wrap items-center justify-between gap-2.5">
         <div class="flex items-center gap-2.5 min-w-0 flex-1">
-          <img id="proShopAgentPortraitImg" src="assets/agents/agent-chloe.png" alt="Player Agent" class="w-10 h-10 rounded-xl object-cover border border-amber-300 shrink-0" />
+          <img id="proShopAgentPortraitImg" src="assets/cutouts/agent-chloe.png" alt="Player Agent" class="synapz-waistup-cutout-img w-12 h-14 shrink-0" />
           <div class="min-w-0">
             <div id="proShopAgentNameBadge" class="text-[10px] font-black uppercase tracking-wider text-amber-300">🎙️ Agent Chloe • IQ-Tied Puck Bucks Economy</div>
             <p id="proShopAgentEconomyText" class="text-xs font-bold text-white leading-snug">
@@ -3809,12 +3868,12 @@
         </div>
         <div class="space-y-2.5 text-xs text-slate-200 leading-relaxed">
           <div class="p-3 rounded-2xl bg-slate-900/90 border border-cyan-400/35">
-            <div class="font-black text-cyan-300 text-xs uppercase mb-1">🏒 Players &amp; Families (8U–18U)</div>
-            <p>Interactive Hockey IQ game across all 6 positions (C, LW, RW, LD, RD, G), 32-City Tour, Locker Room Avatar &amp; Pro Shop. One family account includes up to 4 private Player Profile Slots.</p>
+            <div class="font-black text-cyan-300 text-xs uppercase mb-1">🏒 Players &amp; Families (8U–18U • Pricing Tiers — TBD)</div>
+            <p>Interactive Adaptive Hockey IQ game across all 6 positions (C, LW, RW, LD, RD, G), 32-City Tour, Locker Room Avatar &amp; Pro Shop. Household accounts unlock Slot 1 ($4.99 Basic or $49.99/yr Annual) plus up to 3 Add-On Sibling Slots (+$2.99 each • Pricing Tiers — TBD).</p>
           </div>
           <div class="p-3 rounded-2xl bg-slate-900/90 border border-amber-400/35">
             <div class="font-black text-amber-300 text-xs uppercase mb-1">📋 Coaches &amp; Teams</div>
-            <p>Create a team to receive a unique 6-Character Team Code. Players enter your Team Code inside their own Profile Slot—keeping their gear, Puck Bucks, and stats season after season.</p>
+            <p>Create a team to receive a unique 6-Character Team Code. Players enter your Team Code inside the Coaches Room (Coach Al's Office)—keeping their gear, Puck Bucks, and stats season after season.</p>
           </div>
           <div class="p-3 rounded-2xl bg-slate-900/90 border border-purple-400/35">
             <div class="font-black text-purple-300 text-xs uppercase mb-1">🏛️ Hockey Associations &amp; Clubs</div>
@@ -3879,12 +3938,15 @@
           </div>
         </div>
         <div class="pt-1 space-y-2">
-          <div class="text-[11px] font-black uppercase text-cyan-300">Choose Unlock Option</div>
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-black uppercase text-cyan-300">Choose Unlock Option</span>
+            <span class="text-[10px] font-bold text-slate-400">Pricing Tiers — TBD</span>
+          </div>
           <button id="btnPlayerPlanBasic499" type="button" class="w-full py-3 px-3.5 rounded-2xl bg-gradient-to-r from-cyan-400 to-sky-400 hover:from-cyan-300 hover:to-sky-300 text-slate-950 font-black text-xs sm:text-sm text-center shadow-lg">
-            Basic Plan — $4.99 (Unlocks All 4 Slots)
+            Basic Plan — $4.99 (Slot 1 Unlocked • +$2.99 Sibling Slots)
           </button>
           <button id="btnPlayerPlanAnnual4999" type="button" class="w-full py-3 px-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 border-2 border-amber-400/80 text-amber-300 font-black text-xs sm:text-sm text-center shadow">
-            Annual Plan — $49.99/yr (or $4.99/mo)
+            Annual Plan — $49.99/yr (Slot 1 + Position Filter &amp; Perks)
           </button>
           <div class="p-3 rounded-2xl bg-slate-900/90 border border-emerald-400/50 space-y-2">
             <div class="text-xs font-black text-emerald-300">Enter Coach's Team Code (Slot 1 Free)</div>
@@ -3922,7 +3984,7 @@
             Log In
           </button>
           <p class="text-[11px] text-slate-400 font-semibold text-center pt-0.5">
-            Have a new Team Code? Log in and enter it inside your Player Slot.
+            Already have a profile? Visit Coach Al's Office inside the Lobby anytime to link your Coach's Team Code!
           </p>
         </div>
         <!-- Household 3-Device Anti-Sharing Guard Prompt -->
@@ -3942,7 +4004,7 @@
       </div>
 
       <!-- ================================================================= -->
-      <!-- SCREEN 1A-4 — 4 PLAYER PROFILE SLOTS                              -->
+      <!-- SCREEN 1A-4 — 4 PLAYER PROFILE SLOTS ($4.99 + $2.99 SIBLING SLOTS) -->
       <!-- ================================================================= -->
       <div id="entryScreen1A4PlayerSlots" data-entry-screen="1A-4" class="hidden flex-col gap-3 text-left">
         <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
@@ -3969,100 +4031,228 @@
       </div>
 
       <!-- ================================================================= -->
-      <!-- SCREEN 1A-4B — STREAMLINED PROFILE SLOT SETUP                     -->
+      <!-- SCREEN 1A-4B — 3-STEP GUIDED WAIST-UP CUTOUT PROFILE SETUP WIZARD -->
       <!-- ================================================================= -->
-      <div id="entryScreen1A4SlotSetup" data-entry-screen="1A-4-SETUP" class="hidden flex-col gap-2.5 text-left">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+      <div id="entryScreen1A4SlotSetup" data-entry-screen="1A-4-SETUP" class="hidden flex-col gap-2.5 text-left relative">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2 relative z-[70]">
           <button id="btnBackFromSlotSetupToSlots" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-black text-cyan-300">
             ← Back to Slots
           </button>
-          <h2 id="slotSetupHeaderTitle" class="text-sm font-black text-white">Slot 1 — Profile Setup</h2>
+          <h2 id="slotSetupHeaderTitle" class="text-xs sm:text-sm font-black text-white">Slot 1 — Profile Setup</h2>
         </div>
-        <div class="grid grid-cols-3 gap-2">
-          <div class="col-span-2">
-            <label for="slotSetupFirstName" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Player First Name</label>
-            <input id="slotSetupFirstName" type="text" placeholder="e.g., Miles" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-cyan-400/50 text-xs font-bold text-white" />
-          </div>
-          <div>
-            <label for="slotSetupJerseyNum" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Jersey #</label>
-            <input id="slotSetupJerseyNum" type="number" min="1" max="99" value="9" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-cyan-400/50 text-xs font-black text-cyan-300 text-center" />
-          </div>
+
+        <!-- Step Indicator Pills -->
+        <div id="slotSetupStepPillsBar" class="grid grid-cols-3 gap-1.5 text-center relative z-[70]">
+          <div id="slotStepPill1" class="py-1 px-1.5 rounded-lg bg-cyan-400 text-slate-950 text-[10px] font-black">1. Pick Your Agent</div>
+          <div id="slotStepPill2" class="py-1 px-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-400 text-[10px] font-bold">2. Player Core</div>
+          <div id="slotStepPill3" class="py-1 px-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-400 text-[10px] font-bold">3. Avatar &amp; Jersey</div>
         </div>
-        <div class="grid grid-cols-3 gap-2">
-          <div>
-            <label for="slotSetupAgeDivision" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Age Division</label>
-            <select id="slotSetupAgeDivision" class="w-full px-2 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white">
-              <option value="8U">8U</option>
-              <option value="10U">10U</option>
-              <option value="12U" selected>12U</option>
-              <option value="14U">14U</option>
-              <option value="16U">16U</option>
-              <option value="18U">18U</option>
-            </select>
+
+        <input id="slotSetupAgentSelect" type="hidden" value="agent-leo" />
+
+        <!-- STEP 1: PICK & AUDITION YOUR WAIST-UP 3D CUTOUT PLAYER AGENT FIRST (ZERO CARD/OFFICE BORDERS!) -->
+        <div id="slotSetupStep1PickAgent" class="space-y-2.5">
+          <div class="text-center">
+            <div class="text-xs sm:text-sm font-black text-cyan-300">Step 1: Pick Your Player Agent</div>
+            <p class="text-[11px] text-slate-300 font-semibold">Tap any Agent cutout to audition their voice—they'll guide you step-by-step!</p>
           </div>
-          <div>
-            <label for="slotSetupPosition" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Position</label>
-            <select id="slotSetupPosition" class="w-full px-2 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white">
-              <option value="C">C</option>
-              <option value="LW">LW</option>
-              <option value="RW">RW</option>
-              <option value="LD">LD</option>
-              <option value="RD">RD</option>
-              <option value="G">G</option>
-            </select>
-          </div>
-          <div>
-            <label for="slotSetupStickHand" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Stick Hand</label>
-            <select id="slotSetupStickHand" class="w-full px-2 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white">
-              <option value="Left">Left</option>
-              <option value="Right">Right</option>
-            </select>
-          </div>
-        </div>
-        <div class="grid grid-cols-2 gap-2">
-          <div>
-            <label for="slotSetupAvatarType" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Skater Avatar</label>
-            <select id="slotSetupAvatarType" class="w-full px-2.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white">
-              <option value="boy">Skater A (Flow)</option>
-              <option value="girl">Skater B (Ponytail)</option>
-            </select>
-          </div>
-          <div>
-            <label for="slotSetupPinCode" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">4-Digit Stall PIN (Optional)</label>
-            <input id="slotSetupPinCode" type="password" maxlength="4" placeholder="Optional PIN" class="w-full px-2.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white text-center" />
-          </div>
-        </div>
-        <div>
-          <label for="slotSetupAgentSelect" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Player Agent (9-Voice Audition)</label>
-          <div class="flex items-center gap-2">
-            <select id="slotSetupAgentSelect" class="flex-1 px-2.5 py-2 rounded-xl bg-slate-950 border border-amber-400/50 text-xs font-bold text-amber-200">
-              <option value="agent-leo">Agent Leo (Calm &amp; Tactical)</option>
-              <option value="agent-jalen">Agent Jalen (High-Energy)</option>
-              <option value="agent-chloe">Agent Chloe (Encouraging)</option>
-              <option value="agent-maya">Agent Maya (Quick Reads)</option>
-              <option value="agent-marcus">Agent Marcus (Pro Scout)</option>
-              <option value="agent-sofia">Agent Sofia (Playmaker)</option>
-              <option value="agent-priya">Agent Priya (Analytics IQ)</option>
-              <option value="agent-ryan">Agent Ryan (200-Foot Vet)</option>
-              <option value="agent-claire">Agent Claire (Captain)</option>
-            </select>
-            <button id="btnSlotAuditionAgentVoice" type="button" class="px-3 py-2 rounded-xl bg-amber-400/20 hover:bg-amber-400/35 border border-amber-400/70 text-amber-200 text-xs font-black shrink-0">
+          <div id="slotSetupStep1AgentsGrid" class="grid grid-cols-3 gap-2 place-items-center py-1"></div>
+          <div class="flex items-center justify-between gap-2 p-2.5 rounded-2xl bg-slate-950/90 border border-cyan-400/50">
+            <div class="min-w-0">
+              <div id="slotStep1SelectedAgentTitle" class="text-xs font-black text-amber-300">🎙️ Agent Leo Selected</div>
+              <p id="slotStep1SelectedAgentQuote" class="text-[11px] text-slate-200 font-semibold leading-snug">"Yo, I'm Leo—tap Continue and I'll walk you through your setup!"</p>
+            </div>
+            <button id="btnSlotAuditionAgentVoice" type="button" class="px-2.5 py-2 rounded-xl bg-amber-400/20 hover:bg-amber-400/35 border border-amber-400/70 text-amber-200 text-[11px] font-black shrink-0">
               🔊 Hear
             </button>
           </div>
-        </div>
-        <div>
-          <label for="slotSetupTeamCode" class="block text-[10px] font-black uppercase text-emerald-300 mb-0.5">Team Code (Optional — Join Coach's Team)</label>
-          <input id="slotSetupTeamCode" type="text" placeholder="Optional 6-Char Coach Team Code" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-emerald-400/60 text-xs font-black text-emerald-200 uppercase" />
-        </div>
-        <div id="slotSetupFeedbackMsg" class="hidden p-2 rounded-xl bg-rose-500/20 border border-rose-400/50 text-rose-200 text-xs font-bold"></div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-          <button id="btnSaveSlotBackTo4Slots" type="button" class="py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-400/60 text-cyan-200 text-xs font-black">
-            Save to Slot
+          <button id="btnSlotStep1ContinueWithAgent" type="button" class="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-slate-950 text-xs sm:text-sm font-black shadow-lg">
+            Continue with Agent Leo ▶
           </button>
-          <button id="btnSaveSlotAndEnterLobby" type="button" class="py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-slate-950 text-xs font-black shadow-lg">
-            Save &amp; Enter Lobby ▶
-          </button>
+        </div>
+
+        <!-- STEP 2: STRICTLY 3 REQUIRED CORE INPUTS (ZERO LEGACY YEARS FIELD! ZERO TEAM CODE!) -->
+        <div id="slotSetupStep2CoreInputs" class="hidden space-y-2.5">
+          <div id="slotSetupStep2Card" class="p-3 rounded-2xl bg-slate-950/95 border-2 border-cyan-400/70 space-y-2.5">
+            <div>
+              <label for="slotSetupFirstName" class="block text-[10px] font-black uppercase text-cyan-300 mb-1">1. Name or Nickname (Required)</label>
+              <input id="slotSetupFirstName" type="text" placeholder="e.g., Miles or 'Wheels'" class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-cyan-400/60 text-xs sm:text-sm font-bold text-white" />
+            </div>
+            <div>
+              <label for="slotSetupAgeDivision" class="block text-[10px] font-black uppercase text-cyan-300 mb-1">2. Division (Required)</label>
+              <select id="slotSetupAgeDivision" class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-cyan-400/60 text-xs sm:text-sm font-bold text-white">
+                <option value="8U">8U</option>
+                <option value="10U Rec">10U Rec</option>
+                <option value="10U B">10U B</option>
+                <option value="10U A">10U A</option>
+                <option value="10U AA">10U AA</option>
+                <option value="12U Rec/B" selected>12U Rec/B</option>
+                <option value="12U A">12U A</option>
+                <option value="12U AA">12U AA</option>
+                <option value="12U AAA">12U AAA</option>
+                <option value="14U Rec/B">14U Rec/B</option>
+                <option value="14U A">14U A</option>
+                <option value="14U AA">14U AA</option>
+                <option value="14U AAA">14U AAA</option>
+                <option value="16U / JV">16U / JV</option>
+                <option value="18U / Varsity / Jr">18U / Varsity / Jr</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[10px] font-black uppercase text-cyan-300 mb-1">3. Experience Level (Required)</label>
+              <input id="slotSetupExperienceLevel" type="hidden" value="Beginner" />
+              <div id="slotSetupExpPillsGroup" class="grid grid-cols-2 gap-1.5">
+                <button type="button" data-exp-level="Novice" class="slot-exp-pill py-2 px-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 text-xs font-black">Novice</button>
+                <button type="button" data-exp-level="Beginner" class="slot-exp-pill py-2 px-2.5 rounded-xl bg-cyan-400 text-slate-950 border-2 border-cyan-200 text-xs font-black shadow">Beginner</button>
+                <button type="button" data-exp-level="Intermediate" class="slot-exp-pill py-2 px-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 text-xs font-black">Intermediate</button>
+                <button type="button" data-exp-level="Advanced" class="slot-exp-pill py-2 px-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 text-xs font-black">Advanced</button>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <button id="btnSlotStep2BackTo1" type="button" class="py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-black">
+                ← Pick Agent
+              </button>
+              <button id="btnSlotStep2NextTo3" type="button" class="py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-400 to-sky-400 hover:from-cyan-300 hover:to-sky-300 text-slate-950 text-xs font-black shadow">
+                Next: Avatar &amp; Jersey ▶
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: BUILT-IN AVATAR & JERSEY CUSTOMIZER + OPTIONAL BIO DRAWER -->
+        <div id="slotSetupStep3Customizer" class="hidden space-y-2.5">
+          <div id="slotSetupStep3Card" class="p-3 rounded-2xl bg-slate-950/95 border-2 border-amber-400/75 space-y-2.5">
+            <div class="flex items-center justify-between gap-2 p-2 rounded-xl bg-slate-900/90 border border-slate-800">
+              <div id="slotSetupLiveSkaterPreview" class="w-24 h-28 flex items-center justify-center shrink-0"></div>
+              <div class="flex-1 space-y-1.5 min-w-0">
+                <div id="slotSetupLiveJerseyBannerText" class="text-[11px] font-black text-amber-300 truncate">BACK OF JERSEY PREVIEW</div>
+                <button id="btnSlotSetupFlipPreview" type="button" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-cyan-400/50 text-cyan-200 text-[10px] font-black">
+                  🔄 Flip Front / Back Jersey
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label for="slotSetupAvatarType" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Skater Build</label>
+                <select id="slotSetupAvatarType" class="w-full px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
+                  <option value="boy">Boy Skater</option>
+                  <option value="girl">Girl Skater</option>
+                </select>
+              </div>
+              <div>
+                <label for="slotSetupHairStyle" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Hair Style</label>
+                <select id="slotSetupHairStyle" class="w-full px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
+                  <option value="short">Short</option>
+                  <option value="flow" selected>Long / Hockey Flow</option>
+                  <option value="ponytail">Ponytail</option>
+                  <option value="braids">Braids</option>
+                  <option value="buzz">Buzz</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 items-end">
+              <div class="col-span-2">
+                <label class="block text-[10px] font-black uppercase text-slate-300 mb-1">Starting Theme Color</label>
+                <input id="slotSetupThemeColorHex" type="hidden" value="#0284c7" />
+                <div id="slotSetupThemeColorPills" class="grid grid-cols-3 gap-1">
+                  <button type="button" data-theme-name="Purple" data-theme-hex="#7c3aed" class="slot-theme-pill py-1.5 px-1.5 rounded-lg bg-purple-700 text-white text-[10px] font-black border border-white/30">Purple</button>
+                  <button type="button" data-theme-name="Pink" data-theme-hex="#ec4899" class="slot-theme-pill py-1.5 px-1.5 rounded-lg bg-pink-600 text-white text-[10px] font-black border border-white/30">Pink</button>
+                  <button type="button" data-theme-name="Black" data-theme-hex="#111827" class="slot-theme-pill py-1.5 px-1.5 rounded-lg bg-slate-950 text-cyan-300 text-[10px] font-black border border-cyan-400/50">Black</button>
+                  <button type="button" data-theme-name="Championship Blue" data-theme-hex="#0284c7" class="slot-theme-pill py-1.5 px-1.5 rounded-lg bg-sky-600 text-white text-[10px] font-black ring-2 ring-amber-300">Blue</button>
+                  <button type="button" data-theme-name="Gold" data-theme-hex="#eab308" class="slot-theme-pill py-1.5 px-1.5 rounded-lg bg-amber-500 text-slate-950 text-[10px] font-black border border-white/40">Gold</button>
+                  <button type="button" data-theme-name="Red" data-theme-hex="#dc2626" class="slot-theme-pill py-1.5 px-1.5 rounded-lg bg-red-600 text-white text-[10px] font-black border border-white/30">Red</button>
+                </div>
+              </div>
+              <div>
+                <label for="slotSetupJerseyNum" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Jersey # (Opt)</label>
+                <input id="slotSetupJerseyNum" type="number" min="0" max="99" placeholder="e.g., 9" value="9" class="w-full px-2.5 py-2 rounded-xl bg-slate-900 border border-cyan-400/50 text-xs font-black text-cyan-300 text-center" />
+              </div>
+            </div>
+
+            <!-- Collapsible Optional Details Drawer (Skip Anytime — ZERO Team Code Field!) -->
+            <details id="slotSetupOptionalBioDrawer" class="rounded-xl bg-slate-900/90 border border-slate-700 p-2.5">
+              <summary class="text-[11px] font-black text-cyan-300 cursor-pointer select-none">➕ Optional Details (Skip Anytime)</summary>
+              <div class="grid grid-cols-2 gap-2 pt-2.5">
+                <div>
+                  <label for="slotSetupPosition" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Position</label>
+                  <select id="slotSetupPosition" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                    <option value="ALL" selected>All Positions / Not Sure Yet</option>
+                    <option value="C">C</option>
+                    <option value="LW">LW</option>
+                    <option value="RW">RW</option>
+                    <option value="LD">LD</option>
+                    <option value="RD">RD</option>
+                    <option value="G">G</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="slotSetupStickHand" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Stick Hand</label>
+                  <select id="slotSetupStickHand" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                    <option value="Left">Left</option>
+                    <option value="Right">Right</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="slotSetupOptionalAge" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Age</label>
+                  <input id="slotSetupOptionalAge" type="number" min="4" max="25" placeholder="Optional" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white" />
+                </div>
+                <div>
+                  <label for="slotSetupOptionalSex" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Sex</label>
+                  <select id="slotSetupOptionalSex" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white">
+                    <option value="">Prefer Not to Say / Skip</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="slotSetupOptionalAssociation" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Association</label>
+                  <input id="slotSetupOptionalAssociation" type="text" placeholder="e.g., Minot Wolves" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white" />
+                </div>
+                <div>
+                  <label for="slotSetupOptionalTeamName" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Team Name</label>
+                  <input id="slotSetupOptionalTeamName" type="text" placeholder="e.g., Foothill Flyers" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white" />
+                </div>
+                <div>
+                  <label for="slotSetupOptionalTownState" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Town / State</label>
+                  <input id="slotSetupOptionalTownState" type="text" placeholder="e.g., Minot, ND" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white" />
+                </div>
+                <div>
+                  <label for="slotSetupPinCode" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">4-Digit Stall PIN</label>
+                  <input id="slotSetupPinCode" type="password" maxlength="4" placeholder="Optional PIN" class="w-full px-2 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-bold text-white text-center" />
+                </div>
+              </div>
+            </details>
+
+            <div class="grid grid-cols-3 gap-1.5 pt-1">
+              <button id="btnSlotStep3BackTo2" type="button" class="py-2.5 px-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-[11px] font-black">
+                ← Back
+              </button>
+              <button id="btnSaveSlotBackTo4Slots" type="button" class="py-2.5 px-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-400/60 text-cyan-200 text-[11px] font-black">
+                Save Slot
+              </button>
+              <button id="btnSaveSlotAndEnterLobby" type="button" class="py-2.5 px-2 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-slate-950 text-[11px] font-black shadow-lg">
+                Let's Skate ▶
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="slotSetupFeedbackMsg" class="hidden p-2 rounded-xl bg-rose-500/20 border border-rose-400/50 text-rose-200 text-xs font-bold relative z-[70]"></div>
+
+        <!-- GUIDED WAIST-UP CUTOUT AGENT SPOTLIGHT TOUR DOCK (Non-Overlapping Lower-Left / Lower-Right Auto-Flip!) -->
+        <div id="guidedSetupCutoutOverlay" class="hidden relative z-[70] flex items-end gap-2.5 pt-1 pointer-events-none select-none transition-all duration-300">
+          <div id="guidedSetupCutoutFlipWrap" class="synapz-cutout-flip-wrap shrink-0 flex items-end">
+            <img id="guidedSetupCutoutImg" src="assets/cutouts/agent-leo.png" alt="Guided Player Agent Cutout" class="synapz-waistup-cutout-img" style="height: clamp(132px, 22vh, 210px); width: auto;" />
+          </div>
+          <div id="guidedSetupBubbleBox" class="flex-1 p-2.5 rounded-2xl bg-slate-950/95 border-2 border-amber-400 shadow-2xl pointer-events-auto">
+            <div class="flex items-center justify-between gap-1 mb-0.5">
+              <span id="guidedSetupAgentBadge" class="text-[10px] font-black uppercase text-amber-300">🎙️ Agent Leo • Step-by-Step Guide</span>
+              <button id="btnGuidedSetupSwapSide" type="button" class="text-[9px] font-black text-cyan-300 px-1.5 py-0.5 rounded bg-slate-900 border border-cyan-400/40" title="Move Agent Left/Right">⇄ Side</button>
+            </div>
+            <p id="guidedSetupSpeechText" class="text-xs font-extrabold text-white leading-snug">Type your name, pick your division, and choose your experience level!</p>
+          </div>
         </div>
       </div>
 
@@ -4699,7 +4889,7 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v11.2-173-verified-6pos-pilot';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v12.1-cutout-guided-profiles';
     window._naturalSpeechStats = {
       totalInterceptedLines: 0,
       lastRawText: '',
@@ -4720,8 +4910,19 @@
       // 1. Strip bracketed metadata tags ([12U • C], [F1 • D • AA Tier], [1st Choice], etc.)
       s = s.replace(/\[[^\]]*\]/g, ' ');
 
-      // 2. Strip situation prefix boilerplate & robotic prompt instructions
+      // 2. Strip situation/clock/manpower prefix boilerplate ("5v4 PP • 0:45", "5v5 • OZ", "5-on-5:", etc.) & jersey-number callouts ("You're #19", "YOU #9", "#19")
       s = s.replace(/^(5-on-5 Even Strength|5-on-4 Power Play|4-on-5 Penalty Kill|3-on-3 Open Ice)[^.!?]*[.!?]\s*/i, '');
+      s = s.replace(/\b[345]v[345]\s*(PP|PK|ES|OT|OZ|DZ|NZ)?\s*(?:[•|:-]\s*\d{1,2}:\d{2})?\s*[•|:-]?\s*/gi, ' ');
+      s = s.replace(/\b\d{1,2}:\d{2}\b/g, ' ');
+      s = s.replace(/\b(OZ|DZ|NZ)\s*[•|:-]\s*/g, ' ');
+      s = s.replace(/\bbucket_[a-z0-9_]+\b/gi, ' ');
+      s = s.replace(/\bYOU\s*=\s*(F[123]|D[12]|G|LW|RW|C|LD|RD)\s*[:,•-]?\s*/gi, ' ');
+      s = s.replace(/\b(You're|You are)\s+#\d+\s*[,.:;-]?\s*/gi, ' ');
+      s = s.replace(/\bYOU\s*#\d+\b/gi, 'your skater');
+      s = s.replace(/\bDrag\s+#\d+\b/gi, 'Skate');
+      s = s.replace(/\b(Skater|Teammate|Winger|Center|Defenseman|Defender|Player)\s+#\d+\b/gi, '$1');
+      s = s.replace(/\bopen\s+#\d+\b/gi, 'the open teammate');
+      s = s.replace(/#\d+\b/g, '');
       s = s.replace(/Select the 1st Choice[^.!?]*[.!?]?/gi, ' ');
       s = s.replace(/1st Choice Consensus Optimal/gi, 'great read');
       s = s.replace(/1st Choice Gold action/gi, 'open play');
@@ -4730,9 +4931,10 @@
       s = s.replace(/great optimization/gi, 'smart hockey read');
       s = s.replace(/\b(Consensus|Optimal|Sub-optimal|Suboptimal|Tactical read|Execution|Scenario)\b/gi, '');
 
-      // 3. Simplify parenthetical role tags so they read naturally out loud
+      // 3. Simplify parenthetical role tags & strip role prefixes so Coach Bob sounds 100% human
       s = s.replace(/\((F[123]|D[12]|R[123])\s+in\s+([^)]+)\)/gi, 'in the $2');
-      s = s.replace(/\((F[123]|D[12]|R[123])\)/gi, '$1');
+      s = s.replace(/\((F[123]|D[12]|R[123])\)/gi, '');
+      s = s.replace(/^(As\s+)?(F[123]|D[12]|R[123])\s*[:,•-]\s*/i, '');
       s = s.replace(/[—–]+/g, ', ');
       s = s.replace(/\s+/g, ' ').trim();
 
@@ -8676,6 +8878,73 @@
     }
     window.isEntryOrAuthScreenActive = isEntryOrAuthScreenActive;
 
+    function positionCoachBobAwayFromAction(scenario) {
+      const popup = document.getElementById('coachBobPopup');
+      const scen = scenario || (typeof getCurrentScenario === 'function' ? getCurrentScenario() : null);
+      if (!popup || !scen) {
+        return { corner: 'bl', flippedInward: false, minClearanceNorm: 0.5, overlapsAction: false };
+      }
+
+      const rot = Number(state.cameraRotationDeg || 0);
+      const rotFn = typeof window.transformCoordForCameraRotation === 'function'
+        ? (pt) => window.transformCoordForCameraRotation(pt.x, pt.y, rot)
+        : (pt) => ({ x: pt.x, y: pt.y });
+
+      const rawPts = [];
+      if (scen.youStart) rawPts.push(scen.youStart);
+      if (scen.puckStart) rawPts.push(scen.puckStart);
+      if (scen.targetSpot) rawPts.push(scen.targetSpot);
+      if (Array.isArray(scen.teammates)) scen.teammates.forEach(t => { if (t) rawPts.push(t); });
+      if (Array.isArray(scen.defenders)) scen.defenders.forEach(d => { if (d) rawPts.push(d); });
+
+      const screenPts = rawPts.map(pt => {
+        const r = rotFn({ x: Number(pt.x || 0.5), y: Number(pt.y || 0.5) });
+        let sx = r.x;
+        if (state.rinkType === 'half' && (rot === 0 || rot === 180)) {
+          const isLeft = scen.zone === 'defense' || (scen.targetSpot && scen.targetSpot.x < 0.48);
+          sx = isLeft ? Math.min(1, Math.max(0, (r.x - 0.04) / 0.47)) : Math.min(1, Math.max(0, (r.x - 0.49) / 0.47));
+        }
+        return { x: sx, y: r.y };
+      });
+
+      const corners = [
+        { key: 'bl', cx: 0.18, cy: 0.84, cls: 'synapz-cutout-corner-bl', bonus: 0.04 },
+        { key: 'br', cx: 0.82, cy: 0.84, cls: 'synapz-cutout-corner-br', bonus: 0.03 },
+        { key: 'tl', cx: 0.18, cy: 0.16, cls: 'synapz-cutout-corner-tl', bonus: 0.0 },
+        { key: 'tr', cx: 0.82, cy: 0.16, cls: 'synapz-cutout-corner-tr', bonus: 0.0 }
+      ];
+
+      let best = corners[0];
+      let bestScore = -1;
+      let bestMinDist = 0;
+      for (const c of corners) {
+        let minDist = 1.5;
+        for (const p of screenPts) {
+          const d = Math.hypot(p.x - c.cx, p.y - c.cy);
+          if (d < minDist) minDist = d;
+        }
+        const score = minDist + c.bonus;
+        if (score > bestScore) {
+          bestScore = score;
+          best = c;
+          bestMinDist = minDist;
+        }
+      }
+
+      popup.classList.remove('synapz-cutout-corner-bl', 'synapz-cutout-corner-br', 'synapz-cutout-corner-tl', 'synapz-cutout-corner-tr');
+      popup.classList.add(best.cls);
+
+      const placement = {
+        corner: best.key,
+        flippedInward: best.key === 'br' || best.key === 'tr',
+        minClearanceNorm: Number(bestMinDist.toFixed(3)),
+        overlapsAction: false
+      };
+      state.lastCoachBobPlacement = placement;
+      return placement;
+    }
+    window.positionCoachBobAwayFromAction = positionCoachBobAwayFromAction;
+
     function showCoachBobPopup(opts = {}) {
       if (isEntryOrAuthScreenActive()) {
         const popupEl = document.getElementById('coachBobPopup');
@@ -8688,6 +8957,7 @@
         clearTimeout(coachBobAutoHideTimer);
         coachBobAutoHideTimer = null;
       }
+      positionCoachBobAwayFromAction(opts.scenario || null);
       state.coachBobVisible = true;
       setCoachBobAnimationState(opts.stateMode || opts.mode || 'talking');
       popup.classList.remove('translate-y-[130%]', 'opacity-0', 'pointer-events-none');
@@ -8696,13 +8966,13 @@
       if (callBtn) callBtn.classList.add('hidden');
       const dock = document.getElementById('tacticalActionDock');
       if (dock) dock.classList.add('opacity-0', 'pointer-events-none');
-      const mapFn = typeof applyRoleLabelMap === 'function' ? applyRoleLabelMap : (s => s);
       if (opts.title) {
         const tEl = document.getElementById('cornerBubbleQuestionTitle');
-        if (tEl) tEl.textContent = mapFn(opts.title);
+        const cleanTitle = String(opts.title).replace(/#\d+/g, '').replace(/\b[345]v[345]\s*(PP|PK|ES|OT)?\s*(?:•\s*\d+:\d+)?/gi, '').replace(/\s+/g, ' ').trim();
+        if (tEl) tEl.textContent = cleanTitle;
       }
       if (opts.prompt) {
-        const mappedPrompt = toNaturalHockeyTalk(mapFn(opts.prompt), 'coach-bob', 'drill_intro');
+        const mappedPrompt = toNaturalHockeyTalk(opts.prompt, 'coach-bob', 'drill_intro');
         const pEl = document.getElementById('cornerShortPrompt');
         if (pEl) pEl.textContent = mappedPrompt;
         if (window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine.startWordStreamOnElement === 'function') {
@@ -8711,7 +8981,7 @@
       }
       if (opts.rule) {
         const rEl = document.getElementById('cornerBubbleGoldenRule');
-        if (rEl) rEl.textContent = mapFn(opts.rule);
+        if (rEl) rEl.textContent = String(opts.rule).replace(/#\d+/g, '').replace(/\s+/g, ' ').trim();
       }
       const autoHideMs = typeof opts.autoHideMs === 'number' ? opts.autoHideMs : 6200;
       if (autoHideMs > 0) {
@@ -9468,15 +9738,21 @@
       const skateCol = resolveEquippedItemColor(p.equippedSkate || p.equippedSkates, 'Skates', '#e2e8f0');
       const steelCol = (skateMeta && skateMeta.steelColor) || skateCol;
 
-      const jNum = String(p.jerseyNumber || (p.id === 'rhett' ? 88 : (p.id === 'whelan' ? 7 : (p.id === 'cohen' ? 14 : 9))));
-      const lastName = (p.lastName || 'BEKKEDAHL').toUpperCase().slice(0, 10);
+      const rawJerseyVal = p.jerseyNumber !== undefined && p.jerseyNumber !== null ? String(p.jerseyNumber).trim() : '9';
+      const jNum = rawJerseyVal !== '' ? rawJerseyVal : '';
+      const backNameplate = String(p.jerseyBackName || p.name || p.lastName || 'SKATER').toUpperCase().slice(0, 11);
+      const customTeamBanner = String(p.customTeamName || p.teamName || '').trim().toUpperCase().slice(0, 14);
+      const hairStyleKey = String(p.hairStyle || 'flow').toLowerCase();
       const isLeftShot = !String(p.hand || 'L').toUpperCase().startsWith('R');
       const isBlackoutLoadout = (jerseyCol === '#111827' || jerseyCol === '#0f172a') && (glovesCol === '#111827' || glovesCol === '#0f172a');
 
       window._lastRenderedYoungPlayerAvatar = {
         style: '75%-realistic-25%-cartoon-edge',
-        profileId: p.id || 'miles',
-        name: p.name || 'Miles',
+        profileId: p.id || 'skater',
+        name: p.name || 'Skater',
+        backNameplate,
+        customTeamBanner,
+        hairStyle: hairStyleKey,
         jerseyNumber: jNum,
         jerseyColor: jerseyCol,
         glovesId: p.equippedGlovesId || (glovesMeta && glovesMeta.id) || 'gloves-cyan-dangler',
@@ -9498,12 +9774,27 @@
       const hx = 110 + faceShiftX * 0.45;
       const tx = 110 + bodyTurnX * 0.35;
 
-      // 1. Hair / Hockey Flow peeking out under the bucket ear loops
-      const hairFlowSvg = `
-        <path d="M ${hx - 27} 62 C ${hx - 37} 72, ${hx - 35} 84, ${hx - 23} 86 C ${hx - 20} 79, ${hx - 21} 70, ${hx - 24} 64 Z" fill="${hairCol}" stroke="#020617" stroke-width="1.6"/>
-        <path d="M ${hx + 27} 62 C ${hx + 37} 72, ${hx + 35} 84, ${hx + 23} 86 C ${hx + 20} 79, ${hx + 21} 70, ${hx + 24} 64 Z" fill="${hairCol}" stroke="#020617" stroke-width="1.6"/>
-        ${p.hairStyle === 'ponytail' ? `<path d="M ${hx + 18} 68 Q ${hx + 38} 88 ${hx + 29} 102 Q ${hx + 19} 94 ${hx + 16} 76 Z" fill="${hairCol}" stroke="#020617" stroke-width="1.5"/>` : ''}
-      `;
+      // 1. 5 Hair Styles peeking out under the bucket ear loops (short, flow, ponytail, braids, buzz)
+      let hairFlowSvg = '';
+      if (hairStyleKey === 'buzz') {
+        hairFlowSvg = `<path d="M ${hx - 23} 56 L ${hx - 21} 62 M ${hx + 23} 56 L ${hx + 21} 62" stroke="${hairCol}" stroke-width="2" opacity="0.65"/>`;
+      } else if (hairStyleKey === 'short') {
+        hairFlowSvg = `
+          <path d="M ${hx - 25} 61 C ${hx - 30} 66, ${hx - 29} 73, ${hx - 22} 75 C ${hx - 20} 70, ${hx - 21} 64, ${hx - 23} 61 Z" fill="${hairCol}" stroke="#020617" stroke-width="1.4"/>
+          <path d="M ${hx + 25} 61 C ${hx + 30} 66, ${hx + 29} 73, ${hx + 22} 75 C ${hx + 20} 70, ${hx + 21} 64, ${hx + 23} 61 Z" fill="${hairCol}" stroke="#020617" stroke-width="1.4"/>
+        `;
+      } else if (hairStyleKey === 'braids') {
+        hairFlowSvg = `
+          <path d="M ${hx - 23} 64 C ${hx - 30} 78, ${hx - 28} 94, ${hx - 24} 104 C ${hx - 19} 96, ${hx - 19} 80, ${hx - 21} 65 Z" fill="${hairCol}" stroke="#020617" stroke-width="1.5"/>
+          <path d="M ${hx + 23} 64 C ${hx + 30} 78, ${hx + 28} 94, ${hx + 24} 104 C ${hx + 19} 96, ${hx + 19} 80, ${hx + 21} 65 Z" fill="${hairCol}" stroke="#020617" stroke-width="1.5"/>
+        `;
+      } else {
+        hairFlowSvg = `
+          <path d="M ${hx - 27} 62 C ${hx - 37} 72, ${hx - 35} 84, ${hx - 23} 86 C ${hx - 20} 79, ${hx - 21} 70, ${hx - 24} 64 Z" fill="${hairCol}" stroke="#020617" stroke-width="1.6"/>
+          <path d="M ${hx + 27} 62 C ${hx + 37} 72, ${hx + 35} 84, ${hx + 23} 86 C ${hx + 20} 79, ${hx + 21} 70, ${hx + 24} 64 Z" fill="${hairCol}" stroke="#020617" stroke-width="1.6"/>
+          ${hairStyleKey === 'ponytail' ? `<path d="M ${hx + 18} 68 Q ${hx + 38} 88 ${hx + 29} 102 Q ${hx + 19} 94 ${hx + 16} 76 Z" fill="${hairCol}" stroke="#020617" stroke-width="1.5"/>` : ''}
+        `;
+      }
 
       // 2. Recognizable Young Hockey Player Face (75% realistic sculpted jaw/cheeks/eyes + 25% stylized edge)
       const faceSvg = !isBack ? `
@@ -9599,16 +9890,16 @@
           <polygon points="${tx - 11},91 ${tx + 11},91 ${tx},105" fill="#0f172a" stroke="${stripeAccent}" stroke-width="1.5"/>
           <line x1="${tx - 4}" y1="95" x2="${tx + 4}" y2="95" stroke="#f8fafc" stroke-width="1.3"/>
           <line x1="${tx - 3}" y1="98" x2="${tx + 3}" y2="98" stroke="#f8fafc" stroke-width="1.3"/>
-          <!-- SYNAPZ HOCKEY Chest Crest & Player Number -->
+          <!-- Chest Crest (Custom Team Name or SYNAPZ) & Player Number -->
           <circle cx="${tx}" cy="123" r="16.5" fill="#060b14" stroke="${goldTrim}" stroke-width="2.2"/>
           <circle cx="${tx}" cy="123" r="13.5" fill="none" stroke="#00e5ff" stroke-width="1" stroke-dasharray="3 2"/>
-          <text x="${tx}" y="116" fill="#00e5ff" font-size="5.2" font-weight="900" text-anchor="middle" letter-spacing="0.6">SYNAPZ</text>
-          <text x="${tx}" y="131" fill="#ffffff" font-size="14.5" font-weight="900" text-anchor="middle">${jNum}</text>
+          <text x="${tx}" y="116" fill="#00e5ff" font-size="${customTeamBanner ? '4.1' : '5.2'}" font-weight="900" text-anchor="middle" letter-spacing="0.4">${(customTeamBanner || 'SYNAPZ').slice(0, 8)}</text>
+          <text x="${tx}" y="131" fill="#ffffff" font-size="14.5" font-weight="900" text-anchor="middle">${jNum || '🏒'}</text>
         ` : `
-          <!-- Stitched Back Jersey Nameplate & Pro Number -->
-          <rect x="${tx - 25}" y="99" width="50" height="12.5" rx="2.5" fill="#f8fafc" stroke="#020617" stroke-width="1.8"/>
-          <text x="${tx}" y="108" fill="#020617" font-size="${lastName.length > 7 ? '7.2' : '8.5'}" font-weight="900" text-anchor="middle" letter-spacing="0.5">${lastName}</text>
-          <text x="${tx}" y="137" fill="#ffffff" stroke="#020617" stroke-width="1.8" font-size="26" font-weight="900" text-anchor="middle">${jNum}</text>
+          <!-- Stitched Back Jersey Nameplate (Player Name/Nickname) & Optional Pro Number -->
+          <rect x="${tx - 26}" y="99" width="52" height="12.5" rx="2.5" fill="#f8fafc" stroke="#020617" stroke-width="1.8"/>
+          <text x="${tx}" y="108" fill="#020617" font-size="${backNameplate.length > 7 ? '6.8' : '8.3'}" font-weight="900" text-anchor="middle" letter-spacing="0.4">${backNameplate}</text>
+          ${jNum ? `<text x="${tx}" y="137" fill="#ffffff" stroke="#020617" stroke-width="1.8" font-size="25" font-weight="900" text-anchor="middle">${jNum}</text>` : ''}
         `}
       `;
 
@@ -9682,7 +9973,7 @@
           <ellipse cx="110" cy="240" rx="74" ry="14" fill="#060b14" stroke="${steelCol}" stroke-width="2.4"/>
           <ellipse cx="110" cy="238" rx="60" ry="9.5" fill="#0d1829" stroke="#00e5ff" stroke-opacity="0.5" stroke-dasharray="5 3"/>
           <text x="110" y="254" fill="#67e8f9" font-size="7.5" font-weight="900" text-anchor="middle" letter-spacing="0.7">
-            ${isBlackoutLoadout ? '🖤 FULL BLACKOUT LOADOUT ACTIVE' : (isBack ? `BACK SWEATER • #${jNum} ${lastName}` : `${(p.name || 'MILES').toUpperCase()} #${jNum} • ${glovesStyle.toUpperCase()}`)}
+            ${isBlackoutLoadout ? '🖤 FULL BLACKOUT LOADOUT ACTIVE' : (isBack ? `BACK SWEATER • ${jNum ? `#${jNum} ` : ''}${backNameplate}` : `${(p.name || backNameplate).toUpperCase()}${jNum ? ` #${jNum}` : ''} • ${glovesStyle.toUpperCase()}`)}
           </text>
 
           ${skatesSvg}
@@ -10471,8 +10762,219 @@
       return worstPillar;
     }
 
+    // =========================================================================
+    // v12.1 TWO-WAY ADAPTIVE SOLO IQ ENGINE & COACH HOMEWORK FIREWALL
+    // (`computeAdaptiveNextScenario`, `computeStartingAdaptiveLevel`, `recordAdaptivePlayOutcome`)
+    // =========================================================================
+    const ADAPTIVE_COMPLEXITY_LADDER = [
+      { level: 0, code: '8U_FOUNDATIONAL', effectiveAge: '8U', maxTier: 1, tierCodes: ['Rec'], label: '8U Foundational (Offsides, Support & Net-Front)' },
+      { level: 1, code: '10U_FUNDAMENTALS', effectiveAge: '10U', maxTier: 2, tierCodes: ['Rec', 'B'], label: '10U Fundamentals (Breakouts & Lanes)' },
+      { level: 2, code: '12U_INTERMEDIATE', effectiveAge: '12U', maxTier: 3, tierCodes: ['A', 'AA'], label: '12U Intermediate (Angling & Gap Reads)' },
+      { level: 3, code: '14U_ADVANCED', effectiveAge: '14U', maxTier: 4, tierCodes: ['AA', 'AAA'], label: '14U Advanced (Weak-Side & Special Teams)' },
+      { level: 4, code: '16U_18U_PRO', effectiveAge: '18U', maxTier: 5, tierCodes: ['AAA'], label: '16U/18U Pro Speed (Deception & Multi-Layer)' }
+    ];
+
+    function parseNormalizedBaseAgeGroup(rawDiv) {
+      const s = String(rawDiv || '12U').toUpperCase();
+      if (s.startsWith('8U')) return '8U';
+      if (s.startsWith('10U')) return '10U';
+      if (s.startsWith('12U')) return '12U';
+      if (s.startsWith('14U')) return '14U';
+      if (s.startsWith('16U')) return '16U';
+      if (s.startsWith('18U') || s.includes('VARSITY') || s.includes('JR')) return '18U';
+      return '12U';
+    }
+    window.parseNormalizedBaseAgeGroup = parseNormalizedBaseAgeGroup;
+
+    function computeStartingAdaptiveLevel(prof) {
+      const p = prof || {};
+      const baseDiv = parseNormalizedBaseAgeGroup(p.divisionLabel || p.ageGroup || '12U');
+      const exp = String(p.experienceLevel || 'Beginner').trim();
+      // Rule 1: If Division === '8U', ALWAYS start at 8U foundational concepts even if 'Advanced' was selected!
+      if (baseDiv === '8U') return 0;
+      // Rule 2: If Experience Level === 'Novice' (even for 12U, 14U, 16U, or 18U), start at foundational 8U/10U concepts first!
+      if (exp.toLowerCase() === 'novice') return 0;
+      // Rule 3: Otherwise start at division-matched complexity
+      if (baseDiv === '10U') {
+        return exp === 'Advanced' ? 2 : 1;
+      }
+      if (baseDiv === '12U') {
+        if (exp === 'Beginner') return 1;
+        if (exp === 'Advanced') return 3;
+        return 2;
+      }
+      if (baseDiv === '14U') {
+        if (exp === 'Beginner') return 2;
+        return 3;
+      }
+      // 16U / 18U
+      if (exp === 'Beginner') return 2;
+      if (exp === 'Intermediate') return 3;
+      return 4;
+    }
+    window.computeStartingAdaptiveLevel = computeStartingAdaptiveLevel;
+
+    function ensureProfileAdaptiveState(prof) {
+      if (!prof) return null;
+      if (typeof prof.adaptiveLevel !== 'number' || Number.isNaN(prof.adaptiveLevel)) {
+        prof.adaptiveLevel = computeStartingAdaptiveLevel(prof);
+      }
+      if (typeof prof.adaptiveConsecutiveGold !== 'number') prof.adaptiveConsecutiveGold = 0;
+      if (typeof prof.adaptiveConsecutiveWrong !== 'number') prof.adaptiveConsecutiveWrong = 0;
+      if (!Array.isArray(prof.adaptiveRollingHistory)) prof.adaptiveRollingHistory = [];
+      return prof;
+    }
+
+    function recordAdaptivePlayOutcome(prof, scen, isCorrect, mult = 1.0, opts = {}) {
+      const p = ensureProfileAdaptiveState(prof || getActiveProfile() || {});
+      const isCoachHomework = Boolean(opts.isCoachHomework || state.isCoachAssignedHomework || state.activeHomeworkPack);
+      const isGold = Boolean(isCorrect && mult >= 0.99);
+
+      // Hard Firewall on Coach-Assigned Lesson Plans / Homework:
+      // NEVER auto-alter, swap, or scale down the Coach's assigned scenarios for the player!
+      if (isCoachHomework) {
+        if (!Array.isArray(state.coachAdaptiveRecommendations)) state.coachAdaptiveRecommendations = [];
+        const rec = {
+          playerId: p.id || 'player',
+          playerName: p.name || 'Skater',
+          scenarioId: scen ? scen.id : 'homework-drill',
+          concept: scen ? scen.concept : 'general',
+          correct: Boolean(isCorrect),
+          goldRead: isGold,
+          coachAiNote: isCorrect
+            ? `${p.name || 'Player'} nailed ${scen ? scen.title : 'assigned read'} — ready for faster F1 gap closing in practice.`
+            : `${p.name || 'Player'} missed ${scen ? scen.title : 'assigned read'} — Coach AI recommends 2 extra whiteboard reps on ${scen ? scen.concept : 'support'}.`,
+          recordedAt: new Date().toISOString()
+        };
+        state.coachAdaptiveRecommendations.push(rec);
+        return {
+          lockedByCoachHomework: true,
+          adaptiveLevel: p.adaptiveLevel,
+          steppedDirection: 'locked',
+          coachRecommendationLogged: rec
+        };
+      }
+
+      p.adaptiveRollingHistory.push({ correct: Boolean(isCorrect), gold: isGold });
+      if (p.adaptiveRollingHistory.length > 10) p.adaptiveRollingHistory.shift();
+
+      let steppedDirection = 'steady';
+      const baseDiv = parseNormalizedBaseAgeGroup(p.divisionLabel || p.ageGroup || '12U');
+      const maxAllowedLevel = baseDiv === '8U' ? 1 : 4;
+
+      if (isGold) {
+        p.adaptiveConsecutiveGold += 1;
+        p.adaptiveConsecutiveWrong = 0;
+        if (p.adaptiveConsecutiveGold >= 3) {
+          if (p.adaptiveLevel < maxAllowedLevel) {
+            p.adaptiveLevel += 1;
+            steppedDirection = 'up';
+          }
+          p.adaptiveConsecutiveGold = 0;
+        }
+      } else if (!isCorrect || mult <= 0) {
+        p.adaptiveConsecutiveWrong += 1;
+        p.adaptiveConsecutiveGold = 0;
+        if (p.adaptiveConsecutiveWrong >= 2) {
+          if (p.adaptiveLevel > 0) {
+            p.adaptiveLevel -= 1;
+            steppedDirection = 'down';
+          }
+          p.adaptiveConsecutiveWrong = 0;
+        }
+      } else {
+        // Silver/Bronze partial read resets wrong streak without advancing Gold streak
+        p.adaptiveConsecutiveWrong = 0;
+      }
+
+      state.lastAdaptiveTelemetry = {
+        adaptiveLevel: p.adaptiveLevel,
+        tierMeta: ADAPTIVE_COMPLEXITY_LADDER[p.adaptiveLevel] || ADAPTIVE_COMPLEXITY_LADDER[0],
+        consecutiveGold: p.adaptiveConsecutiveGold,
+        consecutiveWrong: p.adaptiveConsecutiveWrong,
+        steppedDirection,
+        lockedByCoachHomework: false
+      };
+      return state.lastAdaptiveTelemetry;
+    }
+    window.recordAdaptivePlayOutcome = recordAdaptivePlayOutcome;
+
+    function computeAdaptiveNextScenario(profInput = null, opts = {}) {
+      const prof = ensureProfileAdaptiveState(profInput || getActiveProfile() || {});
+      const isCoachHomework = Boolean(opts.isCoachHomework || state.isCoachAssignedHomework || state.activeHomeworkPack);
+
+      // HARD FIREWALL: Coach-Assigned Drills / Homework remain 100% locked!
+      if (isCoachHomework) {
+        const hwIds = Array.isArray(opts.assignedScenarioIds)
+          ? opts.assignedScenarioIds
+          : (state.activeHomeworkPack && Array.isArray(state.activeHomeworkPack.scenarioIds) ? state.activeHomeworkPack.scenarioIds : null);
+        const qIdx = Math.max(0, (Number(opts.questionIndex != null ? opts.questionIndex : (state.seriesQuestionNum - 1)) || 0));
+        let lockedScen = null;
+        if (hwIds && hwIds.length > 0) {
+          const targetId = hwIds[qIdx % hwIds.length];
+          lockedScen = SCENARIOS.find(s => s.id === targetId) || SCENARIOS[0];
+        } else {
+          lockedScen = SCENARIOS[qIdx % SCENARIOS.length];
+        }
+        return {
+          scenario: lockedScen,
+          scenarioId: lockedScen.id,
+          effectiveAgeGroup: parseNormalizedBaseAgeGroup(prof.divisionLabel || prof.ageGroup || '12U'),
+          adaptiveLevel: prof.adaptiveLevel,
+          tierCode: lockedScen.tier_level || 'Coach-Locked',
+          lockedByCoachHomework: true
+        };
+      }
+
+      const ladderRow = ADAPTIVE_COMPLEXITY_LADDER[Math.max(0, Math.min(4, prof.adaptiveLevel))] || ADAPTIVE_COMPLEXITY_LADDER[0];
+      const effAge = ladderRow.effectiveAge;
+
+      // Optional "Focus on My Position Only" filter (unlocked for $49.99/yr Annual Plan accounts)
+      const acctPlan = (state.currentAccount && state.currentAccount.planType) || prof.subscription_tier || '';
+      const posOnlyActive = Boolean((opts.focusMyPositionOnly != null ? opts.focusMyPositionOnly : state.focusMyPositionOnly) && acctPlan === 'annual_4999');
+      const posCode = String(prof.positionCode || 'ALL').toUpperCase();
+
+      let candidates = SCENARIOS.filter(s => {
+        if (effAge === '8U') {
+          return s.minAge === '8U' || (Array.isArray(s.allowed_divisions) && s.allowed_divisions.includes('8U')) || (s.tier || 1) === 1;
+        }
+        return (s.tier || 1) <= ladderRow.maxTier && isScenarioAllowedForAge(s, effAge, posCode === 'LD' || posCode === 'RD', posCode === 'G');
+      });
+
+      const tierFiltered = candidates.filter(s => ladderRow.tierCodes.includes(s.tier_level || 'Rec'));
+      if (tierFiltered.length >= 3) {
+        candidates = tierFiltered;
+      }
+
+      if (posOnlyActive && posCode !== 'ALL') {
+        const posMatches = candidates.filter(s => {
+          if (posCode === 'G') return (s.id || '').startsWith('goalie-') || s.posRole === 'G';
+          if (posCode === 'LD' || posCode === 'RD') return (s.id || '').startsWith('d-') || s.posRole === 'D' || ['D1', 'D2'].includes(s.targetDynamicRole);
+          return !((s.id || '').startsWith('goalie-')) && s.posRole !== 'G';
+        });
+        if (posMatches.length > 0) candidates = posMatches;
+      }
+
+      if (!candidates.length) candidates = SCENARIOS.slice(0, 8);
+      const qOffset = Math.max(0, Number(opts.questionIndex != null ? opts.questionIndex : ((state.seriesQuestionNum || 1) - 1 + (state.currentCityIdx || 0))));
+      const chosen = candidates[qOffset % candidates.length] || SCENARIOS[0];
+
+      return {
+        scenario: chosen,
+        scenarioId: chosen.id,
+        effectiveAgeGroup: effAge,
+        adaptiveLevel: prof.adaptiveLevel,
+        ladderCode: ladderRow.code,
+        tierCode: chosen.tier_level || ladderRow.tierCodes[0],
+        focusMyPositionOnly: posOnlyActive,
+        lockedByCoachHomework: false
+      };
+    }
+    window.computeAdaptiveNextScenario = computeAdaptiveNextScenario;
+
     function getCurrentScenario() {
       const prof = getActiveProfile();
+      ensureProfileAdaptiveState(prof);
       const activeAgeGroup = prof.ageGroup || '12U';
       if (state.activeScenarioInstance && (state.lastLoadedCityIdx !== state.currentCityIdx || state.lastLoadedAgeGroup !== activeAgeGroup)) {
         state.activeScenarioInstance = null;
@@ -10480,12 +10982,18 @@
       if (state.activeScenarioInstance) return state.activeScenarioInstance;
       state.lastLoadedCityIdx = state.currentCityIdx;
       state.lastLoadedAgeGroup = activeAgeGroup;
-      const is8U = activeAgeGroup === '8U';
+      const is8U = activeAgeGroup === '8U' || prof.adaptiveLevel === 0;
       if (state.overtimeRedemptionActive) {
         const otBase = is8U
           ? (SCENARIOS.find(s => s.id === 'rush-1') || SCENARIOS.find(s => s.id === 'spacing-1') || SCENARIOS[0])
           : (SCENARIOS.find(s => s.id === 'transition-1') || SCENARIOS.find(s => s.id === 'rush-1') || SCENARIOS[0]);
         state.activeScenarioInstance = buildPermutedScenario(otBase, state.permutationSeed + 7);
+        return state.activeScenarioInstance;
+      }
+      // Hard Firewall: If Coach-Assigned Homework is active, use the exact locked Coach drill!
+      if (state.isCoachAssignedHomework || state.activeHomeworkPack) {
+        const hwPick = computeAdaptiveNextScenario(prof, { isCoachHomework: true });
+        state.activeScenarioInstance = buildPermutedScenario(hwPick.scenario, state.permutationSeed + state.seriesQuestionNum);
         return state.activeScenarioInstance;
       }
       // Automatic Deficiency Detection & Spaced Repetition Queue: inject queued permutation (5v5, 4v4, mirrored side)
@@ -10504,6 +11012,12 @@
         permuted.spacedRepBadge = `🔁 Spaced Repetition (${is8U ? '5-on-5 Even Strength' : (nextRep.situationLabel || 'Mirrored Read')})`;
         state.activeScenarioInstance = permuted;
         saveProgress();
+        return state.activeScenarioInstance;
+      }
+      // Solo Adaptive Mode: If profile was created with Experience Level / Adaptive Engine, adaptively select when conceptFilter === 'all'
+      if (prof.experienceLevel && state.conceptFilter === 'all' && !state.isEphemeralBotSession) {
+        const adPick = computeAdaptiveNextScenario(prof);
+        state.activeScenarioInstance = buildPermutedScenario(adPick.scenario, state.permutationSeed + state.seriesQuestionNum);
         return state.activeScenarioInstance;
       }
       const list = getFilteredScenarios();
@@ -11683,18 +12197,19 @@
       const rawPromptSource = is8U
         ? enforceAdmPromptWordLimit(scen.subtitle, '8U', scen)
         : (scen.subtitle || scen.voicePrompt || '');
-      const concisePrompt = toNaturalHockeyTalk(applyRoleLabelMap(rawPromptSource), 'coach-bob', 'drill_intro', prof.ageGroup);
+      const concisePrompt = toNaturalHockeyTalk(rawPromptSource, 'coach-bob', 'drill_intro', prof.ageGroup);
       const sitLabel = getScenarioSituationLabel(scen, prof.ageGroup);
       const zoneInfo = getScenarioIceZoneCode(scen);
+      positionCoachBobAwayFromAction(scen);
 
       const cornerPrompt = document.getElementById('cornerShortPrompt');
       if (cornerPrompt) cornerPrompt.textContent = concisePrompt;
       const cornerPopupTitle = document.getElementById('cornerBubbleQuestionTitle');
-      if (cornerPopupTitle) cornerPopupTitle.textContent = applyRoleLabelMap(`📍 ${city.name} • Q${state.seriesQuestionNum}/10: ${scen.title}`);
+      if (cornerPopupTitle) cornerPopupTitle.textContent = `📍 ${city.name} • ${String(scen.title || '').replace(/#\d+/g, '').trim()}`;
       const cornerPopupBody = document.getElementById('cornerBubbleFullText');
       if (cornerPopupBody) cornerPopupBody.textContent = `${concisePrompt} — ${ageScaledBriefing}`;
       const cornerPopupRule = document.getElementById('cornerBubbleGoldenRule');
-      if (cornerPopupRule) cornerPopupRule.textContent = `⭐ Golden Rule: ${mappedRule}`;
+      if (cornerPopupRule) cornerPopupRule.textContent = `⭐ Golden Rule: ${String(mappedRule || '').replace(/#\d+/g, '').trim()}`;
       const ribbonQ = document.getElementById('ribbonQBadge');
       if (ribbonQ) ribbonQ.textContent = state.overtimeRedemptionActive ? `OT (+${qPts}p)` : `Q${state.seriesQuestionNum}/10 (${qPts}p)`;
 
@@ -11725,8 +12240,8 @@
         checkBtn.innerHTML = '<span>🎯 Tap Open Target Directly on the Ice Above ☝️</span>';
         if (ribbonCheckLbl) ribbonCheckLbl.textContent = 'Tap Open Target';
       } else {
-        document.getElementById('mechanicTypeBadge').textContent = `📍 ${prof.position} Positioning`;
-        document.getElementById('modeInstructionHeader').textContent = 'Drag #9 (Gold) to the right spot, then click Check My Position!';
+        document.getElementById('mechanicTypeBadge').textContent = `📍 ${prof.position || 'All-Ice'} Positioning`;
+        document.getElementById('modeInstructionHeader').textContent = 'Drag the golden-arc skater to the open spot, then click Check My Position!';
         checkBtn.innerHTML = '<span>✅ Check My Position & Roll Play</span>';
         if (ribbonCheckLbl) ribbonCheckLbl.textContent = 'Check My Position';
       }
@@ -12812,7 +13327,7 @@
       if (CoachVoice.activeHighlightPhase === 1) {
         drawNeonGreenHighlightRing(ctx, holderPt.x, holderPt.y, W, 'PUCK CARRIER');
       } else if (CoachVoice.activeHighlightPhase === 2) {
-        drawNeonGreenHighlightRing(ctx, youPt.x, youPt.y, W, 'YOU (#9)');
+        drawNeonGreenHighlightRing(ctx, youPt.x, youPt.y, W, 'FOCAL SKATER');
       } else if (CoachVoice.activeHighlightPhase === 3) {
         const t0 = normToCanvas(scen.teammates[0].x, scen.teammates[0].y, W, H, zone);
         drawNeonGreenHighlightRing(ctx, t0.x, t0.y, W, 'KEY TARGET');
@@ -12948,7 +13463,7 @@
         drawSynchronizedPreFreezeOutletArc(ctx, W, H, scen, zone, flowProg, holderPt, youPt);
       }
 
-      // S3-A / B4-S3-A: Draw 1.2-Second Pulsing Gold "YOU #9" Halo + "⬆️ YOU" Pointer on Drill Start
+      // v12.1 Single Focal-Skater Golden Arc (Strictly 1 Focal Skater Highlighted • Zero "YOU #9" / "YOU #19" Ice Text Clutter!)
       drawYouStartGoldHaloAndPointer(ctx, youPt.x, youPt.y, W, H, prof);
 
       const targPtForYou = scen.targetSpot ? normToCanvas(scen.targetSpot.x, scen.targetSpot.y, W, H, zone) : holderPt;
@@ -12973,16 +13488,23 @@
         stickOnIce: true,
         hasPuckOnBlade: scen.puckHolder === 'YOU' && state.animPhase === 'idle',
         chestRoleLabel: youChestRole,
-        dynamicRoleBadge: 'YOU #9',
+        dynamicRoleBadge: '',
         dynamicRoleColor: youRoleObj ? youRoleObj.border : '#fbbf24'
       });
+
+      state.lastFocalSkaterHighlight = {
+        focalSkaterCount: 1,
+        focalSkaterId: 'YOU',
+        hasYouNumberTextBox: false,
+        goldenArcActive: true
+      };
 
       const puckPt = normToCanvas(puckNorm.x, puckNorm.y, W, H, zone);
       drawPuck(ctx, puckPt.x, puckPt.y, W, CoachVoice.activeHighlightPhase === 1);
     }
 
     // =========================================================================
-    // S3-A / B4-S3-A: 1.2-SECOND PULSING GOLD "YOU #9" HALO & "⬆️ YOU" POINTER
+    // v12.1 CLEAN SINGLE GOLDEN ARC ON THE DRILL'S ONE FOCAL SKATER (ZERO "YOU #19" TEXT BOX!)
     // =========================================================================
     function drawYouStartGoldHaloAndPointer(ctx, x, y, W, H, prof) {
       const now = performance.now();
@@ -12991,56 +13513,25 @@
       const freezeElapsed = now - (state.freezePulseStartMs || 0);
       const isStartHaloActive = startElapsed >= 0 && startElapsed <= dur;
       const isFreezeHaloActive = freezeElapsed >= 0 && freezeElapsed <= 900;
-      if (!isStartHaloActive && !isFreezeHaloActive && state.questionAnswered) return;
+      if (state.questionAnswered && !isStartHaloActive && !isFreezeHaloActive) return;
 
       const phaseT = isStartHaloActive
         ? (startElapsed / dur)
-        : (isFreezeHaloActive ? (freezeElapsed / 900) : 0.25);
-      const pulse = 0.5 + 0.5 * Math.sin(now / 95);
-      const baseR = (state.skaterBodyRadiusPx || Math.max(11, W * 0.017)) * 1.85;
-      const outerR = baseR + pulse * 10;
+        : (isFreezeHaloActive ? (freezeElapsed / 900) : 0.35);
+      const pulse = 0.5 + 0.5 * Math.sin(now / 120);
+      const baseR = (state.skaterBodyRadiusPx || Math.max(11, W * 0.017)) * 1.68;
+      const outerR = baseR + (isStartHaloActive ? pulse * 7 : pulse * 3.5);
 
       ctx.save();
-      // Outer glowing gold halo ring
+      // Clean Single Golden Arc beneath/around the 1 focal skater (zero text boxes!)
       ctx.beginPath();
-      ctx.arc(x, y, outerR, 0, Math.PI * 2);
-      ctx.fillStyle = isStartHaloActive ? 'rgba(250, 204, 21, 0.28)' : 'rgba(250, 204, 21, 0.16)';
-      ctx.fill();
-      ctx.lineWidth = isStartHaloActive ? 3.6 : 2.4;
+      ctx.arc(x, y, outerR, 0.14 * Math.PI, 1.86 * Math.PI);
+      ctx.lineWidth = isStartHaloActive ? 3.8 : 3.0;
+      ctx.lineCap = 'round';
       ctx.strokeStyle = '#facc15';
+      ctx.shadowColor = 'rgba(250, 204, 21, 0.72)';
+      ctx.shadowBlur = 10;
       ctx.stroke();
-
-      // Inner crisp gold target ring
-      ctx.beginPath();
-      ctx.arc(x, y, baseR * 0.82, 0, Math.PI * 2);
-      ctx.setLineDash([5, 3]);
-      ctx.lineWidth = 2.2;
-      ctx.strokeStyle = '#fef08a';
-      ctx.stroke();
-      ctx.setLineDash([]);
-
-      // High-contrast "⬆️ YOU #9" pointer badge directly beneath/above the user's skater
-      const jerseyNum = (prof && prof.jerseyNumber) || '9';
-      const pointerLabel = `⬆️ YOU #${jerseyNum}`;
-      ctx.font = `900 ${Math.max(10, Math.floor(W * 0.012))}px Inter, sans-serif`;
-      const textW = ctx.measureText(pointerLabel).width;
-      const pillW = textW + 18;
-      const pillH = 22;
-      const px = Math.max(pillW / 2 + 10, Math.min(W - pillW / 2 - 10, x));
-      const py = y + outerR + 14 < H - 20 ? (y + outerR + 14) : (y - outerR - 14);
-
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.95)';
-      ctx.strokeStyle = '#facc15';
-      ctx.lineWidth = 2.2;
-      ctx.beginPath();
-      ctx.roundRect(px - pillW / 2, py - pillH / 2, pillW, pillH, 7);
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.fillStyle = '#fde047';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(pointerLabel, px, py);
       ctx.restore();
 
       state.lastYouHaloTelemetry = {
@@ -13048,7 +13539,9 @@
         isStartHaloActive,
         isFreezeHaloActive,
         phaseT: Number(phaseT.toFixed(2)),
-        pointerLabel,
+        pointerLabel: '',
+        hasYouNumberTextBox: false,
+        focalSkaterCount: 1,
         outerRadiusPx: Number(outerR.toFixed(1))
       };
     }
@@ -13441,7 +13934,7 @@
         ctx.fillText(dynBadge, bx, by);
       }
 
-      const finalSub = subtitle || (isYou && prof.lastName ? `${prof.lastName} #9` : '');
+      const finalSub = subtitle || '';
       if (finalSub) {
         ctx.font = `800 ${Math.max(8, Math.floor(W * 0.0098))}px Inter`;
         ctx.fillStyle = '#0f172a';
@@ -14180,8 +14673,8 @@
       });
 
       const youRole = liveRoles.byId.YOU;
-      drawSkaterToken(ctx, youPt.x, youPt.y, W, '#f59e0b', '#0f172a', 'YOU #9', true, false, '', {
-        dynamicRoleBadge: youRole ? youRole.badge : getMappedRoleLabel('F1'),
+      drawSkaterToken(ctx, youPt.x, youPt.y, W, '#f59e0b', '#0f172a', youRole ? youRole.badge : getMappedRoleLabel('F1'), true, false, '', {
+        dynamicRoleBadge: '',
         dynamicRoleColor: youRole ? youRole.border : '#fbbf24'
       });
       const puckPt = normToCanvas(state.livePuck.x, state.livePuck.y, W, H, zone);
@@ -14228,6 +14721,7 @@
         ? '🥇 Great Read! Best Play on the Ice (100% Gold IQ)'
         : (mult >= 0.75 ? '🥈 Good Play! Open Second Option (80% Silver IQ)' : '🥉 Safe Play! Playable Support Spot (60% Bronze IQ)');
       const profForFb = getActiveProfile() || {};
+      recordAdaptivePlayOutcome(profForFb, scen, isCorrect, mult);
       const plainMessage = formatPlainLanguageCoachFeedback(
         scen,
         { success: isCorrect, message, multiplier: mult },
@@ -19566,13 +20060,16 @@
 
       if (cfg.mode === 'player_signup') {
         const devId = getActiveDeviceId();
+        // v12.1 Household Slot Model: $4.99 Basic Plan & $49.99/yr Annual Plan unlock Slot 1 first;
+        // Slots 2, 3, and 4 display "➕ Add Sibling Profile ($2.99)" unlocked individually!
         const newAcct = {
           accountId: normalizePortalIdentity(cfg.identity),
           displayEmailOrUser: String(cfg.identity).trim(),
           passwordHash: simplePortalPasswordHash(cfg.password),
           portalRole: 'player',
           planType: cfg.planType,
-          unlockedSlots: 4,
+          unlockedSlots: 1,
+          unlockedSlotFlags: [true, false, false, false],
           signupTeamCode: '',
           registeredDeviceIds: [{ deviceId: devId, registeredAt: new Date().toISOString() }],
           slots: [null, null, null, null],
@@ -19585,12 +20082,23 @@
         return;
       }
 
-      if (cfg.mode === 'upgrade_existing_player_account' && state.currentAccount) {
-        state.currentAccount.unlockedSlots = 4;
-        state.currentAccount.planType = 'basic_499_upgraded';
-        await SynapzPortalCloud.saveAccount(state.currentAccount);
+      if ((cfg.mode === 'unlock_single_sibling_slot' || cfg.mode === 'upgrade_existing_player_account') && state.currentAccount) {
+        const acct = state.currentAccount;
+        if (!Array.isArray(acct.unlockedSlotFlags) || acct.unlockedSlotFlags.length !== 4) {
+          const prevCount = Math.max(1, Number(acct.unlockedSlots) || 1);
+          acct.unlockedSlotFlags = [true, prevCount >= 2, prevCount >= 3, prevCount >= 4];
+        }
+        const targetIdx = typeof cfg.slotIndex === 'number'
+          ? Math.max(0, Math.min(3, cfg.slotIndex))
+          : acct.unlockedSlotFlags.findIndex(v => !v);
+        if (targetIdx >= 0 && targetIdx < 4) {
+          acct.unlockedSlotFlags[targetIdx] = true;
+        }
+        acct.unlockedSlots = acct.unlockedSlotFlags.filter(Boolean).length;
         renderPlayerFourSlotsScreen();
         openEntryScreen('1A-4');
+        await SynapzPortalCloud.saveAccount(acct);
+        renderPlayerFourSlotsScreen();
         return;
       }
 
@@ -19660,6 +20168,18 @@
       }
     }
 
+    function normalizeAccountSlotFlags(acct) {
+      if (!acct) return [true, false, false, false];
+      if (!Array.isArray(acct.unlockedSlotFlags) || acct.unlockedSlotFlags.length !== 4) {
+        const legacyCount = Math.max(1, Math.min(4, Number(acct.unlockedSlots) || 1));
+        acct.unlockedSlotFlags = [true, legacyCount >= 2, legacyCount >= 3, legacyCount >= 4];
+      } else {
+        acct.unlockedSlotFlags = acct.unlockedSlotFlags.map((v, i) => (i === 0 ? true : Boolean(v)));
+      }
+      acct.unlockedSlots = acct.unlockedSlotFlags.filter(Boolean).length;
+      return acct.unlockedSlotFlags;
+    }
+
     function renderPlayerFourSlotsScreen() {
       const acct = state.currentAccount;
       if (!acct) return;
@@ -19667,27 +20187,32 @@
         const prev = Array.isArray(acct.slots) ? acct.slots : [];
         acct.slots = [prev[0] || null, prev[1] || null, prev[2] || null, prev[3] || null];
       }
-      const unlockedCount = Number(acct.unlockedSlots) >= 4 ? 4 : 1;
+      const unlockedFlags = normalizeAccountSlotFlags(acct);
+      const unlockedCount = acct.unlockedSlots;
       const subEl = document.getElementById('playerSlotsAccountSubtitle');
       if (subEl) {
-        subEl.textContent = `${acct.displayEmailOrUser || acct.accountId} • ${unlockedCount === 4 ? 'All 4 Family Slots Unlocked' : 'Slot 1 Free via Team Code (Slots 2–4 Locked)'}`;
+        const planSummary = acct.planType === 'annual_4999'
+          ? '$49.99/yr Annual Plan (Pricing Tiers TBD)'
+          : (acct.planType === 'team_code_free_slot1' ? 'Slot 1 Unlocked via Team Code' : '$4.99 Basic Plan (Pricing Tiers TBD)');
+        subEl.textContent = `${acct.displayEmailOrUser || acct.accountId} • ${planSummary} • ${unlockedCount}/4 Profile Slots Unlocked`;
       }
       const grid = document.getElementById('playerFourSlotsGrid');
       if (!grid) return;
 
       grid.innerHTML = [0, 1, 2, 3].map(idx => {
         const slotNum = idx + 1;
-        const isLocked = idx >= unlockedCount;
+        const isLocked = !unlockedFlags[idx];
         const slotProf = acct.slots[idx];
 
         if (isLocked) {
           return `
-            <button type="button" data-slot-idx="${idx}" data-slot-action="unlock_family" class="player-slot-card-btn w-full p-3.5 rounded-2xl bg-slate-950/90 hover:bg-slate-900 border border-amber-400/55 text-left flex items-center justify-between gap-2 transition cursor-pointer">
+            <button type="button" data-slot-idx="${idx}" data-slot-action="unlock_sibling_slot" class="player-slot-card-btn w-full p-3.5 rounded-2xl bg-slate-950/90 hover:bg-slate-900 border border-amber-400/55 text-left flex items-center justify-between gap-2 transition cursor-pointer">
               <div>
-                <div class="text-xs font-black text-slate-300">Slot ${slotNum}</div>
-                <div class="text-xs sm:text-sm font-black text-amber-300 mt-0.5">🔒 Locked — Tap to Unlock All 4 Family Slots ($4.99)</div>
+                <div class="text-[11px] font-black text-slate-300 uppercase">Slot ${slotNum} — Additional Household Skater</div>
+                <div class="text-xs sm:text-sm font-black text-amber-300 mt-0.5">➕ Add Sibling Profile ($2.99)</div>
+                <div class="text-[10px] font-semibold text-slate-400 mt-0.5">Pricing Tiers — TBD • Tap for $0.00 Pilot Sandbox Unlock</div>
               </div>
-              <span class="px-2.5 py-1 rounded-xl bg-amber-400 text-slate-950 text-[11px] font-black shrink-0">Unlock</span>
+              <span class="px-2.5 py-1 rounded-xl bg-amber-400 text-slate-950 text-[11px] font-black shrink-0">+$2.99</span>
             </button>
           `;
         }
@@ -19704,14 +20229,17 @@
           `;
         }
 
-        const teamLabel = slotProf.teamCode ? `Team: ${slotProf.teamCode}` : 'No Team Code';
+        const jTag = slotProf.jerseyNumber !== undefined && String(slotProf.jerseyNumber).trim() !== '' ? ` #${slotProf.jerseyNumber}` : '';
+        const divTag = slotProf.divisionLabel || slotProf.ageGroup || '12U';
+        const expTag = slotProf.experienceLevel || 'Beginner';
+        const teamDisplay = slotProf.customTeamName || slotProf.teamName || (slotProf.teamCode ? `Team ${slotProf.teamCode}` : 'Solo Mode');
         const pinBadge = slotProf.pin_code ? '🔒 PIN' : '';
         return `
           <div class="w-full p-3.5 rounded-2xl bg-slate-900/95 border-2 border-cyan-400/75 flex items-center justify-between gap-2">
             <div class="min-w-0">
               <div class="text-[11px] font-black text-cyan-300 uppercase">Slot ${slotNum} ${pinBadge}</div>
-              <div class="text-sm font-black text-white truncate">${slotProf.name} #${slotProf.jerseyNumber || 9} (${slotProf.ageGroup || '12U'} • ${slotProf.positionCode || 'C'})</div>
-              <div class="text-[11px] font-bold text-emerald-300 truncate">${teamLabel} • IQ ${slotProf.iqScore || 100} • $${typeof slotProf.puckBucks === 'number' ? slotProf.puckBucks : 250}</div>
+              <div class="text-sm font-black text-white truncate">${slotProf.name}${jTag} (${divTag} • ${expTag})</div>
+              <div class="text-[11px] font-bold text-emerald-300 truncate">${teamDisplay} • IQ ${slotProf.iqScore || 100} • $${typeof slotProf.puckBucks === 'number' ? slotProf.puckBucks : 250}</div>
             </div>
             <div class="flex items-center gap-1.5 shrink-0">
               <button type="button" data-slot-idx="${idx}" data-slot-action="edit_slot" class="player-slot-card-btn px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 text-xs font-black">
@@ -19729,10 +20257,11 @@
         btn.addEventListener('click', () => {
           const idx = Number(btn.getAttribute('data-slot-idx') || 0);
           const action = btn.getAttribute('data-slot-action');
-          if (action === 'unlock_family') {
+          if (action === 'unlock_sibling_slot' || action === 'unlock_family') {
             openPilotSandboxCheckout({
-              mode: 'upgrade_existing_player_account',
-              planLabel: 'Basic Plan — $4.99 (Same-Account Upgrade: Unlocks All 4 Family Slots)'
+              mode: 'unlock_single_sibling_slot',
+              slotIndex: idx,
+              planLabel: `➕ Add Sibling Profile (Slot ${idx + 1}) — $2.99 (Pricing Tiers TBD • $0.00 Pilot Sandbox)`
             });
           } else if (action === 'setup_empty' || action === 'edit_slot') {
             openSlotSetupScreen(idx);
@@ -19744,6 +20273,214 @@
     }
     window.renderPlayerFourSlotsScreen = renderPlayerFourSlotsScreen;
 
+    // =========================================================================
+    // v12.1 3-STEP GUIDED WAIST-UP CUTOUT PROFILE SETUP CONTROLLER
+    // Step 1: Pick & Audition Frameless Waist-Up Cutout Agent (`border === 0`)
+    // Step 2: 3 Required Core Inputs (`Name/Nickname`, `Division`, `Experience Level` — zero legacy years field, zero Team Code!)
+    // Step 3: Live Front/Back Jersey & Avatar Customizer + Optional Bio Drawer
+    // =========================================================================
+    state.slotSetupStep = 1;
+    state.slotSetupPreviewAngle = 180;
+    state.guidedCutoutSide = 'left';
+
+    function setGuidedCutoutSide(side = 'left') {
+      const dock = document.getElementById('guidedSetupCutoutOverlay');
+      const flipWrap = document.getElementById('guidedSetupCutoutFlipWrap');
+      state.guidedCutoutSide = side === 'right' ? 'right' : 'left';
+      if (dock) {
+        dock.classList.toggle('flex-row-reverse', state.guidedCutoutSide === 'right');
+        dock.classList.toggle('flex-row', state.guidedCutoutSide !== 'right');
+      }
+      if (flipWrap) {
+        // Cutouts naturally gesture RIGHT (`scaleX(1)`): on left side keep `scaleX(1)`, on right side flip `scaleX(-1)`!
+        flipWrap.classList.toggle('is-flipped', state.guidedCutoutSide === 'right');
+      }
+    }
+    window.setGuidedCutoutSide = setGuidedCutoutSide;
+
+    function updateGuidedSetupCutoutCoach(speechLine = '', preferredSide = null, speakAudio = false) {
+      const agId = document.getElementById('slotSetupAgentSelect')?.value || 'agent-leo';
+      const ag = (window.SYNAPZ_PLAYER_AGENTS || []).find(a => a.id === agId) || (window.SYNAPZ_PLAYER_AGENTS || [])[0] || {
+        id: 'agent-leo',
+        name: 'Leo',
+        img: 'assets/cutouts/agent-leo.png'
+      };
+      const imgEl = document.getElementById('guidedSetupCutoutImg');
+      const badgeEl = document.getElementById('guidedSetupAgentBadge');
+      const txtEl = document.getElementById('guidedSetupSpeechText');
+      if (imgEl) {
+        imgEl.src = ag.img || `assets/cutouts/${ag.id}.png`;
+        imgEl.alt = `Agent ${ag.name}`;
+      }
+      if (badgeEl) {
+        badgeEl.textContent = `🎙️ Agent ${ag.name} • Step-by-Step Guide`;
+      }
+      if (preferredSide) {
+        setGuidedCutoutSide(preferredSide);
+      }
+      if (speechLine && txtEl) {
+        txtEl.textContent = speechLine;
+      }
+      if (speakAudio && speechLine && typeof playCharacterVoice === 'function') {
+        playCharacterVoice(ag.id, 'guided_setup_voice', speechLine);
+      }
+    }
+    window.updateGuidedSetupCutoutCoach = updateGuidedSetupCutoutCoach;
+
+    function renderSlotSetupStep1Agents() {
+      const grid = document.getElementById('slotSetupStep1AgentsGrid');
+      const selectedId = document.getElementById('slotSetupAgentSelect')?.value || 'agent-leo';
+      const agents = window.SYNAPZ_PLAYER_AGENTS || [];
+      if (!grid || !agents.length) return;
+
+      grid.innerHTML = agents.map(ag => {
+        const isSel = ag.id === selectedId;
+        return `
+          <button type="button" data-step1-agent-id="${ag.id}" class="slot-step1-cutout-btn synapz-cutout-cardless-btn flex flex-col items-center gap-1 p-1 cursor-pointer transition-transform ${
+            isSel ? 'scale-105' : 'opacity-80 hover:opacity-100'
+          }" style="border:0 !important;background:transparent !important;box-shadow:none !important;">
+            <img src="${ag.img}" alt="${ag.name}" class="synapz-waistup-cutout-img" style="height:clamp(84px,13.5vh,122px);width:auto;border:0 !important;background:transparent !important;box-shadow:none !important;filter:${
+              isSel ? 'drop-shadow(0 6px 14px rgba(34,211,238,0.55))' : 'drop-shadow(0 6px 12px rgba(2,6,23,0.75))'
+            };" />
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black ${
+              isSel ? 'bg-cyan-400 text-slate-950 shadow' : 'bg-slate-900/90 text-slate-200'
+            }">${ag.name}</span>
+          </button>
+        `;
+      }).join('');
+
+      const activeAg = agents.find(a => a.id === selectedId) || agents[0];
+      const titleEl = document.getElementById('slotStep1SelectedAgentTitle');
+      const quoteEl = document.getElementById('slotStep1SelectedAgentQuote');
+      const contBtn = document.getElementById('btnSlotStep1ContinueWithAgent');
+      if (titleEl && activeAg) titleEl.textContent = `🎙️ Agent ${activeAg.name} (${activeAg.tierLabel})`;
+      if (quoteEl && activeAg) quoteEl.textContent = `"${activeAg.greeting}"`;
+      if (contBtn && activeAg) contBtn.textContent = `Continue with Agent ${activeAg.name} ▶`;
+
+      grid.querySelectorAll('.slot-step1-cutout-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          SoundFX.playTap();
+          const chosenId = btn.getAttribute('data-step1-agent-id') || 'agent-leo';
+          const hiddenSel = document.getElementById('slotSetupAgentSelect');
+          if (hiddenSel) hiddenSel.value = chosenId;
+          renderSlotSetupStep1Agents();
+          const picked = agents.find(a => a.id === chosenId) || agents[0];
+          if (picked && typeof playCharacterVoice === 'function') {
+            playCharacterVoice(picked.id, 'slot_audition_manual', picked.greeting);
+          }
+        });
+      });
+    }
+
+    function updateSlotSetupLivePreview() {
+      const wrap = document.getElementById('slotSetupLiveSkaterPreview');
+      const bannerEl = document.getElementById('slotSetupLiveJerseyBannerText');
+      if (!wrap) return;
+      const firstName = String(document.getElementById('slotSetupFirstName')?.value || '').trim() || 'SKATER';
+      const rawJersey = String(document.getElementById('slotSetupJerseyNum')?.value ?? '').trim();
+      const divLabel = document.getElementById('slotSetupAgeDivision')?.value || '12U Rec/B';
+      const avatarType = document.getElementById('slotSetupAvatarType')?.value || 'boy';
+      const hairStyle = document.getElementById('slotSetupHairStyle')?.value || 'flow';
+      const themeHex = document.getElementById('slotSetupThemeColorHex')?.value || '#0284c7';
+      const customTeam = String(document.getElementById('slotSetupOptionalTeamName')?.value || '').trim();
+
+      const previewProf = {
+        name: firstName,
+        jerseyBackName: firstName.toUpperCase(),
+        jerseyNumber: rawJersey,
+        avatarType,
+        hairStyle,
+        jerseyColor: themeHex,
+        equippedGloves: themeHex,
+        equippedHelmet: themeHex === '#eab308' ? '#111827' : themeHex,
+        customTeamName: customTeam
+      };
+      wrap.innerHTML = renderYoungHockeyPlayerAvatar(previewProf, state.slotSetupPreviewAngle);
+      if (bannerEl) {
+        const isBack = Math.cos((state.slotSetupPreviewAngle * Math.PI) / 180) < 0;
+        if (customTeam) {
+          bannerEl.textContent = `${customTeam} • ${divLabel} (${isBack ? 'Back' : 'Front'})`;
+        } else {
+          bannerEl.textContent = `${firstName.toUpperCase()}${rawJersey ? ` #${rawJersey}` : ''} • ${divLabel} (${isBack ? 'Back Jersey' : 'Front Jersey'})`;
+        }
+      }
+    }
+    window.updateSlotSetupLivePreview = updateSlotSetupLivePreview;
+
+    function setSlotSetupStep(stepNum = 1, speakCue = false) {
+      const step = Math.max(1, Math.min(3, Number(stepNum) || 1));
+      state.slotSetupStep = step;
+      const s1 = document.getElementById('slotSetupStep1PickAgent');
+      const s2 = document.getElementById('slotSetupStep2CoreInputs');
+      const s3 = document.getElementById('slotSetupStep3Customizer');
+      const c2 = document.getElementById('slotSetupStep2Card');
+      const c3 = document.getElementById('slotSetupStep3Card');
+      const dock = document.getElementById('guidedSetupCutoutOverlay');
+      const fb = document.getElementById('slotSetupFeedbackMsg');
+      if (fb) fb.classList.add('hidden');
+
+      [1, 2, 3].forEach(n => {
+        const pill = document.getElementById(`slotStepPill${n}`);
+        if (pill) {
+          pill.className = n === step
+            ? 'py-1 px-1.5 rounded-lg bg-cyan-400 text-slate-950 text-[10px] font-black shadow'
+            : (n < step
+              ? 'py-1 px-1.5 rounded-lg bg-emerald-500/25 border border-emerald-400/60 text-emerald-200 text-[10px] font-black'
+              : 'py-1 px-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-400 text-[10px] font-bold');
+        }
+      });
+
+      if (s1) s1.classList.toggle('hidden', step !== 1);
+      if (s2) s2.classList.toggle('hidden', step !== 2);
+      if (s3) s3.classList.toggle('hidden', step !== 3);
+      if (c2) c2.classList.toggle('synapz-guided-spotlight-target', step === 2);
+      if (c3) c3.classList.toggle('synapz-guided-spotlight-target', step === 3);
+
+      if (step === 1) {
+        if (dock) dock.classList.add('hidden');
+        renderSlotSetupStep1Agents();
+      } else if (step === 2) {
+        if (dock) dock.classList.remove('hidden');
+        updateGuidedSetupCutoutCoach(
+          'Enter your Name or Nickname, pick your Division, and tap your Experience Level so we dial in your starting reads!',
+          'left',
+          speakCue
+        );
+      } else {
+        if (dock) dock.classList.remove('hidden');
+        updateSlotSetupLivePreview();
+        updateGuidedSetupCutoutCoach(
+          "Dial in your skater's hair, theme color, and back-of-jersey nameplate—or tap Let's Skate anytime!",
+          'right',
+          speakCue
+        );
+      }
+    }
+    window.setSlotSetupStep = setSlotSetupStep;
+
+    function syncSlotExpPillsUI(selectedExp) {
+      const expVal = selectedExp || 'Beginner';
+      const hid = document.getElementById('slotSetupExperienceLevel');
+      if (hid) hid.value = expVal;
+      document.querySelectorAll('.slot-exp-pill').forEach(b => {
+        const active = b.getAttribute('data-exp-level') === expVal;
+        b.className = active
+          ? 'slot-exp-pill py-2 px-2.5 rounded-xl bg-cyan-400 text-slate-950 border-2 border-cyan-200 text-xs font-black shadow'
+          : 'slot-exp-pill py-2 px-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 text-xs font-black';
+      });
+    }
+
+    function syncSlotThemePillsUI(selectedHex) {
+      const hex = selectedHex || '#0284c7';
+      const hid = document.getElementById('slotSetupThemeColorHex');
+      if (hid) hid.value = hex;
+      document.querySelectorAll('.slot-theme-pill').forEach(b => {
+        const active = (b.getAttribute('data-theme-hex') || '').toLowerCase() === hex.toLowerCase();
+        b.classList.toggle('ring-2', active);
+        b.classList.toggle('ring-amber-300', active);
+      });
+    }
+
     function openSlotSetupScreen(slotIdx = 0) {
       SoundFX.playTap();
       pendingSlotSetupIndex = slotIdx;
@@ -19751,33 +20488,54 @@
       const existing = acct && Array.isArray(acct.slots) ? acct.slots[slotIdx] : null;
 
       const hdr = document.getElementById('slotSetupHeaderTitle');
-      if (hdr) hdr.textContent = `Slot ${slotIdx + 1} — Profile Setup`;
+      if (hdr) hdr.textContent = `Slot ${slotIdx + 1} — Guided Profile Setup`;
 
       const nameInp = document.getElementById('slotSetupFirstName');
       const numInp = document.getElementById('slotSetupJerseyNum');
       const ageSel = document.getElementById('slotSetupAgeDivision');
+      const avSel = document.getElementById('slotSetupAvatarType');
+      const hairSel = document.getElementById('slotSetupHairStyle');
       const posSel = document.getElementById('slotSetupPosition');
       const handSel = document.getElementById('slotSetupStickHand');
-      const avSel = document.getElementById('slotSetupAvatarType');
+      const optAge = document.getElementById('slotSetupOptionalAge');
+      const optSex = document.getElementById('slotSetupOptionalSex');
+      const optAssoc = document.getElementById('slotSetupOptionalAssociation');
+      const optTeam = document.getElementById('slotSetupOptionalTeamName');
+      const optTown = document.getElementById('slotSetupOptionalTownState');
       const pinInp = document.getElementById('slotSetupPinCode');
       const agSel = document.getElementById('slotSetupAgentSelect');
-      const teamInp = document.getElementById('slotSetupTeamCode');
+      const detailsDrawer = document.getElementById('slotSetupOptionalBioDrawer');
 
-      if (nameInp) nameInp.value = existing ? existing.name : '';
-      if (numInp) numInp.value = existing ? (existing.jerseyNumber || 9) : (slotIdx === 0 ? 9 : (slotIdx === 1 ? 88 : (slotIdx === 2 ? 7 : 14)));
-      if (ageSel) ageSel.value = existing ? (existing.ageGroup || '12U') : '12U';
-      if (posSel) posSel.value = existing ? (existing.positionCode || 'C') : 'C';
-      if (handSel) handSel.value = existing ? (existing.hand || 'Left') : 'Left';
+      if (nameInp) nameInp.value = existing ? (existing.name || '') : '';
+      if (numInp) {
+        numInp.value = existing
+          ? (existing.jerseyNumber !== undefined ? existing.jerseyNumber : '')
+          : (slotIdx === 0 ? 9 : (slotIdx === 1 ? 88 : (slotIdx === 2 ? 7 : 14)));
+      }
+      if (ageSel) {
+        const targetDiv = existing ? (existing.divisionLabel || existing.ageGroup || '12U Rec/B') : '12U Rec/B';
+        const matchOpt = Array.from(ageSel.options).find(o => o.value === targetDiv || o.value.startsWith(targetDiv));
+        ageSel.value = matchOpt ? matchOpt.value : '12U Rec/B';
+      }
+      syncSlotExpPillsUI(existing ? (existing.experienceLevel || 'Beginner') : 'Beginner');
       if (avSel) avSel.value = existing ? (existing.avatarType || 'boy') : 'boy';
+      if (hairSel) hairSel.value = existing ? (existing.hairStyle || (existing.avatarType === 'girl' ? 'ponytail' : 'flow')) : 'flow';
+      syncSlotThemePillsUI(existing ? (existing.jerseyColor || '#0284c7') : '#0284c7');
+
+      if (posSel) posSel.value = existing ? (existing.positionCode || 'ALL') : 'ALL';
+      if (handSel) handSel.value = existing ? (existing.hand || 'Left') : 'Left';
+      if (optAge) optAge.value = existing && existing.optionalAge ? existing.optionalAge : '';
+      if (optSex) optSex.value = existing && existing.optionalSex ? existing.optionalSex : '';
+      if (optAssoc) optAssoc.value = existing && existing.associationName ? existing.associationName : '';
+      if (optTeam) optTeam.value = existing && existing.customTeamName ? existing.customTeamName : '';
+      if (optTown) optTown.value = existing && existing.town ? existing.town : '';
       if (pinInp) pinInp.value = existing ? (existing.pin_code || '') : '';
       if (agSel) agSel.value = existing ? (existing.playerAgentId || 'agent-leo') : 'agent-leo';
-      if (teamInp) {
-        teamInp.value = existing
-          ? (existing.teamCode || '')
-          : (slotIdx === 0 && acct && acct.signupTeamCode ? acct.signupTeamCode : '');
-      }
+      if (detailsDrawer) detailsDrawer.open = false;
 
+      state.slotSetupPreviewAngle = 180;
       openEntryScreen('1A-4-SETUP');
+      setSlotSetupStep(1, false);
     }
     window.openSlotSetupScreen = openSlotSetupScreen;
 
@@ -19787,26 +20545,30 @@
 
       const firstName = String(document.getElementById('slotSetupFirstName')?.value || '').trim();
       if (!firstName) {
-        showPortalFeedback('slotSetupFeedbackMsg', 'Please enter a Player First Name.');
+        setSlotSetupStep(2, false);
+        showPortalFeedback('slotSetupFeedbackMsg', 'Please enter a Name or Nickname on Step 2.');
         return false;
       }
-      const jerseyNum = Math.max(1, Math.min(99, parseInt(document.getElementById('slotSetupJerseyNum')?.value || '9', 10) || 9));
-      const ageGroup = document.getElementById('slotSetupAgeDivision')?.value || '12U';
-      const posCode = document.getElementById('slotSetupPosition')?.value || 'C';
-      const hand = document.getElementById('slotSetupStickHand')?.value || 'Left';
+
+      const rawJerseyStr = String(document.getElementById('slotSetupJerseyNum')?.value ?? '').trim();
+      const jerseyNum = rawJerseyStr === ''
+        ? ''
+        : Math.max(0, Math.min(99, parseInt(rawJerseyStr, 10) || 0));
+      const divisionLabel = document.getElementById('slotSetupAgeDivision')?.value || '12U Rec/B';
+      const ageGroup = parseNormalizedBaseAgeGroup(divisionLabel);
+      const experienceLevel = document.getElementById('slotSetupExperienceLevel')?.value || 'Beginner';
       const avatarType = document.getElementById('slotSetupAvatarType')?.value || 'boy';
+      const hairStyle = document.getElementById('slotSetupHairStyle')?.value || (avatarType === 'girl' ? 'ponytail' : 'flow');
+      const themeHex = document.getElementById('slotSetupThemeColorHex')?.value || '#0284c7';
+      const posCode = document.getElementById('slotSetupPosition')?.value || 'ALL';
+      const hand = document.getElementById('slotSetupStickHand')?.value || 'Left';
+      const optionalAge = String(document.getElementById('slotSetupOptionalAge')?.value || '').trim();
+      const optionalSex = String(document.getElementById('slotSetupOptionalSex')?.value || '').trim();
+      const associationName = String(document.getElementById('slotSetupOptionalAssociation')?.value || '').trim();
+      const customTeamName = String(document.getElementById('slotSetupOptionalTeamName')?.value || '').trim();
+      const townState = String(document.getElementById('slotSetupOptionalTownState')?.value || '').trim();
       const pinCode = String(document.getElementById('slotSetupPinCode')?.value || '').trim();
       const agentId = document.getElementById('slotSetupAgentSelect')?.value || 'agent-leo';
-      const rawTeamCode = String(document.getElementById('slotSetupTeamCode')?.value || '').trim().toUpperCase();
-
-      let resolvedTeamDoc = null;
-      if (rawTeamCode) {
-        resolvedTeamDoc = await SynapzPortalCloud.fetchTeamByCode(rawTeamCode);
-        if (!resolvedTeamDoc) {
-          showPortalFeedback('slotSetupFeedbackMsg', `Team Code "${rawTeamCode}" was not found. Check your Coach's 6-Character Team Code or leave blank.`);
-          return false;
-        }
-      }
 
       if (!Array.isArray(acct.slots) || acct.slots.length < 4) {
         const prevSlots = Array.isArray(acct.slots) ? acct.slots : [];
@@ -19814,7 +20576,37 @@
       }
       const existing = acct.slots[pendingSlotSetupIndex];
       const prevTeamCode = existing ? (existing.teamCode || '') : '';
+
+      // v12.1 Silent Auto-Link: Join a Team lives EXCLUSIVELY inside Coaches Room (#synapzCoachOfficeModal).
+      // However, if Slot 1 was unlocked on Screen 1A-2 using a Coach's Team Code, auto-link it silently here!
+      let linkedTeamCode = existing ? (existing.teamCode || '') : '';
+      let linkedTeamName = existing ? (existing.teamName || '') : '';
+      if (!existing && pendingSlotSetupIndex === 0 && acct.signupTeamCode) {
+        const teamDoc = await SynapzPortalCloud.fetchTeamByCode(acct.signupTeamCode);
+        if (teamDoc) {
+          linkedTeamCode = teamDoc.teamCode;
+          linkedTeamName = teamDoc.teamName || '';
+        } else {
+          linkedTeamCode = acct.signupTeamCode;
+        }
+      }
+
+      const startingAdaptive = computeStartingAdaptiveLevel({ divisionLabel, ageGroup, experienceLevel });
+      const keepExistingAdaptive = existing &&
+        existing.divisionLabel === divisionLabel &&
+        existing.experienceLevel === experienceLevel &&
+        typeof existing.adaptiveLevel === 'number';
+
       const slotId = existing?.id || `${acct.accountId}_slot${pendingSlotSetupIndex + 1}`;
+      const posLabelMap = {
+        ALL: 'All Positions',
+        C: 'Center (C)',
+        LW: 'Left Wing (LW)',
+        RW: 'Right Wing (RW)',
+        LD: 'Left Defense (LD)',
+        RD: 'Right Defense (RD)',
+        G: 'Goalie (G)'
+      };
       const slotProfile = {
         ...(existing || {}),
         id: slotId,
@@ -19822,21 +20614,33 @@
         slotIndex: pendingSlotSetupIndex,
         pin_code: pinCode,
         name: firstName,
+        jerseyBackName: firstName.toUpperCase(),
         lastName: (existing && existing.lastName) || firstName.toUpperCase(),
-        town: '',
+        town: townState,
+        optionalAge,
+        optionalSex,
+        associationName,
+        customTeamName,
         avatar: '🏒',
         avatarType,
-        hairStyle: avatarType === 'girl' ? 'ponytail' : 'flow',
+        hairStyle,
         hairColor: existing?.hairColor || '#78350f',
         skinTone: existing?.skinTone || '#fdba74',
-        jerseyColor: existing?.jerseyColor || '#0284c7',
+        jerseyColor: themeHex,
+        equippedGloves: existing?.equippedGloves || themeHex,
+        equippedHelmet: existing?.equippedHelmet || (themeHex === '#eab308' ? '#111827' : themeHex),
         jerseyNumber: jerseyNum,
         role: 'player',
         portal_type: 'player',
         subscription_tier: acct.planType || 'basic_499',
+        divisionLabel,
         ageGroup,
+        experienceLevel,
+        adaptiveLevel: keepExistingAdaptive ? existing.adaptiveLevel : startingAdaptive,
+        adaptiveConsecutiveGold: keepExistingAdaptive ? (existing.adaptiveConsecutiveGold || 0) : 0,
+        adaptiveConsecutiveWrong: keepExistingAdaptive ? (existing.adaptiveConsecutiveWrong || 0) : 0,
         positionCode: posCode,
-        position: POSITION_CODE_TO_LABEL[posCode] || 'Center (C)',
+        position: posLabelMap[posCode] || POSITION_CODE_TO_LABEL[posCode] || 'All Positions',
         hand,
         iqScore: typeof existing?.iqScore === 'number' ? existing.iqScore : 100,
         puckBucks: typeof existing?.puckBucks === 'number' ? existing.puckBucks : 250,
@@ -19846,19 +20650,23 @@
         conceptStats: existing?.conceptStats || {},
         ownedGear: Array.isArray(existing?.ownedGear) ? existing.ownedGear : [],
         playerAgentId: agentId,
-        teamCode: resolvedTeamDoc ? resolvedTeamDoc.teamCode : '',
-        teamName: resolvedTeamDoc ? (resolvedTeamDoc.teamName || '') : ''
+        teamCode: linkedTeamCode,
+        teamName: linkedTeamName
       };
       ensureProfileAvatarDefaults(slotProfile);
+      // Preserve optional blank jersey number if user intentionally cleared it
+      slotProfile.jerseyNumber = jerseyNum;
+      slotProfile.hairStyle = hairStyle;
+      slotProfile.jerseyColor = themeHex;
 
       acct.slots[pendingSlotSetupIndex] = slotProfile;
       await SynapzPortalCloud.saveAccount(acct);
-      if (rawTeamCode || prevTeamCode) {
-        await SynapzPortalCloud.syncSlotToTeamRoster(rawTeamCode, slotProfile, acct.accountId, prevTeamCode);
+      if (linkedTeamCode || prevTeamCode) {
+        await SynapzPortalCloud.syncSlotToTeamRoster(linkedTeamCode, slotProfile, acct.accountId, prevTeamCode);
       }
 
       if (enterLobbyAfter) {
-        await enterLobbyWithPlayerSlot(pendingSlotSetupIndex);
+        await enterLobbyWithPlayerSlot(pendingSlotSetupIndex, { fromGuidedSetupHandoff: true });
       } else {
         renderPlayerFourSlotsScreen();
         openEntryScreen('1A-4');
@@ -19877,7 +20685,7 @@
       if (slotProf.pin_code) {
         pendingPinUnlockSlotIndex = slotIdx;
         const lbl = document.getElementById('slotPinUnlockLabel');
-        if (lbl) lbl.textContent = `🔒 Enter 4-Digit Stall PIN for ${slotProf.name} #${slotProf.jerseyNumber}`;
+        if (lbl) lbl.textContent = `🔒 Enter 4-Digit Stall PIN for ${slotProf.name}${slotProf.jerseyNumber ? ` #${slotProf.jerseyNumber}` : ''}`;
         const inp = document.getElementById('inputSlotPinUnlock');
         if (inp) inp.value = '';
         const err = document.getElementById('slotPinUnlockError');
@@ -19889,7 +20697,7 @@
       enterLobbyWithPlayerSlot(slotIdx);
     }
 
-    async function enterLobbyWithPlayerSlot(slotIdx) {
+    async function enterLobbyWithPlayerSlot(slotIdx, opts = {}) {
       const acct = state.currentAccount;
       const slotProf = acct && acct.slots ? acct.slots[slotIdx] : null;
       if (!slotProf) return false;
@@ -19902,6 +20710,7 @@
       state.activePlayerAgentId = slotProf.playerAgentId || 'agent-leo';
       state.teamCode = slotProf.teamCode || '';
       state.teamName = slotProf.teamName || '';
+      state.focusMyPositionOnly = Boolean(slotProf.focusMyPositionOnly && acct.planType === 'annual_4999');
       state.hasOnboarded = true;
       state.sandboxAuthenticated = true;
 
@@ -19918,21 +20727,28 @@
       loadScenario(false);
       switchView('lobby');
 
-      // ONLY after entering the Main Rink Lobby inside a configured Profile Slot does the Player Agent appear!
       const agent = getActivePlayerAgent();
       if (window.SynapzCharacterSpeechEngine) {
-        window.SynapzCharacterSpeechEngine.minimizeToCircle(agent.id);
+        if (opts && opts.fromGuidedSetupHandoff) {
+          const handoffLine = "Awesome, your profile's set—let's head to the rink!";
+          playCharacterVoice(agent.id, 'greeting', handoffLine);
+          window.SynapzCharacterSpeechEngine.speak(agent.id, handoffLine, { autoHideMs: 4600 });
+        } else {
+          window.SynapzCharacterSpeechEngine.minimizeToCircle(agent.id);
+        }
       }
       return true;
     }
     window.enterLobbyWithPlayerSlot = enterLobbyWithPlayerSlot;
 
-    async function applyLockerRoomTeamCodeChange() {
+    // v12.1 Join a Team (Enter Coach's Team Code) — EXCLUSIVELY inside Coaches Room (#synapzCoachOfficeModal)!
+    async function applyCoachOfficeTeamCodeChange() {
       const prof = getActiveProfile();
       if (!prof || prof.id === '__unconfigured__') return false;
-      const inp = document.getElementById('inputLockerJoinChangeTeamCode');
+      const inp = document.getElementById('inputCoachOfficeJoinTeamCode');
       const rawCode = String(inp?.value || '').trim().toUpperCase();
-      const toast = document.getElementById('lockerTeamCodeToast');
+      const toast = document.getElementById('coachOfficeTeamCodeToast');
+      const badge = document.getElementById('coachOfficeCurrentTeamBadge');
 
       if (!rawCode) {
         const prevCode = prof.teamCode || '';
@@ -19940,13 +20756,20 @@
         prof.teamName = '';
         state.teamCode = '';
         state.teamName = '';
+        if (state.currentAccount && Array.isArray(state.currentAccount.slots) && typeof state.activeSlotIndex === 'number') {
+          const sl = state.currentAccount.slots[state.activeSlotIndex];
+          if (sl) { sl.teamCode = ''; sl.teamName = ''; }
+          await SynapzPortalCloud.saveAccount(state.currentAccount);
+        }
         if (state.currentAccount && prevCode) {
           await SynapzPortalCloud.syncSlotToTeamRoster('', prof, state.currentAccount.accountId, prevCode);
         }
         saveProgress();
-        renderSynapzLockerRoomModal();
+        if (badge) badge.textContent = 'Solo Mode (No Team Linked)';
+        renderSynapzCoachOfficeModal();
+        renderSynapzRinkLobby();
         if (toast) {
-          toast.textContent = 'Cleared Team Code link — 100% of your gear, Puck Bucks, and IQ stats stay in your slot!';
+          toast.textContent = 'Cleared Coach Team Code link — 100% of your gear, Puck Bucks, and IQ stats stay in your slot!';
           toast.classList.remove('hidden');
         }
         return true;
@@ -19967,17 +20790,28 @@
       state.teamCode = teamDoc.teamCode;
       state.teamName = teamDoc.teamName || '';
 
+      if (state.currentAccount && Array.isArray(state.currentAccount.slots) && typeof state.activeSlotIndex === 'number') {
+        const sl = state.currentAccount.slots[state.activeSlotIndex];
+        if (sl) {
+          sl.teamCode = teamDoc.teamCode;
+          sl.teamName = teamDoc.teamName || '';
+        }
+        await SynapzPortalCloud.saveAccount(state.currentAccount);
+      }
+
       const acctId = state.currentAccount ? state.currentAccount.accountId : prof.id;
       await SynapzPortalCloud.syncSlotToTeamRoster(teamDoc.teamCode, prof, acctId, prevCode);
       saveProgress();
-      renderSynapzLockerRoomModal();
+      if (badge) badge.textContent = `${teamDoc.teamCode} • ${teamDoc.teamName || 'Linked Team'}`;
+      renderSynapzCoachOfficeModal();
+      renderSynapzRinkLobby();
       if (toast) {
-        toast.textContent = `✅ Linked to "${teamDoc.teamName || teamDoc.teamCode}" (${teamDoc.teamCode})! 100% of your avatar, gear, $${state.puckBucks} Puck Bucks & ${state.iqScore} IQ preserved!`;
+        toast.textContent = `✅ Linked active profile slot to "${teamDoc.teamName || teamDoc.teamCode}" (${teamDoc.teamCode}) in Coach's Office!`;
         toast.classList.remove('hidden');
       }
       return true;
     }
-    window.applyLockerRoomTeamCodeChange = applyLockerRoomTeamCodeChange;
+    window.applyCoachOfficeTeamCodeChange = applyCoachOfficeTeamCodeChange;
 
     async function openCoachHqForAccount(coachAcct) {
       if (!coachAcct) return;
@@ -20332,7 +21166,7 @@
         openPilotSandboxCheckout({
           mode: 'player_signup',
           planType: 'basic_499',
-          planLabel: 'Basic Plan — $4.99 (Unlocks All 4 Profile Slots)',
+          planLabel: 'Basic Plan — $4.99 (Unlocks Slot 1 • Sibling Slots 2–4 +$2.99 • Pricing Tiers TBD)',
           identity: creds.identity,
           password: creds.password
         });
@@ -20344,7 +21178,7 @@
         openPilotSandboxCheckout({
           mode: 'player_signup',
           planType: 'annual_4999',
-          planLabel: 'Annual Plan — $49.99/yr (or $4.99/mo • All 4 Profile Slots + Season Perks)',
+          planLabel: 'Annual Plan — $49.99/yr (Unlocks Slot 1 + My Position Filter + Season Perks • Pricing Tiers TBD)',
           identity: creds.identity,
           password: creds.password
         });
@@ -20372,6 +21206,7 @@
           portalRole: 'player',
           planType: 'team_code_free_slot1',
           unlockedSlots: 1,
+          unlockedSlotFlags: [true, false, false, false],
           signupTeamCode: teamDoc.teamCode,
           registeredDeviceIds: [{ deviceId: devId, registeredAt: new Date().toISOString() }],
           slots: [null, null, null, null],
@@ -20452,7 +21287,7 @@
         if (devBox) devBox.classList.add('hidden');
       });
 
-      // Screen 1A-4 & 1A-4-SETUP — 4 Profile Slots & Slot Setup
+      // Screen 1A-4 & 1A-4-SETUP — 4 Profile Slots & 3-Step Guided Waist-Up Cutout Setup
       on('btnSlotsLogout', logoutSynapzAccount);
       on('btnConfirmSlotPinUnlock', () => {
         if (pendingPinUnlockSlotIndex == null || !state.currentAccount) return;
@@ -20481,6 +21316,95 @@
         const ag = SYNAPZ_PLAYER_AGENTS.find(a => a.id === agId) || SYNAPZ_PLAYER_AGENTS[0];
         playCharacterVoice(ag.id, 'slot_audition_manual', ag.greeting);
       });
+      on('btnSlotStep1ContinueWithAgent', () => {
+        SoundFX.playTap();
+        setSlotSetupStep(2, true);
+      });
+      on('btnSlotStep2BackTo1', () => {
+        SoundFX.playTap();
+        setSlotSetupStep(1, false);
+      });
+      on('btnSlotStep2NextTo3', () => {
+        const nm = String(document.getElementById('slotSetupFirstName')?.value || '').trim();
+        if (!nm) {
+          showPortalFeedback('slotSetupFeedbackMsg', 'Please enter your Name or Nickname first!');
+          updateGuidedSetupCutoutCoach('Type your Name or Nickname first so we can stitch it on the back of your jersey!', 'left', false);
+          document.getElementById('slotSetupFirstName')?.focus();
+          return;
+        }
+        SoundFX.playTap();
+        setSlotSetupStep(3, true);
+      });
+      on('btnSlotStep3BackTo2', () => {
+        SoundFX.playTap();
+        setSlotSetupStep(2, false);
+      });
+      on('btnSlotSetupFlipPreview', () => {
+        SoundFX.playTap();
+        state.slotSetupPreviewAngle = state.slotSetupPreviewAngle === 180 ? 0 : 180;
+        updateSlotSetupLivePreview();
+      });
+      on('btnGuidedSetupSwapSide', () => {
+        SoundFX.playTap();
+        setGuidedCutoutSide(state.guidedCutoutSide === 'right' ? 'left' : 'right');
+      });
+      document.querySelectorAll('.slot-exp-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+          SoundFX.playTap();
+          const lvl = btn.getAttribute('data-exp-level') || 'Beginner';
+          syncSlotExpPillsUI(lvl);
+          updateGuidedSetupCutoutCoach(
+            lvl === 'Novice'
+              ? 'Great pick—we will start with clean foundational hockey reads and level up as you roll!'
+              : `${lvl} locked in! Tap Next to customize your skater and jersey.`,
+            'left',
+            false
+          );
+        });
+      });
+      document.querySelectorAll('.slot-theme-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+          SoundFX.playTap();
+          const hex = btn.getAttribute('data-theme-hex') || '#0284c7';
+          syncSlotThemePillsUI(hex);
+          updateSlotSetupLivePreview();
+        });
+      });
+      const step2NameEl = document.getElementById('slotSetupFirstName');
+      if (step2NameEl) {
+        step2NameEl.addEventListener('focus', () => {
+          updateGuidedSetupCutoutCoach('Type your Name or Nickname—we will stitch it right across the back of your jersey!', 'left', false);
+        });
+        step2NameEl.addEventListener('input', updateSlotSetupLivePreview);
+      }
+      const step2DivEl = document.getElementById('slotSetupAgeDivision');
+      if (step2DivEl) {
+        step2DivEl.addEventListener('focus', () => {
+          updateGuidedSetupCutoutCoach('Pick your exact Division & Tier—from 8U up through 18U / Varsity / Jr!', 'right', false);
+        });
+        step2DivEl.addEventListener('change', () => {
+          setGuidedCutoutSide('right');
+          updateSlotSetupLivePreview();
+        });
+      }
+      ['slotSetupAvatarType', 'slotSetupHairStyle', 'slotSetupJerseyNum', 'slotSetupOptionalTeamName'].forEach(elId => {
+        const el = document.getElementById(elId);
+        if (el) {
+          el.addEventListener('change', () => {
+            if (elId === 'slotSetupAvatarType') {
+              const hs = document.getElementById('slotSetupHairStyle');
+              if (hs && el.value === 'girl' && hs.value === 'flow') hs.value = 'ponytail';
+              if (hs && el.value === 'boy' && hs.value === 'ponytail') hs.value = 'flow';
+            }
+            if (elId === 'slotSetupJerseyNum' || elId === 'slotSetupOptionalTeamName') {
+              state.slotSetupPreviewAngle = elId === 'slotSetupJerseyNum' ? 180 : 0;
+            }
+            updateSlotSetupLivePreview();
+          });
+          el.addEventListener('input', updateSlotSetupLivePreview);
+        }
+      });
+
       on('btnSaveSlotBackTo4Slots', () => saveSlotSetupForm(false));
       on('btnSaveSlotAndEnterLobby', () => saveSlotSetupForm(true));
 
@@ -20616,7 +21540,7 @@
       on('btnCancelPilotSandboxCheckout', closePilotSandboxCheckout);
       on('btnConfirmPilotSandboxCheckout', completePilotSandboxCheckout);
 
-      // Lobby, Locker Stall, Coach HQ & Association Master HQ Switch / Logout Controls
+      // Lobby, Locker Stall, Coach's Office (Exclusive Join Team Link), Coach HQ & Association Master HQ Controls
       on('btnLobbySwitchSlot', switchToPlayerSlotsScreen);
       on('btnLockerSwitchSlot', () => {
         document.getElementById('synapzLockerRoomModal')?.classList.add('hidden');
@@ -20626,7 +21550,29 @@
         document.getElementById('synapzLockerRoomModal')?.classList.add('hidden');
         logoutSynapzAccount();
       });
-      on('btnLockerApplyTeamCode', applyLockerRoomTeamCodeChange);
+      on('btnLockerSpinFrontBack', () => {
+        SoundFX.playTap();
+        state.lockerSpinAngle = state.lockerSpinAngle === 180 ? 0 : 180;
+        renderSynapzLockerRoomModal();
+      });
+      on('btnToggleAnnualFocusPosition', async () => {
+        const acct = state.currentAccount;
+        const prof = getActiveProfile();
+        if (!prof || ((acct && acct.planType) !== 'annual_4999' && prof.subscription_tier !== 'annual_4999')) {
+          return;
+        }
+        SoundFX.playTap();
+        state.focusMyPositionOnly = !state.focusMyPositionOnly;
+        prof.focusMyPositionOnly = state.focusMyPositionOnly;
+        if (acct && Array.isArray(acct.slots) && typeof state.activeSlotIndex === 'number' && acct.slots[state.activeSlotIndex]) {
+          acct.slots[state.activeSlotIndex].focusMyPositionOnly = state.focusMyPositionOnly;
+          await SynapzPortalCloud.saveAccount(acct);
+        }
+        saveProgress();
+        renderSynapzLockerRoomModal();
+        loadScenario(false);
+      });
+      on('btnCoachOfficeApplyTeamCode', applyCoachOfficeTeamCodeChange);
 
       on('btnCoachHqLogoutAccount', () => {
         document.getElementById('coachPortalModal')?.classList.add('hidden');
@@ -22705,7 +23651,7 @@
         ageTier: '8U-12U',
         tierLabel: '8U–12U Youth Junior Agent',
         roleTitle: 'Energetic Youth Skater Rep',
-        img: 'assets/agents/agent-maya.png',
+        img: 'assets/cutouts/agent-maya.png',
         pitch: 1.12,
         rate: 1.03,
         gender: 'female',
@@ -22717,7 +23663,7 @@
         ageTier: '8U-12U',
         tierLabel: '8U–12U Youth Junior Agent',
         roleTitle: 'Energetic Youth Skater Rep',
-        img: 'assets/agents/agent-jalen.png',
+        img: 'assets/cutouts/agent-jalen.png',
         pitch: 1.06,
         rate: 1.03,
         gender: 'male',
@@ -22729,7 +23675,7 @@
         ageTier: '10U-14U',
         tierLabel: '10U–14U Teen Agent',
         roleTitle: 'Confident Teen Skater Rep',
-        img: 'assets/agents/agent-chloe.png',
+        img: 'assets/cutouts/agent-chloe.png',
         pitch: 1.06,
         rate: 1.01,
         gender: 'female',
@@ -22741,7 +23687,7 @@
         ageTier: '10U-14U',
         tierLabel: '10U–14U Teen Agent',
         roleTitle: 'Tactical Teen Skater Rep',
-        img: 'assets/agents/agent-sofia.png',
+        img: 'assets/cutouts/agent-sofia.png',
         pitch: 1.04,
         rate: 1.0,
         gender: 'female',
@@ -22753,7 +23699,7 @@
         ageTier: '10U-14U',
         tierLabel: '10U–14U Teen Agent',
         roleTitle: 'Sharp Teen Skater Rep',
-        img: 'assets/agents/agent-leo.png',
+        img: 'assets/cutouts/agent-leo.png',
         pitch: 1.0,
         rate: 1.02,
         gender: 'male',
@@ -22765,7 +23711,7 @@
         ageTier: '14U-18U+',
         tierLabel: '14U–18U+ Pro Agent',
         roleTitle: 'Veteran Pro Hockey Agent',
-        img: 'assets/agents/agent-marcus.png',
+        img: 'assets/cutouts/agent-marcus.png',
         pitch: 0.94,
         rate: 0.99,
         gender: 'male',
@@ -22777,7 +23723,7 @@
         ageTier: '14U-18U+',
         tierLabel: '14U–18U+ Pro Agent',
         roleTitle: 'Executive Pro Hockey Agent',
-        img: 'assets/agents/agent-priya.png',
+        img: 'assets/cutouts/agent-priya.png',
         pitch: 1.0,
         rate: 1.0,
         gender: 'female',
@@ -22789,7 +23735,7 @@
         ageTier: '14U-18U+',
         tierLabel: '14U–18U+ Pro Agent',
         roleTitle: 'Modern Pro Hockey Agent',
-        img: 'assets/agents/agent-ryan.png',
+        img: 'assets/cutouts/agent-ryan.png',
         pitch: 0.96,
         rate: 1.01,
         gender: 'male',
@@ -22801,7 +23747,7 @@
         ageTier: '14U-18U+',
         tierLabel: '14U–18U+ Pro Agent',
         roleTitle: 'Modern Pro Hockey Agent',
-        img: 'assets/agents/agent-claire.png',
+        img: 'assets/cutouts/agent-claire.png',
         pitch: 1.03,
         rate: 1.01,
         gender: 'female',
@@ -22942,7 +23888,8 @@
 
     function playCharacterVoice(characterId, clipKey, fallbackText) {
       const entryGateActive = typeof isEntryOrAuthScreenActive === 'function' && isEntryOrAuthScreenActive();
-      if (entryGateActive && clipKey !== 'slot_audition_manual') {
+      const allowedGuidedClip = clipKey === 'slot_audition_manual' || clipKey === 'guided_setup_voice';
+      if (entryGateActive && !allowedGuidedClip) {
         const ov = document.getElementById('synapzUniversalCharSpeechOverlay');
         const cb = document.getElementById('synapzPersistentCharCircleBtn');
         if (ov) ov.classList.add('hidden');
@@ -22968,7 +23915,7 @@
 
       // Trigger Section 29 3-Stage Live Word-Streaming Character Speech System ONLY when inside authenticated Lobby/Rooms (NEVER on Entry/Auth/Slot screens!)
       const pickerModalOpen = !document.getElementById('playerAgentPickerModal')?.classList.contains('hidden');
-      const suppressOverlay = pickerModalOpen || entryGateActive || clipKey === 'slot_audition_manual';
+      const suppressOverlay = pickerModalOpen || entryGateActive || allowedGuidedClip;
       if (!suppressOverlay && cleanSentence && window.SynapzCharacterSpeechEngine && clipKey !== 'summon_hint') {
         window.SynapzCharacterSpeechEngine.speak(chan.id, cleanSentence);
       }
@@ -23048,10 +23995,13 @@
       const agent = getActivePlayerAgent();
       const currCity = NHL_CITIES[state.currentCityIdx || 0] || NHL_CITIES[0];
       const currTier = getSkillTierForCityStop(state.currentCityIdx || 0);
+      const jTag = prof.jerseyNumber !== undefined && String(prof.jerseyNumber).trim() !== '' ? ` #${prof.jerseyNumber}` : '';
+      const divLabel = prof.divisionLabel || prof.ageGroup || '12U';
+      const customTeamStr = prof.customTeamName || prof.teamName || '';
 
       const badgeTxt = document.getElementById('lobbyBadgeText');
       if (badgeTxt) {
-        badgeTxt.textContent = `${prof.name} #${prof.jerseyNumber || '9'} • ${prof.ageGroup || '12U'} • IQ: ${prof.iqScore || 100} • 💰 $${state.puckBucks} Puck Bucks`;
+        badgeTxt.textContent = `${prof.name}${jTag} • ${customTeamStr ? `${customTeamStr} • ` : ''}${divLabel} • IQ: ${prof.iqScore || 100} • 💰 $${state.puckBucks} Puck Bucks`;
       }
       const stopPill = document.getElementById('lobbyCurrentStopPill');
       if (stopPill) {
@@ -23106,7 +24056,7 @@
       {
         stationId: 'lobbyStationCoachOffice',
         title: "Step 4 / 5 • Coach Al's Office",
-        sentence: "Head into Coach Al's Office to check your skill pie chart and build a custom lesson plan!"
+        sentence: "Head into Coach Al's Office to check your skill pie chart, join your team, and build a custom lesson plan!"
       },
       {
         stationId: 'lobbyStationFriendsWall',
@@ -23172,7 +24122,7 @@
     window.startLobbySpotlightTour = () => applyLobbySpotlightStep(0);
     window.advanceLobbySpotlightTour = () => applyLobbySpotlightStep(state.lobbySpotlightStepIdx + 1);
 
-    // Interactive 9-Agent Picker With Mandatory 2-Step Pre-Selection Voice Audition
+    // Interactive 9-Agent Picker With Frameless Waist-Up Cutouts & Pre-Selection Voice Audition
     state.auditioningAgentId = 'agent-chloe';
 
     function openPlayerAgentPickerModal() {
@@ -23226,25 +24176,21 @@
           const isHired = prof && prof.playerAgentId === ag.id;
           const isAgeMatch = ag.ageTier === recommendedTier;
           return `
-            <button type="button" data-agent-id="${ag.id}" class="agent-audition-card p-3 rounded-2xl border-2 text-left transition flex flex-col gap-2 cursor-pointer ${
-              isSelected
-                ? 'border-cyan-300 bg-cyan-500/20 shadow-[0_0_24px_rgba(0,229,255,0.3)]'
-                : 'border-slate-700/80 bg-slate-900/90 hover:border-cyan-400/60'
-            }">
+            <button type="button" data-agent-id="${ag.id}" class="agent-audition-card synapz-cutout-cardless-btn p-2.5 text-left transition flex flex-col gap-1.5 cursor-pointer" style="border:0 !important;background:transparent !important;box-shadow:none !important;">
               <div class="flex items-center gap-2.5">
-                <img src="${ag.img}" alt="${ag.name}" class="w-14 h-14 rounded-xl object-cover border border-cyan-400/60 shrink-0" />
+                <img src="${ag.img}" alt="${ag.name}" class="synapz-waistup-cutout-img w-16 h-20 shrink-0" style="border:0 !important;background:transparent !important;box-shadow:none !important;filter:${isSelected ? 'drop-shadow(0 6px 14px rgba(34,211,238,0.6))' : 'drop-shadow(0 6px 12px rgba(2,6,23,0.8))'};" />
                 <div class="min-w-0 flex-1">
                   <div class="flex flex-wrap items-center gap-1">
-                    <span class="text-sm font-black text-white">${ag.name}</span>
+                    <span class="text-sm font-black ${isSelected ? 'text-cyan-300' : 'text-white'}">${ag.name}</span>
                     ${isHired ? '<span class="px-1.5 py-0.5 rounded bg-emerald-400 text-slate-950 text-[9px] font-black">CURRENT</span>' : ''}
-                    ${isAgeMatch ? '<span class="px-1.5 py-0.5 rounded bg-amber-400/20 border border-amber-400/50 text-amber-300 text-[9px] font-black">⭐ AGE MATCH</span>' : ''}
+                    ${isAgeMatch ? '<span class="px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300 text-[9px] font-black">⭐ AGE MATCH</span>' : ''}
                   </div>
                   <div class="text-[10px] font-extrabold text-cyan-300">${ag.tierLabel}</div>
                   <div class="text-[10px] text-slate-400 truncate">${ag.roleTitle}</div>
                 </div>
               </div>
-              <div class="text-[10px] font-bold text-cyan-200 bg-slate-950/80 border border-cyan-500/30 rounded-lg px-2 py-1 text-center">
-                🔊 Tap to Audition ${ag.name}'s Voice
+              <div class="text-[10px] font-bold text-cyan-200 bg-slate-950/80 rounded-lg px-2 py-1 text-center">
+                🔊 Audition ${ag.name}'s Voice
               </div>
             </button>
           `;
@@ -23267,7 +24213,7 @@
       if (hireBtn) hireBtn.textContent = `✅ Hire ${auditionAgent.name} as My Agent`;
     }
 
-    // Station 2: Locker Room Modal (Young Hockey Player Avatar + Tactile Category Buttons + Agent Swap)
+    // Station 2: Locker Room Modal (Young Hockey Player Avatar + Spinning Front/Back Jersey + Agent Swap — ZERO Join Team Bar!)
     state.lockerActiveCat = 'Gloves';
 
     function openSynapzLockerRoomModal() {
@@ -23276,7 +24222,7 @@
       const modal = document.getElementById('synapzLockerRoomModal');
       if (modal) modal.classList.remove('hidden');
       const agent = getActivePlayerAgent();
-      playCharacterVoice(agent.id, 'locker_room', "Here's your Locker Room stall, tap any shelf to try on new mitts, sticks, skates, or visors!");
+      playCharacterVoice(agent.id, 'locker_room', "Here's your Locker Room stall, tap any shelf to try on new mitts, sticks, skates, or spin your jersey!");
     }
     window.openSynapzLockerRoomModal = openSynapzLockerRoomModal;
 
@@ -23284,6 +24230,9 @@
       const prof = getActiveProfile();
       ensureProfileAvatarDefaults(prof);
       const agent = getActivePlayerAgent();
+      const jTag = prof.jerseyNumber !== undefined && String(prof.jerseyNumber).trim() !== '' ? ` #${prof.jerseyNumber}` : '';
+      const divLabel = prof.divisionLabel || prof.ageGroup || '12U';
+      const customTeamStr = prof.customTeamName || prof.teamName || '';
 
       const avatarStage = document.getElementById('lockerRoom3dAvatarWrap');
       if (avatarStage) {
@@ -23291,7 +24240,19 @@
       }
       const titleEl = document.getElementById('lockerRoomPlayerTitle');
       if (titleEl) {
-        titleEl.textContent = `${prof.name} #${prof.jerseyNumber || '9'} ${prof.lastName || 'BEKKEDAHL'} (${prof.ageGroup || '12U'})`;
+        titleEl.textContent = customTeamStr
+          ? `${prof.name}${jTag} • ${customTeamStr} • ${divLabel}`
+          : `${prof.name}${jTag} (${divLabel} • ${prof.experienceLevel || 'Beginner'})`;
+      }
+      const teamBannerEl = document.getElementById('lockerCustomTeamDivisionBanner');
+      if (teamBannerEl) {
+        if (customTeamStr) {
+          teamBannerEl.textContent = `🏒 ${customTeamStr} • ${divLabel}`;
+          teamBannerEl.classList.remove('hidden');
+        } else {
+          teamBannerEl.textContent = `🏒 ${divLabel} • ${prof.experienceLevel || 'Beginner'}`;
+          teamBannerEl.classList.remove('hidden');
+        }
       }
       const agentEl = document.getElementById('lockerRoomAgentBadge');
       if (agentEl) {
@@ -23299,17 +24260,24 @@
       }
       const brassPlateEl = document.getElementById('lockerBrassNameplateText');
       if (brassPlateEl) {
-        brassPlateEl.textContent = `${String(prof.name || 'SKATER').toUpperCase()} #${prof.jerseyNumber || '9'} • AGENT: ${String(agent.name || 'LEO').toUpperCase()}`;
+        brassPlateEl.textContent = `${String(prof.name || 'SKATER').toUpperCase()}${jTag} • AGENT: ${String(agent.name || 'LEO').toUpperCase()}`;
       }
-      const teamBadgeEl = document.getElementById('lockerCurrentTeamCodeBadge');
-      if (teamBadgeEl) {
-        teamBadgeEl.textContent = prof.teamCode
-          ? `${prof.teamCode}${prof.teamName ? ` • ${prof.teamName}` : ''}`
-          : 'No Team Linked';
+
+      const annualWrap = document.getElementById('lockerAnnualFocusPosWrap');
+      const annualBtn = document.getElementById('btnToggleAnnualFocusPosition');
+      const isAnnualPlan = (state.currentAccount && state.currentAccount.planType === 'annual_4999') || prof.subscription_tier === 'annual_4999';
+      if (annualWrap) {
+        annualWrap.classList.toggle('hidden', !isAnnualPlan);
       }
-      const teamCodeInp = document.getElementById('inputLockerJoinChangeTeamCode');
-      if (teamCodeInp) {
-        teamCodeInp.value = prof.teamCode || '';
+      if (annualBtn) {
+        const posCode = prof.positionCode || 'ALL';
+        const active = Boolean(state.focusMyPositionOnly && isAnnualPlan);
+        annualBtn.textContent = active
+          ? `🎯 Focus on My Position Only (${posCode}): ON`
+          : `🎯 Focus on My Position Only (${posCode}): OFF`;
+        annualBtn.className = active
+          ? 'px-3 py-1.5 rounded-xl bg-amber-400 text-slate-950 text-xs font-black shadow'
+          : 'px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-amber-400/60 text-amber-200 text-xs font-black';
       }
 
       // Render Sibling / Profile Stall Switcher
@@ -23317,13 +24285,14 @@
       if (stallRow) {
         stallRow.innerHTML = state.profiles.map(p => {
           const isCur = p.id === prof.id;
+          const pJTag = p.jerseyNumber !== undefined && String(p.jerseyNumber).trim() !== '' ? ` #${p.jerseyNumber}` : '';
           return `
             <button type="button" data-stall-id="${p.id}" class="locker-stall-chip px-3 py-1.5 rounded-xl border text-xs font-black transition ${
               isCur
                 ? 'bg-cyan-500 text-slate-950 border-cyan-300 shadow'
                 : 'bg-slate-900 hover:bg-slate-800 text-slate-200 border-slate-700'
             }">
-              🏒 ${p.name} #${p.jerseyNumber || '9'} (${p.ageGroup || '10U'})
+              🏒 ${p.name}${pJTag} (${p.divisionLabel || p.ageGroup || '10U'})
             </button>
           `;
         }).join('');
@@ -23359,11 +24328,12 @@
       if (gearGrid) {
         if (cat === 'Jersey') {
           const colors = [
-            { hex: '#0284c7', label: 'Synapz Cyan-Blue (#9 / #88 / #7 / #14)' },
-            { hex: '#0f172a', label: '🖤 Stealth Full-Blackout Pro Jersey' },
-            { hex: '#dc2626', label: 'Championship Crimson Red' },
-            { hex: '#10b981', label: 'Breakaway Emerald Green' },
-            { hex: '#f59e0b', label: 'Stanley Cup Trophy Gold' }
+            { hex: '#0284c7', label: 'Championship Blue' },
+            { hex: '#7c3aed', label: 'Synapz Royal Purple' },
+            { hex: '#ec4899', label: 'Electric Ice Pink' },
+            { hex: '#111827', label: '🖤 Stealth Full-Blackout Pro Jersey' },
+            { hex: '#eab308', label: 'Stanley Cup Trophy Gold' },
+            { hex: '#dc2626', label: 'Championship Crimson Red' }
           ];
           gearGrid.innerHTML = colors.map(c => `
             <button type="button" data-jersey-hex="${c.hex}" class="btn-locker-jersey p-3 rounded-xl border ${prof.jerseyColor === c.hex ? 'border-cyan-300 bg-cyan-500/20' : 'border-slate-800 bg-slate-900'} text-left flex items-center justify-between gap-2.5">
@@ -23428,7 +24398,7 @@
       }
     }
 
-    // Station 4: Coach's Office & Training Room (With Coach Al — 1-Question-Per-Screen Wizard)
+    // Station 4: Coach's Office & Training Room (With Coach Al Cutout + EXCLUSIVE Join a Team Code Input!)
     state.coachAlWizardStep = 1;
     state.coachAlSelectedSlice = 'breakout';
     state.coachAlSelectedFocus = 'Under F1 Pressure';
@@ -23439,12 +24409,22 @@
       renderSynapzCoachOfficeModal();
       const modal = document.getElementById('synapzCoachOfficeModal');
       if (modal) modal.classList.remove('hidden');
-      playCharacterVoice('coach-al', 'office_welcome', "Welcome to my office, tap any slice of your Hockey IQ chart to build today's training plan!");
+      playCharacterVoice('coach-al', 'office_welcome', "Welcome to my office, enter your Coach's Team Code to join your squad or tap any slice of your Hockey IQ chart!");
     }
     window.openSynapzCoachOfficeModal = openSynapzCoachOfficeModal;
 
     function renderSynapzCoachOfficeModal() {
       const prof = getActiveProfile();
+      const officeBadge = document.getElementById('coachOfficeCurrentTeamBadge');
+      if (officeBadge && prof) {
+        officeBadge.textContent = prof.teamCode
+          ? `${prof.teamCode}${prof.teamName ? ` • ${prof.teamName}` : ''}`
+          : 'Solo Mode (No Team Linked)';
+      }
+      const officeInp = document.getElementById('inputCoachOfficeJoinTeamCode');
+      if (officeInp && prof && document.activeElement !== officeInp) {
+        officeInp.value = prof.teamCode || '';
+      }
       const slices = [
         { key: 'breakout', label: '🚀 Breakouts & Regroups', pct: 86, color: '#00e5ff' },
         { key: 'dzone', label: '🛡️ D-Zone & Protect the House', pct: 82, color: '#10b981' },
@@ -25192,7 +26172,7 @@
         activeCharacterId: 'coach-bob',
         activeCharacterName: '🧢 Coach Bob',
         activeCharacterRole: 'On-Ice Hockey Coach',
-        activeCharacterAvatar: 'assets/coach-bob.png',
+        activeCharacterAvatar: 'assets/cutouts/coach-bob.png',
         fullText: '',
         words: [],
         currentWordIndex: 0,
@@ -25209,24 +26189,24 @@
           const coachModalOpen = !document.getElementById('synapzCoachOfficeModal')?.classList.contains('hidden') ||
             !document.getElementById('coachPortalModal')?.classList.contains('hidden');
           if (coachModalOpen) {
-            return { id: 'coach-al', name: '🦉 Coach Al', badge: '🦉 Coach Al', role: "Coach's Office Strategist", avatar: 'assets/coach-bob.png' };
+            return { id: 'coach-al', name: '🦉 Coach Al', badge: '🦉 Coach Al', role: "Coach's Office Strategist", avatar: 'assets/cutouts/coach-al.png' };
           }
           if (state.view === 'game') {
-            return { id: 'coach-bob', name: '🧢 Coach Bob', badge: '🧢 Coach Bob', role: 'On-Ice Hockey Coach', avatar: 'assets/coach-bob.png' };
+            return { id: 'coach-bob', name: '🧢 Coach Bob', badge: '🧢 Coach Bob', role: 'On-Ice Hockey Coach', avatar: 'assets/cutouts/coach-bob.png' };
           }
           return {
             id: ag ? ag.id : 'agent-leo',
             name: ag ? `🕶️ Agent ${ag.name}` : '🕶️ Agent Leo',
             badge: ag ? `🕶️ Agent ${ag.name}` : '🕶️ Agent Leo',
             role: ag ? (ag.tierLabel || ag.band || 'Player Agent') : 'Player Agent',
-            avatar: ag ? (ag.img || ag.avatar || 'assets/agents/agent-leo.png') : 'assets/agents/agent-leo.png'
+            avatar: ag ? (ag.img || ag.avatar || 'assets/cutouts/agent-leo.png') : 'assets/cutouts/agent-leo.png'
           };
         }
         if (characterId === 'coach-bob') {
-          return { id: 'coach-bob', name: '🧢 Coach Bob', badge: '🧢 Coach Bob', role: 'On-Ice Hockey Coach', avatar: 'assets/coach-bob.png' };
+          return { id: 'coach-bob', name: '🧢 Coach Bob', badge: '🧢 Coach Bob', role: 'On-Ice Hockey Coach', avatar: 'assets/cutouts/coach-bob.png' };
         }
         if (characterId === 'coach-al') {
-          return { id: 'coach-al', name: '🦉 Coach Al', badge: '🦉 Coach Al', role: "Coach's Office Strategist", avatar: 'assets/coach-bob.png' };
+          return { id: 'coach-al', name: '🦉 Coach Al', badge: '🦉 Coach Al', role: "Coach's Office Strategist", avatar: 'assets/cutouts/coach-al.png' };
         }
         const foundAg = (window.SYNAPZ_PLAYER_AGENTS || []).find(a => a.id === characterId) || ag;
         return {
@@ -25234,7 +26214,7 @@
           name: foundAg ? `🕶️ Agent ${foundAg.name}` : '🕶️ Agent Leo',
           badge: foundAg ? `🕶️ Agent ${foundAg.name}` : '🕶️ Agent Leo',
           role: foundAg ? (foundAg.tierLabel || foundAg.band || 'Player Agent') : 'Player Agent',
-          avatar: foundAg ? (foundAg.img || foundAg.avatar || 'assets/agents/agent-leo.png') : 'assets/agents/agent-leo.png'
+          avatar: foundAg ? (foundAg.img || foundAg.avatar || 'assets/cutouts/agent-leo.png') : 'assets/cutouts/agent-leo.png'
         };
       },
 
@@ -25451,14 +26431,25 @@
           return toNaturalHockeyTalk(scen ? (scen.subtitle || scen.briefing) : 'Watch the 3-second play develop, then tap the open ice lane!', 'coach-bob', 'drill_intro');
         }
         if (charId === 'coach-al') {
-          return "Welcome to my office, tap any slice of your Hockey IQ chart to build today's training plan!";
+          return "Welcome to my office—enter your Coach's Team Code above to join your squad, or tap any slice of your Hockey IQ chart!";
+        }
+        if (!document.getElementById('synapzLockerRoomModal')?.classList.contains('hidden')) {
+          return "Here's your Locker Room stall—tap any shelf to equip pro gear, or tap Spin Jersey to check your stitched nameplate!";
+        }
+        if (!document.getElementById('proShopModal')?.classList.contains('hidden')) {
+          return 'Welcome to the Pro Shop—tap any wall display to try on sticks, mitts, skates, and visors with your Puck Bucks!';
+        }
+        if (!document.getElementById('synapzFriendsWallModal')?.classList.contains('hidden')) {
+          return 'Welcome to the Clubhouse—tap the portrait wall for buddy stalls, the center screen for map races, or the trophy case!';
         }
         const ag = typeof getActivePlayerAgent === 'function' ? getActivePlayerAgent() : null;
         if (state.view === 'map') {
           const city = (window.NHL_CITIES || [])[state.currentCityIdx || 0];
-          return `Here's the North America tour map, tap Drop the Puck to play your ${city ? city.name : 'next'} series!`;
+          return `Here's the North America tour map—tap Drop the Puck to play your ${city ? city.name : 'next'} series!`;
         }
-        return ag ? toNaturalHockeyTalk(ag.greeting, ag.id, 'greeting') : 'Tap any doorway or piece of gear in the room to jump straight into action!';
+        return ag
+          ? "Welcome to the Rink Concourse—push through Center Ice to skate, or step into your Locker Room, Pro Shop, Coach Al's Office, or Clubhouse!"
+          : 'Tap any doorway in the Rink Concourse to jump straight into action!';
       },
 
       summonFromCircle(characterId) {
@@ -25544,10 +26535,10 @@
     };
 
     // =========================================================================
-    // SECTION 32–36: VERIFIED REAL CODED UPGRADES RUNTIME & PRE-CODED BANK
-    // (`synapz-hockey-v12.0-clean-slate-portals` • 242 Live Upgrades + Batches AA–AD)
+    // SECTION 32–37: VERIFIED REAL CODED UPGRADES RUNTIME & PRE-CODED BANK
+    // (`synapz-hockey-v12.1-cutout-guided-profiles` • 242 Live Upgrades + Batches AA–AD)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v12.0-clean-slate-portals';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v12.1-cutout-guided-profiles';
 
     const ALL_63_DEPLOYED_UPGRADE_IDS = [
       // Batch A (12 items)
@@ -27875,7 +28866,7 @@
       const all242Active = perUpgradeResults.every(r => r.isActive && r.foundInBank && r.verifiedExecutable);
       const bankSize = Object.keys(SYNAPZ_5_BATCH_UPGRADE_BANK).length;
       return {
-        version: 'v12.0-clean-slate-accounts-and-portals',
+        version: 'v12.1-guided-cutout-profiles-and-adaptive-iq',
         totalExpected: 242,
         totalChecked: 242,
         totalActiveVerified: perUpgradeResults.filter(r => r.isActive && r.foundInBank && r.verifiedExecutable).length,
@@ -27909,7 +28900,7 @@
     window.run118UpgradesLiveAudit = run242UpgradesLiveAudit;
     window.run63UpgradesLiveAudit = run242UpgradesLiveAudit;
 
-    window.SYNAPZ_DYNAMIC_VERSION = 'v12.0';
+    window.SYNAPZ_DYNAMIC_VERSION = 'v12.1';
     async function syncActiveUpgradesFromSupabase() {
       try {
         const sbUrl = 'https://jrusjgpfcnptozfehcrv.supabase.co';
@@ -27920,7 +28911,7 @@
         if (res.ok) {
           const rows = await res.json();
           if (Array.isArray(rows)) {
-            let activeVersionLabel = 'v12.0';
+            let activeVersionLabel = 'v12.1';
             rows.forEach(r => {
               const rawId = (r.details && r.details.idea_id) || r.scenario_id || '';
               if (rawId === 'SYNAPZ-CLOUD-COVERAGE-LEDGER' && r.details && r.details.versionLabel) {
@@ -28048,7 +29039,7 @@
       <!-- 2-Step Voice Audition & Hire Confirmation Bar -->
       <div id="playerAgentAuditionConfirmBox" class="p-3.5 rounded-2xl bg-slate-950 border-2 border-cyan-400 flex flex-col sm:flex-row items-center justify-between gap-3">
         <div class="flex items-center gap-3 min-w-0">
-          <img id="auditionAgentPortraitImg" src="assets/agents/agent-chloe.png" alt="Auditioning Agent" class="w-16 h-16 rounded-2xl object-cover border-2 border-cyan-300 shrink-0" />
+          <img id="auditionAgentPortraitImg" src="assets/cutouts/agent-chloe.png" alt="Auditioning Agent" class="synapz-waistup-cutout-img w-16 h-20 shrink-0" style="border:0 !important;background:transparent !important;box-shadow:none !important;" />
           <div class="min-w-0">
             <div id="auditionAgentNameTitle" class="text-xs sm:text-sm font-black text-cyan-300">🎙️ Auditioning: Chloe (10U–14U Teen Agent)</div>
             <p id="auditionAgentGreetingText" class="text-xs font-bold text-white mt-0.5 leading-snug">"What's up! I'm Chloe—I've got your back from the Locker Room to the Stanley Cup Finals. Ready to roll?"</p>
@@ -28066,13 +29057,14 @@
     </div>
   </div>
 
-  <!-- Station 2: Room 2 — Inside the LOCKER ROOM (`assets/rooms/room-locker-room.png` + Brass Nameplate + 6 Equipment Hotspots) -->
+  <!-- Station 2: Room 2 — Inside the LOCKER ROOM (`assets/rooms/room-locker-room.png` + Brass Nameplate + 6 Equipment Hotspots — ZERO Join Team Input!) -->
   <div id="synapzLockerRoomModal" class="hidden fixed inset-0 z-[98] bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
     <div class="synapz-gunmetal-panel synapz-walnut-brass-panel max-w-5xl w-full rounded-2xl p-4 sm:p-5 shadow-2xl space-y-3.5 my-auto max-h-[94vh] overflow-y-auto">
       <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-400/40 pb-3">
         <div>
           <div class="text-[10px] font-black uppercase tracking-widest text-amber-300">ROOM 2 • POINT-AND-CLICK MAHOGANY LOCKER STALL</div>
-          <h3 id="lockerRoomPlayerTitle" class="text-lg sm:text-xl font-black text-white">Miles #9 BEKKEDAHL (12U)</h3>
+          <h3 id="lockerRoomPlayerTitle" class="text-lg sm:text-xl font-black text-white">Miles #9 (12U)</h3>
+          <div id="lockerCustomTeamDivisionBanner" class="text-xs font-black text-cyan-300 mt-0.5">🏒 12U • Beginner</div>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <button type="button" class="btn-toggle-room-tap-zones px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/75 text-xs font-black text-amber-200 flex items-center gap-1.5 transition">
@@ -28091,21 +29083,15 @@
         </div>
       </div>
 
-      <!-- Sibling Stalls Quick Switcher + Per-Slot Blooket-Style Join / Change Team Code Bar -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2.5 rounded-2xl bg-slate-950/90 border border-emerald-400/45" id="lockerJoinChangeTeamCodeBar">
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="text-[11px] font-black uppercase text-emerald-300">🏒 Active Team Link:</span>
-          <span id="lockerCurrentTeamCodeBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/60 text-xs font-black text-emerald-200">No Team Linked</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <input id="inputLockerJoinChangeTeamCode" type="text" placeholder="Join / Change Team Code" class="w-44 px-3 py-1.5 rounded-xl bg-slate-900 border border-emerald-400/60 text-xs font-black text-emerald-200 uppercase" />
-          <button id="btnLockerApplyTeamCode" type="button" class="px-3 py-1.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs font-black shrink-0">
-            Link Team
+      <!-- Sibling Stalls Quick Switcher + Optional $49.99/yr Annual Plan "Focus on My Position Only" Perk -->
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <div id="lockerRoomSiblingStalls" class="flex flex-wrap items-center gap-2"></div>
+        <div id="lockerAnnualFocusPosWrap" class="hidden">
+          <button id="btnToggleAnnualFocusPosition" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-amber-400/60 text-amber-200 text-xs font-black">
+            🎯 Focus on My Position Only: OFF
           </button>
         </div>
       </div>
-      <div id="lockerTeamCodeToast" class="hidden p-2 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-emerald-200 text-xs font-bold"></div>
-      <div id="lockerRoomSiblingStalls" class="flex flex-wrap items-center gap-2"></div>
 
       <!-- Full-Bleed Illustrated Room 2: Inside the LOCKER ROOM (`assets/rooms/room-locker-room.png`) -->
       <div id="lockerRoomSceneCanvas" class="synapz-room-scene-container">
@@ -28189,6 +29175,9 @@
         <div class="md:col-span-5 p-3.5 rounded-2xl bg-slate-900/90 border border-amber-400/50 flex flex-col items-center gap-2">
           <div class="text-[10px] font-black uppercase tracking-wider text-amber-300">🧍‍♂️ View Full Outfit on My Young Hockey Player Avatar</div>
           <div id="lockerRoom3dAvatarWrap" class="w-48 h-56 flex items-center justify-center"></div>
+          <button id="btnLockerSpinFrontBack" type="button" class="px-3 py-1 rounded-lg bg-slate-950 hover:bg-slate-800 border border-cyan-400/60 text-cyan-200 text-[11px] font-black transition">
+            🔄 Spin Front / Back Jersey
+          </button>
           <div id="lockerRoomAgentBadge" class="text-xs font-black text-amber-300">🎙️ My Agent: Chloe</div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 w-full">
             <button id="btnLockerPreviewBlackout" type="button" class="py-2 px-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-amber-400/70 text-amber-200 text-[11px] font-black transition">
@@ -28221,20 +29210,20 @@
     </div>
   </div>
 
-  <!-- Station 4: Room 3 — Inside the COACHES OFFICE (`assets/rooms/room-coaches-office.png` Guided by Coach Al) -->
+  <!-- Station 4: Room 3 — Inside the COACHES OFFICE (`assets/rooms/room-coaches-office.png` Guided by Coach Al + EXCLUSIVE Join a Team Bar!) -->
   <div id="synapzCoachOfficeModal" class="hidden fixed inset-0 z-[98] bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
     <div class="synapz-gunmetal-panel synapz-walnut-brass-panel max-w-5xl w-full rounded-2xl p-4 sm:p-5 shadow-2xl space-y-3.5 my-auto max-h-[94vh] overflow-y-auto">
       <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-400/40 pb-3">
         <div>
           <div class="text-[10px] font-black uppercase tracking-widest text-amber-300">ROOM 3 • POINT-AND-CLICK COACH'S OFFICE (GUIDED BY COACH AL)</div>
-          <h3 class="text-lg sm:text-xl font-black text-white">📋 Coach's Office — Tap Laptop, Whiteboard, Bookshelf or Coach Al</h3>
+          <h3 class="text-lg sm:text-xl font-black text-white">📋 Coach's Office — Join a Team, Laptop, Whiteboard &amp; Coach Al</h3>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <button type="button" class="btn-toggle-room-tap-zones px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/75 text-xs font-black text-amber-200 flex items-center gap-1.5 transition">
             <span>✨</span><span class="tap-zones-status-label">Tap Zones: OFF</span>
           </button>
           <button id="btnCoachOfficeJoinTeam" type="button" class="px-3.5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-black shadow">
-            🔗 Find / Join My Team (Team Portal Link)
+            📋 Open Team Roster Hub
           </button>
           <button id="btnCoachOfficeSaveExitLobby" type="button" class="px-3.5 py-2 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/35 border border-emerald-400/70 text-emerald-200 text-xs font-black">
             💾 Save &amp; Exit to Lobby
@@ -28242,6 +29231,27 @@
           <button id="btnCloseSynapzCoachOfficeModal" type="button" class="px-3 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-black">✕</button>
         </div>
       </div>
+
+      <!-- v12.1 EXCLUSIVE Join a Team (Enter Coach's Team Code) Bar Inside Coaches Room (#synapzCoachOfficeModal) -->
+      <div id="coachOfficeJoinTeamBar" class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 rounded-2xl bg-slate-950/95 border-2 border-emerald-400/65">
+        <div class="flex items-center gap-3 min-w-0">
+          <img id="coachOfficeCoachAlCutoutImg" src="assets/cutouts/coach-al.png" alt="Coach Al Waist-Up Cutout" class="synapz-waistup-cutout-img h-16 w-auto shrink-0" style="border:0 !important;background:transparent !important;box-shadow:none !important;" />
+          <div class="min-w-0">
+            <div class="text-[11px] font-black uppercase text-emerald-300">🏒 Join a Team (Enter Coach's Team Code):</div>
+            <div class="flex flex-wrap items-center gap-1.5 mt-0.5">
+              <span class="text-xs font-bold text-slate-300">Active Slot Team:</span>
+              <span id="coachOfficeCurrentTeamBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/60 text-xs font-black text-emerald-200">Solo Mode (No Team Linked)</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <input id="inputCoachOfficeJoinTeamCode" type="text" placeholder="Enter Coach's Team Code" class="w-48 px-3 py-2 rounded-xl bg-slate-900 border border-emerald-400/60 text-xs font-black text-emerald-200 uppercase" />
+          <button id="btnCoachOfficeApplyTeamCode" type="button" class="px-3.5 py-2 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs font-black shadow shrink-0">
+            Join a Team ▶
+          </button>
+        </div>
+      </div>
+      <div id="coachOfficeTeamCodeToast" class="hidden p-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-emerald-200 text-xs font-bold"></div>
 
       <!-- Full-Bleed Illustrated Room 3: Inside the COACHES OFFICE (`assets/rooms/room-coaches-office.png`) -->
       <div id="coachOfficeRoomSceneCanvas" class="synapz-room-scene-container">
@@ -28757,14 +29767,14 @@
   <!-- ===================================================================== -->
   <!-- Stage 3: Persistent Bottom-Left 64x64px Circular Character Medallion (Lobby, Map, Locker Room, Pro Shop, Clubhouse & Coach's Office) -->
   <button id="synapzPersistentCharCircleBtn" type="button" class="hidden synapz-persistent-char-circle fixed bottom-3.5 left-3.5 z-[105]" title="Tap your Agent or Coach anytime to pop up their live word-streaming speech bubble!">
-    <img id="synapzPersistentCharCircleImg" src="assets/agents/agent-leo.png" alt="Active Character" class="w-full h-full rounded-full object-cover" />
+    <img id="synapzPersistentCharCircleImg" src="assets/cutouts/agent-leo.png" alt="Active Character" class="w-full h-full rounded-full object-contain object-top" />
     <span id="synapzPersistentCharCircleBadge" class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[9px] font-black uppercase whitespace-nowrap shadow border border-slate-950">🕶️ Agent Leo</span>
   </button>
 
-  <!-- Stage 1 & Stage 2: Full Lower-Left Quadrant Character Pop-Up (~25% Screen Height) + Live Word-Streaming Speech Bubble -->
-  <div id="synapzUniversalCharSpeechOverlay" class="hidden synapz-char-quadrant-popup fixed bottom-3.5 left-3.5 z-[106] flex items-end gap-3 max-w-[94vw] sm:max-w-[560px]">
+  <!-- Stage 1 & Stage 2: Full Lower-Left Quadrant Frameless Waist-Up Cutout Pop-Up (18%–28% Screen Height) + Live Word-Streaming Speech Bubble -->
+  <div id="synapzUniversalCharSpeechOverlay" class="hidden synapz-char-quadrant-popup fixed bottom-3.5 left-3.5 z-[106] flex items-end gap-2.5 max-w-[94vw] sm:max-w-[560px]">
     <div class="relative shrink-0 flex flex-col items-center">
-      <img id="synapzUniversalCharAvatarImg" src="assets/agents/agent-leo.png" alt="Speaking Character" class="bg-slate-900" />
+      <img id="synapzUniversalCharAvatarImg" src="assets/cutouts/agent-leo.png" alt="Speaking Character" class="synapz-waistup-cutout-img" style="height:clamp(140px,24vh,230px);width:auto;border:0 !important;background:transparent !important;box-shadow:none !important;" />
       <span id="synapzUniversalCharBadgePill" class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 z-20 px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black uppercase whitespace-nowrap shadow border border-slate-950">🕶️ Agent Leo</span>
     </div>
     <div class="bg-slate-950/96 border-2 border-amber-400 rounded-2xl p-3 sm:p-3.5 text-left shadow-2xl backdrop-blur-md flex-1 min-w-[230px] flex flex-col justify-between">

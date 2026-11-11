@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v12.0-clean-slate-portals';
+const CACHE_NAME = 'synapz-hockey-v12.1-cutout-guided-profiles';
 const ASSETS = [
   './',
   './index.html',
@@ -9,6 +9,17 @@ const ASSETS = [
   './assets/synapz-splash-bg.png',
   './assets/tactix-logo.png',
   './assets/coach-bob.png',
+  './assets/cutouts/agent-leo.png',
+  './assets/cutouts/agent-maya.png',
+  './assets/cutouts/agent-jalen.png',
+  './assets/cutouts/agent-chloe.png',
+  './assets/cutouts/agent-sofia.png',
+  './assets/cutouts/agent-marcus.png',
+  './assets/cutouts/agent-priya.png',
+  './assets/cutouts/agent-ryan.png',
+  './assets/cutouts/agent-claire.png',
+  './assets/cutouts/coach-bob.png',
+  './assets/cutouts/coach-al.png',
   './assets/rooms/room-rink-lobby.png',
   './assets/rooms/room-locker-room.png',
   './assets/rooms/room-coaches-office.png',

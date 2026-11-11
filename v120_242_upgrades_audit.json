@@ -1,7 +1,7 @@
 {
-  "version": "v12.0-clean-slate-accounts-and-portals",
-  "cacheVersion": "synapz-hockey-v12.0-clean-slate-portals",
-  "verifiedAt": "2026-11-11T22:25:40.970Z",
+  "version": "v12.1-guided-cutout-profiles-and-adaptive-iq",
+  "cacheVersion": "synapz-hockey-v12.1-cutout-guided-profiles",
+  "verifiedAt": "2026-11-11T23:49:01.507Z",
   "viewportsTested": [
     "390x844 Phone Portrait",
     "1024x768 iPad Landscape"

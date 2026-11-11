@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-11T22:25:39.372Z",
-  "runNumber": 29,
+  "generatedAt": "2026-11-11T23:48:59.976Z",
+  "runNumber": 32,
   "strictBlindAssertion": {
     "verified": true,
     "forbiddenTokensChecked": 7,
@@ -36,7 +36,7 @@
         "scenarioId": "basics-defense",
         "title": "Hockey 101: Hold the Offensive Blue Line (Left Point D)",
         "rawWordCount": 37,
-        "postTrim8UWordCount": 13,
+        "postTrim8UWordCount": 12,
         "threshold8U10U": 14,
         "sampleText": "When your team attacks, the two Defensemen hold the Point just inside the offensive blue line ("
       },
@@ -44,7 +44,7 @@
         "scenarioId": "basics-offsides",
         "title": "Hockey 101: Tag Up at the Blue Line (Stay Onsides!)",
         "rawWordCount": 26,
-        "postTrim8UWordCount": 14,
+        "postTrim8UWordCount": 13,
         "threshold8U10U": 14,
         "sampleText": "The PUCK must cross the offensive blue line before any attacking skater! Drag #9 back to the of"
       },
@@ -52,7 +52,7 @@
         "scenarioId": "spacing-1",
         "title": "Build the Offensive Triangle (Stop Puck-Chasing!)",
         "rawWordCount": 25,
-        "postTrim8UWordCount": 13,
+        "postTrim8UWordCount": 12,
         "threshold8U10U": 14,
         "sampleText": "Teammate #14 wins the puck in the corner with Defender D1 pressuring. Move #9 to the high slot "
       },
@@ -60,7 +60,7 @@
         "scenarioId": "spacing-2",
         "title": "On-Puck Decision: Corner Cycle & Slot Pass Read!",
         "rawWordCount": 33,
-        "postTrim8UWordCount": 12,
+        "postTrim8UWordCount": 11,
         "threshold8U10U": 14,
         "sampleText": "YOU (#9) have the puck in the corner! D1 is pressuring you and D2 is covering #19 at the net. T"
       },
@@ -68,7 +68,7 @@
         "scenarioId": "cycle-pov",
         "title": "In the Skates 3D POV: Corner Cycle vs. Slot Read",
         "rawWordCount": 31,
-        "postTrim8UWordCount": 8,
+        "postTrim8UWordCount": 9,
         "threshold8U10U": 14,
         "sampleText": "First-Person POV from the corner: #19 in front of the crease is tied up by a defender, and the "
       },
@@ -92,7 +92,7 @@
         "scenarioId": "breakout-1",
         "title": "Winger Breakout: Get to the Hashmarks on the Wall!",
         "rawWordCount": 27,
-        "postTrim8UWordCount": 14,
+        "postTrim8UWordCount": 13,
         "threshold8U10U": 14,
         "sampleText": "Defenseman #14 picks up a dump-in behind your net. Skate back to the boards at the hashmarks fa"
       },
@@ -132,7 +132,7 @@
         "scenarioId": "rush-2v1-dish",
         "title": "2-on-1 Decision: Defender Charges YOU — Dish or Shoot?",
         "rawWordCount": 37,
-        "postTrim8UWordCount": 10,
+        "postTrim8UWordCount": 9,
         "threshold8U10U": 14,
         "sampleText": "YOU (#9) have the puck on a 2-on-1 rush! Defender D1 commits to playing the body/shot on YOU, l"
       },
@@ -180,7 +180,7 @@
         "scenarioId": "transition-2",
         "title": "3v3 Escape Valve: Hinge Back to Keep Possession",
         "rawWordCount": 24,
-        "postTrim8UWordCount": 12,
+        "postTrim8UWordCount": 11,
         "threshold8U10U": 14,
         "sampleText": "Teammate #14 is cornered along the boards with two defenders closing in. Slide into the open \"H"
       },
@@ -204,7 +204,7 @@
         "scenarioId": "protect-cutback-wall",
         "title": "Puck Protection: All Outlets Covered — Cut Back to High Ice!",
         "rawWordCount": 38,
-        "postTrim8UWordCount": 13,
+        "postTrim8UWordCount": 14,
         "threshold8U10U": 14,
         "sampleText": "When every passing lane is covered, forcing a pass causes a turnover! Shield the puck (or tap \ud83d"
       },
@@ -212,7 +212,7 @@
         "scenarioId": "delay-high-slot",
         "title": "Deception & Delay: Look Off D1 & Hit the High Trailer!",
         "rawWordCount": 41,
-        "postTrim8UWordCount": 13,
+        "postTrim8UWordCount": 12,
         "threshold8U10U": 14,
         "sampleText": "YOU (#9) carry across the offensive blue line. #19 drives hard to push D2 back, opening a soft "
       },
@@ -238,7 +238,7 @@
         "scenarioId": "basics-defense",
         "title": "Hockey 101: Hold the Offensive Blue Line (Left Point D)",
         "rawWordCount": 37,
-        "postTrim14UWordCount": 13,
+        "postTrim14UWordCount": 12,
         "threshold12U18U": 22,
         "sampleText": "When your team attacks, the two Defensemen hold the Point just inside the offensive blue line ("
       },
@@ -246,7 +246,7 @@
         "scenarioId": "basics-offsides",
         "title": "Hockey 101: Tag Up at the Blue Line (Stay Onsides!)",
         "rawWordCount": 26,
-        "postTrim14UWordCount": 14,
+        "postTrim14UWordCount": 13,
         "threshold12U18U": 22,
         "sampleText": "The PUCK must cross the offensive blue line before any attacking skater! Drag #9 back to the of"
       },
@@ -254,7 +254,7 @@
         "scenarioId": "spacing-1",
         "title": "Build the Offensive Triangle (Stop Puck-Chasing!)",
         "rawWordCount": 25,
-        "postTrim14UWordCount": 13,
+        "postTrim14UWordCount": 12,
         "threshold12U18U": 22,
         "sampleText": "Teammate #14 wins the puck in the corner with Defender D1 pressuring. Move #9 to the high slot "
       },
@@ -262,7 +262,7 @@
         "scenarioId": "spacing-2",
         "title": "On-Puck Decision: Corner Cycle & Slot Pass Read!",
         "rawWordCount": 33,
-        "postTrim14UWordCount": 12,
+        "postTrim14UWordCount": 11,
         "threshold12U18U": 22,
         "sampleText": "YOU (#9) have the puck in the corner! D1 is pressuring you and D2 is covering #19 at the net. T"
       },
@@ -270,7 +270,7 @@
         "scenarioId": "cycle-pov",
         "title": "In the Skates 3D POV: Corner Cycle vs. Slot Read",
         "rawWordCount": 31,
-        "postTrim14UWordCount": 8,
+        "postTrim14UWordCount": 9,
         "threshold12U18U": 22,
         "sampleText": "First-Person POV from the corner: #19 in front of the crease is tied up by a defender, and the "
       },
@@ -278,7 +278,7 @@
         "scenarioId": "house-1",
         "title": "Protect \"The House\" (Defensive Net-Side Positioning)",
         "rawWordCount": 26,
-        "postTrim14UWordCount": 7,
+        "postTrim14UWordCount": 18,
         "threshold12U18U": 22,
         "sampleText": "Opponent R1 has the puck in the corner while #14 battles them. Opponent R2 is sneaking into the"
       },
@@ -294,7 +294,7 @@
         "scenarioId": "breakout-1",
         "title": "Winger Breakout: Get to the Hashmarks on the Wall!",
         "rawWordCount": 27,
-        "postTrim14UWordCount": 18,
+        "postTrim14UWordCount": 17,
         "threshold12U18U": 22,
         "sampleText": "Defenseman #14 picks up a dump-in behind your net. Skate back to the boards at the hashmarks fa"
       },
@@ -334,7 +334,7 @@
         "scenarioId": "rush-2v1-dish",
         "title": "2-on-1 Decision: Defender Charges YOU — Dish or Shoot?",
         "rawWordCount": 37,
-        "postTrim14UWordCount": 10,
+        "postTrim14UWordCount": 9,
         "threshold12U18U": 22,
         "sampleText": "YOU (#9) have the puck on a 2-on-1 rush! Defender D1 commits to playing the body/shot on YOU, l"
       },
@@ -382,7 +382,7 @@
         "scenarioId": "transition-2",
         "title": "3v3 Escape Valve: Hinge Back to Keep Possession",
         "rawWordCount": 24,
-        "postTrim14UWordCount": 12,
+        "postTrim14UWordCount": 11,
         "threshold12U18U": 22,
         "sampleText": "Teammate #14 is cornered along the boards with two defenders closing in. Slide into the open \"H"
       },
@@ -390,7 +390,7 @@
         "scenarioId": "pp-umbrella",
         "title": "5-on-4 Power Play: One-Timer Flank in the Umbrella",
         "rawWordCount": 44,
-        "postTrim14UWordCount": 20,
+        "postTrim14UWordCount": 19,
         "threshold12U18U": 22,
         "sampleText": "Your team has a 5-on-4 Power Play! Teammate #14 is the quarterback at the top of the Umbrella i"
       },
@@ -398,7 +398,7 @@
         "scenarioId": "protect-cutback-wall",
         "title": "Puck Protection: All Outlets Covered — Cut Back to High Ice!",
         "rawWordCount": 38,
-        "postTrim14UWordCount": 20,
+        "postTrim14UWordCount": 19,
         "threshold12U18U": 22,
         "sampleText": "When every passing lane is covered, forcing a pass causes a turnover! Shield the puck (or tap \ud83d"
       },
@@ -406,7 +406,7 @@
         "scenarioId": "delay-high-slot",
         "title": "Deception & Delay: Look Off D1 & Hit the High Trailer!",
         "rawWordCount": 41,
-        "postTrim14UWordCount": 13,
+        "postTrim14UWordCount": 12,
         "threshold12U18U": 22,
         "sampleText": "YOU (#9) carry across the offensive blue line. #19 drives hard to push D2 back, opening a soft "
       },
@@ -437,38 +437,38 @@
       {
         "scenarioId": "basics-defense",
         "rawWordCount": 37,
-        "natural8UWordCount": 13,
-        "natural14UWordCount": 13
-      },
-      {
-        "scenarioId": "basics-offsides",
-        "rawWordCount": 26,
-        "natural8UWordCount": 14,
-        "natural14UWordCount": 14
-      },
-      {
-        "scenarioId": "spacing-1",
-        "rawWordCount": 25,
-        "natural8UWordCount": 13,
-        "natural14UWordCount": 13
-      },
-      {
-        "scenarioId": "spacing-2",
-        "rawWordCount": 33,
         "natural8UWordCount": 12,
         "natural14UWordCount": 12
       },
       {
+        "scenarioId": "basics-offsides",
+        "rawWordCount": 26,
+        "natural8UWordCount": 13,
+        "natural14UWordCount": 13
+      },
+      {
+        "scenarioId": "spacing-1",
+        "rawWordCount": 25,
+        "natural8UWordCount": 12,
+        "natural14UWordCount": 12
+      },
+      {
+        "scenarioId": "spacing-2",
+        "rawWordCount": 33,
+        "natural8UWordCount": 11,
+        "natural14UWordCount": 11
+      },
+      {
         "scenarioId": "cycle-pov",
         "rawWordCount": 31,
-        "natural8UWordCount": 8,
-        "natural14UWordCount": 8
+        "natural8UWordCount": 9,
+        "natural14UWordCount": 9
       },
       {
         "scenarioId": "house-1",
         "rawWordCount": 26,
         "natural8UWordCount": 7,
-        "natural14UWordCount": 7
+        "natural14UWordCount": 18
       },
       {
         "scenarioId": "house-2",
@@ -479,8 +479,8 @@
       {
         "scenarioId": "breakout-1",
         "rawWordCount": 27,
-        "natural8UWordCount": 14,
-        "natural14UWordCount": 18
+        "natural8UWordCount": 13,
+        "natural14UWordCount": 17
       },
       {
         "scenarioId": "breakout-2",
@@ -509,8 +509,8 @@
       {
         "scenarioId": "rush-2v1-dish",
         "rawWordCount": 37,
-        "natural8UWordCount": 10,
-        "natural14UWordCount": 10
+        "natural8UWordCount": 9,
+        "natural14UWordCount": 9
       },
       {
         "scenarioId": "rush-2v1-shoot",
@@ -545,32 +545,32 @@
       {
         "scenarioId": "transition-2",
         "rawWordCount": 24,
-        "natural8UWordCount": 12,
-        "natural14UWordCount": 12
+        "natural8UWordCount": 11,
+        "natural14UWordCount": 11
       },
       {
         "scenarioId": "pp-umbrella",
         "rawWordCount": 44,
         "natural8UWordCount": 14,
-        "natural14UWordCount": 20
+        "natural14UWordCount": 19
       },
       {
         "scenarioId": "pk-box",
         "rawWordCount": 22,
         "natural8UWordCount": 14,
-        "natural14UWordCount": 17
+        "natural14UWordCount": 16
       },
       {
         "scenarioId": "protect-cutback-wall",
         "rawWordCount": 38,
-        "natural8UWordCount": 13,
-        "natural14UWordCount": 20
+        "natural8UWordCount": 14,
+        "natural14UWordCount": 19
       },
       {
         "scenarioId": "delay-high-slot",
         "rawWordCount": 41,
-        "natural8UWordCount": 13,
-        "natural14UWordCount": 13
+        "natural8UWordCount": 12,
+        "natural14UWordCount": 12
       },
       {
         "scenarioId": "d-gap-1v1",

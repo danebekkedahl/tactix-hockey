@@ -1,0 +1,2577 @@
+{
+  "version": "v12.1-guided-cutout-profiles-and-adaptive-iq",
+  "cacheVersion": "synapz-hockey-v12.1-cutout-guided-profiles",
+  "verifiedAt": "2026-11-11T23:49:01.507Z",
+  "viewportsTested": [
+    "390x844 Phone Portrait",
+    "1024x768 iPad Landscape"
+  ],
+  "totalApprovedUpgradesChecked": 242,
+  "all242ActiveAndVerified": true,
+  "all173ActiveAndVerified": true,
+  "all118ActiveAndVerified": true,
+  "all63ActiveAndVerified": true,
+  "totalPreCodedPortalBankItems": 300,
+  "maxConcurrentTacticalOverlaysPerPlay": 1,
+  "primaryGameplayButtons390": 4,
+  "sixPositionMatrixPass": true,
+  "sixPositionMatrixChecksCount": 24,
+  "sixPositionLiveShifts": [
+    {
+      "position": "C",
+      "rotationDeg": 0,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "C",
+      "rotationDeg": 90,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "C",
+      "rotationDeg": 180,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "C",
+      "rotationDeg": 270,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "LW",
+      "rotationDeg": 0,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "LW",
+      "rotationDeg": 90,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "LW",
+      "rotationDeg": 180,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "LW",
+      "rotationDeg": 270,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "RW",
+      "rotationDeg": 0,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "RW",
+      "rotationDeg": 90,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "RW",
+      "rotationDeg": 180,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "RW",
+      "rotationDeg": 270,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "LD",
+      "rotationDeg": 0,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "LD",
+      "rotationDeg": 90,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "LD",
+      "rotationDeg": 180,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "LD",
+      "rotationDeg": 270,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "RD",
+      "rotationDeg": 0,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "RD",
+      "rotationDeg": 90,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "RD",
+      "rotationDeg": 180,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "RD",
+      "rotationDeg": 270,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "G",
+      "rotationDeg": 0,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "G",
+      "rotationDeg": 90,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "G",
+      "rotationDeg": 180,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    },
+    {
+      "position": "G",
+      "rotationDeg": 270,
+      "scenarioId": "basics_support-v16",
+      "youSkaterInBounds": true,
+      "gradingChoicesCount": 3
+    }
+  ],
+  "goalieModeAuditPass": true,
+  "goalieModeAudit": {
+    "topCreaseRead": {
+      "mode": "TOP_OF_CREASE_SQUARE_TO_PUCK",
+      "creaseDepthPoint": {
+        "x": 0.13,
+        "y": 0.4784,
+        "rotationDeg": 0,
+        "inBounds": true,
+        "goalieFacingAngleDeg": 180,
+        "skaterFacingAngleDeg": 0
+      },
+      "postRvhSealed": false,
+      "screenSightlinePeekActive": true,
+      "safeCornerReboundTarget": {
+        "x": 0.14,
+        "y": 0.14,
+        "rotationDeg": 0,
+        "inBounds": true,
+        "goalieFacingAngleDeg": 180,
+        "skaterFacingAngleDeg": 0
+      },
+      "reboundSteeredAwayFromSlot": true,
+      "goalieGearAndCoinsTrackEnabled": true
+    },
+    "rvhPostRead180": {
+      "mode": "POST_INTEGRATION_RVH_SEAL",
+      "creaseDepthPoint": {
+        "x": 0.91,
+        "y": 0.54,
+        "rotationDeg": 180,
+        "inBounds": true,
+        "goalieFacingAngleDeg": 0,
+        "skaterFacingAngleDeg": 180
+      },
+      "postRvhSealed": true,
+      "screenSightlinePeekActive": true,
+      "safeCornerReboundTarget": {
+        "x": 0.86,
+        "y": 0.86,
+        "rotationDeg": 180,
+        "inBounds": true,
+        "goalieFacingAngleDeg": 0,
+        "skaterFacingAngleDeg": 180
+      },
+      "reboundSteeredAwayFromSlot": true,
+      "goalieGearAndCoinsTrackEnabled": true
+    }
+  },
+  "pilotReadinessAuditPass": true,
+  "pilotReadinessAudit": {
+    "pilotReady": true,
+    "teamCode": "PUCK99",
+    "simultaneousJoinersSimulated": 20,
+    "collisionFreeUniqueKeysCount": 20,
+    "offlineArenaWifiOutboxReady": true,
+    "all11VoicesPrewarmedCount": 11,
+    "voices11": [
+      "coach-bob",
+      "coach-al",
+      "agent-maya",
+      "agent-jalen",
+      "agent-chloe",
+      "agent-sofia",
+      "agent-leo",
+      "agent-marcus",
+      "agent-priya",
+      "agent-ryan",
+      "agent-claire"
+    ],
+    "printableCoachStationCardsCount": 3,
+    "printableStationCards": [
+      {
+        "station": 1,
+        "group": "Forwards (C / LW / RW)",
+        "drill": "Strong-Wall Breakout Hashmarks & F2/F3 Middle-Drive Support (8 Min)"
+      },
+      {
+        "station": 2,
+        "group": "Defensemen (LD / RD)",
+        "drill": "D-to-D Net-Side Hinge, Blue-Line Surf Gap & Low-House Stick Box-Out (8 Min)"
+      },
+      {
+        "station": 3,
+        "group": "Goalies (G)",
+        "drill": "Top-of-Crease Puck Squareness, RVH Post Seal & Low-Blocker Corner Rebound Steer (8 Min)"
+      }
+    ],
+    "zeroSocialBragCardsOrGuestPopups": true
+  },
+  "rotatedCameraAuditPass": true,
+  "rotatedCameraChecks": [
+    {
+      "rotationDeg": 0,
+      "scenarioId": "basics_support-v16",
+      "transformedSample": {
+        "x": 0.76,
+        "y": 0.28,
+        "rotationDeg": 0,
+        "inBounds": true,
+        "goalieFacingAngleDeg": 180,
+        "skaterFacingAngleDeg": 0
+      },
+      "primaryCueId": "S1-I",
+      "maxConcurrentTacticalOverlaysPerPlay": 1
+    },
+    {
+      "rotationDeg": 90,
+      "scenarioId": "basics_support-v16",
+      "transformedSample": {
+        "x": 0.72,
+        "y": 0.76,
+        "rotationDeg": 90,
+        "inBounds": true,
+        "goalieFacingAngleDeg": 270,
+        "skaterFacingAngleDeg": 90
+      },
+      "primaryCueId": "S1-I",
+      "maxConcurrentTacticalOverlaysPerPlay": 1
+    },
+    {
+      "rotationDeg": 180,
+      "scenarioId": "basics_support-v16",
+      "transformedSample": {
+        "x": 0.24,
+        "y": 0.72,
+        "rotationDeg": 180,
+        "inBounds": true,
+        "goalieFacingAngleDeg": 0,
+        "skaterFacingAngleDeg": 180
+      },
+      "primaryCueId": "S1-I",
+      "maxConcurrentTacticalOverlaysPerPlay": 1
+    },
+    {
+      "rotationDeg": 270,
+      "scenarioId": "basics_support-v16",
+      "transformedSample": {
+        "x": 0.28,
+        "y": 0.24,
+        "rotationDeg": 270,
+        "inBounds": true,
+        "goalieFacingAngleDeg": 90,
+        "skaterFacingAngleDeg": 270
+      },
+      "primaryCueId": "S1-I",
+      "maxConcurrentTacticalOverlaysPerPlay": 1
+    }
+  ],
+  "orientationProofSanitizerPass": true,
+  "redFlagAutoContextPass": true,
+  "redFlagAutoContext": {
+    "scenarioId": "basics_support-v16",
+    "rotationAngle": 0,
+    "ageDivision": "14U",
+    "activeScreenOrModal": "game",
+    "activeUpgradesCount": 242
+  },
+  "ipad1024Check": {
+    "viewport": "1024x768",
+    "primaryBtnsCount": 4,
+    "all242Active": true,
+    "all173Active": true,
+    "all118Active": true,
+    "all63Active": true
+  },
+  "fivePlayShiftVerification": [
+    {
+      "playIndex": 1,
+      "scenarioId": "basics_support-v16",
+      "primaryCueId": "S1-I",
+      "maxConcurrentTacticalOverlaysPerPlay": 1
+    },
+    {
+      "playIndex": 2,
+      "scenarioId": "basics_support-v16",
+      "primaryCueId": "S1-I",
+      "maxConcurrentTacticalOverlaysPerPlay": 1
+    },
+    {
+      "playIndex": 3,
+      "scenarioId": "basics_support-v16",
+      "primaryCueId": "S1-I",
+      "maxConcurrentTacticalOverlaysPerPlay": 1
+    },
+    {
+      "playIndex": 4,
+      "scenarioId": "basics_support-v16",
+      "primaryCueId": "S1-I",
+      "maxConcurrentTacticalOverlaysPerPlay": 1
+    },
+    {
+      "playIndex": 5,
+      "scenarioId": "basics_support-v16",
+      "primaryCueId": "S1-I",
+      "maxConcurrentTacticalOverlaysPerPlay": 1
+    }
+  ],
+  "fiveRoomsVerified": {
+    "roomLobbyOk": true,
+    "roomLockerOk": true,
+    "roomCoachOfficeOk": true,
+    "roomProShopOk": true,
+    "roomClubhouseOk": true,
+    "all5RoomsPass": true
+  },
+  "consoleErrorsCount": 0,
+  "pageErrorsCount": 0,
+  "perUpgradeResults": [
+    {
+      "id": "S1-A",
+      "batch": "A",
+      "seat": 1,
+      "title": "Minimum 0.15 Skater Separation & Synchronized Pre-Freeze Outlet Arc",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-A",
+      "batch": "A",
+      "seat": 2,
+      "title": "Age-Adaptive Prompt Pacing & Visual Cue Highlighting for 8U–12U",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-A",
+      "batch": "A",
+      "seat": 3,
+      "title": "1.2-Second Pulsing Gold \"YOU #9\" Halo & 1-Tap Sibling Stall Switcher",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-A",
+      "batch": "A",
+      "seat": 4,
+      "title": "32-City Tour Milestone & Pro Shop Try-On Preview",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-A",
+      "batch": "A",
+      "seat": 5,
+      "title": "Coach Al Proactive Weekly Briefing & 1-Click Assignment Push",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-A",
+      "batch": "A",
+      "seat": 6,
+      "title": "Goalie Crease Depth & Screen Sightline Ray Indicator on Point Shots",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-A",
+      "batch": "A",
+      "seat": 7,
+      "title": "Combo Streak Multiplier Badge on Consecutive First-Try Gold Reads & Dock Height Lock",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-A",
+      "batch": "A",
+      "seat": 8,
+      "title": "Position-First Q5 Film Room Sorting & Verified Clip Badge",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-A",
+      "batch": "A",
+      "seat": 9,
+      "title": "Auto-Sync Founder Approval Queue Status & Deterministic UUID UPSERT",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-A",
+      "batch": "A",
+      "seat": 10,
+      "title": "Pre-Freeze Peripheral Vision Cueing & Partner Association Share Link",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-A",
+      "batch": "A",
+      "seat": 11,
+      "title": "Side-by-Side Current vs. Pro Shop Preview Split-Mirror Comparison",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-A",
+      "batch": "A",
+      "seat": 12,
+      "title": "100% Natural Conversational Locker-Room Voice Cadence Across All 11 Characters",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-B",
+      "batch": "B",
+      "seat": 9,
+      "title": "Service Worker / LocalStorage Snapshot Cache for 360 Cloud Scenarios & 51 Video Rows",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-B",
+      "batch": "B",
+      "seat": 10,
+      "title": "Multi-Sibling \"Family Locker Pass\" Bundle Callout When 2+ Sibling Stalls Are Active",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-F",
+      "batch": "F",
+      "seat": 1,
+      "title": "Dynamic Weak-Side F2/F3 Support Lane Pulse When Skater Separation Drops Near 0.15",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-F",
+      "batch": "F",
+      "seat": 2,
+      "title": "Post-Mistake 2.0-Second \"Ghost Skater Gold Path\" Comparison Vector on Retry Attempts",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-F",
+      "batch": "F",
+      "seat": 3,
+      "title": "Auto-Enforce 12-Word Spoken & Bubble Cap on 8U/10U Drills With Visual Target Emoji",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-F",
+      "batch": "F",
+      "seat": 4,
+      "title": "Metallic \"City Conquered Stamp\" Animation on 32-City Tour Map Node After Q5 Mastery",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-F",
+      "batch": "F",
+      "seat": 5,
+      "title": "1-Tap \"Push 3 Counter-Trap Breakout Drills\" Preset Inside Coach Al's Opponent Scouting Cards",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-F",
+      "batch": "F",
+      "seat": 8,
+      "title": "3-Second Key-Frame Tactical Callout Banner Synchronized to Clip Peak Timestamp in Q5 Film Room",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-F",
+      "batch": "F",
+      "seat": 9,
+      "title": "Instant Offline LocalStorage Scenario & Video Snapshot Cache (<10ms Cold-Rink Load)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-F",
+      "batch": "F",
+      "seat": 11,
+      "title": "Dynamic Championship Division Banner Engraving Inside the Illustrated Clubhouse Trophy Case",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-G",
+      "batch": "G",
+      "seat": 1,
+      "title": "Weak-Side Defenseman \"Net-Front Box+1 Stick-Lift\" Arc on D-Zone Cycle Reads",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-G",
+      "batch": "G",
+      "seat": 2,
+      "title": "1.5-Second \"Freeze-Frame Tactical Cue Arrow\" Before Unlocking Answer Buttons on 10U/12U",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-G",
+      "batch": "G",
+      "seat": 3,
+      "title": "Pulsing Blue-Line \"Stay Onside Boots\" Indicator for 8U/10U Zone-Entry Drills",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-G",
+      "batch": "G",
+      "seat": 4,
+      "title": "\"Hat-Trick 3-for-3 Gold Read\" Ice-Sparkle Particle Burst on #rinkCanvas",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-G",
+      "batch": "G",
+      "seat": 5,
+      "title": "1-Tap \"Export Friday Pre-Game Locker Room 5-Drill Pack\" in Coach Al's Office",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-G",
+      "batch": "G",
+      "seat": 6,
+      "title": "Association-Wide \"8U–18U ADM Skill Progression Heatmap\" Summary Row in Director HQ",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-G",
+      "batch": "G",
+      "seat": 7,
+      "title": "Compact Single-Line Pill Compaction on 390px Portrait Header (<= 4 Buttons Enforced)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-G",
+      "batch": "G",
+      "seat": 8,
+      "title": "Auto-Match Coach's Active System Preset (2-1-2 / Box+1) to Top Q5 Video Clip",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-G",
+      "batch": "G",
+      "seat": 9,
+      "title": "60fps <canvas> Offscreen Rink Ice Layer Cache for Zero-Alloc Redraws",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-G",
+      "batch": "G",
+      "seat": 11,
+      "title": "Team Home/Away Sweater Trim Sync Onto Top-Down 2x Faceoff-Dot Skater Shoulders",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-G",
+      "batch": "G",
+      "seat": 12,
+      "title": "SafeSport One-Way \"Plan Viewed Count (17/18 Skaters)\" Read-Receipt Pill in Coach Station 4",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-H",
+      "batch": "H",
+      "seat": 1,
+      "title": "Royal-Road Cross-Seam Passing Lane Denial Cone on 2-on-1 & 5v4 PK Reads",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-H",
+      "batch": "H",
+      "seat": 2,
+      "title": "Progressive 2-Hint Scaffolding (\"1st Hint: Scan Zone -> 2nd Hint: Exact Lane\") in Coach Bob Popup",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-H",
+      "batch": "H",
+      "seat": 3,
+      "title": "Color-Blind Safe High-Contrast Shape Badges (★ Gold / ◆ Silver / ▲ Bronze) on Multi-Choice Zones",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-H",
+      "batch": "H",
+      "seat": 4,
+      "title": "\"Overtime Clutch Winner\" Gold Stick-Tape Unlock Notification on 5/5 Perfect Series",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-H",
+      "batch": "H",
+      "seat": 5,
+      "title": "Line-Specific (Line 1/2 vs D-Pair 1/2) Assignment Filter in Coach Al's Progress Table",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-H",
+      "batch": "H",
+      "seat": 6,
+      "title": "Monthly USA Hockey ADM Pillar Balance Audit Badge in Director HQ Tab 4",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-H",
+      "batch": "H",
+      "seat": 7,
+      "title": "Zero-Scroll Landscape iPad Split-View Lock (#rinkCanvas >= 78% Viewport Area)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-H",
+      "batch": "H",
+      "seat": 8,
+      "title": "Role-Translated Takeaway Captions (Bull / Fox / Eagle) Inside Q5 Film Room",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-H",
+      "batch": "H",
+      "seat": 9,
+      "title": "Instant Preload of Next City Series Scenarios & Audio Clips During Q4->Q5 Transition",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-H",
+      "batch": "H",
+      "seat": 11,
+      "title": "Brushed-Brass Stanley Cup Tier Medallion Reflection on Pro Shop Showcase Counter",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-H",
+      "batch": "H",
+      "seat": 12,
+      "title": "Automatic iOS/Android WebAudio Unlock Ping on First Room Doorway Tap",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-I",
+      "batch": "I",
+      "seat": 1,
+      "title": "Center \"Low-and-Slow Underneath F1\" Speed-Differential Timing Arc on Breakouts",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-I",
+      "batch": "I",
+      "seat": 2,
+      "title": "Post-Series \"1 Golden Rule Takeaway Card\" Before Returning to NHL Tour Map",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-I",
+      "batch": "I",
+      "seat": 3,
+      "title": "Sibling Turn-Timer Reminder (\"5-Play Turn Complete — Hand iPad to Sibling?\") in Multi-Stall Mode",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-I",
+      "batch": "I",
+      "seat": 4,
+      "title": "Animated 3D Puck Trail Along Conquered Division Path on #nhlTourMapSvg",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-I",
+      "batch": "I",
+      "seat": 6,
+      "title": "Multi-Club Affiliate Comparison Benchmark Pill (Club IQ vs. Regional Avg) in Director HQ",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-I",
+      "batch": "I",
+      "seat": 7,
+      "title": "Auto-Collapse Long Scenario Titles Into Clean 1-Line Ellipsis With Tap-to-Expand in Top Bar",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-I",
+      "batch": "I",
+      "seat": 8,
+      "title": "\"Watch Same Concept From Goalie / D / Forward Camera Angle\" Tag in Film Room",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-I",
+      "batch": "I",
+      "seat": 9,
+      "title": "Delta-Compressed Supabase Profile Sync (<1.2 KB Payload per Series Save)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-I",
+      "batch": "I",
+      "seat": 12,
+      "title": "Strict PIN Masking & Auto-Clear After 3 Seconds on Locker Room Sibling Switch Input",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-J",
+      "batch": "J",
+      "seat": 1,
+      "title": "3-on-2 High-Slot Trailer (F3) Delay Pocket Highlight on Rush Entry Drills",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-J",
+      "batch": "J",
+      "seat": 2,
+      "title": "Adaptive Spaced-Repetition \"Mastery Lock\" Badge When a Previously Missed Concept Hits 3-in-a-Row",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-J",
+      "batch": "J",
+      "seat": 3,
+      "title": "Picture-First Icon Cues (🥅 Net, 🛡️ House, 📐 Triangle) Prefixing Every 8U/10U Choice Button",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-J",
+      "batch": "J",
+      "seat": 4,
+      "title": "Division Trophy Case \"Gold Puck Engraving\" With Date & City Series Score in Clubhouse",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-J",
+      "batch": "J",
+      "seat": 5,
+      "title": "Printable 1-Card \"Locker Room Door Tape Sheet (3 Keys for Tonight)\" in Coach Station 3",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-J",
+      "batch": "J",
+      "seat": 6,
+      "title": "Season-Long \"16-Bucket Curriculum Completion Thermometer\" in Director HQ",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-J",
+      "batch": "J",
+      "seat": 7,
+      "title": "Thumb-Zone Safe Margin Padding (12px Bottom Cushion) Above iOS Home Indicator Bar",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-J",
+      "batch": "J",
+      "seat": 10,
+      "title": "\"Summer Hockey Camp & AAA Tryout Prep Pack\" Seasonal Callout in Pro Shop & Pricing",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-J",
+      "batch": "J",
+      "seat": 11,
+      "title": "Dynamic Arena Spotlight Glow Over Active Skater Stall in room-locker-room.png",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-J",
+      "batch": "J",
+      "seat": 12,
+      "title": "Continuous SafeSport Zero-PII Telemetry Scrubber on All Outbound Cloud Sync Payloads",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-K",
+      "batch": "K",
+      "seat": 1,
+      "title": "Breakout D-to-D Hinge: Calibrate Weak-Side D2 Lateral Skate Depth Behind Goal Line on Scenarios #185–#212",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-K",
+      "batch": "K",
+      "seat": 2,
+      "title": "Standardize \"Scan -> Read -> React\" 10-Word Question Stems Across Scenarios #213–#248",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-K",
+      "batch": "K",
+      "seat": 3,
+      "title": "8U/10U Rotated-Rink (90°/270°) Attacking-Zone Arrow Pulse for First 1.0s of Vertical Drills",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-K",
+      "batch": "K",
+      "seat": 4,
+      "title": "Smooth 350ms Puck-to-Tape Pass Interpolation on Correct First-Try Gold Reads",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-K",
+      "batch": "K",
+      "seat": 5,
+      "title": "Auto-Populate Tonight's Practice Focus From Team's 3 Lowest-Accuracy Scenarios in Coach Al's Briefing",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-K",
+      "batch": "K",
+      "seat": 6,
+      "title": "Age-Division Scenario Coverage Verification Column (360/360 Base + 4-Way Camera Reps) in Director HQ",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-K",
+      "batch": "K",
+      "seat": 7,
+      "title": "Touch-Target Hit-Slop Expansion (+10px Invisible Cushion) on On-Ice Tap-Player Targets for 390px Phones",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-K",
+      "batch": "K",
+      "seat": 9,
+      "title": "Context-Smart Single-Cue <canvas> Priority Cap (selectPrimaryCanvasCueForScenario) Preventing Visual Overlap",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-K",
+      "batch": "K",
+      "seat": 10,
+      "title": "Zero-Friction 1-Tap \"Resume Current City Stop\" Direct Launch From Rink Lobby Doorway",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-K",
+      "batch": "K",
+      "seat": 11,
+      "title": "Crisp High-DPI Stick-Blade Orientation Alignment With Puck Velocity Vector on #rinkCanvas",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-K",
+      "batch": "K",
+      "seat": 12,
+      "title": "Zero-Clip 80ms Fade-Out Envelope on Character Voice Audio When Advancing Rapidly Between Drills",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-L",
+      "batch": "L",
+      "seat": 1,
+      "title": "Neutral-Zone 1-2-2 Forecheck: Calibrate F2/F3 Strong-Side Board Seal Coordinates on Scenarios #249–#276",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-L",
+      "batch": "L",
+      "seat": 2,
+      "title": "Instant \"Why Silver vs. Gold?\" 1-Sentence Spatial Comparison Inside Feedback Card on 80% Reads",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-L",
+      "batch": "L",
+      "seat": 3,
+      "title": "8U/10U Calm 1.8s Post-Freeze Breath Pause Before Timer Tick on Timed Drills",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-L",
+      "batch": "L",
+      "seat": 4,
+      "title": "Subtle Goal-Light Red Rim Pulse on Attacking Net Frame After 100% Gold Shot/Pass Read",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-L",
+      "batch": "L",
+      "seat": 5,
+      "title": "Position-Specific (Centers / Wingers / Defense / Goalie) Sub-Filter Inside Coach Al's Question Report",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-L",
+      "batch": "L",
+      "seat": 6,
+      "title": "Association-Wide \"Top 3 Mastered vs. Top 3 Needs-Reps\" Concept Summary Header in Director HQ",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-L",
+      "batch": "L",
+      "seat": 7,
+      "title": "Zero-Bounce Sticky Bottom Action Bar Height Lock Across All 5 Question Formats on 390px iPhone",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-L",
+      "batch": "L",
+      "seat": 8,
+      "title": "Automatic Fallback to Verified Backup Clip If Primary YouTube Embed Buffers > 2.0s in Q5 Film Room",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-L",
+      "batch": "L",
+      "seat": 9,
+      "title": "Passive TouchMove & PointerEvent Listener Optimization on #rinkCanvas for 120Hz ProMotion iPads",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-L",
+      "batch": "L",
+      "seat": 11,
+      "title": "Crisp Goal-Crease Blue Paint & Red Post Shadow Contrast Tuning on Half-Rink Zoom Views",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-L",
+      "batch": "L",
+      "seat": 12,
+      "title": "Pre-Normalized RMS Loudness (-14 LUFS Equivalent) Balance Across All 112 Neural .mp3 Voice Clips",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-M",
+      "batch": "M",
+      "seat": 1,
+      "title": "Offensive-Zone Cycle & Scissors: Calibrate High-F3 Backfill Timing on Scenarios #277–#304",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-M",
+      "batch": "M",
+      "seat": 2,
+      "title": "Role-Matched Golden Rule Phrasing (\"As F1...\" / \"As Weak-Side D2...\") on All 360 Scenarios",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-M",
+      "batch": "M",
+      "seat": 3,
+      "title": "8U/10U Drag-Skater Magnetic Snap Cushion (+12px) Near Consensus Target Zones",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-M",
+      "batch": "M",
+      "seat": 5,
+      "title": "1-Tap \"Preview Assigned 5-Drill Plan on Rink Canvas\" Inside Coach Al's Station 2",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-M",
+      "batch": "M",
+      "seat": 7,
+      "title": "Instant Escape-Key & Backdrop-Tap Dismiss Consistency Across All 5 Room Modals",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-M",
+      "batch": "M",
+      "seat": 8,
+      "title": "Verified 1-Line Coaching Point Subtitle Below Every Q5 Film Room Clip Player",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-M",
+      "batch": "M",
+      "seat": 9,
+      "title": "Deterministic 4-Way Camera Rotation Matrix Unit Self-Test on Scenario Load (0 Off-Ice Coordinates)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-M",
+      "batch": "M",
+      "seat": 10,
+      "title": "Fast-Track \"Switch Age Division (8U–18U)\" Selector Inside Locker Room Stall Header",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-M",
+      "batch": "M",
+      "seat": 11,
+      "title": "Subtle Brushed-Brass Hotspot Hover/Tap Border Glow Across All 28 Room Hotspots",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-M",
+      "batch": "M",
+      "seat": 12,
+      "title": "Auto-Pause Active Character Speech Immediately When Opening Q5 Film Room Video Modal",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-N",
+      "batch": "N",
+      "seat": 1,
+      "title": "Power-Play Umbrella & Penalty-Kill Diamond: Calibrate Seam-Pass Velocities on Scenarios #305–#332",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-N",
+      "batch": "N",
+      "seat": 2,
+      "title": "2-Step Mistake Mode: Highlight Exact Defender Stick-Lane That Intercepted the Bad Pass on Step 1",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-N",
+      "batch": "N",
+      "seat": 3,
+      "title": "Zero-Jargon Plain Hockey Terms (\"Backdoor Pass\" / \"Slot House\") Filter for 8U/10U Feedback",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-N",
+      "batch": "N",
+      "seat": 4,
+      "title": "Live City-by-City Star Counter (e.g., \"96 / 160 Tour Stars\") in NHL Tour Map Header",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-N",
+      "batch": "N",
+      "seat": 5,
+      "title": "Coach Al Opponent Scouting: Auto-Select Matching Age-Division Counter Drills When Division Changes",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-N",
+      "batch": "N",
+      "seat": 6,
+      "title": "1-Click \"Filter Director Table by Age Division (8U–18U)\" Pill Row Inside Director HQ Tab 4",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-N",
+      "batch": "N",
+      "seat": 7,
+      "title": "Prevent Accidental Double-Tap Zoom on Rapid Skater-Drag & Button Taps on iOS Safari",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-N",
+      "batch": "N",
+      "seat": 8,
+      "title": "Pre-Verify All 51 Video Embed IDs Against Cloud Library on Startup (Zero Broken Iframes)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-N",
+      "batch": "N",
+      "seat": 9,
+      "title": " Debounced Window Resize & Orientation-Change <canvas> Redraw (0 Layout Thrash on iPad Rotate)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-N",
+      "batch": "N",
+      "seat": 11,
+      "title": "High-Contrast Jersey Number Typography Outline on All 10 On-Ice Skater Tokens at 390px Width",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-N",
+      "batch": "N",
+      "seat": 12,
+      "title": " Synchronized Live Word-Stream Highlighting Paced to Exact .mp3 Audio Duration",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-O",
+      "batch": "O",
+      "seat": 1,
+      "title": "Goalie RVH, Crease Depth & 3v3 OT Triangle: Calibrate Post-Integration Angles on Scenarios #333–#360",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-O",
+      "batch": "O",
+      "seat": 2,
+      "title": "Adaptive Retry Hint: Automatically Activate 1st Visual Cue When a Player Retries a Missed Question",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-O",
+      "batch": "O",
+      "seat": 3,
+      "title": "8U/10U Celebration Confetti Burst Capped at 900ms So Next-Question Button Is Immediately Ready",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-O",
+      "batch": "O",
+      "seat": 4,
+      "title": "32-City Tour Complete \"Stanley Cup Champion\" Master Banner Unlock in Clubhouse When 32/32 Cities Conquered",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-O",
+      "batch": "O",
+      "seat": 5,
+      "title": "Coach Al Station 1: Instant Playbook Preset Preview Showing Affected Tactical Terminology Labels",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-O",
+      "batch": "O",
+      "seat": 6,
+      "title": "Season-to-Date Total Scenarios Mastered Counter Across All Club Teams in Director HQ",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-O",
+      "batch": "O",
+      "seat": 7,
+      "title": "Strict Zero-Horizontal-Overflow Guard (`overflow-x: clip`) Across All Modals & Tables at 390px",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-O",
+      "batch": "O",
+      "seat": 8,
+      "title": "Q5 Film Room \"Replay From Tactical Trigger Point\" 1-Tap Seek Button Inside Video Modal",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-O",
+      "batch": "O",
+      "seat": 9,
+      "title": "Zero-Allocation Skater Coordinate Interpolation Buffer During 60fps Pre-Freeze Roll-In",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-O",
+      "batch": "O",
+      "seat": 10,
+      "title": "1-Tap \"Start Next City on Tour\" Button Highlighted Primary Inside Series Complete Modal",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-O",
+      "batch": "O",
+      "seat": 11,
+      "title": "Subtle Ice-Reflection Specular Highlight Under YOU #9 Gold Halo Ring on #rinkCanvas",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-O",
+      "batch": "O",
+      "seat": 12,
+      "title": "100% Verified 63+ Live Upgrades Self-Diagnostic & SafeSport Integrity Check on App Boot",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-P",
+      "batch": "P",
+      "seat": 1,
+      "title": "4-Way Camera (90°/180°/270°): True Hockey Landmark Phrasing (\"Weak-Side Boards\" / \"High Slot\" / \"Far Post\") Replacing Screen-Relative Directions",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-P",
+      "batch": "P",
+      "seat": 2,
+      "title": "Orientation-Locked Feedback Vectors: Mirror Gold/Silver/Bronze Target Vectors Dynamically Across 90°/180°/270° Rotations",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-P",
+      "batch": "P",
+      "seat": 3,
+      "title": "8U/10U Downward-Attack (180°) Goalie & Net-Front Orientation Cue (\"Attacking the Bottom Goal!\")",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-P",
+      "batch": "P",
+      "seat": 4,
+      "title": "End-to-End 5-Play Shift Flow: Seamless Q4->Q5 Film Room Transition Without Losing Rotated Rink State",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-P",
+      "batch": "P",
+      "seat": 7,
+      "title": "Ultra-Responsive In-App 🚩 Founder Red-Flag Capture (Auto-Captures scenarioId, rotationAngle, ageDivision & 118 Active Upgrades)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-P",
+      "batch": "P",
+      "seat": 8,
+      "title": "Q5 Film Room Playback Resilience: Instant Clip Resume & Landmark Caption Sync After Returning From Rotated Rink",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-P",
+      "batch": "P",
+      "seat": 9,
+      "title": "4-Way Camera Vector Math Engine (transformCoordForCameraRotation): Exact Skater & Goalie Facing Angles at 90°/180°/270°",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-P",
+      "batch": "P",
+      "seat": 10,
+      "title": "Zero-Latency End-to-End Journey Handoff: 2-Button Gate -> Locker Stall PIN -> Pro Shop Try-On -> 5-Play Shift",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-P",
+      "batch": "P",
+      "seat": 11,
+      "title": "Rotated Crease & Goalie Stick/Glove Handedness Alignment on 90°/180°/270° Camera Views",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-P",
+      "batch": "P",
+      "seat": 12,
+      "title": "Spoken Voice Line Orientation Scrubber: Replace Screen-Relative (\"Left/Up\") With Ice Landmarks (\"Strong-Side/High Slot\") in Live Speech",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-Q",
+      "batch": "Q",
+      "seat": 1,
+      "title": "180° Top-to-Bottom Attack Calibration: Flip D-to-D Hinge & Center Low-Swing Vectors Cleanly Behind Top Goal Line (Permutations #361–#480)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-Q",
+      "batch": "Q",
+      "seat": 2,
+      "title": "Rotated-Rink Mistake Mode: Keep Step-1 Culprit Tap & Step-2 Drag Target Aligned Under 90°/180°/270° Transforms",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-Q",
+      "batch": "Q",
+      "seat": 3,
+      "title": "8U/10U Cross-Ice (90°/270°) Blue-Line Onside Boot Indicator Aligned to Rotated Zone Entry Axis",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-Q",
+      "batch": "Q",
+      "seat": 4,
+      "title": "Pro Shop Live Avatar Try-On -> On-Ice Skater Token Instant Sync Across All 5 Shift Questions",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-Q",
+      "batch": "Q",
+      "seat": 5,
+      "title": "Coach Al Homework Assignment Flow: Preserve Assigned Concept Bucket Across Rotated Permutations",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-Q",
+      "batch": "Q",
+      "seat": 6,
+      "title": "Parent Tab 4 Progress Tracker: Live Per-Sibling 5-Play Shift History & Weakest-Slice Recommendation Sync",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-Q",
+      "batch": "Q",
+      "seat": 7,
+      "title": "Room Modal 🚩 Red-Flag Context Capture: Auto-Detect Active Room Modal (Locker / Pro Shop / Coach Al / Clubhouse) on Tap",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-Q",
+      "batch": "Q",
+      "seat": 8,
+      "title": "Q5 Film Room Concept-Matched Backup Stream Selector for Zero-Stall Playback on Cellular Connections",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-Q",
+      "batch": "Q",
+      "seat": 9,
+      "title": "Inverse Pointer Hit-Testing Matrix (canvasToNormRotated) for Pinpoint Drag-Skater & Tap-Zone Accuracy at 90°/180°/270°",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-Q",
+      "batch": "Q",
+      "seat": 11,
+      "title": "Directional Skate-Blade & Shadow Projection Normalizing Light Source Across 4-Way Camera Angles",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-Q",
+      "batch": "Q",
+      "seat": 12,
+      "title": "11-Character Voice Queue Guard: Prevent Overlapping Audio When Switching Rapidly Between Locker Stall & Ice",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-R",
+      "batch": "R",
+      "seat": 1,
+      "title": "90° Left-to-Right Attack Calibration: Normalize Weak-Side F3 High-Slot Reload Coordinates (Permutations #481–#600)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-R",
+      "batch": "R",
+      "seat": 2,
+      "title": "3-Option Tactical Choice Buttons: Landmark-Pure Wording (\"Far-Pad Rebound Shot\" / \"Weak-Side D2 Reverse\") at All Angles",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-R",
+      "batch": "R",
+      "seat": 3,
+      "title": "10U/12U Who-Am-I Role Read (F1/F2/F3/D1/D2): Orientation-Independent Distance-to-Puck Calculation",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-R",
+      "batch": "R",
+      "seat": 4,
+      "title": "5-Play Shift Summary Modal: Instant 1-Tap Replay of Any Missed Question From the Completed Shift",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-R",
+      "batch": "R",
+      "seat": 5,
+      "title": "Coach Al Opponent Scouting Bench Card: Landmark-Pure Period-by-Period Keys (Zero Screen-Relative Terms)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-R",
+      "batch": "R",
+      "seat": 6,
+      "title": "Director HQ Multi-Division Audit: Track 4-Way Camera Mastery Parity (0° vs 90°/180°/270°) Across 8U–18U",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-R",
+      "batch": "R",
+      "seat": 8,
+      "title": "Q5 Film Room Timestamp Scrub Bar: Instant Jump to 3-Second Tactical Trigger Moment",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-R",
+      "batch": "R",
+      "seat": 9,
+      "title": "Zero-Drift Bezier Pass & Skating Path Tangents Under 90°/180°/270° Coordinate Rotations",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-R",
+      "batch": "R",
+      "seat": 10,
+      "title": "Coach Al Office -> Player Team Hub -> On-Ice Homework Launch 1-Tap Continuity",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-R",
+      "batch": "R",
+      "seat": 11,
+      "title": "Center-Ice Synapz Medallion & Faceoff Circle Detail Scaling on Rotated Half-Ice Views",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-R",
+      "batch": "R",
+      "seat": 12,
+      "title": "SafeSport Red-Flag Submission Scrubber: Strip Any Personal Names From Custom Flag Notes Before Cloud Sync",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-S",
+      "batch": "S",
+      "seat": 1,
+      "title": "270° Right-to-Left Attack Calibration: Royal-Road Seam & Box+1 Stick-Lane Vectors (Permutations #601–#780)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-S",
+      "batch": "S",
+      "seat": 2,
+      "title": "Post-Answer On-Ice Feedback Card: Show Exact Hockey Landmark Name (\"High Slot\" / \"Hashmark Wall\") of Chosen Spot",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-S",
+      "batch": "S",
+      "seat": 4,
+      "title": "Clubhouse Trophy Vault & Tour Map Sync: Immediately Reflect Newly Conquered City Star After Q5 Film Completion",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-S",
+      "batch": "S",
+      "seat": 5,
+      "title": "Coach Al Question-by-Question Table: Click Any Missed Question Cell (Q1–Q5) to Preview That Exact Scenario",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-S",
+      "batch": "S",
+      "seat": 6,
+      "title": "Parent Tab 4 Car-Ride Talking Points: Auto-Update With Latest Completed Concept Bucket & Golden Rule",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-S",
+      "batch": "S",
+      "seat": 7,
+      "title": "In-Drill 🚩 Red-Flag Non-Destructive Pause: Freeze Play Timer Cleanly While Typing/Dictating Flag Note & Resume on Close",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-S",
+      "batch": "S",
+      "seat": 8,
+      "title": "Q5 Film Room Auto-Mark Completed & Award Puck Bucks Even If YouTube Iframe Is Blocked by Rink Wi-Fi",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-S",
+      "batch": "S",
+      "seat": 9,
+      "title": "Deterministic Permutation Seed Persistence Across Browser Refresh Mid-Series",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-S",
+      "batch": "S",
+      "seat": 10,
+      "title": "Family Portal Sign-In -> Parent Tab 4 -> Switch to Player Stall Seamless Back-to-Lobby Navigation",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-S",
+      "batch": "S",
+      "seat": 11,
+      "title": "High-Visibility Puck Shadow & Cyan Trail Contrast on Rotated Cross-Ice Passes",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-S",
+      "batch": "S",
+      "seat": 12,
+      "title": "Audio Ducking During Q5 Video Playback: Mute Background Rink Ambience While Coaching Clip Plays",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-T",
+      "batch": "T",
+      "seat": 1,
+      "title": "Full 4-Way Special Teams Calibration (5v4 Umbrella & 4v5 Diamond) Across Rotated Permutations #781–#960",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-T",
+      "batch": "T",
+      "seat": 2,
+      "title": "Golden Rule Takeaway Synthesis: Pair Every Rotated Scenario With Its Core Spatial Landmark Rule",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-T",
+      "batch": "T",
+      "seat": 3,
+      "title": "8U–18U Age-Division Progression Gate: Verify 0 Off-Ice or Overlapping Coordinates Across All 960 Permutations",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-T",
+      "batch": "T",
+      "seat": 4,
+      "title": "End-to-End 5-Play Shift Completion -> Next City Auto-Advance Readiness Check",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-T",
+      "batch": "T",
+      "seat": 5,
+      "title": "Coach Al Practice Sheet Print/PDF Layout: Clean Single-Page Formatting With Zero Cut-Off Margins",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-T",
+      "batch": "T",
+      "seat": 6,
+      "title": "Association-Wide 960-Permutation Coverage Telemetry Sync in Director HQ",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-T",
+      "batch": "T",
+      "seat": 7,
+      "title": "390px iPhone & 1024px iPad Touch-Target Audit Lock Across All 7 End-to-End Journey Screens",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-T",
+      "batch": "T",
+      "seat": 8,
+      "title": "Q5 Film Room Multi-Channel Playlist Cycling: Zero Duplicate Clips Within a 5-City Tour Leg",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-T",
+      "batch": "T",
+      "seat": 9,
+      "title": "118-Upgrade + 60-Bank Runtime Memory Footprint Cap (< 4 MB Heap Overhead)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-T",
+      "batch": "T",
+      "seat": 10,
+      "title": "Instant 1-Tap Return From Parent Tab 4 or Coach Office Directly Into Active On-Ice Question",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-T",
+      "batch": "T",
+      "seat": 11,
+      "title": "Goalie Crease Post-to-Post RVH Seal Angle Verification Across All 4 Camera Orientations",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-T",
+      "batch": "T",
+      "seat": 12,
+      "title": "Full 118-Upgrade + 960-Permutation Boot Integrity & SafeSport Verification Receipt",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-U",
+      "batch": "U",
+      "seat": 1,
+      "title": "Exact 6-Position Skater Assignment Lock (\"YOU #\" Highlights Matching C / LW / RW / LD / RD / G Across 0°/90°/180°/270°)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-U",
+      "batch": "U",
+      "seat": 2,
+      "title": "Position-Authentic Choice Option Swapping & Gold/Silver/Bronze Grading Matrix Per Active Role (C vs. W vs. D vs. G)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-U",
+      "batch": "U",
+      "seat": 3,
+      "title": "8U/10U Plain-English Position Duty Cue (\"You're Left Defense — Protect Front of Net!\") Before Motion Starts",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-U",
+      "batch": "U",
+      "seat": 5,
+      "title": "Crisp Single-Page Printable On-Ice Practice Station Card (Forwards / Defense / Goalie Stations) in Coach Al's Office",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-U",
+      "batch": "U",
+      "seat": 6,
+      "title": "Minot / MAYSA Pilot Readiness: 6-Position Roster Balance & Completion Rollup (C / LW / RW / LD / RD / G) in Director HQ",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-U",
+      "batch": "U",
+      "seat": 7,
+      "title": "Instant 1-Tap Position Switcher Sync Inside Locker Stall Without Resetting Active Tour City or Adding Rink Buttons",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-U",
+      "batch": "U",
+      "seat": 8,
+      "title": "Dedicated Goalie & Defenseman Clip Priority Filter When Launching Q5 Film Room From G / LD / RD Stalls",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-U",
+      "batch": "U",
+      "seat": 9,
+      "title": "Bulletproof 20-Player Simultaneous Team Join (?team=PUCK99) Idempotent Cloud UPSERT & Collision-Free Roster Sync",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-U",
+      "batch": "U",
+      "seat": 10,
+      "title": "Offline Arena Wi-Fi Resilience: Instant Local Roster & Warmup Pack Hydration When Rink Signal Drops (?team=CODE)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-U",
+      "batch": "U",
+      "seat": 12,
+      "title": "Zero-Lag Audio Preload Buffer Across All 11 Voices (9 Youth Peer Agents + Coach Bob + Coach Al) on Shift Start",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-V",
+      "batch": "V",
+      "seat": 1,
+      "title": "LW vs. RW Strong-Side Hashmark Wall Seal vs. Weak-Side Middle-Slash Responsibility Mirroring Across All 4 Rotations",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-V",
+      "batch": "V",
+      "seat": 3,
+      "title": "8U/10U Left Wing vs. Right Wing Lane Shading Guard Preventing Wingers From Crossing Into Same Corner",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-V",
+      "batch": "V",
+      "seat": 4,
+      "title": "All-6-Positions Versatility Milestone Inside Locker Stall (\"Skated Shifts at C, LW, RW, LD, RD & G\")",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-V",
+      "batch": "V",
+      "seat": 5,
+      "title": "Coach Homework Role Auto-Adaptation: Same Assigned 5-Play Team Link Delivers LW Reads to Wingers & LD Reads to Defense",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-V",
+      "batch": "V",
+      "seat": 6,
+      "title": "Association Pilot Team Launch Checklist Status Indicator (Roster Synced • Warmup Assigned • SafeSport Verified) in Tab 4",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-V",
+      "batch": "V",
+      "seat": 7,
+      "title": "Compact Active Role Tag (\"LW #9\" / \"RD #9\" / \"G #1\") Integrated Cleanly Into Existing Top-Left Skater Pill",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-V",
+      "batch": "V",
+      "seat": 8,
+      "title": "Winger-Specific Q5 Film Takeaways Highlighting Board Chip-vs-Cutback & Weak-Side Back-Post Timing",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-V",
+      "batch": "V",
+      "seat": 9,
+      "title": "6-Position Coordinate Reflection Matrix Ensuring >=0.15 Skater Spacing When Swapping Active User Between LW and RW",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-V",
+      "batch": "V",
+      "seat": 10,
+      "title": "Instant ?team=CODE Case-Insensitive & Whitespace-Trimmed Sanitizer for Bleacher Parent Link Taps",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-V",
+      "batch": "V",
+      "seat": 11,
+      "title": "Left-Shot vs. Right-Shot Stick-Blade Curve & Forehand-to-Middle Orientation Sync for LW vs. RW Skaters",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-V",
+      "batch": "V",
+      "seat": 12,
+      "title": "Role-Matched Spoken Greeting (\"Set your feet at Right Wing...\" / \"Top of your crease, Goalie...\") Across All 11 Voices",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-W",
+      "batch": "W",
+      "seat": 1,
+      "title": "LD vs. RD Strong-Side Corner Stick-on-Puck vs. Weak-Side Net-Front Box-Out Duty Swap Across 0°/90°/180°/270°",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-W",
+      "batch": "W",
+      "seat": 2,
+      "title": "Defenseman Gap-Control Grading Calibration: Surfing Blue Line With Stick-on-Puck (Gold) vs. Backing Into Goalie's Lap (Bronze)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-W",
+      "batch": "W",
+      "seat": 3,
+      "title": "8U/10U Defenseman \"Net-Side Between Attacker & Goalie\" Visual Positioning Anchor on D-Zone Drills",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-W",
+      "batch": "W",
+      "seat": 4,
+      "title": "Defenseman \"Blue-Line Lockdown\" Streak Bonus on Consecutive 1v1 / 2v1 Rush Gap Reads",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-W",
+      "batch": "W",
+      "seat": 5,
+      "title": "D-Pair Hinge & Breakout Communication Cue Sheet (\"Wheel / Over / Reverse / Rim\") Inside Coach Printable Station Card",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-W",
+      "batch": "W",
+      "seat": 6,
+      "title": "Pilot Association Sub-Team Split Support (e.g., Minot 12U Gold vs. Minot 12U Green) Without Cross-Roster Leakage",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-W",
+      "batch": "W",
+      "seat": 7,
+      "title": "Zero-Jump Choice Dock Height Lock When Switching Between 3-Option 8U Goalie Reads and 4-Option 14U Defense Reads",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-W",
+      "batch": "W",
+      "seat": 8,
+      "title": "LD vs. RD Blue-Line Walking & D-to-D Hinge Timestamp Verification Across Q5 Film Clips",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-W",
+      "batch": "W",
+      "seat": 9,
+      "title": "Offline Homework Completion Outbox Retry Queue With Exponential Backoff for Metal-Roof Hockey Arenas",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-W",
+      "batch": "W",
+      "seat": 10,
+      "title": "Clean Pilot Team Roster Cap & Duplicate-Jersey-Number Disambiguation (e.g., Two #9s on Pilot Join)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-W",
+      "batch": "W",
+      "seat": 11,
+      "title": "Goalie Screen Sightline Peek Animation: Subtle Head-Lean Left/Right Around High-Slot Traffic on Point Shots",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-W",
+      "batch": "W",
+      "seat": 12,
+      "title": "iOS Safari Silent-Switch & WebAudio Unlock Warm-Up on First Tap for Reliable Arena Locker-Room Chalk Talks",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-X",
+      "batch": "X",
+      "seat": 1,
+      "title": "Center (C) Low-and-Slow Breakout Curl, D-Zone Low-Support Triangle & F3 High-Slot Backfill Across All 4 Rotations",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-X",
+      "batch": "X",
+      "seat": 2,
+      "title": "Center Faceoff Win/Loss Immediate Next-Step Read (Tie-Up Forward vs. Win Back to Strong-Side D)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-X",
+      "batch": "X",
+      "seat": 3,
+      "title": "8U/10U Center \"Helper in the Middle\" Plain-English Support Cue Keeping Young Centers Out of Deep Corner Piles",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-X",
+      "batch": "X",
+      "seat": 4,
+      "title": "Pro Shop Dedicated Goalie Wall Filter: Authentic Catch-Glove, Blocker, Leg Pads & Painted Mask Preview on Skater",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-X",
+      "batch": "X",
+      "seat": 5,
+      "title": "1-Tap \"Tonight's 3-Station Ice Plan (8 Min/Station)\" Print Layout Matching Active Weekly Concept Bucket",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-X",
+      "batch": "X",
+      "seat": 6,
+      "title": "Pilot Team Weekly Active Participation Rate (%) & Weakest Team Pillar Summary for Minot / MAYSA Directors",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-X",
+      "batch": "X",
+      "seat": 7,
+      "title": "Fast <50ms Stall-to-Ice Transition When Switching Sibling Profiles With Different Positions (e.g., Skater #9 -> Goalie #30)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-X",
+      "batch": "X",
+      "seat": 8,
+      "title": "Center 200-Foot Support & Faceoff Set-Play Takeaway Calibration Across Q5 Film Clips",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-X",
+      "batch": "X",
+      "seat": 9,
+      "title": "Concurrent 20-Device Supabase Rate-Limit Shield Using Batched Local Write Coalescing on Shift Completion",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-X",
+      "batch": "X",
+      "seat": 10,
+      "title": "Frictionless Coach QR / ?team=CODE Locker-Room TV Display Mode (Zero Login Wall or Popups During Practice Setup)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-X",
+      "batch": "X",
+      "seat": 11,
+      "title": "Goalie Crease Blue-Paint Edge Contrast & Goal-Post Iron Shadow Clarity Across All 4 Rotations",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-X",
+      "batch": "X",
+      "seat": 12,
+      "title": "Goalie Vocabulary Phonetic Polish (\"RVH\", \"Short-Side Post\", \"Low-Blocker Corner\") Across All 11 Neural Voices",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-Y",
+      "batch": "Y",
+      "seat": 1,
+      "title": "Dedicated Goalie Mode Angle Squareness Engine: Square to the Puck on the Blade (Not Shooter's Chest) Across All 4 Angles",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-Y",
+      "batch": "Y",
+      "seat": 2,
+      "title": "Goalie Behind-the-Net Rim Stopping & Verbal Callout Read (\"LEAVE IT!\" vs. \"OVER!\" vs. \"WHEEL!\") With Defensemen",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-Y",
+      "batch": "Y",
+      "seat": 3,
+      "title": "8U/10U Beginner Goalie \"Big & Square at Top of Blue Paint\" Simplified 3-Choice Crease Reads",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-Y",
+      "batch": "Y",
+      "seat": 4,
+      "title": "Goalie \"Corner Rebound Control\" +20 Puck Bucks Perfect-Save Bonus on High-Danger Rush & Slot Drills",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-Y",
+      "batch": "Y",
+      "seat": 5,
+      "title": "Dedicated Goalie Warmup & Crease-Footwork Mini-Box Included on Coach Printable Practice Sheet",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-Y",
+      "batch": "Y",
+      "seat": 6,
+      "title": "Club-Wide Goalie Development Rollup Inside Director HQ (Tracking Crease Depth, Screen Peeks & Rebound Reads)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-Y",
+      "batch": "Y",
+      "seat": 7,
+      "title": "Clean Crease Tap-Zone Hit-Target Spacing (>=44px Separation Between Top-Crease, Left-Post RVH & Right-Post RVH)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-Y",
+      "batch": "Y",
+      "seat": 8,
+      "title": "Goalie Crease Depth, RVH Post-Seal & Screen-Tracking Pro Clip Verification in Q5 Film Library",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-Y",
+      "batch": "Y",
+      "seat": 9,
+      "title": "60fps Goalie Sightline Cone & Rebound Deflection Vector Math Under 90°/180°/270° Camera Transforms",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-Y",
+      "batch": "Y",
+      "seat": 10,
+      "title": "Zero-Interruption Pilot Practice Flow: Suppress All Non-Drill Modals When Launching From a Coach ?warmup=1 Link",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-Y",
+      "batch": "Y",
+      "seat": 11,
+      "title": "Locker Stall Goalie Equipment Display: Render Goalie Stick & Leg Pads Cleanly When Active Profile Position Is G",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-Y",
+      "batch": "Y",
+      "seat": 12,
+      "title": "Pre-Cached Offline Fallback MP3 Bundle for Top Core Coaching Cues in Zero-Bar Rural Rinks",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S1-Z",
+      "batch": "Z",
+      "seat": 1,
+      "title": "Full 6-Position × 4-Rotation Tactical Matrix Lock Across Permutations 961–1,680/5,760 (29.2% Total Surface Certified)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S2-Z",
+      "batch": "Z",
+      "seat": 2,
+      "title": "100% 6-Position Gold/Silver/Bronze Explanation Parity Audit (Zero Generic Skater Copy on Goalie or Defense Reads)",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S3-Z",
+      "batch": "Z",
+      "seat": 3,
+      "title": "Family Multi-Sibling Pilot Check: 3+ Siblings Across Different Positions & Age Groups on One Shared iPad With Zero Bleed",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S4-Z",
+      "batch": "Z",
+      "seat": 4,
+      "title": "Pilot Team Weekly Friendly City-Tour Progress Sync Inside Clubhouse Without Public Student PII",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S5-Z",
+      "batch": "Z",
+      "seat": 5,
+      "title": "1-Click \"Print Tonight's Practice Station Cards + Team Join Code Header\" Ready for Rink Glass / Clipboard",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S6-Z",
+      "batch": "Z",
+      "seat": 6,
+      "title": "Minot / MAYSA Pilot Season Readiness Export: 1-Page Board Summary With 6-Position & 16-Bucket Metrics",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S7-Z",
+      "batch": "Z",
+      "seat": 7,
+      "title": "Permanent 6-Position UI Anti-Clutter Lock: <=4 Primary Gameplay Buttons & Max 1 On-Ice Cue Across All 6 Roles",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S8-Z",
+      "batch": "Z",
+      "seat": 8,
+      "title": "Complete 51-Clip × 6-Position Role Takeaway Matrix Lock in Q5 Film Room",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S9-Z",
+      "batch": "Z",
+      "seat": 9,
+      "title": "20-Player Simultaneous ?team=PUCK99 Stress-Test Certification & Instant Offline Sync Recovery Lock",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S10-Z",
+      "batch": "Z",
+      "seat": 10,
+      "title": "Pilot Association Partner Code (?partner=MINOT / ?partner=MAYSA) + Team Roster Code (?team=CODE) Combined URL Support",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S11-Z",
+      "batch": "Z",
+      "seat": 11,
+      "title": "High-DPI 2.0x Skater & Butterfly Goalie Sprite Crispness Audit Across All 6 Positions & 4 Rotations",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    },
+    {
+      "id": "S12-Z",
+      "batch": "Z",
+      "seat": 12,
+      "title": "Full 173-Upgrade + 1,680-Permutation + 11-Voice Pilot-Launch Integrity & SafeSport Receipt",
+      "isActive": true,
+      "foundInBank": true,
+      "verifiedExecutable": true
+    }
+  ]
+}

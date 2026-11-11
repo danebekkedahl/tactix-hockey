@@ -19,8 +19,8 @@ const { chromium } = require('C:/Users/Dane/.gemini/antigravity/brain/dcf2b5ee-c
 
 const WORKSPACE_SCRATCH = 'c:\\Users\\Dane\\.gemini\\antigravity\\scratch\\pucksense';
 const WORKSPACE_DOCS = 'C:\\Users\\Dane\\Documents\\Hockey-IQ-App';
-const CURRENT_MILESTONE_SECTION = '## 36.';
-const CURRENT_MILESTONE_VERSION = 'v12.0';
+const CURRENT_MILESTONE_SECTION = '## 37.';
+const CURRENT_MILESTONE_VERSION = 'v12.1';
 
 function verifyFounderVisionAndAgentSpecsSync() {
   const requiredFiles = ['FOUNDER_VISION_NOTES.md', 'AGENT.md'];
@@ -36,8 +36,12 @@ function verifyFounderVisionAndAgentSpecsSync() {
     'sanitizeToOrientationProofHockeyLandmarks',
     '## 35.',
     'v11.2',
+    '## 36.',
+    'v12.0',
     CURRENT_MILESTONE_SECTION,
-    CURRENT_MILESTONE_VERSION
+    CURRENT_MILESTONE_VERSION,
+    'assets/cutouts/',
+    'computeAdaptiveNextScenario'
   ];
   const fileResults = {};
   for (const relName of requiredFiles) {
@@ -2254,8 +2258,8 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
             if (typeof hideCoachBobPopup === 'function') hideCoachBobPopup();
           }
 
-          // Check all loaded room & agent images
-          const imgs = Array.from(document.querySelectorAll('img[src*="assets/rooms/"], img[src*="assets/agents/"]'));
+          // Check all loaded room & waist-up cutout images
+          const imgs = Array.from(document.querySelectorAll('img[src*="assets/rooms/"], img[src*="assets/cutouts/"]'));
           const brokenImgs = imgs.filter(img => !img.complete || img.naturalWidth === 0).length;
 
           // Check primary action buttons on the active screen for collisions and horizontal overflow
@@ -3061,8 +3065,8 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     await page.setViewportSize({ width: 1280, height: 800 });
 
     const v120AuditReportJson = {
-      version: 'v12.0-clean-slate-accounts-and-portals',
-      cacheVersion: 'synapz-hockey-v12.0-clean-slate-portals',
+      version: 'v12.1-guided-cutout-profiles-and-adaptive-iq',
+      cacheVersion: 'synapz-hockey-v12.1-cutout-guided-profiles',
       verifiedAt: new Date().toISOString(),
       viewportsTested: ['390x844 Phone Portrait', '1024x768 iPad Landscape'],
       totalApprovedUpgradesChecked: v104RealFeaturesAudit.v120Audit242?.totalChecked || 242,
@@ -3100,6 +3104,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       pageErrorsCount: pageErrors.length,
       perUpgradeResults: v104RealFeaturesAudit.v120Audit242?.results || []
     };
+    fs.writeFileSync(path.join(__dirname, 'v121_242_upgrades_audit.json'), JSON.stringify(v120AuditReportJson, null, 2), 'utf8');
     fs.writeFileSync(path.join(__dirname, 'v120_242_upgrades_audit.json'), JSON.stringify(v120AuditReportJson, null, 2), 'utf8');
     fs.writeFileSync(path.join(__dirname, 'v112_173_upgrades_audit.json'), JSON.stringify(v120AuditReportJson, null, 2), 'utf8');
     fs.writeFileSync(path.join(__dirname, 'v111_118_upgrades_audit.json'), JSON.stringify(v120AuditReportJson, null, 2), 'utf8');
@@ -3118,12 +3123,13 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     ) {
       throw new Error(`242-Upgrade Chrome Functional Verification Failed: ${JSON.stringify(v120AuditReportJson)}`);
     }
-    console.log('🔬 Saved v120_242_upgrades_audit.json — 242/242 Live Upgrades Chrome-Verified (300 Pre-Coded Bank • 0 Conflicts • Max 1 Cue/Play • 6-Pos × 4-Rot Matrix • Goalie Mode • Pilot Ready • All 5 Rooms Pass)!');
+    console.log('🔬 Saved v121_242_upgrades_audit.json — 242/242 Live Upgrades Chrome-Verified (300 Pre-Coded Bank • 0 Conflicts • Max 1 Cue/Play • 6-Pos × 4-Rot Matrix • Goalie Mode • Pilot Ready • All 5 Rooms Pass)!');
 
     // =========================================================================
-    // 7B. V12.0 CLEAN-SLATE 390x844 ENTRY GATE + FULL BLOOKET MULTI-TIER PORTAL
-    //     END-TO-END WALKTHROUGH (ASSOCIATION -> 2 COACH TEAMS -> 4-SLOT SIBLINGS
-    //     -> MAX-3-DEVICE GUARD -> FREE TEAM-CODE UPGRADE)
+    // 7B. V12.1 CLEAN-SLATE 390x844 & 1024x768 ENTRY GATE + $4.99+$2.99 HOUSEHOLD SLOTS
+    //     + 11 WAIST-UP TRANSPARENT CUTOUTS + STEP-1 GUIDED AGENT TOUR (YEARS PLAYED REMOVED)
+    //     + JOIN A TEAM EXCLUSIVELY IN COACHES ROOM + ADAPTIVE SOLO IQ VS COACH-LOCKED DRILLS
+    //     + DE-ROBOTED COACH BOB & SINGLE FOCAL-SKATER GOLDEN ARC
     // =========================================================================
     const portalContext = await browser.newContext({ viewport: { width: 390, height: 844 } });
     await portalContext.addInitScript(() => {
@@ -3142,6 +3148,28 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     await portalPage.waitForTimeout(500);
 
     const v120PortalWalkthroughAudit = await portalPage.evaluate(async () => {
+      // 0. Verify all 11 Waist-Up 3D Cutout PNGs in assets/cutouts/ load with naturalWidth > 0 & transparent alpha!
+      const cutoutFiles = [
+        'agent-leo.png', 'agent-maya.png', 'agent-jalen.png', 'agent-chloe.png', 'agent-sofia.png',
+        'agent-marcus.png', 'agent-priya.png', 'agent-ryan.png', 'agent-claire.png',
+        'coach-bob.png', 'coach-al.png'
+      ];
+      const cutoutChecks = await Promise.all(cutoutFiles.map(fn => new Promise(resolve => {
+        const im = new Image();
+        im.onload = () => {
+          const cv = document.createElement('canvas');
+          cv.width = 8;
+          cv.height = 8;
+          const cx = cv.getContext('2d');
+          cx.drawImage(im, 0, 0, 8, 8, 0, 0, 8, 8);
+          const cornerAlpha = cx.getImageData(0, 0, 1, 1).data[3];
+          resolve({ file: fn, loaded: im.naturalWidth > 0, width: im.naturalWidth, height: im.naturalHeight, topLeftCornerAlpha: cornerAlpha });
+        };
+        im.onerror = () => resolve({ file: fn, loaded: false, width: 0, height: 0, topLeftCornerAlpha: 255 });
+        im.src = `assets/cutouts/${fn}`;
+      })));
+      const all11CutoutsLoadedTransparent = cutoutChecks.length === 11 && cutoutChecks.every(c => c.loaded && c.width > 0 && c.topLeftCornerAlpha === 0);
+
       const checkZeroAgentVisible = () => {
         const ids = [
           'synapzPersistentCharCircleBtn',
@@ -3170,9 +3198,11 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       const noRedundantPlatformSubcopy = !/HOCKEY IQ\s*&\s*STRATEGY PLATFORM/i.test(screen1CardText) && !/Virtual Rink Lobby/i.test(screen1CardText);
       const zeroAgentScreen1 = checkZeroAgentVisible();
 
-      // Check Info screen (1C) + hidden Founder Reset details + zero agent
+      // Check Info screen (1C) + Pricing Tiers TBD + hidden Founder Reset details + zero agent
       window.openEntryScreen('1C');
       const infoScreenVisible = !document.getElementById('entryScreen1CInfo')?.classList.contains('hidden');
+      const infoScreenText = (document.getElementById('entryScreen1CInfo')?.innerText || '');
+      const pricingTbdMarkedOnInfo = /Pricing Tiers\s*[—-]\s*TBD/i.test(infoScreenText) || /\bTBD\b/i.test(infoScreenText);
       const founderInfoResetExists = Boolean(document.getElementById('btnToggleFounderResetBox')) && Boolean(document.getElementById('btnConfirmFounderTestReset'));
       const zeroAgentScreen1C = checkZeroAgentVisible();
 
@@ -3183,6 +3213,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
 
       window.openEntryScreen('1A-2');
       const zeroAgent1A2 = checkZeroAgentVisible();
+      const annual4999OptionPresent = Boolean(document.getElementById('btnPlayerPlanAnnual4999'));
 
       window.openEntryScreen('1A-3');
       const zeroAgent1A3 = checkZeroAgentVisible();
@@ -3250,7 +3281,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       await waitForCond(() => !document.getElementById('coachPortalModal')?.classList.contains('hidden') && Boolean(state.currentAccount?.teamCode));
       const teamCode2 = state.currentAccount?.teamCode || '';
 
-      // 4. Log out -> Create Player Family Account ($4.99 sandbox unlock) -> verify all 4 Slots say Empty & ZERO Agent
+      // 4. Log out -> Create Player Family Account ($4.99 Basic Plan) -> verify Slot 1 is Empty & Slots 2–4 show "+$2.99 Add Sibling Profile" & ZERO Agent!
       window.logoutSynapzAccount();
       window.setSimulatedDeviceIdForTesting('dev-test-1');
       window.openEntryScreen('1A-2');
@@ -3259,14 +3290,70 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       document.getElementById('btnPlayerPlanBasic499').click();
       await waitForCond(() => !document.getElementById('pilotSandboxCheckoutModal')?.classList.contains('hidden'));
       document.getElementById('btnConfirmPilotSandboxCheckout').click();
-      await waitForCond(() => !document.getElementById('entryScreen1A4PlayerSlots')?.classList.contains('hidden') && state.currentAccount?.unlockedSlots === 4);
+      await waitForCond(() => !document.getElementById('entryScreen1A4PlayerSlots')?.classList.contains('hidden') && state.currentAccount?.unlockedSlots === 1);
 
       const screen1A4Visible = !document.getElementById('entryScreen1A4PlayerSlots')?.classList.contains('hidden');
-      const initialSlotTexts = Array.from(document.querySelectorAll('#playerFourSlotsGrid .player-slot-card-btn')).map(b => b.innerText.trim());
-      const all4SlotsSayEmpty = initialSlotTexts.length === 4 && initialSlotTexts.every(t => /\bempty\b/i.test(t));
+      const initialSlotBtns = Array.from(document.querySelectorAll('#playerFourSlotsGrid .player-slot-card-btn'));
+      const initialSlotTexts = initialSlotBtns.map(b => b.innerText.trim());
+      const basic499Slot1EmptyAndSlots2To4Add299 = Boolean(
+        initialSlotBtns.length === 4 &&
+        state.currentAccount?.unlockedSlots === 1 &&
+        /\bempty\b/i.test(initialSlotTexts[0]) &&
+        initialSlotBtns[0].getAttribute('data-slot-action') === 'setup_empty' &&
+        initialSlotBtns.slice(1).every(b => b.getAttribute('data-slot-action') === 'unlock_sibling_slot' && /\$2\.99/.test(b.innerText))
+      );
       const zeroAgentOn4Slots = checkZeroAgentVisible();
 
+      // Tap Slot 2 (+$2.99 Add Sibling Profile) -> unlock THAT individual sibling slot ($0.00 Sandbox) while Slots 3–4 stay +$2.99!
+      initialSlotBtns[1].click();
+      await waitForCond(() => !document.getElementById('pilotSandboxCheckoutModal')?.classList.contains('hidden'));
+      document.getElementById('btnConfirmPilotSandboxCheckout').click();
+      await waitForCond(() => {
+        const btns = Array.from(document.querySelectorAll('#playerFourSlotsGrid .player-slot-card-btn'));
+        return state.currentAccount?.unlockedSlots === 2 && btns[1]?.getAttribute('data-slot-action') === 'setup_empty';
+      });
+      const postAddonSlotBtns = Array.from(document.querySelectorAll('#playerFourSlotsGrid .player-slot-card-btn'));
+      const individualSiblingSlot2UnlockedOnly = Boolean(
+        state.currentAccount?.unlockedSlots === 2 &&
+        postAddonSlotBtns[0].getAttribute('data-slot-action') === 'setup_empty' &&
+        postAddonSlotBtns[1].getAttribute('data-slot-action') === 'setup_empty' &&
+        postAddonSlotBtns[2].getAttribute('data-slot-action') === 'unlock_sibling_slot' &&
+        postAddonSlotBtns[3].getAttribute('data-slot-action') === 'unlock_sibling_slot'
+      );
+
+      // Open Slot 1 Guided Setup -> verify Step 1 (9 Frameless Waist-Up Cutout Agents, border=0, voice audition), Step 2 (Spotlight + Floating Cutout), zero Years Played, zero Team Code!
+      window.openSlotSetupScreen(0);
+      const step1VisibleFirst = !document.getElementById('slotSetupStep1PickAgent')?.classList.contains('hidden') &&
+        document.getElementById('slotSetupStep2CoreInputs')?.classList.contains('hidden');
+      const step1CutoutBtns = Array.from(document.querySelectorAll('#slotSetupStep1AgentsGrid button'));
+      const step1CutoutImgs = Array.from(document.querySelectorAll('#slotSetupStep1AgentsGrid img'));
+      const step1ZeroCardBorders = step1CutoutBtns.length === 9 &&
+        step1CutoutBtns.every(btn => parseFloat(window.getComputedStyle(btn).borderTopWidth || '0') === 0) &&
+        step1CutoutImgs.every(im => parseFloat(window.getComputedStyle(im).borderTopWidth || '0') === 0);
+
+      // Tap Agent Maya to audition voice
+      const mayaBtn = step1CutoutBtns.find(b => (b.getAttribute('data-agent-id') || '').includes('maya')) || step1CutoutBtns[1];
+      if (mayaBtn) mayaBtn.click();
+      const setupFullHtmlText = document.getElementById('entryScreen1A4SlotSetup')?.innerText || '';
+      const zeroYearsPlayedInSetup = !/Years\s+Played/i.test(setupFullHtmlText) && !document.getElementById('slotSetupYearsPlayed');
+      const zeroJoinTeamInSetup = !document.getElementById('slotSetupTeamCode') && !/Join\s+a\s+Team/i.test(setupFullHtmlText);
+
+      // Advance to Step 2 so we can capture the live Guided Waist-Up Cutout Tour screenshot & check 0px overlap!
+      document.getElementById('btnSlotStep1ContinueWithAgent').click();
+      const step2Visible = !document.getElementById('slotSetupStep2CoreInputs')?.classList.contains('hidden');
+      const guidedDockVisibleStep2 = !document.getElementById('guidedSetupCutoutOverlay')?.classList.contains('hidden');
+      const divisionOptionsCount = document.getElementById('slotSetupAgeDivision')?.options?.length || 0;
+      const expPillsCount = document.querySelectorAll('#slotSetupExpPillsGroup .slot-exp-pill').length;
+      const cardRect2 = document.getElementById('slotSetupStep2Card')?.getBoundingClientRect();
+      const cutoutRect2 = document.getElementById('guidedSetupCutoutImg')?.getBoundingClientRect();
+      const overlapStep2Y = (cardRect2 && cutoutRect2)
+        ? Math.max(0, Math.min(cardRect2.bottom, cutoutRect2.bottom) - Math.max(cardRect2.top, cutoutRect2.top))
+        : 0;
+      const zeroGuidedCutoutOverlapStep2 = overlapStep2Y <= 2;
+
       return {
+        all11CutoutsLoadedTransparent,
+        cutoutChecksCount: cutoutChecks.length,
         zeroPreloadedProfiles,
         screen1Visible,
         screen1ScrollWidth,
@@ -3276,8 +3363,10 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         playLearnOccurrences,
         noRedundantPlatformSubcopy,
         infoScreenVisible,
+        pricingTbdMarkedOnInfo,
         founderInfoResetExists,
         screen1A1Buttons,
+        annual4999OptionPresent,
         noBasic499PlayerOptionInCoachCreate,
         zeroAgentAcrossAllEntryScreens: Boolean(
           zeroAgentScreen1 && zeroAgentScreen1C && zeroAgent1A1 && zeroAgent1A2 &&
@@ -3294,12 +3383,24 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         distinctTeamCodesGenerated: Boolean(teamCode1.length === 6 && teamCode2.length === 6 && teamCode1 !== teamCode2),
         screen1A4Visible,
         initialSlotTexts,
-        all4SlotsSayEmpty
+        basic499Slot1EmptyAndSlots2To4Add299,
+        individualSiblingSlot2UnlockedOnly,
+        step1VisibleFirst,
+        step1ZeroCardBorders,
+        zeroYearsPlayedInSetup,
+        zeroJoinTeamInSetup,
+        step2Visible,
+        guidedDockVisibleStep2,
+        divisionOptionsCount,
+        expPillsCount,
+        zeroGuidedCutoutOverlapStep2
       };
     });
 
-    // Capture 390x844 screenshot of the clean 4-Slot Empty screen before configuring Miles & Rhett!
+    // Capture 390x844 screenshot of the Guided Waist-Up Cutout Spotlight Profile Setup!
+    await portalPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_v121_cutout_guided_profiles.png') });
     await portalPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_v120_clean_slate_portals.png') });
+    capturedScreenshots.audit_v121_cutout_guided_profiles = 'screenshots/audit_v121_cutout_guided_profiles.png';
     capturedScreenshots.audit_v120_clean_slate_portals = 'screenshots/audit_v120_clean_slate_portals.png';
 
     const v120PortalWalkthroughPart2 = await portalPage.evaluate(async ({ teamCode1, teamCode2, liveAssocCode }) => {
@@ -3312,34 +3413,84 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         return Boolean(fn());
       };
 
-      // Configure Slot 1 (Miles, 12U, C, teamCode1) via Save to Slot
-      window.openSlotSetupScreen(0);
+      // Complete Slot 1 Guided Setup (Miles, 10U AA, Intermediate, Jersey #9, Custom Team "Foothill Flyers", PIN 1234)
       document.getElementById('slotSetupFirstName').value = 'Miles';
+      document.getElementById('slotSetupAgeDivision').value = '10U AA';
+      document.querySelector('#slotSetupExpPillsGroup [data-exp-level="Intermediate"]')?.click();
+      document.getElementById('btnSlotStep2NextTo3').click();
+
+      // Verify Step 3 flips waist-up Agent to right side (`scaleX(-1)`) & 0px overlap with Step 3 controls!
+      const flipWrap = document.getElementById('guidedSetupCutoutFlipWrap');
+      const step3AgentFlippedRight = Boolean(flipWrap && (flipWrap.classList.contains('is-flipped') || (window.getComputedStyle(flipWrap).transform || '').includes('-1')));
+      const cardRect3 = document.getElementById('slotSetupStep3Card')?.getBoundingClientRect();
+      const cutoutRect3 = document.getElementById('guidedSetupCutoutImg')?.getBoundingClientRect();
+      const overlapStep3Y = (cardRect3 && cutoutRect3)
+        ? Math.max(0, Math.min(cardRect3.bottom, cutoutRect3.bottom) - Math.max(cardRect3.top, cutoutRect3.top))
+        : 0;
+      const zeroGuidedCutoutOverlapStep3 = overlapStep3Y <= 2;
+
       document.getElementById('slotSetupJerseyNum').value = '9';
-      document.getElementById('slotSetupAgeDivision').value = '12U';
+      document.getElementById('slotSetupHairStyle').value = 'flow';
+      document.querySelector('#slotSetupThemeColorPills [data-theme-name="Purple"]')?.click();
+      document.getElementById('slotSetupOptionalBioDrawer').open = true;
       document.getElementById('slotSetupPosition').value = 'C';
       document.getElementById('slotSetupStickHand').value = 'Left';
+      document.getElementById('slotSetupOptionalTeamName').value = 'Foothill Flyers';
       document.getElementById('slotSetupPinCode').value = '1234';
-      document.getElementById('slotSetupTeamCode').value = teamCode1;
-      await window.saveSlotSetupForm(false);
+      await window.saveSlotSetupForm(true);
 
-      // Configure Slot 2 (Rhett, 8U, LW, teamCode2) via Save & Enter Lobby
+      // Verify Handoff speech ("Awesome, your profile's set—let's head to the rink!") & Locker Room custom team/back-of-jersey!
+      const lobbyHandoffSpeechText = (window.SynapzCharacterSpeechEngine?.state?.fullText || document.getElementById('synapzUniversalSpeechBubbleText')?.textContent || '');
+      const handoffSpeechVerified = /profile's set/i.test(lobbyHandoffSpeechText) && /head to the rink/i.test(lobbyHandoffSpeechText);
+
+      // Check Locker Room: NO Join a Team input, shows "Foothill Flyers • 10U AA", and renders back-of-jersey nameplate "MILES" + "#9"!
+      openSynapzLockerRoomModal();
+      const zeroJoinTeamInLockerRoom = !document.getElementById('lockerJoinChangeTeamCodeBar') && !document.getElementById('inputLockerJoinChangeTeamCode');
+      const lockerBannerText = (document.getElementById('lockerCustomTeamDivisionBanner')?.textContent || '');
+      const lockerCustomTeamBannerVerified = lockerBannerText.includes('Foothill Flyers') && lockerBannerText.includes('10U AA');
+      document.getElementById('btnLockerSpinFrontBack')?.click();
+      const lockerAvatarHtml = document.getElementById('lockerRoom3dAvatarWrap')?.innerHTML || '';
+      const backOfJerseyNameplateVerified = lockerAvatarHtml.includes('MILES') && lockerAvatarHtml.includes('9');
+      document.getElementById('synapzLockerRoomModal')?.classList.add('hidden');
+
+      // Check Clubhouse: NO Join a Team input!
+      openSynapzFriendsWallModal('trophies');
+      const clubhouseHtml = document.getElementById('synapzFriendsWallModal')?.innerHTML || '';
+      const zeroJoinTeamInClubhouse = !clubhouseHtml.includes('inputCoachOfficeJoinTeamCode') && !/Enter Coach's Team Code/i.test(clubhouseHtml);
+      document.getElementById('synapzFriendsWallModal')?.classList.add('hidden');
+
+      // Check Coaches Room (#synapzCoachOfficeModal): Join a Team lives EXCLUSIVELY here! Link Miles to teamCode1!
+      openSynapzCoachOfficeModal();
+      const joinTeamExclusivelyInCoachOffice = Boolean(document.getElementById('coachOfficeJoinTeamBar') && document.getElementById('inputCoachOfficeJoinTeamCode'));
+      const coachAlCutoutFrameless = Boolean(document.querySelector('#synapzCoachOfficeModal img[src*="assets/cutouts/coach-al.png"]'));
+      document.getElementById('inputCoachOfficeJoinTeamCode').value = teamCode1;
+      await window.applyCoachOfficeTeamCodeChange();
+      const milesLinkedInCoachOffice = getActiveProfile()?.teamCode === teamCode1;
+      document.getElementById('synapzCoachOfficeModal')?.classList.add('hidden');
+
+      // Return to 4-Slot Picker & Configure Slot 2 (Rhett, 8U, Advanced -> verify 8U ALWAYS starts at adaptiveLevel 0!)
+      window.openEntryScreen('1A-4');
+      document.getElementById('sandboxLoginModal')?.classList.remove('hidden');
       window.openSlotSetupScreen(1);
+      document.getElementById('btnSlotStep1ContinueWithAgent').click();
       document.getElementById('slotSetupFirstName').value = 'Rhett';
-      document.getElementById('slotSetupJerseyNum').value = '88';
       document.getElementById('slotSetupAgeDivision').value = '8U';
+      document.querySelector('#slotSetupExpPillsGroup [data-exp-level="Advanced"]')?.click();
+      document.getElementById('btnSlotStep2NextTo3').click();
+      document.getElementById('slotSetupJerseyNum').value = '88';
       document.getElementById('slotSetupPosition').value = 'LW';
       document.getElementById('slotSetupStickHand').value = 'Right';
       document.getElementById('slotSetupPinCode').value = '';
-      document.getElementById('slotSetupTeamCode').value = teamCode2;
       await window.saveSlotSetupForm(true);
 
       const lobbyEnteredForRhett = !document.getElementById('synapzRinkLobbySection')?.classList.contains('hidden');
       const agentAppearsOnlyAfterEnteringLobby =
         !document.getElementById('synapzUniversalCharSpeechOverlay')?.classList.contains('hidden') ||
         !document.getElementById('synapzPersistentCharCircleBtn')?.classList.contains('hidden');
+      const eightUAdvancedStillStartsAt8U = getActiveProfile()?.adaptiveLevel === 0 &&
+        window.computeAdaptiveNextScenario(getActiveProfile()).effectiveAgeGroup === '8U';
 
-      // Test Locker Stall 1-tap Join / Change Team Code preserving 100% of Puck Bucks & IQ
+      // Test Coaches Room Team Code switch on Rhett preserving 100% of Puck Bucks & IQ!
       state.puckBucks = 340;
       state.iqScore = 115;
       const rhettProf = getActiveProfile();
@@ -3348,14 +3499,65 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         rhettProf.iqScore = 115;
       }
       saveProgress();
-      openSynapzLockerRoomModal();
-      document.getElementById('inputLockerJoinChangeTeamCode').value = teamCode1;
-      await window.applyLockerRoomTeamCodeChange();
+      openSynapzCoachOfficeModal();
+      document.getElementById('inputCoachOfficeJoinTeamCode').value = teamCode1;
+      await window.applyCoachOfficeTeamCodeChange();
       const preservedAfterTeamSwitch = state.puckBucks === 340 && state.iqScore === 115 && getActiveProfile()?.teamCode === teamCode1;
-      // Switch Rhett back to teamCode2 so both teams have 1 player for rollup check!
-      document.getElementById('inputLockerJoinChangeTeamCode').value = teamCode2;
-      await window.applyLockerRoomTeamCodeChange();
-      document.getElementById('synapzLockerRoomModal')?.classList.add('hidden');
+      document.getElementById('inputCoachOfficeJoinTeamCode').value = teamCode2;
+      await window.applyCoachOfficeTeamCodeChange();
+      document.getElementById('synapzCoachOfficeModal')?.classList.add('hidden');
+
+      // Verify Two-Way Adaptive Solo IQ Matrix + Hard Firewall on Coach-Assigned Drills!
+      const testProfNovice14U = { id: 'sim_novice_14u', name: 'Sam', divisionLabel: '14U AA', ageGroup: '14U', experienceLevel: 'Novice' };
+      const novice14UStartPick = window.computeAdaptiveNextScenario(testProfNovice14U);
+      const novice14UStartsOn8U = testProfNovice14U.adaptiveLevel === 0 && novice14UStartPick.effectiveAgeGroup === '8U';
+      window.recordAdaptivePlayOutcome(testProfNovice14U, novice14UStartPick.scenario, true, 1.0);
+      window.recordAdaptivePlayOutcome(testProfNovice14U, novice14UStartPick.scenario, true, 1.0);
+      const stepUpOut = window.recordAdaptivePlayOutcome(testProfNovice14U, novice14UStartPick.scenario, true, 1.0);
+      const noviceSteppedUpAfter3Gold = stepUpOut.steppedDirection === 'up' && testProfNovice14U.adaptiveLevel === 1;
+
+      const testProfAdv14U = { id: 'sim_adv_14u', name: 'Cole', divisionLabel: '14U AA', ageGroup: '14U', experienceLevel: 'Advanced' };
+      const adv14UStartPick = window.computeAdaptiveNextScenario(testProfAdv14U);
+      const startAdvLevel = testProfAdv14U.adaptiveLevel;
+      window.recordAdaptivePlayOutcome(testProfAdv14U, adv14UStartPick.scenario, false, 0);
+      const stepDownOut = window.recordAdaptivePlayOutcome(testProfAdv14U, adv14UStartPick.scenario, false, 0);
+      const advSteppedDownAfter2Misses = stepDownOut.steppedDirection === 'down' && testProfAdv14U.adaptiveLevel === startAdvLevel - 1;
+
+      const hwLockedCheck = window.computeAdaptiveNextScenario(testProfAdv14U, {
+        isCoachHomework: true,
+        assignedScenarioIds: ['breakout-1'],
+        questionIndex: 0
+      });
+      const prevHwLevel = testProfAdv14U.adaptiveLevel;
+      const hwOutcome = window.recordAdaptivePlayOutcome(testProfAdv14U, hwLockedCheck.scenario, false, 0, { isCoachHomework: true });
+      const coachHomework100PctLocked = Boolean(
+        hwLockedCheck.lockedByCoachHomework === true &&
+        hwLockedCheck.scenarioId === 'breakout-1' &&
+        hwOutcome.lockedByCoachHomework === true &&
+        testProfAdv14U.adaptiveLevel === prevHwLevel &&
+        Array.isArray(state.coachAdaptiveRecommendations) &&
+        state.coachAdaptiveRecommendations.length >= 1
+      );
+
+      // Verify De-Roboted Coach Bob (`assets/cutouts/coach-bob.png`, 0 `#number` / clock / role tags) & Single Focal-Skater Golden Arc!
+      switchView('game');
+      loadScenario(false);
+      drawRink();
+      const coachBobPromptLive = (document.getElementById('cornerShortPrompt')?.innerText || '').trim();
+      const coachBobImgSrc = document.querySelector('#coachBobPopup img')?.getAttribute('src') || '';
+      const coachBobZeroRoboticMetadata = coachBobPromptLive.length > 0 &&
+        !/You(?:'re|\s+are)\s*#\d+/i.test(coachBobPromptLive) &&
+        !/#\d+/.test(coachBobPromptLive) &&
+        !/\b\d+v\d+\b/i.test(coachBobPromptLive) &&
+        !/\b\d:\d{2}\b/.test(coachBobPromptLive);
+      const coachBobDynamicPosition = window.positionCoachBobAwayFromAction(getCurrentScenario());
+      const singleFocalSkaterGoldenArcVerified = Boolean(
+        state.lastFocalSkaterHighlight &&
+        state.lastFocalSkaterHighlight.focalSkaterCount === 1 &&
+        state.lastFocalSkaterHighlight.hasYouNumberTextBox === false &&
+        coachBobImgSrc.includes('assets/cutouts/coach-bob.png') &&
+        coachBobDynamicPosition && ['bl', 'br', 'tl', 'tr'].includes(coachBobDynamicPosition.corner)
+      );
 
       // 5. Log into Coach #1 on Screen 1B-3 -> verify Miles appears on live joined roster!
       window.logoutSynapzAccount();
@@ -3412,7 +3614,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         state.currentAccount.registeredDeviceIds.some(d => (d?.deviceId || d) === 'dev-test-4');
       window.setSimulatedDeviceIdForTesting('');
 
-      // 7. Test Free Team-Code Player Account (Slot 1 Free, Slots 2–4 Locked -> Same-Account $4.99 Upgrade)
+      // 7. Test Free Team-Code Player Account (Slot 1 Free + Silent Auto-Link to teamCode1, Slots 2–4 = +$2.99 Add Sibling Slot)
       window.logoutSynapzAccount();
       window.openEntryScreen('1A-2');
       document.getElementById('inputPlayerSignupIdentity').value = 'test_freecode_v12@synapz.test';
@@ -3425,28 +3627,80 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         state.currentAccount?.unlockedSlots === 1 &&
         freeSlotButtons.length === 4 &&
         freeSlotButtons[0].getAttribute('data-slot-action') === 'setup_empty' &&
-        freeSlotButtons.slice(1).every(b => b.getAttribute('data-slot-action') === 'unlock_family')
+        freeSlotButtons.slice(1).every(b => b.getAttribute('data-slot-action') === 'unlock_sibling_slot')
       );
-      // Tap locked Slot 2 -> complete $0.00 sandbox upgrade on the SAME account
-      freeSlotButtons[1].click();
+      // Configure Slot 1 without any Team Code input -> verify silent auto-link to teamCode1!
+      window.openSlotSetupScreen(0);
+      document.getElementById('btnSlotStep1ContinueWithAgent').click();
+      document.getElementById('slotSetupFirstName').value = 'Bode';
+      document.getElementById('btnSlotStep2NextTo3').click();
+      await window.saveSlotSetupForm(false);
+      const silentSlot1TeamCodeAutoLinked = state.currentAccount?.slots?.[0]?.teamCode === teamCode1;
+
+      // Tap locked Slot 2 (+$2.99) -> complete $0.00 sandbox unlock on the SAME account!
+      const unlockBtnSlot2 = document.querySelector('#playerFourSlotsGrid .player-slot-card-btn[data-slot-idx="1"][data-slot-action="unlock_sibling_slot"]');
+      if (unlockBtnSlot2) unlockBtnSlot2.click();
       await waitForCond(() => !document.getElementById('pilotSandboxCheckoutModal')?.classList.contains('hidden'));
       document.getElementById('btnConfirmPilotSandboxCheckout').click();
-      await waitForCond(() => state.currentAccount?.unlockedSlots === 4);
-      const sameAccountUpgradedTo4Slots = Boolean(
+      await waitForCond(() => state.currentAccount?.unlockedSlots === 2);
+      const sameAccountUnlockedSiblingSlot2 = Boolean(
         state.currentAccount?.accountId === 'test_freecode_v12@synapz.test' &&
-        state.currentAccount?.unlockedSlots === 4
+        state.currentAccount?.unlockedSlots === 2
+      );
+
+      // 8. Test $49.99/yr Annual Plan account -> verify optional "Focus on My Position Only" gameplay filter works!
+      window.logoutSynapzAccount();
+      window.openEntryScreen('1A-2');
+      document.getElementById('inputPlayerSignupIdentity').value = 'test_annual_v12@synapz.test';
+      document.getElementById('inputPlayerSignupPassword').value = 'testpass12';
+      document.getElementById('btnPlayerPlanAnnual4999').click();
+      await waitForCond(() => !document.getElementById('pilotSandboxCheckoutModal')?.classList.contains('hidden'));
+      document.getElementById('btnConfirmPilotSandboxCheckout').click();
+      await waitForCond(() => !document.getElementById('entryScreen1A4PlayerSlots')?.classList.contains('hidden') && state.currentAccount?.planType === 'annual_4999');
+      window.openSlotSetupScreen(0);
+      document.getElementById('btnSlotStep1ContinueWithAgent').click();
+      document.getElementById('slotSetupFirstName').value = 'GoalieGus';
+      document.getElementById('slotSetupAgeDivision').value = '14U AA';
+      document.getElementById('btnSlotStep2NextTo3').click();
+      document.getElementById('slotSetupOptionalBioDrawer').open = true;
+      document.getElementById('slotSetupPosition').value = 'G';
+      await window.saveSlotSetupForm(true);
+      const annualFocusPick = window.computeAdaptiveNextScenario(getActiveProfile(), { focusMyPositionOnly: true });
+      const annualFocusPositionVerified = Boolean(
+        annualFocusPick.focusMyPositionOnly === true &&
+        ((annualFocusPick.scenarioId || '').startsWith('goalie-') || annualFocusPick.scenario?.posRole === 'G')
       );
 
       return {
+        step3AgentFlippedRight,
+        zeroGuidedCutoutOverlapStep3,
+        handoffSpeechVerified,
+        zeroJoinTeamInLockerRoom,
+        lockerCustomTeamBannerVerified,
+        backOfJerseyNameplateVerified,
+        zeroJoinTeamInClubhouse,
+        joinTeamExclusivelyInCoachOffice,
+        coachAlCutoutFrameless,
+        milesLinkedInCoachOffice,
         lobbyEnteredForRhett,
         agentAppearsOnlyAfterEnteringLobby,
+        eightUAdvancedStillStartsAt8U,
         preservedAfterTeamSwitch,
+        novice14UStartsOn8U,
+        noviceSteppedUpAfter3Gold,
+        advSteppedDownAfter2Misses,
+        coachHomework100PctLocked,
+        coachBobPromptSample: coachBobPromptLive,
+        coachBobZeroRoboticMetadata,
+        singleFocalSkaterGoldenArcVerified,
         coach1SeesMilesLive,
         assocRollsUpBothTeamsAndPlayers,
         fourthDeviceBlockedPromptVisible,
         fourthDeviceReplacedAndEnteredSlots,
         slot1FreeAndSlots2To4Locked,
-        sameAccountUpgradedTo4Slots
+        silentSlot1TeamCodeAutoLinked,
+        sameAccountUnlockedSiblingSlot2,
+        annualFocusPositionVerified
       };
     }, {
       teamCode1: v120PortalWalkthroughAudit.teamCode1,
@@ -3454,40 +3708,81 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       liveAssocCode: v120PortalWalkthroughAudit.liveAssocCode
     });
 
-    const fullV120PortalVerification = {
+    // Also verify 1024x768 iPad Landscape Guided Cutout & Lobby layout on portalPage!
+    await portalPage.setViewportSize({ width: 1024, height: 768 });
+    await portalPage.waitForTimeout(200);
+    const ipad1024PortalCutoutCheck = await portalPage.evaluate(() => ({
+      viewport: `${window.innerWidth}x${window.innerHeight}`,
+      zeroHorizontalOverflow1024: document.documentElement.scrollWidth <= 1024,
+      persistentAgentCirclePresent: Boolean(document.getElementById('synapzPersistentCharCircleBtn'))
+    }));
+    await portalPage.setViewportSize({ width: 390, height: 844 });
+
+    const fullV121PortalVerification = {
       ...v120PortalWalkthroughAudit,
-      ...v120PortalWalkthroughPart2
+      ...v120PortalWalkthroughPart2,
+      ipad1024PortalCutoutCheck
     };
-    v104RealFeaturesAudit.v120PortalVerification = fullV120PortalVerification;
-    console.log('🚪 Verified v12.0 Clean-Slate 390x844 Entry Gate + Blooket Association -> Coach -> 4-Slot Sibling Portal Flow:', JSON.stringify(fullV120PortalVerification));
+    v104RealFeaturesAudit.v121GuidedCutoutAndAdaptiveVerification = fullV121PortalVerification;
+    v104RealFeaturesAudit.v120PortalVerification = fullV121PortalVerification;
+    console.log('🎭 Verified v12.1 Guided Waist-Up Cutouts + $4.99+$2.99 Slots + Coaches-Room-Only Team Code + Adaptive Solo IQ + Clean Ice:', JSON.stringify(fullV121PortalVerification));
 
     if (
-      !fullV120PortalVerification.zeroPreloadedProfiles ||
-      !fullV120PortalVerification.screen1ZeroOverflow ||
-      !fullV120PortalVerification.strictly3Screen1Buttons ||
-      fullV120PortalVerification.playLearnOccurrences !== 1 ||
-      !fullV120PortalVerification.noRedundantPlatformSubcopy ||
-      !fullV120PortalVerification.noBasic499PlayerOptionInCoachCreate ||
-      !fullV120PortalVerification.zeroAgentAcrossAllEntryScreens ||
-      !fullV120PortalVerification.cloudAssocSaved ||
-      !fullV120PortalVerification.checkoutBypassedForAssocCoach ||
-      !fullV120PortalVerification.distinctTeamCodesGenerated ||
-      !fullV120PortalVerification.all4SlotsSayEmpty ||
-      !fullV120PortalVerification.lobbyEnteredForRhett ||
-      !fullV120PortalVerification.agentAppearsOnlyAfterEnteringLobby ||
-      !fullV120PortalVerification.preservedAfterTeamSwitch ||
-      !fullV120PortalVerification.coach1SeesMilesLive ||
-      !fullV120PortalVerification.assocRollsUpBothTeamsAndPlayers ||
-      !fullV120PortalVerification.fourthDeviceBlockedPromptVisible ||
-      !fullV120PortalVerification.fourthDeviceReplacedAndEnteredSlots ||
-      !fullV120PortalVerification.slot1FreeAndSlots2To4Locked ||
-      !fullV120PortalVerification.sameAccountUpgradedTo4Slots
+      !fullV121PortalVerification.all11CutoutsLoadedTransparent ||
+      !fullV121PortalVerification.zeroPreloadedProfiles ||
+      !fullV121PortalVerification.screen1ZeroOverflow ||
+      !fullV121PortalVerification.strictly3Screen1Buttons ||
+      fullV121PortalVerification.playLearnOccurrences !== 1 ||
+      !fullV121PortalVerification.noRedundantPlatformSubcopy ||
+      !fullV121PortalVerification.noBasic499PlayerOptionInCoachCreate ||
+      !fullV121PortalVerification.zeroAgentAcrossAllEntryScreens ||
+      !fullV121PortalVerification.cloudAssocSaved ||
+      !fullV121PortalVerification.checkoutBypassedForAssocCoach ||
+      !fullV121PortalVerification.distinctTeamCodesGenerated ||
+      !fullV121PortalVerification.basic499Slot1EmptyAndSlots2To4Add299 ||
+      !fullV121PortalVerification.individualSiblingSlot2UnlockedOnly ||
+      !fullV121PortalVerification.step1VisibleFirst ||
+      !fullV121PortalVerification.step1ZeroCardBorders ||
+      !fullV121PortalVerification.zeroYearsPlayedInSetup ||
+      !fullV121PortalVerification.zeroJoinTeamInSetup ||
+      fullV121PortalVerification.divisionOptionsCount !== 15 ||
+      fullV121PortalVerification.expPillsCount !== 4 ||
+      !fullV121PortalVerification.zeroGuidedCutoutOverlapStep2 ||
+      !fullV121PortalVerification.step3AgentFlippedRight ||
+      !fullV121PortalVerification.zeroGuidedCutoutOverlapStep3 ||
+      !fullV121PortalVerification.handoffSpeechVerified ||
+      !fullV121PortalVerification.zeroJoinTeamInLockerRoom ||
+      !fullV121PortalVerification.lockerCustomTeamBannerVerified ||
+      !fullV121PortalVerification.backOfJerseyNameplateVerified ||
+      !fullV121PortalVerification.zeroJoinTeamInClubhouse ||
+      !fullV121PortalVerification.joinTeamExclusivelyInCoachOffice ||
+      !fullV121PortalVerification.coachAlCutoutFrameless ||
+      !fullV121PortalVerification.milesLinkedInCoachOffice ||
+      !fullV121PortalVerification.lobbyEnteredForRhett ||
+      !fullV121PortalVerification.agentAppearsOnlyAfterEnteringLobby ||
+      !fullV121PortalVerification.eightUAdvancedStillStartsAt8U ||
+      !fullV121PortalVerification.preservedAfterTeamSwitch ||
+      !fullV121PortalVerification.novice14UStartsOn8U ||
+      !fullV121PortalVerification.noviceSteppedUpAfter3Gold ||
+      !fullV121PortalVerification.advSteppedDownAfter2Misses ||
+      !fullV121PortalVerification.coachHomework100PctLocked ||
+      !fullV121PortalVerification.coachBobZeroRoboticMetadata ||
+      !fullV121PortalVerification.singleFocalSkaterGoldenArcVerified ||
+      !fullV121PortalVerification.coach1SeesMilesLive ||
+      !fullV121PortalVerification.assocRollsUpBothTeamsAndPlayers ||
+      !fullV121PortalVerification.fourthDeviceBlockedPromptVisible ||
+      !fullV121PortalVerification.fourthDeviceReplacedAndEnteredSlots ||
+      !fullV121PortalVerification.slot1FreeAndSlots2To4Locked ||
+      !fullV121PortalVerification.silentSlot1TeamCodeAutoLinked ||
+      !fullV121PortalVerification.sameAccountUnlockedSiblingSlot2 ||
+      !fullV121PortalVerification.annualFocusPositionVerified ||
+      !fullV121PortalVerification.ipad1024PortalCutoutCheck.zeroHorizontalOverflow1024
     ) {
-      throw new Error(`v12.0 Clean-Slate & Blooket Portal Verification Failed: ${JSON.stringify(fullV120PortalVerification)}`);
+      throw new Error(`v12.1 Guided Cutout Profiles, $4.99+$2.99 Slots & Adaptive IQ Verification Failed: ${JSON.stringify(fullV121PortalVerification)}`);
     }
 
     // =========================================================================
-    // 8. LOAD BATCH AA (`S1-AA..S12-AA`) PORTAL & 4-SLOT RECOMMENDATIONS & SEED CLEAN V12.0 STATE
+    // 8. LOAD BATCH AA (`S1-AA..S12-AA`) PORTAL & 4-SLOT RECOMMENDATIONS & SEED CLEAN V12.1 STATE
     // =========================================================================
     function ideaToUuid(ideaId) {
       const clean = String(ideaId || '').trim().replace(/^B\d+-/i, '').toUpperCase();
@@ -3618,11 +3913,11 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         age_division: 'ALL',
         category: 'cloud_coverage_ledger',
         status: 'completed_and_deployed',
-        summary: '📊 Seat 13 Cloud Coverage Ledger Ready (v12.0 • 360/360 Scenarios 100.0% • 32/32 Cities 100.0% • 2,400/5,760 Permutations 41.7% • Batch AA Active)',
+        summary: '📊 Seat 13 Cloud Coverage Ledger Ready (v12.1 • 360/360 Scenarios 100.0% • 32/32 Cities 100.0% • 2,400/5,760 Permutations 41.7% • Batch AA Active)',
         details: {
           id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
-          versionLabel: 'v12.0',
-          batchRunCount: 22,
+          versionLabel: 'v12.1',
+          batchRunCount: 23,
           activeBatchLetter: 'AA',
           activeBatchCode: 'AA',
           activeInboxIds: DEFAULT_BATCH_AA_ACTIVE_INBOX_IDS,
@@ -3766,7 +4061,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         clippedButtonsCount: clippedButtons.length,
         clippedButtons: clippedButtons.slice(0, 10),
         overflowingElements: overflowingElements.slice(0, 10),
-        hasV120Header: headerText.includes('V12.0') && headerText.includes('242/242 CHROME-VERIFIED'),
+        hasV120Header: headerText.includes('V12.1') && headerText.includes('242/242 CHROME-VERIFIED'),
         hasNoLegacyV91Header: !headerText.includes('V9.1 SYNAPZ REBRAND'),
         deployBtnTextInitial,
         hasNoDeadAgentText: !deployBtnTextInitial.includes('Ready for AI Coding Agent'),

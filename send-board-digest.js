@@ -1539,8 +1539,8 @@ function renderRedFlagCouncilOptionsHtml(rf) {
 }
 
 // ============================================================================
-// STEP 4: V12.0 CLEAN-SLATE ACCOUNTS, 4-SLOT PROFILES & BLOOKET PORTALS DIGEST (< 35 KB)
-//   Section 1: 🚪 v12.0 Clean-Slate Portals + 🔬 242/242 Live Upgrades Chrome-Verified
+// STEP 4: V12.1 GUIDED CUTOUT PROFILES, $4.99+$2.99 SLOTS & ADAPTIVE IQ DIGEST (< 35 KB)
+//   Section 1: 🎭 v12.1 Guided Cutout Profiles + $4.99+$2.99 Slots + Adaptive IQ + 242/242 Live
 //   Section 2: 🔍 Seat 13 Cumulative Coverage Heatmap (2,400/5,760 Permutations 41.7%)
 //   Section 3: 📥 To Review (12) — Batch AA Portal, 4-Slot & Rollup Polish Bank (S1-AA..S12-AA)
 // ============================================================================
@@ -1566,7 +1566,7 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<title>SYNAPZ HOCKEY v12.0 — Clean-Slate Portals &amp; 4-Slot Profiles + 242/242 Upgrades Live (Batch AA: 12 To Review)</title>
+<title>SYNAPZ HOCKEY v12.1 — Guided Cutout Profiles, $4.99+$2.99 Slots &amp; Adaptive IQ + 242/242 Live (Batch AA: 12 To Review)</title>
 <style>
   body { font-family: Inter, Arial, sans-serif; background:#020617; color:#f8fafc; padding:12px; line-height:1.38; }
   .wrap { max-width:920px; margin:0 auto; background:#090d16; border:2px solid #00e5ff; border-radius:14px; padding:16px; }
@@ -1582,8 +1582,8 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
 </head>
 <body>
 <div class="wrap">
-  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • V12.0 • CLEAN-SLATE ACCOUNTS &amp; BLOOKET PORTALS • 242/242 LIVE UPGRADES CHROME-VERIFIED (&lt; 35 KB)</div>
-  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">🚪 v12.0 Live: Clean-Slate Entry Gate + 4-Slot Player Profiles + Association→Coach→Player Portals (✅ 242 Live | 📥 Batch AA: 12 To Review)</h1>
+  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • V12.1 • GUIDED CUTOUT PROFILES &amp; ADAPTIVE IQ • 242/242 LIVE UPGRADES CHROME-VERIFIED (&lt; 35 KB)</div>
+  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">🎭 v12.1 Live: $4.99+$2.99 Household Slots + 11 Waist-Up Cutouts + Step-1 Guided Tour + Adaptive Solo IQ (✅ 242 Live | 📥 Batch AA: 12 To Review)</h1>
   <p style="margin:0 0 10px;font-size:11px;color:#cbd5e1;">
     Prepared for <strong>Coach Dane (danebekkedahl@gmail.com)</strong> &amp; <strong>Coach Evan (evanbekk@gmail.com)</strong> • ${timestamp}<br/>
     🌐 <strong>Start Fresh on Screen 1:</strong> <a href="${PAGES_BASE_URL}/" class="b-ex">${PAGES_BASE_URL}/</a> •
@@ -1591,35 +1591,35 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
     📱 <strong>1-Tap Phone Loop:</strong> <a href="${rpt}#founderBatchDeployBar" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">📥 OPEN BATCH AA IN 3-TAB PHONE INBOX</a>
   </p>
 
-  <!-- SECTION 1: 🚪 V12.0 CLEAN-SLATE PORTAL FLOW + 🔬 242/242 LIVE UPGRADES CHROME-VERIFIED -->
+  <!-- SECTION 1: 🎭 V12.1 GUIDED CUTOUT PROFILES, $4.99+$2.99 SLOTS & ADAPTIVE IQ -->
   <div style="background:#022c22;border:2px solid #10b981;border-radius:10px;padding:11px;margin-bottom:12px;">
-    <div style="font-size:11px;font-weight:900;color:#34d399;text-transform:uppercase;">SECTION 1 • 🚪 V12.0 CLEAN-SLATE ACCOUNTS, 4-SLOT PROFILES &amp; BLOOKET PORTALS + 🔬 242/242 UPGRADES LIVE</div>
+    <div style="font-size:11px;font-weight:900;color:#34d399;text-transform:uppercase;">SECTION 1 • 🎭 V12.1 GUIDED WAIST-UP CUTOUT PROFILES, $4.99+$2.99 SLOTS &amp; ADAPTIVE SOLO IQ + 🔬 242/242 LIVE</div>
     <div style="font-size:11px;color:#a7f3d0;margin:4px 0;">
-      <strong>Service Worker Cache:</strong> <code>synapz-hockey-v12.0-clean-slate-portals</code> • <strong>Database Wiped 100% Clean (0 Preloaded Profiles / 0 Test Accounts)</strong> so Dane, Evan, Amanda, Sal, and the boys start completely from scratch! Plus all <strong>${allApprovedCount} approved upgrades</strong> (including 69/72 from Batches U–Z = 96% approval!) are hard-committed in <code>CORE_DEPLOYED_UPGRADE_IDS</code>.
+      <strong>Service Worker Cache:</strong> <code>synapz-hockey-v12.1-cutout-guided-profiles</code> • <strong>Database Wiped 100% Clean (0 Test Accounts / 0 Preloaded Profiles)</strong> so Dane, Evan, Amanda, Sal, and the boys start fresh on Screen 1 with all <strong>${allApprovedCount} approved upgrades</strong> active!
     </div>
     <table style="margin:6px 0;">
       <thead>
-        <tr><th>v12.0 Milestone Deliverable</th><th>What Is Live &amp; Chrome-Verified at 390×844</th><th>Status</th></tr>
+        <tr><th>v12.1 Milestone Deliverable</th><th>What Is Live &amp; Chrome-Verified at 390×844 &amp; 1024×768</th><th>Status</th></tr>
       </thead>
       <tbody>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">1. Screen 1 Minimalism</strong></td>
-          <td>Strictly 3 title-only buttons (<code>Player Portal</code>, <code>Coaches/Association Portal</code>, <code>Info</code>) + <code>PLAY. LEARN. DOMINATE.</code> once • <strong>ZERO Character Agent</strong> on any entry/auth/slot screen!</td>
-          <td class="nw"><strong style="color:#fde047;">0px Overflow</strong></td>
-        </tr>
-        <tr>
-          <td class="nw"><strong style="color:#34d399;">2. Player 4-Slot Profiles</strong></td>
-          <td><code>$0.00</code> Pilot Sandbox Checkout unlocks 4 <code>Empty</code> Family Slots (or Coach Team Code unlocks Slot 1 free w/ 1-tap same-account upgrade) + independent per-sibling Team Codes + Max-3-Device guard + Locker Stall <code>Join / Change Team Code</code>!</td>
+          <td class="nw"><strong style="color:#34d399;">1. $4.99 + $2.99 Household Slots</strong></td>
+          <td><code>$4.99</code> Basic unlocks <strong>Slot 1 (Empty)</strong> while Slots 2–4 show <code>➕ Add Sibling Profile ($2.99)</code> (1-tap <code>$0.00</code> Pilot Sandbox unlock per slot; <code>$49.99/yr</code> adds <em>Focus on My Position Only</em>) • <strong>0 Agents</strong> on entry/auth/slot screens!</td>
           <td class="nw"><strong style="color:#34d399;">Cloud Synced</strong></td>
         </tr>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">3. Blooket Assoc → Coach → Player</strong></td>
-          <td>Association Master Plan generates live 6-char <code>assocCode</code> → Coaches join w/ <code>assocCode</code> (bypasses payment) &amp; get unique 6-char <code>teamCode</code> → Players join per-slot &amp; roll up live into Coach HQ + Association Master HQ!</td>
-          <td class="nw"><strong style="color:#34d399;">End-to-End Pass</strong></td>
+          <td class="nw"><strong style="color:#34d399;">2. 11 Waist-Up Cutouts + Tour</strong></td>
+          <td>All 11 transparent PNGs in <code>assets/cutouts/</code> (<code>border:0</code>) • Step 1 picks &amp; auditions Agent first → spotlight tour auto-flips left/right (<code>scaleX(-1)</code>) w/ 0 input overlap • <strong><code>Years Played</code> removed</strong> (only Name, 15-tier Division, 4-pill Experience + Avatar/Jersey)!</td>
+          <td class="nw"><strong style="color:#fde047;">0px Overlap</strong></td>
         </tr>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">4. Clean-Slate Reset + 242 Live</strong></td>
-          <td>Subtle <code>🔄 Reset All Test Accounts &amp; Wipe Profiles</code> (PIN <code>1111</code> / <code>RESET</code>) on <code>Info</code> &amp; <code>report.html</code> wipes accounts/codes while keeping all <strong>242 approved upgrades</strong> intact!</td>
+          <td class="nw"><strong style="color:#34d399;">3. Join a Team in Coaches Room</strong></td>
+          <td><code>Join a Team</code> removed from Profile Setup, Locker Room &amp; Clubhouse — lives <strong>EXCLUSIVELY inside Coach Al's Office</strong> (silent auto-link when Slot 1 unlocked via Team Code on Screen 1A-2)!</td>
+          <td class="nw"><strong style="color:#34d399;">Verified</strong></td>
+        </tr>
+        <tr>
+          <td class="nw"><strong style="color:#34d399;">4. Adaptive IQ + Clean Ice</strong></td>
+          <td><code>8U</code> &amp; <code>Novice</code> start foundational; Solo steps UP after <code>3</code> Gold reads &amp; DOWN after <code>2</code> misses while <strong>Coach Homework stays 100% locked</strong> • De-roboted Coach Bob (0 <code>#number</code>/tags) + <strong>1 Focal-Skater Golden Arc</strong> (0 <code>YOU #9</code> boxes)!</td>
           <td class="nw"><strong style="color:#fde047;">0 Accounts in DB</strong></td>
         </tr>
       </tbody>
@@ -1640,7 +1640,7 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
       </tr>
     </table>
     <div style="margin-top:6px;">
-      <a href="${PAGES_BASE_URL}/" style="background:#00e5ff;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">🏒 WALK THROUGH V12.0 PORTALS LIVE</a>
+      <a href="${PAGES_BASE_URL}/" style="background:#00e5ff;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">🏒 WALK THROUGH V12.1 LIVE</a>
       <a href="${rpt}#founder-approval-board" style="background:#10b981;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">📥 OPEN BATCH AA (12 TO REVIEW)</a>
       <a href="${batchApproveUrl}" style="background:#0284c7;color:#fff;font-weight:900;font-size:11px;padding:6px 10px;border-radius:5px;text-decoration:none;display:inline-block;">⭐ Approve All High-Match (&gt;=90% • ${ordered12Ideas.length})</a>
     </div>
@@ -1649,10 +1649,10 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
   <!-- SECTION 3: 📥 TO REVIEW (12) — BATCH AA PORTAL, 4-SLOT & ASSOCIATION ROLLUP POLISH (S1-AA..S12-AA) -->
   <div style="background:#0f172a;border:2px solid #0284c7;border-radius:10px;padding:11px;">
     <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 3 • 📥 TO REVIEW (12) — BATCH AA "PORTAL, 4-SLOT &amp; BLOOKET TEAM/ASSOC POLISH" (S1-AA..S12-AA)</div>
-    <div style="font-size:11px;color:#94a3b8;margin:2px 0 6px;">48 modular upgrades pre-coded across Batches AA–AD (300 total bank items) focused strictly on polishing the new v12.0 Clean-Slate Account, 4-Slot Sibling Linking, Coach Team-Code &amp; Association Master Rollup experience!</div>
+    <div style="font-size:11px;color:#94a3b8;margin:2px 0 6px;">48 modular upgrades pre-coded across Batches AA–AD (300 total bank items) focused strictly on polishing the Clean-Slate Account, Sibling Slot Linking, Coach Team-Code &amp; Association Master Rollup experience!</div>
     <table>
       <thead>
-        <tr><th>Rank &amp; ID</th><th>v12.0 Portal &amp; 4-Slot Polish Proposal</th><th>Match / Gate</th><th>4 Action Buttons (Moves to 🛠️ Queued)</th></tr>
+        <tr><th>Rank &amp; ID</th><th>Portal &amp; 4-Slot Polish Proposal</th><th>Match / Gate</th><th>4 Action Buttons (Moves to 🛠️ Queued)</th></tr>
       </thead>
       <tbody>
         ${ordered12Ideas.map(item => {
@@ -1689,7 +1689,7 @@ async function main() {
   const outPath = path.join(__dirname, 'FOUNDER_EMAIL_DIGEST_LATEST.html');
   fs.writeFileSync(outPath, htmlContent, 'utf8');
 
-  const batchNum = 23;
+  const batchNum = 24;
   const newlyCodedCount = 69;
   const cumulativeCodedCount = 242;
   const activeInboxIds = FRESH_12_SEAT_RECOMMENDATIONS.map(i => i.id);
@@ -1718,10 +1718,10 @@ async function main() {
     age_division: 'ALL',
     category: 'board_digest',
     status: 'completed_and_deployed',
-    summary: `🚪 SYNAPZ HOCKEY v12.0 — Clean-Slate Portals & 4-Slot Profiles + 242/242 Upgrades Live (Batch AA: 12 To Review | 0 Queued | 242 Live in App) (${emailSizeKb} KB < 35 KB) -> ${RECIPIENTS.join(', ')}`,
+    summary: `🎭 SYNAPZ HOCKEY v12.1 — Guided Cutout Profiles, $4.99+$2.99 Slots & Adaptive IQ + 242/242 Live (Batch AA: 12 To Review | 0 Queued | 242 Live) (${emailSizeKb} KB < 35 KB) -> ${RECIPIENTS.join(', ')}`,
     details: {
-      version: 'v12.0-clean-slate-accounts-and-portals',
-      versionLabel: 'v12.0',
+      version: 'v12.1-guided-cutout-profiles-and-adaptive-iq',
+      versionLabel: 'v12.1',
       activeBatchLetter: 'AA',
       activeInboxIds,
       recipients: RECIPIENTS,
@@ -1759,7 +1759,7 @@ async function main() {
         const testId = `S${s}-${bL}`;
         cleanupRows.push({
           id: ideaToUuid(testId),
-          created_by: 'Seat13-Bank-Reset-v12.0',
+          created_by: 'Seat13-Bank-Reset-v12.1',
           source_role: 'council',
           scenario_id: testId,
           age_division: 'ALL',
@@ -1776,7 +1776,7 @@ async function main() {
     rejectedHistoryIds.forEach(rejId => {
       cleanupRows.push({
         id: ideaToUuid(rejId),
-        created_by: 'Founder-Decision-v12.0',
+        created_by: 'Founder-Decision-v12.1',
         source_role: 'founder_decision',
         scenario_id: rejId,
         age_division: 'ALL',
@@ -1789,7 +1789,7 @@ async function main() {
     ['S9-J', 'S8-K', 'S6-P', 'S7-R', 'S4-U', 'S2-V'].forEach(skpId => {
       cleanupRows.push({
         id: ideaToUuid(skpId),
-        created_by: 'Founder-Decision-v12.0',
+        created_by: 'Founder-Decision-v12.1',
         source_role: 'founder_decision',
         scenario_id: skpId,
         age_division: 'ALL',
@@ -1821,7 +1821,7 @@ async function main() {
     all242Ids.forEach(depId => {
       proposalRows.push({
         id: ideaToUuid(depId),
-        created_by: 'Phone-Batch-Deployer-v12.0',
+        created_by: 'Phone-Batch-Deployer-v12.1',
         source_role: 'council',
         scenario_id: depId,
         age_division: 'ALL',
@@ -1840,7 +1840,7 @@ async function main() {
 
     proposalRows.push({
       id: ideaToUuid('SYNAPZ-FOUNDER-TASTE-PROFILE'),
-      created_by: 'Seat13-Taste-Engine-v12.0',
+      created_by: 'Seat13-Taste-Engine-v12.1',
       source_role: 'council',
       scenario_id: 'SYNAPZ-FOUNDER-TASTE-PROFILE',
       age_division: 'ALL',
@@ -1862,11 +1862,11 @@ async function main() {
       age_division: 'ALL',
       category: 'cloud_coverage_ledger',
       status: 'completed_and_deployed',
-      summary: '📊 Seat 13 Cloud Coverage Ledger Updated (v12.0 • 360/360 Scenarios 100.0% • 2,400/5,760 Permutations 41.7% • Batch AA Active)',
+      summary: '📊 Seat 13 Cloud Coverage Ledger Updated (v12.1 • 360/360 Scenarios 100.0% • 2,400/5,760 Permutations 41.7% • Batch AA Active)',
       details: {
         id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
-        versionLabel: 'v12.0',
-        batchRunCount: 22,
+        versionLabel: 'v12.1',
+        batchRunCount: 23,
         activeBatchLetter: 'AA',
         activeBatchCode: 'AA',
         activeInboxIds,
@@ -1925,7 +1925,7 @@ async function main() {
     second: '2-digit'
   });
   const senderDisplayName = 'Synapz Hockey 12-Seat Council & Seat 13 Meta-Auditor';
-  const emailSubject = `SYNAPZ HOCKEY v12.0 — Clean-Slate Portals & 4-Slot Profiles + 242/242 Upgrades Live (Batch AA: 12 To Review) [${uniqueTimestampLabel}]`;
+  const emailSubject = `SYNAPZ HOCKEY v12.1 — Guided Cutout Profiles, $4.99+$2.99 Slots & Adaptive IQ + 242/242 Live (Batch AA: 12 To Review) [${uniqueTimestampLabel}]`;
   try {
     const gmailRes = await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
       method: 'POST',

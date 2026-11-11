@@ -39,6 +39,7 @@ const FILES_TO_DEPLOY = [
   { rel: 'v111_118_upgrades_audit.json', encoding: 'utf-8' },
   { rel: 'v112_173_upgrades_audit.json', encoding: 'utf-8' },
   { rel: 'v120_242_upgrades_audit.json', encoding: 'utf-8' },
+  { rel: 'v121_242_upgrades_audit.json', encoding: 'utf-8' },
   { rel: 'fetch-approved-queue.js', encoding: 'utf-8' },
   { rel: 'apply-approved-batch.js', encoding: 'utf-8' },
   { rel: 'watch-approved-queue.js', encoding: 'utf-8' },
@@ -63,6 +64,17 @@ const FILES_TO_DEPLOY = [
   { rel: 'assets/agents/agent-priya.png', encoding: 'base64' },
   { rel: 'assets/agents/agent-ryan.png', encoding: 'base64' },
   { rel: 'assets/agents/agent-claire.png', encoding: 'base64' },
+  { rel: 'assets/cutouts/agent-leo.png', encoding: 'base64' },
+  { rel: 'assets/cutouts/agent-maya.png', encoding: 'base64' },
+  { rel: 'assets/cutouts/agent-jalen.png', encoding: 'base64' },
+  { rel: 'assets/cutouts/agent-chloe.png', encoding: 'base64' },
+  { rel: 'assets/cutouts/agent-sofia.png', encoding: 'base64' },
+  { rel: 'assets/cutouts/agent-marcus.png', encoding: 'base64' },
+  { rel: 'assets/cutouts/agent-priya.png', encoding: 'base64' },
+  { rel: 'assets/cutouts/agent-ryan.png', encoding: 'base64' },
+  { rel: 'assets/cutouts/agent-claire.png', encoding: 'base64' },
+  { rel: 'assets/cutouts/coach-bob.png', encoding: 'base64' },
+  { rel: 'assets/cutouts/coach-al.png', encoding: 'base64' },
   { rel: 'assets/rooms/room-rink-lobby.png', encoding: 'base64' },
   { rel: 'assets/rooms/room-locker-room.png', encoding: 'base64' },
   { rel: 'assets/rooms/room-coaches-office.png', encoding: 'base64' },
@@ -120,7 +132,8 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/audit_v110_63_verified_dial_in.png', encoding: 'base64' },
   { rel: 'screenshots/audit_v111_118_verified_rotated_flows.png', encoding: 'base64' },
   { rel: 'screenshots/audit_v112_173_verified_6pos_pilot.png', encoding: 'base64' },
-  { rel: 'screenshots/audit_v120_clean_slate_portals.png', encoding: 'base64' }
+  { rel: 'screenshots/audit_v120_clean_slate_portals.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_v121_cutout_guided_profiles.png', encoding: 'base64' }
 ];
 
 // Automatically include all generated neural .mp3 voice files in assets/audio/voices/<characterId>/*.mp3
@@ -426,7 +439,7 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
 
   // 5. Create Commit
   const commitRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/commits`, token, 'POST', {
-    message: `Deploy SYNAPZ HOCKEY v12.0-clean-slate-accounts-and-portals (242/242 Live Upgrades Chrome-Verified + Clean-Slate 3-Button Entry Gate + 4-Slot Player Profiles + Blooket Association->Coach->Player Portals + Batch AA Loaded in To Review)`,
+    message: `Deploy SYNAPZ HOCKEY v12.1-guided-cutout-profiles-and-adaptive-iq ($4.99+$2.99 Household Slots + 11 Waist-Up Transparent Cutouts + Step-1 Guided Agent Tour + Two-Way Adaptive Solo IQ + De-Roboted Coach Bob & Single Focal-Skater Arc)`,
     tree: treeRes.data.sha,
     parents: [baseCommitSha]
   });
@@ -491,12 +504,16 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
   const liveUrl = `https://${owner}.github.io/${REPO_NAME}/`;
   const reportUrl = `https://${owner}.github.io/${REPO_NAME}/report.html`;
   if (REPO_NAME === 'synapz-hockey') {
-    for (let attempt = 1; attempt <= 12; attempt++) {
+    for (let attempt = 1; attempt <= 14; attempt++) {
       try {
-        const res = await fetch(`${reportUrl}?t=${Date.now()}`, { headers: { 'Cache-Control': 'no-cache' } });
-        const html = await res.text();
-        if (html.toUpperCase().includes('V12.0') && html.toUpperCase().includes('242/242 CHROME-VERIFIED')) {
-          console.log(`✅ Verified live ${reportUrl} is serving V12.0 • 242/242 CHROME-VERIFIED LIVE • PORTAL & 4-SLOT BANK (BATCHES AA–AD)!`);
+        const [resRep, resSw] = await Promise.all([
+          fetch(`${reportUrl}?t=${Date.now()}`, { headers: { 'Cache-Control': 'no-cache' } }),
+          fetch(`${liveUrl}sw.js?t=${Date.now()}`, { headers: { 'Cache-Control': 'no-cache' } })
+        ]);
+        const html = await resRep.text();
+        const swText = await resSw.text();
+        if (html.toUpperCase().includes('V12.1') && swText.includes('synapz-hockey-v12.1-cutout-guided-profiles')) {
+          console.log(`✅ Verified live ${liveUrl} & ${reportUrl} are serving v12.1 (synapz-hockey-v12.1-cutout-guided-profiles)!`);
           break;
         }
       } catch (_) {}
