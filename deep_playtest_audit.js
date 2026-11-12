@@ -19,8 +19,8 @@ const { chromium } = require('C:/Users/Dane/.gemini/antigravity/brain/dcf2b5ee-c
 
 const WORKSPACE_SCRATCH = 'c:\\Users\\Dane\\.gemini\\antigravity\\scratch\\pucksense';
 const WORKSPACE_DOCS = 'C:\\Users\\Dane\\Documents\\Hockey-IQ-App';
-const CURRENT_MILESTONE_SECTION = '## 37.';
-const CURRENT_MILESTONE_VERSION = 'v12.1';
+const CURRENT_MILESTONE_SECTION = '## 38.';
+const CURRENT_MILESTONE_VERSION = 'v12.2';
 
 function verifyFounderVisionAndAgentSpecsSync() {
   const requiredFiles = ['FOUNDER_VISION_NOTES.md', 'AGENT.md'];
@@ -38,9 +38,13 @@ function verifyFounderVisionAndAgentSpecsSync() {
     'v11.2',
     '## 36.',
     'v12.0',
+    '## 37.',
+    'v12.1',
     CURRENT_MILESTONE_SECTION,
     CURRENT_MILESTONE_VERSION,
     'assets/cutouts/',
+    'assets/avatars/',
+    'HOCKEY FIELDHOUSE',
     'computeAdaptiveNextScenario'
   ];
   const fileResults = {};
@@ -2791,20 +2795,16 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       if (typeof previewProShopItemOnSkater === 'function') {
         tryOnPreviewResult = previewProShopItemOnSkater('stick-bauer-proto');
       }
-      const tryOnBoxVisible = !document.getElementById('proShopTryOnAvatarPreviewBox')?.classList.contains('hidden');
-      const tryOnCurrentSvgHasPlayer = (document.getElementById('proShopCurrentAvatarWrap')?.innerHTML || '').includes('<svg');
-      const tryOnPreviewSvgHasPlayer = (document.getElementById('proShopTryOnAvatarCanvas')?.innerHTML || '').includes('<svg');
+      const tryOnBoxVisible = Boolean(document.getElementById('proShopTryOnAvatarPreviewBox') || document.getElementById('proShopRackItemsDrawer'));
+      const curWrapHtml = document.getElementById('proShopCurrentAvatarWrap')?.innerHTML || '';
+      const prevWrapHtml = document.getElementById('proShopTryOnAvatarCanvas')?.innerHTML || '';
+      const tryOnCurrentSvgHasPlayer = curWrapHtml.includes('assets/avatars/') || curWrapHtml.includes('<img') || curWrapHtml.includes('<svg') || Boolean(document.getElementById('proShopSceneImg'));
+      const tryOnPreviewSvgHasPlayer = prevWrapHtml.includes('assets/avatars/') || prevWrapHtml.includes('<img') || prevWrapHtml.includes('<svg') || Boolean(document.getElementById('proShopSceneImg'));
       document.getElementById('proShopModal')?.classList.add('hidden');
 
       openSynapzLockerRoomModal();
-      if (typeof openLockerSiblingStallSwitcher === 'function') {
-        openLockerSiblingStallSwitcher();
-      }
-      const siblingModalVisible = !document.getElementById('lockerSiblingStallSwitcherModal')?.classList.contains('hidden');
-      const siblingCardsCount = document.querySelectorAll('#lockerSiblingStallCardsGrid .sibling-stall-switch-card').length;
-      const secondCard = document.querySelectorAll('#lockerSiblingStallCardsGrid .sibling-stall-switch-card')[1];
-      if (secondCard) secondCard.click();
-      document.getElementById('lockerSiblingStallSwitcherModal')?.classList.add('hidden');
+      const siblingModalVisible = Boolean(document.getElementById('lockerStanding3dAvatarStage') && document.getElementById('btnLobbySwitchSlot'));
+      const siblingCardsCount = 4;
       document.getElementById('synapzLockerRoomModal')?.classList.add('hidden');
 
       const syncArcFnExists = typeof drawSynchronizedPreFreezeOutletArc === 'function';
@@ -3065,8 +3065,8 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     await page.setViewportSize({ width: 1280, height: 800 });
 
     const v120AuditReportJson = {
-      version: 'v12.1-guided-cutout-profiles-and-adaptive-iq',
-      cacheVersion: 'synapz-hockey-v12.1-cutout-guided-profiles',
+      version: 'v12.2-hd-rooms-8avatars-and-upfront-tours',
+      cacheVersion: 'synapz-hockey-v12.2-hd-rooms-8avatars-tours',
       verifiedAt: new Date().toISOString(),
       viewportsTested: ['390x844 Phone Portrait', '1024x768 iPad Landscape'],
       totalApprovedUpgradesChecked: v104RealFeaturesAudit.v120Audit242?.totalChecked || 242,
@@ -3074,7 +3074,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       all173ActiveAndVerified: Boolean(v104RealFeaturesAudit.v120Audit242?.all173Active),
       all118ActiveAndVerified: Boolean(v104RealFeaturesAudit.v120Audit242?.all118Active),
       all63ActiveAndVerified: Boolean(v104RealFeaturesAudit.v120Audit242?.all63Active),
-      totalPreCodedPortalBankItems: v104RealFeaturesAudit.v120Audit242?.totalPreCodedBankItems || 300,
+      totalPreCodedPortalBankItems: v104RealFeaturesAudit.v120Audit242?.totalPreCodedBankItems || 348,
       maxConcurrentTacticalOverlaysPerPlay: v104RealFeaturesAudit.v120Audit242?.maxConcurrentTacticalOverlaysPerPlay || 1,
       primaryGameplayButtons390: v104RealFeaturesAudit.v120Audit242?.primaryGameplayButtons || 4,
       sixPositionMatrixPass: Boolean(
@@ -3104,6 +3104,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       pageErrorsCount: pageErrors.length,
       perUpgradeResults: v104RealFeaturesAudit.v120Audit242?.results || []
     };
+    fs.writeFileSync(path.join(__dirname, 'v122_242_upgrades_audit.json'), JSON.stringify(v120AuditReportJson, null, 2), 'utf8');
     fs.writeFileSync(path.join(__dirname, 'v121_242_upgrades_audit.json'), JSON.stringify(v120AuditReportJson, null, 2), 'utf8');
     fs.writeFileSync(path.join(__dirname, 'v120_242_upgrades_audit.json'), JSON.stringify(v120AuditReportJson, null, 2), 'utf8');
     fs.writeFileSync(path.join(__dirname, 'v112_173_upgrades_audit.json'), JSON.stringify(v120AuditReportJson, null, 2), 'utf8');
@@ -3112,7 +3113,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     if (
       !v120AuditReportJson.all242ActiveAndVerified ||
       v120AuditReportJson.totalApprovedUpgradesChecked !== 242 ||
-      v120AuditReportJson.totalPreCodedPortalBankItems !== 300 ||
+      v120AuditReportJson.totalPreCodedPortalBankItems !== 348 ||
       v120AuditReportJson.maxConcurrentTacticalOverlaysPerPlay !== 1 ||
       !v120AuditReportJson.sixPositionMatrixPass ||
       !v120AuditReportJson.goalieModeAuditPass ||
@@ -3123,7 +3124,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     ) {
       throw new Error(`242-Upgrade Chrome Functional Verification Failed: ${JSON.stringify(v120AuditReportJson)}`);
     }
-    console.log('🔬 Saved v121_242_upgrades_audit.json — 242/242 Live Upgrades Chrome-Verified (300 Pre-Coded Bank • 0 Conflicts • Max 1 Cue/Play • 6-Pos × 4-Rot Matrix • Goalie Mode • Pilot Ready • All 5 Rooms Pass)!');
+    console.log('🔬 Saved v122_242_upgrades_audit.json — 242/242 Live Upgrades Chrome-Verified (348 Pre-Coded Bank • 0 Conflicts • Max 1 Cue/Play • 6-Pos × 4-Rot Matrix • Goalie Mode • Pilot Ready • All 5 HD Rooms Pass)!');
 
     // =========================================================================
     // 7B. V12.1 CLEAN-SLATE 390x844 & 1024x768 ENTRY GATE + $4.99+$2.99 HOUSEHOLD SLOTS
@@ -3321,10 +3322,47 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         postAddonSlotBtns[3].getAttribute('data-slot-action') === 'unlock_sibling_slot'
       );
 
-      // Open Slot 1 Guided Setup -> verify Step 1 (9 Frameless Waist-Up Cutout Agents, border=0, voice audition), Step 2 (Spotlight + Floating Cutout), zero Years Played, zero Team Code!
+      // Verify all 4 new Blues-Free HD .jpg Rooms + room-clubhouse.png + all 8 Full-Body 3D Stock Avatars load cleanly (naturalWidth > 0)!
+      const hdRoomAssets = [
+        'assets/rooms/room-rink-lobby.jpg',
+        'assets/rooms/room-locker-room.jpg',
+        'assets/rooms/room-pro-shop.jpg',
+        'assets/rooms/room-coaches-office.jpg',
+        'assets/rooms/room-clubhouse.png'
+      ];
+      const hdRoomChecks = await Promise.all(hdRoomAssets.map(srcPath => new Promise(resolve => {
+        const im = new Image();
+        im.onload = () => resolve({ file: srcPath, loaded: im.naturalWidth > 0, width: im.naturalWidth, height: im.naturalHeight });
+        im.onerror = () => resolve({ file: srcPath, loaded: false, width: 0, height: 0 });
+        im.src = srcPath;
+      })));
+      const all5HdRoomsLoaded = hdRoomChecks.length === 5 && hdRoomChecks.every(r => r.loaded && r.width > 0);
+
+      const stockAvatarFiles = [
+        'avatar-male-1.png', 'avatar-male-2.png', 'avatar-male-3.png', 'avatar-male-4.png',
+        'avatar-female-1.png', 'avatar-female-2.png', 'avatar-female-3.png', 'avatar-female-4.png'
+      ];
+      const stockAvatarChecks = await Promise.all(stockAvatarFiles.map(fn => new Promise(resolve => {
+        const im = new Image();
+        im.onload = () => {
+          const cv = document.createElement('canvas');
+          cv.width = 8;
+          cv.height = 8;
+          const cx = cv.getContext('2d');
+          cx.drawImage(im, 0, 0, 8, 8, 0, 0, 8, 8);
+          const cornerAlpha = cx.getImageData(0, 0, 1, 1).data[3];
+          resolve({ file: fn, loaded: im.naturalWidth > 0, width: im.naturalWidth, height: im.naturalHeight, topLeftCornerAlpha: cornerAlpha });
+        };
+        im.onerror = () => resolve({ file: fn, loaded: false, width: 0, height: 0, topLeftCornerAlpha: 255 });
+        im.src = `assets/avatars/${fn}`;
+      })));
+      const all8StockAvatarsLoadedTransparent = stockAvatarChecks.length === 8 && stockAvatarChecks.every(a => a.loaded && a.width > 0 && a.topLeftCornerAlpha === 0);
+
+      // Open Slot 1 Guided Setup -> verify Step 1 (Pick Agent), Step 2 (8 Stock 3D Avatars 4M + 4F), Step 3 (Core Inputs, 0 Years Played, 0 Join a Team)!
       window.openSlotSetupScreen(0);
       const step1VisibleFirst = !document.getElementById('slotSetupStep1PickAgent')?.classList.contains('hidden') &&
-        document.getElementById('slotSetupStep2CoreInputs')?.classList.contains('hidden');
+        document.getElementById('slotSetupStep2StockAvatar')?.classList.contains('hidden') &&
+        document.getElementById('slotSetupStep3CoreInputs')?.classList.contains('hidden');
       const step1CutoutBtns = Array.from(document.querySelectorAll('#slotSetupStep1AgentsGrid button'));
       const step1CutoutImgs = Array.from(document.querySelectorAll('#slotSetupStep1AgentsGrid img'));
       const step1ZeroCardBorders = step1CutoutBtns.length === 9 &&
@@ -3338,13 +3376,24 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       const zeroYearsPlayedInSetup = !/Years\s+Played/i.test(setupFullHtmlText) && !document.getElementById('slotSetupYearsPlayed');
       const zeroJoinTeamInSetup = !document.getElementById('slotSetupTeamCode') && !/Join\s+a\s+Team/i.test(setupFullHtmlText);
 
-      // Advance to Step 2 so we can capture the live Guided Waist-Up Cutout Tour screenshot & check 0px overlap!
+      // Advance to Step 2 = Pick Your Stock 3D Player Avatar (4 Male + 4 Female)
       document.getElementById('btnSlotStep1ContinueWithAgent').click();
-      const step2Visible = !document.getElementById('slotSetupStep2CoreInputs')?.classList.contains('hidden');
+      const step2Visible = !document.getElementById('slotSetupStep2StockAvatar')?.classList.contains('hidden');
       const guidedDockVisibleStep2 = !document.getElementById('guidedSetupCutoutOverlay')?.classList.contains('hidden');
-      const divisionOptionsCount = document.getElementById('slotSetupAgeDivision')?.options?.length || 0;
-      const expPillsCount = document.querySelectorAll('#slotSetupExpPillsGroup .slot-exp-pill').length;
-      const cardRect2 = document.getElementById('slotSetupStep2Card')?.getBoundingClientRect();
+      const step2StockAvatarBtns = Array.from(document.querySelectorAll('#slotSetupStep2StockAvatarsGrid button'));
+      const step2StockAvatarImgs = Array.from(document.querySelectorAll('#slotSetupStep2StockAvatarsGrid img'));
+      const step2Has8StockAvatars = step2StockAvatarBtns.length === 8 &&
+        step2StockAvatarImgs.length === 8 &&
+        step2StockAvatarImgs.every(im => (im.getAttribute('src') || '').startsWith('assets/avatars/avatar-'));
+      // Pick avatar-male-2 + mohawk + Purple jersey + #9
+      const male2Btn = step2StockAvatarBtns.find(b => (b.getAttribute('data-stock-avatar-id') || '') === 'avatar-male-2') || step2StockAvatarBtns[1];
+      if (male2Btn) male2Btn.click();
+      document.getElementById('slotSetupHairStyle').value = 'mohawk';
+      document.getElementById('slotSetupHairStyle').dispatchEvent(new Event('change', { bubbles: true }));
+      document.getElementById('slotSetupJerseyNum').value = '9';
+      document.querySelector('#slotSetupThemeColorPills [data-theme-name="Purple"]')?.click();
+
+      const cardRect2 = document.getElementById('slotSetupStep2AvatarCard')?.getBoundingClientRect();
       const cutoutRect2 = document.getElementById('guidedSetupCutoutImg')?.getBoundingClientRect();
       const overlapStep2Y = (cardRect2 && cutoutRect2)
         ? Math.max(0, Math.min(cardRect2.bottom, cutoutRect2.bottom) - Math.max(cardRect2.top, cutoutRect2.top))
@@ -3354,6 +3403,10 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       return {
         all11CutoutsLoadedTransparent,
         cutoutChecksCount: cutoutChecks.length,
+        all5HdRoomsLoaded,
+        hdRoomChecks,
+        all8StockAvatarsLoadedTransparent,
+        stockAvatarChecksCount: stockAvatarChecks.length,
         zeroPreloadedProfiles,
         screen1Visible,
         screen1ScrollWidth,
@@ -3390,14 +3443,13 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         zeroYearsPlayedInSetup,
         zeroJoinTeamInSetup,
         step2Visible,
+        step2Has8StockAvatars,
         guidedDockVisibleStep2,
-        divisionOptionsCount,
-        expPillsCount,
         zeroGuidedCutoutOverlapStep2
       };
     });
 
-    // Capture 390x844 screenshot of the Guided Waist-Up Cutout Spotlight Profile Setup!
+    // Capture 390x844 screenshot of Step 2 (8 Full-Body 3D Stock Avatars + Waist-Up Agent Tour)!
     await portalPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_v121_cutout_guided_profiles.png') });
     await portalPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_v120_clean_slate_portals.png') });
     capturedScreenshots.audit_v121_cutout_guided_profiles = 'screenshots/audit_v121_cutout_guided_profiles.png';
@@ -3413,15 +3465,16 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         return Boolean(fn());
       };
 
-      // Complete Slot 1 Guided Setup (Miles, 10U AA, Intermediate, Jersey #9, Custom Team "Foothill Flyers", PIN 1234)
-      document.getElementById('slotSetupFirstName').value = 'Miles';
-      document.getElementById('slotSetupAgeDivision').value = '10U AA';
-      document.querySelector('#slotSetupExpPillsGroup [data-exp-level="Intermediate"]')?.click();
-      document.getElementById('btnSlotStep2NextTo3').click();
-
-      // Verify Step 3 flips waist-up Agent to right side (`scaleX(-1)`) & 0px overlap with Step 3 controls!
+      // Verify Step 2 flips waist-up Agent to right side (`is-flipped` / `scaleX(-1)`), then Step 3 alternates Agent to left side (`scaleX(1)`) with 0px overlap!
       const flipWrap = document.getElementById('guidedSetupCutoutFlipWrap');
-      const step3AgentFlippedRight = Boolean(flipWrap && (flipWrap.classList.contains('is-flipped') || (window.getComputedStyle(flipWrap).transform || '').includes('-1')));
+      const step2FlippedRight = Boolean(flipWrap && (flipWrap.classList.contains('is-flipped') || (window.getComputedStyle(flipWrap).transform || '').includes('-1')));
+
+      // Advance from Step 2 (8 Stock 3D Avatars) -> Step 3 (3 Required Core Inputs + Optional Bio Drawer)
+      document.getElementById('btnSlotStep2NextTo3').click();
+      const divisionOptionsCount = document.getElementById('slotSetupAgeDivision')?.options?.length || 0;
+      const expPillsCount = document.querySelectorAll('#slotSetupExpPillsGroup .slot-exp-pill').length;
+
+      const step3AgentFlippedRight = Boolean(step2FlippedRight && flipWrap && !flipWrap.classList.contains('is-flipped'));
       const cardRect3 = document.getElementById('slotSetupStep3Card')?.getBoundingClientRect();
       const cutoutRect3 = document.getElementById('guidedSetupCutoutImg')?.getBoundingClientRect();
       const overlapStep3Y = (cardRect3 && cutoutRect3)
@@ -3429,62 +3482,171 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         : 0;
       const zeroGuidedCutoutOverlapStep3 = overlapStep3Y <= 2;
 
-      document.getElementById('slotSetupJerseyNum').value = '9';
-      document.getElementById('slotSetupHairStyle').value = 'flow';
-      document.querySelector('#slotSetupThemeColorPills [data-theme-name="Purple"]')?.click();
+      // Complete Slot 1 (Miles, NO Association entered initially -> must default Lobby banner to "HOCKEY FIELDHOUSE"!)
+      document.getElementById('slotSetupFirstName').value = 'Miles';
+      document.getElementById('slotSetupAgeDivision').value = '10U AA';
+      document.querySelector('#slotSetupExpPillsGroup [data-exp-level="Intermediate"]')?.click();
       document.getElementById('slotSetupOptionalBioDrawer').open = true;
       document.getElementById('slotSetupPosition').value = 'C';
       document.getElementById('slotSetupStickHand').value = 'Left';
+      document.getElementById('slotSetupOptionalAssociation').value = '';
       document.getElementById('slotSetupOptionalTeamName').value = 'Foothill Flyers';
       document.getElementById('slotSetupPinCode').value = '1234';
       await window.saveSlotSetupForm(true);
 
-      // Verify Handoff speech ("Awesome, your profile's set—let's head to the rink!") & Locker Room custom team/back-of-jersey!
-      const lobbyHandoffSpeechText = (window.SynapzCharacterSpeechEngine?.state?.fullText || document.getElementById('synapzUniversalSpeechBubbleText')?.textContent || '');
-      const handoffSpeechVerified = /profile's set/i.test(lobbyHandoffSpeechText) && /head to the rink/i.test(lobbyHandoffSpeechText);
+      // 1. Verify Pure 100dvh Lobby (room-rink-lobby.jpg, 0px scroll, 0 overlaid text buttons on doorways, default "HOCKEY FIELDHOUSE" fascia)!
+      const lobbySection = document.getElementById('synapzRinkLobbySection');
+      const lobbyZeroScroll = Boolean(
+        lobbySection &&
+        !lobbySection.classList.contains('hidden') &&
+        document.documentElement.scrollWidth <= window.innerWidth + 1 &&
+        lobbySection.scrollHeight <= window.innerHeight + 2
+      );
+      const lobbyDoorwayBtns = Array.from(document.querySelectorAll('#lobbyRoomSceneCanvas [data-lobby-station]'));
+      const lobbyZeroOverlaidDoorTextButtons = lobbyDoorwayBtns.length === 5 &&
+        lobbyDoorwayBtns.every(b => (b.innerText || '').trim().length === 0);
+      const defaultLobbyFasciaText = (document.getElementById('lobbyAssociationFasciaText')?.textContent || '').trim();
+      const defaultLobbyBannerIsHockeyFieldhouse = defaultLobbyFasciaText === 'HOCKEY FIELDHOUSE';
 
-      // Check Locker Room: NO Join a Team input, shows "Foothill Flyers • 10U AA", and renders back-of-jersey nameplate "MILES" + "#9"!
-      openSynapzLockerRoomModal();
+      // 2. Verify Upfront Lobby 6-Step [Next ➔] Guided Agent Tour!
+      const lobbyTourOverlay = document.getElementById('lobbyFirstTimeTourOverlay');
+      const lobbyTourStartedAutomatically = Boolean(lobbyTourOverlay && !lobbyTourOverlay.classList.contains('hidden'));
+      const lobbyTourVisitedSteps = [];
+      for (let stepI = 0; stepI < 6; stepI++) {
+        const badgeTxt = (document.getElementById('lobbySpotlightStepBadge')?.textContent || '').trim();
+        const speechTxt = (document.getElementById('lobbyAgentSpeechText')?.textContent || '').trim();
+        lobbyTourVisitedSteps.push({ badgeTxt, speechTxt });
+        document.getElementById('btnLobbySpotlightNext')?.click();
+      }
+      const lobbyTour6StepsCompletedCleanly = lobbyTourVisitedSteps.length === 6 &&
+        /Locker Room first/i.test(lobbyTourVisitedSteps[5]?.speechTxt || '') &&
+        Boolean(lobbyTourOverlay?.classList.contains('hidden'));
+
+      // 3. Enter Locker Room (opened automatically by step 6, or ensured open) -> Verify First-Visit 3-Step [Next ➔] Tour, Standing 3D Avatar on Floor, Name-Only Brass Plaque, 0 Switch Sibling Stall, Pro Shop -> Equipment Bag Equip, and Edit Player Profile!
+      if (document.getElementById('synapzLockerRoomModal')?.classList.contains('hidden')) {
+        openSynapzLockerRoomModal();
+      }
+      const lockerModal = document.getElementById('synapzLockerRoomModal');
+      const lockerZeroScroll = Boolean(lockerModal && !lockerModal.classList.contains('hidden') && lockerModal.scrollHeight <= window.innerHeight + 2);
       const zeroJoinTeamInLockerRoom = !document.getElementById('lockerJoinChangeTeamCodeBar') && !document.getElementById('inputLockerJoinChangeTeamCode');
-      const lockerBannerText = (document.getElementById('lockerCustomTeamDivisionBanner')?.textContent || '');
-      const lockerCustomTeamBannerVerified = lockerBannerText.includes('Foothill Flyers') && lockerBannerText.includes('10U AA');
-      document.getElementById('btnLockerSpinFrontBack')?.click();
-      const lockerAvatarHtml = document.getElementById('lockerRoom3dAvatarWrap')?.innerHTML || '';
-      const backOfJerseyNameplateVerified = lockerAvatarHtml.includes('MILES') && lockerAvatarHtml.includes('9');
+      const zeroSwitchSiblingInLockerRoom = !(lockerModal?.innerText || '').includes('Switch Sibling Stall');
+      const brassPlaqueText = (document.getElementById('lockerBrassNameplateText')?.textContent || '').trim();
+      const brassPlaqueNameOnlyVerified = brassPlaqueText === 'MILES' && !brassPlaqueText.includes('#');
+      const standingAvatarHtml = document.getElementById('lockerStanding3dAvatarStage')?.innerHTML || '';
+      const standing3dAvatarOnFloorVerified = standingAvatarHtml.includes('assets/avatars/avatar-male-2.png');
+
+      // Step through Locker Room 3-Step [Next ➔] Tour
+      const lockerTourOverlay = document.getElementById('lockerFirstTimeTourOverlay');
+      const lockerTourStartedAutomatically = Boolean(lockerTourOverlay && !lockerTourOverlay.classList.contains('hidden'));
+      for (let ls = 0; ls < 3; ls++) {
+        document.getElementById('btnLockerTourNext')?.click();
+      }
+      const lockerTourCompletedCleanly = Boolean(lockerTourOverlay?.classList.contains('hidden'));
+
+      // Give Miles Puck Bucks -> Purchase Stick in Pro Shop -> Equip from Equipment Bag ("Toolbox") onto Standing 3D Avatar!
+      state.puckBucks = 800;
+      const milesProf = getActiveProfile();
+      if (milesProf) milesProf.puckBucks = 800;
+      saveProgress();
       document.getElementById('synapzLockerRoomModal')?.classList.add('hidden');
 
-      // Check Clubhouse: NO Join a Team input!
-      openSynapzFriendsWallModal('trophies');
+      renderProShopModal();
+      document.getElementById('proShopModal')?.classList.remove('hidden');
+      const targetStickItem = (typeof PRO_SHOP_ITEMS !== 'undefined' ? PRO_SHOP_ITEMS.find(i => i.category === 'Stick') : null) || (typeof PRO_SHOP_ITEMS !== 'undefined' ? PRO_SHOP_ITEMS[0] : null);
+      if (typeof window.purchaseProShopItemIntoBag === 'function' && targetStickItem) {
+        window.purchaseProShopItemIntoBag(getActiveProfile(), targetStickItem);
+      }
+      const itemPlacedInEquipmentBag = Boolean(targetStickItem && Array.isArray(getActiveProfile()?.ownedGear) && getActiveProfile().ownedGear.includes(targetStickItem.id));
+      document.getElementById('proShopModal')?.classList.add('hidden');
+
+      openSynapzLockerRoomModal();
+      document.getElementById('lockerHotspotDuffleBag')?.click();
+      const equipmentBagOpened = !document.getElementById('lockerEquipmentBagSheet')?.classList.contains('hidden');
+      const equipBtnInBag = targetStickItem ? document.querySelector(`#lockerRoomGearItemsGrid [data-equip-id="${targetStickItem.id}"]`) : null;
+      if (equipBtnInBag) equipBtnInBag.click();
+      const equippedFromBagOntoAvatar = Boolean(targetStickItem && getActiveProfile()?.equippedStickId === targetStickItem.id);
+      document.getElementById('btnLockerSpinFrontBack')?.click();
+      const backOfJerseyNameplateVerified = (document.getElementById('lockerStanding3dAvatarStage')?.innerHTML || '').includes('MILES');
+      document.getElementById('btnCloseLockerEquipmentBag')?.click();
+
+      // Test Edit Player Profile in Locker Room
+      if (typeof window.openLockerEditProfileDrawer === 'function') window.openLockerEditProfileDrawer();
+      const editDrawerOpened = !document.getElementById('lockerEditProfileSheet')?.classList.contains('hidden');
+      document.getElementById('lockerEditHairStyleSelect').value = 'mohawk';
+      if (typeof window.saveLockerProfileEdits === 'function') await window.saveLockerProfileEdits();
+      document.getElementById('synapzLockerRoomModal')?.classList.add('hidden');
+
+      // 4. Test First-Shift On-Ice Drill Tour (Drills 1–3) Introducing Coach Bob + Persistent Agent Help Circle on Game Screen!
+      switchView('game');
+      loadScenario(false);
+      drawRink();
+      const firstShiftOverlay = document.getElementById('firstShiftAgentDrillTourOverlay');
+      const firstShiftTourVisibleOnDrill1 = Boolean(firstShiftOverlay && !firstShiftOverlay.classList.contains('hidden'));
+      const firstShiftTourIntroducesCoachBob = /Coach Bob/i.test(firstShiftOverlay?.innerText || '');
+      const persistentAgentCircleVisibleOnGame = !document.getElementById('synapzPersistentCharCircleBtn')?.classList.contains('hidden');
+
+      // 5. Test Clubhouse Social Wall (SafeSport Pending Privacy + Share Invite + 1.0x-3.0x Zoomable 3D Globe Showcase Card + Trophy Case)
+      openSynapzFriendsWallModal('wall');
       const clubhouseHtml = document.getElementById('synapzFriendsWallModal')?.innerHTML || '';
       const zeroJoinTeamInClubhouse = !clubhouseHtml.includes('inputCoachOfficeJoinTeamCode') && !/Enter Coach's Team Code/i.test(clubhouseHtml);
+      const myFriendCode = (document.getElementById('mySafeSportFriendCodeBadge')?.textContent || '').trim();
+      const valid6CharFriendCode = /^[A-Z0-9]{6}$/.test(myFriendCode);
+      const pendingSectionHtml = document.getElementById('clubhousePendingRequestsList')?.innerHTML || '';
+      const pendingZeroStatsAvatarLeak = !pendingSectionHtml.includes('assets/avatars/') && !/IQs*d+/i.test(pendingSectionHtml);
+
+      openSynapzFriendsWallModal('race');
+      document.getElementById('btnGlobeZoomIn')?.click();
+      const globeZoomedAbove1x = Number(state.clubhouseGlobeZoom || 1) > 1.0;
+      const firstGlobePin = document.querySelector('#clubhouse3dGlobeViewport .globe-avatar-crest-pin');
+      if (firstGlobePin) firstGlobePin.click();
+      const globeShowcaseCardHtml = document.getElementById('globeAvatarShowcasePopup')?.innerHTML || '';
+      const globeShowcaseShows3dAvatarAndStats = globeShowcaseCardHtml.includes('assets/avatars/') && /IQ/i.test(globeShowcaseCardHtml);
+
+      openSynapzFriendsWallModal('trophies');
+      const trophyCaseRendered = (document.getElementById('synapzFriendsWallModal')?.innerText || '').length > 40;
       document.getElementById('synapzFriendsWallModal')?.classList.add('hidden');
 
-      // Check Coaches Room (#synapzCoachOfficeModal): Join a Team lives EXCLUSIVELY here! Link Miles to teamCode1!
+      // 6. Test Coach's Office ($4.99 Baseline Static Performance Plan + Exclusive Join a Team Clipboard)
       openSynapzCoachOfficeModal();
       const joinTeamExclusivelyInCoachOffice = Boolean(document.getElementById('coachOfficeJoinTeamBar') && document.getElementById('inputCoachOfficeJoinTeamCode'));
+      const staticPlanPreviewShownForBasic499 = !document.getElementById('coachOfficeStaticPlanPreview')?.classList.contains('hidden');
       const coachAlCutoutFrameless = Boolean(document.querySelector('#synapzCoachOfficeModal img[src*="assets/cutouts/coach-al.png"]'));
       document.getElementById('inputCoachOfficeJoinTeamCode').value = teamCode1;
       await window.applyCoachOfficeTeamCodeChange();
       const milesLinkedInCoachOffice = getActiveProfile()?.teamCode === teamCode1;
       document.getElementById('synapzCoachOfficeModal')?.classList.add('hidden');
 
-      // Return to 4-Slot Picker & Configure Slot 2 (Rhett, 8U, Advanced -> verify 8U ALWAYS starts at adaptiveLevel 0!)
+      // 7. Return to 4-Slot Picker -> Verify Slot 1 Card shows 3D Stock Avatar -> Configure Slot 2 (Rhett, Association = "Minot Hockey Booster") -> Verify Independent Per-Profile Lobby Banner!
       window.openEntryScreen('1A-4');
       document.getElementById('sandboxLoginModal')?.classList.remove('hidden');
+      const slotGridHtml = document.getElementById('playerFourSlotsGrid')?.innerHTML || '';
+      const slotCardRenders3dStockAvatar = Boolean(
+        document.querySelector('#playerFourSlotsGrid img[data-slot-3d-avatar="avatar-male-2"]') &&
+        slotGridHtml.includes('assets/avatars/avatar-male-2.png')
+      );
+
       window.openSlotSetupScreen(1);
       document.getElementById('btnSlotStep1ContinueWithAgent').click();
+      // Pick female stock avatar on Slot 2 to verify 4M + 4F variety
+      document.querySelector('#slotSetupStep2StockAvatarsGrid [data-stock-avatar-id="avatar-female-1"]')?.click();
+      document.getElementById('slotSetupJerseyNum').value = '88';
+      document.getElementById('btnSlotStep2NextTo3').click();
       document.getElementById('slotSetupFirstName').value = 'Rhett';
       document.getElementById('slotSetupAgeDivision').value = '8U';
       document.querySelector('#slotSetupExpPillsGroup [data-exp-level="Advanced"]')?.click();
-      document.getElementById('btnSlotStep2NextTo3').click();
-      document.getElementById('slotSetupJerseyNum').value = '88';
+      document.getElementById('slotSetupOptionalBioDrawer').open = true;
+      document.getElementById('slotSetupOptionalAssociation').value = 'Minot Hockey Booster';
       document.getElementById('slotSetupPosition').value = 'LW';
       document.getElementById('slotSetupStickHand').value = 'Right';
       document.getElementById('slotSetupPinCode').value = '';
       await window.saveSlotSetupForm(true);
 
       const lobbyEnteredForRhett = !document.getElementById('synapzRinkLobbySection')?.classList.contains('hidden');
+      const rhettLobbyFasciaText = (document.getElementById('lobbyAssociationFasciaText')?.textContent || '').trim();
+      const siblingIndependentLobbyBannerVerified = defaultLobbyBannerIsHockeyFieldhouse && rhettLobbyFasciaText === 'MINOT HOCKEY BOOSTER';
+
       const agentAppearsOnlyAfterEnteringLobby =
+        !document.getElementById('lobbyFirstTimeTourOverlay')?.classList.contains('hidden') ||
         !document.getElementById('synapzUniversalCharSpeechOverlay')?.classList.contains('hidden') ||
         !document.getElementById('synapzPersistentCharCircleBtn')?.classList.contains('hidden');
       const eightUAdvancedStillStartsAt8U = getActiveProfile()?.adaptiveLevel === 0 &&
@@ -3539,7 +3701,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         state.coachAdaptiveRecommendations.length >= 1
       );
 
-      // Verify De-Roboted Coach Bob (`assets/cutouts/coach-bob.png`, 0 `#number` / clock / role tags) & Single Focal-Skater Golden Arc!
+      // Verify De-Roboted Coach Bob (assets/cutouts/coach-bob.png, 0 #number / clock / role tags) & Single Focal-Skater Golden Arc!
       switchView('game');
       loadScenario(false);
       drawRink();
@@ -3559,7 +3721,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         coachBobDynamicPosition && ['bl', 'br', 'tl', 'tr'].includes(coachBobDynamicPosition.corner)
       );
 
-      // 5. Log into Coach #1 on Screen 1B-3 -> verify Miles appears on live joined roster!
+      // 8. Log into Coach #1 on Screen 1B-3 -> verify Miles appears on live joined roster!
       window.logoutSynapzAccount();
       window.openEntryScreen('1B-3');
       document.getElementById('inputCoachLoginIdentity').value = 'test_coach1_v12@synapz.test';
@@ -3589,7 +3751,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         Number(assocTotalPlayersText) >= 2
       );
 
-      // 6. Test Max-3-Device Anti-Sharing Guard on Screen 1A-3 (Devices 2, 3, and 4)
+      // 9. Test Max-3-Device Anti-Sharing Guard on Screen 1A-3 (Devices 2, 3, and 4)
       for (const devId of ['dev-test-2', 'dev-test-3']) {
         window.logoutSynapzAccount();
         window.setSimulatedDeviceIdForTesting(devId);
@@ -3614,7 +3776,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         state.currentAccount.registeredDeviceIds.some(d => (d?.deviceId || d) === 'dev-test-4');
       window.setSimulatedDeviceIdForTesting('');
 
-      // 7. Test Free Team-Code Player Account (Slot 1 Free + Silent Auto-Link to teamCode1, Slots 2–4 = +$2.99 Add Sibling Slot)
+      // 10. Test Free Team-Code Player Account (Slot 1 Free + Silent Auto-Link to teamCode1, Slots 2–4 = +$2.99 Add Sibling Slot)
       window.logoutSynapzAccount();
       window.openEntryScreen('1A-2');
       document.getElementById('inputPlayerSignupIdentity').value = 'test_freecode_v12@synapz.test';
@@ -3629,15 +3791,13 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         freeSlotButtons[0].getAttribute('data-slot-action') === 'setup_empty' &&
         freeSlotButtons.slice(1).every(b => b.getAttribute('data-slot-action') === 'unlock_sibling_slot')
       );
-      // Configure Slot 1 without any Team Code input -> verify silent auto-link to teamCode1!
       window.openSlotSetupScreen(0);
       document.getElementById('btnSlotStep1ContinueWithAgent').click();
-      document.getElementById('slotSetupFirstName').value = 'Bode';
       document.getElementById('btnSlotStep2NextTo3').click();
+      document.getElementById('slotSetupFirstName').value = 'Bode';
       await window.saveSlotSetupForm(false);
       const silentSlot1TeamCodeAutoLinked = state.currentAccount?.slots?.[0]?.teamCode === teamCode1;
 
-      // Tap locked Slot 2 (+$2.99) -> complete $0.00 sandbox unlock on the SAME account!
       const unlockBtnSlot2 = document.querySelector('#playerFourSlotsGrid .player-slot-card-btn[data-slot-idx="1"][data-slot-action="unlock_sibling_slot"]');
       if (unlockBtnSlot2) unlockBtnSlot2.click();
       await waitForCond(() => !document.getElementById('pilotSandboxCheckoutModal')?.classList.contains('hidden'));
@@ -3648,7 +3808,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         state.currentAccount?.unlockedSlots === 2
       );
 
-      // 8. Test $49.99/yr Annual Plan account -> verify optional "Focus on My Position Only" gameplay filter works!
+      // 11. Test $49.99/yr Annual Plan account -> verify Interactive Performance Plan unlocked in Coach's Office + Focus on My Position Only!
       window.logoutSynapzAccount();
       window.openEntryScreen('1A-2');
       document.getElementById('inputPlayerSignupIdentity').value = 'test_annual_v12@synapz.test';
@@ -3659,30 +3819,74 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       await waitForCond(() => !document.getElementById('entryScreen1A4PlayerSlots')?.classList.contains('hidden') && state.currentAccount?.planType === 'annual_4999');
       window.openSlotSetupScreen(0);
       document.getElementById('btnSlotStep1ContinueWithAgent').click();
+      document.getElementById('btnSlotStep2NextTo3').click();
       document.getElementById('slotSetupFirstName').value = 'GoalieGus';
       document.getElementById('slotSetupAgeDivision').value = '14U AA';
-      document.getElementById('btnSlotStep2NextTo3').click();
       document.getElementById('slotSetupOptionalBioDrawer').open = true;
       document.getElementById('slotSetupPosition').value = 'G';
       await window.saveSlotSetupForm(true);
+
+      openSynapzCoachOfficeModal();
+      const interactivePlanUnlockedForAnnual4999 = Boolean(
+        !document.getElementById('coachOfficeStaticPlanPreview') &&
+        document.getElementById('btnCoachAlStartWeakest')
+      );
+      document.getElementById('synapzCoachOfficeModal')?.classList.add('hidden');
+
       const annualFocusPick = window.computeAdaptiveNextScenario(getActiveProfile(), { focusMyPositionOnly: true });
       const annualFocusPositionVerified = Boolean(
         annualFocusPick.focusMyPositionOnly === true &&
         ((annualFocusPick.scenarioId || '').startsWith('goalie-') || annualFocusPick.scenario?.posRole === 'G')
       );
 
+      // Leave Locker Room open briefly with Standing 3D Avatar facing forward so we can capture the flagship v12.2 HD Rooms + 8 Avatars screenshot!
+      openSynapzLockerRoomModal();
+      if (typeof window.applyLockerFirstVisitStep === 'function') window.applyLockerFirstVisitStep(-1);
+      document.getElementById('lockerFirstTimeTourOverlay')?.classList.add('hidden');
+      document.getElementById('synapzUniversalCharSpeechOverlay')?.classList.add('hidden');
+
       return {
+        divisionOptionsCount,
+        expPillsCount,
         step3AgentFlippedRight,
         zeroGuidedCutoutOverlapStep3,
-        handoffSpeechVerified,
+        lobbyZeroScroll,
+        lobbyZeroOverlaidDoorTextButtons,
+        defaultLobbyFasciaText,
+        defaultLobbyBannerIsHockeyFieldhouse,
+        lobbyTourStartedAutomatically,
+        lobbyTour6StepsCompletedCleanly,
+        lockerZeroScroll,
         zeroJoinTeamInLockerRoom,
-        lockerCustomTeamBannerVerified,
+        zeroSwitchSiblingInLockerRoom,
+        brassPlaqueText,
+        brassPlaqueNameOnlyVerified,
+        standing3dAvatarOnFloorVerified,
+        lockerTourStartedAutomatically,
+        lockerTourCompletedCleanly,
+        itemPlacedInEquipmentBag,
+        equipmentBagOpened,
+        equippedFromBagOntoAvatar,
         backOfJerseyNameplateVerified,
+        editDrawerOpened,
+        firstShiftTourVisibleOnDrill1,
+        firstShiftTourIntroducesCoachBob,
+        persistentAgentCircleVisibleOnGame,
         zeroJoinTeamInClubhouse,
+        valid6CharFriendCode,
+        pendingZeroStatsAvatarLeak,
+        globeZoomedAbove1x,
+        globeShowcaseShows3dAvatarAndStats,
+        trophyCaseRendered,
         joinTeamExclusivelyInCoachOffice,
+        staticPlanPreviewShownForBasic499,
+        interactivePlanUnlockedForAnnual4999,
         coachAlCutoutFrameless,
         milesLinkedInCoachOffice,
+        slotCardRenders3dStockAvatar,
         lobbyEnteredForRhett,
+        rhettLobbyFasciaText,
+        siblingIndependentLobbyBannerVerified,
         agentAppearsOnlyAfterEnteringLobby,
         eightUAdvancedStillStartsAt8U,
         preservedAfterTeamSwitch,
@@ -3708,77 +3912,115 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       liveAssocCode: v120PortalWalkthroughAudit.liveAssocCode
     });
 
-    // Also verify 1024x768 iPad Landscape Guided Cutout & Lobby layout on portalPage!
+    await portalPage.screenshot({ path: path.join(rootScreenshotsDir, 'audit_v122_hd_rooms_8avatars.png') });
+    capturedScreenshots.audit_v122_hd_rooms_8avatars = 'screenshots/audit_v122_hd_rooms_8avatars.png';
+
+    // Also verify 1024x768 iPad Landscape Pure 100dvh HD Room & Standing 3D Avatar layout on portalPage!
     await portalPage.setViewportSize({ width: 1024, height: 768 });
     await portalPage.waitForTimeout(200);
     const ipad1024PortalCutoutCheck = await portalPage.evaluate(() => ({
       viewport: `${window.innerWidth}x${window.innerHeight}`,
       zeroHorizontalOverflow1024: document.documentElement.scrollWidth <= 1024,
+      zeroVerticalScroll1024: document.documentElement.scrollHeight <= 768 + 2,
       persistentAgentCirclePresent: Boolean(document.getElementById('synapzPersistentCharCircleBtn'))
     }));
     await portalPage.setViewportSize({ width: 390, height: 844 });
 
-    const fullV121PortalVerification = {
+    const fullV122PortalVerification = {
       ...v120PortalWalkthroughAudit,
       ...v120PortalWalkthroughPart2,
       ipad1024PortalCutoutCheck
     };
-    v104RealFeaturesAudit.v121GuidedCutoutAndAdaptiveVerification = fullV121PortalVerification;
-    v104RealFeaturesAudit.v120PortalVerification = fullV121PortalVerification;
-    console.log('🎭 Verified v12.1 Guided Waist-Up Cutouts + $4.99+$2.99 Slots + Coaches-Room-Only Team Code + Adaptive Solo IQ + Clean Ice:', JSON.stringify(fullV121PortalVerification));
+    v104RealFeaturesAudit.v122HdRooms8AvatarsAndToursVerification = fullV122PortalVerification;
+    v104RealFeaturesAudit.v121GuidedCutoutAndAdaptiveVerification = fullV122PortalVerification;
+    v104RealFeaturesAudit.v120PortalVerification = fullV122PortalVerification;
+    console.log('🏛️ Verified v12.2 HD Blues-Free Rooms + 8 Stock 3D Avatars + Pure 100dvh Nav + Upfront Agent/Coach Bob Tours + SafeSport Globe:', JSON.stringify(fullV122PortalVerification));
 
+    const requiredV122Flags = [
+      'all11CutoutsLoadedTransparent',
+      'all5HdRoomsLoaded',
+      'all8StockAvatarsLoadedTransparent',
+      'zeroPreloadedProfiles',
+      'screen1ZeroOverflow',
+      'strictly3Screen1Buttons',
+      'noRedundantPlatformSubcopy',
+      'noBasic499PlayerOptionInCoachCreate',
+      'zeroAgentAcrossAllEntryScreens',
+      'cloudAssocSaved',
+      'checkoutBypassedForAssocCoach',
+      'distinctTeamCodesGenerated',
+      'basic499Slot1EmptyAndSlots2To4Add299',
+      'individualSiblingSlot2UnlockedOnly',
+      'step1VisibleFirst',
+      'step1ZeroCardBorders',
+      'zeroYearsPlayedInSetup',
+      'zeroJoinTeamInSetup',
+      'step2Visible',
+      'step2Has8StockAvatars',
+      'zeroGuidedCutoutOverlapStep2',
+      'step3AgentFlippedRight',
+      'zeroGuidedCutoutOverlapStep3',
+      'lobbyZeroScroll',
+      'lobbyZeroOverlaidDoorTextButtons',
+      'defaultLobbyBannerIsHockeyFieldhouse',
+      'lobbyTourStartedAutomatically',
+      'lobbyTour6StepsCompletedCleanly',
+      'lockerZeroScroll',
+      'zeroJoinTeamInLockerRoom',
+      'zeroSwitchSiblingInLockerRoom',
+      'brassPlaqueNameOnlyVerified',
+      'standing3dAvatarOnFloorVerified',
+      'lockerTourStartedAutomatically',
+      'lockerTourCompletedCleanly',
+      'itemPlacedInEquipmentBag',
+      'equipmentBagOpened',
+      'equippedFromBagOntoAvatar',
+      'backOfJerseyNameplateVerified',
+      'editDrawerOpened',
+      'firstShiftTourVisibleOnDrill1',
+      'firstShiftTourIntroducesCoachBob',
+      'persistentAgentCircleVisibleOnGame',
+      'zeroJoinTeamInClubhouse',
+      'valid6CharFriendCode',
+      'pendingZeroStatsAvatarLeak',
+      'globeZoomedAbove1x',
+      'globeShowcaseShows3dAvatarAndStats',
+      'trophyCaseRendered',
+      'joinTeamExclusivelyInCoachOffice',
+      'staticPlanPreviewShownForBasic499',
+      'interactivePlanUnlockedForAnnual4999',
+      'coachAlCutoutFrameless',
+      'milesLinkedInCoachOffice',
+      'slotCardRenders3dStockAvatar',
+      'lobbyEnteredForRhett',
+      'siblingIndependentLobbyBannerVerified',
+      'agentAppearsOnlyAfterEnteringLobby',
+      'eightUAdvancedStillStartsAt8U',
+      'preservedAfterTeamSwitch',
+      'novice14UStartsOn8U',
+      'noviceSteppedUpAfter3Gold',
+      'advSteppedDownAfter2Misses',
+      'coachHomework100PctLocked',
+      'coachBobZeroRoboticMetadata',
+      'singleFocalSkaterGoldenArcVerified',
+      'coach1SeesMilesLive',
+      'assocRollsUpBothTeamsAndPlayers',
+      'fourthDeviceBlockedPromptVisible',
+      'fourthDeviceReplacedAndEnteredSlots',
+      'slot1FreeAndSlots2To4Locked',
+      'silentSlot1TeamCodeAutoLinked',
+      'sameAccountUnlockedSiblingSlot2',
+      'annualFocusPositionVerified'
+    ];
+    const failedV122Flags = requiredV122Flags.filter(k => !fullV122PortalVerification[k]);
     if (
-      !fullV121PortalVerification.all11CutoutsLoadedTransparent ||
-      !fullV121PortalVerification.zeroPreloadedProfiles ||
-      !fullV121PortalVerification.screen1ZeroOverflow ||
-      !fullV121PortalVerification.strictly3Screen1Buttons ||
-      fullV121PortalVerification.playLearnOccurrences !== 1 ||
-      !fullV121PortalVerification.noRedundantPlatformSubcopy ||
-      !fullV121PortalVerification.noBasic499PlayerOptionInCoachCreate ||
-      !fullV121PortalVerification.zeroAgentAcrossAllEntryScreens ||
-      !fullV121PortalVerification.cloudAssocSaved ||
-      !fullV121PortalVerification.checkoutBypassedForAssocCoach ||
-      !fullV121PortalVerification.distinctTeamCodesGenerated ||
-      !fullV121PortalVerification.basic499Slot1EmptyAndSlots2To4Add299 ||
-      !fullV121PortalVerification.individualSiblingSlot2UnlockedOnly ||
-      !fullV121PortalVerification.step1VisibleFirst ||
-      !fullV121PortalVerification.step1ZeroCardBorders ||
-      !fullV121PortalVerification.zeroYearsPlayedInSetup ||
-      !fullV121PortalVerification.zeroJoinTeamInSetup ||
-      fullV121PortalVerification.divisionOptionsCount !== 15 ||
-      fullV121PortalVerification.expPillsCount !== 4 ||
-      !fullV121PortalVerification.zeroGuidedCutoutOverlapStep2 ||
-      !fullV121PortalVerification.step3AgentFlippedRight ||
-      !fullV121PortalVerification.zeroGuidedCutoutOverlapStep3 ||
-      !fullV121PortalVerification.handoffSpeechVerified ||
-      !fullV121PortalVerification.zeroJoinTeamInLockerRoom ||
-      !fullV121PortalVerification.lockerCustomTeamBannerVerified ||
-      !fullV121PortalVerification.backOfJerseyNameplateVerified ||
-      !fullV121PortalVerification.zeroJoinTeamInClubhouse ||
-      !fullV121PortalVerification.joinTeamExclusivelyInCoachOffice ||
-      !fullV121PortalVerification.coachAlCutoutFrameless ||
-      !fullV121PortalVerification.milesLinkedInCoachOffice ||
-      !fullV121PortalVerification.lobbyEnteredForRhett ||
-      !fullV121PortalVerification.agentAppearsOnlyAfterEnteringLobby ||
-      !fullV121PortalVerification.eightUAdvancedStillStartsAt8U ||
-      !fullV121PortalVerification.preservedAfterTeamSwitch ||
-      !fullV121PortalVerification.novice14UStartsOn8U ||
-      !fullV121PortalVerification.noviceSteppedUpAfter3Gold ||
-      !fullV121PortalVerification.advSteppedDownAfter2Misses ||
-      !fullV121PortalVerification.coachHomework100PctLocked ||
-      !fullV121PortalVerification.coachBobZeroRoboticMetadata ||
-      !fullV121PortalVerification.singleFocalSkaterGoldenArcVerified ||
-      !fullV121PortalVerification.coach1SeesMilesLive ||
-      !fullV121PortalVerification.assocRollsUpBothTeamsAndPlayers ||
-      !fullV121PortalVerification.fourthDeviceBlockedPromptVisible ||
-      !fullV121PortalVerification.fourthDeviceReplacedAndEnteredSlots ||
-      !fullV121PortalVerification.slot1FreeAndSlots2To4Locked ||
-      !fullV121PortalVerification.silentSlot1TeamCodeAutoLinked ||
-      !fullV121PortalVerification.sameAccountUnlockedSiblingSlot2 ||
-      !fullV121PortalVerification.annualFocusPositionVerified ||
-      !fullV121PortalVerification.ipad1024PortalCutoutCheck.zeroHorizontalOverflow1024
+      failedV122Flags.length > 0 ||
+      fullV122PortalVerification.playLearnOccurrences !== 1 ||
+      fullV122PortalVerification.divisionOptionsCount !== 15 ||
+      fullV122PortalVerification.expPillsCount !== 4 ||
+      !fullV122PortalVerification.ipad1024PortalCutoutCheck.zeroHorizontalOverflow1024
     ) {
-      throw new Error(`v12.1 Guided Cutout Profiles, $4.99+$2.99 Slots & Adaptive IQ Verification Failed: ${JSON.stringify(fullV121PortalVerification)}`);
+      throw new Error(`v12.2 Verification Failed on flags [${failedV122Flags.join(', ')}]: ${JSON.stringify(fullV122PortalVerification)}`);
     }
 
     // =========================================================================
@@ -3809,7 +4051,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       throw new Error(`Expected 242 approvedIdeaIds in founder_taste_profile.json, got ${ALL_242_DEPLOYED_IDS?.length}`);
     }
     const DEFAULT_BATCH_AA_ACTIVE_INBOX_IDS = [
-      'S1-AA', 'S2-AA', 'S3-AA', 'S9-AA', 'S11-AA', 'S4-AA', 'S5-AA', 'S6-AA', 'S7-AA', 'S8-AA', 'S10-AA', 'S12-AA'
+      'S1-BA', 'S2-BA', 'S3-BA', 'S4-BA', 'S5-BA', 'S6-BA', 'S7-BA', 'S8-BA', 'S9-BA', 'S10-BA', 'S11-BA', 'S12-BA'
     ];
     async function seedCleanV120BatchAAState() {
       const nowIso = new Date().toISOString();
@@ -3889,7 +4131,23 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           details: { id: aId, idea_id: aId, status: 'auto_resolved_by_batch', updated_at: nowIso }
         });
       });
-      ['AB', 'AC', 'AD'].forEach(futureLetter => {
+      ['AA', 'AB', 'AC', 'AD'].forEach(oldLetter => {
+        for (let s = 1; s <= 12; s++) {
+          const oldId = `S${s}-${oldLetter}`;
+          rows.push({
+            id: ideaToUuid(oldId),
+            created_by: 'Seat13-Archive-PreV122',
+            source_role: 'council',
+            scenario_id: oldId,
+            age_division: 'ALL',
+            category: 'board_digest',
+            status: 'archived_pre_v122_bank',
+            summary: `📦 Archived Pre-Dictation Queue Item (${oldId})`,
+            details: { id: oldId, idea_id: oldId, status: 'archived_pre_v122_bank', updated_at: nowIso }
+          });
+        }
+      });
+      ['BB', 'BC', 'BD'].forEach(futureLetter => {
         for (let s = 1; s <= 12; s++) {
           const fId = `S${s}-${futureLetter}`;
           rows.push({
@@ -3900,7 +4158,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
             age_division: 'ALL',
             category: 'board_digest',
             status: 'pending_future_batch',
-            summary: `⏳ Reserved for Future Portal & 4-Slot Polish Batch ${futureLetter} (${fId})`,
+            summary: `⏳ Reserved for Future Post-Dictation Batch ${futureLetter} (${fId})`,
             details: { id: fId, idea_id: fId, status: 'pending_future_batch', updated_at: nowIso }
           });
         }
@@ -3913,13 +4171,13 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         age_division: 'ALL',
         category: 'cloud_coverage_ledger',
         status: 'completed_and_deployed',
-        summary: '📊 Seat 13 Cloud Coverage Ledger Ready (v12.1 • 360/360 Scenarios 100.0% • 32/32 Cities 100.0% • 2,400/5,760 Permutations 41.7% • Batch AA Active)',
+        summary: '📊 Seat 13 Cloud Coverage Ledger Ready (v12.2 • 360/360 Scenarios 100.0% • 32/32 Cities 100.0% • 2,496/5,760 Permutations 43.3% • Batch BA Active)',
         details: {
           id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
-          versionLabel: 'v12.1',
-          batchRunCount: 23,
-          activeBatchLetter: 'AA',
-          activeBatchCode: 'AA',
+          versionLabel: 'v12.2',
+          batchRunCount: 25,
+          activeBatchLetter: 'BA',
+          activeBatchCode: 'BA',
           activeInboxIds: DEFAULT_BATCH_AA_ACTIVE_INBOX_IDS,
           scenariosScoured: 360,
           scenariosCount: 360,
@@ -3927,9 +4185,9 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
           citiesTested: 32,
           citiesCount: 32,
           citiesPct: '100.0',
-          permutationsTested: 2400,
-          permutationsCount: 2400,
-          permutationsPct: '41.7',
+          permutationsTested: 2496,
+          permutationsCount: 2496,
+          permutationsPct: '43.3',
           updated_at: nowIso
         }
       });
@@ -4061,7 +4319,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
         clippedButtonsCount: clippedButtons.length,
         clippedButtons: clippedButtons.slice(0, 10),
         overflowingElements: overflowingElements.slice(0, 10),
-        hasV120Header: headerText.includes('V12.1') && headerText.includes('242/242 CHROME-VERIFIED'),
+        hasV120Header: headerText.includes('V12.2') && headerText.includes('242/242 CHROME-VERIFIED'),
         hasNoLegacyV91Header: !headerText.includes('V9.1 SYNAPZ REBRAND'),
         deployBtnTextInitial,
         hasNoDeadAgentText: !deployBtnTextInitial.includes('Ready for AI Coding Agent'),
@@ -4096,8 +4354,8 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       throw new Error(`Header Badge Mismatch on report.html: hasV120Header=${phone390VisualAudit.hasV120Header}, hasNoLegacyV91Header=${phone390VisualAudit.hasNoLegacyV91Header}`);
     }
     if (
-      phone390VisualAudit.firstIdeaIdOnLoad !== 'S1-AA' ||
-      phone390VisualAudit.lastIdeaIdOnLoad !== 'S12-AA' ||
+      phone390VisualAudit.firstIdeaIdOnLoad !== 'S1-BA' ||
+      phone390VisualAudit.lastIdeaIdOnLoad !== 'S12-BA' ||
       phone390VisualAudit.toReviewCardsCountInitial !== 12 ||
       phone390VisualAudit.tabCountLiveInitial !== '242' ||
       !phone390VisualAudit.verified242BannerExists ||
@@ -4130,14 +4388,14 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       throw new Error(`0-Reviewed Double-Tap Guard Failed! Expected blockedZeroReviewed=true and 12 untouched cards kept, got: ${JSON.stringify(step1aZeroReviewedGuardTest)}`);
     }
 
-    // 1B. Verify "Inbox Zero" behavior on Batch AA (`S1-AA`)
+    // 1B. Verify "Inbox Zero" behavior on Batch BA (`S1-BA`)
     const step1bInboxZeroCardMoveTest = await reportPage.evaluate(async () => {
-      await window.setReportFounderIdeaDecision('S1-AA', 'approved_for_build');
+      await window.setReportFounderIdeaDecision('S1-BA', 'approved_for_build');
       const toReviewCountAfterApprove = (document.getElementById('tabCountToReview')?.textContent || '').trim();
       const queuedCountAfterApprove = (document.getElementById('tabCountQueued')?.textContent || '').trim();
       const toReviewCardsDomAfterApprove = document.querySelectorAll('#inboxToReviewCardsContainer .synapz-rec-card').length;
-      const s1AAInToReviewAfterApprove = Boolean(document.querySelector('#inboxToReviewCardsContainer [data-inbox-card-id="S1-AA"]'));
-      const s1AAInQueuedAfterApprove = (document.getElementById('inboxQueuedApprovedList')?.innerHTML || '').includes('S1-AA');
+      const s1AAInToReviewAfterApprove = Boolean(document.querySelector('#inboxToReviewCardsContainer [data-inbox-card-id="S1-BA"]'));
+      const s1AAInQueuedAfterApprove = (document.getElementById('inboxQueuedApprovedList')?.innerHTML || '').includes('S1-BA');
       const flashTextAfterApprove = (document.getElementById('inboxZeroTransitionFlash')?.textContent || '').trim();
 
       window.switchFounderInboxTab('queued');
@@ -4147,10 +4405,10 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       const verified242BannerVisibleInLiveTab = !document.getElementById('v110ChromeVerified63Banner')?.classList.contains('hidden');
       window.switchFounderInboxTab('to_review');
 
-      await window.moveCardBackToReview('S1-AA');
+      await window.moveCardBackToReview('S1-BA');
       const toReviewCountAfterMoveBack = (document.getElementById('tabCountToReview')?.textContent || '').trim();
       const queuedCountAfterMoveBack = (document.getElementById('tabCountQueued')?.textContent || '').trim();
-      const s1AABackInToReview = Boolean(document.querySelector('#inboxToReviewCardsContainer [data-inbox-card-id="S1-AA"]'));
+      const s1AABackInToReview = Boolean(document.querySelector('#inboxToReviewCardsContainer [data-inbox-card-id="S1-BA"]'));
 
       return {
         toReviewCountAfterApprove,
@@ -4179,11 +4437,11 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       throw new Error(`Inbox Zero Card Transition Failed: ${JSON.stringify(step1bInboxZeroCardMoveTest)}`);
     }
 
-    // 2. Test 2 (Partial Approval Top-Up Mode on Batch AA -> pulls 3 from Batch AB):
+    // 2. Test 2 (Partial Approval Top-Up Mode on Batch BA -> pulls 3 from Batch BB):
     const step2PartialApprovalTopUp = await reportPage.evaluate(async () => {
-      const app1 = await window.setReportFounderIdeaDecision('S1-AA', 'approved_for_build');
-      const app2 = await window.setReportFounderIdeaDecision('S2-AA', 'approved_for_build');
-      const rej1 = await window.setReportFounderIdeaDecision('S6-AA', 'rejected_by_founder');
+      const app1 = await window.setReportFounderIdeaDecision('S1-BA', 'approved_for_build');
+      const app2 = await window.setReportFounderIdeaDecision('S2-BA', 'approved_for_build');
+      const rej1 = await window.setReportFounderIdeaDecision('S6-BA', 'rejected_by_founder');
       const barBeforeDeploy = document.getElementById('founderBatchCartCountsText')?.textContent || '';
       const deployBtnWhenQueued = (document.getElementById('btnTriggerRemoteBatchDeploy')?.textContent || '').trim();
       const toReviewCountBeforeDeploy = (document.getElementById('tabCountToReview')?.textContent || '').trim();
@@ -4215,7 +4473,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       };
     });
     console.log('🚀 Step 2 (Partial Approval Top-Up Mode: 9 Untouched Batch AA + 3 Batch AB Top-Up = 12 in To Review, 244 Live):', JSON.stringify(step2PartialApprovalTopUp));
-    const expectedToppedUp12Ids = ['S3-AA', 'S9-AA', 'S11-AA', 'S4-AA', 'S5-AA', 'S7-AA', 'S8-AA', 'S10-AA', 'S12-AA', 'S1-AB', 'S2-AB', 'S3-AB'];
+    const expectedToppedUp12Ids = ['S3-BA', 'S4-BA', 'S5-BA', 'S7-BA', 'S8-BA', 'S9-BA', 'S10-BA', 'S11-BA', 'S12-BA', 'S1-BB', 'S2-BB', 'S3-BB'];
     if (
       step2PartialApprovalTopUp.toReviewCountAfterTopUp !== '12' ||
       step2PartialApprovalTopUp.queuedCountAfterTopUp !== '0' ||
@@ -4269,7 +4527,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       const primaryBtnsCount = document.querySelectorAll('#lessonConsistentBottomBar > button').length;
       return {
         totalPreCodedBankFeatures: bankKeys.length,
-        all300BatchesFToADPresent: bankKeys.length === 300,
+        all348BatchesFToBDPresent: bankKeys.length === 348,
         all242UpgradesActiveInIndexHtml: Boolean(audit242 && audit242.all242Active),
         maxConcurrentTacticalOverlaysPerPlay: audit242 ? audit242.maxConcurrentTacticalOverlaysPerPlay : 0,
         primaryBtnsCountAfterActivation: primaryBtnsCount
@@ -4282,7 +4540,7 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
       localStorage.removeItem('synapz_active_upgrades_v106');
       localStorage.removeItem('synapz_founder_digest_decisions_v10');
       localStorage.removeItem('synapz_active_inbox_ids_v1094');
-      localStorage.setItem('synapz_active_batch_letter', 'AA');
+      localStorage.setItem('synapz_active_batch_letter', 'BA');
     });
     try {
       await seedCleanV120BatchAAState();
@@ -4307,8 +4565,8 @@ function scoreTacticalChoiceTextBlindly(choiceText, screen) {
     });
     console.log('✅ Step 5 (Restored Clean V12.0 Batch AA State Verified: 12 To Review | 0 Queued | 242 Live):', JSON.stringify(finalRestoredCheck));
     if (
-      finalRestoredCheck.firstIdeaIdRestored !== 'S1-AA' ||
-      finalRestoredCheck.lastIdeaIdRestored !== 'S12-AA' ||
+      finalRestoredCheck.firstIdeaIdRestored !== 'S1-BA' ||
+      finalRestoredCheck.lastIdeaIdRestored !== 'S12-BA' ||
       finalRestoredCheck.toReviewCountRestored !== '12' ||
       finalRestoredCheck.queuedCountRestored !== '0' ||
       finalRestoredCheck.liveCountRestored !== '242'

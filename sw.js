@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v12.1-cutout-guided-profiles';
+const CACHE_NAME = 'synapz-hockey-v12.2-hd-rooms-8avatars-tours';
 const ASSETS = [
   './',
   './index.html',
@@ -20,10 +20,18 @@ const ASSETS = [
   './assets/cutouts/agent-claire.png',
   './assets/cutouts/coach-bob.png',
   './assets/cutouts/coach-al.png',
-  './assets/rooms/room-rink-lobby.png',
-  './assets/rooms/room-locker-room.png',
-  './assets/rooms/room-coaches-office.png',
-  './assets/rooms/room-pro-shop.png',
+  './assets/avatars/avatar-male-1.png',
+  './assets/avatars/avatar-male-2.png',
+  './assets/avatars/avatar-male-3.png',
+  './assets/avatars/avatar-male-4.png',
+  './assets/avatars/avatar-female-1.png',
+  './assets/avatars/avatar-female-2.png',
+  './assets/avatars/avatar-female-3.png',
+  './assets/avatars/avatar-female-4.png',
+  './assets/rooms/room-rink-lobby.jpg',
+  './assets/rooms/room-locker-room.jpg',
+  './assets/rooms/room-coaches-office.jpg',
+  './assets/rooms/room-pro-shop.jpg',
   './assets/rooms/room-clubhouse.png'
 ];
 

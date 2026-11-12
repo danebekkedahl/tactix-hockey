@@ -40,6 +40,7 @@ const FILES_TO_DEPLOY = [
   { rel: 'v112_173_upgrades_audit.json', encoding: 'utf-8' },
   { rel: 'v120_242_upgrades_audit.json', encoding: 'utf-8' },
   { rel: 'v121_242_upgrades_audit.json', encoding: 'utf-8' },
+  { rel: 'v122_242_upgrades_audit.json', encoding: 'utf-8' },
   { rel: 'fetch-approved-queue.js', encoding: 'utf-8' },
   { rel: 'apply-approved-batch.js', encoding: 'utf-8' },
   { rel: 'watch-approved-queue.js', encoding: 'utf-8' },
@@ -75,10 +76,18 @@ const FILES_TO_DEPLOY = [
   { rel: 'assets/cutouts/agent-claire.png', encoding: 'base64' },
   { rel: 'assets/cutouts/coach-bob.png', encoding: 'base64' },
   { rel: 'assets/cutouts/coach-al.png', encoding: 'base64' },
-  { rel: 'assets/rooms/room-rink-lobby.png', encoding: 'base64' },
-  { rel: 'assets/rooms/room-locker-room.png', encoding: 'base64' },
-  { rel: 'assets/rooms/room-coaches-office.png', encoding: 'base64' },
-  { rel: 'assets/rooms/room-pro-shop.png', encoding: 'base64' },
+  { rel: 'assets/avatars/avatar-male-1.png', encoding: 'base64' },
+  { rel: 'assets/avatars/avatar-male-2.png', encoding: 'base64' },
+  { rel: 'assets/avatars/avatar-male-3.png', encoding: 'base64' },
+  { rel: 'assets/avatars/avatar-male-4.png', encoding: 'base64' },
+  { rel: 'assets/avatars/avatar-female-1.png', encoding: 'base64' },
+  { rel: 'assets/avatars/avatar-female-2.png', encoding: 'base64' },
+  { rel: 'assets/avatars/avatar-female-3.png', encoding: 'base64' },
+  { rel: 'assets/avatars/avatar-female-4.png', encoding: 'base64' },
+  { rel: 'assets/rooms/room-rink-lobby.jpg', encoding: 'base64' },
+  { rel: 'assets/rooms/room-locker-room.jpg', encoding: 'base64' },
+  { rel: 'assets/rooms/room-coaches-office.jpg', encoding: 'base64' },
+  { rel: 'assets/rooms/room-pro-shop.jpg', encoding: 'base64' },
   { rel: 'assets/rooms/room-clubhouse.png', encoding: 'base64' },
   { rel: 'apple-touch-icon.png', encoding: 'base64' },
   { rel: 'icon-192.png', encoding: 'base64' },
@@ -133,7 +142,8 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/audit_v111_118_verified_rotated_flows.png', encoding: 'base64' },
   { rel: 'screenshots/audit_v112_173_verified_6pos_pilot.png', encoding: 'base64' },
   { rel: 'screenshots/audit_v120_clean_slate_portals.png', encoding: 'base64' },
-  { rel: 'screenshots/audit_v121_cutout_guided_profiles.png', encoding: 'base64' }
+  { rel: 'screenshots/audit_v121_cutout_guided_profiles.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_v122_hd_rooms_8avatars.png', encoding: 'base64' }
 ];
 
 // Automatically include all generated neural .mp3 voice files in assets/audio/voices/<characterId>/*.mp3
@@ -410,6 +420,17 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
     }
   }
   await Promise.all(Array.from({ length: BLOB_CONCURRENCY }, () => blobWorker()));
+  const OBSOLETE_PATHS_TO_DELETE = [
+    'assets/rooms/room-rink-lobby.png',
+    'assets/rooms/room-locker-room.png',
+    'assets/rooms/room-coaches-office.png',
+    'assets/rooms/room-pro-shop.png'
+  ];
+  for (const oldRel of OBSOLETE_PATHS_TO_DELETE) {
+    if (existingBlobShas.has(oldRel)) {
+      treeItems.push({ path: oldRel, mode: '100644', type: 'blob', sha: null });
+    }
+  }
   console.log(`  📄 Delta-staged ${treeItems.length} changed/new files (${unchangedSkippedCount} unchanged assets reused via base_tree)`);
 
   // 4. Create Git Tree incrementally in chunks of 35 to avoid GitHub API 422 timeouts
@@ -439,7 +460,7 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
 
   // 5. Create Commit
   const commitRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/commits`, token, 'POST', {
-    message: `Deploy SYNAPZ HOCKEY v12.1-guided-cutout-profiles-and-adaptive-iq ($4.99+$2.99 Household Slots + 11 Waist-Up Transparent Cutouts + Step-1 Guided Agent Tour + Two-Way Adaptive Solo IQ + De-Roboted Coach Bob & Single Focal-Skater Arc)`,
+    message: `Deploy SYNAPZ HOCKEY v12.2-hd-rooms-8avatars-and-upfront-tours (4 HD Blues-Free Rooms + 8 Full-Body 3D Stock Avatars + Pure Picture Navigation + Upfront Lobby/Locker/First-Drill Agent Tours + Equipment Bag + Clubhouse 3D Globe & Post-Dictation Bank BA-BD)`,
     tree: treeRes.data.sha,
     parents: [baseCommitSha]
   });
@@ -512,8 +533,8 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
         ]);
         const html = await resRep.text();
         const swText = await resSw.text();
-        if (html.toUpperCase().includes('V12.1') && swText.includes('synapz-hockey-v12.1-cutout-guided-profiles')) {
-          console.log(`✅ Verified live ${liveUrl} & ${reportUrl} are serving v12.1 (synapz-hockey-v12.1-cutout-guided-profiles)!`);
+        if (html.toUpperCase().includes('V12.2') && swText.includes('synapz-hockey-v12.2-hd-rooms-8avatars-tours')) {
+          console.log(`✅ Verified live ${liveUrl} & ${reportUrl} are serving v12.2 (synapz-hockey-v12.2-hd-rooms-8avatars-tours)!`);
           break;
         }
       } catch (_) {}

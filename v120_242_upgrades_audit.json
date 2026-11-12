@@ -1,7 +1,7 @@
 {
-  "version": "v12.1-guided-cutout-profiles-and-adaptive-iq",
-  "cacheVersion": "synapz-hockey-v12.1-cutout-guided-profiles",
-  "verifiedAt": "2026-11-11T23:49:01.507Z",
+  "version": "v12.2-hd-rooms-8avatars-and-upfront-tours",
+  "cacheVersion": "synapz-hockey-v12.2-hd-rooms-8avatars-tours",
+  "verifiedAt": "2026-11-12T01:35:40.260Z",
   "viewportsTested": [
     "390x844 Phone Portrait",
     "1024x768 iPad Landscape"
@@ -11,7 +11,7 @@
   "all173ActiveAndVerified": true,
   "all118ActiveAndVerified": true,
   "all63ActiveAndVerified": true,
-  "totalPreCodedPortalBankItems": 300,
+  "totalPreCodedPortalBankItems": 348,
   "maxConcurrentTacticalOverlaysPerPlay": 1,
   "primaryGameplayButtons390": 4,
   "sixPositionMatrixPass": true,
@@ -20,168 +20,168 @@
     {
       "position": "C",
       "rotationDeg": 0,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "C",
       "rotationDeg": 90,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "C",
       "rotationDeg": 180,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "C",
       "rotationDeg": 270,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "LW",
       "rotationDeg": 0,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "LW",
       "rotationDeg": 90,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "LW",
       "rotationDeg": 180,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "LW",
       "rotationDeg": 270,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "RW",
       "rotationDeg": 0,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "RW",
       "rotationDeg": 90,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "RW",
       "rotationDeg": 180,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "RW",
       "rotationDeg": 270,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "LD",
       "rotationDeg": 0,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "LD",
       "rotationDeg": 90,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "LD",
       "rotationDeg": 180,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "LD",
       "rotationDeg": 270,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "RD",
       "rotationDeg": 0,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "RD",
       "rotationDeg": 90,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "RD",
       "rotationDeg": 180,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "RD",
       "rotationDeg": 270,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "G",
       "rotationDeg": 0,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "G",
       "rotationDeg": 90,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "G",
       "rotationDeg": 180,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     },
     {
       "position": "G",
       "rotationDeg": 270,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "youSkaterInBounds": true,
       "gradingChoicesCount": 3
     }
@@ -280,7 +280,7 @@
   "rotatedCameraChecks": [
     {
       "rotationDeg": 0,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "transformedSample": {
         "x": 0.76,
         "y": 0.28,
@@ -294,7 +294,7 @@
     },
     {
       "rotationDeg": 90,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "transformedSample": {
         "x": 0.72,
         "y": 0.76,
@@ -308,7 +308,7 @@
     },
     {
       "rotationDeg": 180,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "transformedSample": {
         "x": 0.24,
         "y": 0.72,
@@ -322,7 +322,7 @@
     },
     {
       "rotationDeg": 270,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "transformedSample": {
         "x": 0.28,
         "y": 0.24,
@@ -338,9 +338,9 @@
   "orientationProofSanitizerPass": true,
   "redFlagAutoContextPass": true,
   "redFlagAutoContext": {
-    "scenarioId": "basics_support-v16",
+    "scenarioId": "basics_support-v13",
     "rotationAngle": 0,
-    "ageDivision": "14U",
+    "ageDivision": "12U",
     "activeScreenOrModal": "game",
     "activeUpgradesCount": 242
   },
@@ -355,31 +355,31 @@
   "fivePlayShiftVerification": [
     {
       "playIndex": 1,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "primaryCueId": "S1-I",
       "maxConcurrentTacticalOverlaysPerPlay": 1
     },
     {
       "playIndex": 2,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "primaryCueId": "S1-I",
       "maxConcurrentTacticalOverlaysPerPlay": 1
     },
     {
       "playIndex": 3,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "primaryCueId": "S1-I",
       "maxConcurrentTacticalOverlaysPerPlay": 1
     },
     {
       "playIndex": 4,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "primaryCueId": "S1-I",
       "maxConcurrentTacticalOverlaysPerPlay": 1
     },
     {
       "playIndex": 5,
-      "scenarioId": "basics_support-v16",
+      "scenarioId": "basics_support-v13",
       "primaryCueId": "S1-I",
       "maxConcurrentTacticalOverlaysPerPlay": 1
     }
