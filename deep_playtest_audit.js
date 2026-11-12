@@ -19,8 +19,8 @@ const { chromium } = require('C:/Users/Dane/.gemini/antigravity/brain/dcf2b5ee-c
 
 const WORKSPACE_SCRATCH = 'c:\\Users\\Dane\\.gemini\\antigravity\\scratch\\pucksense';
 const WORKSPACE_DOCS = 'C:\\Users\\Dane\\Documents\\Hockey-IQ-App';
-const CURRENT_MILESTONE_SECTION = '## 38.';
-const CURRENT_MILESTONE_VERSION = 'v12.2';
+const CURRENT_MILESTONE_SECTION = '## 40.';
+const CURRENT_MILESTONE_VERSION = 'v12.4';
 
 function verifyFounderVisionAndAgentSpecsSync() {
   const requiredFiles = ['FOUNDER_VISION_NOTES.md', 'AGENT.md'];

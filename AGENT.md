@@ -504,3 +504,37 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
 5. **Clubhouse SafeSport Social Wall, Zoomable `1x–3x` 3D Globe & Trophy Case + Post-Dictation Bank `BA–BD`:**
    - Direct taps on `room-clubhouse.png` (`0` duplicate buttons): **Friends & Family Wall** (`navigator.share` + copy 6-char Friend Code/link, `Accept`/`Deny` exposing `0` info before mutual acceptance, `Invite to Map Race`, Milestone Feed), **Zoomable 3D Globe** (`1x–3x` zoom, Avatar Crest Pins popping up full **3D Avatar Showcase Cards**), and **Trophy Case**.
    - Replaces `AA–AD` review queue with **4 Post-Dictation Batches (`Batches BA, BB, BC, BD` = `S1-BA..S12-BD`, 48 cards)** loading **`Batch BA` (`S1-BA..S12-BA`)** into `📥 To Review (12)` (`🛠️ Queued: 0 | ✅ Live in App: 242`).
+
+---
+
+## 39. v12.3 — Strict 3-Role Commercial & Portal Architecture (`Player`, `Coach`, `Association Director` — Zero Family Tier / Zero 4-Slot Screen, `synapz-hockey-v12.3-strict-3role-portals`)
+> **ARCHITECTURAL OVERRIDE (Supersedes 4-Slot Family Picker & `$2.99` Sibling Slots in Sections 36–37):** Completely removes `Screen 1A-4` (`#entryScreen1A4PlayerSlots`), Family Login/Tier, and `$2.99` sibling slots. Every Player account (`User ID & Password`) is strictly **1 Individual Player** and routes **straight into that Player's Main Lobby** (`#btnLobbySwitchSlot` -> **`Log Out`**).
+
+1. **Centralized Pricing Config (`window.SYNAPZ_PRICING_CONFIG`):**
+   - Single source of truth in `index.html` (`playerGameplayOneTime: 4.99`, `playerFullSuiteMonthly: 7.99`, `playerFullSuiteAnnual: 49.99`, `coachIndividualAnnual: 99.99`, `coachIncludedSkaters: 20`, `coachExtraSkaterPrice: 4.99`, `coachIncludedAssistants: 2`, `assocSmall: { price: 450, teams: 5, skaters: 100 }`, `assocStandard: { price: 850, teams: 10, skaters: 200 }`, `assocLarge: { price: 1599, teams: 20, skaters: 400 }`) dynamically bound to all plan cards via `applyPricingConfigToDom()`.
+2. **Screen 1, `Player Portal (PP)`, `Coaches Portal (CP)` & `Info` Hub:**
+   - **Screen 1:** `SYNAPZ HOCKEY` + `"PLAY. LEARN. DOMINATE."` + **3 Clean Buttons (`Player Portal` | `Coaches Portal` | `Info`)** (`0` character agents). `Info` renders **`Contact`**, **`Support`**, and **`FAQ`** tabs + `← Back` + subtle Founder `🔄 Reset All Test Accounts` button.
+   - **`PP` (`1 Account = 1 Individual Player -> Straight to Main Lobby`):** `Log In` (`User ID & Password` -> straight to Lobby) | `Create Account` (`User ID & Password` + **3 Plan Cards**: **`Gameplay Pass — $4.99`** -> `Select $4.99 Gameplay`; **`Full Suite — $7.99/mo or $49.99/yr`** -> `Select $7.99/mo` | `Select $49.99/yr (Save 48%)`; **`Team Code`** -> `Redeem Team Code & Create Account` claiming `1 of 20` skater slots -> 1-Player Guided Cutout Agent + 8-Stock-Avatar Setup -> straight to Main Lobby).
+   - **`CP` (`Skips Player Lobby -> Routes Straight to Coach's Office`):** `Log In` (`User ID & Password` -> `#synapzCoachOfficeModal`) | `Create Account` (`Name`, `Team / Association Name`, Age Division, Competitive Level, `User ID & Password` + **5 Plan Cards**: **`Coaches Code`** -> `Redeem Coaches Code` for Association Head Coach slot OR Head Coach's **2 Free Assistant Coach** shared-parent-team invite; **`Individual Coach — $99.99/yr`** -> `Select Individual Coach ($99.99/yr)`; **`Association Director — $450/yr (5 Teams • 100 Skaters)`**, **`$850/yr (10 Teams • 200 Skaters)`**, **`$1,599/yr (20 Teams • 400 Skaters)`**).
+3. **Role-Based `Coach's Office` (`#synapzCoachOfficeModal`):**
+   - **Player:** `$4.99 Gameplay` = static IQ/5-pillar stats + `Join a Team` / upgrade; `Team Code` = static stats + **`Coach's Inbox`** (playing pushed Coach plans funnels scores & concept struggles back to Coach/Assistant & Association; does NOT unlock Full Suite); `$7.99/mo` or `$49.99/yr Full Suite` = unlocks **Interactive AI Personal Development Plan** (`Breakouts`, `Forechecks`, `Power Plays`, `D-Zone`, `Rush`, `Goalie Reads` + Position filter).
+   - **Head Coach / Shared Assistant Coach:** Waist-up 3D **Coach Al (`assets/cutouts/coach-al.png`)** step-by-step builder pushing plans to `Coach's Inbox`, `X / 20` Skater Slots + `Team Code` / Link / QR + `+$4.99` extra skater, **2 Free Assistant Coach invites** bound strictly to the parent Coach's team, and roster/struggle analytics.
+   - **Association Director:** Coach Al + **`Association Director` Tab** featuring **`Coaches Accounts` Dropdown** (`5 / 10 / 20` Head Coach slots + `Coaches Code` / Link / QR) and **`Association Reports` Dropdown** filtered by **Age Group, Competitive Level, Coach/Team, Position, and Individual Player**.
+4. **Fresh Review Queue (`Batches CA–CD` = 48 Upgrades):**
+   - Archives `BA–BD` and loads **`Batch CA` (`S1-CA..S12-CA`)** into `📥 To Review (12)` (`🛠️ Queued: 0 | ✅ Live in App: 242`); Clean-Slate wipe also deletes `SYNAPZ-COACH-CODE:*` (`portal_coach_code`).
+
+---
+
+## 40. v12.4 — Combined 5-Bot + Adversarial QA Suite, OS Back-Gesture Guard & Permanent Pre-Deploy Gate (`synapz-hockey-v12.4-adversarial-5bot-qa`)
+1. **OS Back-Gesture Guard & Zero Stuck Masks (`window.SynapzHistoryGuard`):**
+   - `history.pushState` + `popstate` across Screen 1, `PP`, `CP`, `Info`, Guided Setup, Lobby, Map, On-Ice Game, all 4 rooms, and sub-drawers/modals; `clearAllSynapzSpotlightMasks()` clears all spotlight/dim classes on every back/close interrupt.
+2. **60+ Char Auto-Scale/Clamp & Arena Slow-4G Preload:**
+   - `fitInScenePlaqueAndBannerTypography()` prevents 60+ char Player/Association overflow on `#lockerBrassNameplatePlaque` & `#lobbyAssociationFasciaBanner`; `<link rel="preload" as="image">` + `decoding="async"` warms all 5 HD rooms (`< 2.5s` Slow-4G load).
+3. **5-Bot Adversarial Charter (`adversarial_qa_agent.js`, `window.__SYNAPZ_TEST_MODE__ = true`):**
+   - Bot 1: `390×844` & `1024×768` `qa_screenshots/` across 10 core screens & 3 Coach's Office roles.
+   - Bot 2: 200+ chaos/boundary actions (empty forms, 65-char names, `O'Connor "Rocket"`, duplicate IDs, invalid codes, `<100ms` interrupts, `<= 1` active `Audio`, Arena Slow-4G `< 2.5s`, email webhooks suppressed).
+   - Bot 3: Depth-first Dead-Control & Dual-Back (`← Back`/`✕` + `page.goBack()`) crawler across doorways, gear, Info tabs, 3 PP cards, 5 CP cards (Assistant parent-team binding + Director 5-way filters), and `Coach's Inbox`.
+   - Bot 4: 3-Persona Adaptive (`8U+Adv` -> 8U; `14U+Adv` 3 misses -> step down; `12U+Novice` 3 Gold -> step up) + 100% locked Coach-Assigned Plan firewall reporting to Coach & Director.
+   - Bot 5: `0%` cutout overlap at `390×844` & `0` banned legacy strings (`"Tap Zones"`, `"Switch Sibling"`, `"Exit to Profiles"`, `"Family Pass"`, `"$2.99"`, `"You're #"`, `"Years Played"`).
+4. **Permanent Deploy Gate & `Batch CA` Council Queue:**
+   - `deploy-github-pages.js` runs `adversarial_qa_agent.js --smoke` and blocks deploy if `Critical > 0 || Major > 0` in `qa_adversarial_report.json`; Tab 3 shows the QA Auto-Fix Receipt while `📥 To Review (12)` holds 12 pure product/coaching `Batch CA` proposals.

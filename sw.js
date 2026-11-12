@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v12.2-hd-rooms-8avatars-tours';
+const CACHE_NAME = 'synapz-hockey-v12.4-adversarial-5bot-qa';
 const ASSETS = [
   './',
   './index.html',
@@ -6,6 +6,7 @@ const ASSETS = [
   './icon-192.png',
   './icon-512.png',
   './assets/synapz-logo.png',
+  './assets/synapz-logo.webp',
   './assets/synapz-splash-bg.png',
   './assets/tactix-logo.png',
   './assets/coach-bob.png',

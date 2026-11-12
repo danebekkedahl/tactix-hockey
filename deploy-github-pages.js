@@ -41,6 +41,7 @@ const FILES_TO_DEPLOY = [
   { rel: 'v120_242_upgrades_audit.json', encoding: 'utf-8' },
   { rel: 'v121_242_upgrades_audit.json', encoding: 'utf-8' },
   { rel: 'v122_242_upgrades_audit.json', encoding: 'utf-8' },
+  { rel: 'v123_242_upgrades_audit.json', encoding: 'utf-8' },
   { rel: 'fetch-approved-queue.js', encoding: 'utf-8' },
   { rel: 'apply-approved-batch.js', encoding: 'utf-8' },
   { rel: 'watch-approved-queue.js', encoding: 'utf-8' },
@@ -53,6 +54,33 @@ const FILES_TO_DEPLOY = [
   { rel: '.nojekyll', encoding: 'utf-8' },
   { rel: '.gitignore', encoding: 'utf-8' },
   { rel: 'assets/synapz-logo.png', encoding: 'base64' },
+  { rel: 'assets/synapz-logo.webp', encoding: 'base64' },
+  { rel: 'adversarial_qa_agent.js', encoding: 'utf-8' },
+  { rel: 'qa_adversarial_report.json', encoding: 'utf-8' },
+  { rel: 'qa_screenshots/01_screen1_portals_1024x768.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/01_screen1_portals_390x844.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/02_pp_create_3cards_1024x768.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/02_pp_create_3cards_390x844.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/03_cp_create_5cards_1024x768.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/03_cp_create_5cards_390x844.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/04_info_contact_support_faq_1024x768.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/04_info_contact_support_faq_390x844.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/05_guided_agent_8avatars_1024x768.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/05_guided_agent_8avatars_390x844.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/06_hd_lobby_1024x768.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/06_hd_lobby_390x844.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/07_hd_locker_avatar_bag_1024x768.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/07_hd_locker_avatar_bag_390x844.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/08_hd_pro_shop_1024x768.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/08_hd_pro_shop_390x844.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/09_clubhouse_globe_wall_1024x768.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/09_clubhouse_globe_wall_390x844.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/10a_coach_office_player_inbox_390x844.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/10b_coach_office_head_coach_390x844.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/10c_coach_office_director_1024x768.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/10c_coach_office_director_390x844.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/11_live_drill_single_focal_arc_1024x768.png', encoding: 'base64' },
+  { rel: 'qa_screenshots/11_live_drill_single_focal_arc_390x844.png', encoding: 'base64' },
   { rel: 'assets/synapz-splash-bg.png', encoding: 'base64' },
   { rel: 'assets/tactix-logo.png', encoding: 'base64' },
   { rel: 'assets/coach-bob.png', encoding: 'base64' },
@@ -143,7 +171,8 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/audit_v112_173_verified_6pos_pilot.png', encoding: 'base64' },
   { rel: 'screenshots/audit_v120_clean_slate_portals.png', encoding: 'base64' },
   { rel: 'screenshots/audit_v121_cutout_guided_profiles.png', encoding: 'base64' },
-  { rel: 'screenshots/audit_v122_hd_rooms_8avatars.png', encoding: 'base64' }
+  { rel: 'screenshots/audit_v122_hd_rooms_8avatars.png', encoding: 'base64' },
+  { rel: 'screenshots/audit_v123_strict_3role_portals.png', encoding: 'base64' }
 ];
 
 // Automatically include all generated neural .mp3 voice files in assets/audio/voices/<characterId>/*.mp3
@@ -460,7 +489,7 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
 
   // 5. Create Commit
   const commitRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/commits`, token, 'POST', {
-    message: `Deploy SYNAPZ HOCKEY v12.2-hd-rooms-8avatars-and-upfront-tours (4 HD Blues-Free Rooms + 8 Full-Body 3D Stock Avatars + Pure Picture Navigation + Upfront Lobby/Locker/First-Drill Agent Tours + Equipment Bag + Clubhouse 3D Globe & Post-Dictation Bank BA-BD)`,
+    message: `Deploy SYNAPZ HOCKEY v12.3-strict-3role-portals-and-coach-office (Strict 3-Role Portals: 1-Player Account Straight to Lobby + Coaches Portal Straight to Coach's Office + Coach's Inbox & Full Suite AI + Association Director 5/10/20 Suite + Bank CA-CD)`,
     tree: treeRes.data.sha,
     parents: [baseCommitSha]
   });
@@ -533,8 +562,8 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
         ]);
         const html = await resRep.text();
         const swText = await resSw.text();
-        if (html.toUpperCase().includes('V12.2') && swText.includes('synapz-hockey-v12.2-hd-rooms-8avatars-tours')) {
-          console.log(`✅ Verified live ${liveUrl} & ${reportUrl} are serving v12.2 (synapz-hockey-v12.2-hd-rooms-8avatars-tours)!`);
+        if (html.toUpperCase().includes('V12.3') && swText.includes('synapz-hockey-v12.3-strict-3role-portals')) {
+          console.log(`✅ Verified live ${liveUrl} & ${reportUrl} are serving v12.3 (synapz-hockey-v12.3-strict-3role-portals)!`);
           break;
         }
       } catch (_) {}
