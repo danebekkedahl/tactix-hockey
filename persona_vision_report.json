@@ -1,0 +1,1631 @@
+{
+  "version": "v12.7-5persona-blind-vision-playtest",
+  "generatedAt": "2026-11-13T16:02:42.631Z",
+  "runtimeSeconds": 60.6,
+  "testModeEmailGuardVerified": true,
+  "suppressedEmailWebhooks": 0,
+  "humanEyesOnlyGuardrailPassed": true,
+  "totalPersonasCompleted": 5,
+  "totalVisualCoordinateTaps": 127,
+  "totalMissedCoordinateTaps": 0,
+  "totalRawFrictionBlockers": 0,
+  "missedTaps": [],
+  "rawFrictionFindings": [],
+  "founderVisionShield": {
+    "purePictureNavigationPreserved": true,
+    "maxPrimaryGameplayButtonsLeq4": true,
+    "zeroFamilyTierOr4SlotPicker": true,
+    "deRobotedCoachBobPreserved": true,
+    "zeroCharacterAgentsOnEntryGate": true,
+    "blockedVisionViolations": [
+      "BLOCKED any text-label overlays on room-rink-lobby.jpg, room-locker-room.jpg, room-pro-shop.jpg, room-coaches-office.jpg, or room-clubhouse.png",
+      "BLOCKED adding >4 primary utility buttons to #lessonConsistentBottomBar",
+      "BLOCKED re-adding Family Tier / 4-Slot Picker / $2.99 sibling slots"
+    ]
+  },
+  "baselineAuditBeforeFixes": {
+    "baselineRunSeconds": 43.33,
+    "baselineVisualCoordinateTaps": 103,
+    "baselineMissedOrObstructedTaps": 31,
+    "baselineFrictionBlockers": 9
+  },
+  "bucket1AutoFixesApplied": [
+    {
+      "id": "B1-01",
+      "persona": "P2 & P3",
+      "title": "Restored 4 Tactical Choice Buttons Below Ice in Clean Mode",
+      "fix": "Removed 1x1px clip/opacity:0 on #multiFormatControlsBar and placed 2x2 mobile / 4-col desktop grid cleanly between #rinkRowLayout and #lessonConsistentBottomBar while keeping <=4 primary utility buttons."
+    },
+    {
+      "id": "B1-02",
+      "persona": "P1, P4 & P5",
+      "title": "Fixed Entry Gate Scroll Clipping (390x844) & Horizontal Button Bleed (1024x768)",
+      "fix": "Updated #sandboxLoginModal to flex-start + margin:auto scrolling and stacked Team Code / Coaches Code input + CTA vertically with min-w-0."
+    },
+    {
+      "id": "B1-03",
+      "persona": "P1 & P4",
+      "title": "Eliminated window.onload Screen-1 Yank Race & Added ?coach_code= Prefill",
+      "fix": "Guarded window.onload openEntryScreen(\"1\") so fast users already on 1A/1B sub-screens are never kicked back to Screen 1, and wired ?coach_code= prefill."
+    },
+    {
+      "id": "B1-04",
+      "persona": "P2",
+      "title": "Removed Stale v8 Pro Shop -> Legacy #loginModal Listener",
+      "fix": "Deleted duplicate btnOpenCustomAvatarFromShop listener that unhid legacy Quick Skater Setup Wizard (#loginModal) underneath Locker Room."
+    },
+    {
+      "id": "B1-05",
+      "persona": "P2, P3, P4 & P5",
+      "title": "Stopped #synapzUniversalCharSpeechOverlay From Obstructing Tours, Map CTA & Open Drawers",
+      "fix": "Suppressed full-width speech banner whenever [Next ->] Tours, Map CTA, or Coach/Shop/Bag drawers are open while syncing the non-blocking 64x64 character medallion, plus added pb-16 drawer clearance."
+    },
+    {
+      "id": "B1-06",
+      "persona": "P2, P4 & P5",
+      "title": "Raised Unspoken Word Contrast in Character Speech Bubbles",
+      "fix": "Upgraded .synapz-word-pending from unreadable opacity:0.14 (#64748b) to crisp opacity:0.82 (#cbd5e1)."
+    },
+    {
+      "id": "B1-07",
+      "persona": "P2 & P1",
+      "title": "Unshadowed Locker Room Breezers & Expanded Tight 390px Picture Hotspots",
+      "fix": "Separated #lockerHotspotStick from #lockerHotspotBreezers, expanded #lobbyStationProShop, #lockerHotspotHelmet/Gloves/Skates, and #coachOfficeHotspotCoachAl to match painted 16:9 art bounds with zero text labels."
+    },
+    {
+      "id": "B1-08",
+      "persona": "P1",
+      "title": "Auto-Surfaced Coach's Inbox for Team-Code Players Entering Coach's Office",
+      "fix": "Auto-opened #coachOfficeOverlaySheet when a Player has an active Team Code and updated top-right pill to \"📬 Coach's Inbox & IQ Stats\"."
+    },
+    {
+      "id": "B1-09",
+      "persona": "P1 & P3",
+      "title": "Polished Step-2 8-Avatar Thumbnails, Preview Badges & Tour Map Division/IQ Pill",
+      "fix": "Hid overlapping gear pills on Step-2 preview, widened 8 stock avatar thumbnails, displayed prof.divisionLabel (e.g. 14U AA), and stopped coercing 0 IQ to 100 IQ."
+    },
+    {
+      "id": "B1-10",
+      "persona": "P2, P3 & P5",
+      "title": "Clamped Narrow Mobile Canvas CUE FIRST Pill, Right-Offset HUD vs Red Flag & Labeled 5 Assoc Filters",
+      "fix": "Clamped CUE FIRST pill width + maxWidth on 390px canvas, offset mobile #topRinkHudStack clear of #btnPersistentFounderRedFlag, and added aria-labels to all 5 Association Report filters."
+    },
+    {
+      "id": "B1-11",
+      "persona": "P2 & P3",
+      "title": "Cleared Lobby/Locker [Next ➔] Tour Buttons Above 🚩 Red Flag, Restored 4 Choice Buttons on Drag Drills & Clamped 390px Coach Bob Popup",
+      "fix": "Raised #lobbyFirstTimeTourOverlay and #lockerFirstTimeTourOverlay to bottom-14 above #btnPersistentFounderRedFlag, kept 4 rotated choice buttons visible on drag_skater drills, stripped empty () parens from natural hockey talk, made transition splash pointer-events:none (320ms), and clamped #coachBobPopup + #btnDismissCoachBob inside 390px vertical rinks."
+    }
+  ],
+  "bucket2SubjectiveIdeasQueuedToCouncil": [
+    {
+      "id": "P1-IDEA",
+      "persona": "Persona 1 (Non-Hockey Mom)",
+      "suggestion": "Optional 1-tap \"Text Link to My Kid's iPad\" share sheet after parent redeems Team Code on phone",
+      "routedTo": "report.html -> 📥 To Review (12)"
+    },
+    {
+      "id": "P3-IDEA",
+      "persona": "Persona 3 (14U AA Skater)",
+      "suggestion": "Optional \"Pro Broadcast Speed (1.25x Roll-In)\" toggle inside Locker Room Edit Profile for AA/AAA skaters",
+      "routedTo": "report.html -> 📥 To Review (12)"
+    }
+  ],
+  "personas": [
+    {
+      "personaId": 1,
+      "personaName": "First-Time Non-Hockey Mom (Team Code WOLF12 Onboarding)",
+      "viewport": "390x844",
+      "coordTaps": [
+        {
+          "kind": "visible_control",
+          "query": "Player Portal",
+          "x": 195,
+          "y": 436,
+          "rect": {
+            "width": 336,
+            "height": 54
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Create Account",
+          "x": 195,
+          "y": 484,
+          "rect": {
+            "width": 336,
+            "height": 54
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_input",
+          "query": "Create User ID",
+          "x": 195,
+          "y": 136
+        },
+        {
+          "kind": "visible_input",
+          "query": "Create Password",
+          "x": 195,
+          "y": 195
+        },
+        {
+          "kind": "visible_input",
+          "query": "Team Code",
+          "x": 195,
+          "y": 788
+        },
+        {
+          "kind": "visible_control",
+          "query": "Redeem Team Code & Create Account",
+          "x": 195,
+          "y": 791,
+          "rect": {
+            "width": 310,
+            "height": 36
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_image",
+          "query": "agent-maya",
+          "x": 80,
+          "y": 253
+        },
+        {
+          "kind": "visible_control",
+          "query": "Continue with Agent",
+          "x": 195,
+          "y": 785,
+          "rect": {
+            "width": 336,
+            "height": 40
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_image",
+          "query": "avatar-male-2",
+          "x": 155,
+          "y": 315
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next: Player Info",
+          "x": 276,
+          "y": 644,
+          "rect": {
+            "width": 154,
+            "height": 38
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_input",
+          "query": "Name or Nickname",
+          "x": 195,
+          "y": 268
+        },
+        {
+          "kind": "visible_dropdown",
+          "hint": "Division",
+          "value": "10U Rec",
+          "x": 195,
+          "y": 335
+        },
+        {
+          "kind": "visible_control",
+          "query": "Novice",
+          "x": 117,
+          "y": 405,
+          "rect": {
+            "width": 151,
+            "height": 36
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Let's Skate",
+          "x": 274,
+          "y": 558,
+          "rect": {
+            "width": 150,
+            "height": 38
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Skip",
+          "x": 353,
+          "y": 651,
+          "rect": {
+            "width": 21,
+            "height": 15
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "room_picture_art",
+          "target": "COACH'S OFFICE Balcony Doors",
+          "x": 88,
+          "y": 376,
+          "matchedExpected": true,
+          "hitAria": "Coach's Office",
+          "hitBox": {
+            "width": 64,
+            "height": 65
+          }
+        }
+      ],
+      "missedTaps": [],
+      "frictionFindings": [],
+      "screenshots": [
+        "p1_mom_01_screen1_390x844.png",
+        "p1_mom_02_teamcode_plans_390x844.png",
+        "p1_mom_03_guided_8avatars_390x844.png",
+        "p1_mom_04_coach_office_inbox_390x844.png"
+      ],
+      "notes": {
+        "screen1ZeroAgents": true,
+        "momImmediateCoachInboxCheck": {
+          "mentionsCoachInboxImmediately": true,
+          "mentionsAssignedPlanImmediately": true,
+          "topPillText": "📬 Coach's Inbox & IQ Stats"
+        },
+        "foundAssignedBreakoutPlan": true
+      }
+    },
+    {
+      "personaId": 2,
+      "personaName": "Impatient 8U Mite Kid (Skips Reading, Taps Visuals)",
+      "viewport": "390x844 + 1024x768",
+      "coordTaps": [
+        {
+          "kind": "visible_control",
+          "query": "Player Portal",
+          "x": 195,
+          "y": 436,
+          "rect": {
+            "width": 336,
+            "height": 54
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Create Account",
+          "x": 195,
+          "y": 484,
+          "rect": {
+            "width": 336,
+            "height": 54
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_input",
+          "query": "Create User ID",
+          "x": 195,
+          "y": 136
+        },
+        {
+          "kind": "visible_input",
+          "query": "Create Password",
+          "x": 195,
+          "y": 195
+        },
+        {
+          "kind": "visible_control",
+          "query": "Select $4.99 Gameplay",
+          "x": 195,
+          "y": 371,
+          "rect": {
+            "width": 310,
+            "height": 36
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Complete $0.00 Pilot Test Unlock",
+          "x": 195,
+          "y": 516,
+          "rect": {
+            "width": 330,
+            "height": 54
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Continue with Agent",
+          "x": 195,
+          "y": 770,
+          "rect": {
+            "width": 336,
+            "height": 40
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_image",
+          "query": "avatar-male-3",
+          "x": 235,
+          "y": 318
+        },
+        {
+          "kind": "visible_dropdown",
+          "hint": "Hair",
+          "value": "mohawk",
+          "x": 114,
+          "y": 506
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next: Player Info",
+          "x": 276,
+          "y": 647,
+          "rect": {
+            "width": 154,
+            "height": 38
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_input",
+          "query": "Name or Nickname",
+          "x": 195,
+          "y": 271
+        },
+        {
+          "kind": "visible_dropdown",
+          "hint": "Division",
+          "value": "8U",
+          "x": 195,
+          "y": 338
+        },
+        {
+          "kind": "visible_control",
+          "query": "Let's Skate",
+          "x": 274,
+          "y": 561,
+          "rect": {
+            "width": 150,
+            "height": 38
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next",
+          "x": 327,
+          "y": 758,
+          "rect": {
+            "width": 75,
+            "height": 32
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next",
+          "x": 327,
+          "y": 758,
+          "rect": {
+            "width": 75,
+            "height": 32
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next",
+          "x": 327,
+          "y": 758,
+          "rect": {
+            "width": 75,
+            "height": 32
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next",
+          "x": 327,
+          "y": 758,
+          "rect": {
+            "width": 75,
+            "height": 32
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next",
+          "x": 327,
+          "y": 758,
+          "rect": {
+            "width": 75,
+            "height": 32
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Open Locker Room",
+          "x": 285,
+          "y": 758,
+          "rect": {
+            "width": 159,
+            "height": 32
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next",
+          "x": 327,
+          "y": 758,
+          "rect": {
+            "width": 75,
+            "height": 32
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next",
+          "x": 327,
+          "y": 758,
+          "rect": {
+            "width": 75,
+            "height": 32
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Done",
+          "x": 325,
+          "y": 758,
+          "rect": {
+            "width": 78,
+            "height": 32
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "room_picture_art",
+          "target": "Painted Helmet on Top Stall Shelf",
+          "x": 285,
+          "y": 365,
+          "matchedExpected": true,
+          "hitAria": "Stall Helmet",
+          "hitBox": {
+            "width": 40,
+            "height": 28
+          }
+        },
+        {
+          "kind": "room_picture_art",
+          "target": "Painted Hanging Gloves on Left Hook",
+          "x": 244,
+          "y": 399,
+          "matchedExpected": true,
+          "hitAria": "Stall Gloves",
+          "hitBox": {
+            "width": 38,
+            "height": 64
+          }
+        },
+        {
+          "kind": "room_picture_art",
+          "target": "Painted Hanging Jersey in Stall Center",
+          "x": 281,
+          "y": 420,
+          "matchedExpected": true,
+          "hitAria": "Stall Jersey",
+          "hitBox": {
+            "width": 53,
+            "height": 72
+          }
+        },
+        {
+          "kind": "room_picture_art",
+          "target": "Painted Hockey Breezers/Pants on Right Hook",
+          "x": 323,
+          "y": 419,
+          "matchedExpected": true,
+          "hitAria": "Stall Breezers",
+          "hitBox": {
+            "width": 34,
+            "height": 59
+          }
+        },
+        {
+          "kind": "room_picture_art",
+          "target": "Painted Skates at Stall Base",
+          "x": 261,
+          "y": 499,
+          "matchedExpected": true,
+          "hitAria": "Stall Skates",
+          "hitBox": {
+            "width": 40,
+            "height": 38
+          }
+        },
+        {
+          "kind": "room_picture_art",
+          "target": "Painted Hockey Stick Blade/Lower Shaft",
+          "x": 326,
+          "y": 472,
+          "matchedExpected": true,
+          "hitAria": "Stall Stick",
+          "hitBox": {
+            "width": 46,
+            "height": 68
+          }
+        },
+        {
+          "kind": "room_picture_art",
+          "target": "Painted Navy Equipment Bag on Floor",
+          "x": 356,
+          "y": 504,
+          "matchedExpected": true,
+          "hitAria": "Equipment Bag Toolbox",
+          "hitBox": {
+            "width": 66,
+            "height": 47
+          }
+        },
+        {
+          "kind": "visible_control",
+          "query": "← Lobby",
+          "x": 45,
+          "y": 26,
+          "rect": {
+            "width": 69,
+            "height": 31
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "room_picture_art",
+          "target": "SYNAPZ PRO SHOP Storefront",
+          "x": 927,
+          "y": 488,
+          "matchedExpected": true,
+          "hitAria": "SYNAPZ Pro Shop",
+          "hitBox": {
+            "width": 197,
+            "height": 320
+          }
+        },
+        {
+          "kind": "room_picture_art",
+          "target": "Left Illuminated Stick Wall",
+          "x": 149,
+          "y": 395,
+          "matchedExpected": true,
+          "hitAria": "Stick Wall",
+          "hitBox": {
+            "width": 307,
+            "height": 448
+          }
+        },
+        {
+          "kind": "pro_shop_item",
+          "x": 857,
+          "y": 618,
+          "txt": "💰 100 Puck Bucks"
+        },
+        {
+          "kind": "visible_control",
+          "query": "Go to Locker Room Bag",
+          "x": 107,
+          "y": 163,
+          "rect": {
+            "width": 164,
+            "height": 31
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "locker_bag_equip",
+          "x": 193,
+          "y": 730
+        },
+        {
+          "kind": "visible_control",
+          "query": "Close Bag",
+          "x": 163,
+          "y": 540,
+          "rect": {
+            "width": 86,
+            "height": 29
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "← Lobby",
+          "x": 45,
+          "y": 26,
+          "rect": {
+            "width": 69,
+            "height": 31
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "room_picture_art",
+          "target": "ICE RINK Center Glass Doors",
+          "x": 195,
+          "y": 460,
+          "matchedExpected": true,
+          "hitAria": "Ice Rink",
+          "hitBox": {
+            "width": 92,
+            "height": 60
+          }
+        },
+        {
+          "kind": "visible_control",
+          "query": "DROP THE PUCK",
+          "x": 195,
+          "y": 345,
+          "rect": {
+            "width": 332,
+            "height": 70
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Start Drill",
+          "x": 299,
+          "y": 702,
+          "rect": {
+            "width": 116,
+            "height": 68
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Got It",
+          "x": 135,
+          "y": 272,
+          "rect": {
+            "width": 137,
+            "height": 20
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "on_ice_4choice_btn",
+          "label": "⚡ 1.Hold the center blue line hinge slightly closer to partn",
+          "x": 107,
+          "y": 628
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next Play",
+          "x": 289,
+          "y": 811,
+          "rect": {
+            "width": 177,
+            "height": 40
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Got It",
+          "x": 314,
+          "y": 273,
+          "rect": {
+            "width": 137,
+            "height": 20
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "on_ice_4choice_btn",
+          "label": "⚡ 1.Hold high support near Right Point #4 outside the faceof",
+          "x": 107,
+          "y": 614
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next Play",
+          "x": 287,
+          "y": 811,
+          "rect": {
+            "width": 177,
+            "height": 40
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Got It",
+          "x": 341,
+          "y": 83,
+          "rect": {
+            "width": 55,
+            "height": 19
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "on_ice_4choice_btn",
+          "label": "🏒 Pass to #19 (Low Slot / Net-Front)",
+          "x": 107,
+          "y": 649
+        }
+      ],
+      "missedTaps": [],
+      "frictionFindings": [],
+      "screenshots": [
+        "p2_kid_01_lobby_tour_390x844.png",
+        "p2_kid_02_lobby_1024x768.png",
+        "p2_kid_03_pro_shop_1024x768.png",
+        "p2_kid_04_locker_avatar_390x844.png",
+        "p2_kid_05_8u_drill1_handoff_390x844.png"
+      ],
+      "drillsPlayed": [
+        {
+          "drillNum": 1,
+          "wordCount": 10,
+          "promptText": "Hold the Left Point just inside the offensive blue line!",
+          "visibleChoiceCount": 4,
+          "choiceLabels": [
+            "⚡ 1.Hold the center blue line hinge slightly closer to partner #7",
+            "⚡ 2.Retreat all the way back to the center red line",
+            "⚡ 3.Skate behind the opponent's net with the forwards",
+            "⚡ 4.Hold the Left Point just inside the offensive blue line across from #7"
+          ],
+          "tourShown": true,
+          "motionSampled": {
+            "frameA": {
+              "youPos": {
+                "x": 0.77,
+                "y": 0.48
+              },
+              "flowPhase": "flowing",
+              "animId": true
+            },
+            "frameB": {
+              "youPos": {
+                "x": 0.77,
+                "y": 0.48
+              },
+              "flowPhase": "flowing"
+            }
+          }
+        },
+        {
+          "drillNum": 2,
+          "wordCount": 10,
+          "promptText": "Build an Attack Triangle, skate into the open High Slot!",
+          "visibleChoiceCount": 4,
+          "choiceLabels": [
+            "⚡ 1.Hold high support near Right Point #4 outside the faceoff dot",
+            "⚡ 2.Skate into the corner right next to #14 to help dig the puck out",
+            "⚡ 3.Stand directly behind Defender D1 along the goal line",
+            "⚡ 4.Skate to the open High Slot (\"Soft Ice\") with stick on the ice for a one-timer"
+          ],
+          "tourShown": true,
+          "motionSampled": {
+            "frameA": {
+              "youPos": {
+                "x": 0.8,
+                "y": 0.76
+              },
+              "flowPhase": "flowing",
+              "animId": true
+            },
+            "frameB": {
+              "youPos": {
+                "x": 0.8,
+                "y": 0.76
+              },
+              "flowPhase": "flowing"
+            }
+          }
+        },
+        {
+          "drillNum": 3,
+          "wordCount": 8,
+          "promptText": "Tap the open teammate in the High Slot!",
+          "visibleChoiceCount": 4,
+          "choiceLabels": [
+            "🏒 Pass to #19 (Low Slot / Net-Front)",
+            "🏒 Pass to #4 (Right Wing Open Ice)",
+            "🏒 Pass to #7 (Left Wing Open Ice)",
+            "🏒 Pass to #14 (Low Slot / Net-Front)"
+          ],
+          "tourShown": true,
+          "motionSampled": {
+            "frameA": {
+              "youPos": {
+                "x": 0.87,
+                "y": 0.8200000000000001
+              },
+              "flowPhase": "flowing",
+              "animId": true
+            },
+            "frameB": {
+              "youPos": {
+                "x": 0.87,
+                "y": 0.8200000000000001
+              },
+              "flowPhase": "flowing"
+            }
+          }
+        }
+      ],
+      "notes": {}
+    },
+    {
+      "personaId": 3,
+      "personaName": "Picky 14U AA Travel Skater (Real-Time Hockey Authenticity)",
+      "viewport": "1024x768 + 390x844",
+      "coordTaps": [
+        {
+          "kind": "visible_control",
+          "query": "Player Portal",
+          "x": 512,
+          "y": 389,
+          "rect": {
+            "width": 402,
+            "height": 54
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Create Account",
+          "x": 512,
+          "y": 446,
+          "rect": {
+            "width": 402,
+            "height": 54
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_input",
+          "query": "Create User ID",
+          "x": 410,
+          "y": 142
+        },
+        {
+          "kind": "visible_input",
+          "query": "Create Password",
+          "x": 615,
+          "y": 142
+        },
+        {
+          "kind": "visible_control",
+          "query": "Select $49.99/yr",
+          "x": 607,
+          "y": 463,
+          "rect": {
+            "width": 184,
+            "height": 52
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Complete $0.00 Pilot Test Unlock",
+          "x": 512,
+          "y": 478,
+          "rect": {
+            "width": 396,
+            "height": 54
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_image",
+          "query": "agent-jalen",
+          "x": 512,
+          "y": 248
+        },
+        {
+          "kind": "visible_control",
+          "query": "Continue with Agent",
+          "x": 512,
+          "y": 714,
+          "rect": {
+            "width": 402,
+            "height": 44
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_image",
+          "query": "avatar-male-4",
+          "x": 658,
+          "y": 295
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next: Player Info",
+          "x": 610,
+          "y": 624,
+          "rect": {
+            "width": 187,
+            "height": 38
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_input",
+          "query": "Name or Nickname",
+          "x": 512,
+          "y": 236
+        },
+        {
+          "kind": "visible_dropdown",
+          "hint": "Division",
+          "value": "14U AA",
+          "x": 512,
+          "y": 307
+        },
+        {
+          "kind": "visible_control",
+          "query": "Advanced",
+          "x": 607,
+          "y": 415,
+          "rect": {
+            "width": 184,
+            "height": 34
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Let's Skate",
+          "x": 608,
+          "y": 530,
+          "rect": {
+            "width": 183,
+            "height": 38
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Skip",
+          "x": 563,
+          "y": 581,
+          "rect": {
+            "width": 21,
+            "height": 15
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "room_picture_art",
+          "target": "ICE RINK Center Glass Doors",
+          "x": 512,
+          "y": 485,
+          "matchedExpected": true,
+          "hitAria": "Ice Rink",
+          "hitBox": {
+            "width": 242,
+            "height": 158
+          }
+        },
+        {
+          "kind": "visible_control",
+          "query": "DROP THE PUCK",
+          "x": 349,
+          "y": 586,
+          "rect": {
+            "width": 641,
+            "height": 54
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Start Drill",
+          "x": 642,
+          "y": 577,
+          "rect": {
+            "width": 273,
+            "height": 40
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Got It",
+          "x": 484,
+          "y": 410,
+          "rect": {
+            "width": 167,
+            "height": 25
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "on_ice_4choice_btn",
+          "label": "⚡ 1.Hold the center blue line hinge slightly closer to partn",
+          "x": 142,
+          "y": 666
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next Play",
+          "x": 890,
+          "y": 733,
+          "rect": {
+            "width": 242,
+            "height": 44
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Got It",
+          "x": 484,
+          "y": 396,
+          "rect": {
+            "width": 167,
+            "height": 25
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "on_ice_4choice_btn",
+          "label": "⚡ 4.Tag up on the offensive blue line and wait for #14 to ca",
+          "x": 882,
+          "y": 659
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next Play",
+          "x": 662,
+          "y": 655,
+          "rect": {
+            "width": 214,
+            "height": 28
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "on_ice_4choice_btn",
+          "label": "⚡ 3.Skate to the open High Slot (\"Soft Ice\") with stick on t",
+          "x": 635,
+          "y": 666
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next Play",
+          "x": 890,
+          "y": 733,
+          "rect": {
+            "width": 242,
+            "height": 44
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Got It",
+          "x": 135,
+          "y": 206,
+          "rect": {
+            "width": 137,
+            "height": 20
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "on_ice_4choice_btn",
+          "label": "⚡ 3.Pass tape-to-tape to open teammate #14 in the High Slot ",
+          "x": 107,
+          "y": 689
+        },
+        {
+          "kind": "visible_control",
+          "query": "Next Play",
+          "x": 289,
+          "y": 811,
+          "rect": {
+            "width": 177,
+            "height": 40
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Got It",
+          "x": 314,
+          "y": 239,
+          "rect": {
+            "width": 137,
+            "height": 20
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "on_ice_4choice_btn",
+          "label": "⚡ 3.Hit #14 wide open in the High Slot with stick cocked for",
+          "x": 107,
+          "y": 689
+        }
+      ],
+      "missedTaps": [],
+      "frictionFindings": [],
+      "screenshots": [
+        "p3_14uaa_01_rotated90_drill_1024x768.png",
+        "p3_14uaa_02_rotated270_drill_390x844.png"
+      ],
+      "drillsPlayed": [
+        {
+          "drillNum": 1,
+          "rotationDeg": 0,
+          "wordCount": 18,
+          "promptText": "Move to the open Left Defenseman spot JUST INSIDE the blue line (not back at the red line)!",
+          "visibleChoiceCount": 4,
+          "choiceLabels": [
+            "⚡ 1.Hold the center blue line hinge slightly closer to partner #7",
+            "⚡ 2.Retreat all the way back to the center red line",
+            "⚡ 3.Skate behind the opponent's net with the forwards",
+            "⚡ 4.Hold the Left Point just inside the offensive blue line across from #7"
+          ],
+          "tourShown": true,
+          "motionSampled": {
+            "frameA": {
+              "youPos": {
+                "x": 0.77,
+                "y": 0.48
+              },
+              "flowPhase": "flowing",
+              "animId": true
+            },
+            "frameB": {
+              "youPos": {
+                "x": 0.77,
+                "y": 0.48
+              },
+              "flowPhase": "flowing"
+            }
+          }
+        },
+        {
+          "drillNum": 2,
+          "rotationDeg": 90,
+          "wordCount": 16,
+          "promptText": "Teammate hasn't crossed the blue line yet, skate back to the blue line to get Onsides!",
+          "visibleChoiceCount": 4,
+          "choiceLabels": [
+            "⚡ 1.Loop back deeper into the neutral zone behind #14 to build crossover speed",
+            "⚡ 2.Stay cherry-picking deep in the zone before the puck crosses the blue line",
+            "⚡ 3.Take the puck off #14's stick in the neutral zone",
+            "⚡ 4.Tag up on the offensive blue line and wait for #14 to carry the puck across first"
+          ],
+          "tourShown": true,
+          "motionSampled": {
+            "frameA": {
+              "youPos": {
+                "x": 0.78,
+                "y": 0.7
+              },
+              "flowPhase": "flowing",
+              "animId": true
+            },
+            "frameB": {
+              "youPos": {
+                "x": 0.78,
+                "y": 0.7
+              },
+              "flowPhase": "flowing"
+            }
+          }
+        },
+        {
+          "drillNum": 3,
+          "rotationDeg": 180,
+          "wordCount": 15,
+          "promptText": "Teammate has the puck in the corner, find the soft ice in the high slot!",
+          "visibleChoiceCount": 4,
+          "choiceLabels": [
+            "⚡ 1.Skate into the corner right next to #14 to help dig the puck out",
+            "⚡ 2.Stand directly behind Defender D1 along the goal line",
+            "⚡ 3.Skate to the open High Slot (\"Soft Ice\") with stick on the ice for a one-timer",
+            "⚡ 4.Hold high support near Left Point #4 outside the faceoff dot"
+          ],
+          "tourShown": false,
+          "motionSampled": {
+            "frameA": {
+              "youPos": {
+                "x": 0.8183449613392986,
+                "y": 0.23332403092856113
+              },
+              "flowPhase": "frozen",
+              "animId": false
+            },
+            "frameB": {
+              "youPos": {
+                "x": 0.8297908142863369,
+                "y": 0.22416734857093049
+              },
+              "flowPhase": "frozen"
+            }
+          }
+        },
+        {
+          "drillNum": 4,
+          "rotationDeg": 270,
+          "wordCount": 16,
+          "promptText": "YOU have the puck in the corner, watch the defense shift, then TAP the wide-open teammate!",
+          "visibleChoiceCount": 4,
+          "choiceLabels": [
+            "⚡ 1.Force a pass into #19 who is tied up by Defender D2",
+            "⚡ 2.Pass up the boards into Defender D3's skates",
+            "⚡ 3.Pass tape-to-tape to open teammate #14 in the High Slot for a one-timer",
+            "⚡ 4.Rim the puck safely around behind the net toward weak-side point #7"
+          ],
+          "tourShown": true,
+          "motionSampled": {
+            "frameA": {
+              "youPos": {
+                "x": 0.87,
+                "y": 0.188
+              },
+              "flowPhase": "flowing",
+              "animId": true
+            },
+            "frameB": {
+              "youPos": {
+                "x": 0.87,
+                "y": 0.188
+              },
+              "flowPhase": "flowing"
+            }
+          }
+        },
+        {
+          "drillNum": 5,
+          "rotationDeg": 0,
+          "wordCount": 15,
+          "promptText": "🥽 You're in the corner looking out, tap the ONE teammate who is wide open!",
+          "visibleChoiceCount": 4,
+          "choiceLabels": [
+            "⚡ 1.Throw it blindly into #19's skates while tied up by D1",
+            "⚡ 2.Pass up the boards to #4 who has D2 right in their face",
+            "⚡ 3.Hit #14 wide open in the High Slot with stick cocked for a one-timer",
+            "⚡ 4.Reverse the cycle behind the goal line toward far-side point #7"
+          ],
+          "tourShown": true,
+          "motionSampled": {
+            "frameA": {
+              "youPos": {
+                "x": 0.88,
+                "y": 0.808
+              },
+              "flowPhase": "flowing",
+              "animId": true
+            },
+            "frameB": {
+              "youPos": {
+                "x": 0.88,
+                "y": 0.808
+              },
+              "flowPhase": "flowing"
+            }
+          }
+        }
+      ],
+      "notes": {}
+    },
+    {
+      "personaId": 4,
+      "personaName": "Parking-Lot Volunteer Head Coach (3-Minute Pre-Practice Rush)",
+      "viewport": "390x844",
+      "coordTaps": [
+        {
+          "kind": "visible_control",
+          "query": "Coaches Portal",
+          "x": 195,
+          "y": 502,
+          "rect": {
+            "width": 336,
+            "height": 54
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Create Account",
+          "x": 195,
+          "y": 484,
+          "rect": {
+            "width": 336,
+            "height": 54
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_input",
+          "query": "Coach / Director Name",
+          "x": 195,
+          "y": 137
+        },
+        {
+          "kind": "visible_input",
+          "query": "Team / Association Name",
+          "x": 195,
+          "y": 196
+        },
+        {
+          "kind": "visible_input",
+          "query": "Create User ID",
+          "x": 195,
+          "y": 315
+        },
+        {
+          "kind": "visible_input",
+          "query": "Create Password",
+          "x": 195,
+          "y": 374
+        },
+        {
+          "kind": "visible_input",
+          "query": "Coaches Code",
+          "x": 194,
+          "y": 591
+        },
+        {
+          "kind": "visible_control",
+          "query": "Redeem Coaches Code",
+          "x": 194,
+          "y": 632,
+          "rect": {
+            "width": 312,
+            "height": 36
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_dropdown",
+          "hint": "Focus Concept",
+          "value": "Breakouts",
+          "x": 195,
+          "y": 498
+        },
+        {
+          "kind": "visible_dropdown",
+          "hint": "Lesson Length",
+          "value": "5",
+          "x": 195,
+          "y": 558
+        },
+        {
+          "kind": "visible_input",
+          "query": "Thursday practice",
+          "x": 195,
+          "y": 618
+        },
+        {
+          "kind": "visible_control",
+          "query": "Push Lesson Plan to Players' Coach's Inbox",
+          "x": 195,
+          "y": 663,
+          "rect": {
+            "width": 312,
+            "height": 36
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Team Code",
+          "x": 195,
+          "y": 372,
+          "rect": {
+            "width": 109,
+            "height": 50
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Copy Player Signup Link",
+          "x": 215,
+          "y": 532,
+          "rect": {
+            "width": 155,
+            "height": 23
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Copy Code",
+          "x": 305,
+          "y": 769,
+          "rect": {
+            "width": 75,
+            "height": 24
+          },
+          "unobstructed": true
+        }
+      ],
+      "missedTaps": [],
+      "frictionFindings": [],
+      "screenshots": [
+        "p4_coach_01_pushed_breakout_plan_390x844.png",
+        "p4_coach_02_teamcode_assistants_390x844.png"
+      ],
+      "notes": {
+        "elapsedSeconds": 5.7,
+        "totalVisualTaps": 15
+      }
+    },
+    {
+      "personaId": 5,
+      "personaName": "Association Board Director (Club Oversight & $850 10-Team ROI)",
+      "viewport": "1024x768 + 390x844",
+      "coordTaps": [
+        {
+          "kind": "visible_control",
+          "query": "Coaches Portal",
+          "x": 512,
+          "y": 454,
+          "rect": {
+            "width": 402,
+            "height": 54
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Create Account",
+          "x": 512,
+          "y": 446,
+          "rect": {
+            "width": 402,
+            "height": 54
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_input",
+          "query": "Coach / Director Name",
+          "x": 410,
+          "y": 176
+        },
+        {
+          "kind": "visible_input",
+          "query": "Team / Association Name",
+          "x": 615,
+          "y": 176
+        },
+        {
+          "kind": "visible_input",
+          "query": "Create User ID",
+          "x": 410,
+          "y": 295
+        },
+        {
+          "kind": "visible_input",
+          "query": "Create Password",
+          "x": 615,
+          "y": 295
+        },
+        {
+          "kind": "visible_control",
+          "query": "Select 10-Team Association ($850/yr)",
+          "x": 511,
+          "y": 655,
+          "rect": {
+            "width": 376,
+            "height": 36
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Complete $0.00 Pilot Test Unlock",
+          "x": 512,
+          "y": 478,
+          "rect": {
+            "width": 396,
+            "height": 54
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_control",
+          "query": "Copy Coach Signup Link",
+          "x": 203,
+          "y": 376,
+          "rect": {
+            "width": 137,
+            "height": 19
+          },
+          "unobstructed": true
+        },
+        {
+          "kind": "visible_dropdown",
+          "hint": "Filter by Age",
+          "value": "12U",
+          "x": 116,
+          "y": 709
+        },
+        {
+          "kind": "visible_dropdown",
+          "hint": "Filter by Age",
+          "value": "ALL",
+          "x": 116,
+          "y": 709
+        },
+        {
+          "kind": "visible_dropdown",
+          "hint": "Filter by Level",
+          "value": "AA",
+          "x": 275,
+          "y": 709
+        },
+        {
+          "kind": "visible_dropdown",
+          "hint": "Filter by Level",
+          "value": "ALL",
+          "x": 275,
+          "y": 709
+        },
+        {
+          "kind": "visible_dropdown",
+          "hint": "Filter by Coach or Team",
+          "value": "ALL",
+          "x": 116,
+          "y": 745
+        },
+        {
+          "kind": "visible_dropdown",
+          "hint": "Filter by Position",
+          "value": "C",
+          "x": 275,
+          "y": 745
+        },
+        {
+          "kind": "visible_dropdown",
+          "hint": "Filter by Position",
+          "value": "ALL",
+          "x": 275,
+          "y": 745
+        },
+        {
+          "kind": "visible_dropdown",
+          "hint": "Filter by Player",
+          "value": "ALL",
+          "x": 195,
+          "y": 781
+        }
+      ],
+      "missedTaps": [],
+      "frictionFindings": [],
+      "screenshots": [
+        "p5_director_01_plans_1024x768.png",
+        "p5_director_02_coaches_codes_1024x768.png",
+        "p5_director_03_reports_filters_390x844.png"
+      ],
+      "notes": {
+        "generatedSlot1CoachCode": "HC4MLB"
+      }
+    }
+  ]
+}

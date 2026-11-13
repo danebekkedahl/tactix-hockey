@@ -4,7 +4,7 @@
 **Platform Sub-Badge:** `HOCKEY IQ & STRATEGY PLATFORM`  
 **Founders:** Dane Bekkedahl & Evan Bekkedahl  
 **Date:** November 2, 2026  
-**Last Synced:** November 11, 2026 (Through Section 35 • `v11.2-173-verified-and-6position-pilot-bank`)  
+**Last Synced:** November 13, 2026 (Through Section 43 • `v12.7-5persona-blind-vision-playtest`)  
 **Purpose:** Master architectural specification synthesized from Founder strategy sessions. All Antigravity agents (`Main App Code Page`, `Synapz Hockey Learning Council Report`, and `Youth Hockey Playtest Report`) must treat this document as the authoritative product roadmap alongside `AGENT.md` and `LEARNING_COUNCIL_REPORT.md`.
 
 ## 1. The 4-Agent Curriculum & Quality Control Pipeline (Zero Unchecked AI Content)
@@ -732,3 +732,25 @@ Every `RUN NIGHTLY AUTOPILOT` pass runs an active Playwright field inspection in
    - Loads **`Batch DA` (`S1-DA..S12-DA`)** into `📥 To Review (12)` (`🛠️ Queued: 0 | ✅ Live in App: 288`), seeding `Batches DB–DF` (`60` cards) in Supabase for instant phone Top-Up Mode.
 3. **Adversarial + 24-Permutation Verification, Clean-Slate Reset & Ship:**
    - Verifies `adversarial_qa_agent.js --smoke` (`0 Critical • 0 Major`) and `curriculum_iq_audit.js` (`24/24` `0-IQ` permutations, `16/16` blind-student buckets, `288/288` upgrades active, `0` test emails), runs `resetAllSynapzTestAccountsAndProfiles('RESET')` so **Screen 1** starts 100% clean, bumps `sw.js` to `synapz-hockey-v12.6-288-verified-pilot-bank`, mirrors both workspaces, deploys live via `deploy-github-pages.js`, and dispatches **strictly 1** `< 35 KB` `v12.6` email digest via `send-board-digest.js`.
+
+---
+
+## 43. v12.7 — 5-Persona Blind-Vision Playtest & Founder-Shielded 3-Bucket Pipeline (`synapz-hockey-v12.7-5persona-human-vision`)
+1. **5 Synthetic Human Personas ("Human-Eyes-Only" Visual `(x, y)` Coordinate Playtest — `persona_vision_playtest.js`, `window.__SYNAPZ_TEST_MODE__ = true`):**
+   - Captures real `390×844` iPhone and `1024×768` iPad screenshots (`persona_screenshots/*.png`) and drives every doorway, stall gear item, tour button, and on-ice read strictly via **visual bounding-box center coordinates `(x, y)` and visible screen text/art** (**strictly forbidden** from clicking hidden `#id` selectors directly or reading answer keys):
+     1. **Persona 1 — "First-Time Non-Hockey Mom" (`Team Code` Onboarding):** Starts cold on Screen 1 with only a texted `Team Code` (`WOLF12`); navigates `Player Portal -> Create Account -> Team Code`, 3-input Profile Setup, Cutout Agent + 8-Stock-Avatar selection, and locates `Coach's Inbox` inside `Coach's Office` with zero prior hockey jargon knowledge.
+     2. **Persona 2 — "Impatient 8U Mite Kid" (`Skips Reading, Taps Visuals`):** Steps through the upfront `[Next ➔]` Lobby Tour, taps painted room doorways (`Locker Room`, `Pro Shop`, `Ice Rink`) purely by `(x, y)` picture coordinates, equips Pro Shop gear from the Equipment Bag onto his standing 3D avatar, and plays 3 `8U` drills checking `<= 14-word` prompt length, roll-in speed, and Agent-to-Coach-Bob handoff clarity.
+     3. **Persona 3 — "Picky 14U AA Travel Skater" (`Real-Time Hockey Authenticity`):** Plays 5 animated drills at real clock speed across rotated camera angles (`0°/90°/180°/270°`), auditing skater glide speed, single Golden Focal Arc clarity, freeze-frame timing, and 4 natural hockey choice labels.
+     4. **Persona 4 — "Parking-Lot Volunteer Head Coach" (`3-Minute Pre-Practice Rush`):** Redeems an Association `Coaches Code` in `Coaches Portal`, lands straight in `Coach's Office` with Coach Al, copies/shares `Team Code` + 1 Free Assistant Coach invite code, and pushes a 5-play Breakout plan to players' `Coach's Inbox` in minimal taps.
+     5. **Persona 5 — "Association Board Director" (`Club Oversight & ROI`):** Creates a 10-Team `$850/yr` club account, issues `Coaches Codes`, and filters `Association Reports` across Age Group, Competitive Level, Coach/Team, Position, and Individual Player.
+2. **Immutable `FOUNDER_VISION_NOTES.md` Vision Shield:**
+   - Every raw Persona finding in `persona_vision_report.json` is filtered through the **Founder Vision Shield** before touching `index.html` or `report.html`, strictly blocking any suggestion that would:
+     - Re-introduce text-button overlays, stat headers, or `"Tap Zones"` labels onto the 5 pure `100dvh` HD room interiors (`room-rink-lobby.jpg`, `room-locker-room.jpg`, `room-pro-shop.jpg`, `room-coaches-office.jpg`, `room-clubhouse.png`).
+     - Exceed `<= 4` primary gameplay buttons or `maxConcurrentTacticalOverlaysPerPlay === 1` on `#rinkCanvas`.
+     - Re-introduce a Family Tier, `Screen 1A-4` 4-Slot Picker, or `$2.99` sibling slots (preserving the strict 3-Role `Player` / `Coach` / `Association Director` architecture).
+     - Re-robot Coach Bob (`"You're #"`, `#number` callouts, clock/manpower prefixes) or display Character Agents on Screen 1 / Auth / Checkout screens.
+3. **3-Bucket Triage Rule & Clean-Slate Ship:**
+   - **Bucket 1 (Obvious Human-UX Friction — Auto-Fix Immediately in `index.html`):** Tunes `(x, y)` picture hotspot hit-boxes to match 100% of painted doorway/gear art bounds across `390×844` and `1024×768`, sharpens plain-English onboarding/plan micro-copy, aligns `[Next ➔]` tour pointers & spotlight cutouts cleanly, smooths transitions, and re-runs `persona_vision_playtest.js` + `adversarial_qa_agent.js --smoke` until all 5 Personas finish with **0 missed `(x, y)` taps and 0 friction blockers** (`👤 5-Persona Human-Eyes UX Receipt` logged at the top of Tab 3 `✅ Live in App` on `report.html`).
+   - **Bucket 2 (Subjective Taste / Feature Ideas -> Pre-Coded Into `📥 To Review (12)`):** Routes subjective gameplay/coaching ideas discovered by the Personas into `📥 To Review (12)` (`Batch DA` / `SYNAPZ_5_BATCH_UPGRADE_BANK`) for Founder phone approval.
+   - **Bucket 3 (Strategic Tradeoffs -> Option A / Option B):** Surfaces any binary commercial or architectural tradeoffs as concise `Option A vs. Option B` Founder calls without mutating locked core rules.
+   - Runs `resetAllSynapzTestAccountsAndProfiles('RESET')` so live **Screen 1** remains 100% clean, bumps `sw.js` to `synapz-hockey-v12.7-5persona-human-vision`, mirrors both workspaces, deploys via `deploy-github-pages.js`, and dispatches **strictly 1** `< 35 KB` `v12.7` email digest via `send-board-digest.js`.

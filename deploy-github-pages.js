@@ -175,8 +175,20 @@ const FILES_TO_DEPLOY = [
   { rel: 'screenshots/audit_v120_clean_slate_portals.png', encoding: 'base64' },
   { rel: 'screenshots/audit_v121_cutout_guided_profiles.png', encoding: 'base64' },
   { rel: 'screenshots/audit_v122_hd_rooms_8avatars.png', encoding: 'base64' },
-  { rel: 'screenshots/audit_v123_strict_3role_portals.png', encoding: 'base64' }
+  { rel: 'screenshots/audit_v123_strict_3role_portals.png', encoding: 'base64' },
+  { rel: 'persona_vision_playtest.js', encoding: 'utf-8' },
+  { rel: 'persona_vision_report.json', encoding: 'utf-8' }
 ];
+
+// Automatically include all v12.7 5-Persona Blind-Vision screenshots in persona_screenshots/*.png
+const personaShotsRoot = path.join(WORKSPACE_A, 'persona_screenshots');
+if (fs.existsSync(personaShotsRoot)) {
+  for (const f of fs.readdirSync(personaShotsRoot)) {
+    if (f.endsWith('.png')) {
+      FILES_TO_DEPLOY.push({ rel: `persona_screenshots/${f}`, encoding: 'base64' });
+    }
+  }
+}
 
 // Automatically include all generated neural .mp3 voice files in assets/audio/voices/<characterId>/*.mp3
 const voicesRoot = path.join(WORKSPACE_A, 'assets', 'audio', 'voices');
@@ -492,7 +504,7 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
 
   // 5. Create Commit
   const commitRes = await ghApi(`/repos/${owner}/${REPO_NAME}/git/commits`, token, 'POST', {
-    message: `Deploy SYNAPZ HOCKEY v12.3-strict-3role-portals-and-coach-office (Strict 3-Role Portals: 1-Player Account Straight to Lobby + Coaches Portal Straight to Coach's Office + Coach's Inbox & Full Suite AI + Association Director 5/10/20 Suite + Bank CA-CD)`,
+    message: `Deploy SYNAPZ HOCKEY v12.7-5persona-blind-vision-playtest (Section 43: 5-Persona Human-Eyes Coordinate Playtest, 11 Vision-Shielded Bucket-1 UX Auto-Fixes, 0 Missed (x,y) Taps, Clean-Slate Screen 1 + 288/288 Live + Batch DA)`,
     tree: treeRes.data.sha,
     parents: [baseCommitSha]
   });
@@ -565,8 +577,8 @@ async function deploySingleRepo(token, owner, REPO_NAME) {
         ]);
         const html = await resRep.text();
         const swText = await resSw.text();
-        if (html.toUpperCase().includes('V12.3') && swText.includes('synapz-hockey-v12.3-strict-3role-portals')) {
-          console.log(`✅ Verified live ${liveUrl} & ${reportUrl} are serving v12.3 (synapz-hockey-v12.3-strict-3role-portals)!`);
+        if (html.toUpperCase().includes('V12.7') && swText.includes('synapz-hockey-v12.7-5persona-human-vision')) {
+          console.log(`✅ Verified live ${liveUrl} & ${reportUrl} are serving v12.7 (synapz-hockey-v12.7-5persona-human-vision)!`);
           break;
         }
       } catch (_) {}

@@ -35,8 +35,9 @@
   </script>
   <style id="synapzCriticalSlow4gEntryStyles">
     .hidden { display: none !important; }
-    #sandboxLoginModal:not(.hidden) { position: fixed; inset: 0; z-index: 50; background: rgba(2, 6, 23, 0.98); display: flex; align-items: center; justify-content: center; padding: 12px; overflow-y: auto; }
-    #v12EntryGateCard { display: flex; flex-direction: column; gap: 16px; padding: 20px; border-radius: 24px; margin: auto; width: 100%; max-width: 440px; }
+    #sandboxLoginModal:not(.hidden) { position: fixed; inset: 0; z-index: 50; background: rgba(2, 6, 23, 0.98); display: flex; align-items: flex-start; justify-content: center; padding: 12px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    #v12EntryGateCard { display: flex; flex-direction: column; gap: 14px; padding: 18px; border-radius: 24px; margin: auto; width: 100%; max-width: 440px; flex-shrink: 0; }
+    #slotSetupLiveSkaterPreview .avatar-gear-pill, #slotSetupLiveSkaterPreview [data-gear-badge] { display: none !important; }
     #entryScreen1Main:not(.hidden) { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
     #entryScreen1Main > img { height: 84px; width: auto; object-fit: contain; border-radius: 16px; margin: 0 auto; }
     #entryScreen1Tagline { font-size: 14px; font-weight: 900; letter-spacing: 0.04em; color: #ffffff; text-transform: uppercase; line-height: 1.35; margin: 0; }
@@ -157,15 +158,40 @@
     body.fullscreen-rink-mode #tacticalActionDock {
       display: none !important;
     }
-    body.in-game-clean-mode #multiFormatControlsBar,
-    body.fullscreen-rink-mode #multiFormatControlsBar {
-      position: absolute !important;
-      width: 1px !important;
-      height: 1px !important;
-      overflow: hidden !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-      clip: rect(0, 0, 0, 0) !important;
+    body.in-game-clean-mode #multiFormatControlsBar:not(.hidden),
+    body.fullscreen-rink-mode #multiFormatControlsBar:not(.hidden) {
+      position: relative !important;
+      width: 100% !important;
+      height: auto !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      clip: auto !important;
+      overflow: visible !important;
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 6px !important;
+      margin-top: 6px !important;
+      padding: 6px 8px !important;
+    }
+    @media (min-width: 900px) {
+      body.in-game-clean-mode #multiFormatControlsBar:not(.hidden),
+      body.fullscreen-rink-mode #multiFormatControlsBar:not(.hidden) {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      }
+    }
+    @media (max-width: 640px) {
+      #topRinkHudStack {
+        left: 6px !important;
+        right: 92px !important;
+        width: auto !important;
+        transform: none !important;
+        align-items: flex-start !important;
+      }
+      #situationContextBanner {
+        justify-content: flex-start !important;
+        padding: 3px 8px !important;
+        gap: 4px !important;
+      }
     }
     body.in-game-clean-mode #gameViewSection,
     body.fullscreen-rink-mode #gameViewSection {
@@ -403,6 +429,25 @@
       #coachBobAvatarImg {
         height: clamp(98px, 16.5vh, 136px) !important;
         max-width: 96px !important;
+      }
+      #coachBobPopup {
+        left: 6px !important;
+        right: 6px !important;
+        max-width: calc(100% - 12px) !important;
+        gap: 6px !important;
+      }
+      #coachCornerFloating {
+        min-width: 0 !important;
+        flex: 1 1 0% !important;
+        max-width: 100% !important;
+        padding: 8px 10px !important;
+      }
+      #btnDismissCoachBob {
+        padding: 3px 7px !important;
+        font-size: 9.5px !important;
+        max-width: 150px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
       }
     }
 
@@ -734,10 +779,10 @@
     }
     .synapz-golden-gear-hotspot {
       position: absolute;
-      background: radial-gradient(ellipse at center, rgba(251, 191, 36, 0.14) 0%, rgba(212, 175, 55, 0.04) 68%, transparent 100%);
-      border: 1.5px solid rgba(251, 191, 36, 0.34);
+      background: radial-gradient(ellipse at center, rgba(251, 191, 36, 0.08) 0%, rgba(212, 175, 55, 0.02) 68%, transparent 100%);
+      border: 1px solid rgba(251, 191, 36, 0.16);
       border-radius: 0.6rem;
-      box-shadow: 0 0 14px rgba(251, 191, 36, 0.24), inset 0 0 10px rgba(251, 191, 36, 0.14);
+      box-shadow: 0 0 10px rgba(251, 191, 36, 0.12);
       cursor: pointer;
       padding: 0;
       margin: 0;
@@ -984,8 +1029,8 @@
       text-underline-offset: 3px;
     }
     .synapz-word-pending {
-      opacity: 0.14 !important;
-      color: #64748b !important;
+      opacity: 0.82 !important;
+      color: #cbd5e1 !important;
     }
 
     /* 5. Stage 3: Persistent Bottom-Left 64x64px Circular Character Medallion Button */
@@ -1347,11 +1392,11 @@
       <button id="lobbyStationFriendsWall" type="button" data-lobby-station="friends" aria-label="Clubhouse" class="synapz-pure-door-hotspot lobby-station-card" style="left: 64.2%; top: 52.0%; width: 15.2%; height: 31.5%;"></button>
 
       <!-- 5. SYNAPZ PRO SHOP (Far-Right Illuminated Storefront) -->
-      <button id="lobbyStationProShop" type="button" data-lobby-station="shop" aria-label="SYNAPZ Pro Shop" class="synapz-pure-door-hotspot lobby-station-card" style="left: 81.2%; top: 41.0%; width: 18.5%; height: 50.0%;"></button>
+      <button id="lobbyStationProShop" type="button" data-lobby-station="shop" aria-label="SYNAPZ Pro Shop" class="synapz-pure-door-hotspot lobby-station-card" style="left: 80.5%; top: 39.0%; width: 19.2%; height: 55.5%;"></button>
     </div>
 
     <!-- First-Entry Upfront Guided Agent Tour Overlay (Once Per Profile, [Next ➔] Progression) -->
-    <div id="lobbyFirstTimeTourOverlay" class="hidden fixed inset-x-3 bottom-3 sm:max-w-xl z-50 flex items-end gap-2.5 pointer-events-none">
+    <div id="lobbyFirstTimeTourOverlay" class="hidden fixed inset-x-3 bottom-14 sm:max-w-xl z-[115] flex items-end gap-2.5 pointer-events-none">
       <div id="lobbyTourCutoutFlipWrap" class="synapz-cutout-flip-wrap shrink-0 flex items-end">
         <img loading="lazy" decoding="async" id="lobbyTourCutoutImg" src="assets/cutouts/agent-leo.png" alt="Player Agent" class="synapz-waistup-cutout-img" style="height: clamp(132px, 23vh, 210px); width: auto;" />
       </div>
@@ -1710,8 +1755,6 @@
                   <span id="cueFirstBadgeText">👀 Cue-First Read</span>
                 </button>
               </div>
-              <!-- 🎮 MULTI-FORMAT QUESTION ACTION BAR (Renders Zone A/B/C Buttons, Teammate Tap Pills, or Tactical Action Cards!) -->
-              <div id="multiFormatControlsBar" class="hidden relative pointer-events-auto flex flex-wrap items-center justify-center gap-1.5 bg-slate-950/92 border border-amber-400/70 rounded-2xl px-2.5 py-1.5 shadow-2xl backdrop-blur-md max-w-full"></div>
             </div>
 
             <!-- 🚨 FLASHING RED GOAL SCORING LAMPS OVERLAY (No "GOAL LAMP!" text under the lights) -->
@@ -2068,6 +2111,9 @@
             <span id="habitCheck3Pos" class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-300">⬜ 3. Nailed Tactical Position/Pass</span>
           </div>
         </div>
+
+        <!-- 🎮 4 ROTATED TACTICAL CHOICE BUTTONS BAR (Docked Cleanly Right Below Ice — 0px Overlap With Skaters or Coach Bob!) -->
+        <div id="multiFormatControlsBar" class="hidden relative pointer-events-auto grid grid-cols-2 lg:grid-cols-4 gap-1.5 bg-slate-950/95 border border-amber-400/65 rounded-xl px-2 py-1.5 shadow-xl shrink-0"></div>
 
         <!-- STEP 1: STRICT DRILL-TO-DRILL CONSISTENT 4-BUTTON TACTILE BOTTOM BAR ("Only the Ice and Skaters Change") -->
         <div id="lessonConsistentBottomBar" class="synapz-dock-height-lock min-h-[48px] mt-2 pt-2 border-t border-amber-400/30 grid grid-cols-2 sm:grid-cols-4 gap-2.5 shrink-0">
@@ -4012,8 +4058,8 @@
   <!-- ===================================================================== -->
   <!-- MODAL 11: SECTION 36 (v12.0) CLEAN-SLATE MINIMAL ENTRY & PORTAL GATE   -->
   <!-- ===================================================================== -->
-  <div id="sandboxLoginModal" class="fixed inset-0 z-50 bg-slate-950/98 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
-    <div id="v12EntryGateCard" class="synapz-v12-entry-card relative overflow-hidden rounded-3xl p-5 sm:p-6 flex flex-col gap-4 my-auto">
+  <div id="sandboxLoginModal" class="fixed inset-0 z-50 bg-slate-950/98 backdrop-blur-md flex items-start justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
+    <div id="v12EntryGateCard" class="synapz-v12-entry-card relative rounded-3xl p-4 sm:p-5 flex flex-col gap-3.5 my-auto shrink-0">
 
       <!-- ================================================================= -->
       <!-- SCREEN 1 — MAIN LANDING SCREEN (STRICTLY 3 SIMPLE BUTTONS, ZERO AGENTS) -->
@@ -4186,10 +4232,10 @@
               <span class="text-xs font-black text-emerald-300">🏒 Team Code (From Your Coach)</span>
               <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-[10px] font-black text-emerald-200">1 of <span data-pricing-bind="coachIncludedSkaters">20</span> Team Slots</span>
             </div>
-            <p class="text-[11px] text-slate-300 leading-snug">Players with a code from their coach get full Gameplay PLUS <strong>Coach's Inbox</strong> inside Coach's Office (where coach-assigned plans arrive and report back to your coach; claims 1 of <span data-pricing-bind="coachIncludedSkaters">20</span> team skater slots).</p>
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 pt-0.5">
-              <input id="inputPlayerSignupTeamCode" type="text" placeholder="Enter 6-Char Team Code" class="flex-1 px-3 py-2 rounded-xl bg-slate-950 border border-emerald-400/60 text-xs font-black text-emerald-200 uppercase" />
-              <button id="btnPlayerUnlockWithTeamCode" type="button" class="py-2 px-3 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs font-black shrink-0 cursor-pointer">
+            <p class="text-[11px] text-slate-300 leading-snug">Got a 6-character code from your Coach? Enter it below for full Gameplay PLUS <strong>Coach's Inbox</strong> inside Coach's Office (where coach-assigned plans arrive — no hockey background needed; claims 1 of <span data-pricing-bind="coachIncludedSkaters">20</span> team slots).</p>
+            <div class="flex flex-col gap-1.5 pt-0.5">
+              <input id="inputPlayerSignupTeamCode" type="text" placeholder="Enter 6-Char Team Code (e.g., WOLF12)" class="w-full min-w-0 px-3 py-2 rounded-xl bg-slate-950 border border-emerald-400/60 text-xs font-black text-emerald-200 uppercase" />
+              <button id="btnPlayerUnlockWithTeamCode" type="button" class="w-full py-2.5 px-3 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs font-black text-center shadow cursor-pointer">
                 Redeem Team Code &amp; Create Account
               </button>
             </div>
@@ -4573,9 +4619,9 @@
               <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-[10px] font-black text-emerald-200">Invite Code</span>
             </div>
             <p class="text-[11px] text-slate-300 leading-snug">For Head Coaches redeeming a code from their Association Director (gives 1 Team / <span data-pricing-bind="coachIncludedSkaters">20</span> Skaters + generates a Team Code for kids) OR Assistant Coaches redeeming one of a Head Coach's <span data-pricing-bind="coachIncludedAssistants">2</span> free assistant invites (grants shared access strictly to that parent Head Coach's team).</p>
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5">
-              <input id="inputCoachSignupCoachCode" type="text" placeholder="Enter 6-Char Coaches Code" class="flex-1 px-3 py-2 rounded-xl bg-slate-950 border border-emerald-400/60 text-xs font-black text-emerald-200 uppercase" />
-              <button id="btnRedeemCoachesCode" type="button" class="py-2 px-3 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs font-black shrink-0 cursor-pointer">
+            <div class="flex flex-col gap-1.5">
+              <input id="inputCoachSignupCoachCode" type="text" placeholder="Enter 6-Char Coaches Code" class="w-full min-w-0 px-3 py-2 rounded-xl bg-slate-950 border border-emerald-400/60 text-xs font-black text-emerald-200 uppercase" />
+              <button id="btnRedeemCoachesCode" type="button" class="w-full py-2.5 px-3 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs font-black text-center shadow cursor-pointer">
                 Redeem Coaches Code
               </button>
             </div>
@@ -5186,7 +5232,7 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v12.4-adversarial-5bot-qa';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v12.7-5persona-human-vision';
 
     // =========================================================================
     // SECTION 39 (v12.3): CENTRALIZED PRICING & SEAT CAP CONFIGURATION
@@ -5281,6 +5327,7 @@
       s = s.replace(/\b(Skater|Teammate|Winger|Center|Defenseman|Defender|Player)\s+#\d+\b/gi, '$1');
       s = s.replace(/\bopen\s+#\d+\b/gi, 'the open teammate');
       s = s.replace(/#\d+\b/g, '');
+      s = s.replace(/\(\s*\)/g, '');
       s = s.replace(/Select the 1st Choice[^.!?]*[.!?]?/gi, ' ');
       s = s.replace(/1st Choice Consensus Optimal/gi, 'great read');
       s = s.replace(/1st Choice Gold action/gi, 'open play');
@@ -9274,10 +9321,11 @@
         return { x: sx, y: r.y };
       });
 
+      const firstShiftTourOpen = !document.getElementById('firstShiftAgentDrillTourOverlay')?.classList.contains('hidden');
       const corners = [
         { key: 'bl', cx: 0.18, cy: 0.84, cls: 'synapz-cutout-corner-bl', bonus: 0.04 },
         { key: 'br', cx: 0.82, cy: 0.84, cls: 'synapz-cutout-corner-br', bonus: 0.03 },
-        { key: 'tl', cx: 0.18, cy: 0.16, cls: 'synapz-cutout-corner-tl', bonus: 0.0 },
+        { key: 'tl', cx: 0.18, cy: 0.16, cls: 'synapz-cutout-corner-tl', bonus: firstShiftTourOpen ? -0.95 : 0.0 },
         { key: 'tr', cx: 0.82, cy: 0.16, cls: 'synapz-cutout-corner-tr', bonus: 0.0 }
       ];
 
@@ -9661,8 +9709,8 @@
           btn.dataset.zoneLetter = z.zoneLetter;
           btn.dataset.zoneX = z.x.toFixed(3);
           btn.dataset.zoneY = z.y.toFixed(3);
-          btn.className = 'px-2 py-1 rounded-xl bg-slate-900 hover:bg-sky-500/30 border border-sky-400/70 text-white font-black text-[10.5px] shadow transition flex items-center gap-1';
-          btn.innerHTML = `<span class="px-1.5 py-0.2 rounded bg-amber-400 text-slate-950 font-black text-[10px]">${z.zoneLetter}</span><span>${z.label}: ${z.spotLabel}</span>`;
+          btn.className = 'w-full px-2.5 py-1.5 rounded-xl bg-slate-900/95 hover:bg-sky-500/30 border border-sky-400/75 text-white font-black text-[11px] leading-tight shadow transition flex items-center gap-1.5 text-left cursor-pointer';
+          btn.innerHTML = `<span class="px-1.5 py-0.5 rounded bg-amber-400 text-slate-950 font-black text-[10px] shrink-0">${z.zoneLetter}</span><span class="min-w-0">${z.label}: ${z.spotLabel}</span>`;
           btn.addEventListener('click', () => handleSelectTapZone(z, scen));
           bar.appendChild(btn);
         });
@@ -9722,7 +9770,7 @@
           btn.dataset.playerTargetId = tg.id;
           btn.dataset.playerX = tg.x.toFixed(3);
           btn.dataset.playerY = tg.y.toFixed(3);
-          btn.className = 'px-2 py-1 rounded-xl bg-slate-900 hover:bg-emerald-500/30 border border-emerald-400/60 text-white font-black text-[10.5px] shadow transition';
+          btn.className = 'w-full px-2.5 py-1.5 rounded-xl bg-slate-900/95 hover:bg-emerald-500/30 border border-emerald-400/70 text-white font-black text-[11px] leading-tight shadow transition text-left cursor-pointer';
           btn.textContent = tg.text;
           btn.addEventListener('click', () => {
             if (state.questionAnswered) return;
@@ -9735,7 +9783,7 @@
           });
           bar.appendChild(btn);
         });
-      } else if (qStyle === 'tactical_choice') {
+      } else {
         bar.classList.remove('hidden');
         const baseChoices = (scen.readChoices || []).slice(0, 4).map((c) => {
           const isSilver = Boolean(c.silver || (typeof c.multiplier === 'number' && c.multiplier > 0 && c.multiplier < 0.99));
@@ -9762,7 +9810,7 @@
           const btn = document.createElement('button');
           btn.type = 'button';
           btn.dataset.tacticalChoiceIdx = String(idx);
-          btn.className = 'px-2 py-1 rounded-xl bg-slate-900/95 hover:bg-sky-900/80 border border-amber-400/60 text-left text-[10.5px] font-bold text-white shadow transition max-w-full sm:max-w-[295px] whitespace-normal leading-tight';
+          btn.className = 'w-full px-2.5 py-1.5 rounded-xl bg-slate-900/95 hover:bg-sky-900/80 border border-amber-400/70 text-left text-[11px] font-bold text-white shadow transition whitespace-normal leading-tight cursor-pointer';
           btn.innerHTML = `<span class="text-amber-300 font-black mr-1">⚡ ${idx + 1}.</span><span>${ch.text}</span>`;
           btn.title = ch.text;
           btn.addEventListener('click', () => {
@@ -9782,8 +9830,6 @@
           });
           bar.appendChild(btn);
         });
-      } else {
-        bar.classList.add('hidden');
       }
     }
     window.renderMultiFormatControlsBar = renderMultiFormatControlsBar;
@@ -11361,9 +11407,7 @@
       const p = ensureProfileAdaptiveState(prof || getActiveProfile() || {});
       if (Number(p.firstShiftDrillsCompleted || 0) < 3) {
         p.firstShiftDrillsCompleted = Number(p.firstShiftDrillsCompleted || 0) + 1;
-        if (p.firstShiftDrillsCompleted >= 3) {
-          document.getElementById('firstShiftAgentDrillTourOverlay')?.classList.add('hidden');
-        }
+        document.getElementById('firstShiftAgentDrillTourOverlay')?.classList.add('hidden');
       }
       const isCoachHomework = Boolean(opts.isCoachHomework || state.isCoachAssignedHomework || state.activeHomeworkPack || state.activeCoachInboxPlan);
       const isGold = Boolean(isCorrect && mult >= 0.99);
@@ -13970,12 +14014,12 @@
         ctx.strokeStyle = '#06b6d4';
         ctx.stroke();
 
-        // Compact Cue Callout Pill
+        // Compact Cue Callout Pill (clamped to narrow mobile rink widths so text never bleeds outside pill)
         const cueTxt = state.cueFirstTarget.cueText || '👀 CUE FIRST: Scan defender stick!';
         ctx.font = `900 ${Math.max(9, Math.floor(W * 0.0105))}px Inter`;
-        const pillW = Math.min(W * 0.72, ctx.measureText(cueTxt).width + 16);
+        const pillW = Math.min(W - 20, ctx.measureText(cueTxt).width + 18);
         const pillH = 20;
-        const px = Math.max(pillW / 2 + 12, Math.min(W - pillW / 2 - 12, cuePt.x));
+        const px = Math.max(pillW / 2 + 10, Math.min(W - pillW / 2 - 10, cuePt.x));
         const py = cuePt.y > H * 0.68 ? (cuePt.y - cueR - 14) : (cuePt.y + cueR + 14);
         ctx.fillStyle = 'rgba(15, 23, 42, 0.92)';
         ctx.strokeStyle = '#22d3ee';
@@ -13987,7 +14031,7 @@
         ctx.fillStyle = '#67e8f9';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(cueTxt, px, py);
+        ctx.fillText(cueTxt, px, py, Math.max(40, pillW - 12));
         ctx.restore();
       }
 
@@ -16030,14 +16074,17 @@
       // Update De-Cluttered Map Header Active Player Badge & Single Bottom Launch Bar
       const activeTier = getSkillTierForCityStop(state.currentCityIdx || 0);
       const currentCity = NHL_CITIES[state.currentCityIdx || 0] || NHL_CITIES[0];
-      const jNum = prof.jerseyNumber || (prof.id === 'rhett' ? 88 : (prof.id === 'whelan' ? 7 : (prof.id === 'cohen' ? 14 : 9)));
+      const jNum = prof.jerseyNumber !== undefined && prof.jerseyNumber !== '' ? prof.jerseyNumber : (prof.id === 'rhett' ? 88 : (prof.id === 'whelan' ? 7 : (prof.id === 'cohen' ? 14 : 9)));
       const mapBadgeText = document.getElementById('synapzMapBadgeText');
       if (mapBadgeText) {
-        mapBadgeText.textContent = `${prof.name} #${jNum} • ${prof.ageGroup || '12U'} • ${activeTier.code} Tier`;
+        const divDisplay = prof.divisionLabel || `${prof.ageGroup || '12U'} • ${activeTier.code} Tier`;
+        mapBadgeText.textContent = `${prof.name}${jNum !== '' ? ` #${jNum}` : ''} • ${divDisplay}`;
       }
       const mapBadgeIq = document.getElementById('synapzMapBadgeIq');
       if (mapBadgeIq) {
-        mapBadgeIq.textContent = `${prof.iqScore || state.iqScore || 100} IQ • $${prof.puckBucks || state.puckBucks || 250}`;
+        const displayIq = prof.iqScore != null ? prof.iqScore : (state.iqScore != null ? state.iqScore : 0);
+        const displayBucks = prof.puckBucks != null ? prof.puckBucks : (state.puckBucks != null ? state.puckBucks : 250);
+        mapBadgeIq.textContent = `${displayIq} IQ • $${displayBucks}`;
       }
       const playCityLbl = document.getElementById('btnPlayCurrentCityLabel');
       if (playCityLbl && currentCity) {
@@ -16293,7 +16340,7 @@
       document.getElementById('gameViewSection').classList.toggle('hidden', targetView !== 'game');
       updateHeaderStats();
       if (window.SynapzCharacterSpeechEngine) {
-        if (targetView === 'game') {
+        if (targetView === 'game' || targetView === 'map') {
           document.getElementById('synapzUniversalCharSpeechOverlay')?.classList.add('hidden');
         }
         if (!document.body.classList.contains('synapz-entry-gate-active')) {
@@ -18159,11 +18206,6 @@
       SoundFX.playTap();
       state.shopPreviewItem = null;
       renderProShopModal();
-    });
-    document.getElementById('btnOpenCustomAvatarFromShop').addEventListener('click', () => {
-      document.getElementById('proShopModal').classList.add('hidden');
-      renderLoginModal(true);
-      document.getElementById('loginModal').classList.remove('hidden');
     });
     document.querySelectorAll('.shop-cat-btn, [data-shop-cat]').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -20192,7 +20234,7 @@
     state.sandboxLoginStep = 1;
     state.activeEntryScreenCode = '1';
 
-    function triggerSynapzScreenTransition(statusText = '⚡ Flooding the Ice...', callback = null, durationMs = 550) {
+    function triggerSynapzScreenTransition(statusText = '⚡ Flooding the Ice...', callback = null, durationMs = 320) {
       const splash = document.getElementById('synapzTransitionSplash');
       const statusEl = document.getElementById('synapzTransitionStatusText');
       if (statusEl) statusEl.textContent = statusText;
@@ -20200,6 +20242,7 @@
         callback();
       }
       if (!splash) return;
+      splash.style.pointerEvents = 'none';
       splash.classList.remove('hidden');
       requestAnimationFrame(() => {
         splash.classList.remove('opacity-0');
@@ -20211,7 +20254,7 @@
         splash.classList.add('opacity-0');
         setTimeout(() => {
           splash.classList.add('hidden');
-        }, 220);
+        }, 120);
       }, durationMs);
     }
     window.triggerSynapzScreenTransition = triggerSynapzScreenTransition;
@@ -21114,13 +21157,13 @@
       grid.innerHTML = SYNAPZ_STOCK_3D_AVATARS.map(av => {
         const isSel = av.id === selectedStockId;
         return `
-          <button type="button" data-stock-avatar-id="${av.id}" data-stock-gender="${av.gender}" class="slot-step2-stock-avatar-btn p-1.5 rounded-xl border-2 flex flex-col items-center gap-1 cursor-pointer transition ${
+          <button type="button" data-stock-avatar-id="${av.id}" data-stock-gender="${av.gender}" class="slot-step2-stock-avatar-btn p-2 rounded-xl border-2 flex flex-col items-center gap-1 cursor-pointer transition ${
             isSel
               ? 'border-amber-400 bg-amber-500/15 shadow-[0_0_14px_rgba(251,191,36,0.35)] scale-[1.03]'
               : 'border-slate-800 bg-slate-900/90 hover:border-cyan-400/60 opacity-85 hover:opacity-100'
           }">
-            <img src="${av.img}" alt="${av.label}" class="h-14 w-auto object-contain select-none pointer-events-none" style="filter: drop-shadow(0 4px 8px rgba(2,6,23,0.85));" />
-            <span class="text-[9px] font-black ${isSel ? 'text-amber-300' : 'text-slate-300'} truncate max-w-full">${av.label.replace('Skater ', '')}</span>
+            <img src="${av.img}" alt="${av.label}" class="h-16 min-w-[28px] w-auto object-contain select-none" style="filter: drop-shadow(0 4px 8px rgba(2,6,23,0.85));" />
+            <span class="text-[9.5px] font-black ${isSel ? 'text-amber-300' : 'text-slate-300'} truncate max-w-full">${av.label.replace('Skater ', '')}</span>
           </button>
         `;
       }).join('');
@@ -24680,11 +24723,28 @@
         timestamp: Date.now()
       };
 
-      // Trigger Section 29 3-Stage Live Word-Streaming Character Speech System ONLY when inside authenticated Lobby/Rooms (NEVER on Entry/Auth/Slot screens!)
+      // Trigger Section 29 3-Stage Live Word-Streaming Character Speech System ONLY when inside unobstructed Lobby/Rooms (NEVER on Entry/Auth/Slot screens, active [Next ➔] Tours, Map CTA, or open Drawers!)
       const pickerModalOpen = !document.getElementById('playerAgentPickerModal')?.classList.contains('hidden');
-      const suppressOverlay = pickerModalOpen || entryGateActive || allowedGuidedClip;
+      const tourOrDrawerOpen = Boolean(
+        state.lobbySpotlightActive ||
+        state.view === 'map' ||
+        state.view === 'game' ||
+        !document.getElementById('lobbyFirstTimeTourOverlay')?.classList.contains('hidden') ||
+        !document.getElementById('lockerFirstTimeTourOverlay')?.classList.contains('hidden') ||
+        !document.getElementById('coachOfficeOverlaySheet')?.classList.contains('hidden') ||
+        !document.getElementById('proShopRackOverlaySheet')?.classList.contains('hidden') ||
+        !document.getElementById('lockerEquipmentBagSheet')?.classList.contains('hidden') ||
+        !document.getElementById('lockerEditProfileSheet')?.classList.contains('hidden') ||
+        !document.getElementById('clubhouseOverlaySheet')?.classList.contains('hidden')
+      );
+      const suppressOverlay = pickerModalOpen || entryGateActive || allowedGuidedClip || tourOrDrawerOpen;
       if (!suppressOverlay && cleanSentence && window.SynapzCharacterSpeechEngine && clipKey !== 'summon_hint') {
         window.SynapzCharacterSpeechEngine.speak(chan.id, cleanSentence);
+      } else if (tourOrDrawerOpen && !entryGateActive && window.SynapzCharacterSpeechEngine) {
+        document.getElementById('synapzUniversalCharSpeechOverlay')?.classList.add('hidden');
+        if (state.view !== 'game') {
+          window.SynapzCharacterSpeechEngine.syncPersistentCircleButton();
+        }
       }
 
       const speakFallback = () => {
@@ -24875,6 +24935,9 @@
         saveProgress();
       }
       renderSynapzRinkLobby();
+      if (window.SynapzCharacterSpeechEngine) {
+        window.SynapzCharacterSpeechEngine.syncPersistentCircleButton();
+      }
       if (openLockerRoomAfter) {
         openSynapzLockerRoomModal();
       }
@@ -25058,6 +25121,9 @@
           prof.completedLockerTour = true;
           saveProgress();
         }
+        if (window.SynapzCharacterSpeechEngine) {
+          window.SynapzCharacterSpeechEngine.syncPersistentCircleButton();
+        }
         return;
       }
 
@@ -25083,6 +25149,10 @@
       if (cat === 'Sticks') cat = 'Stick';
       if (cat === 'Helmets') cat = 'Visor';
       state.lockerActiveCat = cat;
+      if (!document.getElementById('lockerFirstTimeTourOverlay')?.classList.contains('hidden')) {
+        applyLockerFirstVisitStep(99);
+      }
+      document.getElementById('synapzUniversalCharSpeechOverlay')?.classList.add('hidden');
       document.getElementById('lockerEditProfileSheet')?.classList.add('hidden');
       document.getElementById('lockerEquipmentBagSheet')?.classList.remove('hidden');
       renderSynapzLockerRoomModal();
@@ -25093,6 +25163,10 @@
       SoundFX.playTap();
       const prof = getActiveProfile();
       ensureProfileAvatarDefaults(prof);
+      if (!document.getElementById('lockerFirstTimeTourOverlay')?.classList.contains('hidden')) {
+        applyLockerFirstVisitStep(99);
+      }
+      document.getElementById('synapzUniversalCharSpeechOverlay')?.classList.add('hidden');
       document.getElementById('lockerEquipmentBagSheet')?.classList.add('hidden');
       const sheet = document.getElementById('lockerEditProfileSheet');
       if (!sheet) return;
@@ -25492,10 +25566,17 @@
       SoundFX.playTap();
       state.coachAlWizardStep = 1;
       const role = (state.currentAccount && state.currentAccount.portalRole) || 'player';
-      const shouldOpenDrawer = role !== 'player' ? true : Boolean(opts && opts.openDrawer);
+      const activeProf = typeof getActiveProfile === 'function' ? getActiveProfile() : null;
+      const playerHasTeam = Boolean((activeProf && activeProf.teamCode) || state.teamCode);
+      const shouldOpenDrawer = role !== 'player'
+        ? true
+        : Boolean((opts && opts.openDrawer) || playerHasTeam);
       const sheet = document.getElementById('coachOfficeOverlaySheet');
       if (sheet) {
         sheet.classList.toggle('hidden', !shouldOpenDrawer);
+      }
+      if (shouldOpenDrawer) {
+        document.getElementById('synapzUniversalCharSpeechOverlay')?.classList.add('hidden');
       }
       const modal = document.getElementById('synapzCoachOfficeModal');
       if (modal) modal.classList.remove('hidden');
@@ -25512,6 +25593,7 @@
     function openCoachOfficeSheetStep(step = 1) {
       SoundFX.playTap();
       state.coachAlWizardStep = step;
+      document.getElementById('synapzUniversalCharSpeechOverlay')?.classList.add('hidden');
       document.getElementById('coachOfficeOverlaySheet')?.classList.remove('hidden');
       renderSynapzCoachOfficeModal();
     }
@@ -25532,9 +25614,13 @@
         exitBtn.textContent = role === 'player' ? '← Lobby' : '🚪 Log Out';
       }
       if (openDrawerBtn) {
+        const curProf = typeof getActiveProfile === 'function' ? getActiveProfile() : null;
+        const hasLinkedTeam = Boolean((curProf && curProf.teamCode) || state.teamCode);
         openDrawerBtn.textContent = role === 'association'
           ? '🏛️ Association Director HQ'
-          : (role === 'coach' || role === 'assistant_coach' ? '🧢 Coach Al Suite & Roster' : '📊 IQ Stats & Coach\'s Office');
+          : (role === 'coach' || role === 'assistant_coach'
+            ? '🧢 Coach Al Suite & Roster'
+            : (hasLinkedTeam ? '📬 Coach\'s Inbox & IQ Stats' : '📊 IQ Stats & Coach\'s Office'));
       }
       if (rosterBtn) {
         rosterBtn.classList.toggle('hidden', role !== 'player');
@@ -25867,23 +25953,23 @@
                   📊 Association Reports Dropdown (Filter by Age, Level, Coach, Position &amp; Player)
                 </summary>
                 <div class="grid grid-cols-2 sm:grid-cols-5 gap-1.5 pt-2">
-                  <select id="assocReportFilterAge" class="px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-[11px] font-bold text-white">
+                  <select id="assocReportFilterAge" aria-label="Filter by Age" class="px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-[11px] font-bold text-white">
                     <option value="ALL" ${flt.age === 'ALL' ? 'selected' : ''}>All Ages</option>
                     ${['8U', '10U', '12U', '14U', '16U', '18U'].map(a => `<option value="${a}" ${flt.age === a ? 'selected' : ''}>${a}</option>`).join('')}
                   </select>
-                  <select id="assocReportFilterLevel" class="px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-[11px] font-bold text-white">
+                  <select id="assocReportFilterLevel" aria-label="Filter by Level" class="px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-[11px] font-bold text-white">
                     <option value="ALL" ${flt.level === 'ALL' ? 'selected' : ''}>All Levels</option>
                     ${['Rec/B', 'A', 'AA', 'AAA', 'Varsity/Jr'].map(lv => `<option value="${lv}" ${flt.level === lv ? 'selected' : ''}>${lv}</option>`).join('')}
                   </select>
-                  <select id="assocReportFilterTeam" class="px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-[11px] font-bold text-white">
+                  <select id="assocReportFilterTeam" aria-label="Filter by Coach or Team" class="px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-[11px] font-bold text-white">
                     <option value="ALL" ${flt.team === 'ALL' ? 'selected' : ''}>All Coaches/Teams</option>
                     ${linkedTeams.map(t => `<option value="${t.teamCode}" ${flt.team === t.teamCode ? 'selected' : ''}>${t.coachName} (${t.teamName})</option>`).join('')}
                   </select>
-                  <select id="assocReportFilterPosition" class="px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-[11px] font-bold text-white">
+                  <select id="assocReportFilterPosition" aria-label="Filter by Position" class="px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-[11px] font-bold text-white">
                     <option value="ALL" ${flt.position === 'ALL' ? 'selected' : ''}>All Positions</option>
                     ${['C', 'LW', 'RW', 'LD', 'RD', 'G'].map(pos => `<option value="${pos}" ${flt.position === pos ? 'selected' : ''}>${pos}</option>`).join('')}
                   </select>
-                  <select id="assocReportFilterPlayer" class="col-span-2 sm:col-span-1 px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-[11px] font-bold text-white">
+                  <select id="assocReportFilterPlayer" aria-label="Filter by Player" class="col-span-2 sm:col-span-1 px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-[11px] font-bold text-white">
                     <option value="ALL" ${flt.player === 'ALL' ? 'selected' : ''}>All Players</option>
                     ${allPlayers.map(p => `<option value="${p.playerKey}" ${flt.player === p.playerKey ? 'selected' : ''}>${p.name} #${p.jerseyNumber} (${p.teamName})</option>`).join('')}
                   </select>
@@ -26070,7 +26156,7 @@
               <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-600 text-[9px] font-black text-slate-300">STATIC STATS</span>
             </div>
             <div class="text-xs text-slate-200 space-y-1">
-              <div>• <strong>Overall Hockey IQ:</strong> ${prof ? (prof.iqScore || 100) : 100} • <strong>Lowest Pillar:</strong> 🥅 Goalie &amp; Crease Reads (79%)</div>
+              <div>• <strong>Overall Hockey IQ:</strong> ${prof && prof.iqScore != null ? prof.iqScore : 100} • <strong>Lowest Pillar:</strong> 🥅 Goalie &amp; Crease Reads (79%)</div>
               <div>• <strong>Selected Pillar Readout:</strong> ${selMeta.icon} ${selMeta.label} (${selMeta.pct}%)</div>
             </div>
             <div class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-400/40 text-[11px] text-amber-200 font-semibold">
@@ -28191,8 +28277,16 @@
         const circleBadge = document.getElementById('synapzPersistentCharCircleBadge');
         if (circleImg) circleImg.src = resolved.avatar;
         if (circleBadge) circleBadge.textContent = resolved.badge;
-        if (circleBtn && document.getElementById('synapzUniversalCharSpeechOverlay')?.classList.contains('hidden') !== false) {
-          circleBtn.classList.remove('hidden');
+        const activeTourOpen = (
+          !document.getElementById('lobbyFirstTimeTourOverlay')?.classList.contains('hidden') ||
+          !document.getElementById('lockerFirstTimeTourOverlay')?.classList.contains('hidden')
+        );
+        if (circleBtn) {
+          if (activeTourOpen || document.getElementById('synapzUniversalCharSpeechOverlay')?.classList.contains('hidden') === false) {
+            circleBtn.classList.add('hidden');
+          } else {
+            circleBtn.classList.remove('hidden');
+          }
         }
       },
 
@@ -28346,6 +28440,11 @@
         if (sInp) sInp.value = preTeam;
         if (slInp) slInp.value = preTeam;
       }
+      if (params.get('coach_code')) {
+        const preCoach = String(params.get('coach_code')).trim().toUpperCase();
+        const cInp = document.getElementById('inputCoachSignupCoachCode');
+        if (cInp) cInp.value = preCoach;
+      }
       if (params.get('assoc') || params.get('partner')) {
         const preAssoc = String(params.get('assoc') || params.get('partner')).trim().toUpperCase();
         const aInp = document.getElementById('inputCoachSignupAssocCode');
@@ -28376,16 +28475,16 @@
         loadScenario(true);
         return;
       }
-      if (!state.sandboxAuthenticated) {
+      if (!state.sandboxAuthenticated && (!state.activeEntryScreenCode || state.activeEntryScreenCode === '1')) {
         openEntryScreen('1');
       }
     };
 
     // =========================================================================
-    // SECTION 32–39: VERIFIED REAL CODED UPGRADES RUNTIME & PRE-CODED BANK
-    // (`synapz-hockey-v12.3-strict-3role-portals` • 242 Live Upgrades + Batches CA–CD)
+    // SECTION 32–43: VERIFIED REAL CODED UPGRADES RUNTIME & PRE-CODED BANK
+    // (`synapz-hockey-v12.7-5persona-human-vision` • 288 Live Upgrades)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v12.4-adversarial-5bot-qa';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v12.7-5persona-human-vision';
 
     const ALL_63_DEPLOYED_UPGRADE_IDS = [
       // Batch A (12 items)
@@ -31541,7 +31640,7 @@
               keys.filter(k => k !== window.SYNAPZ_CACHE_NAME).map(k => caches.delete(k))
             );
           }
-          const reg = await navigator.serviceWorker.register('./sw.js?v=12.4');
+          const reg = await navigator.serviceWorker.register('./sw.js?v=12.7');
           if (reg && typeof reg.update === 'function') {
             reg.update().catch(() => {});
           }
@@ -31656,14 +31755,14 @@
         <span id="lockerBrassNameplateText" class="truncate px-1">SKATER</span>
       </div>
 
-      <!-- 7 Golden-Sheen Zero-Label Clickable Stall Gear & Equipment Bag Hotspots -->
-      <button id="lockerHotspotHelmet" type="button" data-locker-hotspot="Visor" aria-label="Stall Helmet" class="synapz-golden-gear-hotspot" style="left: 69.8%; top: 19.5%; width: 6.5%; height: 8.8%;"></button>
-      <button id="lockerHotspotGloves" type="button" data-locker-hotspot="Gloves" aria-label="Stall Gloves" class="synapz-golden-gear-hotspot" style="left: 59.5%; top: 21.5%; width: 8.8%; height: 27.5%;"></button>
-      <button id="lockerHotspotJersey" type="button" data-locker-hotspot="Jersey" aria-label="Stall Jersey" class="synapz-golden-gear-hotspot" style="left: 65.0%; top: 32.5%; width: 14.2%; height: 33.0%;"></button>
-      <button id="lockerHotspotBreezers" type="button" data-locker-hotspot="Jersey" aria-label="Stall Breezers" class="synapz-golden-gear-hotspot" style="left: 79.0%; top: 35.5%; width: 7.8%; height: 26.5%;"></button>
-      <button id="lockerHotspotSkates" type="button" data-locker-hotspot="Skates" aria-label="Stall Skates" class="synapz-golden-gear-hotspot" style="left: 63.0%; top: 77.5%; width: 7.8%; height: 15.5%;"></button>
-      <button id="lockerHotspotStick" type="button" data-locker-hotspot="Stick" aria-label="Stall Stick" class="synapz-golden-gear-hotspot" style="left: 76.2%; top: 35.0%; width: 12.8%; height: 57.5%;"></button>
-      <button id="lockerHotspotDuffleBag" type="button" data-locker-hotspot="Bag" aria-label="Equipment Bag Toolbox" class="synapz-golden-gear-hotspot" style="left: 83.0%; top: 77.0%; width: 16.8%; height: 21.5%;"></button>
+      <!-- 7 Golden-Sheen Zero-Label Clickable Stall Gear & Equipment Bag Hotspots (100% Non-Overlapping Bounds) -->
+      <button id="lockerHotspotHelmet" type="button" data-locker-hotspot="Visor" aria-label="Stall Helmet" class="synapz-golden-gear-hotspot" style="left: 68.0%; top: 17.8%; width: 10.2%; height: 12.8%; z-index: 24;"></button>
+      <button id="lockerHotspotGloves" type="button" data-locker-hotspot="Gloves" aria-label="Stall Gloves" class="synapz-golden-gear-hotspot" style="left: 58.8%; top: 21.0%; width: 9.8%; height: 29.0%; z-index: 24;"></button>
+      <button id="lockerHotspotJersey" type="button" data-locker-hotspot="Jersey" aria-label="Stall Jersey" class="synapz-golden-gear-hotspot" style="left: 65.0%; top: 32.5%; width: 13.6%; height: 33.0%; z-index: 24;"></button>
+      <button id="lockerHotspotBreezers" type="button" data-locker-hotspot="Jersey" aria-label="Stall Breezers" class="synapz-golden-gear-hotspot" style="left: 78.8%; top: 35.2%; width: 8.6%; height: 26.8%; z-index: 25;"></button>
+      <button id="lockerHotspotSkates" type="button" data-locker-hotspot="Skates" aria-label="Stall Skates" class="synapz-golden-gear-hotspot" style="left: 62.0%; top: 76.5%; width: 10.2%; height: 17.5%; z-index: 24;"></button>
+      <button id="lockerHotspotStick" type="button" data-locker-hotspot="Stick" aria-label="Stall Stick" class="synapz-golden-gear-hotspot" style="left: 76.5%; top: 62.5%; width: 11.8%; height: 31.0%; z-index: 23;"></button>
+      <button id="lockerHotspotDuffleBag" type="button" data-locker-hotspot="Bag" aria-label="Equipment Bag Toolbox" class="synapz-golden-gear-hotspot" style="left: 83.0%; top: 77.0%; width: 16.8%; height: 21.5%; z-index: 25;"></button>
     </div>
 
     <!-- Floating Equipment Bag ("Toolbox") Drawer (Opened on Gear/Bag Tap — Fits Inside 100dvh) -->
@@ -31769,7 +31868,7 @@
     </div>
 
     <!-- Locker Room First-Visit Guided Agent Tour (`[Next ➔]` Button Progression) -->
-    <div id="lockerFirstTimeTourOverlay" class="hidden fixed inset-x-3 bottom-3 sm:left-4 sm:right-auto sm:max-w-lg z-50 flex items-end gap-2.5 pointer-events-none select-none">
+    <div id="lockerFirstTimeTourOverlay" class="hidden fixed inset-x-3 bottom-14 sm:left-4 sm:right-auto sm:max-w-lg z-[115] flex items-end gap-2.5 pointer-events-none select-none">
       <img loading="lazy" decoding="async" id="lockerTourCutoutImg" src="assets/cutouts/agent-leo.png" alt="Player Agent Tour Guide" class="synapz-waistup-cutout-img shrink-0" style="height: clamp(128px, 21vh, 200px); width: auto;" />
       <div class="flex-1 p-3 rounded-2xl bg-slate-950/95 border-2 border-amber-400 shadow-2xl pointer-events-auto space-y-2">
         <div class="flex items-center justify-between gap-2">
@@ -31810,13 +31909,13 @@
 
       <!-- 4 Zero-Label Golden-Sheen Hotspots: Whiteboard, IQ Monitor, Join Team Clipboard, Team Playbook Binder -->
       <button id="coachOfficeHotspotWhiteboard" type="button" data-office-hotspot="whiteboard" aria-label="Tactical Whiteboard Performance Plan" class="synapz-golden-gear-hotspot" style="left: 5.8%; top: 24.5%; width: 28.8%; height: 38.0%;"></button>
-      <button id="coachOfficeHotspotLaptop" type="button" data-office-hotspot="laptop" aria-label="IQ Development Stats Monitor" class="synapz-golden-gear-hotspot" style="left: 53.2%; top: 47.0%; width: 14.5%; height: 18.5%;"></button>
-      <button id="coachOfficeHotspotCoachAl" type="button" data-office-hotspot="clipboard" aria-label="Join a Team Clipboard" class="synapz-golden-gear-hotspot" style="left: 68.5%; top: 68.5%; width: 12.5%; height: 10.5%;"></button>
+      <button id="coachOfficeHotspotLaptop" type="button" data-office-hotspot="laptop" aria-label="IQ Development Stats Monitor" class="synapz-golden-gear-hotspot" style="left: 52.5%; top: 46.5%; width: 15.0%; height: 19.0%;"></button>
+      <button id="coachOfficeHotspotCoachAl" type="button" data-office-hotspot="clipboard" aria-label="Join a Team Clipboard" class="synapz-golden-gear-hotspot" style="left: 67.0%; top: 65.8%; width: 14.5%; height: 14.2%;"></button>
       <button id="coachOfficeHotspotBookshelf" type="button" data-office-hotspot="bookshelf" aria-label="Team Playbook Binder" class="synapz-golden-gear-hotspot" style="left: 80.2%; top: 70.5%; width: 18.5%; height: 25.5%;"></button>
     </div>
 
     <!-- Floating Coach's Office Drawer (Role-Based: Player | Coach / Shared Assistant | Association Director) -->
-    <div id="coachOfficeOverlaySheet" class="hidden fixed inset-x-2.5 bottom-2.5 sm:inset-x-auto sm:w-[94vw] sm:max-w-5xl max-h-[85dvh] overflow-y-auto z-50 rounded-2xl bg-slate-950/95 border-2 border-amber-400/80 p-3.5 shadow-2xl space-y-3 backdrop-blur-xl">
+    <div id="coachOfficeOverlaySheet" class="hidden fixed inset-x-2.5 bottom-2.5 sm:inset-x-auto sm:w-[94vw] sm:max-w-5xl max-h-[85dvh] overflow-y-auto z-50 rounded-2xl bg-slate-950/95 border-2 border-amber-400/80 p-3.5 pb-16 shadow-2xl space-y-3 backdrop-blur-xl">
       <div class="flex items-center justify-between border-b border-slate-800 pb-2 gap-2">
         <div id="coachOfficeDrawerHeaderTitle" class="text-xs sm:text-sm font-black text-amber-300">📋 Coach's Office — IQ Stats, Coach's Inbox &amp; Personal Development Plan</div>
         <div class="flex items-center gap-1.5 shrink-0">

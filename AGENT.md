@@ -1,7 +1,7 @@
 # AGENT.md — Antigravity Builder & QA Handoff Specification
 **Project Name:** SYNAPZ HOCKEY — PLAY. LEARN. DOMINATE. (`HOCKEY IQ & STRATEGY PLATFORM` with Coach Bob)  
 **Live GitHub Pages Deployment (Free & Unlimited Deploys):** `https://danebekkedahl.github.io/synapz-hockey/` (Report: `https://danebekkedahl.github.io/synapz-hockey/report.html`) & Mirror `https://danebekkedahl.github.io/tactix-hockey/` (Report: `https://danebekkedahl.github.io/tactix-hockey/report.html`)  
-**Current Active Milestone:** Section 35 (`v11.2-173-verified-and-6position-pilot-bank` • `CACHE_NAME = 'synapz-hockey-v11.2-173-verified-6pos-pilot'`)  
+**Current Active Milestone:** Section 43 (`v12.7-5persona-blind-vision-playtest` • `CACHE_NAME = 'synapz-hockey-v12.7-5persona-human-vision'`)  
 **Local Dev Server:** `http://localhost:8080`  
 **Architecture:** Self-Contained Single-Page Web Application + Installable PWA (`index.html`, `report.html`, `CONTEXT.md`, `assets/tactix-logo.png`, `assets/coach-bob.png`, `manifest.json`, `sw.js`, `deploy-github-pages.js`)
 
@@ -562,3 +562,21 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
    - Loads **`Batch DA` (`S1-DA..S12-DA`)** into `📥 To Review (12)` (`🛠️ Queued: 0 | ✅ Live in App: 288`), with `DB–DF` ready in Top-Up Mode.
 3. **Smoke + Curriculum Gate, Clean-Slate Screen 1 & Deploy:**
    - Runs `adversarial_qa_agent.js --smoke` and `curriculum_iq_audit.js` (`window.__SYNAPZ_TEST_MODE__ = true`, `0` test emails), runs `resetAllSynapzTestAccountsAndProfiles('RESET')` for a 100% clean Screen 1, bumps `sw.js` to `synapz-hockey-v12.6-288-verified-pilot-bank`, mirrors both workspaces, deploys live via `deploy-github-pages.js`, and sends **strictly 1** `< 35 KB` `v12.6` email digest.
+
+---
+
+## 43. v12.7 — 5-Persona Blind-Vision Playtest & Founder-Shielded 3-Bucket Pipeline (`synapz-hockey-v12.7-5persona-human-vision`)
+1. **5 Synthetic Human Personas (`persona_vision_playtest.js`, `window.__SYNAPZ_TEST_MODE__ = true`):**
+   - Captures real `390×844` iPhone & `1024×768` iPad screenshots (`persona_screenshots/*.png`) and drives every action strictly via **visual bounding-box coordinates `(x, y)` and visible screen text/art** (never clicking hidden `#id` selectors directly or peeking at answer keys):
+     1. **Persona 1 — "First-Time Non-Hockey Mom" (`Team Code` Onboarding):** Screen 1 -> `Player Portal -> Create Account -> Team Code` (`WOLF12`) -> 3-input Profile Setup -> Agent + 8-Avatar selection -> finding `Coach's Inbox` inside `Coach's Office` with zero hockey jargon assumed.
+     2. **Persona 2 — "Impatient 8U Mite Kid" (`Skips Reading, Taps Visuals`):** Upfront `[Next ➔]` Lobby Tour -> `(x, y)` doorway picture taps (`Locker Room`, `Pro Shop`, `Ice Rink`) -> equips gear from Equipment Bag onto standing 3D avatar -> plays 3 `8U` drills checking `<= 14-word` prompt count, roll-in speed, and Agent-to-Coach-Bob handoff clarity.
+     3. **Persona 3 — "Picky 14U AA Travel Skater" (`Real-Time Hockey Authenticity`):** Plays 5 animated drills at real clock speed across rotated angles (`0°/90°/180°/270°`), verifying skater glide speed, single Golden Focal Arc clarity, freeze timing, and 4 unmistakable choice labels.
+     4. **Persona 4 — "Parking-Lot Volunteer Head Coach" (`3-Minute Pre-Practice Rush`):** Redeems Association `Coaches Code` -> lands in `Coach's Office` with Coach Al -> copies/shares `Team Code` + 1 Free Assistant Coach code -> pushes 5-play Breakout plan to players' `Coach's Inbox` in minimal taps.
+     5. **Persona 5 — "Association Board Director" (`Club Oversight & ROI`):** Creates 10-Team `$850` club account -> issues `Coaches Codes` -> filters `Association Reports` across Age, Level, Team, Position, and Player.
+2. **`FOUNDER_VISION_NOTES.md` Vision Shield:**
+   - Filters every finding in `persona_vision_report.json` against locked Founder Vision rules: never violating pure `100dvh` picture navigation (zero text overlays on rooms), `<= 4` gameplay buttons (`maxConcurrentTacticalOverlaysPerPlay === 1`), zero family tier / 4-slot picker (strict 3-Role portals), zero agents on Screen 1/Auth, and de-roboted Coach Bob.
+3. **3-Bucket Triage Rule & Deployment Gate:**
+   - **Bucket 1 (Obvious UX Friction -> Auto-Fixed Immediately in `index.html`):** Aligns `(x, y)` doorway/gear hotspot bounds to painted art, sharpens plain-English onboarding/plan micro-copy, aligns `[Next ➔]` tour pointers & spotlight cutouts, smooths transitions, and re-runs `persona_vision_playtest.js` + `adversarial_qa_agent.js --smoke` until `0` missed `(x, y)` taps and `0` friction blockers remain (`👤 5-Persona Human-Eyes UX Receipt` surfaced at top of Tab 3 `✅ Live in App` on `report.html`).
+   - **Bucket 2 (Taste / Feature Calls -> Pre-Coded Into `📥 To Review (12)`):** Places subjective taste/gameplay ideas discovered by Personas into `📥 To Review (12)` on `report.html`.
+   - **Bucket 3 (Strategic Tradeoffs -> Option A / B):** Formats binary product tradeoffs as `Option A / Option B` Founder choices.
+   - Executes `resetAllSynapzTestAccountsAndProfiles('RESET')`, bumps `sw.js` to `synapz-hockey-v12.7-5persona-human-vision`, mirrors both workspaces, deploys via `deploy-github-pages.js`, and dispatches **strictly 1** `< 35 KB` `v12.7` email digest via `send-board-digest.js`.

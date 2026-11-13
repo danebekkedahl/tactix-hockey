@@ -1554,7 +1554,7 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<title>SYNAPZ HOCKEY v12.6 — 288/288 Hard-Committed Live (96% Match on CA–CD) + Batch DA (12 To Review • 72-Card Pilot Bank)</title>
+<title>SYNAPZ HOCKEY v12.7 — 5-Persona Human-Eyes Playtest (11 UX Fixes • 0 Missed Taps) + 288/288 Live + Batch DA</title>
 <style>
   body { font-family: Inter, Arial, sans-serif; background:#020617; color:#f8fafc; padding:12px; line-height:1.38; }
   .wrap { max-width:920px; margin:0 auto; background:#090d16; border:2px solid #00e5ff; border-radius:14px; padding:16px; }
@@ -1570,8 +1570,8 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
 </head>
 <body>
 <div class="wrap">
-  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • V12.6 • 288/288 HARD-COMMITTED LIVE (96% MATCH!) • 6-BATCH PILOT BANK DA–DF (&lt; 35 KB)</div>
-  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">🏆 v12.6 Live: 288/288 Cumulative Upgrades Hard-Committed (46/48 Approved in CA–CD!) + Fresh 6-Batch Pilot Polish Bank (Batch DA: 12 To Review)</h1>
+  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • V12.7 • 5-PERSONA BLIND-VISION PLAYTEST (0 MISSED TAPS • 11 AUTO-FIXES) • 288/288 LIVE (&lt; 35 KB)</div>
+  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">👤 v12.7 Live: 5-Persona Human-Eyes Coordinate Playtest (11 Friction Points Auto-Polished • 0 Missed Taps) + 288/288 Live + Batch DA (12 To Review)</h1>
   <p style="margin:0 0 10px;font-size:11px;color:#cbd5e1;">
     Prepared for <strong>Coach Dane (danebekkedahl@gmail.com)</strong> &amp; <strong>Coach Evan (evanbekk@gmail.com)</strong> • ${timestamp}<br/>
     🌐 <strong>Clean-Slate Screen 1 Live App:</strong> <a href="${PAGES_BASE_URL}/" class="b-ex">${PAGES_BASE_URL}/</a> •
@@ -1579,30 +1579,30 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
     📱 <strong>1-Tap Phone Review:</strong> <a href="${rpt}#founderBatchDeployBar" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">📥 OPEN BATCH DA IN 3-TAB PHONE INBOX</a>
   </p>
 
-  <!-- SECTION 1: 🏆 V12.6 288/288 HARD-COMMIT + CLEAN-SLATE WALKTHROUGH RECEIPT -->
+  <!-- SECTION 1: 👤 V12.7 5-PERSONA HUMAN-EYES UX RECEIPT + 288/288 LIVE -->
   <div style="background:#042f2e;border:2px solid #34d399;border-radius:10px;padding:11px;margin-bottom:12px;">
-    <div style="font-size:11px;font-weight:900;color:#6ee7b7;text-transform:uppercase;">SECTION 1 • 🏆 V12.6 288/288 UPGRADES HARD-COMMITTED LIVE + 6-BATCH PILOT BANK (DA–DF = 72 CARDS)</div>
+    <div style="font-size:11px;font-weight:900;color:#6ee7b7;text-transform:uppercase;">SECTION 1 • 👤 V12.7 5-PERSONA HUMAN-EYES UX RECEIPT (11 FRICTION POINTS AUTO-POLISHED • 0 MISSED (X,Y) TAPS)</div>
     <div style="font-size:11px;color:#d1fae5;margin:4px 0;">
-      <strong>Cache:</strong> <code>synapz-hockey-v12.6-288-verified-pilot-bank</code> • <strong>Clean-Slate Screen 1:</strong> <code>0</code> test accounts • <strong>Smoke Gate:</strong> <code>${smokeMs}ms</code> • <strong>Slow-4G:</strong> <code>${slow4gMs}ms &lt; 2.5s</code>
+      <strong>Cache:</strong> <code>synapz-hockey-v12.7-5persona-human-vision</code> • <strong>Clean-Slate Screen 1:</strong> <code>0</code> test accounts • <strong>Smoke Gate:</strong> <code>${smokeMs}ms</code> • <strong>Slow-4G:</strong> <code>${slow4gMs}ms &lt; 2.5s</code>
     </div>
     <table style="margin:6px 0;">
       <thead>
-        <tr><th>v12.6 Milestone Gate</th><th>Verified Telemetry &amp; Walkthrough Polish</th><th>Result</th></tr>
+        <tr><th>v12.7 Milestone Gate</th><th>Verified Human-Eyes Coordinate Telemetry &amp; Vision-Shielded Polish</th><th>Result</th></tr>
       </thead>
       <tbody>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">Batches CA–CD Hard-Commit</strong></td>
-          <td>Coach Evan reviewed all 48 cards from phone (Nov 12, 10:47–11:25 PM CST): <code>46/48</code> approved (<code>96%</code> match, declining only <code>S2-CC, S2-CD</code>) — all <strong>288 IDs</strong> now hard-committed in <code>CORE_DEPLOYED_UPGRADE_IDS</code>!</td>
-          <td class="nw"><strong style="color:#34d399;">288/288 Live</strong></td>
+          <td class="nw"><strong style="color:#34d399;">5-Persona (x,y) Playtest</strong></td>
+          <td>Tested strictly via visual <code>(x, y)</code> art/button coordinates (<code>0</code> <code>#id</code> clicks, <code>0</code> answer peeks): <strong>P1 Non-Hockey Mom</strong> (<code>WOLF12</code> → Coach's Inbox), <strong>P2 8U Mite</strong> (Lobby Tour → Bag equip → 3 <code>8U</code> drills), <strong>P3 14U AA Skater</strong> (5 rotated real-clock drills), <strong>P4 Parking-Lot Coach</strong> (Coaches Code → 5-play Breakout push + Asst code), <strong>P5 Club Director</strong> (10-Team <code>$850</code> → 5-way Reports).</td>
+          <td class="nw"><strong style="color:#34d399;">0 Missed Taps</strong></td>
         </tr>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">6-Batch Bank (DA–DF)</strong></td>
-          <td>Pre-coded <code>72</code> pure hockey &amp; UX polish upgrades (<code>S1-DA..S12-DF</code>): deceptive defender reads across 16 buckets, smooth walkthrough handoffs, Coach's Office/Inbox flow, 3D Globe inertia &amp; iPad/iPhone <code>&lt;16ms</code> touch!</td>
-          <td class="nw"><strong style="color:#fde047;">72 Pre-Coded</strong></td>
+          <td class="nw"><strong style="color:#34d399;">11 Bucket-1 Auto-Fixes</strong></td>
+          <td>Auto-polished all 11 human-UX friction points under the Founder Vision Shield (<code>0</code> room text labels, <code>&lt;=4</code> primary buttons, <code>1</code> focal overlay): restored 4 choice buttons below ice, raised Tour <code>[Next ➔]</code> above <code>🚩 Red Flag</code>, unshadowed Locker Breezers, expanded 390px picture hitboxes, auto-opened Team-Code <code>Coach's Inbox</code> &amp; clamped 390px Coach Bob!</td>
+          <td class="nw"><strong style="color:#fde047;">11/11 Fixed</strong></td>
         </tr>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">Curriculum &amp; 1-Overlay Cap</strong></td>
-          <td><code>24/24</code> 0-IQ permutations (<code>720</code> plays, <code>0</code> bottlenecks) • <code>16/16</code> blind-student buckets (<code>0</code> peeks, <code>28/28</code> N→N+3 transfer) • <code>maxConcurrentTacticalOverlaysPerPlay === 1</code>!</td>
+          <td class="nw"><strong style="color:#34d399;">288 Live + Batch DA</strong></td>
+          <td>All <strong>288/288</strong> approved upgrades live + Persona 1 &amp; Persona 3 taste discoveries queued in <code>Batch DA</code> (<code>📥 To Review: 12</code>) • Adversarial Smoke Gate: <code>0 Critical / 0 Major</code>!</td>
           <td class="nw"><strong style="color:#34d399;">0 Crit / 0 Maj</strong></td>
         </tr>
       </tbody>
@@ -1613,7 +1613,7 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
   <div id="seat13-meta-auditor" style="background:#0f172a;border:2px solid #fbbf24;border-radius:10px;padding:10px;margin-bottom:12px;">
     <div style="font-size:11px;font-weight:900;color:#fde047;text-transform:uppercase;">SECTION 2 • 🏛️ CLEAN-SLATE SCREEN 1 READY FOR WALKTHROUGH • ${allApprovedCount}/288 LIVE • BATCH DA IN 📥 TO REVIEW (12)</div>
     <div style="margin-top:6px;">
-      <a href="${PAGES_BASE_URL}/" style="background:#00e5ff;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">🏒 LAUNCH CLEAN-SLATE V12.6</a>
+      <a href="${PAGES_BASE_URL}/" style="background:#00e5ff;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">🏒 LAUNCH CLEAN-SLATE V12.7</a>
       <a href="${rpt}#founder-approval-board" style="background:#10b981;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">📥 REVIEW BATCH DA (12 CARDS)</a>
       <a href="${batchApproveUrl}" style="background:#0284c7;color:#fff;font-weight:900;font-size:11px;padding:6px 10px;border-radius:5px;text-decoration:none;display:inline-block;">⭐ Approve All High-Match (&gt;=90% • ${ordered12Ideas.length})</a>
     </div>
@@ -1691,10 +1691,10 @@ async function main() {
     age_division: 'ALL',
     category: 'board_digest',
     status: 'completed_and_deployed',
-    summary: `🏆 SYNAPZ HOCKEY v12.6 — 288/288 Hard-Committed Live (46/48 CA–CD Approved • 96% Match) + Batch DA (12 To Review | 72-Card Pilot Bank DA–DF) (${emailSizeKb} KB < 35 KB) -> ${RECIPIENTS.join(', ')}`,
+    summary: `👤 SYNAPZ HOCKEY v12.7 — 5-Persona Human-Eyes Playtest (11 UX Fixes • 0 Missed Taps) + 288/288 Live + Batch DA (12 To Review) (${emailSizeKb} KB < 35 KB) -> ${RECIPIENTS.join(', ')}`,
     details: {
-      version: 'v12.6-288-verified-and-pilot-polish-bank',
-      versionLabel: 'v12.6',
+      version: 'v12.7-5persona-blind-vision-playtest',
+      versionLabel: 'v12.7',
       activeBatchLetter: 'DA',
       activeInboxIds,
       recipients: RECIPIENTS,
@@ -1847,11 +1847,11 @@ async function main() {
       age_division: 'ALL',
       category: 'cloud_coverage_ledger',
       status: 'completed_and_deployed',
-      summary: '📊 Seat 13 Cloud Coverage Ledger Updated (v12.6 • 288/288 Live Hard-Committed • 72-Card Pilot Bank DA–DF • Batch DA Active)',
+      summary: '📊 Seat 13 Cloud Coverage Ledger Updated (v12.7 • 5-Persona Human-Eyes Verified • 288/288 Live • Batch DA Active)',
       details: {
         id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
-        versionLabel: 'v12.6',
-        batchRunCount: 33,
+        versionLabel: 'v12.7',
+        batchRunCount: 34,
         activeBatchLetter: 'DA',
         activeBatchCode: 'DA',
         activeInboxIds,
@@ -1910,7 +1910,7 @@ async function main() {
     second: '2-digit'
   });
   const senderDisplayName = 'Synapz Hockey 12-Seat Council & Seat 13 Meta-Auditor';
-  const emailSubject = `SYNAPZ HOCKEY v12.6 — 288/288 Hard-Committed Live (96% Match on CA–CD) + Batch DA (12 To Review • 72-Card Pilot Bank) [${uniqueTimestampLabel}]`;
+  const emailSubject = `SYNAPZ HOCKEY v12.7 — 5-Persona Human-Eyes Playtest (11 UX Fixes • 0 Missed Taps) + 288/288 Live + Batch DA (12 To Review) [${uniqueTimestampLabel}]`;
   try {
     const gmailRes = await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
       method: 'POST',
