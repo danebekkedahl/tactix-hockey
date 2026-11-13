@@ -332,9 +332,9 @@
     }
   },
   "lastSmokeCheck": {
-    "executedAt": "2026-11-12T23:44:28.531Z",
-    "durationMs": 1419,
-    "initialLoadMs": 490,
+    "executedAt": "2026-11-13T00:28:48.684Z",
+    "durationMs": 1291,
+    "initialLoadMs": 479,
     "passed": true,
     "smokeAudit": {
       "testModeActive": true,

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v12.4-adversarial-5bot-qa';
+const CACHE_NAME = 'synapz-hockey-v12.5-curriculum-iq-verified';
 const ASSETS = [
   './',
   './index.html',

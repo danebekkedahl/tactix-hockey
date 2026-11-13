@@ -7068,7 +7068,7 @@
         autoRink: 'half',
         specialTeams: '4v4 D-Zone Coverage',
         title: 'Protect "The House" (Defensive Net-Side Positioning)',
-        subtitle: 'The opponent has the puck in the corner—guard dangerous slot scorer R2!',
+        subtitle: 'Opponent R1 has the puck in the corner—drop net-side into the House to guard slot scorer R2!',
         voicePrompt: 'Puck is in the corner in our defensive zone and number 14 is battling for it. Look at opponent R2 sneaking into the slot! Move number 9 net-side between R2 and our goalie!',
         briefing: 'Opponent R1 has the puck in the corner while #14 battles them. Opponent R2 is sneaking into the House! Move #9 between R2 and your goalie!',
         goldenRule: 'In the Defensive Zone, always stay "Net-Side" (between your check and your goalie) inside the House!',
@@ -8300,7 +8300,7 @@
         hand: String(row.stick_hand || 'left').toLowerCase() === 'right' ? 'Right' : 'Left',
         position: mapPosCodeToFull(row.primary_position),
         subscription_tier: row.subscription_tier || 'pro_sandbox',
-        iqScore: typeof row.iq_score === 'number' ? row.iq_score : ((existing && existing.iqScore) || 100),
+        iqScore: typeof row.iq_score === 'number' ? row.iq_score : (existing && typeof existing.iqScore === 'number' ? existing.iqScore : 0),
         puckBucks: typeof row.coins === 'number' ? row.coins : ((existing && existing.puckBucks) || 250),
         pie_chart_stats: (row.pie_chart_stats && typeof row.pie_chart_stats === 'object')
           ? row.pie_chart_stats
@@ -8341,7 +8341,7 @@
         stick_hand: String(prof.hand || 'Left').toLowerCase().startsWith('r') ? 'right' : 'left',
         primary_position: mapFullPosToCode(prof.position),
         subscription_tier: prof.subscription_tier || 'pro_sandbox',
-        iq_score: Number(prof.iqScore) || 100,
+        iq_score: typeof prof.iqScore === 'number' ? prof.iqScore : 0,
         coins: Number(prof.puckBucks) || 250,
         stanley_cups: Array.isArray(prof.stanley_cups) ? prof.stanley_cups : [],
         pie_chart_stats: pieStats,
@@ -8503,7 +8503,7 @@
           number: String(p.jerseyNumber || 9),
           position: mapFullPosToCode(p.position),
           age: p.ageGroup || '10U',
-          iq_score: p.iqScore || 100
+          iq_score: typeof p.iqScore === 'number' ? p.iqScore : 0
         }));
         const assignmentWithCustomizations = {
           ...(state.coachWeeklyAssignment || { focus: 'breakout', focusLabel: '🚀 Breakouts & Regroups' }),
@@ -8760,6 +8760,8 @@
             // Keep canonical localScen's crafted subtitle/prompt so on-ice coordinates and Coach Bob text stay 100% aligned
             localScen.coach_bob_prompt = localScen.subtitle || norm.coach_bob_prompt;
           } else if (norm.youStart && norm.targetSpot && Array.isArray(norm.teammates) && Array.isArray(norm.defenders)) {
+            if (typeof enrichSingleScenarioForV125 === 'function') enrichSingleScenarioForV125(norm);
+            if (typeof ensureScenarioConsensusZones === 'function') ensureScenarioConsensusZones(norm);
             SCENARIOS.push(norm);
           }
           // Index by age_division and tier_level for instant lookup (prefer canonical localScen if matched)
@@ -9077,20 +9079,27 @@
       if (age === '8U') {
         // Use ultra-crisp 8U Coach Bob prompt (<= 14 words) matched to canonical scenario geometry
         const short8U = {
-          'basics-center': 'Skate #9 to the middle slot to support your wingers!',
-          'basics-defense': 'Hold the Left Point just inside the blue line!',
-          'spacing-1': 'Build an Attack Triangle! Skate #9 into the open high slot!',
-          'spacing-2': 'You have the puck! Tap wide-open #14 in the high slot!',
+          'basics-center': 'Skate #9 to the middle slot between the faceoff circles!',
+          'basics-defense': 'Hold the Left Point just inside the offensive blue line!',
+          'spacing-1': 'Build an Attack Triangle! Skate #9 into the open High Slot!',
+          'spacing-2': 'You have the puck in the corner! Tap open #14 in the High Slot!',
           'house-1': 'Protect the House! Skate #9 net-side between R2 and your goalie!',
-          'house-2': 'Drop #9 into the High House to guard the middle slot!',
-          'breakout-1': 'Breakout time! Skate #9 to the hashmarks wall for the pass!',
-          'breakout-2': 'Swing #9 low and slow below the circle for the outlet!',
-          'rush-1': '2-on-1 rush! Skate #9 wide to the far post with stick down!',
-          'rush-2': 'D1 slid to cover #14! Tap the Goal Net to shoot!',
+          'house-2': 'Puck on far boards! Drop #9 into the High House middle slot!',
+          'breakout-1': 'Retrieved behind our net! Skate #9 low to the hashmarks wall outlet!',
+          'breakout-2': 'Wall covered! Curl #9 low underneath the hashmarks as middle outlet!',
+          'breakout-dtod': 'Strong wall jumped! Reverse D-to-D behind the net to open #4!',
+          'rush-1': 'Teammate #14 enters on a 2-on-1! Spread D1 toward the far post!',
+          'rush-2v1-dish': '2-on-1 rush! Defender D1 steps right at you—dish back-door to #14!',
+          'rush-2v1-shoot': '2-on-1 rush! D1 cheats over on #14—tap the Goal Net to shoot!',
+          'rush-2': '3-on-2 rush! F2 (#19) drives the net—glide #9 into the High Slot!',
           'forecheck-1': 'You are F1! Angle R1 toward the corner boards!',
-          'forecheck-212': 'F1 angles low! Skate #9 (F2) to seal the wall!',
-          'backcheck-1': 'Sprint #9 straight back through the middle gut to cover R3!',
+          'forecheck-212': 'F1 (#14) angles behind the net! Pinch #9 to seal the strong-side boards!',
+          'protect-cutback-wall': 'Teammates covered! Use Hold / Protect to cut back up the boards!',
+          'backcheck-1': 'Sprint #9 straight back through the middle gut to lock up trailer R3!',
+          'd-gap-1v1': 'R1 rushes wide! Close gap inside the dot lane to angle R1 wide!',
+          'd-netfront-boxout': 'Point shot coming! Step net-side to box R2 out and clear goalie eyes!',
           'd-net-front': 'You are D2 in the House! Tie up R2 in front!',
+          'goalie-angle-depth': 'R1 in circle! Step #9 to the top edge of the crease square to puck!',
           'goalie-square-angle': 'Step out to the top of your crease square to the puck!'
         };
         if (scen && short8U[scen.id]) {
@@ -9363,7 +9372,7 @@
 
     // Multi-Format Question Engine (tap_zone, tap_player, tactical_choice, drag_skater, spot_and_fix)
     const QUESTION_STYLE_LABELS = {
-      tap_zone:        '🎯 Tap Zone A / B / C',
+      tap_zone:        '🎯 Tap Zone A / B / C / D',
       tap_player:      '🏒 Tap Open Player',
       tactical_choice: '⚡ Tactical Action Cards',
       drag_skater:     '🖐️ Drag Skater #9',
@@ -9405,11 +9414,79 @@
     }
     window.describePhysicalRinkLandmark = describePhysicalRinkLandmark;
 
+    const BUCKET_POST_MISTAKE_TEACHING_CUES = {
+      dz_protect_house_box1: {
+        young: 'Good try, drop net-side into the House to guard the slot!',
+        older: 'Slide net-side into the middle House, clear sightlines, and tie up sticks!'
+      },
+      dz_corner_containment_stick: {
+        young: 'Good try, stay inside the dot lane and block the pass!',
+        older: 'Play inside-out in the middle Royal Road seam to block cross-slot passes!'
+      },
+      breakout_d_to_d: {
+        young: 'Good try, reverse D-to-D behind the net to your open partner!',
+        older: 'When forecheckers jump the wall, reverse D-to-D behind the net to #4!'
+      },
+      breakout_low_slow_center: {
+        young: 'Good try, curl low and slow underneath the circle for support!',
+        older: 'Curl low underneath the dots or drop into the Hinge pocket behind pressure!'
+      },
+      breakout_winger_wall_chip: {
+        young: 'Good try, skate low to the hashmarks wall facing the puck!',
+        older: 'Drop low to the hashmarks wall facing the puck for a clean outlet!'
+      },
+      nz_regroup_hinge: {
+        young: 'Good try, hit your open weak-side winger skating up the seam!',
+        older: 'Swing D-to-D in the neutral zone and hit the weak-side winger in stride!'
+      },
+      nz_speed_entry_middle_drive: {
+        young: 'Good try, tag up onside at the blue line before entering!',
+        older: 'Tag up onside at the blue line, or pass and burst down the middle!'
+      },
+      nz_angling_gap_control_122: {
+        young: 'Good try, sprint back through the middle gut to cover R3!',
+        older: 'Sprint straight through the middle gut inside the dots to lock up R3!'
+      },
+      forecheck_212_f1_f2_f3: {
+        young: 'Good try, pinch onto the hashmarks wall to seal their rim!',
+        older: 'As F2, pinch onto the hashmarks wall while F1 angles behind the net!'
+      },
+      oz_attack_triangle_spacing: {
+        young: 'Good try, skate to the open High Slot to form a triangle!',
+        older: 'Slide into open High-Slot soft ice or hold just inside the blue line!'
+      },
+      oz_cycle_scissors: {
+        young: 'Good try, cut back up the boards or hit the High Slot!',
+        older: 'Shield the puck to cut back high, or pass out to the High Slot!'
+      },
+      oz_royal_road_net_front: {
+        young: 'Good try, pass to open #14 in the High Slot!',
+        older: 'Look past covered traffic to hit the open High Slot or low tip blade!'
+      },
+      odd_man_rush_2v1_3v2: {
+        young: 'Good try, drive the far post wide or glide High Slot!',
+        older: 'Dish back-door if D steps up, shoot if D cheats, or trail High Slot!'
+      },
+      special_teams_5v4_umbrella: {
+        young: 'Good try, set up on the dot or hold your tight Box!',
+        older: 'Set up on the Umbrella dot flank, or hold your tight inside PK Box!'
+      },
+      scanning_deception_callouts: {
+        young: 'Good try, look off the defender and hit High-Slot trailer #14!',
+        older: 'Curl and look off D1 on entry, then feed open High-Slot trailer #14!'
+      },
+      goalie_crease_angles_traps: {
+        young: 'Good try, challenge at the top edge of your blue crease!',
+        older: 'Challenge at the top crease edge square to puck and steer rebounds wide!'
+      }
+    };
+    window.BUCKET_POST_MISTAKE_TEACHING_CUES = BUCKET_POST_MISTAKE_TEACHING_CUES;
+
     function formatPlainLanguageCoachFeedback(scenario, choiceOutcome, division) {
       const scen = scenario || getCurrentScenario() || {};
       const prof = (typeof getActiveProfile === 'function' && getActiveProfile()) || {};
       const div = String(division || prof.ageGroup || '12U').toUpperCase();
-      const isYoung = (div === '8U' || div === '10U');
+      const isYoung = (div.startsWith('8U') || div.startsWith('10U'));
 
       let success = true;
       let mult = 1.0;
@@ -9424,10 +9501,10 @@
           mult = 0;
         } else if (lower === 'silver') {
           success = true;
-          mult = 0.8;
+          mult = 0.75;
         } else if (lower === 'bronze') {
           success = true;
-          mult = 0.6;
+          mult = 0.50;
         } else {
           rawMsg = choiceOutcome;
         }
@@ -9438,34 +9515,53 @@
       }
 
       const concept = String(scen.concept || 'spacing').toLowerCase();
+      const bucketCode = String(scen.bucket_code || '').trim();
+      const bucketTeaching = BUCKET_POST_MISTAKE_TEACHING_CUES[bucketCode] || null;
+
       if (isYoung) {
         let kidLine = '';
         if (success && mult >= 0.99) {
-          if (concept === 'offsides') kidLine = 'Great job, you kept both skates onside at the blue line!';
+          if (scen.id === 'basics-offsides' || concept === 'offsides') kidLine = 'Great job, you kept both skates onside at the blue line!';
+          else if (bucketCode.startsWith('goalie_')) kidLine = 'Awesome save read, you challenged at the top of the blue paint!';
           else if (concept === 'house') kidLine = 'Awesome job, you protected the house in front of our goalie!';
-          else if (concept === 'breakout') kidLine = 'Great breakout, you skated low and wide for an easy pass!';
-          else if (concept === 'forecheck') kidLine = 'Great angle, you steered the puck carrier toward the side boards!';
-          else if (concept === 'transition') kidLine = 'Nice play, you skated into the open lane on the rush!';
-          else kidLine = 'Great job, you skated to open ice so your teammate can pass!';
+          else if (concept === 'breakout') kidLine = 'Great breakout, you gave your teammate a clean open outlet pass!';
+          else if (concept === 'forecheck') kidLine = 'Great track, you closed the open lane right on time!';
+          else if (concept === 'rush' || concept === 'transition') kidLine = 'Nice play, you attacked the wide-open rush lane!';
+          else kidLine = 'Great job, you found the wide-open ice so your team can score!';
         } else if (success && mult > 0) {
-          kidLine = 'Good play, check the green circle for an even wider-open spot!';
+          kidLine = 'Good 75% Silver play, check the green circle for an even wider-open Gold lane!';
         } else {
-          if (concept === 'offsides') kidLine = 'Good try, wait at the blue line until the puck crosses first!';
-          else if (concept === 'house') kidLine = 'Good try, slide between the dots to protect our net!';
-          else kidLine = "Good try, slide into the slot between the dots so you're open!";
+          if (scen.id === 'basics-offsides' || concept === 'offsides') {
+            kidLine = 'Good try, wait on the blue line until the puck crosses into the zone first!';
+          } else if (scen.id === 'basics-defense') {
+            kidLine = 'Good try, hold the Left Point just inside the offensive blue line to keep the puck in!';
+          } else if (bucketTeaching && bucketTeaching.young) {
+            kidLine = bucketTeaching.young;
+          } else if (concept === 'house') {
+            kidLine = 'Good try, slide net-side between the dots to protect our goalie!';
+          } else if (concept === 'breakout') {
+            kidLine = 'Good try, come low to the hashmarks or underneath the dots to give your D an open outlet!';
+          } else if (concept === 'forecheck') {
+            kidLine = 'Good try, seal the strong-side boards on the forecheck or sprint down the middle gut on the backcheck!';
+          } else {
+            kidLine = 'Good try, slide into the open high-slot triangle away from defenders!';
+          }
         }
         return toNaturalHockeyTalk(kidLine, 'coach-bob', 'feedback', div);
       }
 
-      // 12U, 14U, 16U, 18U: Strictly 1 natural bench-coach sentence with authentic hockey terms, zero robotic jargon
+      // 12U, 14U, 16U, 18U: Strictly 1 natural bench-coach sentence with transferable hockey principle
+      if (!success) {
+        const mistakeSource = (bucketTeaching && bucketTeaching.older) || rawMsg || scen.goldenRule || 'Scan the defender\'s stick angle first, then slide into the open support seam!';
+        return toNaturalHockeyTalk(mistakeSource, 'coach-bob', 'feedback', div);
+      }
+
       let base = rawMsg || ((scen.readChoices && scen.readChoices[0] && scen.readChoices[0].feedback) || scen.goldenRule || '');
       if (!base) {
-        if (success && mult >= 0.99) {
-          base = `Great read, you found the open high-slot support lane for a clean tape-to-tape pass!`;
-        } else if (success) {
-          base = `Good secondary support read, check the green circle for an even cleaner passing angle!`;
+        if (mult >= 0.99) {
+          base = 'Great read, you found the open primary lane for a clean tape-to-tape play!';
         } else {
-          base = `Scan the defender's stick angle first, then slide into the open support seam!`;
+          base = 'Good 75% Silver secondary support read, check the green circle for the primary Gold angle!';
         }
       }
 
@@ -9476,17 +9572,30 @@
     function buildTapZonesForScenario(scen) {
       ensureScenarioConsensusZones(scen);
       const zGold = (scen.targetZones && scen.targetZones[0]) || { x: scen.targetSpot.x, y: scen.targetSpot.y, radius: 0.095, multiplier: 1.0, badge: '🥇 Great Read! Best Play on the Ice (100% Gold IQ)', feedback: (scen.readChoices && scen.readChoices[0] && scen.readChoices[0].feedback) || 'Great read!' };
-      const zSilver = (scen.targetZones && scen.targetZones[1]) || { x: Math.min(0.86, Math.max(0.14, scen.targetSpot.x - 0.09)), y: Math.min(0.84, Math.max(0.16, scen.targetSpot.y + 0.14)), radius: 0.095, multiplier: 0.8, badge: '🥈 Good Play! Open Second Option (80% Silver IQ)', feedback: 'Good secondary support read (80% Silver IQ)! Check the green circle for an even cleaner lane.' };
-      const zBronze = (scen.targetZones && scen.targetZones[2]) || { x: Math.min(0.86, Math.max(0.14, scen.youStart.x)), y: Math.min(0.84, Math.max(0.16, 1 - scen.targetSpot.y)), radius: 0.095, multiplier: 0.6, badge: '🥉 Safe Play! Playable Support Spot (60% Bronze IQ)', feedback: 'Safe playable position (60% Bronze IQ)! Skating into the green circle creates the best passing triangle.' };
+      const zSilver = (scen.targetZones && scen.targetZones[1]) || { x: Math.min(0.86, Math.max(0.14, scen.targetSpot.x - 0.09)), y: Math.min(0.84, Math.max(0.16, scen.targetSpot.y + 0.14)), radius: 0.095, multiplier: 0.75, badge: '🥈 Good Play! Open Second Option (75% Silver IQ)', feedback: 'Good secondary support read (75% Silver IQ)! Check the green circle for an even cleaner Gold lane.' };
+      const zBronze = (scen.targetZones && scen.targetZones[2]) || { x: Math.min(0.86, Math.max(0.14, scen.youStart.x)), y: Math.min(0.84, Math.max(0.16, 1 - scen.targetSpot.y)), radius: 0.095, multiplier: 0.50, badge: '🥉 Safe Play! Playable Support Spot (50% Bronze IQ)', feedback: 'Safe playable position (50% Bronze IQ)! Skating into the green circle creates the best passing triangle.' };
+      const dRef = (scen.defenders && scen.defenders[0]) || { x: scen.zone === 'defense' ? 0.44 : 0.54, y: 0.84 };
+      const badChoice = (scen.readChoices && scen.readChoices.find(c => !c.correct)) || { feedback: 'Coach\'s Adjustment: That spot is covered by traffic—find the open Gold lane!' };
+      const zMiss = {
+        x: Math.min(0.88, Math.max(0.12, dRef.x)),
+        y: Math.min(0.86, Math.max(0.14, dRef.y)),
+        radius: 0.09,
+        multiplier: 0,
+        rank: 4,
+        tier: 'Covered',
+        badge: '',
+        feedback: badChoice.feedback
+      };
       const raw = [
         { ...zGold, rank: 1, multiplier: 1.0 },
-        { ...zSilver, rank: 2, multiplier: 0.8 },
-        { ...zBronze, rank: 3, multiplier: 0.6 }
+        { ...zSilver, rank: 2, multiplier: 0.75 },
+        { ...zBronze, rank: 3, multiplier: 0.50 },
+        zMiss
       ];
-      // Deterministic rotation by question number so Zone A is not always 1st choice
-      const shift = ((state.seriesQuestionNum || 1) + (state.currentCityIdx || 0)) % 3;
-      const rotated = [raw[shift], raw[(shift + 1) % 3], raw[(shift + 2) % 3]];
-      const letters = ['A', 'B', 'C'];
+      // Deterministic 4-way rotation by question + city + seed so Zone A is never pinned to Gold
+      const shift = ((state.seriesQuestionNum || 1) + (state.currentCityIdx || 0) + (state.permutationSeed || 0)) % 4;
+      const rotated = [raw[shift], raw[(shift + 1) % 4], raw[(shift + 2) % 4], raw[(shift + 3) % 4]];
+      const letters = ['A', 'B', 'C', 'D'];
       return rotated.map((z, i) => ({
         ...z,
         zoneLetter: letters[i],
@@ -9530,89 +9639,127 @@
         const zones = buildTapZonesForScenario(scen);
         state.activeTapZones = zones;
         bar.classList.remove('hidden');
-        const lbl = document.createElement('span');
-        lbl.className = 'text-[10px] font-black uppercase tracking-wider text-amber-300 mr-1';
-        lbl.textContent = '🎯 Tap Ice Zone (or click):';
-        bar.appendChild(lbl);
         zones.forEach(z => {
           const btn = document.createElement('button');
           btn.type = 'button';
           btn.dataset.zoneLetter = z.zoneLetter;
           btn.dataset.zoneX = z.x.toFixed(3);
           btn.dataset.zoneY = z.y.toFixed(3);
-          btn.className = 'px-2.5 py-1 rounded-xl bg-slate-900 hover:bg-sky-500/30 border border-sky-400/70 text-white font-black text-[11px] shadow transition flex items-center gap-1';
-          btn.innerHTML = `<span class="px-1.5 py-0.2 rounded bg-amber-400 text-slate-950 font-black text-[10px]">${z.zoneLetter}</span><span>Pick ${z.label} (${z.spotLabel})</span>`;
+          btn.className = 'px-2 py-1 rounded-xl bg-slate-900 hover:bg-sky-500/30 border border-sky-400/70 text-white font-black text-[10.5px] shadow transition flex items-center gap-1';
+          btn.innerHTML = `<span class="px-1.5 py-0.2 rounded bg-amber-400 text-slate-950 font-black text-[10px]">${z.zoneLetter}</span><span>${z.label}: ${z.spotLabel}</span>`;
           btn.addEventListener('click', () => handleSelectTapZone(z, scen));
           bar.appendChild(btn);
         });
       } else if (qStyle === 'tap_player') {
         bar.classList.remove('hidden');
-        const lbl = document.createElement('span');
-        lbl.className = 'text-[10px] font-black uppercase tracking-wider text-emerald-300 mr-1';
-        lbl.textContent = '🏒 Tap Open Target on Ice (or click):';
-        bar.appendChild(lbl);
-        const targets = (scen.teammates || []).slice(0, 3);
-        targets.forEach((tm, idx) => {
-          const isBest = tm.id === (scen.correctTargetId || 'T1') || idx === 0;
+        const rawTargets = [];
+        const okChoice = (scen.readChoices && scen.readChoices.find(c => c.correct && !c.silver)) || scen.readChoices[0];
+        const badChoice = (scen.readChoices && scen.readChoices.find(c => !c.correct)) || scen.readChoices[1] || okChoice;
+        if (scen.correctTargetId === 'NET') {
+          rawTargets.push({
+            id: 'NET',
+            text: '🥅 Rip Shot Low Far-Pad on Goal Net',
+            x: scen.targetSpot.x,
+            y: scen.targetSpot.y,
+            mult: 1.0,
+            ok: true,
+            fb: okChoice.feedback,
+            badge: '🥇 Great Read! Best Play on the Ice (100% Gold IQ)'
+          });
+        }
+        (scen.teammates || []).slice(0, scen.correctTargetId === 'NET' ? 3 : 4).forEach((tm, idx) => {
+          const isPrimary = scen.correctTargetId !== 'NET' && (tm.id === (scen.correctTargetId || 'T1') || (rawTargets.length === 0 && idx === 0));
+          const covered = /covered|jumped|pressured|battling|sealed|tied|locked/i.test(tm.role || '');
+          const isSecondary = !isPrimary && !covered && !rawTargets.some(r => r.mult === 0.75);
+          rawTargets.push({
+            id: tm.id,
+            text: `🏒 Pass to #${tm.label} (${describePhysicalRinkLandmark(tm.x, tm.y, scen)})`,
+            x: tm.x,
+            y: tm.y,
+            mult: isPrimary ? 1.0 : (isSecondary ? 0.75 : 0),
+            ok: isPrimary || isSecondary,
+            fb: isPrimary
+              ? okChoice.feedback
+              : (isSecondary ? `Good secondary outlet to #${tm.label} (75% Silver IQ)! Scan for the primary open Gold target first.` : badChoice.feedback),
+            badge: isPrimary
+              ? '🥇 Great Read! Best Play on the Ice (100% Gold IQ)'
+              : (isSecondary ? '🥈 Good Play! Open Second Option (75% Silver IQ)' : '')
+          });
+        });
+        while (rawTargets.length < 4) {
+          rawTargets.push({
+            id: `HOLD_${rawTargets.length}`,
+            text: '🛑 Rim Blindly Into Defender Skates Along Boards',
+            x: scen.youStart.x,
+            y: scen.youStart.y,
+            mult: 0,
+            ok: false,
+            fb: badChoice.feedback,
+            badge: ''
+          });
+        }
+        const shift = ((state.seriesQuestionNum || 1) + (state.currentCityIdx || 0) + (state.permutationSeed || 0)) % 4;
+        const rotatedTargets = [0, 1, 2, 3].map(k => rawTargets[(shift + k) % 4]);
+        rotatedTargets.forEach((tg) => {
           const btn = document.createElement('button');
           btn.type = 'button';
-          btn.dataset.playerTargetId = tm.id;
-          btn.dataset.playerX = tm.x.toFixed(3);
-          btn.dataset.playerY = tm.y.toFixed(3);
-          btn.className = 'px-2.5 py-1 rounded-xl bg-slate-900 hover:bg-emerald-500/30 border border-emerald-400/60 text-white font-black text-[11px] shadow transition';
-          btn.textContent = `🏒 Pass to #${tm.label}`;
+          btn.dataset.playerTargetId = tg.id;
+          btn.dataset.playerX = tg.x.toFixed(3);
+          btn.dataset.playerY = tg.y.toFixed(3);
+          btn.className = 'px-2 py-1 rounded-xl bg-slate-900 hover:bg-emerald-500/30 border border-emerald-400/60 text-white font-black text-[10.5px] shadow transition';
+          btn.textContent = tg.text;
           btn.addEventListener('click', () => {
             if (state.questionAnswered) return;
             SoundFX.playTap();
             hideCoachBobPopup();
-            const okChoice = scen.readChoices.find(c => c.correct) || scen.readChoices[0];
-            const badChoice = scen.readChoices.find(c => !c.correct) || scen.readChoices[1] || okChoice;
-            if (isBest) {
-              resolveAttempt(scen, true, okChoice.feedback, 1.0, '🥇 Great Read! Best Play on the Ice (100% Gold IQ)');
-            } else if (idx === 1) {
-              resolveAttempt(scen, true, 'Good secondary outlet (80% Silver IQ)! Look for the wide-open primary target next time.', 0.8, '🥈 Good Play! Open Second Option (80% Silver IQ)');
-            } else {
-              resolveAttempt(scen, true, 'Solid 3rd outlet (60% Bronze IQ)! Scan for the primary seam or bumper option first.', 0.6, '🥉 Solid 3rd Outlet (60% Bronze IQ)');
+            if (tg.ok && tg.mult >= 0.99) {
+              state.youPos = { x: scen.targetSpot.x, y: scen.targetSpot.y };
             }
+            resolveAttempt(scen, tg.ok, tg.fb, tg.mult, tg.badge);
           });
           bar.appendChild(btn);
         });
-        if (scen.correctTargetId === 'NET') {
-          const netBtn = document.createElement('button');
-          netBtn.type = 'button';
-          netBtn.dataset.playerTargetId = 'NET';
-          netBtn.className = 'px-2.5 py-1 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-[11px] shadow transition';
-          netBtn.textContent = '🥅 Rip Shot on Net!';
-          netBtn.addEventListener('click', () => {
-            if (state.questionAnswered) return;
-            SoundFX.playTap();
-            hideCoachBobPopup();
-            const okChoice = scen.readChoices.find(c => c.correct) || scen.readChoices[0];
-            resolveAttempt(scen, true, okChoice.feedback, 1.0, '🥇 Great Read! Best Play on the Ice (100% Gold IQ)');
-          });
-          bar.appendChild(netBtn);
-        }
       } else if (qStyle === 'tactical_choice') {
         bar.classList.remove('hidden');
-        const choices = (scen.readChoices || []).map((c, idx) => ({
-          ...c,
-          rank: c.correct ? 1 : (idx === 1 ? 2 : 3),
-          multiplier: c.correct ? 1.0 : (idx === 1 ? 0.8 : 0)
-        }));
+        const baseChoices = (scen.readChoices || []).slice(0, 4).map((c) => {
+          const isSilver = Boolean(c.silver || (typeof c.multiplier === 'number' && c.multiplier > 0 && c.multiplier < 0.99));
+          const isGold = Boolean(c.correct && !isSilver);
+          return {
+            ...c,
+            rank: isGold ? 1 : (isSilver ? 2 : 3),
+            multiplier: isGold ? 1.0 : (isSilver ? 0.75 : 0)
+          };
+        });
+        while (baseChoices.length < 4) {
+          baseChoices.push({
+            text: 'Hold a conservative support cushion away from defender traffic before scanning the primary lane',
+            correct: true,
+            silver: true,
+            rank: 2,
+            multiplier: 0.75,
+            feedback: 'Good 75% Silver support cushion! Attacking the primary open Gold lane creates an even higher-percentage play.'
+          });
+        }
+        const rot = ((state.seriesQuestionNum || 1) + (state.currentCityIdx || 0) + (state.permutationSeed || 0)) % baseChoices.length;
+        const choices = baseChoices.map((_, i) => baseChoices[(rot + i) % baseChoices.length]);
         choices.forEach((ch, idx) => {
           const btn = document.createElement('button');
           btn.type = 'button';
           btn.dataset.tacticalChoiceIdx = String(idx);
-          btn.className = 'px-2.5 py-1.5 rounded-xl bg-slate-900/95 hover:bg-sky-900/80 border border-amber-400/60 text-left text-[11px] font-bold text-white shadow transition max-w-full sm:max-w-[310px] whitespace-normal leading-tight';
+          btn.className = 'px-2 py-1 rounded-xl bg-slate-900/95 hover:bg-sky-900/80 border border-amber-400/60 text-left text-[10.5px] font-bold text-white shadow transition max-w-full sm:max-w-[295px] whitespace-normal leading-tight';
           btn.innerHTML = `<span class="text-amber-300 font-black mr-1">⚡ ${idx + 1}.</span><span>${ch.text}</span>`;
           btn.title = ch.text;
           btn.addEventListener('click', () => {
             if (state.questionAnswered) return;
             SoundFX.playTap();
             hideCoachBobPopup();
-            if (ch.correct) {
+            if (ch.multiplier >= 0.99) {
               state.youPos = { x: scen.targetSpot.x, y: scen.targetSpot.y };
               resolveAttempt(scen, true, ch.feedback, 1.0, '🥇 1st Choice Tactical Read (100% Gold IQ)');
+            } else if (ch.multiplier > 0) {
+              const silverZone = (scen.targetZones && scen.targetZones[1]) || scen.targetSpot;
+              state.youPos = { x: silverZone.x, y: silverZone.y };
+              resolveAttempt(scen, true, ch.feedback, 0.75, '🥈 2nd Choice Safe Support Read (75% Silver IQ)');
             } else {
               resolveAttempt(scen, false, ch.feedback, 0, '');
             }
@@ -9918,7 +10065,7 @@
       const prof = getActiveProfile();
       ensureProfileAvatarDefaults(prof);
       const cloned = JSON.parse(JSON.stringify(prof));
-      state.iqScore = cloned.iqScore || 100;
+      state.iqScore = typeof cloned.iqScore === 'number' ? cloned.iqScore : 0;
       state.puckBucks = typeof cloned.puckBucks === 'number' ? cloned.puckBucks : 250;
       state.streak = typeof cloned.streak === 'number' ? cloned.streak : 0;
       state.bestStreak = cloned.bestStreak || 0;
@@ -10292,17 +10439,17 @@
       const isGoalieScen = (scen.positionFocus || '').includes('Goalie') || (scen.id || '').startsWith('goalie-');
       const isDefScen = !isGoalieScen && ((scen.positionFocus || '').includes('Defense') || scen.posRole === 'D' || (scen.id || '').startsWith('d-'));
 
-      const silverFeedback = isGoalieScen
-        ? `Good crease position! Push out to the top edge of the blue paint to cut down the shooter's angle even more.`
+        const silverFeedback = isGoalieScen
+        ? `Good 75% Silver crease position! Push out to the top edge of the blue paint to cut down the shooter's angle even more.`
         : (isDefScen
-            ? `Good net-side support! Step a bit tighter into the green circle to seal the passing lane with your stick.`
-            : `Good open support spot! Slide into the green circle next time for an even cleaner passing angle.`);
+            ? `Good 75% Silver net-side support! Step a bit tighter into the green circle to seal the passing lane with your stick.`
+            : `Good 75% Silver support spot! Slide into the green circle next time for an even cleaner Gold passing angle.`);
 
       const bronzeFeedback = isGoalieScen
-        ? `Safe goal-line spot! Push out to the top of the crease so the shooter sees less net.`
+        ? `Safe 50% Bronze goal-line spot! Push out to the top of the crease so the shooter sees less net.`
         : (isDefScen
-            ? `Safe defensive spot! Step up into the green circle to close the gap and block the pass.`
-            : `Safe onside spot! Skate into the green circle to give your teammate a closer passing target.`);
+            ? `Safe 50% Bronze defensive spot! Step up into the green circle to close the gap and block the pass.`
+            : `Safe 50% Bronze onside spot! Skate into the green circle to give your teammate a closer passing target.`);
 
       scen.targetZones = [
         {
@@ -10318,8 +10465,8 @@
         {
           rank: 2,
           tier: 'Silver',
-          badge: (customZ2 && customZ2.badge) || '🥈 Good Play! Open Second Option (80% Silver IQ)',
-          multiplier: 0.8,
+          badge: (customZ2 && customZ2.badge ? customZ2.badge.replace('80%', '75%') : '🥈 Good Play! Open Second Option (75% Silver IQ)'),
+          multiplier: 0.75,
           x: secX,
           y: secY,
           radius: (customZ2 && customZ2.radius) || (r + 0.032),
@@ -10328,8 +10475,8 @@
         {
           rank: 3,
           tier: 'Bronze',
-          badge: (customZ3 && customZ3.badge) || '🥉 Safe Play! Playable Support Spot (60% Bronze IQ)',
-          multiplier: 0.6,
+          badge: (customZ3 && customZ3.badge ? customZ3.badge.replace('60%', '50%') : '🥉 Safe Play! Playable Support Spot (50% Bronze IQ)'),
+          multiplier: 0.50,
           x: brX,
           y: brY,
           radius: (customZ3 && customZ3.radius) || (r + 0.048),
@@ -10366,9 +10513,9 @@
             radius: 0.088,
             rank: 2,
             tier: 'Silver',
-            multiplier: 0.8,
+            multiplier: 0.75,
             correct: true,
-            feedback: `🥈 Strong Secondary Outlet (80% Silver IQ)! Moving the puck to #${secTm.label} keeps possession safe away from the primary defender. Why 🥇 ${openTm ? '#' + openTm.label : 'the primary target'} is 1st Choice: ${openTm ? '#' + openTm.label : 'that lane'} attacks the Grade-A slot directly against the defender's stick angle! ${scen.goldenRule}`
+            feedback: `🥈 Strong Secondary Outlet (75% Silver IQ)! Moving the puck to #${secTm.label} keeps possession safe away from the primary defender. Why 🥇 ${openTm ? '#' + openTm.label : 'the primary target'} is 1st Choice: ${openTm ? '#' + openTm.label : 'that lane'} attacks the Grade-A slot directly against the defender's stick angle! ${scen.goldenRule}`
           });
         }
         if (covTm && (!secTm || covTm.id !== secTm.id)) {
@@ -10391,7 +10538,88 @@
       return scen;
     }
 
-    SCENARIOS.forEach(s => ensureScenarioConsensusZones(s));
+    // v12.5 Canonical 16-Bucket Curriculum & 4-Choice Unambiguous Geometry Enricher
+    const CANONICAL_SCENARIO_CURRICULUM_MAP = {
+      'basics-center':        { bucket_code: 'oz_attack_triangle_spacing',  tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Support higher near the top of the circles before sliding into the middle slot', silverFb: 'Good 75% Silver middle-lane cushion! Dropping slightly deeper between the dots gives wingers an even closer one-timer triangle.' },
+      'basics-defense':       { bucket_code: 'oz_attack_triangle_spacing',  tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold the center blue line hinge slightly closer to partner #7', silverFb: 'Good 75% Silver blue-line safety! Shifting wide to the Left Point seals the boards rim while keeping the zone.' },
+      'basics-offsides':      { bucket_code: 'nz_speed_entry_middle_drive', tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Loop back deeper into the neutral zone behind #14 to build crossover speed', silverFb: 'Good 75% Silver onside discipline! Timing your skate right on the blue line lets you enter a half-step faster.' },
+      'spacing-1':            { bucket_code: 'oz_attack_triangle_spacing',  tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold high support near Left Point #4 outside the faceoff dot', silverFb: 'Good 75% Silver high outlet! Sliding inside to the High Slot soft ice creates a Grade-A one-timer angle.' },
+      'spacing-2':            { bucket_code: 'oz_royal_road_net_front',     tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Rim the puck safely around behind the net toward weak-side point #7', silverFb: 'Good 75% Silver possession play! Hitting #14 wide open in the High Slot generates an immediate Grade-A shot.' },
+      'cycle-pov':            { bucket_code: 'oz_cycle_scissors',           tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Reverse the cycle behind the goal line toward far-side point #7', silverFb: 'Good 75% Silver cycle retention! Feeding #14 uncovered in the High Slot attacks the middle before defenders recover.' },
+      'house-1':              { bucket_code: 'dz_protect_house_box1',       tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold conservative goal-line net-front support right beside the post', silverFb: 'Good 75% Silver net protection! Stepping into the Low House between the dots locks up the slot shooter\'s stick earlier.' },
+      'house-2':              { bucket_code: 'dz_protect_house_box1',       tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold deep mid-slot cushion just above the crease', silverFb: 'Good 75% Silver House awareness! Stepping into the High House blocks both trailer R2 and the point shooting lane.' },
+      'breakout-1':           { bucket_code: 'breakout_winger_wall_chip',   tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold higher up the boards near the top of the circle facing the puck', silverFb: 'Good 75% Silver boards width! Dropping lower to the hashmarks shortens the pass so forecheckers cannot jump it.' },
+      'breakout-2':           { bucket_code: 'breakout_low_slow_center',    tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Swing wider across the middle slot at the top of the circles', silverFb: 'Good 75% Silver middle support! Curling lower underneath the faceoff dots gives #14 a cleaner, shorter outlet in stride.' },
+      'breakout-dtod':        { bucket_code: 'breakout_d_to_d',             tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Chip the puck softly off the back glass toward weak-side winger #7', silverFb: 'Good 75% Silver pressure relief! Crisp D-to-D tape-to-tape to partner #4 behind the net maintains clean controlled possession.' },
+      'regroup-nz':           { bucket_code: 'nz_regroup_hinge',            tier_level: 'B',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Carry two strides up the weak side and chip deep into the far corner', silverFb: 'Good 75% Silver safe advance! Hitting #14 in stride on the weak-side blue-line seam gives your team a controlled speed entry.' },
+      'rush-1':               { bucket_code: 'odd_man_rush_2v1_3v2',        tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Trail slightly higher at the top of the far circle as a drop option', silverFb: 'Good 75% Silver rush width! Driving the far dot lane all the way to the back post forces D1 into an impossible choice.' },
+      'rush-2v1-dish':        { bucket_code: 'odd_man_rush_2v1_3v2',        tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Pull up on the half-wall to wait for trailing defenseman #4', silverFb: 'Good 75% Silver patience! Because D1 stepped directly at you, dishing immediately across to #14 scores into an open net.' },
+      'rush-2v1-shoot':       { bucket_code: 'odd_man_rush_2v1_3v2',        tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Curl back on the dot and pass high to trailing point #4', silverFb: 'Good 75% Silver possession keep! Because D1 cheated to cover #14, walking in and ripping the shot is the 100% Gold read.' },
+      'rush-2':               { bucket_code: 'odd_man_rush_2v1_3v2',        tier_level: 'AA',  divs: ['10U','12U','14U','16U','18U'],      silverText: 'Hold wider near the weak-side top of the circle above the play', silverFb: 'Good 75% Silver F3 depth! Gliding right into the middle High Slot gives you the prime royal-road shooting angle.' },
+      'forecheck-212':        { bucket_code: 'forecheck_212_f1_f2_f3',      tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold mid-circle containment angle between RW and the slot', silverFb: 'Good 75% Silver containment! Pinching all the way onto the hashmarks wall seals RD1\'s rim outlet before RW touches it.' },
+      'backcheck-track':      { bucket_code: 'nz_angling_gap_control_122',  tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Track back to the top of the defensive blue line above R3', silverFb: 'Good 75% Silver middle track! Sprinting deeper into the High Slot lets you lift trailer R3\'s stick on the pass.' },
+      'transition-1':         { bucket_code: 'nz_speed_entry_middle_drive', tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Skate wide into the opposite circle for a secondary perimeter angle', silverFb: 'Good 75% Silver motion! Cutting straight down the open middle lane behind puck-watching D1 creates a clean breakaway.' },
+      'transition-2':         { bucket_code: 'breakout_low_slow_center',    tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Slide back toward Left Point #4 for a long reset', silverFb: 'Good 75% Silver reset angle! Dropping into the closer Hinge pocket behind #14 gives a much easier short escape pass.' },
+      'pp-umbrella':          { bucket_code: 'special_teams_5v4_umbrella',  tier_level: 'AA',  divs: ['12U','14U','16U','18U'],            silverText: 'Hold high along the half-wall boards near the blue line', silverFb: 'Good 75% Silver Umbrella width! Stepping inside onto the faceoff dot makes you a lethal one-timer threat.' },
+      'pk-box':               { bucket_code: 'special_teams_5v4_umbrella',  tier_level: 'AAA', divs: ['12U','14U','16U','18U'],            silverText: 'Collapse deeper to the edge of the crease in a tight 4-man diamond', silverFb: 'Good 75% Silver crease protection! Holding the High Box corner inside the dots also blocks the cross-seam one-timer lane.' },
+      'protect-cutback-wall': { bucket_code: 'oz_cycle_scissors',           tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Chip the puck softly down behind the goal line to reset the cycle', silverFb: 'Good 75% Silver low chip! Shielding with your hips and cutting back up the half-wall keeps full puck possession in high ice.' },
+      'delay-high-slot':      { bucket_code: 'scanning_deception_callouts', tier_level: 'AAA', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Delay on the wall and dish back to Left Point defenseman #4', silverFb: 'Good 75% Silver delay outlet! Using the look-off to hit trailer #14 walking into the High Slot creates an unscreened one-timer.' },
+      'd-gap-1v1':            { bucket_code: 'dz_corner_containment_stick', tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold deeper inside-out cushion near the low hashmarks dot', silverFb: 'Good 75% Silver inside leverage! Closing the gap slightly earlier at the circle forces R1 wide before shooting range.' },
+      'd-2v1-slide':          { bucket_code: 'dz_corner_containment_stick', tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Drop slightly deeper toward the crease edge in the middle lane', silverFb: 'Good 75% Silver seam awareness! Holding the Royal Road lane just above the crease denies the pass without screening our goalie.' },
+      'd-netfront-boxout':    { bucket_code: 'dz_protect_house_box1',       tier_level: 'A',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold weak-side post position beside R2 without over-committing', silverFb: 'Good 75% Silver post coverage! Stepping directly net-side of R2 clears our goalie\'s sightline and ties up R2\'s stick.' },
+      'd-blueline-walk':      { bucket_code: 'oz_royal_road_net_front',     tier_level: 'AA',  divs: ['12U','14U','16U','18U'],            silverText: 'Move the puck D-to-D across the blue line to Right Point #4', silverFb: 'Good 75% Silver D-to-D keep! Because you already walked past W1 into the open middle lane, firing low to #14\'s tip blade is Gold.' },
+      'goalie-angle-depth':   { bucket_code: 'goalie_crease_angles_traps',  tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold conservative mid-crease squareness on the puck line', silverFb: 'Good 75% Silver squareness! Telescoping to the top edge of the blue paint cuts down even more upper-corner net.' },
+      'goalie-screen-look':   { bucket_code: 'goalie_crease_angles_traps',  tier_level: 'B',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Hold mid-crease depth and peek over the glove-side shoulder', silverFb: 'Good 75% Silver screen battle! Shifting your sightline window to the shooter\'s stick-blade side tracks the release fastest.' },
+      'goalie-rim-comm':      { bucket_code: 'breakout_d_to_d',             tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Leave the puck cleanly behind the net with a loud "Hard!" call for #4', silverFb: 'Good 75% Silver communication! Dishing a crisp reverse pass directly onto #4\'s tape beats the forecheck a full second faster.' },
+      'goalie-rebound-steer': { bucket_code: 'goalie_crease_angles_traps',  tier_level: 'AA',  divs: ['12U','14U','16U','18U'],            silverText: 'Smother and freeze the low shot into your chest for a whistle', silverFb: 'Good 75% Silver whistle control! Steering the active stick rebound directly to open #14 in the corner launches an instant breakout.' }
+    };
+
+    function enrichSingleScenarioForV125(scen) {
+      if (!scen) return scen;
+      const meta = CANONICAL_SCENARIO_CURRICULUM_MAP[scen.id];
+      if (meta) {
+        scen.bucket_code = meta.bucket_code;
+        scen.tier_level = meta.tier_level;
+        scen.allowed_divisions = meta.divs.slice();
+      } else {
+        if (!scen.bucket_code) scen.bucket_code = 'oz_attack_triangle_spacing';
+        if (!scen.tier_level) scen.tier_level = (scen.tier || 1) <= 4 ? 'Rec' : ((scen.tier || 1) <= 6 ? 'B' : ((scen.tier || 1) <= 8 ? 'A' : 'AA'));
+        if (!Array.isArray(scen.allowed_divisions) || !scen.allowed_divisions.length) {
+          scen.allowed_divisions = scen.minAge === '12U' ? ['12U','14U','16U','18U'] : (scen.minAge === '10U' ? ['10U','12U','14U','16U','18U'] : ['8U','10U','12U','14U','16U','18U']);
+        }
+      }
+      // Refine ambiguous defender clearance on Left Point & Blue-Line Walk so Gold lane is geometrically unmistakable
+      if (scen.id === 'basics-defense' && Array.isArray(scen.defenders)) {
+        const w1 = scen.defenders.find(d => d.id === 'D4');
+        if (w1) { w1.x = 0.75; w1.y = 0.34; }
+      }
+      if (scen.id === 'd-blueline-walk' && Array.isArray(scen.defenders)) {
+        const d2 = scen.defenders.find(d => d.id === 'D2');
+        if (d2) { d2.x = 0.89; d2.y = 0.57; }
+      }
+      if (Array.isArray(scen.readChoices) && scen.readChoices.length === 3 && !scen.readChoices.some(c => c.silver)) {
+        const silverEntry = {
+          text: (meta && meta.silverText) || 'Hold a conservative support cushion away from defender traffic before scanning the primary lane',
+          correct: true,
+          silver: true,
+          multiplier: 0.75,
+          feedback: (meta && meta.silverFb) || 'Good 75% Silver support read! Attacking the primary open Gold lane creates an even higher-percentage play.'
+        };
+        scen.readChoices = [
+          { ...scen.readChoices[0], correct: true, silver: false, multiplier: 1.0 },
+          silverEntry,
+          { ...scen.readChoices[1], correct: false, silver: false, multiplier: 0 },
+          { ...scen.readChoices[2], correct: false, silver: false, multiplier: 0 }
+        ];
+      }
+      return scen;
+    }
+    window.enrichSingleScenarioForV125 = enrichSingleScenarioForV125;
+
+    SCENARIOS.forEach(s => {
+      enrichSingleScenarioForV125(s);
+      ensureScenarioConsensusZones(s);
+    });
 
     function buildPermutedScenario(baseScen, seed) {
       const clone = JSON.parse(JSON.stringify(baseScen));
@@ -10958,15 +11186,30 @@
     }
 
     // =========================================================================
-    // v12.1 TWO-WAY ADAPTIVE SOLO IQ ENGINE & COACH HOMEWORK FIREWALL
-    // (`computeAdaptiveNextScenario`, `computeStartingAdaptiveLevel`, `recordAdaptivePlayOutcome`)
+    // v12.5 MACHINE-READABLE ADAPTIVE SOLO IQ ENGINE & COACH HOMEWORK FIREWALL
+    // (`specs/adaptive_iq_rules.json` synced to `window.SYNAPZ_ADAPTIVE_IQ_RULES`)
     // =========================================================================
+    const SYNAPZ_ADAPTIVE_IQ_RULES = {
+      schemaVersion: '12.5.0',
+      milestone: 'synapz-hockey-v12.5-curriculum-iq-verified',
+      ageDivisions: ['8U', '10U', '12U', '14U', '16U', '18U'],
+      competitiveSubTiers: ['Rec', 'B', 'A', 'AA', 'AAA'],
+      experienceLevels: ['Novice', 'Beginner', 'Intermediate', 'Advanced'],
+      startingProfileIq: 0,
+      multipliers: { gold: 1.0, silver: 0.75, bronze: 0.50, miss: 0, samePlayRetryCap: 0.50 },
+      streakBonuses: { hotStreakMinGoldStreak: 3, hotStreakBonusIq: 5, onFireMinGoldStreak: 5, onFireBonusIq: 10 },
+      redemptionShift: { enabledOnAnyMissedConcept: true, delayPlaysAfterMiss: 3, redemptionGoldBonusIq: 15, redemptionSilverBonusIq: 8 },
+      cityRegulationUnlockRatio: 0.70,
+      coachAssignedInboxPlansImmutable: true
+    };
+    window.SYNAPZ_ADAPTIVE_IQ_RULES = SYNAPZ_ADAPTIVE_IQ_RULES;
+
     const ADAPTIVE_COMPLEXITY_LADDER = [
-      { level: 0, code: '8U_FOUNDATIONAL', effectiveAge: '8U', maxTier: 1, tierCodes: ['Rec'], label: '8U Foundational (Offsides, Support & Net-Front)' },
-      { level: 1, code: '10U_FUNDAMENTALS', effectiveAge: '10U', maxTier: 2, tierCodes: ['Rec', 'B'], label: '10U Fundamentals (Breakouts & Lanes)' },
-      { level: 2, code: '12U_INTERMEDIATE', effectiveAge: '12U', maxTier: 3, tierCodes: ['A', 'AA'], label: '12U Intermediate (Angling & Gap Reads)' },
-      { level: 3, code: '14U_ADVANCED', effectiveAge: '14U', maxTier: 4, tierCodes: ['AA', 'AAA'], label: '14U Advanced (Weak-Side & Special Teams)' },
-      { level: 4, code: '16U_18U_PRO', effectiveAge: '18U', maxTier: 5, tierCodes: ['AAA'], label: '16U/18U Pro Speed (Deception & Multi-Layer)' }
+      { level: 0, tierNumber: 1, code: '8U_FOUNDATIONAL',  effectiveAge: '8U',  maxTier: 6,  tierCodes: ['Rec'],       label: 'Tier 1 — 8U Fundamentals (Offsides, Support & House)' },
+      { level: 1, tierNumber: 2, code: '10U_FUNDAMENTALS', effectiveAge: '10U', maxTier: 7,  tierCodes: ['Rec', 'B'],  label: 'Tier 2 — 10U Fundamentals (Breakouts, Hinge & Lanes)' },
+      { level: 2, tierNumber: 3, code: '12U_INTERMEDIATE', effectiveAge: '12U', maxTier: 8,  tierCodes: ['B', 'A'],    label: 'Tier 3 — 12U Intermediate (Angling, 2-1-2 & Gap Reads)' },
+      { level: 3, tierNumber: 4, code: '14U_ADVANCED',     effectiveAge: '14U', maxTier: 10, tierCodes: ['A', 'AA'],   label: 'Tier 4 — 14U Advanced (Weak-Side Cycle & Special Teams)' },
+      { level: 4, tierNumber: 5, code: '16U_18U_PRO',      effectiveAge: '18U', maxTier: 10, tierCodes: ['AA', 'AAA'], label: 'Tier 5 — 16U/18U Pro Speed (Deception, Umbrella & PK Box)' }
     ];
 
     function parseNormalizedBaseAgeGroup(rawDiv) {
@@ -10981,15 +11224,28 @@
     }
     window.parseNormalizedBaseAgeGroup = parseNormalizedBaseAgeGroup;
 
+    function computeMaxAllowedAdaptiveLevel(prof) {
+      const p = prof || {};
+      const baseDiv = parseNormalizedBaseAgeGroup(p.divisionLabel || p.ageGroup || '12U');
+      const exp = String(p.experienceLevel || 'Beginner').trim();
+      if (baseDiv === '8U') return 1;
+      if (baseDiv === '10U') return (exp === 'Intermediate' || exp === 'Advanced') ? 3 : 2;
+      if (baseDiv === '12U') return (exp === 'Intermediate' || exp === 'Advanced') ? 4 : 3;
+      return 4;
+    }
+    window.computeMaxAllowedAdaptiveLevel = computeMaxAllowedAdaptiveLevel;
+
     function computeStartingAdaptiveLevel(prof) {
       const p = prof || {};
       const baseDiv = parseNormalizedBaseAgeGroup(p.divisionLabel || p.ageGroup || '12U');
       const exp = String(p.experienceLevel || 'Beginner').trim();
-      // Rule 1: If Division === '8U', ALWAYS start at 8U foundational concepts even if 'Advanced' was selected!
+      // Rule 1: 8U ALWAYS starts at Tier 1 (8U Fundamentals, level 0) regardless of Experience Level!
       if (baseDiv === '8U') return 0;
-      // Rule 2: If Experience Level === 'Novice' (even for 12U, 14U, 16U, or 18U), start at foundational 8U/10U concepts first!
-      if (exp.toLowerCase() === 'novice') return 0;
-      // Rule 3: Otherwise start at division-matched complexity
+      // Rule 2: Any 10U–18U with Novice starts at Tier 1–2 Fundamentals (0 for 10U–14U, 1 for 16U–18U)!
+      if (exp.toLowerCase() === 'novice') {
+        return (baseDiv === '16U' || baseDiv === '18U') ? 1 : 0;
+      }
+      // Rule 3: Division-matched starting tier across Beginner, Intermediate, Advanced
       if (baseDiv === '10U') {
         return exp === 'Advanced' ? 2 : 1;
       }
@@ -11017,6 +11273,9 @@
       if (typeof prof.adaptiveConsecutiveGold !== 'number') prof.adaptiveConsecutiveGold = 0;
       if (typeof prof.adaptiveConsecutiveWrong !== 'number') prof.adaptiveConsecutiveWrong = 0;
       if (!Array.isArray(prof.adaptiveRollingHistory)) prof.adaptiveRollingHistory = [];
+      if (!Array.isArray(prof.recentShiftScenarioIds)) prof.recentShiftScenarioIds = [];
+      if (!Array.isArray(prof.redemptionShiftQueue)) prof.redemptionShiftQueue = [];
+      if (typeof prof.totalSoloPlaysCompleted !== 'number') prof.totalSoloPlaysCompleted = 0;
       if (typeof prof.firstShiftDrillsCompleted !== 'number') prof.firstShiftDrillsCompleted = 0;
       return prof;
     }
@@ -11123,14 +11382,16 @@
 
       let steppedDirection = 'steady';
       const baseDiv = parseNormalizedBaseAgeGroup(p.divisionLabel || p.ageGroup || '12U');
-      const maxAllowedLevel = baseDiv === '8U' ? 1 : 4;
+      const maxAllowedLevel = computeMaxAllowedAdaptiveLevel(p);
+      const isNoviceFastTrack = String(p.experienceLevel || '').toLowerCase() === 'novice' && ['14U', '16U', '18U'].includes(baseDiv) && p.adaptiveLevel === 0;
 
       if (isGold) {
         p.adaptiveConsecutiveGold += 1;
         p.adaptiveConsecutiveWrong = 0;
         if (p.adaptiveConsecutiveGold >= 3) {
           if (p.adaptiveLevel < maxAllowedLevel) {
-            p.adaptiveLevel += 1;
+            const stepDelta = isNoviceFastTrack ? Math.min(2, maxAllowedLevel - p.adaptiveLevel) : 1;
+            p.adaptiveLevel += stepDelta;
             steppedDirection = 'up';
           }
           p.adaptiveConsecutiveGold = 0;
@@ -11199,13 +11460,13 @@
 
       let candidates = SCENARIOS.filter(s => {
         if (effAge === '8U') {
-          return s.minAge === '8U' || (Array.isArray(s.allowed_divisions) && s.allowed_divisions.includes('8U')) || (s.tier || 1) === 1;
+          return isScenarioAllowedForAge(s, '8U', posCode === 'LD' || posCode === 'RD', posCode === 'G');
         }
         return (s.tier || 1) <= ladderRow.maxTier && isScenarioAllowedForAge(s, effAge, posCode === 'LD' || posCode === 'RD', posCode === 'G');
       });
 
       const tierFiltered = candidates.filter(s => ladderRow.tierCodes.includes(s.tier_level || 'Rec'));
-      if (tierFiltered.length >= 3) {
+      if (tierFiltered.length >= 12) {
         candidates = tierFiltered;
       }
 
@@ -11218,9 +11479,19 @@
         if (posMatches.length > 0) candidates = posMatches;
       }
 
-      if (!candidates.length) candidates = SCENARIOS.slice(0, 8);
-      const qOffset = Math.max(0, Number(opts.questionIndex != null ? opts.questionIndex : ((state.seriesQuestionNum || 1) - 1 + (state.currentCityIdx || 0))));
-      const chosen = candidates[qOffset % candidates.length] || SCENARIOS[0];
+      if (!candidates.length) candidates = SCENARIOS.slice(0, 12);
+
+      // Non-Repeating Shift Selector: exclude scenarios already played in the current 10-play shift unless pool is exhausted
+      const recentIds = Array.isArray(prof.recentShiftScenarioIds) ? prof.recentShiftScenarioIds : [];
+      const freshCandidates = candidates.filter(s => !recentIds.includes(s.id));
+      const selectionPool = freshCandidates.length > 0 ? freshCandidates : candidates;
+
+      const rotSeed = Math.max(0, Number(opts.questionIndex != null ? opts.questionIndex : ((state.currentCityIdx || 0) * 3)));
+      const chosen = selectionPool[rotSeed % selectionPool.length] || SCENARIOS[0];
+      if (!opts.dryRun && Array.isArray(prof.recentShiftScenarioIds) && !prof.recentShiftScenarioIds.includes(chosen.id)) {
+        prof.recentShiftScenarioIds.push(chosen.id);
+        if (prof.recentShiftScenarioIds.length > 10) prof.recentShiftScenarioIds.shift();
+      }
 
       return {
         scenario: chosen,
@@ -11229,6 +11500,7 @@
         adaptiveLevel: prof.adaptiveLevel,
         ladderCode: ladderRow.code,
         tierCode: chosen.tier_level || ladderRow.tierCodes[0],
+        candidatePoolSize: candidates.length,
         focusMyPositionOnly: posOnlyActive,
         lockedByCoachHomework: false
       };
@@ -11253,13 +11525,39 @@
         state.activeScenarioInstance = buildPermutedScenario(otBase, state.permutationSeed + 7);
         return state.activeScenarioInstance;
       }
-      // Hard Firewall: If Coach-Assigned Homework is active, use the exact locked Coach drill!
-      if (state.isCoachAssignedHomework || state.activeHomeworkPack) {
+      // Hard Firewall: If Coach-Assigned Homework / Coach Inbox Plan is active, use the exact locked Coach drill!
+      if (state.isCoachAssignedHomework || state.activeHomeworkPack || state.activeCoachInboxPlan) {
         const hwPick = computeAdaptiveNextScenario(prof, { isCoachHomework: true });
         state.activeScenarioInstance = buildPermutedScenario(hwPick.scenario, state.permutationSeed + state.seriesQuestionNum);
         return state.activeScenarioInstance;
       }
-      // Automatic Deficiency Detection & Spaced Repetition Queue: inject queued permutation (5v5, 4v4, mirrored side)
+      // v12.5 3-Play-Later Redemption Shift (`Play N+3` after ANY missed concept, rotated/mirrored orientation):
+      const nextPlayIdx = (Number(prof.totalSoloPlaysCompleted) || 0) + 1;
+      if (Array.isArray(prof.redemptionShiftQueue) && prof.redemptionShiftQueue.length > 0) {
+        const dueIdx = prof.redemptionShiftQueue.findIndex(item => nextPlayIdx >= item.dueAtPlay);
+        if (dueIdx >= 0) {
+          const dueItem = prof.redemptionShiftQueue.splice(dueIdx, 1)[0];
+          const ageSafeAll = SCENARIOS.filter(s => isScenarioAllowedForAge(s, is8U ? '8U' : activeAgeGroup));
+          let sameBucketPool = ageSafeAll.filter(s => s.bucket_code && s.bucket_code === dueItem.bucketCode);
+          if (!sameBucketPool.length) {
+            sameBucketPool = ageSafeAll.filter(s => s.concept === dueItem.concept);
+          }
+          // Prefer a sibling scenario in the same bucket if unplayed in this shift, or rotate/mirror the missed scenario with an odd seed
+          const sibling = sameBucketPool.find(s => s.id !== dueItem.scenarioId && !(prof.recentShiftScenarioIds || []).includes(s.id));
+          const repBase = sibling || sameBucketPool.find(s => s.id === dueItem.scenarioId) || sameBucketPool[0] || SCENARIOS[0];
+          const oddMirrorSeed = ((state.permutationSeed || 0) * 2) + 1; // Guarantees mirrorY = true when !lockSide
+          const permuted = buildPermutedScenario(repBase, oddMirrorSeed);
+          permuted.isRedemptionShift = true;
+          permuted.isSpacedRepetition = true;
+          permuted.redemptionOriginPlay = dueItem.missedAtPlay;
+          permuted.redemptionBucketCode = dueItem.bucketCode;
+          permuted.spacedRepBadge = '🔁 Redemption Shift (Rotated Read • +15 Gold Transfer Bonus)';
+          state.activeScenarioInstance = permuted;
+          saveProgress();
+          return state.activeScenarioInstance;
+        }
+      }
+      // Legacy Spaced Repetition Queue fallback
       if (Array.isArray(prof.spacedRepetitionQueue) && prof.spacedRepetitionQueue.length > 0) {
         const nextRep = prof.spacedRepetitionQueue.shift();
         let repBase = SCENARIOS.find(s => s.id === nextRep.scenarioId) ||
@@ -12062,11 +12360,11 @@
           hoverFill: z.hoverRgba,
           x: isGold ? tx : z.cx,
           y: isGold ? ty : z.cy,
-          multiplier: isGold ? 1.0 : (isSilver ? 0.8 : 0),
+          multiplier: isGold ? 1.0 : (isSilver ? 0.75 : 0),
           badge: isGold
             ? '🥇 Great Read! Best Play on the Ice (100% Gold IQ)'
-            : (isSilver ? '🥈 Good Play! Open Second Option (80% Silver IQ)' : ''),
-          feedback: isGold ? okChoice.feedback : (isSilver ? 'Good secondary zone support!' : badChoice.feedback)
+            : (isSilver ? '🥈 Good Play! Open Second Option (75% Silver IQ)' : ''),
+          feedback: isGold ? okChoice.feedback : (isSilver ? 'Good 75% Silver secondary zone support!' : badChoice.feedback)
         };
       });
     }
@@ -12128,6 +12426,13 @@
         state.flowFreezeAnimId = null;
       }
       state.preFreezePaths = buildPreFreezeSkatingPaths(activeScen);
+      if (window.__SYNAPZ_TEST_MODE__ === true && window.__SYNAPZ_FAST_SIM__ === true) {
+        state.flowFreezePhase = 'frozen';
+        state.flowFreezeProgress = 1;
+        state.freezePulseStartMs = performance.now();
+        drawRink();
+        return;
+      }
       state.flowFreezePhase = 'flowing';
       state.flowFreezeProgress = 0;
       state.flowFreezeDurationMs = durationMs;
@@ -12457,7 +12762,8 @@
       document.getElementById('drillCounter').textContent = state.overtimeRedemptionActive ? 'Play OT of 10' : `Play ${state.seriesQuestionNum} of 10`;
       const iqBucksPill = document.getElementById('cleanGameIqBucksPill');
       if (iqBucksPill) {
-        iqBucksPill.textContent = `🧠 ${state.iqScore || 100}% IQ • 💰 $${state.puckBucks || 0} Puck Bucks`;
+        const curIq = typeof state.iqScore === 'number' ? state.iqScore : 0;
+        iqBucksPill.textContent = `🧠 ${curIq}% IQ • 💰 $${state.puckBucks || 0} Puck Bucks`;
       }
 
       const rawPromptSource = is8U
@@ -14570,6 +14876,14 @@
       if (success) SoundFX.playGoalHorn();
       else SoundFX.playBuzzer();
 
+      if (window.__SYNAPZ_TEST_MODE__ === true && window.__SYNAPZ_FAST_SIM__ === true) {
+        state.animProgress = 1;
+        state.animPhase = 'done';
+        state.showHint = true;
+        drawRink();
+        recordPlayResult(scen, success, message, state.lastConsensusMultiplier, state.lastConsensusBadge);
+        return;
+      }
       const start = performance.now();
       function step(now) {
         state.animProgress = Math.min(1, (now - start) / 620);
@@ -14993,12 +15307,22 @@
       state.pillarStats[pKey].attempts += 1;
 
       const qMaxPts = state.overtimeRedemptionActive ? 75 : getQuestionPointValue(); // 10, 20, 30 ... 100 (or 75 in 3v3 OT)
-      const mult = (typeof consensusMultiplier === 'number' && consensusMultiplier > 0) ? consensusMultiplier : (isCorrect ? 1.0 : 0);
+      const rawMult = (typeof consensusMultiplier === 'number' && consensusMultiplier > 0) ? consensusMultiplier : (isCorrect ? 1.0 : 0);
+      if (!state.samePlayAttemptedIds) state.samePlayAttemptedIds = {};
+      const samePlayKey = `${state.currentCityIdx || 0}_${state.seriesQuestionNum || 1}_${scen.id || 'scen'}`;
+      const isSamePlayRetry = Boolean(state.samePlayAttemptedIds[samePlayKey] && !scen.isRedemptionShift);
+      const mult = (isCorrect && rawMult > 0)
+        ? (isSamePlayRetry ? Math.min(rawMult, 0.50) : rawMult)
+        : 0;
+      state.samePlayAttemptedIds[samePlayKey] = true;
+
       const qAwardedPts = Math.round(qMaxPts * mult);
       const tierHeadline = mult >= 0.99
         ? '🥇 Great Read! Best Play on the Ice (100% Gold IQ)'
-        : (mult >= 0.75 ? '🥈 Good Play! Open Second Option (80% Silver IQ)' : '🥉 Safe Play! Playable Support Spot (60% Bronze IQ)');
-      const profForFb = getActiveProfile() || {};
+        : (mult >= 0.70 ? '🥈 Good Play! Open Second Option (75% Silver IQ)' : '🥉 Safe Play! Playable Support Spot (50% Bronze IQ)');
+      const profForFb = ensureProfileAdaptiveState(getActiveProfile() || {});
+      profForFb.totalSoloPlaysCompleted = (Number(profForFb.totalSoloPlaysCompleted) || 0) + 1;
+      const isCoachHomeworkLocked = Boolean(state.isCoachAssignedHomework || state.activeHomeworkPack || state.activeCoachInboxPlan);
       recordAdaptivePlayOutcome(profForFb, scen, isCorrect, mult);
       const plainMessage = formatPlainLanguageCoachFeedback(
         scen,
@@ -15007,21 +15331,39 @@
       );
 
       if (isCorrect && mult > 0) {
+        state.streak += 1;
+        if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+        const streakBonusIq = mult >= 0.99
+          ? (state.streak >= 5 ? 10 : (state.streak >= 3 ? 5 : 0))
+          : 0;
+        const redemptionBonusIq = scen.isRedemptionShift
+          ? (mult >= 0.99 ? 15 : 8)
+          : 0;
         const speedBonusIq = state.speedBonusActive ? 10 : 0;
         const speedBonusBucks = state.speedBonusActive ? 15 : 0;
         const proHabitActive = Boolean(state.deceptionActive || state.holdProtectActive || (state.activePresentationStyle === 'habit_combo' && state.habitComboScanned && state.habitComboCalledOut));
         const habitBonusIq = proHabitActive ? 10 : 0;
         const habitBonusBucks = proHabitActive ? 15 : 0;
-        const totalBonusIq = speedBonusIq + habitBonusIq;
-        const totalBonusBucks = speedBonusBucks + habitBonusBucks;
+        const totalBonusIq = speedBonusIq + habitBonusIq + streakBonusIq + redemptionBonusIq;
+        const totalBonusBucks = speedBonusBucks + habitBonusBucks + redemptionBonusIq;
         state.conceptStats[scen.concept].correct += 1;
         state.pillarStats[pKey].correct += 1;
-        state.iqScore += qAwardedPts + totalBonusIq;
-        state.puckBucks += qAwardedPts + totalBonusBucks; // Earn PuckBucks equal to graded question value + Speed/Habit Bonus!
+        state.iqScore = (typeof state.iqScore === 'number' ? state.iqScore : 0) + qAwardedPts + totalBonusIq;
+        profForFb.iqScore = state.iqScore;
+        state.puckBucks += qAwardedPts + totalBonusBucks; // Earn PuckBucks equal to graded question value + Speed/Habit/Redemption Bonus!
         state.seriesPointsEarned += qAwardedPts;
-        state.streak += 1;
-        if (state.streak > state.bestStreak) state.bestStreak = state.streak;
         state.completedIds[scen.id] = true;
+        state.lastAwardedPlayTelemetry = {
+          qMaxPts,
+          qAwardedPts,
+          multiplier: mult,
+          streakBonusIq,
+          redemptionBonusIq,
+          isRedemptionShift: Boolean(scen.isRedemptionShift),
+          isSamePlayRetry,
+          totalIqDelta: qAwardedPts + totalBonusIq,
+          newIqScore: state.iqScore
+        };
         // Phase 6: Record exact organic scenario permutation hash so a mastered drill never repeats verbatim
         const permHash = scen.permutationHash || `${scen.id || 'scen'}_rot${(state.permutationSeed || 0) % 4}_${profForFb.position || 'C'}_${state.activePresentationStyle || 'flow_and_freeze'}`;
         if (!state.completedScenarioPermutationHashes) state.completedScenarioPermutationHashes = {};
@@ -15035,7 +15377,9 @@
         const lamps = document.getElementById('goalLampsOverlay');
         const speedTag = state.speedBonusActive ? ' + ⚡ SPEED BONUS!' : '';
         const habitTag = proHabitActive ? ' + 🎭🛡️ PRO HABIT BONUS (+10 IQ)!' : '';
-        const bonusTag = `${speedTag}${habitTag}`;
+        const streakTag = streakBonusIq > 0 ? ` + 🔥 STREAK BONUS (+${streakBonusIq} IQ)!` : '';
+        const redempTag = redemptionBonusIq > 0 ? ` + 🔁 REDEMPTION TRANSFER (+${redemptionBonusIq} IQ)!` : '';
+        const bonusTag = `${speedTag}${habitTag}${streakTag}${redempTag}`;
         document.getElementById('lampPointsAwarded').textContent = `${consensusBadge || tierHeadline} • +${qAwardedPts + totalBonusIq} IQ PTS & +$${qAwardedPts + totalBonusBucks}!${bonusTag}`;
         lamps.classList.remove('hidden');
 
@@ -15058,36 +15402,48 @@
         CoachVoice.speak(`${plainMessage}`, '🚨 Coach Bob', false);
       } else {
         state.streak = 0;
-        const prof = getActiveProfile();
+        const prof = ensureProfileAdaptiveState(getActiveProfile());
         if (!prof.conceptMisses) prof.conceptMisses = {};
         if (!prof.deficientConcepts) prof.deficientConcepts = {};
         if (!Array.isArray(prof.spacedRepetitionQueue)) prof.spacedRepetitionQueue = [];
+        if (!Array.isArray(prof.redemptionShiftQueue)) prof.redemptionShiftQueue = [];
         if (!Array.isArray(prof.missedScenarios)) prof.missedScenarios = [];
 
         const cKey = scen.concept || 'spacing';
+        const bKey = scen.bucket_code || cKey;
         prof.conceptMisses[cKey] = (prof.conceptMisses[cKey] || 0) + 1;
         if (!prof.missedScenarios.some(m => m.id === scen.id)) {
-          prof.missedScenarios.push({ id: scen.id, title: scen.title, concept: cKey });
+          prof.missedScenarios.push({ id: scen.id, title: scen.title, concept: cKey, bucketCode: bKey });
         }
-        // Automatic Deficiency Detection & Spaced Repetition: when a player misses a concept twice, flag & queue 3 fresh permutations (5v5, 4v4, mirrored side)
+        // v12.5 3-Play-Later Redemption Shift (`Play N+3` scheduled after ANY missed concept unless Coach Homework is active)
+        if (!isCoachHomeworkLocked) {
+          const curCompleted = Number(prof.totalSoloPlaysCompleted) || 1;
+          const alreadyScheduled = prof.redemptionShiftQueue.some(q => q.bucketCode === bKey);
+          if (!alreadyScheduled && prof.redemptionShiftQueue.length < 6) {
+            prof.redemptionShiftQueue.push({
+              missedAtPlay: curCompleted,
+              dueAtPlay: curCompleted + 3,
+              scenarioId: scen.id,
+              concept: cKey,
+              bucketCode: bKey
+            });
+          }
+        }
         if (prof.conceptMisses[cKey] >= 2) {
           prof.deficientConcepts[cKey] = true;
-          const matchingScens = SCENARIOS.filter(s => s.concept === cKey && isScenarioAllowedForAge(s, prof.ageGroup));
-          const s1 = (matchingScens[0] || scen).id;
-          const s2 = (matchingScens[1] || matchingScens[0] || scen).id;
-          const s3 = (matchingScens[2] || matchingScens[0] || scen).id;
-          const is8U = (prof.ageGroup || '12U') === '8U';
-          const newPerms = [
-            { scenarioId: s1, concept: cKey, seed: state.permutationSeed + 2, skaters: 5, situationLabel: is8U ? '5-on-5 Even Strength' : '5v5 Full Unit' },
-            { scenarioId: s2, concept: cKey, seed: state.permutationSeed + 3, skaters: is8U ? 5 : 4, situationLabel: is8U ? '5-on-5 Even Strength' : '4v4 Open Ice' },
-            { scenarioId: s3, concept: cKey, seed: state.permutationSeed + 1, skaters: 5, situationLabel: is8U ? '5-on-5 Even Strength' : 'Mirrored Weak-Side' }
-          ];
-          newPerms.forEach(np => {
-            if (prof.spacedRepetitionQueue.length < 6) {
-              prof.spacedRepetitionQueue.push(np);
-            }
-          });
         }
+        state.lastAwardedPlayTelemetry = {
+          qMaxPts,
+          qAwardedPts: 0,
+          multiplier: 0,
+          streakBonusIq: 0,
+          redemptionBonusIq: 0,
+          isRedemptionShift: Boolean(scen.isRedemptionShift),
+          isSamePlayRetry,
+          totalIqDelta: 0,
+          newIqScore: state.iqScore,
+          scheduledRedemptionAtPlay: !isCoachHomeworkLocked ? ((Number(prof.totalSoloPlaysCompleted) || 1) + 3) : null
+        };
         if (!state.overtimeRedemptionActive) {
           state.seriesResults.push({ pts: 0, maxPts: qMaxPts, correct: false, multiplier: 0 });
         }
@@ -15272,7 +15628,7 @@
             : (pct < 85 ? [finishedPlan.focusConcept || 'Breakouts'] : []);
           window.completeCoachInboxPlan(finishedPlan.planId, pct, struggles).catch(() => {});
         }
-        const passThresholdPts = Math.round(maxAvailable * 0.8);
+        const passThresholdPts = Math.round(maxAvailable * 0.70); // v12.5 Regulation City Unlock: 70% (385/550 Pts)
 
         if (earned >= passThresholdPts) {
           SoundFX.playGoalHorn();
@@ -15283,8 +15639,10 @@
           if (state.currentCityIdx < NHL_CITIES.length - 1) {
             state.currentCityIdx += 1;
           }
-          const prof = getActiveProfile();
+          const prof = ensureProfileAdaptiveState(getActiveProfile());
           prof.unlockedCityIdx = Math.max(prof.unlockedCityIdx || 0, state.currentCityIdx);
+          prof.recentShiftScenarioIds = [];
+          state.samePlayAttemptedIds = {};
           const promotedTier = checkAndCelebrateTierPromotion(prevCityIdx, state.currentCityIdx);
           const nextCity = NHL_CITIES[state.currentCityIdx];
           state.seriesResults = [];
@@ -15310,7 +15668,7 @@
           }
           CoachVoice.speak(`Series Victory! You scored ${pct} percent Hockey IQ and earned ${iqReward.puckBucksEarned} Puck Bucks in ${conqueredCity.name}, unlocking ${nextCity.name} on the North America NHL Map!`, '🏆 City Conquered!', false);
           return;
-        } else if (earned >= Math.round(maxAvailable * 0.69) && !state.overtimeRedemptionActive) {
+        } else if (earned >= Math.round(maxAvailable * 0.58) && !state.overtimeRedemptionActive) {
           // 3v3 Overtime Sudden-Death Redemption Shift!
           SoundFX.playWhistle();
           state.overtimeRedemptionActive = true;
@@ -15321,6 +15679,9 @@
         } else {
           SoundFX.playBuzzer();
           state.overtimeRedemptionActive = false;
+          const prof = ensureProfileAdaptiveState(getActiveProfile());
+          if (prof) prof.recentShiftScenarioIds = [];
+          state.samePlayAttemptedIds = {};
           state.seriesResults = [];
           state.seriesPointsEarned = 0;
           state.seriesQuestionNum = 1;
@@ -15332,10 +15693,10 @@
             openSeriesCompleteModal(city, city, earned, pct, false);
             const msgEl = document.getElementById('seriesCompleteSummaryMsg');
             if (msgEl) {
-              msgEl.textContent = `You finished at ${pct}% Hockey IQ and earned +${iqReward.puckBucksEarned} Consolidation Puck Bucks. You need 80% IQ to unlock the next NHL city—Coach Bob just generated fresh play variations so you can retry and boost your Hockey IQ score!`;
+              msgEl.textContent = `You finished at ${pct}% Hockey IQ and earned +${iqReward.puckBucksEarned} Consolidation Puck Bucks. You need 70% IQ to unlock the next NHL city—Coach Bob just generated fresh play variations so you can retry and boost your Hockey IQ score!`;
             }
           }
-          CoachVoice.speak(`You finished at ${pct} percent Hockey IQ and earned ${iqReward.puckBucksEarned} Puck Bucks. Let's retry with fresh play variations to hit 80 percent and unlock the next city!`, '🔄 Retry Lesson to Boost IQ & Puck Bucks', true);
+          CoachVoice.speak(`You finished at ${pct} percent Hockey IQ and earned ${iqReward.puckBucksEarned} Puck Bucks. Let's retry with fresh play variations to hit 70 percent and unlock the next city!`, '🔄 Retry Lesson to Boost IQ & Puck Bucks', true);
           return;
         }
       }
@@ -20246,7 +20607,7 @@
           competitiveLevel,
           positionCode: slotProf.positionCode || 'C',
           position: slotProf.position || 'Center (C)',
-          iqScore: slotProf.iqScore || 100,
+          iqScore: typeof slotProf.iqScore === 'number' ? slotProf.iqScore : 0,
           puckBucks: typeof slotProf.puckBucks === 'number' ? slotProf.puckBucks : 250,
           completedPlansCount: Number(slotProf.completedPlansCount ?? prevEntry.completedPlansCount ?? 0),
           lastPlanScorePct: slotProf.lastPlanScorePct ?? prevEntry.lastPlanScorePct ?? null,
@@ -21066,7 +21427,7 @@
         positionCode: posCode,
         position: posLabelMap[posCode] || POSITION_CODE_TO_LABEL[posCode] || 'All Positions',
         hand,
-        iqScore: typeof existing?.iqScore === 'number' ? existing.iqScore : 100,
+        iqScore: typeof existing?.iqScore === 'number' ? existing.iqScore : 0,
         puckBucks: typeof existing?.puckBucks === 'number' ? existing.puckBucks : 250,
         bestStreak: existing?.bestStreak || 0,
         currentCityIdx: existing?.currentCityIdx || 0,

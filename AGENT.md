@@ -538,3 +538,16 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
    - Bot 5: `0%` cutout overlap at `390×844` & `0` banned legacy strings (`"Tap Zones"`, `"Switch Sibling"`, `"Exit to Profiles"`, `"Family Pass"`, `"$2.99"`, `"You're #"`, `"Years Played"`).
 4. **Permanent Deploy Gate & `Batch CA` Council Queue:**
    - `deploy-github-pages.js` runs `adversarial_qa_agent.js --smoke` and blocks deploy if `Critical > 0 || Major > 0` in `qa_adversarial_report.json`; Tab 3 shows the QA Auto-Fix Receipt while `📥 To Review (12)` holds 12 pure product/coaching `Batch CA` proposals.
+
+---
+
+## 41. v12.5 — 24-Permutation `0-IQ` Curriculum Progression & Blind-Student Learning Transfer Audit (`synapz-hockey-v12.5-curriculum-iq-verified`)
+1. **Machine-Readable Adaptive IQ Rules (`specs/adaptive_iq_rules.json` + `window.SYNAPZ_ADAPTIVE_IQ_RULES`):**
+   - **24 Demographic Permutations:** `6 Age Divisions` (`8U`, `10U`, `12U`, `14U`, `16U`, `18U` + sub-tiers `Rec/B/A/AA/AAA`) × `4 Experience Levels` (`Novice`, `Beginner`, `Intermediate`, `Advanced`).
+   - **Starting Floor & Ceiling Rules:** `8U` always starts at `Tier 1 (8U Fundamentals)` (`adaptiveLevel = 0`, ceiling `1`); `10U–18U` `Novice` starts at `Tier 1–2 Fundamentals` (`0` for `10U–14U`, `1` for `16U–18U`) and fast-tracks upward after `3` consecutive Gold reads; `Advanced` (`12U–18U`) steps down immediately after `2` consecutive misses; **Coach-Assigned Inbox Plans** are 100% immutable (`lockedByCoachHomework = true`).
+   - **IQ Point & Learning Transfer Rules:** `0 IQ` starting baseline; Gold = `100%` (`1.00`), Silver = `75%` (`0.75`), Bronze = `50%` (`0.50`), Same-Play Retry = `50%` (`0.50`), Streak Bonuses (`+5 IQ` at `3–4` Golds, `+10 IQ` at `5+` Golds), and **3-Play-Later Redemption Shift** (`Play N+3`, `+15 IQ` Gold Transfer Bonus) scheduled after any missed concept.
+2. **720-Play 24-Permutation Matrix + Blind-Student Confusion Detector (`curriculum_iq_audit.js`, `window.__SYNAPZ_TEST_MODE__ = true`):**
+   - **Part A:** Runs all 24 `Age × Experience` personas from `0 IQ` across `30` sequential solo plays (`720` plays per track across Learning Curve & Optimal Strategy students), asserting `0` bottlenecks, `0` within-shift repeats, and smooth city/tier unlocks.
+   - **Part B:** Evaluates all **16 concept buckets** strictly from screen-visible cues (Coach Bob's 1-sentence prompt, focal Golden Arc & skater/defender geometry, and **4 choice button labels** — zero answer-key peeking enforced by startup self-audit), verifying `0` ambiguous Gold reads and `100%` `Play N -> Play N+3` post-mistake learning transfer.
+3. **Two-Bucket Auto-Fix, `report.html` Receipt & Clean-Slate Ship:**
+   - Saves `curriculum_iq_audit_report.json`, auto-fixes all curriculum/scoring/geometry flaws in `index.html`, adds the **`🎓 24-Permutation Curriculum & Blind-Student Learning Receipt (24/24 Tiers Verified • 720 Plays)`** card to Tab 3 (`✅ Live in App`) and feeds Seats 1–3 (`S1-CA..S3-CA`) in `📥 To Review (12)` on `report.html`, resets all test accounts to Screen 1, bumps `sw.js` to `synapz-hockey-v12.5-curriculum-iq-verified`, mirrors both workspaces, deploys live, and sends strictly **1** `< 35 KB` `v12.5` email digest.
