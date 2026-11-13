@@ -44,6 +44,7 @@
     #entryScreen1ButtonsStack { width: 100%; display: flex; flex-direction: column; gap: 12px; padding-top: 4px; }
     #btnSelectPortalPlayer { background: linear-gradient(90deg, #22d3ee, #38bdf8); color: #020617; border: 2px solid #a5f3fc; }
     #btnSelectPortalCoach { background: #0f172a; color: #fcd34d; border: 2px solid rgba(251, 191, 36, 0.8); }
+    #btnTry3PlaysFreeScreen1 { background: linear-gradient(90deg, #34d399, #2dd4bf); color: #020617; border: 2px solid #a7f3d0; }
     #btnSelectPortalInfo { background: rgba(15, 23, 42, 0.9); color: #e2e8f0; border: 1px solid #475569; }
   
     /* synapz-v126-touch-polish: iPad/iPhone <16ms touch responsiveness & safe-area guard (S7-DA, S7-DC, S7-DD) */
@@ -4062,7 +4063,7 @@
     <div id="v12EntryGateCard" class="synapz-v12-entry-card relative rounded-3xl p-4 sm:p-5 flex flex-col gap-3.5 my-auto shrink-0">
 
       <!-- ================================================================= -->
-      <!-- SCREEN 1 — MAIN LANDING SCREEN (STRICTLY 3 SIMPLE BUTTONS, ZERO AGENTS) -->
+      <!-- SCREEN 1 — MAIN LANDING SCREEN (STRICTLY 4 SIMPLE BUTTONS, ZERO AGENTS) -->
       <!-- ================================================================= -->
       <div id="entryScreen1Main" data-entry-screen="1" class="flex flex-col items-center text-center gap-4">
         <img decoding="async" src="assets/synapz-logo.webp" alt="SYNAPZ HOCKEY" class="h-20 sm:h-24 w-auto object-contain rounded-2xl border border-cyan-400/60 shadow-[0_0_24px_rgba(0,229,255,0.3)] mx-auto" />
@@ -4075,6 +4076,10 @@
           </button>
           <button id="btnSelectPortalCoach" type="button" class="synapz-v12-simple-btn bg-slate-900 hover:bg-slate-800 text-amber-300 border-2 border-amber-400/80 shadow-lg">
             Coaches Portal
+          </button>
+          <button id="btnTry3PlaysFreeScreen1" type="button" class="synapz-v12-simple-btn bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 border-2 border-emerald-200 shadow-lg flex flex-col items-center justify-center py-2.5 leading-tight">
+            <span class="text-sm font-black">⚡ Try 3 Plays Free</span>
+            <span class="text-[10px] font-extrabold text-slate-900/90 tracking-wide">No Login • 45-Second Live Shift</span>
           </button>
           <button id="btnSelectPortalInfo" type="button" class="synapz-v12-simple-btn bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-600">
             Info
@@ -4154,14 +4159,17 @@
       </div>
 
       <!-- ================================================================= -->
-      <!-- SCREEN 1A-1 — PLAYER PORTAL GATE (STRICTLY 2 BUTTONS + BACK)      -->
+      <!-- SCREEN 1A-1 — PLAYER PORTAL GATE (2 BUTTONS + BACK + FREE SHIFT)  -->
       <!-- ================================================================= -->
       <div id="entryScreen1A1PlayerGate" data-entry-screen="1A-1" class="hidden flex-col gap-3.5">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+        <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
           <button id="btnBackFrom1A1ToScreen1" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-black text-cyan-300">
             ← Back
           </button>
-          <h2 class="text-base font-black text-white">Player Portal</h2>
+          <h2 class="text-sm sm:text-base font-black text-white">Player Portal</h2>
+          <button type="button" data-open-guest-shift="player" class="btn-try-3-plays-portal-link px-2.5 py-1 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/70 text-[11px] font-black text-emerald-300 shrink-0 cursor-pointer">
+            ⚡ Try 3 Plays Free First
+          </button>
         </div>
         <div class="flex flex-col gap-3 pt-1">
           <button id="btn1A1OpenLogin" type="button" class="synapz-v12-simple-btn bg-gradient-to-r from-cyan-400 to-sky-400 hover:from-cyan-300 hover:to-sky-300 text-slate-950 border-2 border-cyan-200 shadow-lg">
@@ -4177,12 +4185,16 @@
       <!-- SCREEN 1A-2 — PLAYER PORTAL: CREATE ACCOUNT (1 PLAYER = TO LOBBY) -->
       <!-- ================================================================= -->
       <div id="entryScreen1A2PlayerCreate" data-entry-screen="1A-2" class="hidden flex-col gap-2.5 text-left">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+        <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2">
           <button id="btnBackFrom1A2To1A1" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-black text-cyan-300">
             ← Back
           </button>
-          <h2 class="text-xs sm:text-sm font-black text-white">Player Portal — Create Account</h2>
+          <h2 class="text-xs sm:text-sm font-black text-white truncate">Player — Create Account</h2>
+          <button type="button" data-open-guest-shift="player" class="btn-try-3-plays-portal-link px-2 py-1 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/70 text-[10px] font-black text-emerald-300 shrink-0 cursor-pointer">
+            ⚡ Try 3 Plays Free First
+          </button>
         </div>
+        <div id="guestCreditSignupBanner" class="hidden p-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400/80 text-emerald-200 text-xs font-black leading-snug"></div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <div>
             <label for="inputPlayerSignupIdentity" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">User ID (Email or Username)</label>
@@ -4248,11 +4260,14 @@
       <!-- SCREEN 1A-3 — PLAYER PORTAL: LOG IN (STRAIGHT TO MAIN LOBBY!)     -->
       <!-- ================================================================= -->
       <div id="entryScreen1A3PlayerLogin" data-entry-screen="1A-3" class="hidden flex-col gap-3 text-left">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+        <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
           <button id="btnBackFrom1A3To1A1" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-black text-cyan-300">
             ← Back
           </button>
-          <h2 class="text-sm sm:text-base font-black text-white">Player Portal — Log In</h2>
+          <h2 class="text-xs sm:text-sm font-black text-white truncate">Player — Log In</h2>
+          <button type="button" data-open-guest-shift="player" class="btn-try-3-plays-portal-link px-2 py-1 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/70 text-[10px] font-black text-emerald-300 shrink-0 cursor-pointer">
+            ⚡ Try 3 Plays Free First
+          </button>
         </div>
         <div class="space-y-2.5">
           <div>
@@ -4534,14 +4549,17 @@
       </div>
 
       <!-- ================================================================= -->
-      <!-- SCREEN 1B-1 — COACHES PORTAL GATE (STRICTLY 2 BUTTONS + BACK)     -->
+      <!-- SCREEN 1B-1 — COACHES PORTAL GATE (2 BUTTONS + BACK + PREVIEW)    -->
       <!-- ================================================================= -->
       <div id="entryScreen1B1CoachGate" data-entry-screen="1B-1" class="hidden flex-col gap-3.5">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+        <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
           <button id="btnBackFrom1B1ToScreen1" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-black text-cyan-300">
             ← Back
           </button>
           <h2 class="text-sm sm:text-base font-black text-white">Coaches Portal</h2>
+          <button type="button" data-open-guest-shift="coach" class="btn-try-3-plays-portal-link px-2.5 py-1 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/70 text-[11px] font-black text-emerald-300 shrink-0 cursor-pointer">
+            ⚡ Try 3 Plays Free First
+          </button>
         </div>
         <div class="flex flex-col gap-3 pt-1">
           <button id="btn1B1OpenLogin" type="button" class="synapz-v12-simple-btn bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 text-slate-950 border-2 border-amber-200 shadow-lg">
@@ -4558,11 +4576,14 @@
       <!-- Routes Straight Into Coach's Office Guided by Coach Al!           -->
       <!-- ================================================================= -->
       <div id="entryScreen1B2CoachCreate" data-entry-screen="1B-2" class="hidden flex-col gap-2 text-left">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+        <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2">
           <button id="btnBackFrom1B2To1B1" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-black text-cyan-300">
             ← Back
           </button>
-          <h2 class="text-xs sm:text-sm font-black text-white">Coaches Portal — Create Account</h2>
+          <h2 class="text-xs sm:text-sm font-black text-white truncate">Coaches — Create Account</h2>
+          <button type="button" data-open-guest-shift="coach" class="btn-try-3-plays-portal-link px-2 py-1 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/70 text-[10px] font-black text-emerald-300 shrink-0 cursor-pointer">
+            ⚡ Try 3 Plays Free First
+          </button>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <div>
@@ -4682,11 +4703,14 @@
       <!-- SCREEN 1B-3 — COACHES PORTAL: LOG IN (STRAIGHT TO COACH'S OFFICE) -->
       <!-- ================================================================= -->
       <div id="entryScreen1B3CoachLogin" data-entry-screen="1B-3" class="hidden flex-col gap-3 text-left">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+        <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
           <button id="btnBackFrom1B3To1B1" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-black text-cyan-300">
             ← Back
           </button>
-          <h2 class="text-sm sm:text-base font-black text-white">Coaches Portal — Log In</h2>
+          <h2 class="text-xs sm:text-sm font-black text-white truncate">Coaches — Log In</h2>
+          <button type="button" data-open-guest-shift="coach" class="btn-try-3-plays-portal-link px-2 py-1 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/70 text-[10px] font-black text-emerald-300 shrink-0 cursor-pointer">
+            ⚡ Try 3 Plays Free First
+          </button>
         </div>
         <div class="space-y-2.5">
           <div>
@@ -5228,11 +5252,111 @@
     </div>
   </div>
 
+  <!-- ===================================================================== -->
+  <!-- v13.0 COLD-VISITOR CONVERSION FUNNEL MODALS (EPHEMERAL GUEST SHIFT)   -->
+  <!-- Strictly sessionStorage / memory ONLY — 0 localStorage profiles saved -->
+  <!-- ===================================================================== -->
+  <!-- STEP A: 1-Tap Speed / Role Modal (0 Typing, 0 Character Agents) -->
+  <div id="synapzGuestSpeedModal" class="hidden fixed inset-0 z-[120] bg-slate-950/96 backdrop-blur-md flex items-center justify-center p-3 sm:p-4">
+    <div class="w-full max-w-md rounded-3xl bg-slate-900 border-2 border-emerald-400/80 shadow-[0_0_40px_rgba(16,185,129,0.28)] p-4 sm:p-5 flex flex-col gap-3.5 text-left">
+      <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
+        <button id="btnGuestSpeedBack" type="button" class="px-3 py-1.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-700 text-xs font-black text-cyan-300 cursor-pointer">
+          ← Back
+        </button>
+        <span class="text-xs sm:text-sm font-black text-emerald-300 uppercase tracking-wider">⚡ Try 3 Plays Free</span>
+      </div>
+      <p class="text-xs font-bold text-slate-200 leading-snug text-center">
+        Pick your game speed — zero login, zero typing, straight onto the ice:
+      </p>
+      <div id="guestSpeedOptionsStack" class="flex flex-col gap-2.5">
+        <button id="btnGuestSpeedYouth" type="button" data-guest-tier="youth" class="w-full py-3 px-3.5 rounded-2xl bg-slate-950 hover:bg-cyan-950/60 border-2 border-cyan-400/75 text-left flex items-center justify-between gap-2 shadow cursor-pointer transition">
+          <span class="text-sm font-black text-white">🧊 Youth (8U–10U)</span>
+          <span class="text-[10px] font-extrabold text-cyan-300 uppercase shrink-0">3 Live Plays ▶</span>
+        </button>
+        <button id="btnGuestSpeedComp" type="button" data-guest-tier="competitive" class="w-full py-3 px-3.5 rounded-2xl bg-slate-950 hover:bg-emerald-950/60 border-2 border-emerald-400/80 text-left flex items-center justify-between gap-2 shadow cursor-pointer transition">
+          <span class="text-sm font-black text-white">🏒 Competitive (12U–14U)</span>
+          <span class="text-[10px] font-extrabold text-emerald-300 uppercase shrink-0">3 Live Plays ▶</span>
+        </button>
+        <button id="btnGuestSpeedAaa" type="button" data-guest-tier="aaa" class="w-full py-3 px-3.5 rounded-2xl bg-slate-950 hover:bg-amber-950/60 border-2 border-amber-400/80 text-left flex items-center justify-between gap-2 shadow cursor-pointer transition">
+          <span class="text-sm font-black text-white">🔥 AAA / Jr (16U–18U)</span>
+          <span class="text-[10px] font-extrabold text-amber-300 uppercase shrink-0">3 Live Plays ▶</span>
+        </button>
+        <button id="btnGuestSpeedCoach" type="button" data-guest-tier="coach_preview" class="w-full py-3 px-3.5 rounded-2xl bg-slate-950 hover:bg-purple-950/60 border-2 border-purple-400/80 text-left flex items-center justify-between gap-2 shadow cursor-pointer transition">
+          <span class="text-sm font-black text-amber-200">📋 Coach 60-Sec Preview</span>
+          <span class="text-[10px] font-extrabold text-purple-300 uppercase shrink-0">1 Play + Office ▶</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP B (COACH SANDBOX): 20-Second Coach's Office Interactive Preview -->
+  <div id="synapzGuestCoachSandboxModal" class="hidden fixed inset-0 z-[122] bg-slate-950/96 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="w-full max-w-lg rounded-3xl bg-slate-900 border-2 border-amber-400/85 shadow-[0_0_45px_rgba(251,191,36,0.28)] p-4 sm:p-5 flex flex-col gap-3 text-left my-auto">
+      <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2">
+        <span class="text-xs sm:text-sm font-black text-amber-300 uppercase">📋 Coach's Office — 20-Sec Sandbox</span>
+        <span id="guestCoachSandboxTimerBadge" class="px-2.5 py-0.5 rounded-full bg-amber-400/20 border border-amber-400/60 text-[11px] font-black text-amber-200">⏱️ 20s Preview</span>
+      </div>
+      <div class="p-3 rounded-2xl bg-slate-950 border border-cyan-400/40 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-xs font-black text-white">🏒 Tonight's Pre-Practice Breakout Pack (5 Plays)</span>
+          <span class="text-[10px] font-black text-cyan-300">3-Min Workflow</span>
+        </div>
+        <div class="grid grid-cols-1 gap-1 text-[11px] font-bold text-slate-300">
+          <div>1. D-to-D Net-Side Hinge Under F1 Angle Pressure</div>
+          <div>2. Low-and-Slow Center Curl Underneath Hashmarks</div>
+          <div>3. Strong-Wall Winger Seal (Stick to Middle Ice)</div>
+          <div>4. Weak-Side Slash Across Neutral-Zone Dot Lane</div>
+          <div>5. Controlled Zone Entry — Middle Drive + F3 High</div>
+        </div>
+        <button id="btnGuestCoachPush5PlayPlan" type="button" class="w-full py-3 px-3.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 font-black text-xs sm:text-sm shadow-lg cursor-pointer transition">
+          Push 5-Play Breakout Plan to Team Inbox
+        </button>
+        <div id="guestCoachPushConfirmBox" class="hidden p-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400 text-emerald-200 text-xs font-black leading-snug">
+          ✅ Pushed to 20 Skater Inboxes in 1.2s! Players complete their 5-play read shift before arriving at the rink — plus printable 3-station ice cards auto-generated.
+        </div>
+      </div>
+      <div class="flex flex-col gap-2 pt-1">
+        <button id="btnGuestCoachSandboxSignup" type="button" class="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 text-slate-950 font-black text-xs sm:text-sm shadow-lg cursor-pointer">
+          📋 Create Coach / Club Account
+        </button>
+        <button id="btnGuestCoachSandboxExit" type="button" class="w-full py-2.5 px-4 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-700 text-slate-300 font-black text-xs cursor-pointer">
+          ← Back to Screen 1
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP C: End-of-Shift Championship Conversion Modal -->
+  <div id="synapzGuestConversionModal" class="hidden fixed inset-0 z-[124] bg-slate-950/96 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="w-full max-w-md rounded-3xl bg-slate-900 border-2 border-emerald-400 shadow-[0_0_45px_rgba(16,185,129,0.32)] p-4 sm:p-5 flex flex-col gap-3.5 text-center my-auto">
+      <div id="guestConversionTierBadge" class="mx-auto px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/70 text-[11px] font-black text-emerald-300 uppercase tracking-wider">
+        ⚡ Free 3-Play Shift Complete
+      </div>
+      <h3 id="guestConversionSummaryHeadline" class="text-base sm:text-lg font-black text-white leading-snug">
+        🏆 Shift Complete: 3/3 Gold Reads • +75 Hockey IQ • +75 Puck Bucks!
+      </h3>
+      <p class="text-xs font-semibold text-slate-300 leading-relaxed">
+        Your earned Hockey IQ and Puck Bucks are ready in temporary shift memory. Create your Player account now to save them permanently onto your skater!
+      </p>
+      <div class="flex flex-col gap-2.5 pt-1">
+        <button id="btnGuestConvertCreatePlayer" type="button" class="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-emerald-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 font-black text-xs sm:text-sm border-2 border-emerald-200 shadow-lg cursor-pointer">
+          💾 Create Account to Save Your +75 IQ
+        </button>
+        <button id="btnGuestConvertCreateCoach" type="button" class="w-full py-3 px-4 rounded-2xl bg-slate-950 hover:bg-slate-800 border-2 border-amber-400/80 text-amber-300 font-black text-xs sm:text-sm cursor-pointer">
+          📋 Create Coach / Club Account
+        </button>
+        <button id="btnGuestConvertExitScreen1" type="button" class="w-full py-2.5 px-4 rounded-xl bg-slate-950/90 hover:bg-slate-800 border border-slate-700 text-slate-300 font-black text-xs cursor-pointer">
+          ← Back to Screen 1
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v12.7-5persona-human-vision';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v13.0-global-foundation';
 
     // =========================================================================
     // SECTION 39 (v12.3): CENTRALIZED PRICING & SEAT CAP CONFIGURATION
@@ -11568,6 +11692,19 @@
     window.computeAdaptiveNextScenario = computeAdaptiveNextScenario;
 
     function getCurrentScenario() {
+      const guestSess = window.__synapzGuestDemoSession;
+      if (guestSess && guestSess.active && Array.isArray(guestSess.playIds) && guestSess.playIds.length > 0) {
+        const gIdx = Math.max(0, Math.min(guestSess.playIds.length - 1, Number(guestSess.playIndex) || 0));
+        const targetId = guestSess.playIds[gIdx];
+        if (state.activeScenarioInstance && state.activeScenarioInstance._guestPlayIndex === gIdx && state.activeScenarioInstance.id === targetId) {
+          return state.activeScenarioInstance;
+        }
+        const gBase = SCENARIOS.find(s => s.id === targetId) || SCENARIOS[0];
+        const gPermuted = buildPermutedScenario(gBase, (guestSess.seedBase || 2) + gIdx);
+        gPermuted._guestPlayIndex = gIdx;
+        state.activeScenarioInstance = gPermuted;
+        return state.activeScenarioInstance;
+      }
       const prof = getActiveProfile();
       ensureProfileAdaptiveState(prof);
       const activeAgeGroup = prof.ageGroup || '12U';
@@ -12759,7 +12896,12 @@
         : (state.customViewOverride === 'plan' ? false : (scen.mechanic === 'pov'));
 
       // Determine active Multi-Format Question Style (tap_zone, tap_player, tactical_choice, drag_skater, spot_and_fix)
-      state.activeQuestionStyle = getQuestionStyleForScenario(scen, state.seriesQuestionNum, prof.ageGroup);
+      if (window.__synapzGuestDemoSession && window.__synapzGuestDemoSession.active) {
+        state.mode = 'position';
+        state.activeQuestionStyle = 'tactical_choice';
+      } else {
+        state.activeQuestionStyle = getQuestionStyleForScenario(scen, state.seriesQuestionNum, prof.ageGroup);
+      }
       updateSituationContextBanner(scen);
       renderMultiFormatControlsBar(scen);
 
@@ -14936,6 +15078,11 @@
       if (success) SoundFX.playGoalHorn();
       else SoundFX.playBuzzer();
 
+      // Instant 0ms Guest Shift IQ + Puck Bucks update on answer tap (idempotent with recordPlayResult)
+      if (window.__synapzGuestDemoSession && window.__synapzGuestDemoSession.active && typeof window.handleGuestDemoPlayResolved === 'function') {
+        window.handleGuestDemoPlayResolved({ isCorrect: success, mult: state.lastConsensusMultiplier, scen });
+      }
+
       if (window.__SYNAPZ_TEST_MODE__ === true && window.__SYNAPZ_FAST_SIM__ === true) {
         state.animProgress = 1;
         state.animPhase = 'done';
@@ -15528,6 +15675,9 @@
       updateHeaderStats();
       renderSeriesTracker();
       renderMasteryBars();
+      if (window.__synapzGuestDemoSession && window.__synapzGuestDemoSession.active && typeof window.handleGuestDemoPlayResolved === 'function') {
+        window.handleGuestDemoPlayResolved({ isCorrect, mult, scen });
+      }
     }
 
     function showFeedback(isSuccess, title, body, badgeText) {
@@ -15670,6 +15820,10 @@
     window.completeLessonWithIqTiedPuckBucks = completeLessonWithIqTiedPuckBucks;
 
     function advanceSeriesOrRegenerate() {
+      if (window.__synapzGuestDemoSession && window.__synapzGuestDemoSession.active && typeof window.advanceGuestDemoPlay === 'function') {
+        window.advanceGuestDemoPlay();
+        return;
+      }
       const city = NHL_CITIES[state.currentCityIdx] || NHL_CITIES[0];
       const targetSeriesLen = state.customPlanLength || 10;
 
@@ -20787,10 +20941,14 @@
       const modal = document.getElementById('sandboxLoginModal');
       if (modal) modal.classList.remove('hidden');
 
-      ['pilotSandboxCheckoutModal', 'associationMasterHqModal', 'coachPortalModal', 'synapzLockerRoomModal', 'proShopModal', 'synapzCoachOfficeModal', 'synapzFriendsWallModal', 'profileModal', 'teamManagerModal'].forEach(id => {
+      ['pilotSandboxCheckoutModal', 'associationMasterHqModal', 'coachPortalModal', 'synapzLockerRoomModal', 'proShopModal', 'synapzCoachOfficeModal', 'synapzFriendsWallModal', 'profileModal', 'teamManagerModal', 'synapzGuestSpeedModal', 'synapzGuestCoachSandboxModal', 'synapzGuestConversionModal'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.add('hidden');
       });
+
+      if (typeof window.syncGuestCreditSignupBanner === 'function') {
+        window.syncGuestCreditSignupBanner();
+      }
 
       if (normalizedScreen === '1C') {
         switchInfoHubTab('contact');
@@ -20927,6 +21085,7 @@
 
       if (cfg.mode === 'player_signup') {
         const devId = getActiveDeviceId();
+        const guestCredit = typeof window.consumePendingGuestCredit === 'function' ? window.consumePendingGuestCredit(false) : null;
         const newAcct = {
           accountId: normalizePortalIdentity(cfg.identity),
           displayEmailOrUser: String(cfg.identity).trim(),
@@ -20934,6 +21093,7 @@
           portalRole: 'player',
           planType: cfg.planType,
           signupTeamCode: '',
+          pendingGuestCredit: guestCredit || null,
           registeredDeviceIds: [{ deviceId: devId, registeredAt: new Date().toISOString() }],
           profile: null,
           slots: [null],
@@ -20941,6 +21101,13 @@
         };
         await SynapzPortalCloud.saveAccount(newAcct);
         await enterLobbyForSinglePlayerAccount(newAcct);
+        if (guestCredit && guestCredit.divisionHint) {
+          const divSel = document.getElementById('slotSetupAgeDivision');
+          if (divSel) {
+            const matchOpt = Array.from(divSel.options).find(o => o.value === guestCredit.divisionHint || o.value.startsWith(guestCredit.ageGroup || ''));
+            if (matchOpt) divSel.value = matchOpt.value;
+          }
+        }
         return;
       }
 
@@ -21449,6 +21616,10 @@
         RD: 'Right Defense (RD)',
         G: 'Goalie (G)'
       };
+      const guestSignupCredit = (!existing && (acct.pendingGuestCredit || (typeof window.consumePendingGuestCredit === 'function' ? window.consumePendingGuestCredit(true) : null))) || null;
+      const bonusGuestIq = guestSignupCredit ? (Number(guestSignupCredit.earnedIq) || 0) : 0;
+      const bonusGuestBucks = guestSignupCredit ? (Number(guestSignupCredit.earnedBucks) || 0) : 0;
+
       const slotProfile = {
         ...(existing || {}),
         id: slotId,
@@ -21486,9 +21657,9 @@
         positionCode: posCode,
         position: posLabelMap[posCode] || POSITION_CODE_TO_LABEL[posCode] || 'All Positions',
         hand,
-        iqScore: typeof existing?.iqScore === 'number' ? existing.iqScore : 0,
-        puckBucks: typeof existing?.puckBucks === 'number' ? existing.puckBucks : 250,
-        bestStreak: existing?.bestStreak || 0,
+        iqScore: (typeof existing?.iqScore === 'number' ? existing.iqScore : 0) + bonusGuestIq,
+        puckBucks: (typeof existing?.puckBucks === 'number' ? existing.puckBucks : 250) + bonusGuestBucks,
+        bestStreak: Math.max(existing?.bestStreak || 0, guestSignupCredit ? (Number(guestSignupCredit.goldReads) || 0) : 0),
         currentCityIdx: existing?.currentCityIdx || 0,
         completedIds: existing?.completedIds || {},
         conceptStats: existing?.conceptStats || {},
@@ -21497,6 +21668,10 @@
         teamCode: linkedTeamCode,
         teamName: linkedTeamName
       };
+      if (guestSignupCredit) {
+        acct.pendingGuestCredit = null;
+        if (typeof window.clearGuestDemoSession === 'function') window.clearGuestDemoSession();
+      }
       ensureProfileAvatarDefaults(slotProfile);
       slotProfile.jerseyNumber = jerseyNum;
       slotProfile.stockAvatarId = stockAvatarId;
@@ -21856,10 +22031,21 @@
         applyPricingConfigToDom();
       }
 
-      // Screen 1 — Strictly 3 Clean Buttons (Player Portal | Coaches Portal | Info)
+      // Screen 1 — Strictly 4 Clean Buttons (Player Portal | Coaches Portal | Try 3 Plays Free | Info)
       on('btnSelectPortalPlayer', () => { SoundFX.playTap(); openEntryScreen('1A-1'); });
       on('btnSelectPortalCoach', () => { SoundFX.playTap(); openEntryScreen('1B-1'); });
+      on('btnTry3PlaysFreeScreen1', () => {
+        SoundFX.playTap();
+        if (typeof window.openGuestSpeedModal === 'function') window.openGuestSpeedModal('screen1');
+      });
       on('btnSelectPortalInfo', () => { SoundFX.playTap(); openEntryScreen('1C'); });
+      document.querySelectorAll('[data-open-guest-shift]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          SoundFX.playTap();
+          const src = btn.getAttribute('data-open-guest-shift') || 'portal';
+          if (typeof window.openGuestSpeedModal === 'function') window.openGuestSpeedModal(src);
+        });
+      });
 
       // Screen 1C — Info Hub (Contact | Support | FAQ + Founder Reset)
       on('btnBackFromInfoToScreen1', () => { SoundFX.playTap(); openEntryScreen('1'); });
@@ -21976,6 +22162,7 @@
         }
         SoundFX.playGoalHorn();
         const devId = getActiveDeviceId();
+        const guestCredit = typeof window.consumePendingGuestCredit === 'function' ? window.consumePendingGuestCredit(false) : null;
         const newAcct = {
           accountId: normalizePortalIdentity(creds.identity),
           displayEmailOrUser: creds.identity,
@@ -21983,6 +22170,7 @@
           portalRole: 'player',
           planType: 'team_code',
           signupTeamCode: teamDoc.teamCode,
+          pendingGuestCredit: guestCredit || null,
           registeredDeviceIds: [{ deviceId: devId, registeredAt: new Date().toISOString() }],
           profile: null,
           slots: [null],
@@ -24865,6 +25053,10 @@
 
     function saveAndExitToRinkLobby() {
       SoundFX.playTap();
+      if (window.__synapzGuestDemoSession && window.__synapzGuestDemoSession.active && typeof window.exitSynapzGuestDemoToScreen1 === 'function') {
+        window.exitSynapzGuestDemoToScreen1();
+        return;
+      }
       saveProgress();
       ['proShopModal', 'synapzLockerRoomModal', 'synapzCoachOfficeModal', 'synapzFriendsWallModal', 'playerAgentPickerModal', 'safeSportNotificationModal', 'profileModal', 'teamManagerModal', 'cityIntroModal'].forEach(id => {
         const el = document.getElementById(id);
@@ -28484,7 +28676,7 @@
     // SECTION 32–43: VERIFIED REAL CODED UPGRADES RUNTIME & PRE-CODED BANK
     // (`synapz-hockey-v12.7-5persona-human-vision` • 288 Live Upgrades)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v12.7-5persona-human-vision';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v13.0-global-foundation';
 
     const ALL_63_DEPLOYED_UPGRADE_IDS = [
       // Batch A (12 items)
@@ -28565,21 +28757,57 @@
       ...ALL_242_DEPLOYED_UPGRADE_IDS,
       ...BATCHES_CA_TO_CD_46_APPROVED_IDS
     ];
-    window.ALL_288_DEPLOYED_UPGRADE_IDS = ALL_288_DEPLOYED_UPGRADE_IDS;
-    window.ALL_242_DEPLOYED_UPGRADE_IDS = ALL_288_DEPLOYED_UPGRADE_IDS;
-    window.ALL_173_DEPLOYED_UPGRADE_IDS = ALL_288_DEPLOYED_UPGRADE_IDS;
-    window.ALL_118_DEPLOYED_UPGRADE_IDS = ALL_288_DEPLOYED_UPGRADE_IDS;
+    const BATCHES_DA_TO_DF_72_APPROVED_IDS = [
+      "S1-DA","S2-DA","S3-DA","S4-DA","S5-DA","S6-DA","S7-DA","S8-DA","S9-DA","S10-DA","S11-DA","S12-DA",
+      "S1-DB","S2-DB","S3-DB","S4-DB","S5-DB","S6-DB","S7-DB","S8-DB","S9-DB","S10-DB","S11-DB","S12-DB",
+      "S1-DC","S2-DC","S3-DC","S4-DC","S5-DC","S6-DC","S7-DC","S8-DC","S9-DC","S10-DC","S11-DC","S12-DC",
+      "S1-DD","S2-DD","S3-DD","S4-DD","S5-DD","S6-DD","S7-DD","S8-DD","S9-DD","S10-DD","S11-DD","S12-DD",
+      "S1-DE","S2-DE","S3-DE","S4-DE","S5-DE","S6-DE","S7-DE","S8-DE","S9-DE","S10-DE","S11-DE","S12-DE",
+      "S1-DF","S2-DF","S3-DF","S4-DF","S5-DF","S6-DF","S7-DF","S8-DF","S9-DF","S10-DF","S11-DF","S12-DF"
+    ];
+    const ALL_360_DEPLOYED_UPGRADE_IDS = [
+      ...ALL_288_DEPLOYED_UPGRADE_IDS,
+      ...BATCHES_DA_TO_DF_72_APPROVED_IDS
+    ];
+    window.BATCHES_DA_TO_DF_72_APPROVED_IDS = BATCHES_DA_TO_DF_72_APPROVED_IDS;
+    window.ALL_360_DEPLOYED_UPGRADE_IDS = ALL_360_DEPLOYED_UPGRADE_IDS;
+    window.ALL_288_DEPLOYED_UPGRADE_IDS = ALL_360_DEPLOYED_UPGRADE_IDS;
+    window.ALL_242_DEPLOYED_UPGRADE_IDS = ALL_360_DEPLOYED_UPGRADE_IDS;
+    window.ALL_173_DEPLOYED_UPGRADE_IDS = ALL_360_DEPLOYED_UPGRADE_IDS;
+    window.ALL_118_DEPLOYED_UPGRADE_IDS = ALL_360_DEPLOYED_UPGRADE_IDS;
 
     const CORE_DEPLOYED_UPGRADE_IDS = [
-      ...ALL_288_DEPLOYED_UPGRADE_IDS,
+      ...ALL_360_DEPLOYED_UPGRADE_IDS,
       'RF-COUNCIL-01'
     ];
     window.CORE_DEPLOYED_UPGRADE_IDS = CORE_DEPLOYED_UPGRADE_IDS;
 
+    const SYNAPZ_NORMALIZED_ID_CACHE = new Map();
+    CORE_DEPLOYED_UPGRADE_IDS.forEach(id => SYNAPZ_NORMALIZED_ID_CACHE.set(id, id));
+
     function normalizeSynapzUpgradeId(rawId) {
-      return String(rawId || '').trim().replace(/^B\d+-/i, '').toUpperCase();
+      if (typeof rawId === 'string' && SYNAPZ_NORMALIZED_ID_CACHE.has(rawId)) {
+        return SYNAPZ_NORMALIZED_ID_CACHE.get(rawId);
+      }
+      const clean = String(rawId || '').trim().replace(/^B\d+-/i, '').toUpperCase();
+      if (typeof rawId === 'string' && rawId.length <= 32) {
+        SYNAPZ_NORMALIZED_ID_CACHE.set(rawId, clean);
+      }
+      return clean;
     }
     window.normalizeSynapzUpgradeId = normalizeSynapzUpgradeId;
+
+    window.SYNAPZ_UPGRADE_STATE_REV = 1;
+    window.SYNAPZ_REVOKED_UPGRADES = new Set();
+    try {
+      const revokedRaw = JSON.parse(localStorage.getItem('synapz_revoked_upgrades_v13') || '[]');
+      if (Array.isArray(revokedRaw)) {
+        revokedRaw.forEach(id => {
+          const clean = normalizeSynapzUpgradeId(id);
+          if (clean) window.SYNAPZ_REVOKED_UPGRADES.add(clean);
+        });
+      }
+    } catch (_) {}
 
     window.SYNAPZ_ACTIVE_UPGRADES = new Set(CORE_DEPLOYED_UPGRADE_IDS);
     try {
@@ -28598,24 +28826,36 @@
         });
       }
     } catch (_) {}
+    window.SYNAPZ_REVOKED_UPGRADES.forEach(revId => window.SYNAPZ_ACTIVE_UPGRADES.delete(revId));
 
-    function isSynapzUpgradeActive(id) {
-      const clean = normalizeSynapzUpgradeId(id);
+    // O(1) Set-backed upgrade check (zero per-frame array scan, preserves 1-click Undo compatibility)
+    function hasActiveUpgrade(id) {
+      if (!id) return false;
+      const clean = SYNAPZ_NORMALIZED_ID_CACHE.get(id) || normalizeSynapzUpgradeId(id);
       if (!clean) return false;
+      if (window.SYNAPZ_REVOKED_UPGRADES) {
+        if (typeof window.SYNAPZ_REVOKED_UPGRADES.has === 'function' && window.SYNAPZ_REVOKED_UPGRADES.has(clean)) return false;
+        if (window.SYNAPZ_REVOKED_UPGRADES[clean] === true) return false;
+      }
       return Boolean(window.SYNAPZ_ACTIVE_UPGRADES && window.SYNAPZ_ACTIVE_UPGRADES.has(clean));
     }
-    window.isSynapzUpgradeActive = isSynapzUpgradeActive;
+    const isSynapzUpgradeActive = hasActiveUpgrade;
+    window.hasActiveUpgrade = hasActiveUpgrade;
+    window.isSynapzUpgradeActive = hasActiveUpgrade;
 
     function persistSynapzActiveUpgrades() {
       try {
         localStorage.setItem('synapz_active_upgrades_v106', JSON.stringify(Array.from(window.SYNAPZ_ACTIVE_UPGRADES)));
+        localStorage.setItem('synapz_revoked_upgrades_v13', JSON.stringify(Array.from(window.SYNAPZ_REVOKED_UPGRADES)));
       } catch (_) {}
     }
 
     function activateSynapzUpgrade(id) {
       const clean = normalizeSynapzUpgradeId(id);
       if (!clean) return null;
+      window.SYNAPZ_REVOKED_UPGRADES.delete(clean);
       window.SYNAPZ_ACTIVE_UPGRADES.add(clean);
+      window.SYNAPZ_UPGRADE_STATE_REV = (window.SYNAPZ_UPGRADE_STATE_REV || 1) + 1;
       persistSynapzActiveUpgrades();
       const res = executeSynapzUpgradeFeature(clean);
       if (typeof drawRink === 'function') {
@@ -28628,7 +28868,9 @@
     function deactivateSynapzUpgrade(id) {
       const clean = normalizeSynapzUpgradeId(id);
       if (!clean) return false;
+      window.SYNAPZ_REVOKED_UPGRADES.add(clean);
       window.SYNAPZ_ACTIVE_UPGRADES.delete(clean);
+      window.SYNAPZ_UPGRADE_STATE_REV = (window.SYNAPZ_UPGRADE_STATE_REV || 1) + 1;
       persistSynapzActiveUpgrades();
       if (typeof drawRink === 'function') {
         try { drawRink(); } catch (_) {}
@@ -30653,51 +30895,68 @@
     window.applyAllActiveSynapzUpgrades = applyAllActiveSynapzUpgrades;
 
     // =========================================================================
-    // STEP 1.3: CONTEXT-SMART <canvas> PRIORITY CAP
+    // STEP 1.3: CONTEXT-SMART <canvas> PRIORITY CAP (v13.0 FLATTENED O(1) MEMO)
     // (`window.selectPrimaryCanvasCueForScenario(scenario)`)
     // Enforces strictly AT MOST 1 primary concept-matched on-ice teaching cue
-    // per drill on #rinkCanvas so 173+ active upgrades NEVER stack multiple
-    // tactical arcs/cones/rings on the same play!
+    // per drill on #rinkCanvas with WeakMap memoization for 60/120fps rendering!
     // =========================================================================
+    const CUE_RE_OFFSIDE = /(offside|tagup|tag-up|blue-line|blueline|zone-entry|zone_entry|entry)/;
+    const CUE_RE_REGROUP_GROUP = /(regroup|hinge|breakout|d-to-d|d_to_d|wheel|reverse|outlet)/;
+    const CUE_RE_REGROUP_SUB = /(regroup|hinge|low|swing)/;
+    const CUE_RE_FORECHECK = /(forecheck|212|2-1-2|122|1-2-2|trap|angl|f1|pressure)/;
+    const CUE_RE_SPECIAL = /(pp-|pk-|powerplay|power-play|penalty|5v4|4v5|umbrella|diamond|wedge|special_teams)/;
+    const CUE_RE_GOALIE = /(goalie|crease|screen|rvh|rebound|royal|seam|point_shot|point-shot|boxplus1|house)/;
+    const CUE_RE_GAP = /(gap|1v1|2v1|dzone|slot)/;
+    const SCENARIO_PRIMARY_CUE_MEMO = new WeakMap();
+
     function selectPrimaryCanvasCueForScenario(scenario) {
       const scen = scenario || (typeof getCurrentScenario === 'function' ? getCurrentScenario() : null) || {};
-      const combined = [
-        scen.id || '',
-        scen.title || '',
-        scen.concept || '',
-        scen.bucketId || '',
-        scen.zone || '',
-        scen.positionFocus || '',
-        scen.subtitle || ''
-      ].join(' ').toLowerCase();
+      const curRev = window.SYNAPZ_UPGRADE_STATE_REV || 1;
+      if (scen && typeof scen === 'object') {
+        const cached = SCENARIO_PRIMARY_CUE_MEMO.get(scen);
+        if (cached && cached.rev === curRev && cached.scenarioId === (scen.id || 'unknown')) {
+          state.lastSelectedPrimaryCanvasCue = cached.result;
+          return cached.result;
+        }
+      }
+
+      const combined = (
+        (scen.id || '') + ' ' +
+        (scen.title || '') + ' ' +
+        (scen.concept || '') + ' ' +
+        (scen.bucketId || '') + ' ' +
+        (scen.zone || '') + ' ' +
+        (scen.positionFocus || '') + ' ' +
+        (scen.subtitle || '')
+      ).toLowerCase();
 
       let primaryCueId = 'S1-F';
       let category = 'Defensive 1v1 / Gap / Weak-Side Backfill';
 
-      if (/(offside|tagup|tag-up|blue-line|blueline|zone-entry|zone_entry|entry)/.test(combined)) {
-        primaryCueId = isSynapzUpgradeActive('S3-G') ? 'S3-G' : 'S1-F';
+      if (CUE_RE_OFFSIDE.test(combined)) {
+        primaryCueId = hasActiveUpgrade('S3-G') ? 'S3-G' : 'S1-F';
         category = 'Zone-Entry / Offsides -> S3-G (Blue-Line Boot Tether)';
-      } else if (/(regroup|hinge|breakout|d-to-d|d_to_d|wheel|reverse|outlet)/.test(combined)) {
-        if (/(regroup|hinge|low|swing)/.test(combined) && isSynapzUpgradeActive('S1-H')) {
+      } else if (CUE_RE_REGROUP_GROUP.test(combined)) {
+        if (CUE_RE_REGROUP_SUB.test(combined) && hasActiveUpgrade('S1-H')) {
           primaryCueId = 'S1-H';
         } else {
-          primaryCueId = isSynapzUpgradeActive('S1-G') ? 'S1-G' : 'S1-H';
+          primaryCueId = hasActiveUpgrade('S1-G') ? 'S1-G' : 'S1-H';
         }
         category = 'Neutral-Zone Regroup / Breakout Hinge -> ' + primaryCueId + ' (Center Low-Swing / Hinge Arc)';
-      } else if (/(forecheck|212|2-1-2|122|1-2-2|trap|angl|f1|pressure)/.test(combined)) {
-        primaryCueId = isSynapzUpgradeActive('S1-I') ? 'S1-I' : 'S1-F';
+      } else if (CUE_RE_FORECHECK.test(combined)) {
+        primaryCueId = hasActiveUpgrade('S1-I') ? 'S1-I' : 'S1-F';
         category = 'Forecheck / Angling -> S1-I (F1 Stick-on-Puck Angling Cone)';
-      } else if (/(pp-|pk-|powerplay|power-play|penalty|5v4|4v5|umbrella|diamond|wedge|special_teams)/.test(combined)) {
-        primaryCueId = isSynapzUpgradeActive('S1-J') ? 'S1-J' : 'S1-H';
+      } else if (CUE_RE_SPECIAL.test(combined)) {
+        primaryCueId = hasActiveUpgrade('S1-J') ? 'S1-J' : 'S1-H';
         category = 'Power-Play / Penalty-Kill -> S1-J (PK 4-Man Passing-Lane Shadow Cones)';
-      } else if (/(goalie|crease|screen|rvh|rebound|royal|seam|point_shot|point-shot|boxplus1|house)/.test(combined)) {
-        primaryCueId = isSynapzUpgradeActive('S6-A') ? 'S6-A' : 'S1-G';
+      } else if (CUE_RE_GOALIE.test(combined)) {
+        primaryCueId = hasActiveUpgrade('S6-A') ? 'S6-A' : 'S1-G';
         category = 'Goalie / Crease / Royal-Road -> S6-A (Goalie Crease Sightline Ray)';
       } else {
-        if (/(gap|1v1|2v1|dzone|slot)/.test(combined) && isSynapzUpgradeActive('S2-G')) {
+        if (CUE_RE_GAP.test(combined) && hasActiveUpgrade('S2-G')) {
           primaryCueId = 'S2-G';
         } else {
-          primaryCueId = isSynapzUpgradeActive('S1-F') ? 'S1-F' : 'S2-G';
+          primaryCueId = hasActiveUpgrade('S1-F') ? 'S1-F' : 'S2-G';
         }
         category = 'Defensive 1v1 / Gap / Weak-Side Backfill -> ' + primaryCueId;
       }
@@ -30708,6 +30967,9 @@
         category,
         maxConcurrentTacticalOverlaysPerPlay: 1
       };
+      if (scen && typeof scen === 'object') {
+        SCENARIO_PRIMARY_CUE_MEMO.set(scen, { rev: curRev, scenarioId: result.scenarioId, result });
+      }
       state.lastSelectedPrimaryCanvasCue = result;
       return result;
     }
@@ -30950,14 +31212,14 @@
 
     function run242UpgradesLiveAudit() {
       applyAllActiveSynapzUpgrades();
-      const perUpgradeResults = ALL_288_DEPLOYED_UPGRADE_IDS.map(id => {
+      const perUpgradeResults = ALL_360_DEPLOYED_UPGRADE_IDS.map(id => {
         const execRes = executeSynapzUpgradeFeature(id);
         return {
           id,
           batch: execRes.batch || (id.split('-')[1] || 'A'),
           seat: execRes.seat || parseInt((id.match(/S(\d+)/) || [0, 1])[1], 10),
           title: execRes.title || id,
-          isActive: isSynapzUpgradeActive(id),
+          isActive: hasActiveUpgrade(id),
           foundInBank: Boolean(execRes.foundInBank),
           verifiedExecutable: Boolean(execRes.verifiedExecutable)
         };
@@ -30991,19 +31253,21 @@
         rvhPostRead180: evaluateGoalieCreaseAndReboundRead({ shooter: { x: 0.11, y: 0.15 } }, 180)
       };
       const pilotReadinessAudit = verifyPilotTeamLaunchReadiness('PUCK99');
-      const all288Active = perUpgradeResults.every(r => r.isActive && r.foundInBank && r.verifiedExecutable);
-      const all242Active = all288Active;
+      const all360Active = perUpgradeResults.every(r => r.isActive && r.foundInBank && r.verifiedExecutable);
+      const all288Active = all360Active;
+      const all242Active = all360Active;
       const bankSize = Object.keys(SYNAPZ_5_BATCH_UPGRADE_BANK).length;
       return {
-        version: 'v12.6-288-verified-and-pilot-polish-bank',
-        totalExpected: 288,
-        totalChecked: 288,
+        version: 'v13.0-360-global-foundation-baked',
+        totalExpected: 360,
+        totalChecked: 360,
         totalActiveVerified: perUpgradeResults.filter(r => r.isActive && r.foundInBank && r.verifiedExecutable).length,
+        all360Active,
         all288Active,
         all242Active,
-        all173Active: all288Active,
-        all118Active: all288Active,
-        all63Active: all288Active,
+        all173Active: all360Active,
+        all118Active: all360Active,
+        all63Active: all360Active,
         maxConcurrentTacticalOverlaysPerPlay: 1,
         primaryGameplayButtons: 4,
         sampleCueChecks,
@@ -31026,24 +31290,26 @@
         perUpgradeResults
       };
     }
+    window.run360UpgradesLiveAudit = run242UpgradesLiveAudit;
     window.run288UpgradesLiveAudit = run242UpgradesLiveAudit;
     window.run242UpgradesLiveAudit = run242UpgradesLiveAudit;
     window.run173UpgradesLiveAudit = run242UpgradesLiveAudit;
     window.run118UpgradesLiveAudit = run242UpgradesLiveAudit;
     window.run63UpgradesLiveAudit = run242UpgradesLiveAudit;
 
-    window.SYNAPZ_DYNAMIC_VERSION = 'v12.6';
+    window.SYNAPZ_DYNAMIC_VERSION = 'v13.0';
     async function syncActiveUpgradesFromSupabase() {
       try {
         const sbUrl = 'https://jrusjgpfcnptozfehcrv.supabase.co';
         const sbKey = 'sb_publishable_73207-0o-_PJEGLgeiZSog__PwUgTxX';
-        const res = await fetch(`${sbUrl}/rest/v1/pucksense_agent_inbox?status=eq.completed_and_deployed&select=id,scenario_id,details`, {
+        const res = await fetch(`${sbUrl}/rest/v1/pucksense_agent_inbox?status=in.(completed_and_deployed,revoked)&select=id,scenario_id,status,details`, {
           headers: { apikey: sbKey, Authorization: `Bearer ${sbKey}` }
         });
         if (res.ok) {
           const rows = await res.json();
           if (Array.isArray(rows)) {
-            let activeVersionLabel = 'v12.6';
+            let activeVersionLabel = 'v13.0';
+            let deltaChanged = false;
             rows.forEach(r => {
               const rawId = (r.details && r.details.idea_id) || r.scenario_id || '';
               if (rawId === 'SYNAPZ-CLOUD-COVERAGE-LEDGER' && r.details && r.details.versionLabel) {
@@ -31053,15 +31319,26 @@
                 }
               }
               const clean = normalizeSynapzUpgradeId(rawId);
-              if (clean && (SYNAPZ_5_BATCH_UPGRADE_BANK[clean] || BATCH_A_AND_B_CORE_SPECS[clean])) {
+              if (!clean) return;
+              if (r.status === 'revoked') {
+                if (window.SYNAPZ_ACTIVE_UPGRADES.has(clean)) {
+                  window.SYNAPZ_REVOKED_UPGRADES.add(clean);
+                  window.SYNAPZ_ACTIVE_UPGRADES.delete(clean);
+                  deltaChanged = true;
+                }
+              } else if (!window.SYNAPZ_REVOKED_UPGRADES.has(clean) && !window.SYNAPZ_ACTIVE_UPGRADES.has(clean)) {
                 window.SYNAPZ_ACTIVE_UPGRADES.add(clean);
+                deltaChanged = true;
               }
             });
             window.SYNAPZ_DYNAMIC_VERSION = activeVersionLabel;
-            persistSynapzActiveUpgrades();
-            applyAllActiveSynapzUpgrades();
-            if (typeof drawRink === 'function') {
-              try { drawRink(); } catch (_) {}
+            if (deltaChanged) {
+              window.SYNAPZ_UPGRADE_STATE_REV = (window.SYNAPZ_UPGRADE_STATE_REV || 1) + 1;
+              persistSynapzActiveUpgrades();
+              applyAllActiveSynapzUpgrades();
+              if (typeof drawRink === 'function') {
+                try { drawRink(); } catch (_) {}
+              }
             }
           }
         }
@@ -31069,15 +31346,15 @@
       return Array.from(window.SYNAPZ_ACTIVE_UPGRADES);
     }
     window.syncActiveUpgradesFromSupabase = syncActiveUpgradesFromSupabase;
-    // Hydrate active upgrades on load
+    // Hydrate all 360 core upgrades natively on load
     applyAllActiveSynapzUpgrades();
     syncActiveUpgradesFromSupabase().catch(() => {});
 
     window.SYNAPZ_BATCH1_DEPLOYED_UPGRADES = {
-      batchNumber: 23,
-      deployedAt: '2026-11-11T21:30:00Z',
-      totalApprovedDeployed: 288,
-      verifiedRealCodedIds: ALL_288_DEPLOYED_UPGRADE_IDS,
+      batchNumber: 29,
+      deployedAt: '2026-11-13T18:00:00Z',
+      totalApprovedDeployed: 360,
+      verifiedRealCodedIds: ALL_360_DEPLOYED_UPGRADE_IDS,
       preCoded5BatchBankIds: Object.keys(SYNAPZ_5_BATCH_UPGRADE_BANK),
       redFlagOptionDeployed: 'RF-COUNCIL-01 (Option A: Synchronized Cyan D-to-D Hinge Arc + Weak-Side Outlet Pulse)',
       autoResolvedSkippedIds: ['S9-A', 'S1-E', 'S7-E', 'S12-E', 'S4-E', 'S7-F', 'S12-F'],
@@ -31631,6 +31908,472 @@
       }
     };
 
+    // =========================================================================
+    // SECTION 44 (v13.0): EPHEMERAL GUEST SHIFT ENGINE ("⚡ TRY 3 PLAYS FREE")
+    // Memory + sessionStorage ONLY — NEVER writes profiles to localStorage!
+    // =========================================================================
+    (function initSynapzGuestDemoEngine() {
+      const GUEST_STORAGE_KEY = 'synapz_guest_demo_v13';
+      const GUEST_TIERS = {
+        youth: {
+          tier: 'youth',
+          label: '🧊 Youth (8U–10U)',
+          ageGroup: '8U',
+          divisionHint: '8U',
+          adaptiveLevel: 0,
+          playIds: ['rush-1', 'breakout-1', 'spacing-1']
+        },
+        competitive: {
+          tier: 'competitive',
+          label: '🏒 Competitive (12U–14U)',
+          ageGroup: '12U',
+          divisionHint: '12U Rec/B',
+          adaptiveLevel: 1,
+          playIds: ['rush-2v1-dish', 'breakout-2', 'delay-high-slot']
+        },
+        aaa: {
+          tier: 'aaa',
+          label: '🔥 AAA / Jr (16U–18U)',
+          ageGroup: '16U',
+          divisionHint: '16U AAA',
+          adaptiveLevel: 3,
+          playIds: ['rush-2v1-shoot', 'breakout-dtod', 'protect-cutback-wall']
+        },
+        coach_preview: {
+          tier: 'coach_preview',
+          label: '📋 Coach 60-Sec Preview',
+          ageGroup: '12U',
+          divisionHint: '12U AA',
+          adaptiveLevel: 2,
+          playIds: ['breakout-dtod']
+        }
+      };
+
+      let coachSandboxTimerId = null;
+      let autoModalTimerId = null;
+
+      function persistGuestSession(sess) {
+        window.__synapzGuestDemoSession = sess || null;
+        try {
+          if (sess) {
+            sessionStorage.setItem(GUEST_STORAGE_KEY, JSON.stringify(sess));
+          } else {
+            sessionStorage.removeItem(GUEST_STORAGE_KEY);
+          }
+        } catch (_) {}
+      }
+
+      // Restore pending conversion credit from sessionStorage if present (never auto-create localStorage profiles)
+      try {
+        const saved = JSON.parse(sessionStorage.getItem(GUEST_STORAGE_KEY) || 'null');
+        if (saved && typeof saved === 'object') {
+          saved.active = false;
+          window.__synapzGuestDemoSession = saved;
+        }
+      } catch (_) {}
+
+      function stopGuestTimers() {
+        if (coachSandboxTimerId) {
+          clearInterval(coachSandboxTimerId);
+          coachSandboxTimerId = null;
+        }
+        if (autoModalTimerId) {
+          clearTimeout(autoModalTimerId);
+          autoModalTimerId = null;
+        }
+      }
+
+      function ensureGuestHudBanner() {
+        let banner = document.getElementById('synapzGuestLiveShiftBanner');
+        if (!banner) {
+          const gameSec = document.getElementById('gameViewSection');
+          if (!gameSec) return null;
+          banner = document.createElement('div');
+          banner.id = 'synapzGuestLiveShiftBanner';
+          banner.className = 'hidden mb-2 px-3 py-2 rounded-2xl bg-emerald-950/90 border border-emerald-400/80 flex flex-wrap items-center justify-between gap-2 text-xs font-black text-white shadow-lg';
+          banner.innerHTML = `
+            <div class="flex items-center gap-2">
+              <span id="guestLiveShiftPlayBadge" class="px-2 py-0.5 rounded-lg bg-emerald-400 text-slate-950 text-[11px] font-black">⚡ Free Shift: Play 1/3</span>
+              <span id="guestLiveShiftScoreBadge" class="text-emerald-200 text-[11px] font-black">🧠 +0 IQ • 💰 +0 Bucks</span>
+            </div>
+            <button id="btnGuestLiveExitToScreen1" type="button" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-600 text-slate-200 text-[11px] font-black cursor-pointer">
+              ← Exit to Screen 1
+            </button>
+          `;
+          gameSec.insertBefore(banner, gameSec.firstChild);
+          const exitBtn = document.getElementById('btnGuestLiveExitToScreen1');
+          if (exitBtn) {
+            exitBtn.addEventListener('click', () => {
+              SoundFX.playTap();
+              exitSynapzGuestDemoToScreen1();
+            });
+          }
+        }
+        return banner;
+      }
+
+      function updateGuestHudBanner() {
+        const sess = window.__synapzGuestDemoSession;
+        const banner = ensureGuestHudBanner();
+        if (!banner) return;
+        if (!sess || !sess.active) {
+          banner.classList.add('hidden');
+          return;
+        }
+        banner.classList.remove('hidden');
+        const total = sess.playIds.length;
+        const playNum = Math.min(total, (Number(sess.playIndex) || 0) + 1);
+        const pBadge = document.getElementById('guestLiveShiftPlayBadge');
+        const sBadge = document.getElementById('guestLiveShiftScoreBadge');
+        if (pBadge) {
+          pBadge.textContent = sess.tier === 'coach_preview'
+            ? '📋 Coach Preview: Tactical Play 1/1'
+            : `⚡ Free Shift: Play ${playNum}/${total}`;
+        }
+        if (sBadge) {
+          sBadge.textContent = `🥇 ${sess.goldReads || 0}/${total} Gold • 🧠 +${sess.earnedIq || 0} IQ • 💰 +${sess.earnedBucks || 0} Bucks`;
+        }
+      }
+
+      function syncGuestCreditSignupBanner() {
+        const banner = document.getElementById('guestCreditSignupBanner');
+        if (!banner) return;
+        const sess = window.__synapzGuestDemoSession;
+        const credit = sess && (sess.pendingCredit || (sess.earnedIq > 0 ? sess : null));
+        if (credit && Number(credit.earnedIq) > 0) {
+          banner.textContent = `🏆 Shift Credit Ready: +${credit.earnedIq} Hockey IQ & +${credit.earnedBucks} Puck Bucks will automatically be credited to your new Player profile!`;
+          banner.classList.remove('hidden');
+        } else {
+          banner.classList.add('hidden');
+        }
+      }
+      window.syncGuestCreditSignupBanner = syncGuestCreditSignupBanner;
+
+      function consumePendingGuestCredit(clearAfter = false) {
+        const sess = window.__synapzGuestDemoSession;
+        if (!sess) return null;
+        const src = sess.pendingCredit || sess;
+        const earnedIq = Number(src.earnedIq) || 0;
+        const earnedBucks = Number(src.earnedBucks) || 0;
+        if (earnedIq <= 0 && earnedBucks <= 0) return null;
+        const credit = {
+          earnedIq,
+          earnedBucks,
+          goldReads: Number(src.goldReads) || 0,
+          ageGroup: src.ageGroup || '12U',
+          divisionHint: src.divisionHint || '12U Rec/B'
+        };
+        if (clearAfter) {
+          persistGuestSession(null);
+          syncGuestCreditSignupBanner();
+        }
+        return credit;
+      }
+      window.consumePendingGuestCredit = consumePendingGuestCredit;
+
+      function clearGuestDemoSession() {
+        stopGuestTimers();
+        persistGuestSession(null);
+        syncGuestCreditSignupBanner();
+      }
+      window.clearGuestDemoSession = clearGuestDemoSession;
+
+      function cleanupEphemeralGameState() {
+        stopGuestTimers();
+        stopTimers();
+        if (state.flowFreezeAnimId) {
+          cancelAnimationFrame(state.flowFreezeAnimId);
+          state.flowFreezeAnimId = null;
+        }
+        state.isEphemeralBotSession = false;
+        state.sandboxAuthenticated = false;
+        state.hasOnboarded = false;
+        state.currentAccount = null;
+        state.profiles = [];
+        state.activeScenarioInstance = null;
+        state.seriesResults = [];
+        state.seriesPointsEarned = 0;
+        state.seriesQuestionNum = 1;
+        state.iqScore = 0;
+        state.puckBucks = 250;
+        document.body.classList.remove('in-game-clean-mode');
+        const gBanner = document.getElementById('synapzGuestLiveShiftBanner');
+        if (gBanner) gBanner.classList.add('hidden');
+        hideCoachBobPopup();
+      }
+
+      function openGuestSpeedModal(returnTarget = 'screen1') {
+        stopGuestTimers();
+        silenceAllCharactersForEntryGate();
+        document.body.classList.add('synapz-entry-gate-active');
+        const modal = document.getElementById('synapzGuestSpeedModal');
+        if (modal) {
+          modal.dataset.returnTarget = returnTarget || 'screen1';
+          modal.classList.remove('hidden');
+        }
+      }
+      window.openGuestSpeedModal = openGuestSpeedModal;
+
+      function startSynapzGuestDemoShift(tierKey = 'competitive') {
+        stopGuestTimers();
+        const cfg = GUEST_TIERS[tierKey] || GUEST_TIERS.competitive;
+        const sess = {
+          active: true,
+          tier: cfg.tier,
+          tierLabel: cfg.label,
+          ageGroup: cfg.ageGroup,
+          divisionHint: cfg.divisionHint,
+          playIds: [...cfg.playIds],
+          playIndex: 0,
+          completedPlays: 0,
+          goldReads: 0,
+          earnedIq: 0,
+          earnedBucks: 0,
+          seedBase: 2,
+          startedAt: Date.now()
+        };
+        persistGuestSession(sess);
+
+        // Ephemeral in-memory profile ONLY (saveProgress returns early on state.isEphemeralBotSession === true)
+        state.isEphemeralBotSession = true;
+        state.sandboxAuthenticated = false;
+        state.currentAccount = null;
+        state.profiles = [{
+          id: '__ephemeral_guest_shift__',
+          name: 'Guest Skater',
+          ageGroup: cfg.ageGroup,
+          divisionLabel: cfg.divisionHint,
+          adaptiveLevel: cfg.adaptiveLevel,
+          positionCode: 'C',
+          position: 'Center (C)',
+          iqScore: 0,
+          puckBucks: 0,
+          recentShiftScenarioIds: []
+        }];
+        state.activeProfileId = '__ephemeral_guest_shift__';
+        state.iqScore = 0;
+        state.puckBucks = 0;
+        state.streak = 0;
+        state.seriesResults = [];
+        state.seriesPointsEarned = 0;
+        state.seriesQuestionNum = 1;
+        state.samePlayAttemptedIds = {};
+        state.activeScenarioInstance = null;
+        state.mode = 'position';
+
+        ['sandboxLoginModal', 'synapzGuestSpeedModal', 'synapzGuestCoachSandboxModal', 'synapzGuestConversionModal', 'synapzUniversalCharSpeechOverlay', 'synapzPersistentCharCircleBtn'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.classList.add('hidden');
+        });
+        document.body.classList.remove('synapz-entry-gate-active');
+        document.body.classList.add('in-game-clean-mode');
+
+        switchView('game');
+        updateGuestHudBanner();
+        updateHeaderStats();
+      }
+      window.startSynapzGuestDemoShift = startSynapzGuestDemoShift;
+
+      function openGuestCoachSandboxModal() {
+        stopGuestTimers();
+        const modal = document.getElementById('synapzGuestCoachSandboxModal');
+        const confirmBox = document.getElementById('guestCoachPushConfirmBox');
+        const pushBtn = document.getElementById('guestCoachPush5PlayPlan');
+        const badge = document.getElementById('guestCoachSandboxTimerBadge');
+        if (confirmBox) confirmBox.classList.add('hidden');
+        if (pushBtn) {
+          pushBtn.disabled = false;
+          pushBtn.textContent = 'Push 5-Play Breakout Plan to Team Inbox';
+        }
+        if (modal) modal.classList.remove('hidden');
+        let secsLeft = 20;
+        if (badge) badge.textContent = `⏱️ ${secsLeft}s Preview`;
+        coachSandboxTimerId = setInterval(() => {
+          secsLeft = Math.max(0, secsLeft - 1);
+          if (badge) badge.textContent = secsLeft > 0 ? `⏱️ ${secsLeft}s Preview` : '✅ Ready for Your Team!';
+          if (secsLeft <= 0) {
+            clearInterval(coachSandboxTimerId);
+            coachSandboxTimerId = null;
+          }
+        }, 1000);
+      }
+      window.openGuestCoachSandboxModal = openGuestCoachSandboxModal;
+
+      function openGuestConversionModal() {
+        stopGuestTimers();
+        const sess = window.__synapzGuestDemoSession;
+        if (!sess) return;
+        const total = sess.playIds.length || 3;
+        const gold = Number(sess.goldReads) || 0;
+        const iq = Number(sess.earnedIq) || 0;
+        const bucks = Number(sess.earnedBucks) || 0;
+        sess.pendingCredit = {
+          earnedIq: iq,
+          earnedBucks: bucks,
+          goldReads: gold,
+          ageGroup: sess.ageGroup || '12U',
+          divisionHint: sess.divisionHint || '12U Rec/B'
+        };
+        persistGuestSession(sess);
+
+        const headline = document.getElementById('guestConversionSummaryHeadline');
+        if (headline) {
+          headline.textContent = `🏆 Shift Complete: ${gold}/${total} Gold Reads • +${iq} Hockey IQ • +${bucks} Puck Bucks!`;
+        }
+        const playerBtn = document.getElementById('btnGuestConvertCreatePlayer');
+        if (playerBtn) {
+          playerBtn.textContent = `💾 Create Account to Save Your +${iq} IQ`;
+        }
+        const tierBadge = document.getElementById('guestConversionTierBadge');
+        if (tierBadge) {
+          tierBadge.textContent = `${sess.tierLabel || '⚡ Free Shift'} • Complete`;
+        }
+        const modal = document.getElementById('synapzGuestConversionModal');
+        if (modal) modal.classList.remove('hidden');
+      }
+      window.openGuestConversionModal = openGuestConversionModal;
+
+      function handleGuestDemoPlayResolved({ isCorrect, mult }) {
+        const sess = window.__synapzGuestDemoSession;
+        if (!sess || !sess.active) return;
+        if (sess._lastResolvedPlayIdx === sess.playIndex) return;
+        sess._lastResolvedPlayIdx = sess.playIndex;
+
+        const isGold = Boolean(isCorrect && mult >= 0.99);
+        const isSilver = Boolean(isCorrect && mult > 0 && mult < 0.99);
+        const playIq = isGold ? 25 : (isSilver ? 15 : 5);
+        const playBucks = isGold ? 25 : (isSilver ? 15 : 5);
+        if (isGold) sess.goldReads = (Number(sess.goldReads) || 0) + 1;
+        sess.earnedIq = (Number(sess.earnedIq) || 0) + playIq;
+        sess.earnedBucks = (Number(sess.earnedBucks) || 0) + playBucks;
+        sess.completedPlays = (Number(sess.completedPlays) || 0) + 1;
+
+        state.iqScore = sess.earnedIq;
+        state.puckBucks = sess.earnedBucks;
+        persistGuestSession(sess);
+        updateHeaderStats();
+        updateGuestHudBanner();
+
+        const nextLbl = document.getElementById('btnNextQuestionLabel');
+        const isLastPlay = sess.playIndex >= sess.playIds.length - 1;
+        if (nextLbl) {
+          nextLbl.textContent = sess.tier === 'coach_preview'
+            ? 'Open Coach Sandbox ▶'
+            : (isLastPlay ? 'Finish Shift 🏆' : `Next Play (${sess.playIndex + 2}/${sess.playIds.length}) ▶`);
+        }
+
+        if (isLastPlay) {
+          if (autoModalTimerId) clearTimeout(autoModalTimerId);
+          autoModalTimerId = setTimeout(() => {
+            if (!window.__synapzGuestDemoSession || !window.__synapzGuestDemoSession.active) return;
+            if (sess.tier === 'coach_preview') {
+              openGuestCoachSandboxModal();
+            } else {
+              openGuestConversionModal();
+            }
+          }, 420);
+        }
+      }
+      window.handleGuestDemoPlayResolved = handleGuestDemoPlayResolved;
+
+      function advanceGuestDemoPlay() {
+        const sess = window.__synapzGuestDemoSession;
+        if (!sess || !sess.active) return;
+        if (sess.playIndex >= sess.playIds.length - 1) {
+          if (sess.tier === 'coach_preview') {
+            openGuestCoachSandboxModal();
+          } else {
+            openGuestConversionModal();
+          }
+          return;
+        }
+        sess.playIndex += 1;
+        state.seriesQuestionNum = sess.playIndex + 1;
+        state.activeScenarioInstance = null;
+        persistGuestSession(sess);
+        updateGuestHudBanner();
+        loadScenario(true);
+      }
+      window.advanceGuestDemoPlay = advanceGuestDemoPlay;
+
+      function exitSynapzGuestDemoToScreen1() {
+        cleanupEphemeralGameState();
+        persistGuestSession(null);
+        openEntryScreen('1');
+      }
+      window.exitSynapzGuestDemoToScreen1 = exitSynapzGuestDemoToScreen1;
+
+      function bindGuestModalControls() {
+        const byId = id => document.getElementById(id);
+        byId('btnGuestSpeedBack')?.addEventListener('click', () => {
+          SoundFX.playTap();
+          byId('synapzGuestSpeedModal')?.classList.add('hidden');
+        });
+        document.querySelectorAll('#synapzGuestSpeedModal [data-guest-tier]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            SoundFX.playGoalHorn();
+            const tier = btn.getAttribute('data-guest-tier') || 'competitive';
+            startSynapzGuestDemoShift(tier);
+          });
+        });
+        byId('btnGuestCoachPush5PlayPlan')?.addEventListener('click', () => {
+          SoundFX.playGoalHorn();
+          const box = byId('guestCoachPushConfirmBox');
+          if (box) box.classList.remove('hidden');
+          const btn = byId('btnGuestCoachPush5PlayPlan');
+          if (btn) btn.textContent = '✅ 5-Play Breakout Plan Pushed to Team Inbox!';
+        });
+        byId('btnGuestCoachSandboxSignup')?.addEventListener('click', () => {
+          SoundFX.playTap();
+          cleanupEphemeralGameState();
+          persistGuestSession(null);
+          openEntryScreen('1B-2');
+        });
+        byId('btnGuestCoachSandboxExit')?.addEventListener('click', () => {
+          SoundFX.playTap();
+          exitSynapzGuestDemoToScreen1();
+        });
+        byId('btnGuestConvertCreatePlayer')?.addEventListener('click', () => {
+          SoundFX.playGoalHorn();
+          const sess = window.__synapzGuestDemoSession;
+          const preserved = sess ? {
+            active: false,
+            earnedIq: Number(sess.earnedIq) || 0,
+            earnedBucks: Number(sess.earnedBucks) || 0,
+            goldReads: Number(sess.goldReads) || 0,
+            ageGroup: sess.ageGroup || '12U',
+            divisionHint: sess.divisionHint || '12U Rec/B',
+            pendingCredit: {
+              earnedIq: Number(sess.earnedIq) || 0,
+              earnedBucks: Number(sess.earnedBucks) || 0,
+              goldReads: Number(sess.goldReads) || 0,
+              ageGroup: sess.ageGroup || '12U',
+              divisionHint: sess.divisionHint || '12U Rec/B'
+            }
+          } : null;
+          cleanupEphemeralGameState();
+          persistGuestSession(preserved);
+          openEntryScreen('1A-2');
+        });
+        byId('btnGuestConvertCreateCoach')?.addEventListener('click', () => {
+          SoundFX.playTap();
+          cleanupEphemeralGameState();
+          persistGuestSession(null);
+          openEntryScreen('1B-2');
+        });
+        byId('btnGuestConvertExitScreen1')?.addEventListener('click', () => {
+          SoundFX.playTap();
+          exitSynapzGuestDemoToScreen1();
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bindGuestModalControls, { once: true });
+      } else {
+        bindGuestModalControls();
+      }
+    })();
+
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', async () => {
         try {
@@ -31640,7 +32383,7 @@
               keys.filter(k => k !== window.SYNAPZ_CACHE_NAME).map(k => caches.delete(k))
             );
           }
-          const reg = await navigator.serviceWorker.register('./sw.js?v=12.7');
+          const reg = await navigator.serviceWorker.register('./sw.js?v=13.0');
           if (reg && typeof reg.update === 'function') {
             reg.update().catch(() => {});
           }
