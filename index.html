@@ -452,8 +452,12 @@
       }
     }
 
-    /* Fix B: Zero overlap on bottom 4 game buttons during on-ice drills */
-    body.in-game-clean-mode #synapzPersistentCharCircleBtn {
+    /* Fix B: Zero overlap on bottom 4 game buttons during on-ice drills & open room overlay sheets */
+    body.in-game-clean-mode #synapzPersistentCharCircleBtn,
+    body:has(#lockerEquipmentBagSheet:not(.hidden)) #synapzPersistentCharCircleBtn,
+    body:has(#proShopRackOverlaySheet:not(.hidden)) #synapzPersistentCharCircleBtn,
+    body:has(#coachOfficeOverlaySheet:not(.hidden)) #synapzPersistentCharCircleBtn,
+    body:has(#clubhouseOverlaySheet:not(.hidden)) #synapzPersistentCharCircleBtn {
       display: none !important;
     }
     body.in-game-clean-mode #btnPersistentFounderRedFlag {
@@ -1404,7 +1408,7 @@
       <div class="flex-1 p-3 rounded-2xl bg-slate-950/95 border-2 border-amber-400 shadow-2xl pointer-events-auto space-y-2">
         <div class="flex items-center justify-between gap-2">
           <span id="lobbySpotlightStepBadge" class="px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black">Lobby Tour 1 / 6</span>
-          <button id="btnLobbyTourSkip" type="button" class="text-[10px] font-bold text-slate-400 hover:text-white">Skip</button>
+          <button id="btnLobbyTourSkip" type="button" class="px-2.5 py-1 min-h-[28px] rounded-lg bg-slate-800/85 border border-slate-700 text-[11px] font-bold text-slate-200 hover:text-white">Skip</button>
         </div>
         <p id="lobbyAgentSpeechText" class="text-xs sm:text-sm font-extrabold text-white leading-snug"></p>
         <div class="flex items-center justify-end">
@@ -1739,13 +1743,13 @@
           <div id="rinkCanvasContainer" class="flex-1 relative min-w-0 h-full" style="aspect-ratio: 16 / 10;">
             <canvas id="rinkCanvas" class="w-full h-full rounded-xl cursor-pointer block"></canvas>
 
-            <!-- 🏒 UNIFIED TOP HUD STACK (Situation Context Banner + Multi-Format Question Action Bar — Zero Overlap!) -->
+            <!-- 🏒 UNIFIED TOP HUD STACK (Situation Context Banner + Timed Clock Pill — Zero Overlap!) -->
             <div id="topRinkHudStack" class="absolute top-2 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 w-[96%] max-w-4xl pointer-events-none">
-              <div id="situationContextBanner" class="relative pointer-events-auto flex flex-wrap items-center justify-center gap-1.5 bg-slate-950/92 border border-sky-400/70 rounded-full px-3 py-1 shadow-xl backdrop-blur-md max-w-full">
+              <div id="situationContextBanner" class="relative pointer-events-auto flex flex-wrap items-center justify-center gap-1.5 bg-slate-950/92 border border-sky-400/70 rounded-2xl sm:rounded-full px-3 py-1 shadow-xl backdrop-blur-md max-w-full overflow-hidden">
                 <span id="situationBannerText" class="text-[11px] sm:text-xs font-black text-white tracking-tight">🏒 5-on-5 Even Strength • Offensive Zone (OZ)</span>
                 <span class="text-slate-600 font-black">•</span>
                 <span id="situationTierPill" class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black uppercase whitespace-nowrap">10U • Rec Tier</span>
-                <span id="flowFreezeStatusBadge" class="px-2.5 py-0.5 rounded-full bg-cyan-500/25 border border-cyan-400/70 text-cyan-200 text-[10px] font-black uppercase whitespace-nowrap">❄️ FREEZE — MAKE YOUR READ!</span>
+                <span id="flowFreezeStatusBadge" class="px-2.5 py-0.5 rounded-full bg-cyan-500/25 border border-cyan-400/70 text-cyan-200 text-[10px] font-black uppercase whitespace-nowrap max-w-[235px] sm:max-w-none truncate">❄️ FREEZE — MAKE YOUR READ!</span>
                 <button id="btnReplay3sFlow" type="button" class="px-2.5 py-0.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 text-[10px] font-black shadow transition whitespace-nowrap synapz-tactile-3d-btn" title="Watch the 3–4 second moving play develop again before freezing!">
                   🔄 Replay 3s Flow
                 </button>
@@ -1754,6 +1758,14 @@
                 </button>
                 <button id="btnCueFirstHighlight" type="button" class="hidden px-2 py-0.5 rounded-full bg-cyan-500/25 hover:bg-cyan-500/40 border border-cyan-400/70 text-cyan-200 text-[10px] font-black transition whitespace-nowrap">
                   <span id="cueFirstBadgeText">👀 Cue-First Read</span>
+                </button>
+              </div>
+              <!-- Countdown Timer & Timed Briefing Pill Stacked Cleanly Below Situation Context Banner -->
+              <div id="decisionTimerWrap" class="hidden pointer-events-auto bg-slate-950/92 border-2 border-amber-400 rounded-full px-3.5 py-1 flex flex-wrap items-center justify-center gap-2 shadow-2xl max-w-full">
+                <span id="decisionTimerLabel" class="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-amber-300">⏱️ Quick Read Clock:</span>
+                <span id="decisionTimerText" class="text-xs sm:text-sm font-black text-white">10.0s</span>
+                <button id="btnQuickStartCountdownPill" type="button" class="hidden px-2.5 py-0.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 text-[10px] font-black transition whitespace-nowrap">
+                  ⚡ Start 3-2-1 Now ▶
                 </button>
               </div>
             </div>
@@ -1785,15 +1797,6 @@
               </p>
               <button id="btnSkipToCountdownNow" type="button" class="hidden pointer-events-auto mt-3 px-4 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs shadow-lg transition">
                 ⚡ Start 3-2-1 Countdown Now ▶
-              </button>
-            </div>
-
-            <!-- Countdown Timer & Timed Briefing Pill at Top-Center of Ice -->
-            <div id="decisionTimerWrap" class="hidden absolute top-2.5 left-1/2 -translate-x-1/2 bg-slate-950/92 border-2 border-amber-400 rounded-full px-4 py-1.5 flex items-center gap-2.5 shadow-2xl z-20">
-              <span id="decisionTimerLabel" class="text-xs font-extrabold uppercase tracking-wider text-amber-300">⏱️ Quick Read Clock:</span>
-              <span id="decisionTimerText" class="text-sm font-black text-white">10.0s</span>
-              <button id="btnQuickStartCountdownPill" type="button" class="hidden px-2.5 py-0.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 text-[10px] font-black transition">
-                ⚡ Start 3-2-1 Now ▶
               </button>
             </div>
 
@@ -5356,7 +5359,7 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v13.0-global-foundation';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v13.1-cold-eyes-audit';
 
     // =========================================================================
     // SECTION 39 (v12.3): CENTRALIZED PRICING & SEAT CAP CONFIGURATION
@@ -11470,7 +11473,8 @@
     function updateFirstShiftAgentDrillTour(phase = 'intro') {
       const overlay = document.getElementById('firstShiftAgentDrillTourOverlay');
       if (!overlay) return null;
-      if (state.view !== 'game' || aiDemoActive || document.body.classList.contains('synapz-entry-gate-active')) {
+      const isGuestShiftActive = Boolean(window.__synapzGuestDemoSession && window.__synapzGuestDemoSession.active) || Boolean(state.isEphemeralBotSession);
+      if (state.view !== 'game' || aiDemoActive || isGuestShiftActive || document.body.classList.contains('synapz-entry-gate-active')) {
         overlay.classList.add('hidden');
         return null;
       }
@@ -11639,7 +11643,7 @@
 
       // Optional "Focus on My Position Only" filter (unlocked for $7.99/mo & $49.99/yr Full Suite accounts)
       const acctPlan = (state.currentAccount && state.currentAccount.planType) || prof.subscription_tier || '';
-      const posOnlyActive = Boolean((opts.focusMyPositionOnly != null ? opts.focusMyPositionOnly : state.focusMyPositionOnly) && (acctPlan === 'annual_4999' || acctPlan === 'monthly_799'));
+      const posOnlyActive = Boolean((opts.focusMyPositionOnly != null ? opts.focusMyPositionOnly : state.focusMyPositionOnly) && (isPlayerFullSuiteActive(state.currentAccount, prof) || acctPlan === 'annual_4999' || acctPlan === 'monthly_799'));
       const posCode = String(prof.positionCode || 'ALL').toUpperCase();
 
       let candidates = SCENARIOS.filter(s => {
@@ -11794,25 +11798,42 @@
     //   Center Red Line (0.50) is at the far left edge, Offensive Blue Line (0.62) is clearly inside view,
     //   and Offensive Point Defensemen stand at x = 0.66 (clearly INSIDE the Blue Line)!
     // =========================================================================
+    function getEffectiveCameraRotationDeg() {
+      const raw = Number(state.cameraRotationDeg ?? state.rinkRotationDeg ?? 0) || 0;
+      const snapped = Math.round((((raw % 360) + 360) % 360) / 90) * 90;
+      return snapped === 360 ? 0 : snapped;
+    }
+    window.getEffectiveCameraRotationDeg = getEffectiveCameraRotationDeg;
+
     function normToCanvas(nx, ny, canvasW, canvasH, scenarioZone) {
       const padX = canvasW * 0.045;
       const padY = canvasH * 0.055;
-      if (state.rinkType === 'full') {
-        return {
-          x: padX + nx * (canvasW - padX * 2),
-          y: padY + ny * (canvasH - padY * 2)
-        };
-      } else {
+      const rot = getEffectiveCameraRotationDeg();
+      let u = nx;
+      const v = ny;
+      if (state.rinkType !== 'full') {
         const activeTargetX = state.activeScenarioInstance && state.activeScenarioInstance.targetSpot ? state.activeScenarioInstance.targetSpot.x : 0.75;
         const isLeftZone = scenarioZone === 'defense' || activeTargetX < 0.48;
         const minX = isLeftZone ? 0.04 : 0.49;
         const maxX = isLeftZone ? 0.51 : 0.96;
-        const clamped = (nx - minX) / (maxX - minX);
-        return {
-          x: padX + clamped * (canvasW - padX * 2),
-          y: padY + ny * (canvasH - padY * 2)
-        };
+        u = (nx - minX) / (maxX - minX);
       }
+      let relX = u;
+      let relY = v;
+      if (rot === 90) {
+        relX = 1.0 - v;
+        relY = u;
+      } else if (rot === 180) {
+        relX = 1.0 - u;
+        relY = 1.0 - v;
+      } else if (rot === 270) {
+        relX = v;
+        relY = 1.0 - u;
+      }
+      return {
+        x: padX + relX * (canvasW - padX * 2),
+        y: padY + relY * (canvasH - padY * 2)
+      };
     }
 
     function canvasToNorm(cx, cy, canvasW, canvasH, scenarioZone) {
@@ -11820,16 +11841,29 @@
       const padY = canvasH * 0.055;
       const relX = Math.max(0.02, Math.min(0.98, (cx - padX) / (canvasW - padX * 2)));
       const relY = Math.max(0.06, Math.min(0.94, (cy - padY) / (canvasH - padY * 2)));
+      const rot = getEffectiveCameraRotationDeg();
+      let u = relX;
+      let v = relY;
+      if (rot === 90) {
+        u = relY;
+        v = 1.0 - relX;
+      } else if (rot === 180) {
+        u = 1.0 - relX;
+        v = 1.0 - relY;
+      } else if (rot === 270) {
+        u = 1.0 - relY;
+        v = relX;
+      }
       if (state.rinkType === 'full') {
-        return { x: relX, y: relY };
+        return { x: u, y: v };
       } else {
         const activeTargetX = state.activeScenarioInstance && state.activeScenarioInstance.targetSpot ? state.activeScenarioInstance.targetSpot.x : 0.75;
         const isLeftZone = scenarioZone === 'defense' || activeTargetX < 0.48;
         const minX = isLeftZone ? 0.04 : 0.49;
         const maxX = isLeftZone ? 0.51 : 0.96;
         return {
-          x: minX + relX * (maxX - minX),
-          y: relY
+          x: minX + u * (maxX - minX),
+          y: v
         };
       }
     }
@@ -13042,7 +13076,8 @@
       // Timed Decision-Making Questions: Coach clarifies it's timed first + 3, 2, 1 countdown after explanation finishes!
       // Respects Coach Portal Pace Override ('relaxed_no_clock' disables clock; 'pro_speed_no_hints' forces tight 4.5s clock)
       let isTimedPlay = false;
-      if (coachPace !== 'relaxed_no_clock' && state.mode === 'position' && (scen.mechanic === 'pass_decision' || scen.mechanic === 'pov' || coachPace === 'pro_speed_no_hints')) {
+      const isGuestPreviewPlay = Boolean(window.__synapzGuestDemoSession && window.__synapzGuestDemoSession.active);
+      if (!isGuestPreviewPlay && coachPace !== 'relaxed_no_clock' && state.mode === 'position' && (scen.mechanic === 'pass_decision' || scen.mechanic === 'pov' || coachPace === 'pro_speed_no_hints')) {
         if ((prof.ageGroup !== '8U' || coachPace === 'pro_speed_no_hints') && (ageCfg.clockSecs > 0 || coachPace === 'pro_speed_no_hints') && (state.seriesQuestionNum >= 5 || state.currentCityIdx >= 4 || scen.mechanic === 'pass_decision' || scen.mechanic === 'pov' || coachPace === 'pro_speed_no_hints')) {
           isTimedPlay = true;
           const totalSecs = coachPace === 'pro_speed_no_hints' ? 4.5 : ageCfg.clockSecs;
@@ -13538,39 +13573,61 @@
     function drawRinkMarkings(ctx, W, H, padX, padY, rinkW, rinkH, zone) {
       const topY = padY;
       const botY = padY + rinkH;
+      const leftX = padX;
+      const rightX = padX + rinkW;
+      const rot = getEffectiveCameraRotationDeg();
+      const isVerticalRink = (rot === 90 || rot === 270);
 
-      function vLine(nx, color, widthRatio, dashed = false, lineLabel = '') {
+      function rinkLine(nx, color, widthRatio, dashed = false, lineLabel = '') {
         const p = normToCanvas(nx, 0.5, W, H, zone);
-        if (p.x < padX + 4 || p.x > padX + rinkW - 4) return;
         ctx.save();
         ctx.beginPath();
         if (dashed) ctx.setLineDash([8, 8]);
         ctx.strokeStyle = color;
-        ctx.lineWidth = Math.max(2.5, W * widthRatio);
-        ctx.moveTo(p.x, topY);
-        ctx.lineTo(p.x, botY);
-        ctx.stroke();
-        if (lineLabel) {
-          ctx.font = `800 ${Math.max(9, Math.floor(W * 0.0105))}px Inter`;
-          ctx.fillStyle = color;
-          ctx.textAlign = 'center';
-          ctx.fillText(lineLabel, p.x, botY - 8);
+        ctx.lineWidth = Math.max(2.5, Math.min(W, H) * widthRatio * 1.35);
+        if (isVerticalRink) {
+          if (p.y < topY + 4 || p.y > botY - 4) { ctx.restore(); return; }
+          ctx.moveTo(leftX, p.y);
+          ctx.lineTo(rightX, p.y);
+          ctx.stroke();
+          if (lineLabel) {
+            ctx.font = `800 ${Math.max(9, Math.floor(Math.min(W, H) * 0.014))}px Inter`;
+            ctx.fillStyle = color;
+            ctx.textAlign = 'right';
+            ctx.fillText(lineLabel, rightX - 10, p.y - 6);
+          }
+        } else {
+          if (p.x < leftX + 4 || p.x > rightX - 4) { ctx.restore(); return; }
+          ctx.moveTo(p.x, topY);
+          ctx.lineTo(p.x, botY);
+          ctx.stroke();
+          if (lineLabel) {
+            ctx.font = `800 ${Math.max(9, Math.floor(W * 0.0105))}px Inter`;
+            ctx.fillStyle = color;
+            ctx.textAlign = 'center';
+            ctx.fillText(lineLabel, p.x, botY - 8);
+          }
         }
         ctx.restore();
       }
 
-      // Accurate Line Positions:
+      // Accurate Line Positions (CSS-width aware on Retina screens so mobile labels never collide!):
       // Left Goal = 0.08 | Left D-Zone Blue = 0.38 | Center Red = 0.50 | Right O-Zone Blue = 0.62 | Right Goal = 0.92
-      const compactLineLabels = W < 560;
-      vLine(0.08, 'rgba(220, 38, 38, 0.65)', 0.003);
-      vLine(0.38, 'rgba(37, 99, 235, 0.72)', 0.007, false, compactLineLabels ? 'D-BLUE' : 'DEFENSIVE BLUE LINE');
-      vLine(0.50, 'rgba(220, 38, 38, 0.70)', 0.006, true, compactLineLabels ? 'RED' : 'CENTER RED');
-      vLine(0.62, 'rgba(37, 99, 235, 0.72)', 0.007, false, compactLineLabels ? 'O-BLUE' : 'OFFENSIVE BLUE LINE');
-      vLine(0.92, 'rgba(220, 38, 38, 0.65)', 0.003);
+      const cssW = W / (window.devicePixelRatio || 1);
+      const compactLineLabels = cssW < 540 || isVerticalRink;
+      rinkLine(0.08, 'rgba(220, 38, 38, 0.65)', 0.003);
+      rinkLine(0.38, 'rgba(37, 99, 235, 0.72)', 0.007, false, compactLineLabels ? 'D-BLUE' : 'DEFENSIVE BLUE LINE');
+      rinkLine(0.50, 'rgba(220, 38, 38, 0.70)', 0.006, true, compactLineLabels ? 'RED' : 'CENTER RED');
+      rinkLine(0.62, 'rgba(37, 99, 235, 0.72)', 0.007, false, compactLineLabels ? 'O-BLUE' : 'OFFENSIVE BLUE LINE');
+      rinkLine(0.92, 'rgba(220, 38, 38, 0.65)', 0.003);
 
       const cCenter = normToCanvas(0.50, 0.50, W, H, zone);
-      const circleRad = (state.rinkType === 'full' ? W * 0.065 : W * 0.105);
-      if (cCenter.x > padX && cCenter.x < padX + rinkW) {
+      const refSpan = isVerticalRink ? Math.min(W, H) : W;
+      const circleRad = (state.rinkType === 'full' ? refSpan * 0.065 : refSpan * 0.105);
+      const centerVisible = isVerticalRink
+        ? (cCenter.y > topY && cCenter.y < botY)
+        : (cCenter.x > leftX && cCenter.x < rightX);
+      if (centerVisible) {
         ctx.save();
         ctx.beginPath();
         ctx.arc(cCenter.x, cCenter.y, circleRad, 0, Math.PI * 2);
@@ -13613,30 +13670,37 @@
 
       ctx.save();
       const city = NHL_CITIES[state.currentCityIdx] || NHL_CITIES[0];
-      ctx.font = `800 ${Math.max(12, Math.floor(W * 0.016))}px Inter, sans-serif`;
+      ctx.font = `800 ${Math.max(11, Math.floor(Math.min(W, H) * 0.022))}px Inter, sans-serif`;
       ctx.fillStyle = 'rgba(15, 23, 42, 0.16)';
       ctx.textAlign = 'center';
       if (state.rinkType === 'half') {
         const label = `${city.name.toUpperCase()} (${city.team.toUpperCase()}) • ${zone === 'defense' ? 'DEFENSIVE ZONE' : 'OFFENSIVE ZONE'}`;
-        ctx.fillText(label, W * 0.54, padY + Math.max(22, H * 0.055));
+        ctx.fillText(label, W * 0.50, padY + Math.max(22, H * 0.055));
+      } else if (isVerticalRink) {
+        const defWm = normToCanvas(0.22, 0.50, W, H, zone);
+        const offWm = normToCanvas(0.78, 0.50, W, H, zone);
+        ctx.fillText('DEFENSIVE ZONE', W * 0.50, defWm.y);
+        ctx.fillText(`${city.name.toUpperCase()} ICE`, W * 0.50, H * 0.50);
+        ctx.fillText('OFFENSIVE ZONE', W * 0.50, offWm.y);
       } else {
-        ctx.fillText('DEFENSIVE ZONE', W * 0.22, padY + Math.max(20, H * 0.05));
+        const defWm = normToCanvas(0.22, 0.50, W, H, zone);
+        const offWm = normToCanvas(0.78, 0.50, W, H, zone);
+        ctx.fillText('DEFENSIVE ZONE', defWm.x, padY + Math.max(20, H * 0.05));
         ctx.fillText(`${city.name.toUpperCase()} ICE`, W * 0.50, padY + Math.max(20, H * 0.05));
-        ctx.fillText('OFFENSIVE ZONE', W * 0.78, padY + Math.max(20, H * 0.05));
+        ctx.fillText('OFFENSIVE ZONE', offWm.x, padY + Math.max(20, H * 0.05));
       }
       ctx.restore();
     }
 
     function drawGoalCreaseAndNet(ctx, W, H, gx, gy, side, zone) {
       const pt = normToCanvas(gx, gy, W, H, zone);
-      const creaseR = state.rinkType === 'full' ? H * 0.075 : H * 0.095;
+      const inwardPt = normToCanvas(side === 'left' ? gx + 0.08 : gx - 0.08, gy, W, H, zone);
+      const ang = Math.atan2(inwardPt.y - pt.y, inwardPt.x - pt.x);
+      const refDim = Math.min(W, H);
+      const creaseR = state.rinkType === 'full' ? refDim * 0.075 : refDim * 0.095;
       ctx.save();
       ctx.beginPath();
-      if (side === 'left') {
-        ctx.arc(pt.x, pt.y, creaseR, -Math.PI / 2, Math.PI / 2);
-      } else {
-        ctx.arc(pt.x, pt.y, creaseR, Math.PI / 2, -Math.PI / 2);
-      }
+      ctx.arc(pt.x, pt.y, creaseR, ang - Math.PI / 2, ang + Math.PI / 2);
       ctx.closePath();
       ctx.fillStyle = 'rgba(56, 189, 248, 0.35)';
       ctx.fill();
@@ -13646,14 +13710,14 @@
 
       const netDepth = creaseR * 0.48;
       const netWidth = creaseR * 1.1;
+      ctx.save();
+      ctx.translate(pt.x, pt.y);
+      ctx.rotate(ang);
       ctx.fillStyle = 'rgba(15, 23, 42, 0.15)';
       ctx.strokeStyle = '#dc2626';
       ctx.lineWidth = 2.5;
-      if (side === 'left') {
-        ctx.strokeRect(pt.x - netDepth, pt.y - netWidth / 2, netDepth, netWidth);
-      } else {
-        ctx.strokeRect(pt.x, pt.y - netWidth / 2, netDepth, netWidth);
-      }
+      ctx.strokeRect(-netDepth, -netWidth / 2, netDepth, netWidth);
+      ctx.restore();
 
       const activeScen = state.activeScenarioInstance;
       const isPlayerGoalie = side === 'left' && activeScen && (
@@ -13662,19 +13726,20 @@
         activeScen.posRole === 'G'
       );
       if (!isPlayerGoalie) {
-        const goalieX = side === 'left' ? pt.x + creaseR * 0.42 : pt.x - creaseR * 0.42;
+        const goalieX = pt.x + Math.cos(ang) * creaseR * 0.42;
+        const goalieY = pt.y + Math.sin(ang) * creaseR * 0.42;
         ctx.beginPath();
-        ctx.arc(goalieX, pt.y, Math.max(8, W * 0.013), 0, Math.PI * 2);
+        ctx.arc(goalieX, goalieY, Math.max(8, refDim * 0.018), 0, Math.PI * 2);
         ctx.fillStyle = side === 'left' ? '#0284c7' : '#be123c';
         ctx.fill();
         ctx.lineWidth = 2;
         ctx.strokeStyle = '#ffffff';
         ctx.stroke();
         ctx.fillStyle = '#ffffff';
-        ctx.font = `800 ${Math.max(8, Math.floor(W * 0.01))}px Inter`;
+        ctx.font = `800 ${Math.max(8, Math.floor(refDim * 0.014))}px Inter`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText('G', goalieX, pt.y);
+        ctx.fillText('G', goalieX, goalieY);
       }
       ctx.restore();
     }
@@ -13776,10 +13841,13 @@
         ctx.stroke();
         ctx.setLineDash([]);
 
-        ctx.font = `900 ${Math.max(10, Math.floor(W * 0.012))}px Inter`;
-        ctx.fillStyle = '#065f46';
-        ctx.textAlign = 'center';
-        ctx.fillText('🥇 1ST CHOICE SWEET SPOT (100%)', targ.x, targ.y - rad - 6);
+        const isContrastiveMistakeReveal = Boolean(state.contrastiveReplayActive || (!state.readSuccess && state.animPhase === 'done'));
+        if (!isContrastiveMistakeReveal) {
+          ctx.font = `900 ${Math.max(10, Math.floor(W * 0.012))}px Inter`;
+          ctx.fillStyle = '#065f46';
+          ctx.textAlign = 'center';
+          ctx.fillText('🥇 1ST CHOICE SWEET SPOT (100%)', targ.x, targ.y - rad - 6);
+        }
 
         // Visual "Miles vs. Rhett Rule" Post-Play Reveal: draw directional arrow from Silver/Bronze read to Gold 1st Choice
         if (state.animPhase === 'done' && state.lastConsensusMultiplier > 0 && state.lastConsensusMultiplier < 0.99 && Array.isArray(scen.targetZones) && scen.targetZones.length >= 3) {
@@ -14233,7 +14301,7 @@
         ctx.stroke();
 
         ctx.fillStyle = '#065f46';
-        ctx.fillText('✅ 1ST CHOICE GOLD READ', Math.max(80, Math.min(W - 80, curGoldX)), curGoldY + Math.max(24, W * 0.028));
+        ctx.fillText('✅ 1ST CHOICE GOLD READ', Math.max(85, Math.min(W - 85, curGoldX)), curGoldY - Math.max(24, W * 0.030));
         ctx.restore();
       }
 
@@ -21040,7 +21108,18 @@
 
     // Pending Pilot Sandbox Checkout ($0.00 Test Unlock) Controller
     let pendingPilotCheckoutConfig = null;
+    let pendingPilotCheckoutPrepPromise = null;
     let pendingDeviceReplaceAccount = null;
+
+    function queuePilotCheckoutPrep(asyncFn) {
+      const p = Promise.resolve().then(asyncFn).finally(() => {
+        if (pendingPilotCheckoutPrepPromise === p) {
+          pendingPilotCheckoutPrepPromise = null;
+        }
+      });
+      pendingPilotCheckoutPrepPromise = p;
+      return p;
+    }
 
     function openPilotSandboxCheckout(config) {
       SoundFX.playTap();
@@ -21077,6 +21156,11 @@
     window.enterLobbyForSinglePlayerAccount = enterLobbyForSinglePlayerAccount;
 
     async function completePilotSandboxCheckout() {
+      if (!pendingPilotCheckoutConfig && pendingPilotCheckoutPrepPromise) {
+        try {
+          await pendingPilotCheckoutPrepPromise;
+        } catch (_) {}
+      }
       if (!pendingPilotCheckoutConfig) return;
       SoundFX.playGoalHorn();
       const cfg = pendingPilotCheckoutConfig;
@@ -22103,7 +22187,7 @@
         return { identity, password };
       }
 
-      on('btnPlayerPlanBasic499', async () => {
+      on('btnPlayerPlanBasic499', () => queuePilotCheckoutPrep(async () => {
         const creds = await validateNewPlayerIdentityAndPassword();
         if (!creds) return;
         const p = window.SYNAPZ_PRICING_CONFIG || {};
@@ -22114,9 +22198,9 @@
           identity: creds.identity,
           password: creds.password
         });
-      });
+      }));
 
-      on('btnPlayerPlanMonthly799', async () => {
+      on('btnPlayerPlanMonthly799', () => queuePilotCheckoutPrep(async () => {
         const creds = await validateNewPlayerIdentityAndPassword();
         if (!creds) return;
         const p = window.SYNAPZ_PRICING_CONFIG || {};
@@ -22127,9 +22211,9 @@
           identity: creds.identity,
           password: creds.password
         });
-      });
+      }));
 
-      on('btnPlayerPlanAnnual4999', async () => {
+      on('btnPlayerPlanAnnual4999', () => queuePilotCheckoutPrep(async () => {
         const creds = await validateNewPlayerIdentityAndPassword();
         if (!creds) return;
         const p = window.SYNAPZ_PRICING_CONFIG || {};
@@ -22140,7 +22224,7 @@
           identity: creds.identity,
           password: creds.password
         });
-      });
+      }));
 
       on('btnPlayerUnlockWithTeamCode', async () => {
         const creds = await validateNewPlayerIdentityAndPassword();
@@ -22517,7 +22601,7 @@
       });
 
       // Plan Card 2: Individual Coach — $99.99/yr
-      on('btnCoachPlanIndividual9999', async () => {
+      on('btnCoachPlanIndividual9999', () => queuePilotCheckoutPrep(async () => {
         const vals = await validateCoachAssocSignupInputs(true);
         if (!vals) return;
         const p = window.SYNAPZ_PRICING_CONFIG || {};
@@ -22526,10 +22610,10 @@
           planLabel: `Individual Coach — $${formatSynapzPriceNum(p.coachIndividualAnnual || 99.99)}/yr (1 Team • ${p.coachIncludedSkaters || 20} Skaters • +${p.coachIncludedAssistants || 2} Free Assistant Spaces)`,
           ...vals
         });
-      });
+      }));
 
       // Plan Cards 3, 4, 5: Association Director ($450 / $850 / $1,599)
-      on('btnAssocPlan5Teams450', async () => {
+      on('btnAssocPlan5Teams450', () => queuePilotCheckoutPrep(async () => {
         const vals = await validateCoachAssocSignupInputs(true);
         if (!vals) return;
         const t = (window.SYNAPZ_PRICING_CONFIG && window.SYNAPZ_PRICING_CONFIG.assocSmall) || { price: 450, teams: 5, skaters: 100 };
@@ -22539,9 +22623,9 @@
           planLabel: `Association Director — $${formatSynapzPriceNum(t.price)}/yr (${t.teams} Teams • ${t.skaters} Skaters)`,
           ...vals
         });
-      });
+      }));
 
-      on('btnAssocPlan10Teams850', async () => {
+      on('btnAssocPlan10Teams850', () => queuePilotCheckoutPrep(async () => {
         const vals = await validateCoachAssocSignupInputs(true);
         if (!vals) return;
         const t = (window.SYNAPZ_PRICING_CONFIG && window.SYNAPZ_PRICING_CONFIG.assocStandard) || { price: 850, teams: 10, skaters: 200 };
@@ -22551,9 +22635,9 @@
           planLabel: `Association Director — $${formatSynapzPriceNum(t.price)}/yr (${t.teams} Teams • ${t.skaters} Skaters)`,
           ...vals
         });
-      });
+      }));
 
-      on('btnAssocPlan20Teams1599', async () => {
+      on('btnAssocPlan20Teams1599', () => queuePilotCheckoutPrep(async () => {
         const vals = await validateCoachAssocSignupInputs(true);
         if (!vals) return;
         const t = (window.SYNAPZ_PRICING_CONFIG && window.SYNAPZ_PRICING_CONFIG.assocLarge) || { price: 1599, teams: 20, skaters: 400 };
@@ -22563,7 +22647,7 @@
           planLabel: `Association Director — $${formatSynapzPriceNum(t.price)}/yr (${t.teams} Teams • ${t.skaters} Skaters)`,
           ...vals
         });
-      });
+      }));
 
       // Screen 1B-3 — Coaches Portal: Log In (Straight to Coach's Office!)
       on('btnBackFrom1B3To1B1', () => { SoundFX.playTap(); openEntryScreen('1B-1'); });
@@ -28676,7 +28760,7 @@
     // SECTION 32–43: VERIFIED REAL CODED UPGRADES RUNTIME & PRE-CODED BANK
     // (`synapz-hockey-v12.7-5persona-human-vision` • 288 Live Upgrades)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v13.0-global-foundation';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v13.1-cold-eyes-audit';
 
     const ALL_63_DEPLOYED_UPGRADE_IDS = [
       // Batch A (12 items)
@@ -31990,9 +32074,9 @@
           if (!gameSec) return null;
           banner = document.createElement('div');
           banner.id = 'synapzGuestLiveShiftBanner';
-          banner.className = 'hidden mb-2 px-3 py-2 rounded-2xl bg-emerald-950/90 border border-emerald-400/80 flex flex-wrap items-center justify-between gap-2 text-xs font-black text-white shadow-lg';
+          banner.className = 'hidden mb-2 mr-28 sm:mr-32 px-2.5 py-1.5 rounded-2xl bg-emerald-950/90 border border-emerald-400/80 flex flex-wrap items-center justify-between gap-1.5 text-xs font-black text-white shadow-lg';
           banner.innerHTML = `
-            <div class="flex items-center gap-2">
+            <div class="flex flex-wrap items-center gap-1.5">
               <span id="guestLiveShiftPlayBadge" class="px-2 py-0.5 rounded-lg bg-emerald-400 text-slate-950 text-[11px] font-black">⚡ Free Shift: Play 1/3</span>
               <span id="guestLiveShiftScoreBadge" class="text-emerald-200 text-[11px] font-black">🧠 +0 IQ • 💰 +0 Bucks</span>
             </div>
@@ -32018,9 +32102,17 @@
         if (!banner) return;
         if (!sess || !sess.active) {
           banner.classList.add('hidden');
+          const bottomExitBtn = document.getElementById('btnGameSaveExitLobby');
+          if (bottomExitBtn && /Exit Free Shift/i.test(bottomExitBtn.textContent || '')) {
+            bottomExitBtn.innerHTML = '<span>💾 Save &amp; Exit to Lobby</span>';
+          }
           return;
         }
         banner.classList.remove('hidden');
+        const bottomExitBtn = document.getElementById('btnGameSaveExitLobby');
+        if (bottomExitBtn) {
+          bottomExitBtn.innerHTML = '<span>← Exit Free Shift</span>';
+        }
         const total = sess.playIds.length;
         const playNum = Math.min(total, (Number(sess.playIndex) || 0) + 1);
         const pBadge = document.getElementById('guestLiveShiftPlayBadge');
@@ -32099,6 +32191,10 @@
         document.body.classList.remove('in-game-clean-mode');
         const gBanner = document.getElementById('synapzGuestLiveShiftBanner');
         if (gBanner) gBanner.classList.add('hidden');
+        const bottomExitBtn = document.getElementById('btnGameSaveExitLobby');
+        if (bottomExitBtn && /Exit Free Shift/i.test(bottomExitBtn.textContent || '')) {
+          bottomExitBtn.innerHTML = '<span>💾 Save &amp; Exit to Lobby</span>';
+        }
         hideCoachBobPopup();
       }
 
@@ -32616,7 +32712,7 @@
       <div class="flex-1 p-3 rounded-2xl bg-slate-950/95 border-2 border-amber-400 shadow-2xl pointer-events-auto space-y-2">
         <div class="flex items-center justify-between gap-2">
           <span id="lockerTourStepBadge" class="text-[10px] font-black uppercase tracking-wider text-amber-300">Locker Tour • 1 / 3</span>
-          <button id="btnSkipLockerTour" type="button" class="text-[10px] font-bold text-slate-400 hover:text-slate-200">Skip</button>
+          <button id="btnSkipLockerTour" type="button" class="px-2.5 py-1 min-h-[28px] rounded-lg bg-slate-800/85 border border-slate-700 text-[11px] font-bold text-slate-200 hover:text-white">Skip</button>
         </div>
         <p id="lockerTourSpeechText" class="text-xs sm:text-sm font-extrabold text-white leading-snug"></p>
         <div class="flex items-center justify-end">

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v13.0-global-foundation';
+const CACHE_NAME = 'synapz-hockey-v13.1-cold-eyes-audit';
 const ASSETS = [
   './',
   './index.html',
