@@ -440,7 +440,28 @@ async function runCurriculumIqAudit() {
     if (!runtimeRulesCheck.present || !runtimeRulesCheck.startingIqZero || !runtimeRulesCheck.silver75Matches || !runtimeRulesCheck.redemptionDelay3Matches || !runtimeRulesCheck.coachInboxImmutableVerified) {
       throw new Error(`Runtime rules contract mismatch: ${JSON.stringify(runtimeRulesCheck)}`);
     }
-    console.log('✅ Step 1 Machine-Readable Rules Contract & Coach-Inbox Firewall Verified');
+    const v126UpgradeCheck = await page.evaluate(() => {
+    const audit = typeof window.run288UpgradesLiveAudit === 'function' ? window.run288UpgradesLiveAudit() : null;
+    const coreIds = Array.isArray(window.CORE_DEPLOYED_UPGRADE_IDS) ? window.CORE_DEPLOYED_UPGRADE_IDS : [];
+    const bankKeys = Object.keys(window.SYNAPZ_5_BATCH_UPGRADE_BANK || {});
+    const daDfCount = bankKeys.filter(k => /^S\d+-D[A-F]$/.test(k)).length;
+    return {
+      verify288UpgradesAndOverlayCap: true,
+      totalChecked: audit ? audit.totalChecked : 0,
+      totalActiveVerified: audit ? audit.totalActiveVerified : 0,
+      all288Active: Boolean(audit && audit.all288Active),
+      coreIdsCount: coreIds.length,
+      daDfPreCodedCount: daDfCount,
+      hasDeclinedS2CCInCore: coreIds.includes('S2-CC'),
+      hasDeclinedS2CDInCore: coreIds.includes('S2-CD'),
+      maxConcurrentTacticalOverlaysPerPlay: audit ? audit.maxConcurrentTacticalOverlaysPerPlay : 0
+    };
+  });
+  if (!v126UpgradeCheck.all288Active || v126UpgradeCheck.totalActiveVerified !== 288 || v126UpgradeCheck.daDfPreCodedCount !== 72 || v126UpgradeCheck.hasDeclinedS2CCInCore || v126UpgradeCheck.hasDeclinedS2CDInCore || v126UpgradeCheck.maxConcurrentTacticalOverlaysPerPlay !== 1) {
+    throw new Error('v12.6 288-Upgrade / Overlay-Cap Check Failed: ' + JSON.stringify(v126UpgradeCheck));
+  }
+  console.log('✅ Step 1 Machine-Readable Rules Contract & Coach-Inbox Firewall Verified');
+  console.log('✅ v12.6 288/288 Active Upgrades + 72 DA–DF Pre-Coded Bank + 1-Overlay Cap Verified');
 
     // =========================================================================
     // PART A: FULL 24-PERMUTATION `0-IQ` PROGRESSION SWEEP (24 x 30 = 720 PLAYS x 2 TRACKS)
@@ -902,7 +923,7 @@ async function runCurriculumIqAudit() {
     );
 
     const reportPayload = {
-      milestone: 'synapz-hockey-v12.5-curriculum-iq-verified',
+      milestone: 'synapz-hockey-v12.6-288-verified-pilot-bank',
       generatedAt: new Date().toISOString(),
       elapsedMs,
       testModeActive: true,

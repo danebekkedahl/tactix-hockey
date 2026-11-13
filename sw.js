@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v12.5-curriculum-iq-verified';
+const CACHE_NAME = 'synapz-hockey-v12.6-288-verified-pilot-bank';
 const ASSETS = [
   './',
   './index.html',

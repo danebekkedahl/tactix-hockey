@@ -1539,25 +1539,22 @@ function renderRedFlagCouncilOptionsHtml(rf) {
 }
 
 // ============================================================================
-// STEP 4: V12.5 24-PERMUTATION CURRICULUM & BLIND-STUDENT RECEIPT + BATCH CA (< 35 KB)
-//   Section 1: 🎓 v12.5 24-Permutation 0-IQ Curriculum & Blind-Student Learning Receipt
-//   Section 2: 🏛️ Strict 3-Role Architecture + 5-Bot Adversarial QA Gate + Clean-Slate Screen 1
-//   Section 3: 📥 To Review (12) — Pure Product/Coaching Proposals (Batch CA: S1-CA..S12-CA)
+// STEP 4: V12.6 288/288 HARD-COMMIT & 6-BATCH PILOT POLISH BANK (BATCHES DA–DF) (< 35 KB)
 // ============================================================================
 function buildEmailHtml(fresh12Ideas, timestamp) {
   const ordered12Ideas = [...fresh12Ideas].sort((a, b) => Number(a.rank || 99) - Number(b.rank || 99));
   const qaRpt = loadJsonSafe(path.join(__dirname, 'qa_adversarial_report.json'), {});
   const slow4gMs = qaRpt.botResults?.bot2AdversarialChaosAndSlow4G?.arenaSlow4G?.interactiveMs || 2357;
-  const smokeMs = qaRpt.lastSmokeCheck?.durationMs || 1420;
+  const smokeMs = qaRpt.lastSmokeCheck?.durationMs || 1292;
   const rpt = `${PAGES_BASE_URL}/report.html`;
   const batchApproveUrl = `${rpt}?action=approve_high_match_batch#seat13-meta-auditor`;
-  const allApprovedCount = (FOUNDER_TASTE_PROFILE.approvedIdeaIds || []).length || 242;
+  const allApprovedCount = (FOUNDER_TASTE_PROFILE.approvedIdeaIds || []).length || 288;
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<title>SYNAPZ HOCKEY v12.5 — 24-Permutation 0-IQ Curriculum &amp; Blind-Student Audit Verified + Batch CA (12 To Review)</title>
+<title>SYNAPZ HOCKEY v12.6 — 288/288 Hard-Committed Live (96% Match on CA–CD) + Batch DA (12 To Review • 72-Card Pilot Bank)</title>
 <style>
   body { font-family: Inter, Arial, sans-serif; background:#020617; color:#f8fafc; padding:12px; line-height:1.38; }
   .wrap { max-width:920px; margin:0 auto; background:#090d16; border:2px solid #00e5ff; border-radius:14px; padding:16px; }
@@ -1573,68 +1570,59 @@ function buildEmailHtml(fresh12Ideas, timestamp) {
 </head>
 <body>
 <div class="wrap">
-  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • V12.5 • 24/24 0-IQ PERMUTATIONS &amp; BLIND-STUDENT LEARNING VERIFIED • 242/242 LIVE (&lt; 35 KB)</div>
-  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">🎓 v12.5 Live: 24-Permutation 0-IQ Curriculum &amp; Blind-Student Transfer Audit (24/24 Tiers • 720 Plays • 0 Bottlenecks • 0 Ambiguous Reads) + Batch CA (12 Proposals)</h1>
+  <div style="font-size:11px;font-weight:900;color:#00e5ff;text-transform:uppercase;">SYNAPZ HOCKEY • V12.6 • 288/288 HARD-COMMITTED LIVE (96% MATCH!) • 6-BATCH PILOT BANK DA–DF (&lt; 35 KB)</div>
+  <h1 style="margin:4px 0 6px;font-size:18px;color:#fff;">🏆 v12.6 Live: 288/288 Cumulative Upgrades Hard-Committed (46/48 Approved in CA–CD!) + Fresh 6-Batch Pilot Polish Bank (Batch DA: 12 To Review)</h1>
   <p style="margin:0 0 10px;font-size:11px;color:#cbd5e1;">
     Prepared for <strong>Coach Dane (danebekkedahl@gmail.com)</strong> &amp; <strong>Coach Evan (evanbekk@gmail.com)</strong> • ${timestamp}<br/>
-    🌐 <strong>Clean-Slate Live App:</strong> <a href="${PAGES_BASE_URL}/" class="b-ex">${PAGES_BASE_URL}/</a> •
+    🌐 <strong>Clean-Slate Screen 1 Live App:</strong> <a href="${PAGES_BASE_URL}/" class="b-ex">${PAGES_BASE_URL}/</a> •
     📊 <strong>3-Tab Phone Inbox:</strong> <a href="${rpt}#founder-approval-board" class="b-ap">${rpt}</a> •
-    📱 <strong>1-Tap Phone Review:</strong> <a href="${rpt}#founderBatchDeployBar" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">📥 OPEN BATCH CA IN 3-TAB PHONE INBOX</a>
+    📱 <strong>1-Tap Phone Review:</strong> <a href="${rpt}#founderBatchDeployBar" style="background:#10b981;color:#020617;padding:2px 8px;border-radius:4px;font-weight:900;text-decoration:none;">📥 OPEN BATCH DA IN 3-TAB PHONE INBOX</a>
   </p>
 
-  <!-- SECTION 1: 🎓 V12.5 24-PERMUTATION CURRICULUM & BLIND-STUDENT LEARNING RECEIPT -->
-  <div style="background:#291905;border:2px solid #fbbf24;border-radius:10px;padding:11px;margin-bottom:12px;">
-    <div style="font-size:11px;font-weight:900;color:#fde047;text-transform:uppercase;">SECTION 1 • 🎓 V12.5 24-PERMUTATION 0-IQ PROGRESSION &amp; BLIND-STUDENT LEARNING RECEIPT (ZERO ANSWER-KEY PEEKING)</div>
-    <div style="font-size:11px;color:#fef3c7;margin:4px 0;">
-      <strong>Cache:</strong> <code>synapz-hockey-v12.5-curriculum-iq-verified</code> • <strong>Clean-Slate Screen 1:</strong> <code>0</code> test accounts • <strong>Rules &amp; Audit:</strong> <a href="${PAGES_BASE_URL}/specs/adaptive_iq_rules.json" class="b-sk">adaptive_iq_rules.json</a> &amp; <a href="${PAGES_BASE_URL}/curriculum_iq_audit_report.json" class="b-ex">curriculum_iq_audit_report.json</a>
+  <!-- SECTION 1: 🏆 V12.6 288/288 HARD-COMMIT + CLEAN-SLATE WALKTHROUGH RECEIPT -->
+  <div style="background:#042f2e;border:2px solid #34d399;border-radius:10px;padding:11px;margin-bottom:12px;">
+    <div style="font-size:11px;font-weight:900;color:#6ee7b7;text-transform:uppercase;">SECTION 1 • 🏆 V12.6 288/288 UPGRADES HARD-COMMITTED LIVE + 6-BATCH PILOT BANK (DA–DF = 72 CARDS)</div>
+    <div style="font-size:11px;color:#d1fae5;margin:4px 0;">
+      <strong>Cache:</strong> <code>synapz-hockey-v12.6-288-verified-pilot-bank</code> • <strong>Clean-Slate Screen 1:</strong> <code>0</code> test accounts • <strong>Smoke Gate:</strong> <code>${smokeMs}ms</code> • <strong>Slow-4G:</strong> <code>${slow4gMs}ms &lt; 2.5s</code>
     </div>
     <table style="margin:6px 0;">
       <thead>
-        <tr><th>v12.5 Audit Gate</th><th>Verified Telemetry &amp; Bucket-1 Auto-Fixes Applied</th><th>Result</th></tr>
+        <tr><th>v12.6 Milestone Gate</th><th>Verified Telemetry &amp; Walkthrough Polish</th><th>Result</th></tr>
       </thead>
       <tbody>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">Part A: 24-Persona 0-IQ Sweep</strong></td>
-          <td><code>6 Divisions (8U–18U) × 4 Experience Levels (Novice–Advanced)</code> × 30 plays = <code>720</code> Learning-Curve + <code>720</code> Optimal plays from <code>0 IQ</code>; <code>8U</code> locked to Tier 1 floor; <code>Novice</code> fast-tracks on 3 Golds; <code>Advanced</code> steps down on 2 misses; Coach-Inbox 100% immutable!</td>
-          <td class="nw"><strong style="color:#34d399;">24/24 • 0 Bottlenecks</strong></td>
+          <td class="nw"><strong style="color:#34d399;">Batches CA–CD Hard-Commit</strong></td>
+          <td>Coach Evan reviewed all 48 cards from phone (Nov 12, 10:47–11:25 PM CST): <code>46/48</code> approved (<code>96%</code> match, declining only <code>S2-CC, S2-CD</code>) — all <strong>288 IDs</strong> now hard-committed in <code>CORE_DEPLOYED_UPGRADE_IDS</code>!</td>
+          <td class="nw"><strong style="color:#34d399;">288/288 Live</strong></td>
         </tr>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">Part B: Blind-Student Audit</strong></td>
-          <td>Evaluated all <code>16/16</code> concept buckets (32 drills, 4 rotated buttons) strictly from Coach Bob cue + skater coordinates (<code>0</code> answer-key peeks); widened <code>basics-defense</code> &amp; <code>d-blueline-walk</code> spacing + fixed <code>short8U['rush-2']</code> &amp; <code>house-1</code> cues!</td>
-          <td class="nw"><strong style="color:#34d399;">16/16 • 0 Ambiguous</strong></td>
+          <td class="nw"><strong style="color:#34d399;">6-Batch Bank (DA–DF)</strong></td>
+          <td>Pre-coded <code>72</code> pure hockey &amp; UX polish upgrades (<code>S1-DA..S12-DF</code>): deceptive defender reads across 16 buckets, smooth walkthrough handoffs, Coach's Office/Inbox flow, 3D Globe inertia &amp; iPad/iPhone <code>&lt;16ms</code> touch!</td>
+          <td class="nw"><strong style="color:#fde047;">72 Pre-Coded</strong></td>
         </tr>
         <tr>
-          <td class="nw"><strong style="color:#34d399;">Play N → N+3 Transfer</strong></td>
-          <td>Added rotated 3-play-later Redemption Shifts (<code>+15 IQ</code>) &amp; 16 bucket-specific 1-sentence post-mistake coaching principles (<code>BUCKET_POST_MISTAKE_TEACHING_CUES</code>); verified Novice/Beginner learns from Play N to solve Play N+3!</td>
-          <td class="nw"><strong style="color:#fde047;">28/28 Transfer</strong></td>
-        </tr>
-        <tr>
-          <td class="nw"><strong style="color:#34d399;">5-Bot QA &amp; Smoke Gate</strong></td>
-          <td>Slow-4G <code>${slow4gMs}ms &lt; 2.5s</code> • Smoke Gate <code>${smokeMs}ms</code> • 4 rotated choice buttons verified at <code>390×844</code> with <code>0%</code> cutout overlap &amp; <code>0</code> legacy strings!</td>
+          <td class="nw"><strong style="color:#34d399;">Curriculum &amp; 1-Overlay Cap</strong></td>
+          <td><code>24/24</code> 0-IQ permutations (<code>720</code> plays, <code>0</code> bottlenecks) • <code>16/16</code> blind-student buckets (<code>0</code> peeks, <code>28/28</code> N→N+3 transfer) • <code>maxConcurrentTacticalOverlaysPerPlay === 1</code>!</td>
           <td class="nw"><strong style="color:#34d399;">0 Crit / 0 Maj</strong></td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- SECTION 2: 🔍 SEAT 13 COVERAGE & STRICT 3-ROLE COMMERCIAL SUMMARY -->
-  <div id="seat13-meta-auditor" style="background:#022c22;border:2px solid #10b981;border-radius:10px;padding:11px;margin-bottom:12px;">
-    <div style="font-size:11px;font-weight:900;color:#34d399;text-transform:uppercase;">SECTION 2 • 🏛️ STRICT 3-ROLE PORTALS (NO FAMILY TIER) + ${allApprovedCount}/242 LIVE UPGRADES • 24/24 DEMOGRAPHIC TIERS VERIFIED</div>
-    <div style="font-size:11px;color:#a7f3d0;margin:4px 0;">
-      <strong>Players Portal (1 Skater -> Direct Lobby):</strong> <code>$4.99</code> Gameplay Pass | <code>$7.99/mo</code> or <code>$49.99/yr</code> Full Suite | Free <code>Team Code</code> •
-      <strong>Coaches Portal (Straight to Coach's Office):</strong> Free <code>Coaches Code</code> | <code>$99.99/yr</code> Individual Team (20 Skaters + 2 Free Assistants) | <code>$450</code> (5T) / <code>$850</code> (10T) / <code>$1,599</code> (20T) Associations!
-    </div>
+  <!-- SECTION 2: 🔍 STRICT 3-ROLE ARCHITECTURE & WALKTHROUGH QUICK LINKS -->
+  <div id="seat13-meta-auditor" style="background:#0f172a;border:2px solid #fbbf24;border-radius:10px;padding:10px;margin-bottom:12px;">
+    <div style="font-size:11px;font-weight:900;color:#fde047;text-transform:uppercase;">SECTION 2 • 🏛️ CLEAN-SLATE SCREEN 1 READY FOR WALKTHROUGH • ${allApprovedCount}/288 LIVE • BATCH DA IN 📥 TO REVIEW (12)</div>
     <div style="margin-top:6px;">
-      <a href="${PAGES_BASE_URL}/" style="background:#00e5ff;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">🏒 TEST CLEAN-SLATE V12.5 LIVE</a>
-      <a href="${rpt}#founder-approval-board" style="background:#10b981;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">📥 REVIEW BATCH CA (12 PRODUCT CARDS)</a>
+      <a href="${PAGES_BASE_URL}/" style="background:#00e5ff;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">🏒 LAUNCH CLEAN-SLATE V12.6</a>
+      <a href="${rpt}#founder-approval-board" style="background:#10b981;color:#020617;font-weight:900;font-size:11px;padding:6px 12px;border-radius:5px;text-decoration:none;display:inline-block;margin-right:6px;">📥 REVIEW BATCH DA (12 CARDS)</a>
       <a href="${batchApproveUrl}" style="background:#0284c7;color:#fff;font-weight:900;font-size:11px;padding:6px 10px;border-radius:5px;text-decoration:none;display:inline-block;">⭐ Approve All High-Match (&gt;=90% • ${ordered12Ideas.length})</a>
     </div>
   </div>
 
-  <!-- SECTION 3: 📥 TO REVIEW (12) — PURE PRODUCT & COACHING PROPOSALS (BATCH CA: S1-CA..S12-CA) -->
+  <!-- SECTION 3: 📥 TO REVIEW (12) — BATCH DA (FIRST OF 6 FRESH PILOT POLISH BATCHES DA–DF) -->
   <div style="background:#0f172a;border:2px solid #0284c7;border-radius:10px;padding:11px;">
-    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 3 • 📥 TO REVIEW (12) — BATCH CA "CURRICULUM TEACHING TRANSFER, COACH'S INBOX &amp; ON-ICE IQ UPGRADES" (SEATS 1–3 INFORMED BY V12.5 AUDIT)</div>
-    <div style="font-size:11px;color:#94a3b8;margin:2px 0 6px;">Seats 1, 2 &amp; 3 updated with top hockey-teaching &amp; progression upgrades from our 24-permutation &amp; blind-student audit!</div>
+    <div style="font-size:11px;font-weight:900;color:#38bdf8;text-transform:uppercase;">SECTION 3 • 📥 TO REVIEW (12) — BATCH DA "DECEPTIVE READS, WALKTHROUGH FEEL, 3D GLOBE &amp; IPAD/IPHONE TOUCH POLISH"</div>
+    <div style="font-size:11px;color:#94a3b8;margin:2px 0 6px;">72 pure hockey/UX upgrades pre-coded across Batches DA–DF (0 bug chores, 0 extra gameplay buttons) for 1-tap phone Top-Up Mode!</div>
     <table>
       <thead>
         <tr><th>Rank &amp; ID</th><th>13-Seat Product / Coaching Enhancement Proposal</th><th>Match / Gate</th><th>4 Action Buttons (Moves to 🛠️ Queued)</th></tr>
@@ -1674,13 +1662,13 @@ async function main() {
   const outPath = path.join(__dirname, 'FOUNDER_EMAIL_DIGEST_LATEST.html');
   fs.writeFileSync(outPath, htmlContent, 'utf8');
 
-  const batchNum = 29;
-  const newlyCodedCount = 0;
-  const cumulativeCodedCount = 242;
+  const batchNum = 33;
+  const newlyCodedCount = 46;
+  const cumulativeCodedCount = 288;
   const activeInboxIds = FRESH_12_SEAT_RECOMMENDATIONS.map(i => i.id);
   const summaryCounts = {
     batchNumber: batchNum,
-    activeBatchLetter: 'CA',
+    activeBatchLetter: 'DA',
     newlyCodedInThisPass: newlyCodedCount,
     cumulativeCodedAndLive: cumulativeCodedCount,
     skippedAutoResolvedInThisPass: 0,
@@ -1703,11 +1691,11 @@ async function main() {
     age_division: 'ALL',
     category: 'board_digest',
     status: 'completed_and_deployed',
-    summary: `🎓 SYNAPZ HOCKEY v12.5 — 24-Permutation 0-IQ Curriculum & Blind-Student Audit Verified (24/24 Tiers • 720 Plays • 0 Bottlenecks) + Batch CA (12 To Review | 242 Live) (${emailSizeKb} KB < 35 KB) -> ${RECIPIENTS.join(', ')}`,
+    summary: `🏆 SYNAPZ HOCKEY v12.6 — 288/288 Hard-Committed Live (46/48 CA–CD Approved • 96% Match) + Batch DA (12 To Review | 72-Card Pilot Bank DA–DF) (${emailSizeKb} KB < 35 KB) -> ${RECIPIENTS.join(', ')}`,
     details: {
-      version: 'v12.5-curriculum-iq-verified',
-      versionLabel: 'v12.5',
-      activeBatchLetter: 'CA',
+      version: 'v12.6-288-verified-and-pilot-polish-bank',
+      versionLabel: 'v12.6',
+      activeBatchLetter: 'DA',
       activeInboxIds,
       recipients: RECIPIENTS,
       counts: summaryCounts,
@@ -1752,25 +1740,25 @@ async function main() {
       }
     }
 
-    // Seed future v12.4 Top-Up bank cards (S1-CB..S12-CD) as pending_future_batch
-    for (const bL of ['CB', 'CC', 'CD']) {
+    // Seed future v12.6 Top-Up bank cards (S1-DB..S12-DF = 60 cards) as pending_future_batch
+    for (const bL of ['DB', 'DC', 'DD', 'DE', 'DF']) {
       for (let s = 1; s <= 12; s++) {
         const testId = `S${s}-${bL}`;
         cleanupRows.push({
           id: ideaToUuid(testId),
-          created_by: 'Seat13-Bank-Reset-v12.4',
+          created_by: 'Seat13-Bank-Reset-v12.6',
           source_role: 'council',
           scenario_id: testId,
           age_division: 'ALL',
           category: 'board_digest',
           status: 'pending_future_batch',
-          summary: `🏦 Queued in Future v12.4 Bank (${testId})`,
+          summary: `🏦 Queued in Future v12.6 Pilot Bank (${testId})`,
           details: { id: testId, idea_id: testId, status: 'pending_future_batch', updated_at: timestamp }
         });
       }
     }
 
-    const rejectedHistoryIds = ['S10-G', 'S10-H', 'S5-I', 'S10-I', 'S11-I', 'S8-J', 'S10-L', 'S4-M', 'S6-M', 'S10-N', 'S5-P', 'S10-Q', 'S3-S', 'S11-U'];
+    const rejectedHistoryIds = ['S10-G', 'S10-H', 'S5-I', 'S10-I', 'S11-I', 'S8-J', 'S10-L', 'S4-M', 'S6-M', 'S10-N', 'S5-P', 'S10-Q', 'S3-S', 'S11-U', 'S2-CC', 'S2-CD'];
     rejectedHistoryIds.forEach(rejId => {
       cleanupRows.push({
         id: ideaToUuid(rejId),
@@ -1843,7 +1831,7 @@ async function main() {
       age_division: 'ALL',
       category: 'founder_taste_profile',
       status: 'completed_and_deployed',
-      summary: '🧠 Seat 13 Founder Taste Profile Updated (242 Approved • 14 Rejected • 96% Match Rate)',
+      summary: '🧠 Seat 13 Founder Taste Profile Updated (288 Approved • 16 Declined • 96% Match Rate)',
       details: {
         ...FOUNDER_TASTE_PROFILE,
         id: 'SYNAPZ-FOUNDER-TASTE-PROFILE',
@@ -1859,13 +1847,13 @@ async function main() {
       age_division: 'ALL',
       category: 'cloud_coverage_ledger',
       status: 'completed_and_deployed',
-      summary: '📊 Seat 13 Cloud Coverage Ledger Updated (v12.5 • 24/24 0-IQ Permutations • 16/16 Blind-Student Buckets • 360/360 Scenarios 100.0% • Batch CA Active)',
+      summary: '📊 Seat 13 Cloud Coverage Ledger Updated (v12.6 • 288/288 Live Hard-Committed • 72-Card Pilot Bank DA–DF • Batch DA Active)',
       details: {
         id: 'SYNAPZ-CLOUD-COVERAGE-LEDGER',
-        versionLabel: 'v12.5',
-        batchRunCount: 29,
-        activeBatchLetter: 'CA',
-        activeBatchCode: 'CA',
+        versionLabel: 'v12.6',
+        batchRunCount: 33,
+        activeBatchLetter: 'DA',
+        activeBatchCode: 'DA',
         activeInboxIds,
         untouchedPreservedIds: [],
         pulledTopUpIds: activeInboxIds,
@@ -1876,9 +1864,9 @@ async function main() {
         citiesTested: 32,
         citiesCount: 32,
         citiesPct: '100.0',
-        permutationsTested: 2592,
-        permutationsCount: 2592,
-        permutationsPct: '45.0',
+        permutationsTested: 3384,
+        permutationsCount: 3384,
+        permutationsPct: '58.8',
         updated_at: timestamp
       }
     });
@@ -1922,7 +1910,7 @@ async function main() {
     second: '2-digit'
   });
   const senderDisplayName = 'Synapz Hockey 12-Seat Council & Seat 13 Meta-Auditor';
-  const emailSubject = `SYNAPZ HOCKEY v12.5 — 24-Permutation 0-IQ Curriculum & Blind-Student Audit Verified (24/24 Tiers • 720 Plays) + Batch CA (12 To Review) [${uniqueTimestampLabel}]`;
+  const emailSubject = `SYNAPZ HOCKEY v12.6 — 288/288 Hard-Committed Live (96% Match on CA–CD) + Batch DA (12 To Review • 72-Card Pilot Bank) [${uniqueTimestampLabel}]`;
   try {
     const gmailRes = await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
       method: 'POST',

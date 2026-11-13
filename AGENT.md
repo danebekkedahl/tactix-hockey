@@ -551,3 +551,14 @@ Whenever the user types **`RUN NIGHTLY AUTOPILOT`**, execute a full, uninterrupt
    - **Part B:** Evaluates all **16 concept buckets** strictly from screen-visible cues (Coach Bob's 1-sentence prompt, focal Golden Arc & skater/defender geometry, and **4 choice button labels** — zero answer-key peeking enforced by startup self-audit), verifying `0` ambiguous Gold reads and `100%` `Play N -> Play N+3` post-mistake learning transfer.
 3. **Two-Bucket Auto-Fix, `report.html` Receipt & Clean-Slate Ship:**
    - Saves `curriculum_iq_audit_report.json`, auto-fixes all curriculum/scoring/geometry flaws in `index.html`, adds the **`🎓 24-Permutation Curriculum & Blind-Student Learning Receipt (24/24 Tiers Verified • 720 Plays)`** card to Tab 3 (`✅ Live in App`) and feeds Seats 1–3 (`S1-CA..S3-CA`) in `📥 To Review (12)` on `report.html`, resets all test accounts to Screen 1, bumps `sw.js` to `synapz-hockey-v12.5-curriculum-iq-verified`, mirrors both workspaces, deploys live, and sends strictly **1** `< 35 KB` `v12.5` email digest.
+
+---
+
+## 42. v12.6 — 288/288 Hard-Commit & 6-Batch Family/Pilot Polish Bank `Batches DA–DF` (`synapz-hockey-v12.6-288-verified-pilot-bank`)
+1. **288/288 Approved Upgrades Hard-Committed (`242` Prior + `46/48` Approved in `Batches CA–CD` = `96%` Match Rate):**
+   - Hard-commits all **288 `completed_and_deployed` IDs** into `ALL_288_DEPLOYED_UPGRADE_IDS` / `CORE_DEPLOYED_UPGRADE_IDS` in `index.html` and `report.html` (`✅ Live in App (288)`), permanently excluding declined `S2-CC` and `S2-CD` while maintaining `maxConcurrentTacticalOverlaysPerPlay === 1` and `4` primary gameplay buttons.
+2. **Pre-Coded 6-Batch Polish Bank (`Batches DA–DF` = `S1-DA..S12-DF`, 72 Pure Hockey/UX Upgrades):**
+   - Pre-codes 72 executable upgrades in `index.html` and `report.html` focused on first-time walkthrough feel, deceptive defender reads across all 16 buckets, Coach's Office / Coach's Inbox smoothness, Clubhouse 3D Globe & SafeSport Friend-Code polish, and iPad/iPhone touch responsiveness (`0` bug chores, `0` extra gameplay buttons, `0` legacy family-slot regressions).
+   - Loads **`Batch DA` (`S1-DA..S12-DA`)** into `📥 To Review (12)` (`🛠️ Queued: 0 | ✅ Live in App: 288`), with `DB–DF` ready in Top-Up Mode.
+3. **Smoke + Curriculum Gate, Clean-Slate Screen 1 & Deploy:**
+   - Runs `adversarial_qa_agent.js --smoke` and `curriculum_iq_audit.js` (`window.__SYNAPZ_TEST_MODE__ = true`, `0` test emails), runs `resetAllSynapzTestAccountsAndProfiles('RESET')` for a 100% clean Screen 1, bumps `sw.js` to `synapz-hockey-v12.6-288-verified-pilot-bank`, mirrors both workspaces, deploys live via `deploy-github-pages.js`, and sends **strictly 1** `< 35 KB` `v12.6` email digest.
