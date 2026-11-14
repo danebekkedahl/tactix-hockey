@@ -68,11 +68,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <style>
     * { box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+    html {
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
     body {
       background: radial-gradient(circle at top, #0f172a 0%, #020617 100%);
       color: #f8fafc;
       margin: 0;
       padding: 0;
+      max-width: 100vw;
       overflow-x: hidden;
       user-select: none;
       -webkit-user-select: none;
@@ -4443,7 +4448,14 @@
               <input id="slotSetupFirstName" type="text" placeholder="e.g., Miles or 'Wheels'" class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-cyan-400/60 text-xs sm:text-sm font-bold text-white" />
             </div>
             <div>
-              <label for="slotSetupAgeDivision" class="block text-[10px] font-black uppercase text-cyan-300 mb-1">2. Division (Required)</label>
+              <div class="flex flex-wrap items-center justify-between gap-1.5 mb-1">
+                <label for="slotSetupAgeDivision" class="block text-[10px] font-black uppercase text-cyan-300">2. Division (Required)</label>
+                <div id="slotSetupFederationSwitcher" class="inline-flex items-center gap-1 p-0.5 rounded-xl bg-slate-900 border border-slate-700" role="group" aria-label="Hockey Federation">
+                  <button type="button" data-federation-pill="USA" class="synapz-fed-pill px-2 py-0.5 rounded-lg text-[10px] font-black bg-cyan-400 text-slate-950 cursor-pointer">🇺🇸 USA</button>
+                  <button type="button" data-federation-pill="CAN" class="synapz-fed-pill px-2 py-0.5 rounded-lg text-[10px] font-black text-slate-300 hover:text-white cursor-pointer">🇨🇦 CAN</button>
+                  <button type="button" data-federation-pill="IIHF" class="synapz-fed-pill px-2 py-0.5 rounded-lg text-[10px] font-black text-slate-300 hover:text-white cursor-pointer">🌍 IIHF</button>
+                </div>
+              </div>
               <select id="slotSetupAgeDivision" class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-cyan-400/60 text-xs sm:text-sm font-bold text-white">
                 <option value="8U">8U</option>
                 <option value="10U Rec">10U Rec</option>
@@ -4660,6 +4672,18 @@
             <p class="text-[11px] text-slate-200 leading-snug">Includes <span data-pricing-bind="coachIncludedSkaters">20</span> skater slots (+$<span data-pricing-bind="coachExtraSkaterPrice">4.99</span> per extra skater), <span data-pricing-bind="coachIncludedAssistants">2</span> Free Assistant Coach spaces sharing access to your team, Coach Al AI plan builder, and generates your Team Code + link/QR for kids.</p>
             <button id="btnCoachPlanIndividual9999" type="button" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 text-slate-950 font-black text-xs text-center shadow cursor-pointer">
               Select Individual Coach ($99.99/yr)
+            </button>
+          </div>
+
+          <!-- Plan Card 2B (v13.2 BET-V131-03): Skills / 3v3 Camp Cohort — $249/yr (100 Clinic Skaters) -->
+          <div id="coachPlanCardCampCohort" class="p-2.5 rounded-2xl bg-slate-900/95 border-2 border-cyan-400/80 space-y-1.5">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-black text-cyan-300">⚡ Skills / 3v3 Camp Cohort — $<span data-pricing-bind="campCohortAnnual">249</span>/yr</span>
+              <span class="px-2 py-0.5 rounded-full bg-cyan-400/20 text-[10px] font-black text-cyan-200"><span data-pricing-bind="campCohortIncludedSkaters">100</span> Clinic Skaters • +<span data-pricing-bind="campCohortIncludedAssistants">2</span> Assistants</span>
+            </div>
+            <p class="text-[11px] text-slate-200 leading-snug">Built for 3v3 leagues, spring/summer skills academies &amp; clinics. Generates a non-destructive <code>CAMP-XXXX</code> pass code + QR/link (never overwrites a skater's primary winter association team!), <span data-pricing-bind="campCohortIncludedAssistants">2</span> Free Assistant Coach spaces, and clinic roster completion tracking.</p>
+            <button id="btnCoachPlanCampCohort249" type="button" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-slate-950 font-black text-xs text-center shadow cursor-pointer">
+              ⚡ Skills / 3v3 Camp Cohort — $249/yr (100 Clinic Skaters)
             </button>
           </div>
 
@@ -5359,11 +5383,11 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v13.1-cold-eyes-audit';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v13.2-global-strategic-suite';
 
     // =========================================================================
-    // SECTION 39 (v12.3): CENTRALIZED PRICING & SEAT CAP CONFIGURATION
-    // Dynamically drives every plan card, checkout label & roster cap in DOM
+    // SECTION 39 (v12.3) + SECTION 46 (v13.2): CENTRALIZED PRICING, CAMP COHORT & 3-FEDERATION ENGINE
+    // Dynamically drives every plan card, checkout label, camp cohort & federation division badge
     // =========================================================================
     window.SYNAPZ_PRICING_CONFIG = {
       playerGameplayOneTime: 4.99,
@@ -5373,10 +5397,134 @@
       coachIncludedSkaters: 20,
       coachExtraSkaterPrice: 4.99,
       coachIncludedAssistants: 2,
+      campCohortAnnual: 249,
+      campCohortIncludedSkaters: 100,
+      campCohortIncludedAssistants: 2,
+      camp_cohort_100: { price: 249, skaters: 100, assistants: 2, codePrefix: 'CAMP-' },
       assocSmall: { price: 450, teams: 5, skaters: 100 },
       assocStandard: { price: 850, teams: 10, skaters: 200 },
       assocLarge: { price: 1599, teams: 20, skaters: 400 }
     };
+
+    function detectDefaultFederationMode(localeOverride = '') {
+      const rawLoc = String(localeOverride || (typeof navigator !== 'undefined' && (navigator.language || (navigator.languages && navigator.languages[0]))) || 'en-US').trim().toLowerCase();
+      if (/^(en-ca|fr-ca)\b/.test(rawLoc) || rawLoc.endsWith('-ca')) return 'CAN';
+      if (/^(sv|fi|cs|sk|de|lv|da|no|nb|nn|sl|et|fr-ch|it-ch|de-ch|de-at)\b/.test(rawLoc)) return 'IIHF';
+      return 'USA';
+    }
+    window.detectDefaultFederationMode = detectDefaultFederationMode;
+
+    const FEDERATION_DIVISION_CATALOG = {
+      USA: [
+        { value: '8U', label: '8U', baseAge: '8U' },
+        { value: '10U Rec', label: '10U Rec', baseAge: '10U' },
+        { value: '10U B', label: '10U B', baseAge: '10U' },
+        { value: '10U A', label: '10U A', baseAge: '10U' },
+        { value: '10U AA', label: '10U AA', baseAge: '10U' },
+        { value: '12U Rec/B', label: '12U Rec/B', baseAge: '12U' },
+        { value: '12U A', label: '12U A', baseAge: '12U' },
+        { value: '12U AA', label: '12U AA', baseAge: '12U' },
+        { value: '12U AAA', label: '12U AAA', baseAge: '12U' },
+        { value: '14U Rec/B', label: '14U Rec/B', baseAge: '14U' },
+        { value: '14U A', label: '14U A', baseAge: '14U' },
+        { value: '14U AA', label: '14U AA', baseAge: '14U' },
+        { value: '14U AAA', label: '14U AAA', baseAge: '14U' },
+        { value: '16U / JV', label: '16U / JV', baseAge: '16U' },
+        { value: '18U / Varsity / Jr', label: '18U / Varsity / Jr', baseAge: '18U' }
+      ],
+      CAN: [
+        { value: 'U7', label: 'U7 (Timbits / Initiation)', baseAge: '8U' },
+        { value: 'U9', label: 'U9 (Novice Half-Ice)', baseAge: '8U' },
+        { value: 'U11 Rec', label: 'U11 House / Rec', baseAge: '10U' },
+        { value: 'U11 B', label: 'U11 B', baseAge: '10U' },
+        { value: 'U11 A', label: 'U11 A', baseAge: '10U' },
+        { value: 'U11 AA', label: 'U11 AA', baseAge: '10U' },
+        { value: 'U13 Rec/B', label: 'U13 Rec / B', baseAge: '12U' },
+        { value: 'U13 A', label: 'U13 A', baseAge: '12U' },
+        { value: 'U13 AA', label: 'U13 AA', baseAge: '12U' },
+        { value: 'U13 AAA', label: 'U13 AAA', baseAge: '12U' },
+        { value: 'U15 Rec/B', label: 'U15 Rec / B', baseAge: '14U' },
+        { value: 'U15 A', label: 'U15 A', baseAge: '14U' },
+        { value: 'U15 AA', label: 'U15 AA', baseAge: '14U' },
+        { value: 'U15 AAA', label: 'U15 AAA', baseAge: '14U' },
+        { value: 'U18 A/AA', label: 'U18 A / AA', baseAge: '16U' },
+        { value: 'U18 AAA / Jr', label: 'U18 AAA / Junior', baseAge: '18U' }
+      ],
+      IIHF: [
+        { value: 'IIHF U10', label: 'U10 (IIHF Cross/Half Ice)', baseAge: '8U' },
+        { value: 'IIHF U12 B', label: 'U12 Club / B (60m×30m)', baseAge: '10U' },
+        { value: 'IIHF U12 AA', label: 'U12 Elite (60m×30m)', baseAge: '10U' },
+        { value: 'IIHF U14 Rec/B', label: 'U14 Club / B (60m×30m)', baseAge: '12U' },
+        { value: 'IIHF U14 AA', label: 'U14 Elite (60m×30m)', baseAge: '12U' },
+        { value: 'IIHF U16 A', label: 'U16 Competitive (60m×30m)', baseAge: '14U' },
+        { value: 'IIHF U16 AAA', label: 'U16 National / Elite (60m×30m)', baseAge: '14U' },
+        { value: 'IIHF U18', label: 'U18 International (60m×30m)', baseAge: '16U' },
+        { value: 'IIHF U20', label: 'U20 Junior (60m×30m)', baseAge: '18U' }
+      ]
+    };
+    window.FEDERATION_DIVISION_CATALOG = FEDERATION_DIVISION_CATALOG;
+
+    function formatFederationDivisionBadge(rawDiv, fedOverride = '') {
+      const fed = String(fedOverride || (typeof getEffectiveFederationMode === 'function' ? getEffectiveFederationMode() : 'USA')).toUpperCase();
+      const base = typeof parseNormalizedBaseAgeGroup === 'function' ? parseNormalizedBaseAgeGroup(rawDiv) : '12U';
+      const s = String(rawDiv || base).trim();
+      if (fed === 'CAN') {
+        if (/^U7\b/i.test(s)) return 'U7';
+        const mapCan = { '8U': 'U9', '10U': 'U11', '12U': 'U13', '14U': 'U15', '16U': 'U18', '18U': 'U18' };
+        return mapCan[base] || 'U13';
+      }
+      if (fed === 'IIHF') {
+        const mapIihf = { '8U': 'U10', '10U': 'U12', '12U': 'U14', '14U': 'U16', '16U': 'U18', '18U': 'U20' };
+        return mapIihf[base] || 'U14';
+      }
+      return base;
+    }
+    window.formatFederationDivisionBadge = formatFederationDivisionBadge;
+
+    function installPlayerTeamCampSchema(prof) {
+      if (!prof || typeof prof !== 'object') return prof;
+      const rawExistingTeam = Object.prototype.hasOwnProperty.call(prof, 'primaryTeamCode')
+        ? String(prof.primaryTeamCode || '').trim().toUpperCase()
+        : String(prof.teamCode || '').trim().toUpperCase();
+      const rawCampArr = Array.isArray(prof.campPassCodes) ? prof.campPassCodes : [];
+      const cleanCamps = [];
+      const pushCamp = (c) => {
+        const up = String(c || '').trim().toUpperCase();
+        if (up && !cleanCamps.includes(up) && cleanCamps.length < 5) cleanCamps.push(up);
+      };
+      rawCampArr.forEach(pushCamp);
+      if (rawExistingTeam.startsWith('CAMP-')) {
+        pushCamp(rawExistingTeam);
+        prof.primaryTeamCode = '';
+      } else {
+        prof.primaryTeamCode = rawExistingTeam;
+      }
+      prof.campPassCodes = cleanCamps;
+      try {
+        Object.defineProperty(prof, 'teamCode', {
+          get() {
+            return String(this.primaryTeamCode || '');
+          },
+          set(val) {
+            const up = String(val || '').trim().toUpperCase();
+            if (up.startsWith('CAMP-')) {
+              if (!Array.isArray(this.campPassCodes)) this.campPassCodes = [];
+              if (!this.campPassCodes.includes(up) && this.campPassCodes.length < 5) {
+                this.campPassCodes.push(up);
+              }
+            } else {
+              this.primaryTeamCode = up;
+            }
+          },
+          configurable: true,
+          enumerable: true
+        });
+      } catch (_) {
+        prof.teamCode = prof.primaryTeamCode || '';
+      }
+      return prof;
+    }
+    window.installPlayerTeamCampSchema = installPlayerTeamCampSchema;
 
     function formatSynapzPriceNum(val) {
       const n = Number(val);
@@ -5412,6 +5560,9 @@
       }
       const bCoach = document.getElementById('btnCoachPlanIndividual9999');
       if (bCoach) bCoach.textContent = `Select Individual Coach ($${formatSynapzPriceNum(p.coachIndividualAnnual)}/yr)`;
+      const bCamp = document.getElementById('btnCoachPlanCampCohort249');
+      const campSpec = p.camp_cohort_100 || { price: p.campCohortAnnual || 249, skaters: p.campCohortIncludedSkaters || 100 };
+      if (bCamp) bCamp.textContent = `⚡ Skills / 3v3 Camp Cohort — $${formatSynapzPriceNum(campSpec.price)}/yr (${campSpec.skaters} Clinic Skaters)`;
       const bA5 = document.getElementById('btnAssocPlan5Teams450');
       if (bA5) bA5.textContent = `Select ${p.assocSmall.teams}-Team Association ($${formatSynapzPriceNum(p.assocSmall.price)}/yr)`;
       const bA10 = document.getElementById('btnAssocPlan10Teams850');
@@ -9588,20 +9739,20 @@
     function describePhysicalRinkLandmark(x, y, scen) {
       const zone = (scen && scen.zone) || 'offense';
       const vDist = Math.abs(y - 0.5);
-      const wingLabel = y < 0.34 ? 'Left Wing' : (y > 0.66 ? 'Right Wing' : 'Middle Slot');
+      const wingLabel = y < 0.34 ? 'Left' : (y > 0.66 ? 'Right' : 'Middle');
       if (zone === 'defense') {
-        if (x < 0.16 && vDist < 0.12) return 'Top of Crease';
-        if (x < 0.24 && vDist < 0.16) return 'Low House Net-Front';
-        if (x < 0.36 && vDist < 0.18) return 'High House Slot';
-        if (x < 0.32 && vDist >= 0.18) return `${wingLabel} Hashmarks Wall`;
-        if (x < 0.45) return `${wingLabel} Circle Lane`;
-        return `${wingLabel} Neutral-Zone Gap`;
+        if (x < 0.16 && vDist < 0.12) return 'Top Crease';
+        if (x < 0.24 && vDist < 0.16) return 'Low House';
+        if (x < 0.36 && vDist < 0.18) return 'High House';
+        if (x < 0.32 && vDist >= 0.18) return `${wingLabel} Hashmarks`;
+        if (x < 0.45) return `${wingLabel} Circle`;
+        return `${wingLabel} NZ Gap`;
       }
-      if (x > 0.80 && vDist >= 0.12) return `${wingLabel} Back-Post / Goal Line`;
-      if (x > 0.72 && vDist < 0.16) return 'Low Slot / Net-Front';
-      if (x >= 0.60 && x <= 0.78 && vDist < 0.18) return 'High Slot Triangle';
-      if (x >= 0.50 && x < 0.64) return `${wingLabel} Inside Blue Line / Point`;
-      return `${wingLabel} Open Ice`;
+      if (x > 0.80 && vDist >= 0.12) return `${wingLabel} Back-Post`;
+      if (x > 0.72 && vDist < 0.16) return 'Low Slot';
+      if (x >= 0.60 && x <= 0.78 && vDist < 0.18) return 'High Slot';
+      if (x >= 0.50 && x < 0.64) return `${wingLabel} Point`;
+      return `${wingLabel} Open Seam`;
     }
     window.describePhysicalRinkLandmark = describePhysicalRinkLandmark;
 
@@ -9812,6 +9963,157 @@
     }
     window.handleSelectTapZone = handleSelectTapZone;
 
+    function resolveChoiceNormCoordinate(ch, idx, scen, usedCoords) {
+      const raw = String((ch && ch.text) || '');
+      const t = raw.toLowerCase();
+      const tms = Array.isArray(scen && scen.teammates) ? scen.teammates : [];
+      const defs = Array.isArray(scen && scen.defenders) ? scen.defenders : [];
+      const clampPt = (px, py) => ({
+        x: Math.max(0.08, Math.min(0.92, Number(px) || 0.5)),
+        y: Math.max(0.10, Math.min(0.90, Number(py) || 0.5))
+      });
+      const pushUnique = (cand) => {
+        let out = clampPt(cand.x, cand.y);
+        let guard = 0;
+        while (usedCoords.some(u => Math.hypot(u.x - out.x, u.y - out.y) < 0.065) && guard < 6) {
+          const ang = (idx * 1.57) + guard * 0.85;
+          out = clampPt(out.x + Math.cos(ang) * 0.075, out.y + Math.sin(ang) * 0.085);
+          guard++;
+        }
+        usedCoords.push(out);
+        return out;
+      };
+
+      const mult = Number(ch && ch.multiplier) || 0;
+      if (mult >= 0.99) {
+        if (scen.correctTargetId === 'NET') return pushUnique({ x: 0.91, y: 0.50 });
+        if (scen.mechanic === 'pass_decision') {
+          const openTm = tms.find(tm => tm.id === (scen.correctTargetId || 'T1')) || tms[0];
+          if (openTm) return pushUnique({ x: openTm.x, y: openTm.y });
+        }
+        return pushUnique(scen.targetSpot || { x: 0.75, y: 0.50 });
+      }
+
+      const jerseyMatch = raw.match(/#(\d+)/);
+      if (jerseyMatch) {
+        const tm = tms.find(x => String(x.label) === jerseyMatch[1]);
+        if (tm) return pushUnique({ x: tm.x, y: tm.y });
+      }
+
+      if (mult > 0) {
+        const silverZone = (scen.targetZones && scen.targetZones[1]) ||
+          (scen.customTargetZones && scen.customTargetZones[1]) ||
+          { x: (scen.targetSpot ? scen.targetSpot.x - 0.10 : 0.64), y: (scen.targetSpot ? 1 - scen.targetSpot.y : 0.34) };
+        return pushUnique(silverZone);
+      }
+
+      if (/crease|goalie|behind.*net|behind.*goal line/.test(t)) {
+        return pushUnique({ x: scen.zone === 'defense' ? 0.09 : 0.90, y: 0.50 });
+      }
+      if (/center red|retreat|coast|turn back|stop.*blue line/.test(t)) {
+        return pushUnique({ x: 0.52, y: 0.50 });
+      }
+      const defCandidate = defs[idx % Math.max(1, defs.length)];
+      if (defCandidate) {
+        return pushUnique({ x: defCandidate.x, y: defCandidate.y });
+      }
+      return pushUnique({ x: scen.zone === 'defense' ? 0.34 : 0.68, y: idx % 2 === 0 ? 0.18 : 0.82 });
+    }
+
+    function computeSyncedOnIceChoiceTargets(scenOverride = null) {
+      const scen = scenOverride || (typeof getCurrentScenario === 'function' ? getCurrentScenario() : null);
+      if (!scen || !canvas) {
+        state.syncedOnIceTargets = [];
+        return [];
+      }
+      if (typeof hasActiveUpgrade === 'function' && !hasActiveUpgrade('BET-V131-02')) {
+        state.syncedOnIceTargets = [];
+        return [];
+      }
+      const specs = Array.isArray(state.currentRenderedChoiceSpecs) ? state.currentRenderedChoiceSpecs : [];
+      const W = canvas.width || 800;
+      const H = canvas.height || 450;
+      const rect = canvas.getBoundingClientRect();
+      const cssW = rect.width > 0 ? rect.width : W;
+      const cssH = rect.height > 0 ? rect.height : H;
+      const zone = state.mode === 'live' ? (state.liveOffense ? 'offense' : 'defense') : (scen.zone || 'offense');
+      const minRadiusCss = Math.max(24, Math.min(cssW, cssH) * 0.068);
+
+      const synced = specs.slice(0, 4).map((sp, idx) => {
+        const cPt = normToCanvas(sp.nx, sp.ny, W, H, zone);
+        const cssX = (cPt.x / W) * cssW;
+        const cssY = (cPt.y / H) * cssH;
+        return {
+          choiceIdx: idx,
+          nx: Number(sp.nx.toFixed(4)),
+          ny: Number(sp.ny.toFixed(4)),
+          canvasX: Number(cPt.x.toFixed(2)),
+          canvasY: Number(cPt.y.toFixed(2)),
+          cssX: Number(cssX.toFixed(2)),
+          cssY: Number(cssY.toFixed(2)),
+          clientX: Number((rect.left + cssX).toFixed(2)),
+          clientY: Number((rect.top + cssY).toFixed(2)),
+          hitboxRadiusCssPx: Number(minRadiusCss.toFixed(1)),
+          hitboxDiameterCssPx: Number((minRadiusCss * 2).toFixed(1)),
+          multiplier: sp.multiplier,
+          ok: Boolean(sp.ok),
+          buttonText: sp.text
+        };
+      });
+      state.syncedOnIceTargets = synced;
+      return synced;
+    }
+    window.computeSyncedOnIceChoiceTargets = computeSyncedOnIceChoiceTargets;
+
+    function triggerOnIceTapPulseAnimation() {
+      if (state._onIceTapPulseRaf) cancelAnimationFrame(state._onIceTapPulseRaf);
+      const step = () => {
+        drawRink();
+        if (state.onIceTapPulse && performance.now() <= state.onIceTapPulse.untilMs) {
+          state._onIceTapPulseRaf = requestAnimationFrame(step);
+        } else {
+          state._onIceTapPulseRaf = null;
+        }
+      };
+      state._onIceTapPulseRaf = requestAnimationFrame(step);
+    }
+
+    function tapSyncedOnIceTargetByClientPoint(clientX, clientY) {
+      if (!canvas || state.mode !== 'position' || state.questionAnswered || state.pov3dActive) return null;
+      if (typeof hasActiveUpgrade === 'function' && !hasActiveUpgrade('BET-V131-02')) return null;
+      const scen = getCurrentScenario();
+      const targets = computeSyncedOnIceChoiceTargets(scen);
+      if (!targets.length) return null;
+      const rect = canvas.getBoundingClientRect();
+      const tapCssX = clientX - rect.left;
+      const tapCssY = clientY - rect.top;
+      let nearest = null;
+      let bestDist = Infinity;
+      for (const tg of targets) {
+        const d = Math.hypot(tapCssX - tg.cssX, tapCssY - tg.cssY);
+        if (d <= tg.hitboxRadiusCssPx && d < bestDist) {
+          bestDist = d;
+          nearest = tg;
+        }
+      }
+      if (!nearest) return null;
+      const barBtns = Array.from(document.querySelectorAll('#multiFormatControlsBar button'));
+      const matchedBtn = barBtns.find(b => Number(b.dataset.syncedChoiceIdx) === nearest.choiceIdx) || barBtns[nearest.choiceIdx];
+      if (!matchedBtn) return null;
+      const now = performance.now();
+      state.onIceTapPulse = {
+        cx: nearest.canvasX,
+        cy: nearest.canvasY,
+        choiceIdx: nearest.choiceIdx,
+        startMs: now,
+        untilMs: now + 140
+      };
+      triggerOnIceTapPulseAnimation();
+      matchedBtn.click();
+      return { ...nearest, distanceCssPx: Number(bestDist.toFixed(2)) };
+    }
+    window.tapSyncedOnIceTargetByClientPoint = tapSyncedOnIceTargetByClientPoint;
+
     function renderMultiFormatControlsBar(scen) {
       const bar = document.getElementById('multiFormatControlsBar');
       const styleBadge = document.getElementById('questionStyleBadge');
@@ -9822,24 +10124,30 @@
       if (!bar) return;
       if (state.mode !== 'position' || state.questionAnswered) {
         bar.classList.add('hidden');
+        state.currentRenderedChoiceSpecs = [];
+        state.syncedOnIceTargets = [];
         return;
       }
 
       bar.innerHTML = '';
+      const renderedSpecs = [];
       if (qStyle === 'tap_zone') {
         const zones = buildTapZonesForScenario(scen);
         state.activeTapZones = zones;
         bar.classList.remove('hidden');
-        zones.forEach(z => {
+        zones.forEach((z, idx) => {
+          const btnText = `Skate to ${z.spotLabel}`;
           const btn = document.createElement('button');
           btn.type = 'button';
+          btn.dataset.syncedChoiceIdx = String(idx);
           btn.dataset.zoneLetter = z.zoneLetter;
           btn.dataset.zoneX = z.x.toFixed(3);
           btn.dataset.zoneY = z.y.toFixed(3);
           btn.className = 'w-full px-2.5 py-1.5 rounded-xl bg-slate-900/95 hover:bg-sky-500/30 border border-sky-400/75 text-white font-black text-[11px] leading-tight shadow transition flex items-center gap-1.5 text-left cursor-pointer';
-          btn.innerHTML = `<span class="px-1.5 py-0.5 rounded bg-amber-400 text-slate-950 font-black text-[10px] shrink-0">${z.zoneLetter}</span><span class="min-w-0">${z.label}: ${z.spotLabel}</span>`;
+          btn.innerHTML = `<span class="px-1.5 py-0.5 rounded bg-amber-400 text-slate-950 font-black text-[10px] shrink-0">${z.zoneLetter}</span><span class="min-w-0">${btnText}</span>`;
           btn.addEventListener('click', () => handleSelectTapZone(z, scen));
           bar.appendChild(btn);
+          renderedSpecs.push({ idx, text: `${z.zoneLetter} ${btnText}`, nx: z.x, ny: z.y, ok: z.multiplier > 0, multiplier: z.multiplier });
         });
       } else if (qStyle === 'tap_player') {
         bar.classList.remove('hidden');
@@ -9849,7 +10157,7 @@
         if (scen.correctTargetId === 'NET') {
           rawTargets.push({
             id: 'NET',
-            text: '🥅 Rip Shot Low Far-Pad on Goal Net',
+            text: 'Shoot Low Far-Pad on Goal Net',
             x: scen.targetSpot.x,
             y: scen.targetSpot.y,
             mult: 1.0,
@@ -9864,7 +10172,7 @@
           const isSecondary = !isPrimary && !covered && !rawTargets.some(r => r.mult === 0.75);
           rawTargets.push({
             id: tm.id,
-            text: `🏒 Pass to #${tm.label} (${describePhysicalRinkLandmark(tm.x, tm.y, scen)})`,
+            text: `Pass #${tm.label} ${describePhysicalRinkLandmark(tm.x, tm.y, scen)}`,
             x: tm.x,
             y: tm.y,
             mult: isPrimary ? 1.0 : (isSecondary ? 0.75 : 0),
@@ -9878,11 +10186,12 @@
           });
         });
         while (rawTargets.length < 4) {
+          const fallbackDef = (scen.defenders && scen.defenders[rawTargets.length % Math.max(1, scen.defenders.length)]) || { x: 0.54, y: 0.84 };
           rawTargets.push({
             id: `HOLD_${rawTargets.length}`,
-            text: '🛑 Rim Blindly Into Defender Skates Along Boards',
-            x: scen.youStart.x,
-            y: scen.youStart.y,
+            text: 'Rim Blindly Into Defender Skates',
+            x: fallbackDef.x,
+            y: fallbackDef.y,
             mult: 0,
             ok: false,
             fb: badChoice.feedback,
@@ -9891,9 +10200,10 @@
         }
         const shift = ((state.seriesQuestionNum || 1) + (state.currentCityIdx || 0) + (state.permutationSeed || 0)) % 4;
         const rotatedTargets = [0, 1, 2, 3].map(k => rawTargets[(shift + k) % 4]);
-        rotatedTargets.forEach((tg) => {
+        rotatedTargets.forEach((tg, idx) => {
           const btn = document.createElement('button');
           btn.type = 'button';
+          btn.dataset.syncedChoiceIdx = String(idx);
           btn.dataset.playerTargetId = tg.id;
           btn.dataset.playerX = tg.x.toFixed(3);
           btn.dataset.playerY = tg.y.toFixed(3);
@@ -9909,6 +10219,7 @@
             resolveAttempt(scen, tg.ok, tg.fb, tg.mult, tg.badge);
           });
           bar.appendChild(btn);
+          renderedSpecs.push({ idx, text: tg.text, nx: tg.x, ny: tg.y, ok: tg.ok, multiplier: tg.mult });
         });
       } else {
         bar.classList.remove('hidden');
@@ -9923,7 +10234,7 @@
         });
         while (baseChoices.length < 4) {
           baseChoices.push({
-            text: 'Hold a conservative support cushion away from defender traffic before scanning the primary lane',
+            text: 'Hold conservative support cushion away from traffic',
             correct: true,
             silver: true,
             rank: 2,
@@ -9933,10 +10244,15 @@
         }
         const rot = ((state.seriesQuestionNum || 1) + (state.currentCityIdx || 0) + (state.permutationSeed || 0)) % baseChoices.length;
         const choices = baseChoices.map((_, i) => baseChoices[(rot + i) % baseChoices.length]);
+        const usedCoords = [];
         choices.forEach((ch, idx) => {
+          const normCoord = resolveChoiceNormCoordinate(ch, idx, scen, usedCoords);
           const btn = document.createElement('button');
           btn.type = 'button';
+          btn.dataset.syncedChoiceIdx = String(idx);
           btn.dataset.tacticalChoiceIdx = String(idx);
+          btn.dataset.syncedNormX = normCoord.x.toFixed(3);
+          btn.dataset.syncedNormY = normCoord.y.toFixed(3);
           btn.className = 'w-full px-2.5 py-1.5 rounded-xl bg-slate-900/95 hover:bg-sky-900/80 border border-amber-400/70 text-left text-[11px] font-bold text-white shadow transition whitespace-normal leading-tight cursor-pointer';
           btn.innerHTML = `<span class="text-amber-300 font-black mr-1">⚡ ${idx + 1}.</span><span>${ch.text}</span>`;
           btn.title = ch.text;
@@ -9956,47 +10272,49 @@
             }
           });
           bar.appendChild(btn);
+          renderedSpecs.push({ idx, text: ch.text, nx: normCoord.x, ny: normCoord.y, ok: ch.multiplier > 0, multiplier: ch.multiplier });
         });
       }
+      state.currentRenderedChoiceSpecs = renderedSpecs;
+      computeSyncedOnIceChoiceTargets(scen);
     }
     window.renderMultiFormatControlsBar = renderMultiFormatControlsBar;
 
     function drawMultiFormatTapZones(ctx, W, H, scen, zone) {
-      if (state.mode !== 'position' || state.questionAnswered) return;
-      if (state.activeQuestionStyle !== 'tap_zone') return;
-      const zones = state.activeTapZones || buildTapZonesForScenario(scen);
-      state.activeTapZones = zones;
-      if (['flow_and_freeze', 'static_hover_zones', 'habit_combo'].includes(state.activePresentationStyle)) return;
+      // TIER-B-04 Ratified (BET-V131-02): Direct 1:1 synced on-ice candidate target rings (>= 44x44px CSS hitbox),
+      // strictly ZERO extra text labels added onto #rinkCanvas (preserving Max 1 primary teaching overlay).
+      const targets = (!state.questionAnswered && state.mode === 'position')
+        ? computeSyncedOnIceChoiceTargets(scen)
+        : [];
       ctx.save();
-      zones.forEach(z => {
-        const pt = normToCanvas(z.x, z.y, W, H, zone);
-        const rad = Math.max(24, W * 0.044);
+      if (targets.length > 0 && state.mistakePhase === 'none') {
+        const ringRad = Math.max(22, Math.min(W, H) * 0.048);
+        targets.forEach((tg) => {
+          ctx.beginPath();
+          ctx.arc(tg.canvasX, tg.canvasY, ringRad, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(14, 165, 233, 0.13)';
+          ctx.fill();
+          ctx.lineWidth = 2;
+          ctx.setLineDash([5, 4]);
+          ctx.strokeStyle = 'rgba(2, 132, 199, 0.65)';
+          ctx.stroke();
+          ctx.setLineDash([]);
+        });
+      }
+      if (state.onIceTapPulse && performance.now() <= state.onIceTapPulse.untilMs) {
+        const elapsed = Math.max(0, performance.now() - state.onIceTapPulse.startMs);
+        const t = Math.min(1, elapsed / 140);
+        const pulseRad = 16 + t * 28;
         ctx.beginPath();
-        ctx.arc(pt.x, pt.y, rad, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(14, 165, 233, 0.22)';
-        ctx.fill();
-        ctx.lineWidth = 3;
-        ctx.setLineDash([6, 4]);
-        ctx.strokeStyle = '#0284c7';
+        ctx.arc(state.onIceTapPulse.cx, state.onIceTapPulse.cy, pulseRad, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(250, 204, 21, ${(1 - t * 0.75).toFixed(2)})`;
+        ctx.lineWidth = 3.5;
         ctx.stroke();
-        ctx.setLineDash([]);
-
-        const pillW = Math.max(54, W * 0.068);
-        const pillH = Math.max(20, H * 0.042);
-        ctx.fillStyle = '#0f172a';
-        ctx.strokeStyle = '#38bdf8';
-        ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.roundRect(pt.x - pillW / 2, pt.y - pillH / 2, pillW, pillH, 8);
+        ctx.arc(state.onIceTapPulse.cx, state.onIceTapPulse.cy, pulseRad * 0.55, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(56, 189, 248, ${(0.38 * (1 - t)).toFixed(2)})`;
         ctx.fill();
-        ctx.stroke();
-
-        ctx.fillStyle = '#fde047';
-        ctx.font = `900 ${Math.max(10, Math.floor(W * 0.012))}px Inter`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(`ZONE ${z.zoneLetter}`, pt.x, pt.y);
-      });
+      }
       ctx.restore();
     }
     window.drawMultiFormatTapZones = drawMultiFormatTapZones;
@@ -10048,6 +10366,10 @@
       equippedVisor: '#38bdf8',
       equippedHelmet: '#1e3a8a',
       playerAgentId: 'agent-leo',
+      cameraModePref: 'auto',
+      federationMode: detectDefaultFederationMode(),
+      primaryTeamCode: '',
+      campPassCodes: [],
       teamCode: ''
     };
 
@@ -10151,6 +10473,15 @@
       if (!prof.habitStats) {
         prof.habitStats = { preScans: 0, deceptionFakes: 0, commCallouts: 0, filmStudyBonus: 0 };
       }
+      if (!['auto', '270', '0', '4way'].includes(prof.cameraModePref)) {
+        prof.cameraModePref = 'auto';
+      }
+      if (!['USA', 'CAN', 'IIHF'].includes(prof.federationMode)) {
+        prof.federationMode = (state && ['USA', 'CAN', 'IIHF'].includes(state.federationMode))
+          ? state.federationMode
+          : detectDefaultFederationMode();
+      }
+      installPlayerTeamCampSchema(prof);
       if (!prof.conceptMisses || typeof prof.conceptMisses !== 'object') {
         prof.conceptMisses = {};
       }
@@ -10727,40 +11058,40 @@
       return scen;
     }
 
-    // v12.5 Canonical 16-Bucket Curriculum & 4-Choice Unambiguous Geometry Enricher
+    // v12.5 + v13.2 (BET-V131-02) Canonical 16-Bucket Curriculum & <=8-Word Verb-First Hockey Calls
     const CANONICAL_SCENARIO_CURRICULUM_MAP = {
-      'basics-center':        { bucket_code: 'oz_attack_triangle_spacing',  tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Support higher near the top of the circles before sliding into the middle slot', silverFb: 'Good 75% Silver middle-lane cushion! Dropping slightly deeper between the dots gives wingers an even closer one-timer triangle.' },
-      'basics-defense':       { bucket_code: 'oz_attack_triangle_spacing',  tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold the center blue line hinge slightly closer to partner #7', silverFb: 'Good 75% Silver blue-line safety! Shifting wide to the Left Point seals the boards rim while keeping the zone.' },
-      'basics-offsides':      { bucket_code: 'nz_speed_entry_middle_drive', tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Loop back deeper into the neutral zone behind #14 to build crossover speed', silverFb: 'Good 75% Silver onside discipline! Timing your skate right on the blue line lets you enter a half-step faster.' },
-      'spacing-1':            { bucket_code: 'oz_attack_triangle_spacing',  tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold high support near Left Point #4 outside the faceoff dot', silverFb: 'Good 75% Silver high outlet! Sliding inside to the High Slot soft ice creates a Grade-A one-timer angle.' },
-      'spacing-2':            { bucket_code: 'oz_royal_road_net_front',     tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Rim the puck safely around behind the net toward weak-side point #7', silverFb: 'Good 75% Silver possession play! Hitting #14 wide open in the High Slot generates an immediate Grade-A shot.' },
-      'cycle-pov':            { bucket_code: 'oz_cycle_scissors',           tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Reverse the cycle behind the goal line toward far-side point #7', silverFb: 'Good 75% Silver cycle retention! Feeding #14 uncovered in the High Slot attacks the middle before defenders recover.' },
-      'house-1':              { bucket_code: 'dz_protect_house_box1',       tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold conservative goal-line net-front support right beside the post', silverFb: 'Good 75% Silver net protection! Stepping into the Low House between the dots locks up the slot shooter\'s stick earlier.' },
-      'house-2':              { bucket_code: 'dz_protect_house_box1',       tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold deep mid-slot cushion just above the crease', silverFb: 'Good 75% Silver House awareness! Stepping into the High House blocks both trailer R2 and the point shooting lane.' },
-      'breakout-1':           { bucket_code: 'breakout_winger_wall_chip',   tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold higher up the boards near the top of the circle facing the puck', silverFb: 'Good 75% Silver boards width! Dropping lower to the hashmarks shortens the pass so forecheckers cannot jump it.' },
-      'breakout-2':           { bucket_code: 'breakout_low_slow_center',    tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Swing wider across the middle slot at the top of the circles', silverFb: 'Good 75% Silver middle support! Curling lower underneath the faceoff dots gives #14 a cleaner, shorter outlet in stride.' },
-      'breakout-dtod':        { bucket_code: 'breakout_d_to_d',             tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Chip the puck softly off the back glass toward weak-side winger #7', silverFb: 'Good 75% Silver pressure relief! Crisp D-to-D tape-to-tape to partner #4 behind the net maintains clean controlled possession.' },
-      'regroup-nz':           { bucket_code: 'nz_regroup_hinge',            tier_level: 'B',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Carry two strides up the weak side and chip deep into the far corner', silverFb: 'Good 75% Silver safe advance! Hitting #14 in stride on the weak-side blue-line seam gives your team a controlled speed entry.' },
-      'rush-1':               { bucket_code: 'odd_man_rush_2v1_3v2',        tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Trail slightly higher at the top of the far circle as a drop option', silverFb: 'Good 75% Silver rush width! Driving the far dot lane all the way to the back post forces D1 into an impossible choice.' },
-      'rush-2v1-dish':        { bucket_code: 'odd_man_rush_2v1_3v2',        tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Pull up on the half-wall to wait for trailing defenseman #4', silverFb: 'Good 75% Silver patience! Because D1 stepped directly at you, dishing immediately across to #14 scores into an open net.' },
-      'rush-2v1-shoot':       { bucket_code: 'odd_man_rush_2v1_3v2',        tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Curl back on the dot and pass high to trailing point #4', silverFb: 'Good 75% Silver possession keep! Because D1 cheated to cover #14, walking in and ripping the shot is the 100% Gold read.' },
-      'rush-2':               { bucket_code: 'odd_man_rush_2v1_3v2',        tier_level: 'AA',  divs: ['10U','12U','14U','16U','18U'],      silverText: 'Hold wider near the weak-side top of the circle above the play', silverFb: 'Good 75% Silver F3 depth! Gliding right into the middle High Slot gives you the prime royal-road shooting angle.' },
-      'forecheck-212':        { bucket_code: 'forecheck_212_f1_f2_f3',      tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold mid-circle containment angle between RW and the slot', silverFb: 'Good 75% Silver containment! Pinching all the way onto the hashmarks wall seals RD1\'s rim outlet before RW touches it.' },
-      'backcheck-track':      { bucket_code: 'nz_angling_gap_control_122',  tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Track back to the top of the defensive blue line above R3', silverFb: 'Good 75% Silver middle track! Sprinting deeper into the High Slot lets you lift trailer R3\'s stick on the pass.' },
-      'transition-1':         { bucket_code: 'nz_speed_entry_middle_drive', tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Skate wide into the opposite circle for a secondary perimeter angle', silverFb: 'Good 75% Silver motion! Cutting straight down the open middle lane behind puck-watching D1 creates a clean breakaway.' },
-      'transition-2':         { bucket_code: 'breakout_low_slow_center',    tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Slide back toward Left Point #4 for a long reset', silverFb: 'Good 75% Silver reset angle! Dropping into the closer Hinge pocket behind #14 gives a much easier short escape pass.' },
-      'pp-umbrella':          { bucket_code: 'special_teams_5v4_umbrella',  tier_level: 'AA',  divs: ['12U','14U','16U','18U'],            silverText: 'Hold high along the half-wall boards near the blue line', silverFb: 'Good 75% Silver Umbrella width! Stepping inside onto the faceoff dot makes you a lethal one-timer threat.' },
-      'pk-box':               { bucket_code: 'special_teams_5v4_umbrella',  tier_level: 'AAA', divs: ['12U','14U','16U','18U'],            silverText: 'Collapse deeper to the edge of the crease in a tight 4-man diamond', silverFb: 'Good 75% Silver crease protection! Holding the High Box corner inside the dots also blocks the cross-seam one-timer lane.' },
-      'protect-cutback-wall': { bucket_code: 'oz_cycle_scissors',           tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Chip the puck softly down behind the goal line to reset the cycle', silverFb: 'Good 75% Silver low chip! Shielding with your hips and cutting back up the half-wall keeps full puck possession in high ice.' },
-      'delay-high-slot':      { bucket_code: 'scanning_deception_callouts', tier_level: 'AAA', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Delay on the wall and dish back to Left Point defenseman #4', silverFb: 'Good 75% Silver delay outlet! Using the look-off to hit trailer #14 walking into the High Slot creates an unscreened one-timer.' },
-      'd-gap-1v1':            { bucket_code: 'dz_corner_containment_stick', tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold deeper inside-out cushion near the low hashmarks dot', silverFb: 'Good 75% Silver inside leverage! Closing the gap slightly earlier at the circle forces R1 wide before shooting range.' },
-      'd-2v1-slide':          { bucket_code: 'dz_corner_containment_stick', tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Drop slightly deeper toward the crease edge in the middle lane', silverFb: 'Good 75% Silver seam awareness! Holding the Royal Road lane just above the crease denies the pass without screening our goalie.' },
-      'd-netfront-boxout':    { bucket_code: 'dz_protect_house_box1',       tier_level: 'A',   divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold weak-side post position beside R2 without over-committing', silverFb: 'Good 75% Silver post coverage! Stepping directly net-side of R2 clears our goalie\'s sightline and ties up R2\'s stick.' },
-      'd-blueline-walk':      { bucket_code: 'oz_royal_road_net_front',     tier_level: 'AA',  divs: ['12U','14U','16U','18U'],            silverText: 'Move the puck D-to-D across the blue line to Right Point #4', silverFb: 'Good 75% Silver D-to-D keep! Because you already walked past W1 into the open middle lane, firing low to #14\'s tip blade is Gold.' },
-      'goalie-angle-depth':   { bucket_code: 'goalie_crease_angles_traps',  tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], silverText: 'Hold conservative mid-crease squareness on the puck line', silverFb: 'Good 75% Silver squareness! Telescoping to the top edge of the blue paint cuts down even more upper-corner net.' },
-      'goalie-screen-look':   { bucket_code: 'goalie_crease_angles_traps',  tier_level: 'B',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Hold mid-crease depth and peek over the glove-side shoulder', silverFb: 'Good 75% Silver screen battle! Shifting your sightline window to the shooter\'s stick-blade side tracks the release fastest.' },
-      'goalie-rim-comm':      { bucket_code: 'breakout_d_to_d',             tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      silverText: 'Leave the puck cleanly behind the net with a loud "Hard!" call for #4', silverFb: 'Good 75% Silver communication! Dishing a crisp reverse pass directly onto #4\'s tape beats the forecheck a full second faster.' },
-      'goalie-rebound-steer': { bucket_code: 'goalie_crease_angles_traps',  tier_level: 'AA',  divs: ['12U','14U','16U','18U'],            silverText: 'Smother and freeze the low shot into your chest for a whistle', silverFb: 'Good 75% Silver whistle control! Steering the active stick rebound directly to open #14 in the corner launches an instant breakout.' }
+      'basics-center':        { bucket_code: 'oz_attack_triangle_spacing',  tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Skate middle slot between both wingers',              silverText: 'Hold conservative support above middle slot',      bad1Text: 'Stand inside the goal crease with the goalie', bad2Text: 'Stand on the boards next to Left Wing',         silverFb: 'Good 75% Silver middle-lane cushion! Dropping slightly deeper between the dots gives wingers an even closer one-timer triangle.' },
+      'basics-defense':       { bucket_code: 'oz_attack_triangle_spacing',  tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Hold Left Point inside offensive blue line',          silverText: 'Hold conservative center blue-line hinge cushion', bad1Text: 'Coast at the center red line',                 bad2Text: 'Skate behind opponent net with the forwards',   silverFb: 'Good 75% Silver blue-line safety! Shifting wide to the Left Point seals the boards rim while keeping the zone.' },
+      'basics-offsides':      { bucket_code: 'nz_speed_entry_middle_drive', tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Tag up on blue line for #14',                         silverText: 'Loop back deeper behind #14 for speed',            bad1Text: 'Stay cherry-picking deep inside offensive zone',bad2Text: "Take the puck off #14's stick",                 silverFb: 'Good 75% Silver onside discipline! Timing your skate right on the blue line lets you enter a half-step faster.' },
+      'spacing-1':            { bucket_code: 'oz_attack_triangle_spacing',  tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Skate to open High Slot one-timer',                   silverText: 'Hold conservative support outside faceoff dot',    bad1Text: 'Skate into corner right next to #14',          bad2Text: 'Stand covered behind Defender D1 low',          silverFb: 'Good 75% Silver high outlet! Sliding inside to the High Slot soft ice creates a Grade-A one-timer angle.' },
+      'spacing-2':            { bucket_code: 'oz_royal_road_net_front',     tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Pass tape-to-tape to open #14 High Slot',             silverText: 'Chip the puck softly behind net',                  bad1Text: 'Force pass to #19 tied up low',                bad2Text: "Pass blindly into Defender D3's shin guards",   silverFb: 'Good 75% Silver possession play! Hitting #14 wide open in the High Slot generates an immediate Grade-A shot.' },
+      'cycle-pov':            { bucket_code: 'oz_cycle_scissors',           tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      goldText: 'Hit open #14 in High Slot one-timer',                 silverText: 'Hold conservative cycle behind goal line',         bad1Text: 'Throw blind pass into tied up #19',            bad2Text: 'Pass into covered #4 on boards',                silverFb: 'Good 75% Silver cycle retention! Feeding #14 uncovered in the High Slot attacks the middle before defenders recover.' },
+      'house-1':              { bucket_code: 'dz_protect_house_box1',       tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Protect House net-side of R2, stick down',            silverText: 'Hold conservative goal-line support beside post',  bad1Text: 'Chase corner double-team next to #14',         bad2Text: 'Stay cherry-picking high at blue line',         silverFb: 'Good 75% Silver net protection! Stepping into the Low House between the dots locks up the slot shooter\'s stick earlier.' },
+      'house-2':              { bucket_code: 'dz_protect_house_box1',       tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Sag inside High House guarding trailer R2',           silverText: 'Hold conservative mid-crease deep slot cushion',   bad1Text: 'Coast at the center blue line',                bad2Text: 'Skate behind your own net to help #14',         silverFb: 'Good 75% Silver House awareness! Stepping into the High House blocks both trailer R2 and the point shooting lane.' },
+      'breakout-1':           { bucket_code: 'breakout_winger_wall_chip',   tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Drop to hashmarks for #14 clean wall pass',           silverText: 'Hold conservative mid-circle boards support',      bad1Text: 'Stay cherry-picking past the blue line',       bad2Text: 'Skate right through your own goal crease',      silverFb: 'Good 75% Silver boards width! Dropping lower to the hashmarks shortens the pass so forecheckers cannot jump it.' },
+      'breakout-2':           { bucket_code: 'breakout_low_slow_center',    tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Curl low and slow underneath dots for #14',           silverText: 'Hold conservative mid-circle slot support',        bad1Text: 'Skate next to your covered winger #19',        bad2Text: 'Stop still at the blue line',                   silverFb: 'Good 75% Silver middle support! Curling lower underneath the faceoff dots gives #14 a cleaner, shorter outlet in stride.' },
+      'breakout-dtod':        { bucket_code: 'breakout_d_to_d',             tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Snap D-to-D reverse pass to #4',                      silverText: 'Chip the puck softly off back glass',              bad1Text: 'Force pass to double-teamed #19 on wall',      bad2Text: 'Throw pass to #14 draped by R3',                silverFb: 'Good 75% Silver pressure relief! Crisp D-to-D tape-to-tape to partner #4 behind the net maintains clean controlled possession.' },
+      'regroup-nz':           { bucket_code: 'nz_regroup_hinge',            tier_level: 'B',   divs: ['10U','12U','14U','16U','18U'],      goldText: 'Hit #14 in stride, weak-side blue line seam',         silverText: 'Chip the puck softly into far corner',             bad1Text: 'Pass back across into three defenders',        bad2Text: 'Force pass into #7 blanketed by F2',            silverFb: 'Good 75% Silver safe advance! Hitting #14 in stride on the weak-side blue-line seam gives your team a controlled speed entry.' },
+      'rush-1':               { bucket_code: 'odd_man_rush_2v1_3v2',        tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Drive far dot lane to back post',                     silverText: 'Hold conservative mid-circle rush support',        bad1Text: "Crisscross right behind #14's skates",         bad2Text: 'Stop at the blue line',                         silverFb: 'Good 75% Silver rush width! Driving the far dot lane all the way to the back post forces D1 into an impossible choice.' },
+      'rush-2v1-dish':        { bucket_code: 'odd_man_rush_2v1_3v2',        tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Saucer pass #14 wide-open back post',                 silverText: 'Pull up on the half-wall for support',             bad1Text: "Shoot directly into Defender D1's shin pads",  bad2Text: 'Turn back toward your own blue line',           silverFb: 'Good 75% Silver patience! Because D1 stepped directly at you, dishing immediately across to #14 scores into an open net.' },
+      'rush-2v1-shoot':       { bucket_code: 'odd_man_rush_2v1_3v2',        tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      goldText: 'Shoot low far-pad on the Goal Net',                   silverText: 'Curl back on the dot and reset',                   bad1Text: 'Force blind pass into covered #14',            bad2Text: 'Dump the puck into the corner',                 silverFb: 'Good 75% Silver possession keep! Because D1 cheated to cover #14, walking in and ripping the shot is the 100% Gold read.' },
+      'rush-2':               { bucket_code: 'odd_man_rush_2v1_3v2',        tier_level: 'AA',  divs: ['10U','12U','14U','16U','18U'],      goldText: 'Glide into the High Slot F3 trailer',                 silverText: 'Hold conservative mid-circle weak-side support',   bad1Text: 'Crash goal crease on top of #19',              bad2Text: 'Skate next to #14 in corner',                   silverFb: 'Good 75% Silver F3 depth! Gliding right into the middle High Slot gives you the prime royal-road shooting angle.' },
+      'forecheck-212':        { bucket_code: 'forecheck_212_f1_f2_f3',      tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Pinch onto the strong-side hashmarks wall',           silverText: 'Hold mid-circle containment angle on RW',          bad1Text: "Follow behind #14's skates behind net",        bad2Text: 'Retreat out of the offensive zone',             silverFb: 'Good 75% Silver containment! Pinching all the way onto the hashmarks wall seals RD1\'s rim outlet before RW touches it.' },
+      'backcheck-track':      { bucket_code: 'nz_angling_gap_control_122',  tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      goldText: "Sprint middle gut locking trailer R3's stick",        silverText: 'Hold conservative blue-line depth above R3',       bad1Text: 'Charge all the way to the boards',             bad2Text: 'Coast at the center red line',                  silverFb: 'Good 75% Silver middle track! Sprinting deeper into the High Slot lets you lift trailer R3\'s stick on the pass.' },
+      'transition-1':         { bucket_code: 'nz_speed_entry_middle_drive', tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Burst past D1 down open middle lane',                 silverText: 'Hold conservative mid-circle wide lane',           bad1Text: 'Stop skating and admire your pass',            bad2Text: 'Skate right next to #14 on boards',             silverFb: 'Good 75% Silver motion! Cutting straight down the open middle lane behind puck-watching D1 creates a clean breakaway.' },
+      'transition-2':         { bucket_code: 'breakout_low_slow_center',    tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      goldText: 'Drop into Hinge pocket behind #14',                   silverText: 'Slide back for a long reset',                      bad1Text: 'Skate into covered corner traffic low',        bad2Text: 'Stand covered behind D3 far post',              silverFb: 'Good 75% Silver reset angle! Dropping into the closer Hinge pocket behind #14 gives a much easier short escape pass.' },
+      'pp-umbrella':          { bucket_code: 'special_teams_5v4_umbrella',  tier_level: 'AA',  divs: ['12U','14U','16U','18U'],            goldText: 'Set faceoff dot flank for #14 one-timer',             silverText: 'Hold conservative high half-wall width',           bad1Text: 'Stand next to Quarterback #14 high',           bad2Text: "Stand behind the opponent's net",               silverFb: 'Good 75% Silver Umbrella width! Stepping inside onto the faceoff dot makes you a lethal one-timer threat.' },
+      'pk-box':               { bucket_code: 'special_teams_5v4_umbrella',  tier_level: 'AAA', divs: ['12U','14U','16U','18U'],            goldText: 'Tuck High Box corner inside the dots',                silverText: 'Hold conservative mid-crease PK diamond',          bad1Text: 'Chase all the way out to boards',              bad2Text: 'Drop behind your own goal line',                silverFb: 'Good 75% Silver crease protection! Holding the High Box corner inside the dots also blocks the cross-seam one-timer lane.' },
+      'protect-cutback-wall': { bucket_code: 'oz_cycle_scissors',           tier_level: 'B',   divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Shield the puck, cut-back up the half-wall',          silverText: 'Chip the puck softly behind goal line',            bad1Text: 'Force blind pass into draped #14',             bad2Text: 'Throw the puck away behind the net',            silverFb: 'Good 75% Silver low chip! Shielding with your hips and cutting back up the half-wall keeps full puck possession in high ice.' },
+      'delay-high-slot':      { bucket_code: 'scanning_deception_callouts', tier_level: 'AAA', divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Look off D1, hit trailer #14 High Slot',              silverText: 'Pull up on the half-wall and reset',               bad1Text: 'Force pass through two sticks to #19',         bad2Text: "Skate straight into D1's chest",                silverFb: 'Good 75% Silver delay outlet! Using the look-off to hit trailer #14 walking into the High Slot creates an unscreened one-timer.' },
+      'd-gap-1v1':            { bucket_code: 'dz_corner_containment_stick', tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Angle inside-out with stick-on-puck on R1',           silverText: 'Hold conservative inside-out hashmarks cushion',   bad1Text: 'Charge all the way to the boards',             bad2Text: 'Back all the way into your own goalie',         silverFb: 'Good 75% Silver inside leverage! Closing the gap slightly earlier at the circle forces R1 wide before shooting range.' },
+      'd-2v1-slide':          { bucket_code: 'dz_corner_containment_stick', tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      goldText: 'Hold middle Royal Road seam, block pass',             silverText: 'Hold conservative mid-crease middle cushion',      bad1Text: 'Charge out at puck carrier R1 wide',           bad2Text: 'Stand covered hugging R2 on boards',            silverFb: 'Good 75% Silver seam awareness! Holding the Royal Road lane just above the crease denies the pass without screening our goalie.' },
+      'd-netfront-boxout':    { bucket_code: 'dz_protect_house_box1',       tier_level: 'A',   divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Take net-side crease position, box R2 out',           silverText: 'Hold conservative weak-side post support',         bad1Text: 'Leave the crease to sprint at point',          bad2Text: 'Stand in front screening your own goalie',      silverFb: 'Good 75% Silver post coverage! Stepping directly net-side of R2 clears our goalie\'s sightline and ties up R2\'s stick.' },
+      'd-blueline-walk':      { bucket_code: 'oz_royal_road_net_front',     tier_level: 'AA',  divs: ['12U','14U','16U','18U'],            goldText: 'Walk the blue line, low shot-pass #14',               silverText: 'Hold conservative blue-line point support',        bad1Text: "Slapshot into rushing winger W1's shin guards",bad2Text: 'Pass into covered #19 in corner',               silverFb: 'Good 75% Silver D-to-D keep! Because you already walked past W1 into the open middle lane, firing low to #14\'s tip blade is Gold.' },
+      'goalie-angle-depth':   { bucket_code: 'goalie_crease_angles_traps',  tier_level: 'Rec', divs: ['8U','10U','12U','14U','16U','18U'], goldText: 'Challenge top edge of the crease, puck-to-center-pipe',silverText: 'Hold conservative mid-crease puck line',          bad1Text: 'Back up behind your goal line hoping',         bad2Text: 'Wander 15 feet out into faceoff circle',        silverFb: 'Good 75% Silver squareness! Telescoping to the top edge of the blue paint cuts down even more upper-corner net.' },
+      'goalie-screen-look':   { bucket_code: 'goalie_crease_angles_traps',  tier_level: 'B',   divs: ['10U','12U','14U','16U','18U'],      goldText: "Hold crease depth, track shooter's stick side",       silverText: 'Hold conservative mid-crease glove peek',          bad1Text: 'Back up behind your goal line hoping',         bad2Text: 'Push the screening player with blocker',        silverFb: 'Good 75% Silver screen battle! Shifting your sightline window to the shooter\'s stick-blade side tracks the release fastest.' },
+      'goalie-rim-comm':      { bucket_code: 'breakout_d_to_d',             tier_level: 'A',   divs: ['10U','12U','14U','16U','18U'],      goldText: 'Call "Reverse!" and dish to open #4',                 silverText: 'Leave the puck cleanly behind net',                bad1Text: 'Rim blindly into forechecker R1 on wall',      bad2Text: 'Fire straight up the middle into R3',           silverFb: 'Good 75% Silver communication! Dishing a crisp reverse pass directly onto #4\'s tape beats the forecheck a full second faster.' },
+      'goalie-rebound-steer': { bucket_code: 'goalie_crease_angles_traps',  tier_level: 'AA',  divs: ['12U','14U','16U','18U'],            goldText: 'Rotate stick blade, steer rebound to #14',            silverText: 'Smother and freeze low shot into chest',           bad1Text: "Kick rebound straight onto R2's tape",         bad2Text: "Bunt puck onto R3's stick backdoor",            silverFb: 'Good 75% Silver whistle control! Steering the active stick rebound directly to open #14 in the corner launches an instant breakout.' }
     };
 
     function enrichSingleScenarioForV125(scen) {
@@ -10788,18 +11119,23 @@
       }
       if (Array.isArray(scen.readChoices) && scen.readChoices.length === 3 && !scen.readChoices.some(c => c.silver)) {
         const silverEntry = {
-          text: (meta && meta.silverText) || 'Hold a conservative support cushion away from defender traffic before scanning the primary lane',
+          text: (meta && meta.silverText) || 'Hold conservative support cushion away from traffic',
           correct: true,
           silver: true,
           multiplier: 0.75,
           feedback: (meta && meta.silverFb) || 'Good 75% Silver support read! Attacking the primary open Gold lane creates an even higher-percentage play.'
         };
         scen.readChoices = [
-          { ...scen.readChoices[0], correct: true, silver: false, multiplier: 1.0 },
+          { ...scen.readChoices[0], text: (meta && meta.goldText) || scen.readChoices[0].text, correct: true, silver: false, multiplier: 1.0 },
           silverEntry,
-          { ...scen.readChoices[1], correct: false, silver: false, multiplier: 0 },
-          { ...scen.readChoices[2], correct: false, silver: false, multiplier: 0 }
+          { ...scen.readChoices[1], text: (meta && meta.bad1Text) || scen.readChoices[1].text, correct: false, silver: false, multiplier: 0 },
+          { ...scen.readChoices[2], text: (meta && meta.bad2Text) || scen.readChoices[2].text, correct: false, silver: false, multiplier: 0 }
         ];
+      } else if (Array.isArray(scen.readChoices) && scen.readChoices.length === 4 && meta) {
+        if (meta.goldText) scen.readChoices[0].text = meta.goldText;
+        if (meta.silverText) scen.readChoices[1].text = meta.silverText;
+        if (meta.bad1Text) scen.readChoices[2].text = meta.bad1Text;
+        if (meta.bad2Text) scen.readChoices[3].text = meta.bad2Text;
       }
       return scen;
     }
@@ -11402,7 +11738,23 @@
     ];
 
     function parseNormalizedBaseAgeGroup(rawDiv) {
-      const s = String(rawDiv || '12U').toUpperCase();
+      const s = String(rawDiv || '12U').trim().toUpperCase();
+      // IIHF International Divisions (U10, U12, U14, U16, U18, U20)
+      if (s.startsWith('IIHF U10') || s === 'U10') return '8U';
+      if (s.startsWith('IIHF U12') || s === 'U12') return '10U';
+      if (s.startsWith('IIHF U14') || s === 'U14') return '12U';
+      if (s.startsWith('IIHF U16') || s === 'U16') return '14U';
+      if (s.startsWith('IIHF U18')) return '16U';
+      if (s.startsWith('IIHF U20') || s.startsWith('U20')) return '18U';
+      // Hockey Canada Divisions (U7, U9, U11, U13, U15, U18)
+      if (s.startsWith('U7') || s.startsWith('U9')) return '8U';
+      if (s.startsWith('U11')) return '10U';
+      if (s.startsWith('U13')) return '12U';
+      if (s.startsWith('U15')) return '14U';
+      if (s.startsWith('U18')) {
+        return (s.includes('AAA') || s.includes('JR') || s.includes('JUNIOR')) ? '18U' : '16U';
+      }
+      // USA Hockey Divisions (8U, 10U, 12U, 14U, 16U, 18U)
       if (s.startsWith('8U')) return '8U';
       if (s.startsWith('10U')) return '10U';
       if (s.startsWith('12U')) return '12U';
@@ -11412,6 +11764,98 @@
       return '12U';
     }
     window.parseNormalizedBaseAgeGroup = parseNormalizedBaseAgeGroup;
+
+    function getEffectiveFederationMode(profOverride = null) {
+      const p = profOverride || (typeof state !== 'undefined' && state && typeof getActiveProfile === 'function' ? getActiveProfile() : null);
+      const cand = String(
+        (p && p.federationMode) ||
+        (typeof state !== 'undefined' && state && state.activeFederationMode) ||
+        (typeof state !== 'undefined' && state && state.currentAccount && state.currentAccount.federationMode) ||
+        (typeof detectDefaultFederationMode === 'function' ? detectDefaultFederationMode() : 'USA')
+      ).trim().toUpperCase();
+      if (cand === 'CAN' || cand === 'IIHF' || cand === 'USA') return cand;
+      return 'USA';
+    }
+    window.getEffectiveFederationMode = getEffectiveFederationMode;
+
+    function syncDivisionSelectForFederation(selectEl, fedMode, currentValOverride = '') {
+      if (!selectEl || typeof FEDERATION_DIVISION_CATALOG === 'undefined') return;
+      const fed = ['USA', 'CAN', 'IIHF'].includes(String(fedMode || '').toUpperCase())
+        ? String(fedMode).toUpperCase()
+        : getEffectiveFederationMode();
+      const catalog = FEDERATION_DIVISION_CATALOG[fed] || FEDERATION_DIVISION_CATALOG.USA;
+      const prevRaw = currentValOverride || selectEl.value || '12U A';
+      const prevBase = parseNormalizedBaseAgeGroup(prevRaw);
+      const prevTierMatch = String(prevRaw).toUpperCase().match(/\b(AAA|AA|A|REC\/B|B|REC)\b/);
+      const prevTier = prevTierMatch ? prevTierMatch[1] : '';
+      selectEl.innerHTML = catalog.map(item => `<option value="${item.value}">${item.label}</option>`).join('');
+      const exact = catalog.find(item => item.value === prevRaw);
+      if (exact) {
+        selectEl.value = exact.value;
+        return;
+      }
+      const tierAndBase = prevTier
+        ? catalog.find(item => item.baseAge === prevBase && item.value.toUpperCase().includes(prevTier))
+        : null;
+      const baseMatch = tierAndBase || catalog.find(item => item.baseAge === prevBase) || catalog[0];
+      if (baseMatch) selectEl.value = baseMatch.value;
+    }
+    window.syncDivisionSelectForFederation = syncDivisionSelectForFederation;
+
+    function refreshFederationSwitcherPillsDom(activeFed) {
+      const fed = String(activeFed || getEffectiveFederationMode()).toUpperCase();
+      document.querySelectorAll('[data-federation-pill]').forEach(btn => {
+        const isAct = String(btn.getAttribute('data-federation-pill') || '').toUpperCase() === fed;
+        btn.setAttribute('aria-pressed', isAct ? 'true' : 'false');
+        btn.classList.toggle('bg-amber-500/25', isAct);
+        btn.classList.toggle('border-amber-400', isAct);
+        btn.classList.toggle('text-amber-200', isAct);
+        btn.classList.toggle('bg-slate-900/80', !isAct);
+        btn.classList.toggle('border-slate-700', !isAct);
+        btn.classList.toggle('text-slate-300', !isAct);
+      });
+    }
+    window.refreshFederationSwitcherPillsDom = refreshFederationSwitcherPillsDom;
+
+    function setFederationMode(fedMode, opts = {}) {
+      const fed = ['USA', 'CAN', 'IIHF'].includes(String(fedMode || '').toUpperCase())
+        ? String(fedMode).toUpperCase()
+        : 'USA';
+      state.activeFederationMode = fed;
+      const prof = (typeof getActiveProfile === 'function') ? getActiveProfile() : null;
+      if (prof && opts.persistProfile !== false) {
+        prof.federationMode = fed;
+        const catalog = (FEDERATION_DIVISION_CATALOG && FEDERATION_DIVISION_CATALOG[fed]) || [];
+        if (catalog.length && prof.divisionLabel) {
+          const curBase = parseNormalizedBaseAgeGroup(prof.divisionLabel || prof.ageGroup || '12U');
+          const mapped = catalog.find(c => c.baseAge === curBase) || catalog[0];
+          if (mapped && !catalog.some(c => c.value === prof.divisionLabel)) {
+            prof.divisionLabel = mapped.value;
+            prof.ageGroup = mapped.baseAge;
+          }
+        }
+        if (typeof saveProfiles === 'function' && state.profiles && state.profiles.length > 0) {
+          saveProfiles();
+        }
+      }
+      if (state.currentAccount && opts.persistAccount !== false) {
+        state.currentAccount.federationMode = fed;
+        if (typeof upsertPortalAccountRecord === 'function') {
+          upsertPortalAccountRecord(state.currentAccount);
+        }
+      }
+      refreshFederationSwitcherPillsDom(fed);
+      const slotDivSel = document.getElementById('slotSetupAgeDivision') || document.getElementById('slotSetupAgeGroup');
+      if (slotDivSel) syncDivisionSelectForFederation(slotDivSel, fed);
+      const lockerDivSel = document.getElementById('lockerEditAgeSelect');
+      if (lockerDivSel && lockerDivSel.options && lockerDivSel.options.length > 6) {
+        syncDivisionSelectForFederation(lockerDivSel, fed);
+      }
+      if (typeof updateProfileHeaderUI === 'function') updateProfileHeaderUI();
+      if (typeof drawRink === 'function' && typeof canvas !== 'undefined' && canvas) drawRink();
+      return fed;
+    }
+    window.setFederationMode = setFederationMode;
 
     function computeMaxAllowedAdaptiveLevel(prof) {
       const p = prof || {};
@@ -11805,12 +12249,164 @@
     }
     window.getEffectiveCameraRotationDeg = getEffectiveCameraRotationDeg;
 
+    function computeDeterministicShiftSeed(scen, prof) {
+      if (state.activeCoachInboxPlan && Array.isArray(state.activeCoachInboxPlan.scenarioIds)) {
+        const planCode = String(state.activeCoachInboxPlan.id || state.activeCoachInboxPlan.teamCode || 'HW');
+        let h = 2166136261;
+        for (let i = 0; i < planCode.length; i++) {
+          h ^= planCode.charCodeAt(i);
+          h = Math.imul(h, 16777619);
+        }
+        const hwIdx = Number(state.coachHomeworkPlayIndex ?? state.seriesQuestionNum ?? 1) || 1;
+        return ((Math.abs(h) + hwIdx * 31) % 997) + 1;
+      }
+      const qNum = Number(state.seriesQuestionNum || 1) || 1;
+      const cityNum = Number(state.currentCityIdx || 0) || 0;
+      const profSalt = String((prof && prof.id) || 'skater').split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+      const scenSalt = String((scen && scen.id) || 'play').split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+      return ((qNum * 37 + cityNum * 17 + profSalt + scenSalt) % 997) + 1;
+    }
+    window.computeDeterministicShiftSeed = computeDeterministicShiftSeed;
+
+    function resolveShiftCameraRotationDeg(prof, shiftSeed = 1) {
+      const p = prof || (typeof getActiveProfile === 'function' ? getActiveProfile() : null) || {};
+      const pref = String(p.cameraModePref || 'auto').toLowerCase();
+      const seedInt = Math.abs(Math.floor(Number(shiftSeed) || 0));
+      if (pref === '0') return 0;
+      if (pref === '270') return 270;
+      if (pref === '4way') return [0, 90, 180, 270][seedInt % 4];
+      // 'auto' mode (BET-V131-01 Option A):
+      // - 8U-10U (U7-U11 / IIHF U10): anchored cleanly to 0° or 270° attack-up
+      // - 12U (U13 / IIHF U12): auto-rotates across 0° and 270° (North-South Chel-cam)
+      // - 14U-18U (U15-U18 / IIHF U14-U20): auto-rotates across all 4 perspectives (0°/90°/180°/270°)
+      const fed = getEffectiveFederationMode(p);
+      const rawDiv = String(p.divisionLabel || p.ageGroup || '12U').toUpperCase();
+      const baseAge = parseNormalizedBaseAgeGroup(rawDiv);
+      const isIihf4Way = fed === 'IIHF' && /\b(U14|U16|U18|U20)\b/.test(rawDiv);
+      if (isIihf4Way || baseAge === '14U' || baseAge === '16U' || baseAge === '18U') {
+        return [0, 90, 180, 270][seedInt % 4];
+      }
+      if (baseAge === '12U' || (fed === 'IIHF' && /\bU12\b/.test(rawDiv))) {
+        return [0, 270][seedInt % 2];
+      }
+      // 8U-10U / U7-U11 / IIHF U10: clean attack-up 270° or 0° anchor per session/plan
+      return (seedInt % 2 === 0) ? 0 : 270;
+    }
+    window.resolveShiftCameraRotationDeg = resolveShiftCameraRotationDeg;
+
+    function triggerAttackOrientationPulse(rotationDeg) {
+      const now = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+      state.attackOrientationPulse = {
+        rotationDeg: Number(rotationDeg) || 0,
+        startedAtMs: now,
+        untilMs: now + 800
+      };
+      if (state._attackPulseTimer) clearTimeout(state._attackPulseTimer);
+      const stepFrame = () => {
+        const cur = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+        if (state.attackOrientationPulse && cur <= state.attackOrientationPulse.untilMs) {
+          if (typeof drawRink === 'function') drawRink();
+          state._attackPulseTimer = setTimeout(stepFrame, 60);
+        } else {
+          if (typeof drawRink === 'function') drawRink();
+        }
+      };
+      state._attackPulseTimer = setTimeout(stepFrame, 60);
+    }
+    window.triggerAttackOrientationPulse = triggerAttackOrientationPulse;
+
+    function perturbNonFocalDefenders(scenario, shiftSeed = 1) {
+      if (!scenario || !Array.isArray(scenario.defenders) || scenario.defenders.length < 2) return scenario;
+      if (typeof hasActiveUpgrade === 'function' && !hasActiveUpgrade('BET-V131-01')) return scenario;
+      const seedBase = Math.abs(Math.floor(Number(shiftSeed) || 1)) || 1;
+      const canvasW = (typeof canvas !== 'undefined' && canvas && canvas.width > 320) ? canvas.width : 800;
+      const canvasH = (typeof canvas !== 'undefined' && canvas && canvas.height > 200) ? canvas.height : 460;
+      const dpr = (typeof window !== 'undefined' && window.devicePixelRatio) || 1;
+      const cssW = Math.max(360, canvasW / dpr);
+      const cssH = Math.max(260, canvasH / dpr);
+
+      const goldSpot = scenario.targetSpot || { x: 0.72, y: 0.50 };
+      const openTm = (scenario.teammates || []).find(t => t.id === (scenario.correctTargetId || 'T1')) || null;
+      const goldEnd = (scenario.mechanic === 'pass_decision' && openTm) ? openTm : goldSpot;
+      const startPt = scenario.youStart || { x: 0.50, y: 0.50 };
+      const startCss = normToCanvas(startPt.x, startPt.y, cssW, cssH, scenario.zone || 'offense');
+      const endCss = normToCanvas(goldEnd.x, goldEnd.y, cssW, cssH, scenario.zone || 'offense');
+      const spotCss = normToCanvas(goldSpot.x, goldSpot.y, cssW, cssH, scenario.zone || 'offense');
+
+      const distToSegPx = (px, py, ax, ay, bx, by) => {
+        const vx = bx - ax;
+        const vy = by - ay;
+        const lenSq = vx * vx + vy * vy;
+        if (lenSq < 1e-4) return Math.hypot(px - ax, py - ay);
+        const t = Math.max(0, Math.min(1, ((px - ax) * vx + (py - ay) * vy) / lenSq));
+        return Math.hypot(px - (ax + t * vx), py - (ay + t * vy));
+      };
+
+      // Non-focal defenders only (index >= 1 and never the puck carrier or mistake culprit)
+      for (let i = 1; i < scenario.defenders.length; i++) {
+        const def = scenario.defenders[i];
+        if (!def || def.id === scenario.puckHolder || def.id === scenario.mistakeCulpritId) continue;
+        const origX = Number(def.x);
+        const origY = Number(def.y);
+        if (!Number.isFinite(origX) || !Number.isFinite(origY)) continue;
+
+        // Check if this defender originally tightly covers a distractor teammate; if so, preserve tight coverage!
+        const coveredTm = (scenario.teammates || []).find(tm =>
+          tm.id !== (scenario.correctTargetId || '') &&
+          Math.hypot(tm.x - origX, tm.y - origY) < 0.065
+        );
+
+        // Deterministic PRNG in [-0.08, +0.08]
+        const h1 = Math.sin(seedBase * 12.9898 + i * 78.233) * 43758.5453;
+        const h2 = Math.sin(seedBase * 39.3467 + i * 19.173) * 24634.6345;
+        const r1 = (h1 - Math.floor(h1)) * 2 - 1;
+        const r2 = (h2 - Math.floor(h2)) * 2 - 1;
+        const maxJitter = coveredTm ? 0.022 : 0.08;
+        let candX = Math.max(0.06, Math.min(0.94, origX + r1 * maxJitter));
+        let candY = Math.max(0.06, Math.min(0.94, origY + r2 * maxJitter));
+
+        // Clamp >= 6%+ clear of both goal creases (0.08, 0.50) and (0.92, 0.50)
+        for (const gx of [0.08, 0.92]) {
+          const dCrease = Math.hypot(candX - gx, candY - 0.50);
+          if (dCrease < 0.115) {
+            const ang = Math.atan2(candY - 0.50, candX - gx);
+            candX = Math.max(0.06, Math.min(0.94, gx + Math.cos(ang) * 0.118));
+            candY = Math.max(0.06, Math.min(0.94, 0.50 + Math.sin(ang) * 0.118));
+          }
+        }
+
+        // Preserve tight distractor coverage if applicable
+        if (coveredTm && Math.hypot(candX - coveredTm.x, candY - coveredTm.y) > 0.060) {
+          const ang = Math.atan2(candY - coveredTm.y, candX - coveredTm.x);
+          candX = Math.max(0.06, Math.min(0.94, coveredTm.x + Math.cos(ang) * 0.052));
+          candY = Math.max(0.06, Math.min(0.94, coveredTm.y + Math.sin(ang) * 0.052));
+        }
+
+        // Preserve >= 38px clearance from Gold target spot & Gold passing/skating lane!
+        const candCss = normToCanvas(candX, candY, cssW, cssH, scenario.zone || 'offense');
+        const clearLanePx = distToSegPx(candCss.x, candCss.y, startCss.x, startCss.y, endCss.x, endCss.y);
+        const clearSpotPx = Math.hypot(candCss.x - spotCss.x, candCss.y - spotCss.y);
+        const origCss = normToCanvas(origX, origY, cssW, cssH, scenario.zone || 'offense');
+        const origLanePx = distToSegPx(origCss.x, origCss.y, startCss.x, startCss.y, endCss.x, endCss.y);
+
+        if (clearLanePx >= Math.min(38, origLanePx) && clearSpotPx >= 38) {
+          def.x = Number(candX.toFixed(4));
+          def.y = Number(candY.toFixed(4));
+        }
+      }
+      return scenario;
+    }
+    window.perturbNonFocalDefenders = perturbNonFocalDefenders;
+
     function normToCanvas(nx, ny, canvasW, canvasH, scenarioZone) {
       const padX = canvasW * 0.045;
       const padY = canvasH * 0.055;
       const rot = getEffectiveCameraRotationDeg();
+      const fed = (typeof getEffectiveFederationMode === 'function') ? getEffectiveFederationMode() : 'USA';
       let u = nx;
-      const v = ny;
+      const v = (fed === 'IIHF' && (typeof hasActiveUpgrade !== 'function' || hasActiveUpgrade('BET-V131-05')))
+        ? Math.max(0.07, Math.min(0.93, 0.5 + (ny - 0.5) * 1.08))
+        : ny;
       if (state.rinkType !== 'full') {
         const activeTargetX = state.activeScenarioInstance && state.activeScenarioInstance.targetSpot ? state.activeScenarioInstance.targetSpot.x : 0.75;
         const isLeftZone = scenarioZone === 'defense' || activeTargetX < 0.48;
@@ -11842,6 +12438,7 @@
       const relX = Math.max(0.02, Math.min(0.98, (cx - padX) / (canvasW - padX * 2)));
       const relY = Math.max(0.06, Math.min(0.94, (cy - padY) / (canvasH - padY * 2)));
       const rot = getEffectiveCameraRotationDeg();
+      const fed = (typeof getEffectiveFederationMode === 'function') ? getEffectiveFederationMode() : 'USA';
       let u = relX;
       let v = relY;
       if (rot === 90) {
@@ -11854,8 +12451,11 @@
         u = 1.0 - relY;
         v = relX;
       }
+      const outY = (fed === 'IIHF' && (typeof hasActiveUpgrade !== 'function' || hasActiveUpgrade('BET-V131-05')))
+        ? Math.max(0.06, Math.min(0.94, 0.5 + (v - 0.5) / 1.08))
+        : v;
       if (state.rinkType === 'full') {
-        return { x: u, y: v };
+        return { x: u, y: outY };
       } else {
         const activeTargetX = state.activeScenarioInstance && state.activeScenarioInstance.targetSpot ? state.activeScenarioInstance.targetSpot.x : 0.75;
         const isLeftZone = scenarioZone === 'defense' || activeTargetX < 0.48;
@@ -11863,7 +12463,7 @@
         const maxX = isLeftZone ? 0.51 : 0.96;
         return {
           x: minX + u * (maxX - minX),
-          y: v
+          y: outY
         };
       }
     }
@@ -12874,6 +13474,24 @@
       const ageCfg = AGE_TIER_CONFIG[prof.ageGroup] || AGE_TIER_CONFIG['12U'];
       const coachPace = state.teamCoachingPace || 'default';
 
+      // BET-V131-01 (Option A): Deterministic per-shift Chel-Cam perspective + collision-safe non-focal defender gap jitter
+      state.shiftSeed = computeDeterministicShiftSeed(scen, prof);
+      if (typeof hasActiveUpgrade !== 'function' || hasActiveUpgrade('BET-V131-01')) {
+        if (state._manualCameraRotationOverride == null) {
+          const nextRot = resolveShiftCameraRotationDeg(prof, state.shiftSeed);
+          const prevRot = state._prevShiftRotationDeg;
+          state.cameraRotationDeg = nextRot;
+          state._prevShiftRotationDeg = nextRot;
+          if ((prevRot !== undefined && prevRot !== nextRot) || (prevRot === undefined && nextRot !== 0)) {
+            triggerAttackOrientationPulse(nextRot);
+          }
+        }
+        if (scen && scen._v132PerturbedSeed !== state.shiftSeed) {
+          perturbNonFocalDefenders(scen, state.shiftSeed);
+          scen._v132PerturbedSeed = state.shiftSeed;
+        }
+      }
+
       state.activePresentationStyle = getLessonPresentationStyle(scen, prof);
       state.activeHoverZones = buildStaticHoverZones(scen);
       const replayBtn = document.getElementById('btnReplay3sFlow');
@@ -12969,9 +13587,11 @@
       const meta = CONCEPT_META[scen.concept] || CONCEPT_META.spacing;
       const city = NHL_CITIES[state.currentCityIdx] || NHL_CITIES[0];
 
+      const activeFed = getEffectiveFederationMode(prof);
+      const fedDivBadge = formatFederationDivisionBadge(prof.divisionLabel || prof.ageGroup || '12U', activeFed);
       document.getElementById('citySeriesBadge').textContent = state.overtimeRedemptionActive
         ? `🚨 ${city.name} • 3v3 OT`
-        : `📍 ${city.name}`;
+        : `📍 ${city.name} • ${fedDivBadge}`;
       document.getElementById('questionPointValueBadge').textContent = state.overtimeRedemptionActive
         ? `🚨 3v3 Overtime Sudden-Death • Worth +${qPts} IQ Pts`
         : `Question ${state.seriesQuestionNum} • Worth ${qPts} IQ Pts`;
@@ -13282,6 +13902,36 @@
       ctx.strokeStyle = '#94a3b8';
       ctx.stroke();
       ctx.restore();
+
+      // BET-V131-01: Crisp 800ms directional ATTACK net-orientation pulse on shift rotation change
+      const nowPulse = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+      if (state.attackOrientationPulse && nowPulse <= state.attackOrientationPulse.untilMs) {
+        const remRatio = Math.max(0.15, Math.min(1, (state.attackOrientationPulse.untilMs - nowPulse) / 800));
+        const rotDeg = getEffectiveCameraRotationDeg();
+        const isDefZone = zone === 'defense';
+        // Offense attacks x=0.92; Defense protects x=0.08 (clears toward x=0.92)
+        const dirMap = { 0: '➔', 90: '⬇', 180: '⬅', 270: '⬆' };
+        const arrowGlyph = dirMap[rotDeg] || '➔';
+        const orientLabel = isDefZone ? `PROTECT NET • CLEAR ${arrowGlyph}` : `ATTACK ${arrowGlyph}`;
+        ctx.save();
+        ctx.globalAlpha = Math.min(0.96, remRatio * 1.15);
+        const pillW = Math.min(W * 0.44, Math.max(150, W * 0.24));
+        const pillH = Math.max(26, Math.floor(H * 0.068));
+        const px = W * 0.50 - pillW / 2;
+        const py = padY + Math.max(10, H * 0.03);
+        drawRoundedRect(ctx, px, py, pillW, pillH, pillH / 2);
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.88)';
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#fbbf24';
+        ctx.stroke();
+        ctx.fillStyle = '#fde68a';
+        ctx.font = `900 ${Math.max(11, Math.floor(pillH * 0.46))}px Inter, sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(orientLabel, W * 0.50, py + pillH / 2);
+        ctx.restore();
+      }
     }
 
     // =========================================================================
@@ -13668,25 +14318,35 @@
       drawGoalCreaseAndNet(ctx, W, H, 0.08, 0.50, 'left', zone);
       drawGoalCreaseAndNet(ctx, W, H, 0.92, 0.50, 'right', zone);
 
+      const fedMode = (typeof getEffectiveFederationMode === 'function') ? getEffectiveFederationMode() : 'USA';
+      const isIihfIce = fedMode === 'IIHF' && (typeof hasActiveUpgrade !== 'function' || hasActiveUpgrade('BET-V131-05'));
+      state.lastRinkGeometry = {
+        federationMode: fedMode,
+        surfaceSpec: isIihfIce ? '60mx30m' : '200ftx85ft',
+        trapezoidVisible: !isIihfIce,
+        lateralSeamScale: isIihfIce ? 1.08 : 1.0
+      };
+
       ctx.save();
       const city = NHL_CITIES[state.currentCityIdx] || NHL_CITIES[0];
+      const fedIceSuffix = isIihfIce ? ' • IIHF 60m×30m' : '';
       ctx.font = `800 ${Math.max(11, Math.floor(Math.min(W, H) * 0.022))}px Inter, sans-serif`;
       ctx.fillStyle = 'rgba(15, 23, 42, 0.16)';
       ctx.textAlign = 'center';
       if (state.rinkType === 'half') {
-        const label = `${city.name.toUpperCase()} (${city.team.toUpperCase()}) • ${zone === 'defense' ? 'DEFENSIVE ZONE' : 'OFFENSIVE ZONE'}`;
+        const label = `${city.name.toUpperCase()} (${city.team.toUpperCase()}) • ${zone === 'defense' ? 'DEFENSIVE ZONE' : 'OFFENSIVE ZONE'}${fedIceSuffix}`;
         ctx.fillText(label, W * 0.50, padY + Math.max(22, H * 0.055));
       } else if (isVerticalRink) {
         const defWm = normToCanvas(0.22, 0.50, W, H, zone);
         const offWm = normToCanvas(0.78, 0.50, W, H, zone);
         ctx.fillText('DEFENSIVE ZONE', W * 0.50, defWm.y);
-        ctx.fillText(`${city.name.toUpperCase()} ICE`, W * 0.50, H * 0.50);
+        ctx.fillText(`${city.name.toUpperCase()} ICE${fedIceSuffix}`, W * 0.50, H * 0.50);
         ctx.fillText('OFFENSIVE ZONE', W * 0.50, offWm.y);
       } else {
         const defWm = normToCanvas(0.22, 0.50, W, H, zone);
         const offWm = normToCanvas(0.78, 0.50, W, H, zone);
         ctx.fillText('DEFENSIVE ZONE', defWm.x, padY + Math.max(20, H * 0.05));
-        ctx.fillText(`${city.name.toUpperCase()} ICE`, W * 0.50, padY + Math.max(20, H * 0.05));
+        ctx.fillText(`${city.name.toUpperCase()} ICE${fedIceSuffix}`, W * 0.50, padY + Math.max(20, H * 0.05));
         ctx.fillText('OFFENSIVE ZONE', offWm.x, padY + Math.max(20, H * 0.05));
       }
       ctx.restore();
@@ -13698,7 +14358,24 @@
       const ang = Math.atan2(inwardPt.y - pt.y, inwardPt.x - pt.x);
       const refDim = Math.min(W, H);
       const creaseR = state.rinkType === 'full' ? refDim * 0.075 : refDim * 0.095;
+      const fedMode = (typeof getEffectiveFederationMode === 'function') ? getEffectiveFederationMode() : 'USA';
+      const showTrapezoid = !(fedMode === 'IIHF' && (typeof hasActiveUpgrade !== 'function' || hasActiveUpgrade('BET-V131-05')));
       ctx.save();
+      if (showTrapezoid) {
+        const endWallX = side === 'left' ? 0.02 : 0.98;
+        const gTop = normToCanvas(gx, 0.39, W, H, zone);
+        const bTop = normToCanvas(endWallX, 0.31, W, H, zone);
+        const gBot = normToCanvas(gx, 0.61, W, H, zone);
+        const bBot = normToCanvas(endWallX, 0.69, W, H, zone);
+        ctx.beginPath();
+        ctx.moveTo(gTop.x, gTop.y);
+        ctx.lineTo(bTop.x, bTop.y);
+        ctx.moveTo(gBot.x, gBot.y);
+        ctx.lineTo(bBot.x, bBot.y);
+        ctx.strokeStyle = 'rgba(220, 38, 38, 0.36)';
+        ctx.lineWidth = 1.6;
+        ctx.stroke();
+      }
       ctx.beginPath();
       ctx.arc(pt.x, pt.y, creaseR, ang - Math.PI / 2, ang + Math.PI / 2);
       ctx.closePath();
@@ -14877,6 +15554,20 @@
           ? okChoice.feedback
           : (badChoice ? badChoice.feedback : 'Coach\'s Adjustment: In 3D POV, scan past the covered options and tap the wide-open target in the slot!'));
         return;
+      }
+
+      // 1B. BET-V131-02 (TIER-B-04 Ratified): 1:1 Synced On-Ice Candidate Target Tap (>=44x44px hitbox -> fires exact Choice Button 0..3!)
+      if (!state.pov3dActive && state.mistakePhase === 'none' && typeof tapSyncedOnIceTargetByClientPoint === 'function') {
+        const clientX = e.touches && e.touches[0] ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches && e.touches[0] ? e.touches[0].clientY : e.clientY;
+        const youCanvas = normToCanvas(state.youPos.x, state.youPos.y, canvas.width, canvas.height, scen.zone);
+        const dpr = window.devicePixelRatio || 1;
+        const distToYouCss = Math.hypot(pos.x - youCanvas.x, pos.y - youCanvas.y) / dpr;
+        // Only defer to drag if player explicitly grabs #9 skater body outside synced target centers
+        if (!(scen.mechanic !== 'pass_decision' && distToYouCss <= 16)) {
+          const syncedHit = tapSyncedOnIceTargetByClientPoint(clientX, clientY);
+          if (syncedHit) return;
+        }
       }
 
       // 2. If in On-Puck Pass/Shoot Decision Mode, tapping the open teammate or net submits immediately (or allow dragging #9 to target!)
@@ -21223,6 +21914,59 @@
         return;
       }
 
+      if (cfg.mode === 'camp_cohort_100') {
+        const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        const makeCampCode = () => {
+          let suffix = '';
+          for (let i = 0; i < 4; i++) suffix += alphabet[Math.floor(Math.random() * alphabet.length)];
+          return `CAMP-${suffix}`;
+        };
+        let campCode = makeCampCode();
+        while (await SynapzPortalCloud.fetchTeamByCode(campCode)) {
+          campCode = makeCampCode();
+        }
+        const normId = normalizePortalIdentity(cfg.identity);
+        const assistantInvites = await createTwoAssistantInvitesForTeam(campCode, cfg.orgName, cfg.coachName, normId, '');
+        const teamDoc = {
+          teamCode: campCode,
+          teamName: cfg.orgName,
+          coachName: cfg.coachName,
+          coachAccountId: normId,
+          isCampCohort: true,
+          cohortKind: 'camp_cohort_100',
+          annualPrice: pCfg.campCohortAnnual || 249,
+          ageDivision: cfg.ageDivision || '12U',
+          competitiveLevel: cfg.competitiveLevel || 'AA',
+          maxSkaters: 100,
+          parentAssocCode: '',
+          rosterPlayers: [],
+          pushedPlans: [],
+          planCompletions: [],
+          assistantInvites,
+          createdAt: new Date().toISOString()
+        };
+        await SynapzPortalCloud.saveTeamDoc(teamDoc);
+        const coachAcct = {
+          accountId: normId,
+          displayEmailOrUser: String(cfg.identity).trim(),
+          passwordHash: simplePortalPasswordHash(cfg.password),
+          portalRole: 'coach',
+          planType: 'camp_cohort_100',
+          isCampCohort: true,
+          maxSkaters: 100,
+          coachName: cfg.coachName,
+          orgName: cfg.orgName,
+          ageDivision: cfg.ageDivision || '12U',
+          competitiveLevel: cfg.competitiveLevel || 'AA',
+          teamCode: campCode,
+          parentAssocCode: '',
+          createdAt: new Date().toISOString()
+        };
+        await SynapzPortalCloud.saveAccount(coachAcct);
+        await openCoachHqForAccount(coachAcct);
+        return;
+      }
+
       if (cfg.mode === 'coach_individual_9999' || cfg.mode === 'coach_standalone_signup') {
         let teamCode = generateSixCharPortalCode(cfg.orgName || 'TM');
         while (await SynapzPortalCloud.fetchTeamByCode(teamCode)) {
@@ -21599,10 +22343,12 @@
       if (numInp) {
         numInp.value = existing ? (existing.jerseyNumber !== undefined ? existing.jerseyNumber : '') : 9;
       }
+      const initialFed = (existing && existing.federationMode) || getEffectiveFederationMode();
+      state.activeFederationMode = initialFed;
+      refreshFederationSwitcherPillsDom(initialFed);
       if (ageSel) {
         const targetDiv = existing ? (existing.divisionLabel || existing.ageGroup || '12U Rec/B') : '12U Rec/B';
-        const matchOpt = Array.from(ageSel.options).find(o => o.value === targetDiv || o.value.startsWith(targetDiv));
-        ageSel.value = matchOpt ? matchOpt.value : '12U Rec/B';
+        syncDivisionSelectForFederation(ageSel, initialFed, targetDiv);
       }
       syncSlotExpPillsUI(existing ? (existing.experienceLevel || 'Beginner') : 'Beginner');
       const defaultStock = existing ? (existing.stockAvatarId || (existing.avatarType === 'girl' ? 'avatar-female-1' : 'avatar-male-1')) : 'avatar-male-1';
@@ -21663,16 +22409,26 @@
       const agentId = document.getElementById('slotSetupAgentSelect')?.value || 'agent-leo';
 
       const existing = acct.profile || (Array.isArray(acct.slots) && acct.slots[0]) || null;
-      const prevTeamCode = existing ? (existing.teamCode || '') : '';
+      const prevTeamCode = existing ? (existing.primaryTeamCode || existing.teamCode || '') : '';
+      const activeFed = state.activeFederationMode || (existing && existing.federationMode) || getEffectiveFederationMode();
 
-      let linkedTeamCode = existing ? (existing.teamCode || '') : '';
+      let linkedPrimaryCode = existing ? (existing.primaryTeamCode || (!String(existing.teamCode || '').startsWith('CAMP-') ? (existing.teamCode || '') : '')) : '';
+      let linkedCampCodes = Array.isArray(existing?.campPassCodes) ? [...existing.campPassCodes] : [];
+      let linkedCampNames = { ...(existing?.campPassNames || {}) };
       let linkedTeamName = existing ? (existing.teamName || '') : '';
       let linkedAssociationName = existing ? (existing.linkedAssociationName || '') : '';
       let teamCompetitiveLevel = existing ? (existing.competitiveLevel || '') : '';
       if (!existing && acct.signupTeamCode) {
-        const teamDoc = await SynapzPortalCloud.fetchTeamByCode(acct.signupTeamCode);
-        if (teamDoc) {
-          linkedTeamCode = teamDoc.teamCode;
+        const upSignup = String(acct.signupTeamCode || '').trim().toUpperCase();
+        const teamDoc = await SynapzPortalCloud.fetchTeamByCode(upSignup);
+        const isCampSignup = upSignup.startsWith('CAMP-') || Boolean(teamDoc && teamDoc.isCampCohort);
+        if (isCampSignup) {
+          if (!linkedCampCodes.includes(upSignup) && linkedCampCodes.length < 5) {
+            linkedCampCodes.push(upSignup);
+          }
+          if (teamDoc && teamDoc.teamName) linkedCampNames[upSignup] = teamDoc.teamName;
+        } else if (teamDoc) {
+          linkedPrimaryCode = teamDoc.teamCode;
           linkedTeamName = teamDoc.teamName || '';
           teamCompetitiveLevel = teamDoc.competitiveLevel || '';
           if (teamDoc.parentAssocCode) {
@@ -21680,7 +22436,7 @@
             if (aDoc && aDoc.assocName) linkedAssociationName = aDoc.assocName;
           }
         } else {
-          linkedTeamCode = acct.signupTeamCode;
+          linkedPrimaryCode = upSignup;
         }
       }
 
@@ -21749,7 +22505,12 @@
         conceptStats: existing?.conceptStats || {},
         ownedGear: Array.isArray(existing?.ownedGear) ? existing.ownedGear : [],
         playerAgentId: agentId,
-        teamCode: linkedTeamCode,
+        federationMode: activeFed,
+        cameraModePref: existing?.cameraModePref || 'auto',
+        primaryTeamCode: linkedPrimaryCode,
+        campPassCodes: linkedCampCodes,
+        campPassNames: linkedCampNames,
+        teamCode: linkedPrimaryCode,
         teamName: linkedTeamName
       };
       if (guestSignupCredit) {
@@ -21767,8 +22528,11 @@
       acct.profile = slotProfile;
       acct.slots = [slotProfile];
       await SynapzPortalCloud.saveAccount(acct);
-      if (linkedTeamCode || prevTeamCode) {
-        await SynapzPortalCloud.syncSlotToTeamRoster(linkedTeamCode, slotProfile, acct.accountId, prevTeamCode);
+      if (linkedPrimaryCode || prevTeamCode) {
+        await SynapzPortalCloud.syncSlotToTeamRoster(linkedPrimaryCode, slotProfile, acct.accountId, prevTeamCode);
+      }
+      for (const cCode of linkedCampCodes) {
+        await SynapzPortalCloud.syncSlotToTeamRoster(cCode, slotProfile, acct.accountId, '');
       }
 
       await enterLobbyWithPlayerSlot(0, { fromGuidedSetupHandoff: true });
@@ -21784,11 +22548,14 @@
       SoundFX.playGoalHorn();
       state.isEphemeralBotSession = false;
       state.activeSlotIndex = 0;
-      state.profiles = [JSON.parse(JSON.stringify(slotProf))];
-      state.activeProfileId = slotProf.id;
-      state.activePlayerAgentId = slotProf.playerAgentId || 'agent-leo';
-      state.teamCode = slotProf.teamCode || '';
-      state.teamName = slotProf.teamName || '';
+      const clonedProf = JSON.parse(JSON.stringify(slotProf));
+      installPlayerTeamCampSchema(clonedProf);
+      state.profiles = [clonedProf];
+      state.activeProfileId = clonedProf.id;
+      state.activeFederationMode = clonedProf.federationMode || getEffectiveFederationMode(clonedProf);
+      state.activePlayerAgentId = clonedProf.playerAgentId || 'agent-leo';
+      state.teamCode = clonedProf.primaryTeamCode || '';
+      state.teamName = clonedProf.teamName || '';
       state.focusMyPositionOnly = Boolean(slotProf.focusMyPositionOnly && isPlayerFullSuiteActive(acct, slotProf));
       state.hasOnboarded = true;
       state.sandboxAuthenticated = true;
@@ -21818,18 +22585,50 @@
     }
     window.enterLobbyWithPlayerSlot = enterLobbyWithPlayerSlot;
 
-    // v12.3 Join a Team (Enter Coach's Team Code) inside Coach's Office (#synapzCoachOfficeModal)
+    // v13.2 Additive Winter Team + Camp/3v3 Dual Inbox inside Coach's Office (#synapzCoachOfficeModal)
+    state.playerInboxSourceTab = 'primary';
+
+    async function removePlayerCampPassCode(campCode) {
+      const prof = getActiveProfile();
+      if (!prof || prof.id === '__unconfigured__') return false;
+      installPlayerTeamCampSchema(prof);
+      const target = String(campCode || '').trim().toUpperCase();
+      if (!target) return false;
+      prof.campPassCodes = (prof.campPassCodes || []).filter(c => c !== target);
+      if (prof.campPassNames && prof.campPassNames[target]) delete prof.campPassNames[target];
+      if (state.currentAccount) {
+        const acctId = state.currentAccount.accountId;
+        state.currentAccount.profile = JSON.parse(JSON.stringify(prof));
+        state.currentAccount.slots = [JSON.parse(JSON.stringify(prof))];
+        await SynapzPortalCloud.saveAccount(state.currentAccount);
+        await SynapzPortalCloud.syncSlotToTeamRoster('', prof, acctId, target);
+      }
+      saveProgress();
+      renderSynapzCoachOfficeModal();
+      return true;
+    }
+    window.removePlayerCampPassCode = removePlayerCampPassCode;
+
     async function applyCoachOfficeTeamCodeChange() {
       const prof = getActiveProfile();
       if (!prof || prof.id === '__unconfigured__') return false;
+      installPlayerTeamCampSchema(prof);
       const inp = document.getElementById('inputCoachOfficeJoinTeamCode');
       const rawCode = String(inp?.value || '').trim().toUpperCase();
       const toast = document.getElementById('coachOfficeTeamCodeToast');
       const badge = document.getElementById('coachOfficeCurrentTeamBadge');
+      const activeModeTab = state.playerInboxSourceTab === 'camp' ? 'camp' : 'primary';
 
       if (!rawCode) {
-        const prevCode = prof.teamCode || '';
-        prof.teamCode = '';
+        if (activeModeTab === 'camp') {
+          if (toast) {
+            toast.textContent = 'Enter a CAMP-XXXX pass code to add a 3v3 or Skills Camp cohort (your Primary Winter Team stays untouched).';
+            toast.classList.remove('hidden');
+          }
+          return false;
+        }
+        const prevCode = prof.primaryTeamCode || '';
+        prof.primaryTeamCode = '';
         prof.teamName = '';
         prof.linkedAssociationName = '';
         state.teamCode = '';
@@ -21847,7 +22646,7 @@
         renderSynapzCoachOfficeModal();
         renderSynapzRinkLobby();
         if (toast) {
-          toast.textContent = 'Cleared Coach Team Code link — 100% of your gear, Puck Bucks, and IQ stats stay in your account!';
+          toast.textContent = 'Cleared Primary Team link — your Camp Passes, gear, Puck Bucks, and IQ stats stay 100% intact!';
           toast.classList.remove('hidden');
         }
         return true;
@@ -21856,22 +22655,56 @@
       const teamDoc = await SynapzPortalCloud.fetchTeamByCode(rawCode);
       if (!teamDoc) {
         if (toast) {
-          toast.textContent = `⚠️ Team Code "${rawCode}" was not found. Double-check your Coach's 6-Character Team Code.`;
+          toast.textContent = `⚠️ Code "${rawCode}" was not found. Check your Coach's Team Code or CAMP-XXXX Pass Code.`;
           toast.classList.remove('hidden');
         }
         return false;
       }
 
+      const isCampPass = rawCode.startsWith('CAMP-') || Boolean(teamDoc.isCampCohort) || activeModeTab === 'camp';
       const acctId = state.currentAccount ? state.currentAccount.accountId : prof.id;
       const playerKey = `${normalizePortalIdentity(acctId)}::${prof.id}`;
-      const maxSeats = Number(teamDoc.maxSkaters) || (window.SYNAPZ_PRICING_CONFIG && window.SYNAPZ_PRICING_CONFIG.coachIncludedSkaters) || 20;
+      const defaultCap = isCampPass ? 100 : ((window.SYNAPZ_PRICING_CONFIG && window.SYNAPZ_PRICING_CONFIG.coachIncludedSkaters) || 20);
+      const maxSeats = Number(teamDoc.maxSkaters) || defaultCap;
       const alreadyInRoster = Array.isArray(teamDoc.rosterPlayers) && teamDoc.rosterPlayers.some(p => p.playerKey === playerKey);
       if (!alreadyInRoster && Array.isArray(teamDoc.rosterPlayers) && teamDoc.rosterPlayers.length >= maxSeats) {
         if (toast) {
-          toast.textContent = `⚠️ Team "${teamDoc.teamCode}" is full (${maxSeats}/${maxSeats} skaters). Ask your Coach to add an extra skater seat (+$${(window.SYNAPZ_PRICING_CONFIG && window.SYNAPZ_PRICING_CONFIG.coachExtraSkaterPrice) || 4.99}).`;
+          toast.textContent = `⚠️ "${teamDoc.teamCode}" is full (${maxSeats}/${maxSeats} skaters).`;
           toast.classList.remove('hidden');
         }
         return false;
+      }
+
+      if (isCampPass) {
+        if (!Array.isArray(prof.campPassCodes)) prof.campPassCodes = [];
+        if (!prof.campPassCodes.includes(teamDoc.teamCode) && prof.campPassCodes.length >= 5) {
+          if (toast) {
+            toast.textContent = '⚠️ Maximum 5 active 3v3 / Skills Camp passes reached. Remove an old pass chip first.';
+            toast.classList.remove('hidden');
+          }
+          return false;
+        }
+        if (!prof.campPassCodes.includes(teamDoc.teamCode)) {
+          prof.campPassCodes.push(teamDoc.teamCode);
+        }
+        prof.campPassNames = { ...(prof.campPassNames || {}), [teamDoc.teamCode]: teamDoc.teamName || teamDoc.teamCode };
+        state.playerInboxSourceTab = 'camp';
+        if (state.currentAccount) {
+          state.currentAccount.profile = JSON.parse(JSON.stringify(prof));
+          state.currentAccount.slots = [JSON.parse(JSON.stringify(prof))];
+          await SynapzPortalCloud.saveAccount(state.currentAccount);
+        }
+        // Pass '' as prevTeamCode so adding a Camp Pass NEVER disconnects the skater from their Primary Winter Team!
+        await SynapzPortalCloud.syncSlotToTeamRoster(teamDoc.teamCode, prof, acctId, '');
+        saveProgress();
+        if (inp) inp.value = '';
+        renderSynapzCoachOfficeModal();
+        renderSynapzRinkLobby();
+        if (toast) {
+          toast.textContent = `⚡ Added Camp/3v3 Pass "${teamDoc.teamName || teamDoc.teamCode}" (${teamDoc.teamCode}) — Primary Winter Team ${prof.primaryTeamCode ? `(${prof.primaryTeamCode}) stays 100% connected!` : 'slot remains open!'}`;
+          toast.classList.remove('hidden');
+        }
+        return true;
       }
 
       let resolvedAssocName = '';
@@ -21881,12 +22714,13 @@
       }
       if (!resolvedAssocName && teamDoc.assocName) resolvedAssocName = teamDoc.assocName;
 
-      const prevCode = prof.teamCode || '';
-      prof.teamCode = teamDoc.teamCode;
+      const prevCode = prof.primaryTeamCode || '';
+      prof.primaryTeamCode = teamDoc.teamCode;
       prof.teamName = teamDoc.teamName || '';
       prof.linkedAssociationName = resolvedAssocName || teamDoc.teamName || '';
       state.teamCode = teamDoc.teamCode;
       state.teamName = teamDoc.teamName || '';
+      state.playerInboxSourceTab = 'primary';
 
       if (state.currentAccount) {
         state.currentAccount.profile = JSON.parse(JSON.stringify(prof));
@@ -21900,7 +22734,7 @@
       renderSynapzCoachOfficeModal();
       renderSynapzRinkLobby();
       if (toast) {
-        toast.textContent = `✅ Linked to "${teamDoc.teamName || teamDoc.teamCode}" (${teamDoc.teamCode}) — Coach's Inbox is now active!`;
+        toast.textContent = `✅ Linked Primary Winter Team "${teamDoc.teamName || teamDoc.teamCode}" (${teamDoc.teamCode})${prof.campPassCodes && prof.campPassCodes.length ? ` • ${prof.campPassCodes.length} Camp Pass(es) also active` : ''}!`;
         toast.classList.remove('hidden');
       }
       return true;
@@ -22348,6 +23182,15 @@
         setGuidedCutoutSide(state.guidedCutoutSide === 'right' ? 'left' : 'right');
       });
 
+      document.querySelectorAll('#slotSetupFederationSwitcher [data-federation-pill]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          SoundFX.playTap();
+          const fed = btn.getAttribute('data-federation-pill') || 'USA';
+          setFederationMode(fed, { persistProfile: false, persistAccount: false });
+          updateSlotSetupLivePreview();
+        });
+      });
+
       document.querySelectorAll('.slot-exp-pill').forEach(btn => {
         btn.addEventListener('click', () => {
           SoundFX.playTap();
@@ -22608,6 +23451,18 @@
         openPilotSandboxCheckout({
           mode: 'coach_individual_9999',
           planLabel: `Individual Coach — $${formatSynapzPriceNum(p.coachIndividualAnnual || 99.99)}/yr (1 Team • ${p.coachIncludedSkaters || 20} Skaters • +${p.coachIncludedAssistants || 2} Free Assistant Spaces)`,
+          ...vals
+        });
+      }));
+
+      // Plan Card 2B (BET-V131-03 Option A): Skills / 3v3 Camp Cohort — $249/yr (100 Clinic Skaters + 2 Assistant Spaces)
+      on('btnCoachPlanCampCohort249', () => queuePilotCheckoutPrep(async () => {
+        const vals = await validateCoachAssocSignupInputs(true);
+        if (!vals) return;
+        const p = window.SYNAPZ_PRICING_CONFIG || {};
+        openPilotSandboxCheckout({
+          mode: 'camp_cohort_100',
+          planLabel: `Skills / 3v3 Camp Cohort — $${formatSynapzPriceNum(p.campCohortAnnual || 249)}/yr (Up to 100 Rotating Clinic/3v3 Skaters • +2 Free Assistant Spaces)`,
           ...vals
         });
       }));
@@ -25454,12 +26309,28 @@
       const asEl = document.getElementById('lockerEditAssociationInput');
       const psEl = document.getElementById('lockerEditPositionSelect');
       const hdEl = document.getElementById('lockerEditHandSelect');
+      const camEl = document.getElementById('lockerEditCameraModeSelect');
       if (nmEl) nmEl.value = prof.name || '';
       if (hsEl) hsEl.value = prof.hairStyle || 'flow';
       if (jnEl) jnEl.value = prof.jerseyNumber !== undefined ? prof.jerseyNumber : '';
       if (asEl) asEl.value = prof.associationName || '';
       if (psEl) psEl.value = prof.positionCode || 'ALL';
       if (hdEl) hdEl.value = prof.hand || 'Left';
+      if (camEl) camEl.value = prof.cameraModePref || 'auto';
+      const curFed = getEffectiveFederationMode(prof);
+      state.lockerEditingFederationMode = curFed;
+      refreshFederationSwitcherPillsDom(curFed);
+      document.querySelectorAll('#lockerEditFederationSwitcher [data-federation-pill]').forEach(btn => {
+        if (!btn.dataset.v132Bound) {
+          btn.dataset.v132Bound = '1';
+          btn.addEventListener('click', () => {
+            SoundFX.playTap();
+            const pickedFed = btn.getAttribute('data-federation-pill') || 'USA';
+            state.lockerEditingFederationMode = pickedFed;
+            refreshFederationSwitcherPillsDom(pickedFed);
+          });
+        }
+      });
       sheet.classList.remove('hidden');
     }
     window.openLockerEditProfileDrawer = openLockerEditProfileDrawer;
@@ -25505,9 +26376,18 @@
       prof.associationName = String(document.getElementById('lockerEditAssociationInput')?.value || '').trim();
       prof.positionCode = document.getElementById('lockerEditPositionSelect')?.value || 'ALL';
       prof.hand = document.getElementById('lockerEditHandSelect')?.value || 'Left';
+      prof.cameraModePref = document.getElementById('lockerEditCameraModeSelect')?.value || 'auto';
+      if (state.lockerEditingFederationMode) {
+        prof.federationMode = state.lockerEditingFederationMode;
+        setFederationMode(prof.federationMode);
+      }
+      state._prevShiftRotationDeg = undefined;
 
-      if (state.currentAccount && Array.isArray(state.currentAccount.slots) && typeof state.activeSlotIndex === 'number') {
-        state.currentAccount.slots[state.activeSlotIndex] = JSON.parse(JSON.stringify(prof));
+      if (state.currentAccount) {
+        state.currentAccount.profile = JSON.parse(JSON.stringify(prof));
+        if (Array.isArray(state.currentAccount.slots) && typeof state.activeSlotIndex === 'number') {
+          state.currentAccount.slots[state.activeSlotIndex] = JSON.parse(JSON.stringify(prof));
+        }
         await SynapzPortalCloud.saveAccount(state.currentAccount);
       }
       SoundFX.playGoalHorn();
@@ -25770,6 +26650,341 @@
     }
     window.renderDeterministicQrSvg = renderDeterministicQrSvg;
 
+    // =========================================================================
+    // BET-V131-04 (Option A): 16-Bucket On-Ice 3-Station Cards + Executive Print Engine
+    // & BET-V131-05 (Option A): Parent "Saturday Ice Proof" Transfer Card
+    // =========================================================================
+    const BUCKET_ON_ICE_STATION_CARDS = {
+      dz_protect_house_box1: {
+        bucketId: 'dz_protect_house_box1',
+        title: 'D-Zone: Protect the House & Box+1',
+        focusKey: 'D-Zone',
+        station1: 'Station 1 (Edge/Scan Warmup): Inside-edge pivots from dots to low slot; shoulder-check weak-side back-door threat twice.',
+        station2: 'Station 2 (Constrained 2v2/3v2): Low-corner cycle into slot; D1 + C must lock sticks inside-out before pass release.',
+        station3: 'Station 3 (Live 5v5 Shift): Coach rims puck in; defense earns +2 pts for slot denial + clean 1st pass out of House.',
+        benchCues: ['Head on a swivel—find #2 threat!', 'Stick in seam, body net-side!', 'Protect the dots-to-posts House!']
+      },
+      dz_corner_containment_stick: {
+        bucketId: 'dz_corner_containment_stick',
+        title: 'D-Zone: Corner Containment & Stick-on-Puck',
+        focusKey: 'D-Zone',
+        station1: 'Station 1 (Edge/Scan Warmup): Tight-turn angle approaches along goal line; active stick mirror on carrier hands.',
+        station2: 'Station 2 (Constrained 1v1->2v2 Corner): Contain carrier to boards without over-committing behind net; C supports bumped puck.',
+        station3: 'Station 3 (Live Shift): Whistle corner battles—3-second pin & quick support outlet wins shift.',
+        benchCues: ['Stick on puck, hips to hands!', 'Stop on the hands—do not fly by!', 'Second quick—scoop loose change!']
+      },
+      breakout_d_to_d: {
+        bucketId: 'breakout_d_to_d',
+        title: 'Breakouts: D-to-D Hinge & Reverse',
+        focusKey: 'Breakouts',
+        station1: 'Station 1 (Edge/Scan Warmup): D retrieves dump-in with 2 shoulder scans before touching puck; crisp hinge pass behind net.',
+        station2: 'Station 2 (Constrained 2v1 Forecheck): F1 pressures strong side; D1 hinges or reverses to weak-side D2 stepping into space.',
+        station3: 'Station 3 (Live 5v5 Breakout): Bonus goal if weak-side D hits middle/weak-side winger within 3 touches.',
+        benchCues: ['Scan BEFORE your blade touches!', 'Hinge below goal line—give flat target!', 'Move F1, hit weak-side speed!']
+      },
+      breakout_low_slow_center: {
+        bucketId: 'breakout_low_slow_center',
+        title: 'Breakouts: Center Low-and-Slow Support Curl',
+        focusKey: 'Breakouts',
+        station1: 'Station 1 (Edge/Scan Warmup): C swings below hashmarks matching D retrieval timing—never skate away early.',
+        station2: 'Station 2 (Constrained 3v2 Low Zone): D1 + C + W vs 2 forecheckers; C curls low-and-slow to receive middle outlet in stride.',
+        station3: 'Station 3 (Live Transition Shift): Full-ice breakout to neutral-zone entry; C must touch puck below top of circles.',
+        benchCues: ['Low and slow underneath the dots!', 'Show tape in the middle pocket!', 'Catch on forehand, attack speed!']
+      },
+      breakout_winger_wall_chip: {
+        bucketId: 'breakout_winger_wall_chip',
+        title: 'Breakouts: Winger Hashmark Seal & Soft Chip',
+        focusKey: 'Breakouts',
+        station1: 'Station 1 (Edge/Scan Warmup): Wingers post on boards at hashmarks, scan pinching D2, cushion rim on forehand/skate.',
+        station2: 'Station 2 (Constrained Wall 2v2): D rims under pressure; W reads tight pinch -> soft chip to C speed lane vs space -> turn up.',
+        station3: 'Station 3 (Live Shift): Pinch-or-back-off read game at defensive blue line.',
+        benchCues: ['Scan the point D before rim arrives!', 'Pinch = soft chip to middle C!', 'Gap = wheel off the wall!']
+      },
+      nz_regroup_hinge: {
+        bucketId: 'nz_regroup_hinge',
+        title: 'Neutral Zone: D-to-D Regroup & Speed Swing',
+        focusKey: 'Breakouts',
+        station1: 'Station 1 (Edge/Scan Warmup): Backwards-to-forwards Mohawk transitions for Dhinging across neutral zone.',
+        station2: 'Station 2 (Constrained 3v2 NZ Regroup): Forwards curl back underneath puck; D swings weak side to hit crossing speed.',
+        station3: 'Station 3 (Live Shift): Turnover in NZ must regroup D-to-D before attacking offensive blue line.',
+        benchCues: ['Open hips—see all 3 lanes!', 'Swing underneath, build crossover speed!', 'Attack the wide seam onside!']
+      },
+      nz_speed_entry_middle_drive: {
+        bucketId: 'nz_speed_entry_middle_drive',
+        title: 'Entries: Middle-Lane Drive & Onside Spacing',
+        focusKey: 'Rush',
+        station1: 'Station 1 (Edge/Scan Warmup): 3-lane blue-line straddling & delayed-entry timing drills at full stride.',
+        station2: 'Station 2 (Constrained 3v2 Entry): F1 carries wide, F2 drives middle dot-lane pushing D back, F3 trails high slot.',
+        station3: 'Station 3 (Live Shift): Controlled zone entry worth +1 pt before shot on net.',
+        benchCues: ['Straddle blue—stay onside!', 'Middle drive pushes D heels back!', 'Find high-ice F3 pocket!']
+      },
+      nz_angling_gap_control_122: {
+        bucketId: 'nz_angling_gap_control_122',
+        title: 'Neutral Zone: 1-2-2 Angling & Tight Gap',
+        focusKey: 'Forechecks',
+        station1: 'Station 1 (Edge/Scan Warmup): Curved stick-steer angling arcs forcing puck carrier from center dot to boards.',
+        station2: 'Station 2 (Constrained 2v2 NZ Gap): D surfs tight 1-stick-length gap up at red line, taking away time before blue line.',
+        station3: 'Station 3 (Live Shift): Defending team earns instant counter-rush puck on any blue-line stand-up.',
+        benchCues: ['Curved stick steer—no middle ice!', 'Surf tight gap—1 stick length!', 'Stand up at our blue line!']
+      },
+      forecheck_212_f1_f2_f3: {
+        bucketId: 'forecheck_212_f1_f2_f3',
+        title: 'Forecheck: 2-1-2 F1 Angle, F2 Read & F3 High',
+        focusKey: 'Forechecks',
+        station1: 'Station 1 (Edge/Scan Warmup): F1 stick-on-puck angle cues (blade cuts D-to-D reverse, forces up strong wall).',
+        station2: 'Station 2 (Constrained 3v3 Dump & Hunt): F1 flushes, F2 reads rim/reverse and jumps wall, F3 holds high middle above circles.',
+        station3: 'Station 3 (Live Shift): 6-second turnover clock after dump-in—steal + quick slot strike counts double.',
+        benchCues: ['F1 angle through hands—cut reverse!', 'F2 read eyes & jump the rim!', 'F3 hold high middle insurance!']
+      },
+      oz_attack_triangle_spacing: {
+        bucketId: 'oz_attack_triangle_spacing',
+        title: 'O-Zone: Attack Triangle & Off-Puck Support',
+        focusKey: 'Rush',
+        station1: 'Station 1 (Edge/Scan Warmup): 3-skater triangle spacing weave—always give carrier 2 clean triangle outlets.',
+        station2: 'Station 2 (Constrained 3v2 Half-Ice): No two forwards allowed in same circle/corner; score off 1-touch triangle pass.',
+        station3: 'Station 3 (Live Shift): Continuous 3v3 offensive spacing with point activation.',
+        benchCues: ['Never crowd the puck carrier!', 'Build a 3-way triangle!', 'Stick down in soft quiet ice!']
+      },
+      oz_cycle_scissors: {
+        bucketId: 'oz_cycle_scissors',
+        title: 'O-Zone: Low Cycle, Cutbacks & High Scissors',
+        focusKey: 'Power Plays',
+        station1: 'Station 1 (Edge/Scan Warmup): Punch-turn cutbacks along boards + give-and-go wall bumps.',
+        station2: 'Station 2 (Constrained 2v2 Corner Cycle): Low bump behind net + high scissors switch at top of circle to lose tracker.',
+        station3: 'Station 3 (Live Shift): 3-pass O-zone cycle unlocks point-shot + net-front tip bonus.',
+        benchCues: ['Cut back to buy time—scan high!', 'Bump low, spin off check to slot!', 'Scissors switch—lose your shadow!']
+      },
+      oz_royal_road_net_front: {
+        bucketId: 'oz_royal_road_net_front',
+        title: 'O-Zone: Royal Road Seam & Net-Front Screen/Tip',
+        focusKey: 'Power Plays',
+        station1: 'Station 1 (Edge/Scan Warmup): Cross-seam one-timer & back-door tap-in footwork (hips open to puck).',
+        station2: 'Station 2 (Constrained 3v2 Slot): Cross-ice Royal Road pass moves goalie laterally while F3 flashes goalie eyes.',
+        station3: 'Station 3 (Live Shift): Goals off Royal Road pass or screen/deflection count 2x.',
+        benchCues: ['Move goalie east-west across Royal Road!', 'Eyes-level screen—stick free for tip!', 'Hunt rebounds inside blue paint edge!']
+      },
+      odd_man_rush_2v1_3v2: {
+        bucketId: 'odd_man_rush_2v1_3v2',
+        title: 'Odd-Man Rush: 2-on-1 & 3-on-2 Read Progression',
+        focusKey: 'Rush',
+        station1: 'Station 1 (Edge/Scan Warmup): Triple-threat hip load on rush—eyes up reading D1 stick & belly orientation.',
+        station2: 'Station 2 (Constrained 2v1 / 3v2 Continuous): D1 slides/commits -> saucer seam; D1 takes pass -> rip low far-pad rebound.',
+        station3: 'Station 3 (Live Backcheck Rush): 2v1 with chasing backchecker—execute decisive read inside 4 seconds.',
+        benchCues: ['Read D1 stick—do not pre-decide!', 'Attack dots—force D1 to choose!', 'Low far-pad shot = tap-in rebound!']
+      },
+      special_teams_5v4_umbrella: {
+        bucketId: 'special_teams_5v4_umbrella',
+        title: 'Special Teams: 5v4 Umbrella & 4v5 Diamond Box',
+        focusKey: 'Power Plays',
+        station1: 'Station 1 (Edge/Scan Warmup): 1-touch umbrella puck movement (top D, two flanks, bumper, net-front).',
+        station2: 'Station 2 (Constrained 5v4 / 4v5 Half-Ice): PP attacks 2-on-1 flank overload; PK practices stick-in-seam box recovery & clear.',
+        station3: 'Station 3 (Live 90-Sec Special Teams): Special teams situation scrimmage with live faceoff starts.',
+        benchCues: ['Draw 2 PK sticks, snap quick!', 'Bumper & back-door sticks loaded!', 'PK: sticks in seams, 200ft clear!']
+      },
+      scanning_deception_callouts: {
+        bucketId: 'scanning_deception_callouts',
+        title: 'Habits: Pre-Scan, Look-Off Deception & Vocal Cues',
+        focusKey: 'Breakouts',
+        station1: 'Station 1 (Edge/Scan Warmup): Coach holds colored glove behind retrievers—call color aloud BEFORE touching puck.',
+        station2: 'Station 2 (Constrained 3v3 No-Silent Passes): Pass only counts if receiver calls "Boards!" / "Middle!" / "Reverse!" early.',
+        station3: 'Station 3 (Live Shift): Look-off shoulder fake freezes defender before seam pass.',
+        benchCues: ['Two head checks before every touch!', 'Look off high—slip seam low!', 'Loud bench-clear callouts early!']
+      },
+      goalie_crease_angles_traps: {
+        bucketId: 'goalie_crease_angles_traps',
+        title: 'Goalie & Crease: Square Angles & Rebound Steering',
+        focusKey: 'Goalie Reads',
+        station1: 'Station 1 (Edge/Scan Warmup): T-push & shuffle crease tracking—stay square to PUCK on blade, not shooter chest.',
+        station2: 'Station 2 (Constrained 2v1 Crease Reads): Top-of-paint depth on rush + active stick steering low rebounds into corner glass.',
+        station3: 'Station 3 (Live Traffic Shift): Screen sightline look-around + post-seal RVH reads from sharp angles.',
+        benchCues: ['Square to the puck, not the jersey!', 'Top of blue paint cuts the angle!', 'Active blade—steer rebounds to corners!']
+      }
+    };
+    window.BUCKET_ON_ICE_STATION_CARDS = BUCKET_ON_ICE_STATION_CARDS;
+
+    function resolveStationCardForFocus(focusOrBucketId = 'Breakouts') {
+      const raw = String(focusOrBucketId || 'Breakouts').trim();
+      if (BUCKET_ON_ICE_STATION_CARDS[raw]) return BUCKET_ON_ICE_STATION_CARDS[raw];
+      const lower = raw.toLowerCase();
+      if (lower.includes('goalie') || lower.includes('crease')) return BUCKET_ON_ICE_STATION_CARDS.goalie_crease_angles_traps;
+      if (lower.includes('power') || lower.includes('umbrella') || lower.includes('pk') || lower.includes('special')) return BUCKET_ON_ICE_STATION_CARDS.special_teams_5v4_umbrella;
+      if (lower.includes('forecheck') || lower.includes('2-1-2')) return BUCKET_ON_ICE_STATION_CARDS.forecheck_212_f1_f2_f3;
+      if (lower.includes('d-zone') || lower.includes('house') || lower.includes('defen')) return BUCKET_ON_ICE_STATION_CARDS.dz_protect_house_box1;
+      if (lower.includes('rush') || lower.includes('2-on-1') || lower.includes('2v1')) return BUCKET_ON_ICE_STATION_CARDS.odd_man_rush_2v1_3v2;
+      if (lower.includes('scan') || lower.includes('deception')) return BUCKET_ON_ICE_STATION_CARDS.scanning_deception_callouts;
+      return BUCKET_ON_ICE_STATION_CARDS.breakout_d_to_d;
+    }
+    window.resolveStationCardForFocus = resolveStationCardForFocus;
+
+    function renderSaturdayIceProofCardHtml(prof, fullSuiteUnlocked = false) {
+      const p = prof || {};
+      const fed = getEffectiveFederationMode(p);
+      const divBadge = formatFederationDivisionBadge(p.divisionLabel || p.ageGroup || '12U', fed);
+      const statsObj = (p.conceptStats && typeof p.conceptStats === 'object') ? p.conceptStats : {};
+      const completedCount = p.completedIds ? Object.keys(p.completedIds).length : 0;
+      const iqNow = Number(p.iqScore || 0);
+      const redemptionTransfers = Math.max(1, Number(p.redemptionTransfersCompleted || Math.floor(completedCount / 3) || 1));
+      let topFocus = state.coachAlSelectedFocus || 'Breakouts';
+      const statEntries = Object.entries(statsObj);
+      if (statEntries.length > 0) {
+        statEntries.sort((a, b) => (Number(b[1]?.correct || 0) - Number(a[1]?.correct || 0)));
+        const bestKey = statEntries[0][0];
+        if (bestKey) topFocus = bestKey;
+      }
+      const cardMeta = resolveStationCardForFocus(topFocus);
+      return `
+        <div id="saturdayIceProofCard" data-saturday-ice-proof="true" class="saturday-ice-proof-card p-3 rounded-2xl bg-gradient-to-br from-slate-950 via-cyan-950/35 to-emerald-950/30 border border-cyan-400/65 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-1.5">
+            <span class="text-[11px] font-black uppercase tracking-wide text-cyan-300">🏒 Saturday Ice Proof • Parent Transfer Snapshot</span>
+            <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/60 text-[10px] font-black text-emerald-200">
+              ${divBadge} (${fed}) • ${redemptionTransfers} Play N+3 Transfer(s)
+            </span>
+          </div>
+          <p class="text-xs text-white font-bold leading-snug">
+            What to watch on Saturday's shift (${cardMeta.title}):
+          </p>
+          <ul class="text-[11px] text-slate-200 space-y-1 font-semibold">
+            <li>✅ <strong>Pre-Touch Habit:</strong> ${cardMeta.benchCues[0]}</li>
+            <li>✅ <strong>Puck / Support Read:</strong> ${cardMeta.benchCues[1]}</li>
+            <li>🔁 <strong>Play N+3 Spaced Transfer:</strong> Missed reads automatically resurface 3 plays later in mirrored/rotated ice until ${p.name || 'your skater'} locks in 100% Gold IQ (${iqNow} IQ logged).</li>
+          </ul>
+          ${!fullSuiteUnlocked ? `<div class="text-[10px] font-black text-amber-300">💡 Why Parents Keep Full Suite Past Week 3: Unlocks custom weekly focus targeting before every weekend tournament!</div>` : ''}
+        </div>
+      `;
+    }
+    window.renderSaturdayIceProofCardHtml = renderSaturdayIceProofCardHtml;
+
+    function openSynapzPrintView(kind = 'rink_glass_card', payload = {}) {
+      const overlay = document.getElementById('synapzPrintSheetOverlay');
+      const root = document.getElementById('synapzPrintDocumentRoot');
+      if (!overlay || !root) return false;
+      const dateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      const fed = getEffectiveFederationMode();
+
+      if (kind === 'board_roi_packet') {
+        const assocName = payload.assocName || 'Hockey Association';
+        const annualPrice = Number(payload.annualPrice || 850);
+        const maxSkaters = Math.max(1, Number(payload.maxSkaters || 200));
+        const activeSkaters = Number(payload.activeSkaters || 0);
+        const denomSkaters = Math.max(activeSkaters, maxSkaters);
+        const costPerSkater = (annualPrice / denomSkaters).toFixed(2);
+        const activeTeams = Array.isArray(payload.teams) ? payload.teams : [];
+        const totalWeeklyPushes = activeTeams.reduce((s, t) => s + Number(t.weeklyPushes || 0), 0);
+        const avgIq = Number(payload.avgIq || 100);
+        root.setAttribute('data-print-kind', 'board_roi_packet');
+        root.innerHTML = `
+          <div class="synapz-print-single-page space-y-3 text-slate-950">
+            <div class="flex items-start justify-between border-b-2 border-slate-900 pb-2">
+              <div>
+                <div class="text-[11px] font-black uppercase tracking-widest text-slate-600">SYNAPZ HOCKEY • EXECUTIVE BOARD ROI &amp; ACCOUNTABILITY PACKET (${fed})</div>
+                <h2 class="text-xl font-black text-slate-950">${assocName} — 1-Page Board Summary</h2>
+              </div>
+              <div class="text-right text-xs font-bold text-slate-700">
+                <div>Issued: ${dateStr}</div>
+                <div>Club Code: <strong>${payload.assocCode || 'CLUB'}</strong></div>
+              </div>
+            </div>
+            <div class="grid grid-cols-4 gap-2 text-center">
+              <div class="p-2.5 rounded-lg border-2 border-slate-900 bg-slate-50">
+                <div class="text-[10px] font-black uppercase text-slate-600">Club Cost / Skater</div>
+                <div class="text-lg font-black text-slate-950">$${costPerSkater}/yr</div>
+                <div class="text-[10px] font-semibold text-slate-600">($${annualPrice}/yr • ${denomSkaters} Seats)</div>
+              </div>
+              <div class="p-2.5 rounded-lg border-2 border-slate-900 bg-slate-50">
+                <div class="text-[10px] font-black uppercase text-slate-600">Active Teams</div>
+                <div class="text-lg font-black text-slate-950">${activeTeams.length} / ${payload.maxTeams || 10}</div>
+                <div class="text-[10px] font-semibold text-slate-600">${activeSkaters} Enrolled Skaters</div>
+              </div>
+              <div class="p-2.5 rounded-lg border-2 border-slate-900 bg-slate-50">
+                <div class="text-[10px] font-black uppercase text-slate-600">Coach Plans Pushed</div>
+                <div class="text-lg font-black text-slate-950">${totalWeeklyPushes}</div>
+                <div class="text-[10px] font-semibold text-slate-600">Weekly Accountability</div>
+              </div>
+              <div class="p-2.5 rounded-lg border-2 border-slate-900 bg-slate-50">
+                <div class="text-[10px] font-black uppercase text-slate-600">Club Mastery Index</div>
+                <div class="text-lg font-black text-slate-950">${avgIq} IQ</div>
+                <div class="text-[10px] font-semibold text-slate-600">+14% Pre-Practice Delta</div>
+              </div>
+            </div>
+            <div>
+              <div class="text-xs font-black uppercase text-slate-800 mb-1">Coach Weekly Push Counter &amp; Division Mastery Accountability</div>
+              <table class="w-full text-left text-xs border-collapse border border-slate-900">
+                <thead>
+                  <tr class="bg-slate-200 border-b border-slate-900 font-black">
+                    <th class="py-1 px-2 border-r border-slate-900">Team / Division</th>
+                    <th class="py-1 px-2 border-r border-slate-900">Head Coach</th>
+                    <th class="py-1 px-2 border-r border-slate-900 text-center">Skaters</th>
+                    <th class="py-1 px-2 border-r border-slate-900 text-center">Weekly Plans Pushed</th>
+                    <th class="py-1 px-2">Primary Focus Bucket</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${(activeTeams.length ? activeTeams : [{ teamName: 'Sample Club Team', ageDivision: '12U', coachName: 'Head Coach', skaterCount: activeSkaters, weeklyPushes: totalWeeklyPushes, latestFocus: 'Breakouts & D-Zone House' }]).slice(0, 8).map(t => `
+                    <tr class="border-b border-slate-400 font-semibold">
+                      <td class="py-1 px-2 border-r border-slate-400">${t.teamName} (${formatFederationDivisionBadge(t.ageDivision || '12U', fed)})</td>
+                      <td class="py-1 px-2 border-r border-slate-400">${t.coachName || 'Coach'}</td>
+                      <td class="py-1 px-2 border-r border-slate-400 text-center">${t.skaterCount || 0}</td>
+                      <td class="py-1 px-2 border-r border-slate-400 text-center font-black">${t.weeklyPushes || 0}</td>
+                      <td class="py-1 px-2">${t.latestFocus || 'Breakouts'}</td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+            <div class="p-2.5 rounded-lg border-2 border-slate-900 bg-slate-100 text-xs">
+              <div class="font-black uppercase text-slate-900">🛡️ SafeSport Zero-Chat Architectural Compliance Attestation</div>
+              <p class="font-semibold text-slate-800 mt-0.5">
+                SYNAPZ Hockey enforces 100% zero open DMs, zero coach-to-minor free-text messaging, and zero public player leaderboards across all ${fed} club accounts. All assignments dispatch strictly as structured 5- or 10-play tactical drills.
+              </p>
+            </div>
+          </div>
+        `;
+      } else {
+        const card = resolveStationCardForFocus(payload.focusConcept || 'Breakouts');
+        const teamName = payload.teamName || 'Hockey Team';
+        const divBadge = formatFederationDivisionBadge(payload.ageDivision || '12U', fed);
+        root.setAttribute('data-print-kind', 'rink_glass_card');
+        root.innerHTML = `
+          <div class="synapz-print-single-page space-y-3 text-slate-950">
+            <div class="flex items-start justify-between border-b-4 border-slate-950 pb-2">
+              <div>
+                <div class="text-xs font-black uppercase tracking-widest text-slate-700">SYNAPZ RINK-GLASS 3-STATION PRACTICE CARD • TAPE TO BENCH GLASS</div>
+                <h2 class="text-2xl font-black text-slate-950">${card.title}</h2>
+              </div>
+              <div class="text-right text-xs font-black text-slate-900">
+                <div>${teamName} (${divBadge} • ${fed})</div>
+                <div>Code: ${payload.teamCode || 'TEAM'} • ${payload.lessonCount || 5}-Play Digital Prep</div>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 gap-2.5">
+              <div class="p-3 rounded-xl border-2 border-slate-950 bg-slate-50">
+                <div class="text-sm font-black uppercase text-slate-950">1️⃣ ${card.station1.split(':')[0]}</div>
+                <div class="text-sm font-bold text-slate-900 mt-0.5">${card.station1.split(':').slice(1).join(':').trim()}</div>
+              </div>
+              <div class="p-3 rounded-xl border-2 border-slate-950 bg-slate-50">
+                <div class="text-sm font-black uppercase text-slate-950">2️⃣ ${card.station2.split(':')[0]}</div>
+                <div class="text-sm font-bold text-slate-900 mt-0.5">${card.station2.split(':').slice(1).join(':').trim()}</div>
+              </div>
+              <div class="p-3 rounded-xl border-2 border-slate-950 bg-slate-50">
+                <div class="text-sm font-black uppercase text-slate-950">3️⃣ ${card.station3.split(':')[0]}</div>
+                <div class="text-sm font-bold text-slate-900 mt-0.5">${card.station3.split(':').slice(1).join(':').trim()}</div>
+              </div>
+            </div>
+            <div class="p-3 rounded-xl border-4 border-slate-950 bg-amber-50">
+              <div class="text-xs font-black uppercase tracking-wider text-slate-950 mb-1">🗣️ 3 Verbal Bench Cues (Match Players' Pre-Practice App Cues 1:1)</div>
+              <div class="grid grid-cols-3 gap-2 text-xs font-black text-slate-950">
+                ${card.benchCues.map((cue, idx) => `<div class="p-2 rounded border border-slate-900 bg-white">"${idx + 1}. ${cue}"</div>`).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      overlay.classList.remove('hidden');
+      return true;
+    }
+    window.openSynapzPrintView = openSynapzPrintView;
+
     async function pushCoachPlanToTeamInbox({ focusConcept = 'Breakouts', lessonCount = 5, coachNote = '' } = {}) {
       const acct = state.currentAccount;
       const tCode = (acct && acct.teamCode) || state.teamCode;
@@ -25802,7 +27017,7 @@
       }
       const prof = getActiveProfile();
       const acct = state.currentAccount;
-      const tCode = (prof && prof.teamCode) || state.teamCode;
+      const tCode = (state.activeCoachInboxPlan && state.activeCoachInboxPlan.teamCode) || (prof && prof.primaryTeamCode) || (prof && prof.teamCode) || state.teamCode;
       if (!tCode) return null;
       const teamDoc = await SynapzPortalCloud.fetchTeamByCode(tCode);
       if (!teamDoc) return null;
@@ -25928,17 +27143,20 @@
           assistantInvites: []
         };
         const isAssistant = role === 'assistant_coach';
+        const isCampCohort = Boolean(teamDoc.isCampCohort || String(teamDoc.teamCode || '').startsWith('CAMP-') || (acct && acct.planType === 'camp_cohort_100'));
         if (headerTitleEl) {
           headerTitleEl.textContent = isAssistant
-            ? `🧢 Shared Assistant Coach Office — ${teamDoc.teamName} (Parent Team ${teamDoc.teamCode})`
-            : `🧢 Head Coach's Office — ${teamDoc.teamName} (${teamDoc.ageDivision} ${teamDoc.competitiveLevel || 'AA'})`;
+            ? `🧢 Shared Assistant Coach Office — ${teamDoc.teamName} (Parent ${teamDoc.teamCode})`
+            : (isCampCohort
+              ? `⚡ Skills / 3v3 Camp Cohort HQ — ${teamDoc.teamName} (${teamDoc.teamCode} • 100-Skater Pass)`
+              : `🧢 Head Coach's Office — ${teamDoc.teamName} (${teamDoc.ageDivision} ${teamDoc.competitiveLevel || 'AA'})`);
         }
 
         const activeTab = ['coach_plan', 'coach_roster', 'coach_reports'].includes(state.coachOfficeActiveRoleTab)
           ? state.coachOfficeActiveRoleTab
           : 'coach_plan';
         const roster = Array.isArray(teamDoc.rosterPlayers) ? teamDoc.rosterPlayers : [];
-        const maxSeats = Number(teamDoc.maxSkaters) || (window.SYNAPZ_PRICING_CONFIG && window.SYNAPZ_PRICING_CONFIG.coachIncludedSkaters) || 20;
+        const maxSeats = Number(teamDoc.maxSkaters) || (isCampCohort ? 100 : ((window.SYNAPZ_PRICING_CONFIG && window.SYNAPZ_PRICING_CONFIG.coachIncludedSkaters) || 20));
         const extraPrice = (window.SYNAPZ_PRICING_CONFIG && window.SYNAPZ_PRICING_CONFIG.coachExtraSkaterPrice) || 4.99;
         const pushedPlans = Array.isArray(teamDoc.pushedPlans) ? teamDoc.pushedPlans : [];
         const completions = Array.isArray(teamDoc.planCompletions) ? teamDoc.planCompletions : [];
@@ -25994,20 +27212,28 @@
                       <input id="coachPushNoteInput" type="text" placeholder="e.g., Complete before Thursday practice!" class="w-full px-2.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white" />
                     </div>
                   </div>
-                  <button id="btnCoachPushPlanToInbox" type="button" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 text-slate-950 text-xs font-black shadow cursor-pointer">
-                    🚀 Push Lesson Plan to Players' Coach's Inbox
-                  </button>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <button id="btnCoachPushPlanToInbox" type="button" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 text-slate-950 text-xs font-black shadow cursor-pointer">
+                      🚀 Push Lesson Plan to Players' Coach's Inbox
+                    </button>
+                    <button id="btnPrintLatestRinkGlassCard" type="button" class="w-full py-2.5 px-3 rounded-xl bg-slate-950 hover:bg-slate-800 border border-cyan-400 text-cyan-200 text-xs font-black shadow cursor-pointer">
+                      🖨️ Print Rink-Glass 3-Station Card
+                    </button>
+                  </div>
                   <div class="space-y-1.5 pt-1">
                     <div class="text-[10px] font-black uppercase text-slate-400">Assigned Plans in Players' Coach's Inbox (${pushedPlans.length})</div>
                     ${pushedPlans.length === 0
                       ? `<div class="p-2.5 rounded-xl bg-slate-950 text-xs text-slate-400 font-semibold">No plans pushed yet — select a focus above and tap Push!</div>`
                       : pushedPlans.map(pl => `
-                        <div class="p-2.5 rounded-xl bg-slate-950 border border-amber-400/40 flex items-center justify-between gap-2 text-xs">
+                        <div class="p-2.5 rounded-xl bg-slate-950 border border-amber-400/40 flex flex-wrap items-center justify-between gap-2 text-xs">
                           <div>
                             <div class="font-black text-white">📋 ${pl.focusConcept} (${pl.lessonCount} Plays)</div>
                             <div class="text-[11px] text-slate-300">${pl.coachNote} • Assigned by ${pl.assignedBy}</div>
                           </div>
-                          <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-black">LIVE IN INBOX</span>
+                          <div class="flex items-center gap-1.5">
+                            <button type="button" data-print-plan-focus="${pl.focusConcept}" data-print-plan-len="${pl.lessonCount}" class="btn-print-rink-glass-card px-2.5 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/35 border border-cyan-400/60 text-cyan-200 text-[10px] font-black cursor-pointer">🖨️ Rink-Glass Card</button>
+                            <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-black">LIVE IN INBOX</span>
+                          </div>
                         </div>
                       `).join('')}
                   </div>
@@ -26107,6 +27333,30 @@
             const coachNote = document.getElementById('coachPushNoteInput')?.value || '';
             await pushCoachPlanToTeamInbox({ focusConcept, lessonCount, coachNote });
           });
+          document.getElementById('btnPrintLatestRinkGlassCard')?.addEventListener('click', () => {
+            SoundFX.playTap();
+            const focusConcept = document.getElementById('coachPushFocusSelect')?.value || (pushedPlans[0] && pushedPlans[0].focusConcept) || 'Breakouts';
+            const lessonCount = Number(document.getElementById('coachPushLengthSelect')?.value || (pushedPlans[0] && pushedPlans[0].lessonCount) || 5);
+            openSynapzPrintView('rink_glass_card', {
+              focusConcept,
+              lessonCount,
+              teamCode: teamDoc.teamCode,
+              teamName: teamDoc.teamName,
+              ageDivision: teamDoc.ageDivision || '12U'
+            });
+          });
+          rolePortalBox.querySelectorAll('.btn-print-rink-glass-card').forEach(btn => {
+            btn.addEventListener('click', () => {
+              SoundFX.playTap();
+              openSynapzPrintView('rink_glass_card', {
+                focusConcept: btn.getAttribute('data-print-plan-focus') || 'Breakouts',
+                lessonCount: Number(btn.getAttribute('data-print-plan-len') || 5),
+                teamCode: teamDoc.teamCode,
+                teamName: teamDoc.teamName,
+                ageDivision: teamDoc.ageDivision || '12U'
+              });
+            });
+          });
           document.getElementById('btnCopyCoachTeamInviteLink')?.addEventListener('click', (e) => {
             if (navigator.clipboard) navigator.clipboard.writeText(teamSignupLink).catch(() => {});
             e.currentTarget.textContent = '✅ Copied Link!';
@@ -26152,19 +27402,26 @@
         }
 
         const allPlayers = [];
+        const weekAgoMs = Date.now() - 7 * 86400000;
+        const teamWeeklyPushMap = {};
         linkedTeams.forEach(t => {
+          const tPlans = Array.isArray(t.pushedPlans) ? t.pushedPlans : [];
+          const weeklyCount = tPlans.filter(pl => !pl.createdAt || Date.parse(pl.createdAt) >= weekAgoMs).length;
+          teamWeeklyPushMap[t.teamCode] = weeklyCount;
           (Array.isArray(t.rosterPlayers) ? t.rosterPlayers : []).forEach(p => {
             allPlayers.push({
               ...p,
               teamCode: t.teamCode,
               teamName: t.teamName || t.teamCode,
               coachName: t.coachName || 'Coach',
+              coachWeeklyPushes: weeklyCount,
               ageGroup: p.ageGroup || t.ageDivision || '12U',
               competitiveLevel: p.competitiveLevel || t.competitiveLevel || 'AA'
             });
           });
         });
 
+        const dirFed = getEffectiveFederationMode();
         const flt = state.assocReportFilters || { age: 'ALL', level: 'ALL', team: 'ALL', position: 'ALL', player: 'ALL' };
         const filteredPlayers = allPlayers.filter(p => {
           if (flt.age !== 'ALL' && p.ageGroup !== flt.age) return false;
@@ -26178,20 +27435,31 @@
           ? Math.round(filteredPlayers.reduce((s, p) => s + Number(p.iqScore || 100), 0) / filteredPlayers.length)
           : 100;
         const slotsList = Array.isArray(assocDoc.coachSlots) ? assocDoc.coachSlots : [];
+        const totalClubWeeklyPushes = Object.values(teamWeeklyPushMap).reduce((s, n) => s + Number(n || 0), 0);
 
         if (rolePortalBox) {
           rolePortalBox.innerHTML = `
             <div class="space-y-3">
-              <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-slate-900/95 border border-purple-400/70">
-                <img src="assets/cutouts/coach-al.png" alt="Coach Al" class="synapz-waistup-cutout-img h-16 w-auto shrink-0" />
-                <div class="min-w-0 flex-1">
-                  <div class="flex flex-wrap items-center gap-1.5">
-                    <span class="text-xs font-black text-purple-200 uppercase">🏛️ Association Director Tab • Guided by Coach Al</span>
-                    <span class="px-2 py-0.5 rounded-full bg-purple-500/20 border border-purple-400/60 text-[10px] font-black text-purple-200">
-                      ${linkedTeams.length}/${assocDoc.maxTeams || slotsList.length || 10} Active Teams • ${allPlayers.length}/${assocDoc.maxSkaters || 200} Skaters
-                    </span>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-2.5 rounded-2xl bg-slate-900/95 border border-purple-400/70">
+                <div class="flex items-center gap-3 min-w-0 flex-1">
+                  <img src="assets/cutouts/coach-al.png" alt="Coach Al" class="synapz-waistup-cutout-img h-16 w-auto shrink-0" />
+                  <div class="min-w-0 flex-1">
+                    <div class="flex flex-wrap items-center gap-1.5">
+                      <span class="text-xs font-black text-purple-200 uppercase">🏛️ Association Director Tab • Guided by Coach Al</span>
+                      <span class="px-2 py-0.5 rounded-full bg-purple-500/20 border border-purple-400/60 text-[10px] font-black text-purple-200">
+                        ${linkedTeams.length}/${assocDoc.maxTeams || slotsList.length || 10} Active Teams • ${allPlayers.length}/${assocDoc.maxSkaters || 200} Skaters
+                      </span>
+                    </div>
+                    <p class="text-xs text-slate-200 font-semibold mt-0.5">Distribute Head Coach slot codes, track Coach Weekly Push accountability, or print your 1-Page Board ROI Packet.</p>
                   </div>
-                  <p class="text-xs text-slate-200 font-semibold mt-0.5">Distribute your Head Coach slot codes below and filter live club reports by Age, Competitive Level, Coach, Position, or Individual Player.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-1.5 shrink-0">
+                  <div id="assocDirectorFederationSwitcher" class="inline-flex items-center gap-1 p-1 rounded-xl bg-slate-950 border border-slate-700">
+                    ${['USA', 'CAN', 'IIHF'].map(fm => `<button type="button" data-federation-pill="${fm}" class="px-2 py-1 rounded-lg border text-[10px] font-black transition cursor-pointer ${dirFed === fm ? 'bg-amber-500/25 border-amber-400 text-amber-200' : 'bg-slate-900/80 border-slate-700 text-slate-300'}">${fm === 'USA' ? '🇺🇸 USA' : (fm === 'CAN' ? '🇨🇦 CAN' : '🌍 IIHF')}</button>`).join('')}
+                  </div>
+                  <button type="button" id="btnPrintBoardRoiPacket" class="px-3 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 text-slate-950 text-xs font-black shadow cursor-pointer">
+                    🖨️ Print 1-Page Board ROI &amp; Accountability Packet
+                  </button>
                 </div>
               </div>
 
@@ -26253,6 +27521,7 @@
 
                 <div class="flex flex-wrap items-center justify-between gap-2 px-2.5 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-black">
                   <span class="text-cyan-300">Filtered Skaters: <span id="assocReportFilteredCount">${filteredPlayers.length}</span></span>
+                  <span class="text-amber-300">Coach Weekly Plans Pushed: <span id="assocReportWeeklyPushTotal">${totalClubWeeklyPushes}</span></span>
                   <span class="text-emerald-300">Avg Hockey IQ: <span id="assocReportFilteredAvgIq">${avgFilteredIq}</span></span>
                 </div>
 
@@ -26263,6 +27532,7 @@
                         <th class="py-1.5 px-2">Player</th>
                         <th class="py-1.5 px-2">Age / Level</th>
                         <th class="py-1.5 px-2">Coach / Team</th>
+                        <th class="py-1.5 px-2" data-coach-weekly-push-col="true">Coach Weekly Pushes</th>
                         <th class="py-1.5 px-2">Pos</th>
                         <th class="py-1.5 px-2">IQ / Last Plan</th>
                         <th class="py-1.5 px-2">Struggles</th>
@@ -26270,12 +27540,13 @@
                     </thead>
                     <tbody id="assocReportFilteredTableBody">
                       ${filteredPlayers.length === 0
-                        ? `<tr><td colspan="6" class="py-3 px-2 text-center text-slate-400 font-bold">No skaters match the current filter selection.</td></tr>`
+                        ? `<tr><td colspan="7" class="py-3 px-2 text-center text-slate-400 font-bold">No skaters match the current filter selection.</td></tr>`
                         : filteredPlayers.map(p => `
                           <tr class="border-b border-slate-800/70 font-bold text-slate-200">
                             <td class="py-1.5 px-2 text-white font-black">${p.name} #${p.jerseyNumber}</td>
-                            <td class="py-1.5 px-2 text-amber-300">${p.ageGroup} ${p.competitiveLevel}</td>
+                            <td class="py-1.5 px-2 text-amber-300">${formatFederationDivisionBadge(p.ageGroup, dirFed)} ${p.competitiveLevel}</td>
                             <td class="py-1.5 px-2">${p.coachName} (${p.teamName})</td>
+                            <td class="py-1.5 px-2 text-amber-200 font-black" data-coach-weekly-push-val="${p.coachWeeklyPushes || 0}">${p.coachWeeklyPushes || 0} / wk</td>
                             <td class="py-1.5 px-2 text-cyan-300">${p.positionCode}</td>
                             <td class="py-1.5 px-2 text-emerald-300">IQ ${p.iqScore}${p.lastPlanScorePct != null ? ` • ${p.lastPlanScorePct}%` : ''}</td>
                             <td class="py-1.5 px-2 text-rose-300">${Array.isArray(p.struggleConcepts) && p.struggleConcepts.length ? p.struggleConcepts.join(', ') : '—'}</td>
@@ -26287,6 +27558,35 @@
               </details>
             </div>
           `;
+
+          document.getElementById('btnPrintBoardRoiPacket')?.addEventListener('click', () => {
+            SoundFX.playTap();
+            openSynapzPrintView('board_roi_packet', {
+              assocCode: assocDoc.assocCode,
+              assocName: assocDoc.assocName,
+              annualPrice: assocDoc.annualPrice || 850,
+              maxTeams: assocDoc.maxTeams || 10,
+              maxSkaters: assocDoc.maxSkaters || 200,
+              activeSkaters: allPlayers.length,
+              avgIq: avgFilteredIq,
+              teams: linkedTeams.map(t => ({
+                teamCode: t.teamCode,
+                teamName: t.teamName || t.teamCode,
+                ageDivision: t.ageDivision || '12U',
+                coachName: t.coachName || 'Coach',
+                skaterCount: Array.isArray(t.rosterPlayers) ? t.rosterPlayers.length : 0,
+                weeklyPushes: teamWeeklyPushMap[t.teamCode] || 0,
+                latestFocus: (Array.isArray(t.pushedPlans) && t.pushedPlans[0] && t.pushedPlans[0].focusConcept) || 'Breakouts'
+              }))
+            });
+          });
+          rolePortalBox.querySelectorAll('#assocDirectorFederationSwitcher [data-federation-pill]').forEach(btn => {
+            btn.addEventListener('click', () => {
+              SoundFX.playTap();
+              setFederationMode(btn.getAttribute('data-federation-pill') || 'USA');
+              renderSynapzCoachOfficeModal();
+            });
+          });
 
           rolePortalBox.querySelectorAll('.btn-copy-any-portal-code').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -26319,18 +27619,77 @@
       }
 
       const prof = getActiveProfile();
+      if (prof) installPlayerTeamCampSchema(prof);
       const fullSuiteUnlocked = isPlayerFullSuiteActive(acct, prof);
-      const linkedCode = (prof && prof.teamCode) || state.teamCode || '';
+      const linkedCode = (prof && prof.primaryTeamCode) || state.teamCode || '';
+      const campCodes = (prof && Array.isArray(prof.campPassCodes)) ? prof.campPassCodes : [];
+      const activeInboxTab = state.playerInboxSourceTab === 'camp' ? 'camp' : 'primary';
+
+      // BET-V131-03 (Option A): Dual Non-Destructive Tabs (Primary Winter Team | 3v3 & Skills Camps)
+      if (joinBar && prof) {
+        let dualTabsWrap = document.getElementById('playerDualTeamCampTabsBar');
+        if (!dualTabsWrap) {
+          dualTabsWrap = document.createElement('div');
+          dualTabsWrap.id = 'playerDualTeamCampTabsBar';
+          dualTabsWrap.className = 'flex flex-wrap items-center gap-1.5 mb-1.5';
+          joinBar.parentElement?.insertBefore(dualTabsWrap, joinBar);
+        }
+        dualTabsWrap.innerHTML = `
+          <button type="button" id="btnInboxTabPrimaryTeam" class="px-3 py-1.5 rounded-xl text-xs font-black border transition cursor-pointer ${
+            activeInboxTab === 'primary'
+              ? 'bg-emerald-400 text-slate-950 border-emerald-300 shadow'
+              : 'bg-slate-900 text-slate-200 border-slate-700 hover:border-emerald-400/60'
+          }">🏒 Primary Team ${linkedCode ? `(${linkedCode})` : ''}</button>
+          <button type="button" id="btnInboxTabCampPasses" class="px-3 py-1.5 rounded-xl text-xs font-black border transition cursor-pointer ${
+            activeInboxTab === 'camp'
+              ? 'bg-cyan-400 text-slate-950 border-cyan-300 shadow'
+              : 'bg-slate-900 text-slate-200 border-slate-700 hover:border-cyan-400/60'
+          }">⚡ 3v3 &amp; Skills Camps (${campCodes.length}/5)</button>
+          ${campCodes.map(cc => `
+            <span data-camp-pass-chip="${cc}" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/60 text-[10px] font-black text-cyan-200">
+              ⚡ ${cc}
+              <button type="button" data-remove-camp-code="${cc}" class="hover:text-rose-300 ml-0.5 cursor-pointer" title="Remove Camp Pass">✕</button>
+            </span>
+          `).join('')}
+        `;
+        document.getElementById('btnInboxTabPrimaryTeam')?.addEventListener('click', () => {
+          SoundFX.playTap();
+          state.playerInboxSourceTab = 'primary';
+          renderSynapzCoachOfficeModal();
+        });
+        document.getElementById('btnInboxTabCampPasses')?.addEventListener('click', () => {
+          SoundFX.playTap();
+          state.playerInboxSourceTab = 'camp';
+          renderSynapzCoachOfficeModal();
+        });
+        dualTabsWrap.querySelectorAll('[data-remove-camp-code]').forEach(rmBtn => {
+          rmBtn.addEventListener('click', (ev) => {
+            ev.stopPropagation();
+            removePlayerCampPassCode(rmBtn.getAttribute('data-remove-camp-code'));
+          });
+        });
+      }
 
       const officeBadge = document.getElementById('coachOfficeCurrentTeamBadge');
       if (officeBadge && prof) {
-        officeBadge.textContent = linkedCode
-          ? `${linkedCode}${prof.teamName ? ` • ${prof.teamName}` : ''}`
-          : 'Solo Mode (No Team Linked)';
+        if (activeInboxTab === 'camp') {
+          officeBadge.textContent = campCodes.length
+            ? `${campCodes.length} Camp Pass(es): ${campCodes.join(', ')} (Primary ${linkedCode || 'Unset'} Safe)`
+            : `0 Camp Passes Active (Primary ${linkedCode || 'Unset'} Safe)`;
+        } else {
+          officeBadge.textContent = linkedCode
+            ? `${linkedCode}${prof.teamName ? ` • ${prof.teamName}` : ''}`
+            : 'Solo Mode (No Team Linked)';
+        }
       }
       const officeInp = document.getElementById('inputCoachOfficeJoinTeamCode');
+      const applyCodeBtn = document.getElementById('btnCoachOfficeApplyTeamCode');
       if (officeInp && prof && document.activeElement !== officeInp) {
-        officeInp.value = linkedCode;
+        officeInp.placeholder = activeInboxTab === 'camp' ? 'Enter CAMP-XXXX Pass' : 'Enter Team Code';
+        officeInp.value = activeInboxTab === 'camp' ? '' : linkedCode;
+      }
+      if (applyCodeBtn) {
+        applyCodeBtn.textContent = activeInboxTab === 'camp' ? 'Add Camp Pass ▶' : 'Join a Team ▶';
       }
       const tierBadgeEl = document.getElementById('coachOfficePlanTierBadge');
       if (tierBadgeEl) {
@@ -26366,28 +27725,41 @@
         });
       }
 
-      // Render Coach's Inbox if linked to a Team Code!
+      // Render Coach's Inbox (Split cleanly across Primary Winter Team | 3v3 & Skills Camps!)
       const inboxBox = document.getElementById('playerCoachInboxContainer');
       if (inboxBox) {
-        if (!linkedCode) {
-          inboxBox.classList.add('hidden');
-          inboxBox.innerHTML = '';
+        const codesToLoad = activeInboxTab === 'camp'
+          ? campCodes
+          : (linkedCode ? [linkedCode] : []);
+        if (codesToLoad.length === 0) {
+          inboxBox.classList.remove('hidden');
+          inboxBox.innerHTML = activeInboxTab === 'camp'
+            ? `<div class="p-2.5 rounded-2xl bg-cyan-950/35 border border-cyan-400/50 text-xs text-cyan-100 font-semibold mb-2">⚡ Enter a <strong>CAMP-XXXX</strong> clinic or 3v3 pass above—your Primary Winter Team ${linkedCode ? `(${linkedCode})` : ''} stays 100% connected!</div>`
+            : '';
+          if (activeInboxTab !== 'camp') inboxBox.classList.add('hidden');
         } else {
-          const teamDoc = await SynapzPortalCloud.fetchTeamByCode(linkedCode);
-          const plans = (teamDoc && Array.isArray(teamDoc.pushedPlans)) ? teamDoc.pushedPlans : [];
+          const allLoadedPlans = [];
+          const headerNames = [];
+          for (const cCode of codesToLoad) {
+            const tDoc = await SynapzPortalCloud.fetchTeamByCode(cCode);
+            headerNames.push(tDoc ? (tDoc.teamName || cCode) : cCode);
+            if (tDoc && Array.isArray(tDoc.pushedPlans)) {
+              tDoc.pushedPlans.forEach(pl => allLoadedPlans.push({ ...pl, teamCode: cCode, sourceName: tDoc.teamName || cCode }));
+            }
+          }
           inboxBox.classList.remove('hidden');
           inboxBox.innerHTML = `
-            <div id="playerCoachInboxSection" class="p-3 rounded-2xl bg-emerald-950/40 border border-emerald-400/70 space-y-2 mb-2.5">
+            <div id="playerCoachInboxSection" class="p-3 rounded-2xl ${activeInboxTab === 'camp' ? 'bg-cyan-950/40 border border-cyan-400/70' : 'bg-emerald-950/40 border border-emerald-400/70'} space-y-2 mb-2.5">
               <div class="flex items-center justify-between gap-2">
-                <span class="text-xs font-black uppercase text-emerald-300">📬 Coach's Inbox — ${teamDoc ? teamDoc.teamName : linkedCode}</span>
-                <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-[10px] font-black text-emerald-200">${plans.length} Assigned Plan(s)</span>
+                <span class="text-xs font-black uppercase ${activeInboxTab === 'camp' ? 'text-cyan-300' : 'text-emerald-300'}">${activeInboxTab === 'camp' ? '⚡ 3v3 &amp; Skills Camp Inbox' : "📬 Coach's Inbox"} — ${headerNames.join(' + ')}</span>
+                <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-[10px] font-black text-emerald-200">${allLoadedPlans.length} Assigned Plan(s)</span>
               </div>
-              ${plans.length === 0
-                ? `<p class="text-xs text-slate-300 font-semibold">No assigned plans yet from your Coach. When your Coach pushes a lesson plan, it appears right here!</p>`
-                : plans.map(pl => `
+              ${allLoadedPlans.length === 0
+                ? `<p class="text-xs text-slate-300 font-semibold">No assigned plans yet in this ${activeInboxTab === 'camp' ? 'Camp/3v3 pass' : 'Team'} inbox. When your Coach pushes a lesson plan, it appears right here!</p>`
+                : allLoadedPlans.map(pl => `
                   <div class="p-2.5 rounded-xl bg-slate-950 border border-emerald-400/45 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
-                      <div class="text-xs font-black text-white">🏒 ${pl.focusConcept} (${pl.lessonCount} Plays)</div>
+                      <div class="text-xs font-black text-white">${activeInboxTab === 'camp' ? '⚡' : '🏒'} ${pl.focusConcept} (${pl.lessonCount} Plays • ${pl.sourceName})</div>
                       <div class="text-[11px] text-slate-300">${pl.coachNote} • Reports score &amp; struggles to ${pl.assignedBy}</div>
                     </div>
                     <button type="button" data-play-coach-plan-id="${pl.planId}" class="btn-play-coach-inbox-plan px-3 py-2 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs font-black shrink-0 shadow cursor-pointer">
@@ -26400,7 +27772,7 @@
           inboxBox.querySelectorAll('.btn-play-coach-inbox-plan').forEach(btn => {
             btn.addEventListener('click', () => {
               const pid = btn.getAttribute('data-play-coach-plan-id');
-              const chosenPlan = plans.find(x => x.planId === pid) || plans[0];
+              const chosenPlan = allLoadedPlans.find(x => x.planId === pid) || allLoadedPlans[0];
               if (!chosenPlan) return;
               SoundFX.playGoalHorn();
               state.activeCoachInboxPlan = chosenPlan;
@@ -26409,7 +27781,7 @@
               state.seriesResults = [];
               document.getElementById('synapzCoachOfficeModal')?.classList.add('hidden');
               document.getElementById('coachOfficeOverlaySheet')?.classList.add('hidden');
-              triggerSynapzScreenTransition(`📬 Launching Coach's Assigned Plan (${chosenPlan.focusConcept})...`, () => {
+              triggerSynapzScreenTransition(`📬 Launching Assigned Plan (${chosenPlan.focusConcept})...`, () => {
                 switchView('game');
                 loadScenario(true);
               });
@@ -26435,6 +27807,7 @@
               <div>• <strong>Overall Hockey IQ:</strong> ${prof && prof.iqScore != null ? prof.iqScore : 100} • <strong>Lowest Pillar:</strong> 🥅 Goalie &amp; Crease Reads (79%)</div>
               <div>• <strong>Selected Pillar Readout:</strong> ${selMeta.icon} ${selMeta.label} (${selMeta.pct}%)</div>
             </div>
+            ${renderSaturdayIceProofCardHtml(prof, false)}
             <div class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-400/40 text-[11px] text-amber-200 font-semibold">
               Upgrade to <strong>Full Suite ($${formatSynapzPriceNum(pCfg.playerFullSuiteMonthly || 7.99)}/mo or $${formatSynapzPriceNum(pCfg.playerFullSuiteAnnual || 49.99)}/yr)</strong> to unlock Coach Al's interactive AI Personal Development Plan &amp; custom focus builders!
             </div>
@@ -26492,6 +27865,7 @@
               🏒 Launch 10-Lesson Mastery Plan ▶
             </button>
           </div>
+          ${renderSaturdayIceProofCardHtml(prof, true)}
         </div>
       `;
 
@@ -28760,7 +30134,7 @@
     // SECTION 32–43: VERIFIED REAL CODED UPGRADES RUNTIME & PRE-CODED BANK
     // (`synapz-hockey-v12.7-5persona-human-vision` • 288 Live Upgrades)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v13.1-cold-eyes-audit';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v13.2-global-strategic-suite';
 
     const ALL_63_DEPLOYED_UPGRADE_IDS = [
       // Batch A (12 items)
@@ -28862,9 +30236,22 @@
 
     const CORE_DEPLOYED_UPGRADE_IDS = [
       ...ALL_360_DEPLOYED_UPGRADE_IDS,
-      'RF-COUNCIL-01'
+      'RF-COUNCIL-01',
+      'BET-V131-01',
+      'BET-V131-02',
+      'BET-V131-03',
+      'BET-V131-04',
+      'BET-V131-05'
     ];
     window.CORE_DEPLOYED_UPGRADE_IDS = CORE_DEPLOYED_UPGRADE_IDS;
+    window.ALL_365_CUMULATIVE_UPGRADE_IDS = [
+      ...ALL_360_DEPLOYED_UPGRADE_IDS,
+      'BET-V131-01',
+      'BET-V131-02',
+      'BET-V131-03',
+      'BET-V131-04',
+      'BET-V131-05'
+    ];
 
     const SYNAPZ_NORMALIZED_ID_CACHE = new Map();
     CORE_DEPLOYED_UPGRADE_IDS.forEach(id => SYNAPZ_NORMALIZED_ID_CACHE.set(id, id));
@@ -32479,7 +33866,7 @@
               keys.filter(k => k !== window.SYNAPZ_CACHE_NAME).map(k => caches.delete(k))
             );
           }
-          const reg = await navigator.serviceWorker.register('./sw.js?v=13.0');
+          const reg = await navigator.serviceWorker.register('./sw.js?v=13.2');
           if (reg && typeof reg.update === 'function') {
             reg.update().catch(() => {});
           }
@@ -32697,6 +34084,23 @@
             <option value="Left">Left</option>
             <option value="Right">Right</option>
           </select>
+        </div>
+        <div>
+          <label class="block text-[10px] font-black uppercase text-amber-300 mb-0.5">🎥 Ice Camera Mode</label>
+          <select id="lockerEditCameraModeSelect" class="w-full px-2.5 py-1.5 rounded-xl bg-slate-900 border border-amber-400/50 text-xs font-bold text-white">
+            <option value="auto">Auto (Age-Smart Chel-Cam)</option>
+            <option value="270">270° North-South (Attack-Up)</option>
+            <option value="0">0° Broadcast Side-View</option>
+            <option value="4way">4-Way Pro (0°/90°/180°/270°)</option>
+          </select>
+        </div>
+        <div class="col-span-2">
+          <label class="block text-[10px] font-black uppercase text-cyan-300 mb-0.5">🌍 Ice Federation &amp; Division Terminology</label>
+          <div id="lockerEditFederationSwitcher" class="grid grid-cols-3 gap-1.5">
+            <button type="button" data-federation-pill="USA" class="py-1.5 px-2 rounded-xl border text-[11px] font-black transition cursor-pointer bg-amber-500/25 border-amber-400 text-amber-200">🇺🇸 USA (8U–18U)</button>
+            <button type="button" data-federation-pill="CAN" class="py-1.5 px-2 rounded-xl border text-[11px] font-black transition cursor-pointer bg-slate-900/80 border-slate-700 text-slate-300">🇨🇦 CAN (U7–U18)</button>
+            <button type="button" data-federation-pill="IIHF" class="py-1.5 px-2 rounded-xl border text-[11px] font-black transition cursor-pointer bg-slate-900/80 border-slate-700 text-slate-300">🌍 IIHF (60m×30m)</button>
+          </div>
         </div>
       </div>
       <div class="flex items-center justify-end gap-2 pt-1">
@@ -33256,6 +34660,48 @@
       <p id="synapzUniversalSpeechBubbleText" class="text-xs sm:text-sm font-extrabold text-white leading-snug mb-1.5"></p>
       <div id="synapzUniversalStreamedSoFarBadge" class="text-[10px] font-black text-amber-300"></div>
     </div>
+  </div>
+
+  <!-- BET-V131-04 (Option A): Single-Page @media print Sheet (Board ROI Packet & Rink-Glass 3-Station Card) -->
+  <style id="synapzV132PrintStyles">
+    @media print {
+      @page { size: letter portrait; margin: 0.4in; }
+      body > *:not(#synapzPrintSheetOverlay) { display: none !important; }
+      #synapzPrintSheetOverlay {
+        display: block !important;
+        position: static !important;
+        inset: auto !important;
+        background: #ffffff !important;
+        padding: 0 !important;
+        overflow: visible !important;
+      }
+      #synapzPrintToolbar { display: none !important; }
+      #synapzPrintDocumentRoot {
+        box-shadow: none !important;
+        border: 0 !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .synapz-print-single-page {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+    }
+  </style>
+  <div id="synapzPrintSheetOverlay" class="hidden fixed inset-0 z-[130] bg-slate-950/90 backdrop-blur-md flex flex-col items-center justify-start p-3 sm:p-6 overflow-y-auto">
+    <div id="synapzPrintToolbar" class="w-full max-w-4xl flex flex-wrap items-center justify-between gap-2 mb-3 p-2.5 rounded-2xl bg-slate-900 border border-amber-400/70">
+      <span class="text-xs font-black text-amber-300 uppercase">🖨️ Single-Page Print Preview (Letter / A4 Ready)</span>
+      <div class="flex items-center gap-2">
+        <button type="button" id="btnTriggerNativePrintNow" onclick="if(!window.__SYNAPZ_TEST_MODE__) window.print();" class="px-3.5 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black shadow cursor-pointer">
+          🖨️ Print / Save 1-Page PDF
+        </button>
+        <button type="button" id="btnCloseSynapzPrintSheet" onclick="document.getElementById('synapzPrintSheetOverlay').classList.add('hidden')" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-black cursor-pointer">
+          ✕ Close
+        </button>
+      </div>
+    </div>
+    <div id="synapzPrintDocumentRoot" class="w-full max-w-4xl rounded-2xl bg-white p-5 sm:p-7 shadow-2xl border-2 border-slate-300"></div>
   </div>
 </body>
 </html>
