@@ -1750,26 +1750,26 @@
 
             <!-- 🏒 UNIFIED TOP HUD STACK (Situation Context Banner + Timed Clock Pill — Zero Overlap!) -->
             <div id="topRinkHudStack" class="absolute top-2 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 w-[96%] max-w-4xl pointer-events-none">
-              <div id="situationContextBanner" class="relative pointer-events-auto flex flex-wrap items-center justify-center gap-1.5 bg-slate-950/92 border border-sky-400/70 rounded-2xl sm:rounded-full px-3 py-1 shadow-xl backdrop-blur-md max-w-full overflow-hidden">
+              <div id="situationContextBanner" class="relative pointer-events-none flex flex-wrap items-center justify-center gap-1.5 bg-slate-950/92 border border-sky-400/70 rounded-2xl sm:rounded-full px-3 py-1 shadow-xl backdrop-blur-md max-w-full overflow-hidden">
                 <span id="situationBannerText" class="text-[11px] sm:text-xs font-black text-white tracking-tight">🏒 5-on-5 Even Strength • Offensive Zone (OZ)</span>
                 <span class="text-slate-600 font-black">•</span>
                 <span id="situationTierPill" class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[10px] font-black uppercase whitespace-nowrap">10U • Rec Tier</span>
-                <span id="flowFreezeStatusBadge" class="px-2.5 py-0.5 rounded-full bg-cyan-500/25 border border-cyan-400/70 text-cyan-200 text-[10px] font-black uppercase whitespace-nowrap max-w-[235px] sm:max-w-none truncate">❄️ FREEZE — MAKE YOUR READ!</span>
-                <button id="btnReplay3sFlow" type="button" class="px-2.5 py-0.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 text-[10px] font-black shadow transition whitespace-nowrap synapz-tactile-3d-btn" title="Watch the 3–4 second moving play develop again before freezing!">
+                <span id="flowFreezeStatusBadge" class="px-2.5 py-0.5 rounded-full bg-cyan-500/25 border border-cyan-400/70 text-cyan-200 text-[10px] font-black uppercase whitespace-nowrap max-w-[195px] sm:max-w-none truncate">❄️ FREEZE — MAKE YOUR READ!</span>
+                <button id="btnReplay3sFlow" type="button" class="pointer-events-auto px-2.5 py-0.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 text-[10px] font-black shadow transition whitespace-nowrap synapz-tactile-3d-btn" title="Watch the 3–4 second moving play develop again before freezing!">
                   🔄 Replay 3s Flow
                 </button>
-                <button id="btnCycleQuestionFormat" type="button" class="hidden px-2 py-0.5 rounded-full bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/60 text-amber-300 text-[10px] font-black transition whitespace-nowrap">
+                <button id="btnCycleQuestionFormat" type="button" class="pointer-events-auto hidden px-2 py-0.5 rounded-full bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/60 text-amber-300 text-[10px] font-black transition whitespace-nowrap">
                   <span id="questionStyleBadge">🎯 Tap Zone A/B/C</span>
                 </button>
-                <button id="btnCueFirstHighlight" type="button" class="hidden px-2 py-0.5 rounded-full bg-cyan-500/25 hover:bg-cyan-500/40 border border-cyan-400/70 text-cyan-200 text-[10px] font-black transition whitespace-nowrap">
+                <button id="btnCueFirstHighlight" type="button" class="pointer-events-auto hidden px-2 py-0.5 rounded-full bg-cyan-500/25 hover:bg-cyan-500/40 border border-cyan-400/70 text-cyan-200 text-[10px] font-black transition whitespace-nowrap">
                   <span id="cueFirstBadgeText">👀 Cue-First Read</span>
                 </button>
               </div>
               <!-- Countdown Timer & Timed Briefing Pill Stacked Cleanly Below Situation Context Banner -->
-              <div id="decisionTimerWrap" class="hidden pointer-events-auto bg-slate-950/92 border-2 border-amber-400 rounded-full px-3.5 py-1 flex flex-wrap items-center justify-center gap-2 shadow-2xl max-w-full">
+              <div id="decisionTimerWrap" class="hidden pointer-events-none bg-slate-950/92 border-2 border-amber-400 rounded-full px-3.5 py-1 flex flex-wrap items-center justify-center gap-2 shadow-2xl max-w-full">
                 <span id="decisionTimerLabel" class="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-amber-300">⏱️ Quick Read Clock:</span>
                 <span id="decisionTimerText" class="text-xs sm:text-sm font-black text-white">10.0s</span>
-                <button id="btnQuickStartCountdownPill" type="button" class="hidden px-2.5 py-0.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 text-[10px] font-black transition whitespace-nowrap">
+                <button id="btnQuickStartCountdownPill" type="button" class="pointer-events-auto hidden px-2.5 py-0.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 text-[10px] font-black transition whitespace-nowrap">
                   ⚡ Start 3-2-1 Now ▶
                 </button>
               </div>
@@ -1828,7 +1828,7 @@
             </button>
 
             <!-- STAGE 1 & STAGE 2: WAIST-UP CUTOUT POP-UP (18%–28% SCREEN HEIGHT, DYNAMIC CORNER) + NATURAL SPEECH BUBBLE (#coachBobPopup) -->
-            <div id="coachBobPopup" class="coach-bob-state-talking synapz-char-quadrant-popup synapz-cutout-corner-bl absolute bottom-2.5 left-2.5 z-30 flex items-end gap-2.5 max-w-[95%] sm:max-w-[560px] transition-all duration-300 ease-out">
+            <div id="coachBobPopup" class="coach-bob-state-talking synapz-char-quadrant-popup synapz-cutout-corner-bl pointer-events-none absolute bottom-2.5 left-2.5 z-30 flex items-end gap-2.5 max-w-[95%] sm:max-w-[560px] transition-all duration-300 ease-out">
               <!-- Frameless Waist-Up Transparent 3D Cutout -->
               <div class="relative shrink-0 flex flex-col items-center pointer-events-none">
                 <span id="coachBobSoundwaveRing1" class="hidden"></span>
@@ -1841,7 +1841,7 @@
               </div>
 
               <!-- Live Word-by-Word Synchronized Speech Bubble Card (Clean Human Talk — Zero Metadata Tags!) -->
-              <div id="coachCornerFloating" class="bg-slate-950/96 border-2 border-amber-400 rounded-2xl p-3 sm:p-3.5 text-left shadow-2xl backdrop-blur-md flex-1 min-w-[215px] flex flex-col justify-between">
+              <div id="coachCornerFloating" class="pointer-events-none bg-slate-950/96 border-2 border-amber-400 rounded-2xl p-3 sm:p-3.5 text-left shadow-2xl backdrop-blur-md flex-1 min-w-[215px] flex flex-col justify-between">
                 <div class="flex flex-wrap items-center justify-between gap-1.5 border-b border-slate-800 pb-1.5 mb-1.5">
                   <div class="flex flex-wrap items-center gap-1.5 min-w-0">
                     <span id="cornerCoachTitle" class="text-xs font-black text-amber-300 whitespace-nowrap">🧢 Coach Bob</span>
@@ -1849,8 +1849,8 @@
                     <span id="coachBobSituationTag" class="hidden"></span>
                   </div>
                   <div class="flex items-center gap-1.5 shrink-0">
-                    <button id="btnCornerSpeakBtn" type="button" class="px-2 py-0.5 rounded bg-sky-500/25 hover:bg-sky-500/40 text-sky-200 text-[10px] font-black whitespace-nowrap" title="Replay Coach Bob Voice">🔊</button>
-                    <button id="btnDismissCoachBob" type="button" class="px-3 py-1 rounded-xl bg-gradient-to-r from-amber-400 to-emerald-400 hover:from-amber-300 hover:to-emerald-300 text-slate-950 text-[11px] font-black shadow transition whitespace-nowrap synapz-tactile-3d-btn" title="Minimize Coach Bob to Corner Circle & Play on Unobstructed Ice">
+                    <button id="btnCornerSpeakBtn" type="button" class="pointer-events-auto px-2 py-0.5 rounded bg-sky-500/25 hover:bg-sky-500/40 text-sky-200 text-[10px] font-black whitespace-nowrap" title="Replay Coach Bob Voice">🔊</button>
+                    <button id="btnDismissCoachBob" type="button" class="pointer-events-auto px-3 py-1 rounded-xl bg-gradient-to-r from-amber-400 to-emerald-400 hover:from-amber-300 hover:to-emerald-300 text-slate-950 text-[11px] font-black shadow transition whitespace-nowrap synapz-tactile-3d-btn" title="Minimize Coach Bob to Corner Circle & Play on Unobstructed Ice">
                       👍 Got It / Drop the Puck ▶
                     </button>
                   </div>
@@ -10144,7 +10144,7 @@
           btn.dataset.zoneX = z.x.toFixed(3);
           btn.dataset.zoneY = z.y.toFixed(3);
           btn.className = 'w-full px-2.5 py-1.5 rounded-xl bg-slate-900/95 hover:bg-sky-500/30 border border-sky-400/75 text-white font-black text-[11px] leading-tight shadow transition flex items-center gap-1.5 text-left cursor-pointer';
-          btn.innerHTML = `<span class="px-1.5 py-0.5 rounded bg-amber-400 text-slate-950 font-black text-[10px] shrink-0">${z.zoneLetter}</span><span class="min-w-0">${btnText}</span>`;
+          btn.innerHTML = `<span class="px-1.5 py-0.5 rounded bg-amber-400 text-slate-950 font-black text-[10px] shrink-0">${z.zoneLetter} </span><span class="min-w-0">${btnText}</span>`;
           btn.addEventListener('click', () => handleSelectTapZone(z, scen));
           bar.appendChild(btn);
           renderedSpecs.push({ idx, text: `${z.zoneLetter} ${btnText}`, nx: z.x, ny: z.y, ok: z.multiplier > 0, multiplier: z.multiplier });
@@ -10254,7 +10254,7 @@
           btn.dataset.syncedNormX = normCoord.x.toFixed(3);
           btn.dataset.syncedNormY = normCoord.y.toFixed(3);
           btn.className = 'w-full px-2.5 py-1.5 rounded-xl bg-slate-900/95 hover:bg-sky-900/80 border border-amber-400/70 text-left text-[11px] font-bold text-white shadow transition whitespace-normal leading-tight cursor-pointer';
-          btn.innerHTML = `<span class="text-amber-300 font-black mr-1">⚡ ${idx + 1}.</span><span>${ch.text}</span>`;
+          btn.innerHTML = `<span class="text-amber-300 font-black mr-1">⚡ ${idx + 1}. </span><span>${ch.text}</span>`;
           btn.title = ch.text;
           btn.addEventListener('click', () => {
             if (state.questionAnswered) return;
@@ -10287,7 +10287,7 @@
         ? computeSyncedOnIceChoiceTargets(scen)
         : [];
       ctx.save();
-      if (targets.length > 0 && state.mistakePhase === 'none') {
+      if (targets.length > 0 && (state.mistakePhase === 'none' || state.mistakePhase === 'step2_fix')) {
         const ringRad = Math.max(22, Math.min(W, H) * 0.048);
         targets.forEach((tg) => {
           ctx.beginPath();
@@ -11766,9 +11766,10 @@
     window.parseNormalizedBaseAgeGroup = parseNormalizedBaseAgeGroup;
 
     function getEffectiveFederationMode(profOverride = null) {
-      const p = profOverride || (typeof state !== 'undefined' && state && typeof getActiveProfile === 'function' ? getActiveProfile() : null);
+      const hasRealProfiles = typeof state !== 'undefined' && state && Array.isArray(state.profiles) && state.profiles.length > 0;
+      const p = profOverride || (hasRealProfiles && typeof getActiveProfile === 'function' ? getActiveProfile() : null);
       const cand = String(
-        (p && p.federationMode) ||
+        (p && p.id !== '__unconfigured__' && p.federationMode) ||
         (typeof state !== 'undefined' && state && state.activeFederationMode) ||
         (typeof state !== 'undefined' && state && state.currentAccount && state.currentAccount.federationMode) ||
         (typeof detectDefaultFederationMode === 'function' ? detectDefaultFederationMode() : 'USA')
@@ -11807,6 +11808,7 @@
       document.querySelectorAll('[data-federation-pill]').forEach(btn => {
         const isAct = String(btn.getAttribute('data-federation-pill') || '').toUpperCase() === fed;
         btn.setAttribute('aria-pressed', isAct ? 'true' : 'false');
+        btn.classList.remove('bg-cyan-400', 'text-slate-950');
         btn.classList.toggle('bg-amber-500/25', isAct);
         btn.classList.toggle('border-amber-400', isAct);
         btn.classList.toggle('text-amber-200', isAct);
@@ -12365,31 +12367,36 @@
         let candX = Math.max(0.06, Math.min(0.94, origX + r1 * maxJitter));
         let candY = Math.max(0.06, Math.min(0.94, origY + r2 * maxJitter));
 
-        // Clamp >= 6%+ clear of both goal creases (0.08, 0.50) and (0.92, 0.50)
+        // Clamp >= 6%+ clear of both goal creases (0.08, 0.50) and (0.92, 0.50), including when board clamp (0.06..0.94) restricts X!
         for (const gx of [0.08, 0.92]) {
           const dCrease = Math.hypot(candX - gx, candY - 0.50);
-          if (dCrease < 0.115) {
+          if (dCrease < 0.118) {
             const ang = Math.atan2(candY - 0.50, candX - gx);
-            candX = Math.max(0.06, Math.min(0.94, gx + Math.cos(ang) * 0.118));
-            candY = Math.max(0.06, Math.min(0.94, 0.50 + Math.sin(ang) * 0.118));
+            candX = Math.max(0.06, Math.min(0.94, gx + Math.cos(ang) * 0.120));
+            candY = Math.max(0.06, Math.min(0.94, 0.50 + Math.sin(ang) * 0.120));
+            if (Math.hypot(candX - gx, candY - 0.50) < 0.118) {
+              const dx = candX - gx;
+              const minDy = Math.sqrt(Math.max(0, 0.120 * 0.120 - dx * dx));
+              const signY = (candY - 0.50) >= 0 ? 1 : -1;
+              candY = Math.max(0.06, Math.min(0.94, 0.50 + signY * minDy));
+            }
           }
         }
 
-        // Preserve tight distractor coverage if applicable
+        // Preserve tight distractor coverage if applicable (while staying clear of goal creases)
         if (coveredTm && Math.hypot(candX - coveredTm.x, candY - coveredTm.y) > 0.060) {
           const ang = Math.atan2(candY - coveredTm.y, candX - coveredTm.x);
           candX = Math.max(0.06, Math.min(0.94, coveredTm.x + Math.cos(ang) * 0.052));
           candY = Math.max(0.06, Math.min(0.94, coveredTm.y + Math.sin(ang) * 0.052));
         }
+        const inEitherCrease = [0.08, 0.92].some(gx => Math.hypot(candX - gx, candY - 0.50) < 0.116);
 
-        // Preserve >= 38px clearance from Gold target spot & Gold passing/skating lane!
+        // Preserve strict >= 38px clearance from Gold target spot & Gold passing/skating lane!
         const candCss = normToCanvas(candX, candY, cssW, cssH, scenario.zone || 'offense');
         const clearLanePx = distToSegPx(candCss.x, candCss.y, startCss.x, startCss.y, endCss.x, endCss.y);
         const clearSpotPx = Math.hypot(candCss.x - spotCss.x, candCss.y - spotCss.y);
-        const origCss = normToCanvas(origX, origY, cssW, cssH, scenario.zone || 'offense');
-        const origLanePx = distToSegPx(origCss.x, origCss.y, startCss.x, startCss.y, endCss.x, endCss.y);
 
-        if (clearLanePx >= Math.min(38, origLanePx) && clearSpotPx >= 38) {
+        if (!inEitherCrease && clearLanePx >= 38 && clearSpotPx >= 38) {
           def.x = Number(candX.toFixed(4));
           def.y = Number(candY.toFixed(4));
         }
@@ -12681,6 +12688,7 @@
       const ribbonCheckLbl = document.getElementById('ribbonCheckLabel');
       if (ribbonCheckLbl) ribbonCheckLbl.textContent = 'Check My Position';
 
+      if (typeof renderMultiFormatControlsBar === 'function') renderMultiFormatControlsBar(scen);
       drawRink();
       if (state.view === 'game') {
         CoachVoice.speak(
@@ -13915,10 +13923,18 @@
         const orientLabel = isDefZone ? `PROTECT NET • CLEAR ${arrowGlyph}` : `ATTACK ${arrowGlyph}`;
         ctx.save();
         ctx.globalAlpha = Math.min(0.96, remRatio * 1.15);
-        const pillW = Math.min(W * 0.44, Math.max(150, W * 0.24));
         const pillH = Math.max(26, Math.floor(H * 0.068));
+        ctx.font = `900 ${Math.max(11, Math.floor(pillH * 0.46))}px Inter, sans-serif`;
+        const measuredLabelW = ctx.measureText(orientLabel).width;
+        const pillW = Math.min(W * 0.68, Math.max(152, measuredLabelW + 36, W * 0.24));
         const px = W * 0.50 - pillW / 2;
-        const py = padY + Math.max(10, H * 0.03);
+        const hudEl = document.getElementById('topRinkHudStack');
+        const canvasRect = canvas ? canvas.getBoundingClientRect() : null;
+        const hudRect = hudEl ? hudEl.getBoundingClientRect() : null;
+        const hudClearanceCanvasPx = (hudRect && canvasRect && canvasRect.width > 0 && hudRect.bottom > canvasRect.top)
+          ? Math.max(0, (hudRect.bottom - canvasRect.top + 8) * (W / canvasRect.width))
+          : 0;
+        const py = Math.min(H * 0.42, Math.max(padY + Math.max(10, H * 0.03), hudClearanceCanvasPx));
         drawRoundedRect(ctx, px, py, pillW, pillH, pillH / 2);
         ctx.fillStyle = 'rgba(15, 23, 42, 0.88)';
         ctx.fill();
@@ -14340,7 +14356,7 @@
         const defWm = normToCanvas(0.22, 0.50, W, H, zone);
         const offWm = normToCanvas(0.78, 0.50, W, H, zone);
         ctx.fillText('DEFENSIVE ZONE', W * 0.50, defWm.y);
-        ctx.fillText(`${city.name.toUpperCase()} ICE${fedIceSuffix}`, W * 0.50, H * 0.50);
+        ctx.fillText(`${city.name.toUpperCase()} ICE${fedIceSuffix}`, W * 0.50, H * 0.50 - Math.max(16, H * 0.028));
         ctx.fillText('OFFENSIVE ZONE', W * 0.50, offWm.y);
       } else {
         const defWm = normToCanvas(0.22, 0.50, W, H, zone);
@@ -15557,7 +15573,7 @@
       }
 
       // 1B. BET-V131-02 (TIER-B-04 Ratified): 1:1 Synced On-Ice Candidate Target Tap (>=44x44px hitbox -> fires exact Choice Button 0..3!)
-      if (!state.pov3dActive && state.mistakePhase === 'none' && typeof tapSyncedOnIceTargetByClientPoint === 'function') {
+      if (!state.pov3dActive && (state.mistakePhase === 'none' || state.mistakePhase === 'step2_fix') && typeof tapSyncedOnIceTargetByClientPoint === 'function') {
         const clientX = e.touches && e.touches[0] ? e.touches[0].clientX : e.clientX;
         const clientY = e.touches && e.touches[0] ? e.touches[0].clientY : e.clientY;
         const youCanvas = normToCanvas(state.youPos.x, state.youPos.y, canvas.width, canvas.height, scen.zone);
@@ -22565,6 +22581,8 @@
       if (sbModal) sbModal.classList.add('hidden');
       const chkModal = document.getElementById('pilotSandboxCheckoutModal');
       if (chkModal) chkModal.classList.add('hidden');
+      const lgModal = document.getElementById('loginModal');
+      if (lgModal) lgModal.classList.add('hidden');
 
       syncFromActiveProfile();
       renderSynapzRinkLobby();
@@ -22942,7 +22960,14 @@
     (function wireV12CleanSlatePortalListeners() {
       const on = (id, fn) => {
         const el = document.getElementById(id);
-        if (el) el.addEventListener('click', fn);
+        if (el) {
+          el.addEventListener('click', fn);
+        } else if (document.readyState === 'loading') {
+          window.addEventListener('DOMContentLoaded', () => {
+            const deferredEl = document.getElementById(id);
+            if (deferredEl) deferredEl.addEventListener('click', fn);
+          }, { once: true });
+        }
       };
 
       if (typeof applyPricingConfigToDom === 'function') {
@@ -25422,6 +25447,9 @@
     window.GOOGLE_APPS_SCRIPT_WEBHOOK_URL = GOOGLE_APPS_SCRIPT_WEBHOOK_URL;
 
     async function dispatchFounderDigestEmail(triggerMailto = false) {
+      if (typeof window !== 'undefined' && window.__SYNAPZ_TEST_MODE__ === true) {
+        return { ok: true, suppressed: true, status: 'SUPPRESSED_TEST_MODE' };
+      }
       SoundFX.playGoalHorn();
       const subject = 'Synapz Hockey — 10-Seat Co-Founder Advisory Digest (Ranked #1–#10 with Live Screenshots & Approval Gate)';
       const cardsHtml = BOARD_10_SEAT_DIGEST.map(item => {
@@ -25474,7 +25502,11 @@
             recipients: ['danebekkedahl@gmail.com', 'evanbekk@gmail.com']
           })
         });
-        gmailWebhookResult = gRes.ok ? (await gRes.text()).trim() || 'SENT' : `HTTP ${gRes.status}`;
+        const respBody = (await gRes.text()).trim();
+        gmailWebhookResult = gRes.ok
+          ? (respBody || `HTTP ${gRes.status} SENT`)
+          : `HTTP ${gRes.status}${respBody ? ` — ${respBody.slice(0, 180)}` : ''}`;
+        console.log(`[SYNAPZ DIGEST WEBHOOK] HTTP ${gRes.status}:`, respBody || '(empty response)');
       } catch (e) {
         try {
           await fetch(GOOGLE_APPS_SCRIPT_WEBHOOK_URL, {
@@ -26846,7 +26878,7 @@
           <ul class="text-[11px] text-slate-200 space-y-1 font-semibold">
             <li>✅ <strong>Pre-Touch Habit:</strong> ${cardMeta.benchCues[0]}</li>
             <li>✅ <strong>Puck / Support Read:</strong> ${cardMeta.benchCues[1]}</li>
-            <li>🔁 <strong>Play N+3 Spaced Transfer:</strong> Missed reads automatically resurface 3 plays later in mirrored/rotated ice until ${p.name || 'your skater'} locks in 100% Gold IQ (${iqNow} IQ logged).</li>
+            <li>🔁 <strong>Play N+3 Spaced Transfer:</strong> Missed reads automatically resurface 3 plays later in mirrored/rotated ice until ${p.name || 'your skater'} locks in 100% Gold IQ (${iqNow > 0 ? `${iqNow} IQ logged` : 'Active Spaced-Transfer Queue'}).</li>
           </ul>
           ${!fullSuiteUnlocked ? `<div class="text-[10px] font-black text-amber-300">💡 Why Parents Keep Full Suite Past Week 3: Unlocks custom weekly focus targeting before every weekend tournament!</div>` : ''}
         </div>
@@ -27499,7 +27531,7 @@
                 <div class="grid grid-cols-2 sm:grid-cols-5 gap-1.5 pt-2">
                   <select id="assocReportFilterAge" aria-label="Filter by Age" class="px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-[11px] font-bold text-white">
                     <option value="ALL" ${flt.age === 'ALL' ? 'selected' : ''}>All Ages</option>
-                    ${['8U', '10U', '12U', '14U', '16U', '18U'].map(a => `<option value="${a}" ${flt.age === a ? 'selected' : ''}>${a}</option>`).join('')}
+                    ${['8U', '10U', '12U', '14U', '16U', '18U'].map(a => `<option value="${a}" ${flt.age === a ? 'selected' : ''}>${formatFederationDivisionBadge(a, dirFed)}</option>`).join('')}
                   </select>
                   <select id="assocReportFilterLevel" aria-label="Filter by Level" class="px-2 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-[11px] font-bold text-white">
                     <option value="ALL" ${flt.level === 'ALL' ? 'selected' : ''}>All Levels</option>
@@ -34666,13 +34698,42 @@
   <style id="synapzV132PrintStyles">
     @media print {
       @page { size: letter portrait; margin: 0.4in; }
-      body > *:not(#synapzPrintSheetOverlay) { display: none !important; }
+      html, body {
+        background: #ffffff !important;
+        background-image: none !important;
+        color: #0f172a !important;
+        min-height: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      html body > *:not(#synapzPrintSheetOverlay),
+      html body.in-game-clean-mode #gameViewSection,
+      html body.fullscreen-rink-mode #gameViewSection,
+      html body #gameViewSection,
+      html body #mapViewSection,
+      html body #synapzRinkLobbySection,
+      html body #synapzCoachOfficeModal,
+      html body #synapzLockerRoomModal,
+      html body #proShopModal,
+      html body #friendsWallModal,
+      html body #synapzEntryGateOverlay,
+      html body #synapzPersistentCharCircleBtn,
+      html body #synapzUniversalCharSpeechOverlay {
+        display: none !important;
+        visibility: hidden !important;
+      }
       #synapzPrintSheetOverlay {
         display: block !important;
         position: static !important;
         inset: auto !important;
+        width: 100% !important;
+        min-height: 100vh !important;
         background: #ffffff !important;
+        backdrop-filter: none !important;
         padding: 0 !important;
+        margin: 0 !important;
         overflow: visible !important;
       }
       #synapzPrintToolbar { display: none !important; }
@@ -34680,6 +34741,8 @@
         box-shadow: none !important;
         border: 0 !important;
         max-width: 100% !important;
+        width: 100% !important;
+        background: #ffffff !important;
         padding: 0 !important;
         margin: 0 !important;
       }
