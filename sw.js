@@ -1,15 +1,26 @@
-const CACHE_NAME = 'synapz-hockey-v13.3-verified-global-suite';
-const ASSETS = [
+const CACHE_NAME = 'synapz-hockey-v13.4-commercial-launch-ready';
+const PRECACHE_ASSETS = [
   './',
   './index.html',
   './manifest.json',
+  './apple-touch-icon.png',
   './icon-192.png',
   './icon-512.png',
+  './synapz-logo.webp',
   './assets/synapz-logo.png',
   './assets/synapz-logo.webp',
   './assets/synapz-splash-bg.png',
   './assets/tactix-logo.png',
   './assets/coach-bob.png',
+  './assets/agents/agent-leo.png',
+  './assets/agents/agent-maya.png',
+  './assets/agents/agent-jalen.png',
+  './assets/agents/agent-chloe.png',
+  './assets/agents/agent-sofia.png',
+  './assets/agents/agent-marcus.png',
+  './assets/agents/agent-priya.png',
+  './assets/agents/agent-ryan.png',
+  './assets/agents/agent-claire.png',
   './assets/cutouts/agent-leo.png',
   './assets/cutouts/agent-maya.png',
   './assets/cutouts/agent-jalen.png',
@@ -36,31 +47,62 @@ const ASSETS = [
   './assets/rooms/room-clubhouse.png'
 ];
 
-self.addEventListener('install', (e) => {
-  e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)).catch(() => {})
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(async (cache) => {
+      await Promise.allSettled(
+        PRECACHE_ASSETS.map((assetUrl) =>
+          fetch(assetUrl, { cache: 'reload' })
+            .then((res) => (res && res.ok ? cache.put(assetUrl, res) : null))
+            .catch(() => cache.add(assetUrl).catch(() => null))
+        )
+      );
+    })
   );
   self.skipWaiting();
 });
 
-self.addEventListener('activate', (e) => {
-  e.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
-    ).then(() => self.clients.claim())
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys()
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k))))
+      .then(() => self.clients.claim())
   );
 });
 
-self.addEventListener('fetch', (e) => {
-  e.respondWith(
-    fetch(e.request, { cache: 'no-store' })
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+
+self.addEventListener('fetch', (event) => {
+  const req = event.request;
+  if (!req || req.method !== 'GET') return;
+
+  const url = new URL(req.url);
+  // Never intercept cross-origin API calls (Supabase / Stripe / Google Apps Script) — let app handle offline queueing cleanly
+  if (url.origin !== self.location.origin) return;
+
+  const isNavigation = req.mode === 'navigate' || url.pathname.endsWith('/') || url.pathname.endsWith('/index.html');
+
+  event.respondWith(
+    fetch(req, { cache: 'no-store' })
       .then((res) => {
-        if (res && res.status === 200 && e.request.method === 'GET') {
+        if (res && res.status === 200) {
           const clone = res.clone();
-          caches.open(CACHE_NAME).then((c) => c.put(e.request, clone)).catch(() => {});
+          caches.open(CACHE_NAME).then((c) => c.put(req, clone)).catch(() => {});
         }
         return res;
       })
-      .catch(() => caches.match(e.request))
+      .catch(async () => {
+        const direct = await caches.match(req, { ignoreSearch: true });
+        if (direct) return direct;
+        if (isNavigation) {
+          const shell = (await caches.match('./index.html', { ignoreSearch: true })) || (await caches.match('./', { ignoreSearch: true }));
+          if (shell) return shell;
+        }
+        return new Response('Offline', { status: 503, statusText: 'Offline Steel-Roof Arena Fallback' });
+      })
   );
 });

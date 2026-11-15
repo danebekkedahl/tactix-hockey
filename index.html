@@ -4150,6 +4150,10 @@
         </div>
 
         <div class="pt-2 border-t border-slate-800/80 flex flex-col gap-2">
+          <button id="btnInfoInstallOfflineApp" type="button" data-trigger-install-pwa="info" class="btn-trigger-install-pwa w-full py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-400/70 text-cyan-200 text-xs font-black flex items-center justify-center gap-2 shadow cursor-pointer">
+            <span>📲 Install Rink Offline App</span>
+            <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-[10px] text-emerald-300">0-Bar Arena Ready</span>
+          </button>
           <button id="btnToggleFounderResetBox" type="button" class="text-[11px] font-bold text-slate-500 hover:text-rose-300 underline text-center py-1">
             🔄 Reset All Test Accounts (Founder Test Reset)
           </button>
@@ -4675,15 +4679,26 @@
             </button>
           </div>
 
-          <!-- Plan Card 2B (v13.2 BET-V131-03): Skills / 3v3 Camp Cohort — $249/yr (100 Clinic Skaters) -->
+          <!-- Plan Card 2B (v13.2 BET-V131-03 + v13.4 BET-V133-04): Skills / 3v3 Camp Cohort — $249/yr (100 Clinic Skaters) -->
           <div id="coachPlanCardCampCohort" class="p-2.5 rounded-2xl bg-slate-900/95 border-2 border-cyan-400/80 space-y-1.5">
             <div class="flex items-center justify-between gap-2">
               <span class="text-xs font-black text-cyan-300">⚡ Skills / 3v3 Camp Cohort — $<span data-pricing-bind="campCohortAnnual">249</span>/yr</span>
               <span class="px-2 py-0.5 rounded-full bg-cyan-400/20 text-[10px] font-black text-cyan-200"><span data-pricing-bind="campCohortIncludedSkaters">100</span> Clinic Skaters • +<span data-pricing-bind="campCohortIncludedAssistants">2</span> Assistants</span>
             </div>
-            <p class="text-[11px] text-slate-200 leading-snug">Built for 3v3 leagues, spring/summer skills academies &amp; clinics. Generates a non-destructive <code>CAMP-XXXX</code> pass code + QR/link (never overwrites a skater's primary winter association team!), <span data-pricing-bind="campCohortIncludedAssistants">2</span> Free Assistant Coach spaces, and clinic roster completion tracking.</p>
+            <p class="text-[11px] text-slate-200 leading-snug">Built for 3v3 leagues, spring/summer skills academies &amp; clinics. Generates a non-destructive <code>CAMP-XXXX</code> pass code + QR/link (never overwrites a skater's primary winter association team!) with automatic end-of-camp pass archival.</p>
+            <div class="flex items-center justify-between gap-2 pt-0.5">
+              <label for="selectCampCohortDurationWeeks" class="text-[10px] font-black uppercase text-cyan-200 shrink-0">Session Window:</label>
+              <select id="selectCampCohortDurationWeeks" class="flex-1 px-2.5 py-1.5 rounded-xl bg-slate-950 border border-cyan-400/60 text-[11px] font-black text-cyan-200">
+                <option value="4" selected>4 Weeks (Shinny / 3v3)</option>
+                <option value="6">6 Weeks (Spring / Fall Clinic)</option>
+                <option value="8">8 Weeks (Skills Academy)</option>
+              </select>
+            </div>
             <button id="btnCoachPlanCampCohort249" type="button" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-slate-950 font-black text-xs text-center shadow cursor-pointer">
               ⚡ Skills / 3v3 Camp Cohort — $249/yr (100 Clinic Skaters)
+            </button>
+            <button type="button" data-open-net30-po="camp_cohort_249" class="btn-open-net30-po w-full py-1.5 px-3 rounded-xl bg-slate-950 hover:bg-slate-800 border border-cyan-400/55 text-cyan-200 font-black text-[11px] text-center cursor-pointer">
+              📄 Generate Printable Net-30 Club PO / Invoice (+14-Day Provisional Code)
             </button>
           </div>
 
@@ -4697,6 +4712,9 @@
             <button id="btnAssocPlan5Teams450" type="button" class="w-full py-2 px-3 rounded-xl bg-slate-950 hover:bg-slate-800 border border-purple-400 text-purple-200 font-black text-xs text-center cursor-pointer">
               Select 5-Team Association ($450/yr)
             </button>
+            <button type="button" data-open-net30-po="assoc_5t_450" class="btn-open-net30-po w-full py-1.5 px-3 rounded-xl bg-slate-950/90 hover:bg-slate-800 border border-amber-400/60 text-amber-200 font-black text-[11px] text-center cursor-pointer">
+              📄 Generate Printable Net-30 Club PO / Invoice
+            </button>
           </div>
 
           <!-- Plan Card 4: Association Director — $850/yr (10 Teams • 200 Skaters) -->
@@ -4709,6 +4727,9 @@
             <button id="btnAssocPlan10Teams850" type="button" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-purple-400 to-cyan-400 hover:from-purple-300 hover:to-cyan-300 text-slate-950 font-black text-xs text-center shadow cursor-pointer">
               Select 10-Team Association ($850/yr)
             </button>
+            <button type="button" data-open-net30-po="assoc_10t_850" class="btn-open-net30-po w-full py-1.5 px-3 rounded-xl bg-slate-950/90 hover:bg-slate-800 border border-amber-400/60 text-amber-200 font-black text-[11px] text-center cursor-pointer">
+              📄 Generate Printable Net-30 Club PO / Invoice
+            </button>
           </div>
 
           <!-- Plan Card 5: Association Director — $1,599/yr (20 Teams • 400 Skaters) -->
@@ -4720,6 +4741,9 @@
             <p class="text-[11px] text-slate-300 leading-snug">Generates <span data-pricing-bind="assocLarge.teams">20</span> Head Coaches Codes / <span data-pricing-bind="assocLarge.skaters">400</span> skaters + full Association Director reporting.</p>
             <button id="btnAssocPlan20Teams1599" type="button" class="w-full py-2 px-3 rounded-xl bg-slate-950 hover:bg-slate-800 border border-purple-400 text-purple-200 font-black text-xs text-center cursor-pointer">
               Select 20-Team Association ($1,599/yr)
+            </button>
+            <button type="button" data-open-net30-po="assoc_20t_1599" class="btn-open-net30-po w-full py-1.5 px-3 rounded-xl bg-slate-950/90 hover:bg-slate-800 border border-amber-400/60 text-amber-200 font-black text-[11px] text-center cursor-pointer">
+              📄 Generate Printable Net-30 Club PO / Invoice
             </button>
           </div>
         </div>
@@ -4797,22 +4821,87 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- MODAL 11B: 1-TAP FOUNDER PILOT SANDBOX CHECKOUT ($0.00 TEST UNLOCK)   -->
+  <!-- MODAL 11B: DUAL-RAIL STRIPE / PILOT SANDBOX CHECKOUT + NET-30 PO      -->
   <!-- ===================================================================== -->
   <div id="pilotSandboxCheckoutModal" class="hidden fixed inset-0 z-[110] bg-slate-950/92 backdrop-blur-md flex items-center justify-center p-3 sm:p-4">
     <div class="synapz-v12-entry-card rounded-3xl p-5 space-y-3.5 text-left">
       <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
-        <span class="px-2.5 py-0.5 rounded-full bg-emerald-400/20 border border-emerald-400 text-[10px] font-black uppercase text-emerald-300">$0.00 Pilot Test Unlock</span>
+        <span id="pilotCheckoutModeBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-400/20 border border-emerald-400 text-[10px] font-black uppercase text-emerald-300">🧪 Pilot Early-Access ($0.00 Sandbox)</span>
         <button id="btnCancelPilotSandboxCheckout" type="button" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-black">✕</button>
       </div>
       <div>
-        <h3 class="text-base font-black text-white">Founder Pilot Sandbox Checkout ($0.00 Test Unlock)</h3>
+        <h3 id="pilotCheckoutTitleText" class="text-base font-black text-white">Pilot Early-Access Activation ($0.00 Sandbox)</h3>
         <p id="pilotCheckoutPlanSummary" class="text-xs text-cyan-300 font-bold mt-1">Selected Plan: Gameplay Pass — $4.99 (1 Individual Player Account)</p>
-        <p class="text-[11px] text-slate-300 mt-1.5 leading-relaxed">No credit card charged during Founder Pilot testing. Tap below to unlock immediately in Supabase + local storage.</p>
+        <p id="pilotCheckoutHelperCopy" class="text-[11px] text-slate-300 mt-1.5 leading-relaxed">Pilot Sandbox mode active — no card charged during early-access testing. When live Stripe links are enabled, Apple Pay, Google Pay &amp; Card checkout activate automatically.</p>
       </div>
       <button id="btnConfirmPilotSandboxCheckout" type="button" class="synapz-v12-simple-btn bg-gradient-to-r from-emerald-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 border-2 border-emerald-200 shadow-xl">
         Complete $0.00 Pilot Test Unlock ▶
       </button>
+      <button id="btnCheckoutSwitchToNet30Po" type="button" class="hidden w-full py-2 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-amber-400/70 text-amber-200 text-xs font-black text-center cursor-pointer">
+        📄 Need Board Check / ACH? Generate Printable Net-30 Club PO / Invoice
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL 11B-PO (BET-V133-01): CLUB NET-30 PO / INVOICE + 14-DAY PROVISIONAL CODE -->
+  <div id="synapzNet30PoModal" class="hidden fixed inset-0 z-[115] bg-slate-950/92 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="synapz-v12-entry-card rounded-3xl p-5 space-y-3 text-left max-w-lg w-full my-auto">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+        <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 border border-amber-400 text-[10px] font-black uppercase text-amber-300">🏛️ Club Treasurer Net-30 PO &amp; 14-Day Provisional Unlock</span>
+        <button id="btnCloseNet30PoModal" type="button" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-black">✕</button>
+      </div>
+      <div>
+        <h3 class="text-base font-black text-white">Generate Printable Net-30 Club PO / Invoice</h3>
+        <p id="net30SelectedSkuSummary" class="text-xs text-cyan-300 font-bold mt-0.5">10-Team Association — $850/yr (200 Skaters • $4.25/skater/yr)</p>
+      </div>
+      <div class="space-y-2">
+        <div>
+          <label for="inputNet30ClubName" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Club / Program Name</label>
+          <input id="inputNet30ClubName" type="text" placeholder="e.g., Minot Youth Hockey Association" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-amber-400/60 text-xs font-bold text-white" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div>
+            <label for="inputNet30TreasurerEmail" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Treasurer / Contact Email</label>
+            <input id="inputNet30TreasurerEmail" type="email" placeholder="treasurer@hockeyclub.org" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-amber-400/60 text-xs font-bold text-white" />
+          </div>
+          <div>
+            <label for="inputNet30PoNumber" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Club PO # (Optional)</label>
+            <input id="inputNet30PoNumber" type="text" placeholder="e.g., PO-FALL-104" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white uppercase" />
+          </div>
+        </div>
+      </div>
+      <div id="net30ProvisionalIssuedBox" class="hidden p-3 rounded-2xl bg-emerald-950/60 border border-emerald-400/80 space-y-1 text-xs"></div>
+      <div id="net30FeedbackMsg" class="hidden p-2 rounded-xl bg-rose-500/20 border border-rose-400/50 text-rose-200 text-xs font-bold"></div>
+      <button id="btnSubmitGenerateNet30Invoice" type="button" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 text-slate-950 text-xs font-black shadow-lg cursor-pointer">
+        📄 Issue 14-Day Provisional Code &amp; Open Printable Net-30 Invoice ▶
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL 11B-PWA (BET-V133-03): STEEL-ROOF ARENA INSTALLABLE OFFLINE PWA HELPER -->
+  <div id="synapzInstallPwaModal" class="hidden fixed inset-0 z-[122] bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-4">
+    <div class="synapz-v12-entry-card rounded-3xl p-5 space-y-3.5 text-left max-w-md w-full">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+        <span class="px-2.5 py-0.5 rounded-full bg-cyan-400/20 border border-cyan-400 text-[10px] font-black uppercase text-cyan-200">📡 Steel-Roof Arena 0-Bar Ready</span>
+        <button id="btnCloseInstallPwaModal" type="button" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-black">✕</button>
+      </div>
+      <div>
+        <h3 class="text-base font-black text-white">📲 Install Synapz Rink Offline App</h3>
+        <p class="text-xs text-slate-300 mt-1 leading-relaxed">Plays at 60fps in 0-bar steel-roof arenas and Airplane Mode. Homework completions save locally and auto-sync the moment your phone steps outside the rink!</p>
+      </div>
+      <div id="installPwaNativeBtnWrap" class="hidden">
+        <button id="btnConfirmNativePwaInstall" type="button" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 text-slate-950 text-xs font-black shadow-lg cursor-pointer">
+          📲 Install App to Home Screen Now ▶
+        </button>
+      </div>
+      <div id="installPwaIosGuideCard" class="p-3 rounded-2xl bg-slate-900 border border-cyan-400/50 space-y-2 text-xs text-slate-200">
+        <div class="font-black text-cyan-300 uppercase">🍎 iPhone / iPad Safari (2 Quick Taps):</div>
+        <div class="flex items-start gap-2"><span class="px-1.5 py-0.5 rounded bg-cyan-500/25 text-cyan-200 font-black">1</span><span>Tap the Safari <strong>Share</strong> icon (<strong>⬆️</strong> square with arrow) at the bottom/top bar.</span></div>
+        <div class="flex items-start gap-2"><span class="px-1.5 py-0.5 rounded bg-emerald-500/25 text-emerald-200 font-black">2</span><span>Scroll down and tap <strong>Add to Home Screen (➕)</strong> for full-screen 0-bar arena play.</span></div>
+      </div>
+      <div id="installPwaCacheStatusPill" class="p-2 rounded-xl bg-emerald-950/60 border border-emerald-400/50 text-[11px] font-black text-emerald-200 text-center">
+        ✅ Offline Shell, Rooms, Cutouts &amp; Homework Outbox Cached Ready
+      </div>
     </div>
   </div>
 
@@ -5383,13 +5472,98 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v13.2-global-strategic-suite';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v13.4-commercial-launch-ready';
 
     // =========================================================================
-    // SECTION 39 (v12.3) + SECTION 46 (v13.2): CENTRALIZED PRICING, CAMP COHORT & 3-FEDERATION ENGINE
-    // Dynamically drives every plan card, checkout label, camp cohort & federation division badge
+    // SECTION 39 (v12.3) + SECTION 46 (v13.2) + SECTION 47 (v13.4):
+    // DUAL-RAIL STRIPE ENGINE, STUDIO VOICE HOOK, 12-WEEK AUTOPILOT & CAMP ARCHIVAL
     // =========================================================================
+    const SYNAPZ_V134_PAID_SKUS = {
+      player_gameplay_499: {
+        sku: 'player_gameplay_499',
+        label: 'Gameplay Pass (One-Time)',
+        price: 4.99,
+        billing: 'one_time',
+        teams: 0,
+        skaters: 1,
+        stripePaymentLinkUrl: ''
+      },
+      player_full_monthly_799: {
+        sku: 'player_full_monthly_799',
+        label: 'Full Suite Monthly',
+        price: 7.99,
+        billing: 'monthly',
+        teams: 0,
+        skaters: 1,
+        stripePaymentLinkUrl: ''
+      },
+      player_full_annual_4999: {
+        sku: 'player_full_annual_4999',
+        label: 'Full Suite Annual',
+        price: 49.99,
+        billing: 'annual',
+        teams: 0,
+        skaters: 1,
+        stripePaymentLinkUrl: ''
+      },
+      coach_team_9999: {
+        sku: 'coach_team_9999',
+        label: 'Individual Coach Team (20 Skaters)',
+        price: 99.99,
+        billing: 'annual',
+        teams: 1,
+        skaters: 20,
+        stripePaymentLinkUrl: ''
+      },
+      camp_cohort_249: {
+        sku: 'camp_cohort_249',
+        label: 'Skills / 3v3 Camp Cohort (100 Clinic Skaters)',
+        price: 249,
+        billing: 'annual',
+        teams: 1,
+        skaters: 100,
+        supportsNet30Po: true,
+        stripePaymentLinkUrl: ''
+      },
+      assoc_5t_450: {
+        sku: 'assoc_5t_450',
+        label: '5-Team Association (100 Skaters)',
+        price: 450,
+        billing: 'annual',
+        teams: 5,
+        skaters: 100,
+        tierKey: 'assocSmall',
+        supportsNet30Po: true,
+        stripePaymentLinkUrl: ''
+      },
+      assoc_10t_850: {
+        sku: 'assoc_10t_850',
+        label: '10-Team Association (200 Skaters)',
+        price: 850,
+        billing: 'annual',
+        teams: 10,
+        skaters: 200,
+        tierKey: 'assocStandard',
+        supportsNet30Po: true,
+        stripePaymentLinkUrl: ''
+      },
+      assoc_20t_1599: {
+        sku: 'assoc_20t_1599',
+        label: '20-Team Association (400 Skaters)',
+        price: 1599,
+        billing: 'annual',
+        teams: 20,
+        skaters: 400,
+        tierKey: 'assocLarge',
+        supportsNet30Po: true,
+        stripePaymentLinkUrl: ''
+      }
+    };
+
     window.SYNAPZ_PRICING_CONFIG = {
+      paymentMode: 'pilot_sandbox',
+      skus: SYNAPZ_V134_PAID_SKUS,
+      ...SYNAPZ_V134_PAID_SKUS,
       playerGameplayOneTime: 4.99,
       playerFullSuiteMonthly: 7.99,
       playerFullSuiteAnnual: 49.99,
@@ -5400,11 +5574,113 @@
       campCohortAnnual: 249,
       campCohortIncludedSkaters: 100,
       campCohortIncludedAssistants: 2,
-      camp_cohort_100: { price: 249, skaters: 100, assistants: 2, codePrefix: 'CAMP-' },
-      assocSmall: { price: 450, teams: 5, skaters: 100 },
-      assocStandard: { price: 850, teams: 10, skaters: 200 },
-      assocLarge: { price: 1599, teams: 20, skaters: 400 }
+      camp_cohort_100: { price: 249, skaters: 100, assistants: 2, codePrefix: 'CAMP-', stripePaymentLinkUrl: '' },
+      assocSmall: { price: 450, teams: 5, skaters: 100, stripePaymentLinkUrl: '' },
+      assocStandard: { price: 850, teams: 10, skaters: 200, stripePaymentLinkUrl: '' },
+      assocLarge: { price: 1599, teams: 20, skaters: 400, stripePaymentLinkUrl: '' }
     };
+
+    // BET-V133-02 (Option B + Clean Studio Voice-Pack Hook — 0 KB Fake Audio Bloat!)
+    window.SYNAPZ_VOICE_PACK_MANIFEST = {
+      enabled: false,
+      basePath: 'assets/voices/',
+      clips: {}
+    };
+
+    function resolveStudioVoicePackClipUrl(characterId, cueKey) {
+      const m = window.SYNAPZ_VOICE_PACK_MANIFEST;
+      if (!m || m.enabled !== true || !m.clips || typeof m.clips !== 'object') return '';
+      const charClips = m.clips[characterId];
+      if (!charClips || typeof charClips !== 'object') return '';
+      const relOrUrl = charClips[cueKey] || charClips.default || '';
+      if (!relOrUrl || typeof relOrUrl !== 'string') return '';
+      if (/^https?:\/\//i.test(relOrUrl) || relOrUrl.startsWith('/')) return relOrUrl;
+      const base = String(m.basePath || 'assets/voices/').replace(/\/+$/, '');
+      return `${base}/${relOrUrl.replace(/^\/+/, '')}`;
+    }
+    window.resolveStudioVoicePackClipUrl = resolveStudioVoicePackClipUrl;
+
+    // BET-V133-04 (Option A): 12-Week Season Autopilot Curriculum Calendar across all 16 Buckets & 3 Division Brackets
+    function build12WeekBracketWeeks(bracketTag, tierLabel) {
+      const weekBlueprints = [
+        { week: 1, title: 'Week 1: Pre-Scan Habits & Vocal Bench Callouts', focusConcept: 'Breakouts', primaryBucket: 'scanning_deception_callouts', secondaryBuckets: ['breakout_d_to_d'], stationCardId: 'scanning_deception_callouts' },
+        { week: 2, title: 'Week 2: Protect the House & Box+1 Net-Side Sticks', focusConcept: 'D-Zone', primaryBucket: 'dz_protect_house_box1', secondaryBuckets: [], stationCardId: 'dz_protect_house_box1' },
+        { week: 3, title: 'Week 3: Corner Containment, Stick-on-Puck & Quick Bump', focusConcept: 'D-Zone', primaryBucket: 'dz_corner_containment_stick', secondaryBuckets: ['dz_protect_house_box1'], stationCardId: 'dz_corner_containment_stick' },
+        { week: 4, title: 'Week 4: D-to-D Hinge & Weak-Side Breakout Reverse', focusConcept: 'Breakouts', primaryBucket: 'breakout_d_to_d', secondaryBuckets: [], stationCardId: 'breakout_d_to_d' },
+        { week: 5, title: 'Week 5: Center Low-and-Slow Curl + Winger Hashmark Seal', focusConcept: 'Breakouts', primaryBucket: 'breakout_low_slow_center', secondaryBuckets: ['breakout_winger_wall_chip'], stationCardId: 'breakout_low_slow_center' },
+        { week: 6, title: 'Week 6: Winger Soft-Chip vs Pinch & D-to-D NZ Regroup', focusConcept: 'Breakouts', primaryBucket: 'breakout_winger_wall_chip', secondaryBuckets: ['nz_regroup_hinge'], stationCardId: 'nz_regroup_hinge' },
+        { week: 7, title: 'Week 7: Speed Zone Entries, Middle-Lane Drive & Onside Spacing', focusConcept: 'Rush', primaryBucket: 'nz_speed_entry_middle_drive', secondaryBuckets: ['nz_regroup_hinge'], stationCardId: 'nz_speed_entry_middle_drive' },
+        { week: 8, title: 'Week 8: 2-1-2 Forecheck F1/F2/F3 & 1-2-2 NZ Gap Angling', focusConcept: 'Forechecks', primaryBucket: 'forecheck_212_f1_f2_f3', secondaryBuckets: ['nz_angling_gap_control_122'], stationCardId: 'forecheck_212_f1_f2_f3' },
+        { week: 9, title: 'Week 9: O-Zone Attack Triangle & Off-Puck Quiet Ice', focusConcept: 'Rush', primaryBucket: 'oz_attack_triangle_spacing', secondaryBuckets: ['oz_cycle_scissors'], stationCardId: 'oz_attack_triangle_spacing' },
+        { week: 10, title: 'Week 10: Low Cycle Scissors, Royal Road Seam & Net-Front Tip', focusConcept: 'Power Plays', primaryBucket: 'oz_royal_road_net_front', secondaryBuckets: ['oz_cycle_scissors'], stationCardId: 'oz_royal_road_net_front' },
+        { week: 11, title: 'Week 11: Odd-Man Rush 2v1 / 3v2 Read Progression', focusConcept: 'Rush', primaryBucket: 'odd_man_rush_2v1_3v2', secondaryBuckets: ['nz_angling_gap_control_122'], stationCardId: 'odd_man_rush_2v1_3v2' },
+        { week: 12, title: 'Week 12: Playoff Prep — 5v4 Special Teams & Crease/Rebound Reads', focusConcept: 'Goalie Reads', primaryBucket: 'special_teams_5v4_umbrella', secondaryBuckets: ['goalie_crease_angles_traps'], stationCardId: 'special_teams_5v4_umbrella' }
+      ];
+      return weekBlueprints.map(w => ({
+        week: w.week,
+        bracket: bracketTag,
+        bracketLabel: tierLabel,
+        title: w.title,
+        focusConcept: w.focusConcept,
+        primaryBucket: w.primaryBucket,
+        bucketsCovered: [w.primaryBucket, ...w.secondaryBuckets],
+        lessonCount: 5,
+        progressiveDrillIds: [1, 2, 3, 4, 5].map(idx => `W${String(w.week).padStart(2, '0')}-${bracketTag}-${w.primaryBucket.toUpperCase()}-D${idx}`),
+        stationCardId: w.stationCardId,
+        coachNote: `${w.title} (${tierLabel} • 5 Progressive Plays + Paired Rink-Glass 3-Station Card)`
+      }));
+    }
+
+    const SEASON_12_WEEK_CURRICULUM_CALENDAR = {
+      '8U-10U': build12WeekBracketWeeks('8U-10U', '8U–10U / U7–U11 Foundational'),
+      '12U': build12WeekBracketWeeks('12U', '12U / U13 Intermediate'),
+      '14U-18U': build12WeekBracketWeeks('14U-18U', '14U–18U / U15–U20 Advanced')
+    };
+    // Alias federation keys cleanly so lookups by USA, Hockey Canada, or IIHF bracket string resolve directly
+    SEASON_12_WEEK_CURRICULUM_CALENDAR['U7-U11'] = SEASON_12_WEEK_CURRICULUM_CALENDAR['8U-10U'];
+    SEASON_12_WEEK_CURRICULUM_CALENDAR['U13'] = SEASON_12_WEEK_CURRICULUM_CALENDAR['12U'];
+    SEASON_12_WEEK_CURRICULUM_CALENDAR['U15-U20'] = SEASON_12_WEEK_CURRICULUM_CALENDAR['14U-18U'];
+    window.SEASON_12_WEEK_CURRICULUM_CALENDAR = SEASON_12_WEEK_CURRICULUM_CALENDAR;
+
+    function resolveSeasonBracketKey(rawDivision = '12U') {
+      const s = String(rawDivision || '12U').toUpperCase();
+      if (/\b(8U|10U|U7|U9|U10|U11)\b/.test(s) || (/U12/.test(s) && /IIHF/.test(s))) return '8U-10U';
+      if (/\b(14U|16U|18U|U15|U16|U18|U20|JV|VARSITY|JR)\b/.test(s)) return '14U-18U';
+      return '12U';
+    }
+    window.resolveSeasonBracketKey = resolveSeasonBracketKey;
+
+    function resolveActiveSeasonAutopilotPlan(teamDoc) {
+      if (!teamDoc || !teamDoc.seasonAutopilot || !teamDoc.seasonAutopilot.enabled) return null;
+      const ap = teamDoc.seasonAutopilot;
+      const bracketKey = ap.bracketKey || resolveSeasonBracketKey(teamDoc.ageDivision || '12U');
+      const weeks = SEASON_12_WEEK_CURRICULUM_CALENDAR[bracketKey] || SEASON_12_WEEK_CURRICULUM_CALENDAR['12U'];
+      const startMs = Number(ap.startTimestamp) || Date.parse(ap.activatedAt || '') || Date.now();
+      const elapsedWeeks = Math.floor(Math.max(0, Date.now() - startMs) / (7 * 86400000));
+      const computedWeek = Math.min(12, Math.max(1, elapsedWeeks + 1));
+      const activeWeekNum = Number(ap.overrideWeek) >= 1 && Number(ap.overrideWeek) <= 12
+        ? Number(ap.overrideWeek)
+        : computedWeek;
+      const wkEntry = weeks.find(w => w.week === activeWeekNum) || weeks[0];
+      return {
+        planId: `AUTOPILOT-${teamDoc.teamCode || 'TEAM'}-W${String(wkEntry.week).padStart(2, '0')}`,
+        teamCode: teamDoc.teamCode || 'TEAM',
+        isSeasonAutopilot: true,
+        autopilotWeek: wkEntry.week,
+        bracketKey,
+        focusConcept: wkEntry.focusConcept,
+        primaryBucket: wkEntry.primaryBucket,
+        bucketsCovered: wkEntry.bucketsCovered,
+        progressiveDrillIds: wkEntry.progressiveDrillIds,
+        stationCardId: wkEntry.stationCardId,
+        lessonCount: 5,
+        coachNote: `🗓️ Season Autopilot • ${wkEntry.title}`,
+        assignedBy: `${teamDoc.coachName || 'Head Coach'} (12-Wk Autopilot)`,
+        assignedRole: 'coach',
+        createdAt: ap.activatedAt || new Date().toISOString()
+      };
+    }
+    window.resolveActiveSeasonAutopilotPlan = resolveActiveSeasonAutopilotPlan;
 
     function detectDefaultFederationMode(localeOverride = '') {
       const rawLoc = String(localeOverride || (typeof navigator !== 'undefined' && (navigator.language || (navigator.languages && navigator.languages[0]))) || 'en-US').trim().toLowerCase();
@@ -5481,25 +5757,65 @@
     }
     window.formatFederationDivisionBadge = formatFederationDivisionBadge;
 
+    function normalizeCampDurationWeeks(val, fallback = 4) {
+      const n = Number(val);
+      if ([4, 6, 8, 12].includes(n)) return n;
+      return fallback;
+    }
+    window.normalizeCampDurationWeeks = normalizeCampDurationWeeks;
+
     function installPlayerTeamCampSchema(prof) {
       if (!prof || typeof prof !== 'object') return prof;
+      if (!prof.campPassMeta || typeof prof.campPassMeta !== 'object') prof.campPassMeta = {};
+      if (!Array.isArray(prof.archivedCampPasses)) prof.archivedCampPasses = [];
+
       const rawExistingTeam = Object.prototype.hasOwnProperty.call(prof, 'primaryTeamCode')
         ? String(prof.primaryTeamCode || '').trim().toUpperCase()
         : String(prof.teamCode || '').trim().toUpperCase();
       const rawCampArr = Array.isArray(prof.campPassCodes) ? prof.campPassCodes : [];
+      const rawEntries = Array.isArray(prof.campPassEntries) ? prof.campPassEntries : [];
       const cleanCamps = [];
-      const pushCamp = (c) => {
-        const up = String(c || '').trim().toUpperCase();
-        if (up && !cleanCamps.includes(up) && cleanCamps.length < 5) cleanCamps.push(up);
+      const nowMs = Date.now();
+
+      const registerCampItem = (item) => {
+        const isObj = item && typeof item === 'object';
+        const up = String(isObj ? (item.code || item.teamCode || '') : (item || '')).trim().toUpperCase();
+        if (!up) return;
+        const existingMeta = prof.campPassMeta[up] || {};
+        const durWeeks = normalizeCampDurationWeeks(isObj && item.durationWeeks != null ? item.durationWeeks : existingMeta.durationWeeks, 4);
+        const createdMs = Number(isObj && item.createdAt != null ? (typeof item.createdAt === 'number' ? item.createdAt : Date.parse(item.createdAt)) : (typeof existingMeta.createdAt === 'number' ? existingMeta.createdAt : Date.parse(existingMeta.createdAt || ''))) || nowMs;
+        const expiresMs = Number(isObj && item.expiresAt != null ? (typeof item.expiresAt === 'number' ? item.expiresAt : Date.parse(item.expiresAt)) : (typeof existingMeta.expiresAt === 'number' ? existingMeta.expiresAt : Date.parse(existingMeta.expiresAt || ''))) || (createdMs + durWeeks * 7 * 86400000);
+        const isArchived = Boolean((isObj && item.archived) || existingMeta.archived || nowMs > expiresMs);
+        const metaRec = {
+          code: up,
+          teamName: (isObj && item.teamName) || existingMeta.teamName || (prof.campPassNames && prof.campPassNames[up]) || up,
+          durationWeeks: durWeeks,
+          createdAt: createdMs,
+          expiresAt: expiresMs,
+          archived: isArchived
+        };
+        prof.campPassMeta[up] = metaRec;
+        if (isArchived) {
+          if (!prof.archivedCampPasses.some(a => a && a.code === up)) {
+            prof.archivedCampPasses.unshift({ ...metaRec, archived: true, archivedAt: existingMeta.archivedAt || nowMs });
+          }
+        } else if (!cleanCamps.includes(up) && cleanCamps.length < 5) {
+          cleanCamps.push(up);
+        }
       };
-      rawCampArr.forEach(pushCamp);
+
+      rawEntries.forEach(registerCampItem);
+      rawCampArr.forEach(registerCampItem);
+
       if (rawExistingTeam.startsWith('CAMP-')) {
-        pushCamp(rawExistingTeam);
+        registerCampItem(rawExistingTeam);
         prof.primaryTeamCode = '';
       } else {
         prof.primaryTeamCode = rawExistingTeam;
       }
       prof.campPassCodes = cleanCamps;
+      prof.campPassEntries = cleanCamps.map(c => prof.campPassMeta[c]).filter(Boolean);
+
       try {
         Object.defineProperty(prof, 'teamCode', {
           get() {
@@ -5525,6 +5841,70 @@
       return prof;
     }
     window.installPlayerTeamCampSchema = installPlayerTeamCampSchema;
+
+    function evaluateAndArchiveExpiredCampPasses(prof, teamDocsByCode = null) {
+      if (!prof || typeof prof !== 'object') return { archivedNow: [], activeCodes: [], archivedList: [] };
+      const prevArchivedSet = new Set(
+        Array.isArray(prof.archivedCampPasses)
+          ? prof.archivedCampPasses.map(a => a && a.code).filter(Boolean)
+          : []
+      );
+      installPlayerTeamCampSchema(prof);
+      const nowMs = Date.now();
+      const archivedNow = [];
+      for (const a of (prof.archivedCampPasses || [])) {
+        if (a && a.code && !prevArchivedSet.has(a.code) && !archivedNow.includes(a.code)) {
+          archivedNow.push(a.code);
+        }
+      }
+      const stillActive = [];
+
+      for (const code of (Array.isArray(prof.campPassCodes) ? prof.campPassCodes : [])) {
+        const meta = (prof.campPassMeta && prof.campPassMeta[code]) || {};
+        const tDoc = (teamDocsByCode && teamDocsByCode[code]) || null;
+        const durWeeks = normalizeCampDurationWeeks((tDoc && tDoc.durationWeeks) || meta.durationWeeks, 4);
+        const createdMs = Number(
+          (tDoc && tDoc.createdAtMs) ||
+          (tDoc && tDoc.createdAt ? Date.parse(tDoc.createdAt) : 0) ||
+          meta.createdAt ||
+          nowMs
+        );
+        const cohortExpMs = tDoc && tDoc.expiresAt != null
+          ? (typeof tDoc.expiresAt === 'number' ? tDoc.expiresAt : Date.parse(tDoc.expiresAt))
+          : 0;
+        const metaExpMs = meta.expiresAt != null
+          ? (typeof meta.expiresAt === 'number' ? meta.expiresAt : Date.parse(meta.expiresAt))
+          : 0;
+        const effectiveExpiresAt = cohortExpMs || metaExpMs || (createdMs + durWeeks * 7 * 86400000);
+        const expired = Boolean((tDoc && tDoc.archived) || meta.archived || (effectiveExpiresAt > 0 && nowMs > effectiveExpiresAt));
+        const updatedMeta = {
+          code,
+          teamName: (tDoc && tDoc.teamName) || meta.teamName || (prof.campPassNames && prof.campPassNames[code]) || code,
+          durationWeeks: durWeeks,
+          createdAt: createdMs,
+          expiresAt: effectiveExpiresAt,
+          archived: expired
+        };
+        prof.campPassMeta[code] = updatedMeta;
+        if (expired) {
+          archivedNow.push(code);
+          if (!prof.archivedCampPasses.some(a => a && a.code === code)) {
+            prof.archivedCampPasses.unshift({ ...updatedMeta, archived: true, archivedAt: nowMs });
+          }
+        } else {
+          stillActive.push(code);
+        }
+      }
+
+      prof.campPassCodes = stillActive;
+      prof.campPassEntries = stillActive.map(c => prof.campPassMeta[c]).filter(Boolean);
+      return {
+        archivedNow,
+        activeCodes: prof.campPassCodes,
+        archivedList: prof.archivedCampPasses
+      };
+    }
+    window.evaluateAndArchiveExpiredCampPasses = evaluateAndArchiveExpiredCampPasses;
 
     function formatSynapzPriceNum(val) {
       const n = Number(val);
@@ -5676,53 +6056,192 @@
     }
     window.toNaturalHockeyTalk = toNaturalHockeyTalk;
 
-    function selectBestNaturalBrowserVoice(characterId = 'coach-bob', gender = '') {
-      if (!('speechSynthesis' in window)) return null;
-      const voices = window.speechSynthesis.getVoices() || [];
-      if (!voices.length) return null;
-      const enVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+    // BET-V133-02: Deterministic Natural OS Voice Ranker (Apple Enhanced / Siri Natural > Google Natural > Microsoft Natural > Standard > Robotic Penalty)
+    function rankNaturalOsBrowserVoices(voicesInput = null, characterId = 'coach-bob', gender = '') {
+      const voices = Array.isArray(voicesInput)
+        ? voicesInput
+        : (('speechSynthesis' in window && window.speechSynthesis.getVoices()) || []);
+      if (!voices.length) return [];
+      const enVoices = voices.filter(v => v && v.lang && v.lang.toLowerCase().startsWith('en'));
       const pool = enVoices.length ? enVoices : voices;
       const wantFemale = String(gender || '').toLowerCase() === 'female' ||
         ['agent-maya', 'agent-chloe', 'agent-sofia', 'agent-priya', 'agent-claire'].includes(characterId);
+      const activeProf = typeof getActiveProfile === 'function' ? getActiveProfile() : null;
+      const preferEnhancedBoost = activeProf && activeProf.voiceModePref === 'enhanced_voice' ? 50 : 0;
 
-      // Explicitly filter out mechanical index-0 offline Desktop voices whenever any better voice exists
-      const nonRoboticPool = pool.filter(v => {
-        const n = (v.name || '').toLowerCase();
-        return !n.includes('david desktop') && !n.includes('zira desktop') && !n.includes('mark desktop') && !n.includes('espeak');
-      });
-      const candidatePool = nonRoboticPool.length > 0 ? nonRoboticPool : pool;
+      return pool
+        .map((v, idx) => {
+          const n = String(v.name || '').toLowerCase();
+          const uri = String(v.voiceURI || '').toLowerCase();
+          let score = 0;
 
-      let best = candidatePool[0];
-      let bestScore = -9999;
-
-      for (const v of candidatePool) {
-        const n = (v.name || '').toLowerCase();
-        let score = 0;
-        if (n.includes('natural') || n.includes('online') || n.includes('neural')) score += 120;
-        if (n.includes('google')) score += 95;
-        if (n.includes('enhanced') || n.includes('premium')) score += 80;
-        if (!v.localService) score += 45;
-
-        if (wantFemale) {
-          if (n.includes('aria') || n.includes('jenny') || n.includes('sonia') || n.includes('clara') || n.includes('samantha') || n.includes('ava') || n.includes('female') || n.includes('google us english')) {
-            score += 40;
+          // Tier 1: Apple Enhanced / Siri Natural
+          if (n.includes('siri') || uri.includes('siri') || uri.includes('premium') || uri.includes('enhanced') || n.includes('enhanced') || n.includes('premium')) {
+            score += 240 + preferEnhancedBoost;
+          } else if (/\b(ava|allison|samantha|alex|daniel|evan|nathan|nicky|tom)\b/.test(n) && (uri.includes('com.apple') || v.localService)) {
+            score += 185 + preferEnhancedBoost;
           }
-        } else {
-          if (n.includes('guy') || n.includes('christopher') || n.includes('ryan') || n.includes('liam') || n.includes('eric') || n.includes('roger') || n.includes('alex') || n.includes('daniel') || n.includes('male')) {
-            score += 40;
+          // Tier 2: Google Natural
+          if (n.includes('google') && (n.includes('us english') || n.includes('uk english') || n.includes('natural'))) {
+            score += 210;
+          } else if (n.includes('google')) {
+            score += 165;
           }
-        }
+          // Tier 3: Microsoft Natural / Neural Online
+          if ((n.includes('microsoft') || uri.includes('microsoft')) && (n.includes('natural') || n.includes('online') || n.includes('neural'))) {
+            score += 195;
+          } else if (n.includes('natural') || n.includes('neural')) {
+            score += 155;
+          }
 
-        if (n.includes('david desktop') || n.includes('zira desktop')) score -= 500;
+          if (!v.localService) score += 35;
+          if (String(v.lang || '').toLowerCase() === 'en-us' || String(v.lang || '').toLowerCase() === 'en-ca') score += 20;
 
-        if (score > bestScore) {
-          bestScore = score;
-          best = v;
-        }
-      }
-      return best;
+          if (wantFemale) {
+            if (/\b(ava|allison|samantha|aria|jenny|sonia|clara|nicky|victoria|karen|moira|female|google us english)\b/.test(n)) score += 45;
+          } else {
+            if (/\b(alex|daniel|evan|nathan|tom|guy|christopher|ryan|liam|eric|roger|male|google uk english male)\b/.test(n)) score += 45;
+          }
+
+          // Heavy penalty for legacy robotic offline voices
+          if (n.includes('david desktop') || n.includes('zira desktop') || n.includes('mark desktop') || n.includes('espeak') || n.includes('compact')) {
+            score -= 600;
+          }
+
+          return { voice: v, score, idx, name: v.name || '' };
+        })
+        .sort((a, b) => (b.score !== a.score ? b.score - a.score : (a.name.localeCompare(b.name) || (a.idx - b.idx))));
+    }
+    window.rankNaturalOsBrowserVoices = rankNaturalOsBrowserVoices;
+
+    function selectBestNaturalBrowserVoice(characterId = 'coach-bob', gender = '') {
+      if (!('speechSynthesis' in window)) return null;
+      const ranked = rankNaturalOsBrowserVoices(null, characterId, gender);
+      return ranked.length ? ranked[0].voice : null;
     }
     window.selectBestNaturalBrowserVoice = selectBestNaturalBrowserVoice;
+
+    // BET-V133-02: Non-Blocking Mute-Safe Broadcast Caption Ribbon + 280ms iOS Silent-Switch Watchdog
+    const SynapzMuteSafeCaptions = {
+      paceTimer: null,
+      hideTimer: null,
+      watchdogTimer: null,
+      words: [],
+      wordIdx: 0,
+      mutedReason: '',
+      isMutedMode(profOverride = null) {
+        const prof = profOverride || (typeof getActiveProfile === 'function' ? getActiveProfile() : null);
+        return Boolean(
+          SoundFX.muted ||
+          !SoundFX.voiceEnabled ||
+          (prof && prof.voiceModePref === 'captions_only')
+        );
+      },
+      clearTimers() {
+        if (this.paceTimer) { clearInterval(this.paceTimer); this.paceTimer = null; }
+        if (this.hideTimer) { clearTimeout(this.hideTimer); this.hideTimer = null; }
+        if (this.watchdogTimer) { clearTimeout(this.watchdogTimer); this.watchdogTimer = null; }
+      },
+      hide() {
+        this.clearTimers();
+        document.getElementById('synapzMuteSafeCaptionRibbon')?.classList.add('hidden');
+      },
+      renderWordHighlight(activeWordIdx) {
+        const box = document.getElementById('synapzMuteSafeCaptionWords');
+        if (!box) return;
+        const wList = this.words || [];
+        box.innerHTML = wList.map((w, i) => {
+          const safe = String(w).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          if (i < activeWordIdx) {
+            return `<span class="text-white">${safe}</span>`;
+          }
+          if (i === activeWordIdx) {
+            return `<span class="px-1 rounded bg-cyan-400/30 text-cyan-200 underline decoration-cyan-300">${safe}</span>`;
+          }
+          return `<span class="text-slate-300/90">${safe}</span>`;
+        }).join(' ');
+      },
+      startCaptionSession(speakerLabel, cleanSentence, { forceMutedBadge = false, autoPaceImmediately = false } = {}) {
+        this.clearTimers();
+        if (typeof isEntryOrAuthScreenActive === 'function' && isEntryOrAuthScreenActive()) {
+          this.hide();
+          return;
+        }
+        const ribbon = document.getElementById('synapzMuteSafeCaptionRibbon');
+        const speakerEl = document.getElementById('synapzCaptionSpeakerBadge');
+        const pillEl = document.getElementById('synapzMutedCaptionsPill');
+        if (!ribbon || !cleanSentence) return;
+
+        this.words = String(cleanSentence).trim().split(/\s+/).filter(Boolean);
+        this.wordIdx = 0;
+        if (speakerEl) speakerEl.textContent = speakerLabel || '🎙️ Coach Bob';
+        const showMutedPill = Boolean(forceMutedBadge || this.isMutedMode());
+        if (pillEl) pillEl.classList.toggle('hidden', !showMutedPill);
+        ribbon.style.setProperty('pointer-events', 'none', 'important');
+        ribbon.classList.remove('hidden');
+        this.renderWordHighlight(0);
+
+        if (autoPaceImmediately || showMutedPill) {
+          this.startReadingPace(showMutedPill);
+        }
+      },
+      startReadingPace(showMutedPill = true) {
+        if (this.paceTimer) clearInterval(this.paceTimer);
+        const pillEl = document.getElementById('synapzMutedCaptionsPill');
+        if (showMutedPill && pillEl) pillEl.classList.remove('hidden');
+        const total = Math.max(1, this.words.length);
+        this.paceTimer = setInterval(() => {
+          this.wordIdx += 1;
+          if (this.wordIdx >= total) {
+            this.renderWordHighlight(total);
+            clearInterval(this.paceTimer);
+            this.paceTimer = null;
+            this.hideTimer = setTimeout(() => {
+              document.getElementById('synapzMuteSafeCaptionRibbon')?.classList.add('hidden');
+            }, 2200);
+          } else {
+            this.renderWordHighlight(this.wordIdx);
+          }
+        }, 215);
+      },
+      armIosSilentSwitchWatchdog(onWatchdogTripped = null) {
+        if (this.watchdogTimer) clearTimeout(this.watchdogTimer);
+        let speechStarted = false;
+        const markSpeechAlive = () => {
+          speechStarted = true;
+          if (this.watchdogTimer) {
+            clearTimeout(this.watchdogTimer);
+            this.watchdogTimer = null;
+          }
+        };
+        this.watchdogTimer = setTimeout(() => {
+          this.watchdogTimer = null;
+          if (!speechStarted) {
+            this.mutedReason = 'ios_silent_switch_or_stalled_tts_280ms';
+            this.startReadingPace(true);
+            if (typeof onWatchdogTripped === 'function') onWatchdogTripped();
+          }
+        }, 280);
+        return { markSpeechAlive };
+      },
+      advanceBoundaryWord(explicitIdx = null) {
+        if (typeof explicitIdx === 'number') {
+          this.wordIdx = Math.max(0, explicitIdx);
+        } else {
+          this.wordIdx = Math.min(this.words.length, this.wordIdx + 1);
+        }
+        this.renderWordHighlight(this.wordIdx);
+      },
+      finishSpeechCaption() {
+        if (this.paceTimer) return; // Let reading-pace finish naturally if watchdog/mute triggered
+        this.renderWordHighlight(this.words.length);
+        if (this.hideTimer) clearTimeout(this.hideTimer);
+        this.hideTimer = setTimeout(() => {
+          document.getElementById('synapzMuteSafeCaptionRibbon')?.classList.add('hidden');
+        }, 1600);
+      }
+    };
+    window.SynapzMuteSafeCaptions = SynapzMuteSafeCaptions;
 
     const SoundFX = {
       ctx: null,
@@ -5820,6 +6339,8 @@
       }
     };
 
+    window.SoundFX = SoundFX;
+
     if ('speechSynthesis' in window) {
       window.speechSynthesis.onvoiceschanged = () => {
         SoundFX.bestVoice = SoundFX.pickNaturalVoice();
@@ -5864,6 +6385,7 @@
           mouth.classList.remove('coach-mouth-talking');
           wave.classList.add('hidden');
           if (cornerDot) cornerDot.classList.add('hidden');
+          SynapzMuteSafeCaptions.finishSpeechCaption();
           if (typeof onComplete === 'function') {
             onComplete();
           }
@@ -5896,8 +6418,14 @@
         const words = (cleanText || '').trim().split(/\s+/).length;
         const estimatedMs = Math.max(5400, Math.min(12000, words * 330));
         const minExplainMs = 4800;
+        const mutedCaptionsOnly = SynapzMuteSafeCaptions.isMutedMode();
 
-        if (SoundFX.muted || !SoundFX.voiceEnabled) {
+        SynapzMuteSafeCaptions.startCaptionSession('🎙️ Coach Bob', cleanText, {
+          forceMutedBadge: mutedCaptionsOnly,
+          autoPaceImmediately: mutedCaptionsOnly
+        });
+
+        if (mutedCaptionsOnly) {
           if (onComplete) {
             this.speechDoneTimeout = setTimeout(finishCallback, minExplainMs);
           }
@@ -5917,6 +6445,7 @@
 
         const runBrowserNaturalTts = () => {
           if (!('speechSynthesis' in window)) {
+            SynapzMuteSafeCaptions.startReadingPace(true);
             handleSpeechEndOrError();
             return;
           }
@@ -5927,20 +6456,29 @@
             if (SoundFX.bestVoice) utter.voice = SoundFX.bestVoice;
             utter.rate = 0.99;
             utter.pitch = 0.95;
+            const wd = SynapzMuteSafeCaptions.armIosSilentSwitchWatchdog();
+            utter.onstart = () => wd.markSpeechAlive();
             utter.onboundary = (ev) => {
-              if (ev && ev.name === 'word' && window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
-                window.SynapzCharacterSpeechEngine._activeAdvanceWordFn();
+              wd.markSpeechAlive();
+              if (ev && ev.name === 'word') {
+                SynapzMuteSafeCaptions.advanceBoundaryWord();
+                if (window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
+                  window.SynapzCharacterSpeechEngine._activeAdvanceWordFn();
+                }
               }
             };
             utter.onend = handleSpeechEndOrError;
-            utter.onerror = handleSpeechEndOrError;
+            utter.onerror = () => {
+              SynapzMuteSafeCaptions.startReadingPace(true);
+              handleSpeechEndOrError();
+            };
             window.speechSynthesis.speak(utter);
           } catch (e) {
+            SynapzMuteSafeCaptions.startReadingPace(true);
             handleSpeechEndOrError();
           }
         };
 
-        // Determine matching neural .mp3 clip in assets/audio/voices/coach-bob/
         let bobClipKey = 'intro_default';
         const lowerStatus = String(statusTitle || '').toLowerCase();
         const lowerTxt = cleanText.toLowerCase();
@@ -5958,43 +6496,41 @@
           bobClipKey = 'ozone_tip';
         }
 
-        const bobMp3Url = `assets/audio/voices/coach-bob/${bobClipKey}.mp3`;
-        try {
-          if (window._activeCharacterAudio) {
-            try { window._activeCharacterAudio.pause(); } catch (_) {}
-          }
-          const audio = new Audio(bobMp3Url);
-          window._activeCharacterAudio = audio;
-          window._lastPlayedCharacterVoice = {
-            characterId: 'coach-bob',
-            characterName: 'Coach Bob',
-            clipKey: bobClipKey,
-            mp3Url: bobMp3Url,
-            text: cleanText,
-            timestamp: Date.now()
-          };
-          audio.ontimeupdate = () => {
-            if (audio.duration && audio.duration > 0 && window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
-              const wCount = (window.SynapzCharacterSpeechEngine.state.words || []).length || 1;
-              const targetWordIdx = Math.min(wCount, Math.max(1, Math.ceil((audio.currentTime / audio.duration) * wCount)));
-              if (targetWordIdx > window.SynapzCharacterSpeechEngine.state.currentWordIndex) {
-                window.SynapzCharacterSpeechEngine._activeAdvanceWordFn(targetWordIdx);
+        const studioClipUrl = resolveStudioVoicePackClipUrl('coach-bob', bobClipKey);
+        window._lastPlayedCharacterVoice = {
+          characterId: 'coach-bob',
+          characterName: 'Coach Bob',
+          clipKey: bobClipKey,
+          mp3Url: studioClipUrl || '',
+          voiceMode: studioClipUrl ? 'studio_pack' : 'natural_os_voice',
+          text: cleanText,
+          timestamp: Date.now()
+        };
+
+        if (studioClipUrl) {
+          try {
+            if (window._activeCharacterAudio) {
+              try { window._activeCharacterAudio.pause(); } catch (_) {}
+            }
+            const audio = new Audio(studioClipUrl);
+            window._activeCharacterAudio = audio;
+            audio.ontimeupdate = () => {
+              if (audio.duration && audio.duration > 0) {
+                const wCount = Math.max(1, SynapzMuteSafeCaptions.words.length);
+                const targetWordIdx = Math.min(wCount, Math.max(1, Math.ceil((audio.currentTime / audio.duration) * wCount)));
+                SynapzMuteSafeCaptions.advanceBoundaryWord(targetWordIdx);
               }
+            };
+            audio.onended = () => handleSpeechEndOrError();
+            audio.onerror = () => runBrowserNaturalTts();
+            const playPromise = audio.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+              playPromise.catch(() => runBrowserNaturalTts());
             }
-          };
-          audio.onended = () => {
-            if (window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
-              const wCount = (window.SynapzCharacterSpeechEngine.state.words || []).length || 1;
-              window.SynapzCharacterSpeechEngine._activeAdvanceWordFn(wCount + 1);
-            }
-            handleSpeechEndOrError();
-          };
-          audio.onerror = () => runBrowserNaturalTts();
-          const playPromise = audio.play();
-          if (playPromise && typeof playPromise.catch === 'function') {
-            playPromise.catch(() => runBrowserNaturalTts());
+          } catch (_) {
+            runBrowserNaturalTts();
           }
-        } catch (err) {
+        } else {
           runBrowserNaturalTts();
         }
 
@@ -6003,6 +6539,7 @@
         }
       }
     };
+    window.CoachVoice = CoachVoice;
 
     // =========================================================================
     // ALL 32 NHL TEAM CITIES ON THE GEOGRAPHICALLY ACCURATE USA & CANADA MAP
@@ -16615,7 +17152,15 @@
           const struggles = Array.isArray(state.seriesStruggleConcepts) && state.seriesStruggleConcepts.length > 0
             ? state.seriesStruggleConcepts
             : (pct < 85 ? [finishedPlan.focusConcept || 'Breakouts'] : []);
-          window.completeCoachInboxPlan(finishedPlan.planId, pct, struggles).catch(() => {});
+          const completedDrillIds = Array.isArray(finishedPlan.progressiveDrillIds) && finishedPlan.progressiveDrillIds.length
+            ? finishedPlan.progressiveDrillIds
+            : (state.seriesResults || []).map((r, i) => (r && r.scenarioId) || `DRILL-${i + 1}`);
+          window.completeCoachInboxPlan(finishedPlan.planId, pct, struggles, {
+            alreadyAwardedLocalIq: true,
+            code: finishedPlan.teamCode,
+            iqEarned: Math.max(10, Math.round(pct * 0.25)),
+            completedDrillIds
+          }).catch(() => {});
         }
         const passThresholdPts = Math.round(maxAvailable * 0.70); // v12.5 Regulation City Unlock: 70% (385/550 Pts)
 
@@ -21311,6 +21856,10 @@
           note: note || recordKey,
           details: detailsObj
         };
+        if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+          this._lastRemoteSyncOk = false;
+          return detailsObj;
+        }
         try {
           const res = await fetch(`${SYNAPZ_PORTAL_SB_URL}/rest/v1/pucksense_agent_inbox?on_conflict=id`, {
             method: 'POST',
@@ -21323,14 +21872,19 @@
             body: JSON.stringify(payload)
           });
           if (res.ok) {
+            this._lastRemoteSyncOk = true;
             const rows = await res.json();
             return (rows && rows[0] && rows[0].details) || detailsObj;
           }
-        } catch (_) {}
+          this._lastRemoteSyncOk = false;
+        } catch (_) {
+          this._lastRemoteSyncOk = false;
+        }
         return detailsObj;
       },
 
       async fetchInboxRecord(recordKey) {
+        if (typeof navigator !== 'undefined' && navigator.onLine === false) return null;
         const uuid = synapzPortalKeyToUuid(recordKey);
         try {
           const res = await fetch(`${SYNAPZ_PORTAL_SB_URL}/rest/v1/pucksense_agent_inbox?id=eq.${encodeURIComponent(uuid)}&select=id,scenario_id,details`, {
@@ -21828,13 +22382,91 @@
       return p;
     }
 
+    // =========================================================================
+    // BET-V133-01 (Option A): Dual-Rail Stripe Engine + Permanent Sandbox Bypass
+    // + Printable Net-30 Club PO / Invoice + 14-Day Provisional Activation Code
+    // =========================================================================
+    const SYNAPZ_PENDING_STRIPE_STORAGE_KEY = 'synapz_pending_stripe_checkout_v1';
+
+    function resolveCheckoutSkuKey(config = {}) {
+      if (config.sku && window.SYNAPZ_PRICING_CONFIG?.skus?.[config.sku]) return config.sku;
+      const m = String(config.mode || '');
+      const pt = String(config.planType || '');
+      const tk = String(config.tierKey || '');
+      if (m === 'player_signup') {
+        if (pt === 'full_suite_monthly_799') return 'player_full_monthly_799';
+        if (pt === 'full_suite_annual_4999') return 'player_full_annual_4999';
+        return 'player_gameplay_499';
+      }
+      if (m === 'upgrade_full_suite_monthly_799') return 'player_full_monthly_799';
+      if (m === 'upgrade_full_suite_annual_4999' || m === 'upgrade_annual_4999') return 'player_full_annual_4999';
+      if (m === 'coach_individual_9999' || m === 'coach_standalone_signup') return 'coach_team_9999';
+      if (m === 'camp_cohort_100') return 'camp_cohort_249';
+      if (m === 'assoc_director_signup' || m === 'assoc_master_signup') {
+        if (tk === 'assocSmall') return 'assoc_5t_450';
+        if (tk === 'assocLarge') return 'assoc_20t_1599';
+        return 'assoc_10t_850';
+      }
+      return 'player_gameplay_499';
+    }
+    window.resolveCheckoutSkuKey = resolveCheckoutSkuKey;
+
+    function isSynapzPilotSandboxForced() {
+      if (window.__SYNAPZ_TEST_MODE__ === true) return true;
+      try {
+        const params = new URLSearchParams(window.location.search || '');
+        if (params.get('pilot_sandbox') === '1' || params.get('pilot_sandbox') === 'true') return true;
+      } catch (_) {}
+      const pCfg = window.SYNAPZ_PRICING_CONFIG || {};
+      return String(pCfg.paymentMode || 'pilot_sandbox') !== 'live_stripe';
+    }
+    window.isSynapzPilotSandboxForced = isSynapzPilotSandboxForced;
+
+    function getLiveStripeUrlForSku(skuKey) {
+      const pCfg = window.SYNAPZ_PRICING_CONFIG || {};
+      const skuEntry = (pCfg.skus && pCfg.skus[skuKey]) || pCfg[skuKey] || null;
+      const rawUrl = String((skuEntry && skuEntry.stripePaymentLinkUrl) || '').trim();
+      if (!isSynapzPilotSandboxForced() && rawUrl.startsWith('https://buy.stripe.com/')) {
+        return rawUrl;
+      }
+      return '';
+    }
+    window.getLiveStripeUrlForSku = getLiveStripeUrlForSku;
+
     function openPilotSandboxCheckout(config) {
       SoundFX.playTap();
+      const skuKey = resolveCheckoutSkuKey(config);
+      config.sku = skuKey;
       pendingPilotCheckoutConfig = config;
+      const liveStripeUrl = getLiveStripeUrlForSku(skuKey);
+
       const summaryEl = document.getElementById('pilotCheckoutPlanSummary');
       if (summaryEl) {
         summaryEl.textContent = `Selected Plan: ${config.planLabel}`;
       }
+      const badgeEl = document.getElementById('pilotCheckoutModeBadge');
+      const titleEl = document.getElementById('pilotCheckoutTitleText');
+      const helperEl = document.getElementById('pilotCheckoutHelperCopy');
+      const confirmBtn = document.getElementById('btnConfirmPilotSandboxCheckout');
+      const net30SwitchBtn = document.getElementById('btnCheckoutSwitchToNet30Po');
+
+      if (liveStripeUrl) {
+        if (badgeEl) badgeEl.textContent = '💳 Secure Stripe Checkout (Apple Pay • Google Pay • Card)';
+        if (titleEl) titleEl.textContent = 'Continue to Stripe Express Checkout';
+        if (helperEl) helperEl.textContent = 'Redirects securely to SYNAPZ HOCKEY Stripe Checkout with Apple Pay, Google Pay & Card support, then unlocks your account automatically upon return.';
+        if (confirmBtn) confirmBtn.textContent = 'Continue to Secure Checkout ▶';
+      } else {
+        if (badgeEl) badgeEl.textContent = '🧪 Pilot Early-Access ($0.00 Sandbox)';
+        if (titleEl) titleEl.textContent = 'Pilot Early-Access Activation ($0.00 Sandbox)';
+        if (helperEl) helperEl.textContent = 'Pilot Sandbox mode active — no credit card charged during early-access testing. Tap below to activate immediately in Supabase + local storage.';
+        if (confirmBtn) confirmBtn.textContent = 'Complete $0.00 Pilot Test Unlock ▶';
+      }
+
+      const supportsPo = ['camp_cohort_249', 'assoc_5t_450', 'assoc_10t_850', 'assoc_20t_1599'].includes(skuKey);
+      if (net30SwitchBtn) {
+        net30SwitchBtn.classList.toggle('hidden', !supportsPo);
+      }
+
       const modal = document.getElementById('pilotSandboxCheckoutModal');
       if (modal) modal.classList.remove('hidden');
       silenceAllCharactersForEntryGate();
@@ -21862,15 +22494,36 @@
     }
     window.enterLobbyForSinglePlayerAccount = enterLobbyForSinglePlayerAccount;
 
-    async function completePilotSandboxCheckout() {
-      if (!pendingPilotCheckoutConfig && pendingPilotCheckoutPrepPromise) {
+    async function completePilotSandboxCheckout(overrideCfg = null) {
+      if (!overrideCfg && !pendingPilotCheckoutConfig && pendingPilotCheckoutPrepPromise) {
         try {
           await pendingPilotCheckoutPrepPromise;
         } catch (_) {}
       }
-      if (!pendingPilotCheckoutConfig) return;
+      const cfg = overrideCfg || pendingPilotCheckoutConfig;
+      if (!cfg) return;
+      const skuKey = resolveCheckoutSkuKey(cfg);
+      const liveStripeUrl = !cfg._bypassLiveStripeRedirect ? getLiveStripeUrlForSku(skuKey) : '';
+
+      if (liveStripeUrl) {
+        const refId = `SYN-${skuKey.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 10)}-${Date.now().toString(36).toUpperCase()}`;
+        try {
+          localStorage.setItem(SYNAPZ_PENDING_STRIPE_STORAGE_KEY, JSON.stringify({
+            ref: refId,
+            sku: skuKey,
+            cfg: { ...cfg, _bypassLiveStripeRedirect: true },
+            savedAt: Date.now()
+          }));
+        } catch (_) {}
+        const sep = liveStripeUrl.includes('?') ? '&' : '?';
+        const prefillEmail = cfg.identity && String(cfg.identity).includes('@')
+          ? `&prefilled_email=${encodeURIComponent(String(cfg.identity).trim())}`
+          : '';
+        window.location.assign(`${liveStripeUrl}${sep}client_reference_id=${encodeURIComponent(refId)}${prefillEmail}`);
+        return;
+      }
+
       SoundFX.playGoalHorn();
-      const cfg = pendingPilotCheckoutConfig;
       closePilotSandboxCheckout();
       const pCfg = window.SYNAPZ_PRICING_CONFIG || {};
 
@@ -21941,6 +22594,12 @@
         while (await SynapzPortalCloud.fetchTeamByCode(campCode)) {
           campCode = makeCampCode();
         }
+        const durWeeks = normalizeCampDurationWeeks(
+          cfg.durationWeeks != null ? cfg.durationWeeks : document.getElementById('selectCampCohortDurationWeeks')?.value,
+          4
+        );
+        const createdMs = Date.now();
+        const expiresMs = createdMs + durWeeks * 7 * 86400000;
         const normId = normalizePortalIdentity(cfg.identity);
         const assistantInvites = await createTwoAssistantInvitesForTeam(campCode, cfg.orgName, cfg.coachName, normId, '');
         const teamDoc = {
@@ -21951,6 +22610,10 @@
           isCampCohort: true,
           cohortKind: 'camp_cohort_100',
           annualPrice: pCfg.campCohortAnnual || 249,
+          durationWeeks: durWeeks,
+          createdAtMs: createdMs,
+          expiresAt: expiresMs,
+          archived: false,
           ageDivision: cfg.ageDivision || '12U',
           competitiveLevel: cfg.competitiveLevel || 'AA',
           maxSkaters: 100,
@@ -21959,7 +22622,7 @@
           pushedPlans: [],
           planCompletions: [],
           assistantInvites,
-          createdAt: new Date().toISOString()
+          createdAt: new Date(createdMs).toISOString()
         };
         await SynapzPortalCloud.saveTeamDoc(teamDoc);
         const coachAcct = {
@@ -21969,6 +22632,8 @@
           portalRole: 'coach',
           planType: 'camp_cohort_100',
           isCampCohort: true,
+          durationWeeks: durWeeks,
+          expiresAt: expiresMs,
           maxSkaters: 100,
           coachName: cfg.coachName,
           orgName: cfg.orgName,
@@ -21976,7 +22641,7 @@
           competitiveLevel: cfg.competitiveLevel || 'AA',
           teamCode: campCode,
           parentAssocCode: '',
-          createdAt: new Date().toISOString()
+          createdAt: new Date(createdMs).toISOString()
         };
         await SynapzPortalCloud.saveAccount(coachAcct);
         await openCoachHqForAccount(coachAcct);
@@ -22065,6 +22730,362 @@
         await openAssociationMasterHqModal(assocAcct);
       }
     }
+    window.completePilotSandboxCheckout = completePilotSandboxCheckout;
+
+    async function handleStripeCheckoutReturnUrl() {
+      try {
+        const params = new URLSearchParams(window.location.search || '');
+        if (params.get('stripe_checkout_success') !== '1') return false;
+        const skuParam = String(params.get('sku') || '').trim();
+        const refParam = String(params.get('ref') || params.get('client_reference_id') || '').trim();
+        let saved = null;
+        try {
+          saved = JSON.parse(localStorage.getItem(SYNAPZ_PENDING_STRIPE_STORAGE_KEY) || 'null');
+        } catch (_) {}
+        localStorage.removeItem(SYNAPZ_PENDING_STRIPE_STORAGE_KEY);
+        const cleanUrl = `${window.location.pathname}${window.location.hash || ''}`;
+        if (window.history && typeof window.history.replaceState === 'function') {
+          window.history.replaceState({}, document.title, cleanUrl);
+        }
+        if (saved && saved.cfg && (!refParam || !saved.ref || saved.ref === refParam)) {
+          await completePilotSandboxCheckout({ ...saved.cfg, sku: skuParam || saved.sku, _bypassLiveStripeRedirect: true });
+          return true;
+        }
+      } catch (_) {}
+      return false;
+    }
+    window.handleStripeCheckoutReturnUrl = handleStripeCheckoutReturnUrl;
+
+    // BET-V133-01: Net-30 Club PO / Invoice + 14-Day Provisional Activation Code Controller
+    let activeNet30SelectedSku = 'assoc_10t_850';
+
+    function openNet30ClubPoModal(skuKey = 'assoc_10t_850') {
+      SoundFX.playTap();
+      const pCfg = window.SYNAPZ_PRICING_CONFIG || {};
+      const validSku = ['camp_cohort_249', 'assoc_5t_450', 'assoc_10t_850', 'assoc_20t_1599'].includes(skuKey)
+        ? skuKey
+        : 'assoc_10t_850';
+      activeNet30SelectedSku = validSku;
+      const spec = (pCfg.skus && pCfg.skus[validSku]) || pCfg[validSku] || { label: '10-Team Association', price: 850, teams: 10, skaters: 200 };
+      const perSkater = (Number(spec.price || 850) / Math.max(1, Number(spec.skaters || 200))).toFixed(2);
+      const sumEl = document.getElementById('net30SelectedSkuSummary');
+      if (sumEl) {
+        sumEl.textContent = `${spec.label} — $${formatSynapzPriceNum(spec.price)}/yr (${spec.teams || 1} Team(s) • ${spec.skaters} Skaters • $${perSkater}/skater/yr)`;
+      }
+      const signupOrg = String(document.getElementById('inputCoachSignupOrgName')?.value || '').trim();
+      const signupId = String(document.getElementById('inputCoachSignupIdentity')?.value || '').trim();
+      const clubInp = document.getElementById('inputNet30ClubName');
+      const emailInp = document.getElementById('inputNet30TreasurerEmail');
+      if (clubInp && !clubInp.value && signupOrg) clubInp.value = signupOrg;
+      if (emailInp && !emailInp.value && signupId.includes('@')) emailInp.value = signupId;
+      document.getElementById('net30FeedbackMsg')?.classList.add('hidden');
+      document.getElementById('net30ProvisionalIssuedBox')?.classList.add('hidden');
+      closePilotSandboxCheckout();
+      document.getElementById('synapzNet30PoModal')?.classList.remove('hidden');
+    }
+    window.openNet30ClubPoModal = openNet30ClubPoModal;
+
+    async function submitGenerateNet30ClubInvoice() {
+      const clubName = String(document.getElementById('inputNet30ClubName')?.value || '').trim();
+      const treasurerEmail = String(document.getElementById('inputNet30TreasurerEmail')?.value || '').trim();
+      const poNumber = String(document.getElementById('inputNet30PoNumber')?.value || '').trim().toUpperCase();
+      const fb = document.getElementById('net30FeedbackMsg');
+      if (!clubName || !treasurerEmail) {
+        if (fb) {
+          fb.textContent = 'Please enter Club / Program Name and Treasurer / Contact Email.';
+          fb.classList.remove('hidden');
+        }
+        return null;
+      }
+      fb?.classList.add('hidden');
+
+      const pCfg = window.SYNAPZ_PRICING_CONFIG || {};
+      const skuKey = activeNet30SelectedSku || 'assoc_10t_850';
+      const spec = (pCfg.skus && pCfg.skus[skuKey]) || pCfg[skuKey] || { label: '10-Team Association', price: 850, teams: 10, skaters: 200, tierKey: 'assocStandard' };
+      const nowMs = Date.now();
+      const dueMs = nowMs + 30 * 86400000;
+      const provExpMs = nowMs + 14 * 86400000;
+      const invoiceNum = `INV-SYN-${nowMs.toString(36).slice(-6).toUpperCase()}`;
+      const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      const rand4 = () => Array.from({ length: 4 }, () => alphabet[Math.floor(Math.random() * alphabet.length)]).join('');
+
+      let provisionalCode = '';
+      let headCoachStarterCode = '';
+
+      if (skuKey === 'camp_cohort_249') {
+        let campCode = `CAMP-${rand4()}`;
+        while (await SynapzPortalCloud.fetchTeamByCode(campCode)) campCode = `CAMP-${rand4()}`;
+        const durWeeks = normalizeCampDurationWeeks(document.getElementById('selectCampCohortDurationWeeks')?.value, 4);
+        const coachCode = `PROV${rand4().slice(0, 2)}`;
+        const assistantInvites = await createTwoAssistantInvitesForTeam(campCode, clubName, 'Camp Director', normalizePortalIdentity(treasurerEmail), '');
+        const teamDoc = {
+          teamCode: campCode,
+          teamName: clubName,
+          coachName: 'Camp Director',
+          coachAccountId: normalizePortalIdentity(treasurerEmail),
+          isCampCohort: true,
+          cohortKind: 'camp_cohort_100',
+          annualPrice: spec.price,
+          durationWeeks: durWeeks,
+          createdAtMs: nowMs,
+          expiresAt: nowMs + durWeeks * 7 * 86400000,
+          provisionalStatus: 'net30_provisional_14d',
+          provisionalExpiresAt: provExpMs,
+          invoiceNumber: invoiceNum,
+          poNumber: poNumber || 'PENDING-BOARD-PO',
+          treasurerEmail,
+          archived: false,
+          ageDivision: '12U',
+          competitiveLevel: 'AA',
+          maxSkaters: 100,
+          parentAssocCode: '',
+          rosterPlayers: [],
+          pushedPlans: [],
+          planCompletions: [],
+          assistantInvites,
+          createdAt: new Date(nowMs).toISOString()
+        };
+        await SynapzPortalCloud.saveTeamDoc(teamDoc);
+        // Also register a 14-day provisional Head Coach claim code for immediate onboarding
+        provisionalCode = campCode;
+        headCoachStarterCode = assistantInvites[0]?.coachCode || coachCode;
+      } else {
+        let assocCode = `PR${rand4()}`;
+        while (await SynapzPortalCloud.fetchAssocByCode(assocCode)) assocCode = `PR${rand4()}`;
+        const coachSlots = await createAssocHeadCoachSlots(assocCode, clubName, normalizePortalIdentity(treasurerEmail), spec.teams || 10);
+        const assocDoc = {
+          assocCode,
+          assocName: clubName,
+          directorName: String(document.getElementById('inputCoachSignupName')?.value || 'Club Hockey Director').trim(),
+          directorAccountId: normalizePortalIdentity(treasurerEmail),
+          tierKey: spec.tierKey || 'assocStandard',
+          annualPrice: spec.price,
+          maxTeams: spec.teams || 10,
+          maxSkaters: spec.skaters || 200,
+          provisionalStatus: 'net30_provisional_14d',
+          provisionalExpiresAt: provExpMs,
+          invoiceNumber: invoiceNum,
+          poNumber: poNumber || 'PENDING-BOARD-PO',
+          treasurerEmail,
+          linkedTeamCodes: [],
+          coachSlots,
+          createdAt: new Date(nowMs).toISOString()
+        };
+        await SynapzPortalCloud.saveAssocDoc(assocDoc);
+        provisionalCode = assocCode;
+        headCoachStarterCode = (coachSlots[0] && coachSlots[0].coachCode) || assocCode;
+      }
+
+      SoundFX.playGoalHorn();
+      const issuedPayload = {
+        invoiceNumber: invoiceNum,
+        skuKey,
+        planLabel: spec.label,
+        annualPrice: Number(spec.price || 850),
+        teamsCount: Number(spec.teams || 1),
+        skatersCount: Number(spec.skaters || 100),
+        clubName,
+        treasurerEmail,
+        poNumber: poNumber || 'NET-30 BOARD APPROVAL',
+        issuedDateStr: new Date(nowMs).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+        dueDateStr: new Date(dueMs).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+        provisionalExpiresStr: new Date(provExpMs).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+        provisionalCode,
+        headCoachStarterCode
+      };
+      window._lastIssuedNet30Invoice = issuedPayload;
+
+      document.getElementById('synapzNet30PoModal')?.classList.add('hidden');
+      openSynapzPrintView('net30_club_invoice', issuedPayload);
+      return issuedPayload;
+    }
+    window.submitGenerateNet30ClubInvoice = submitGenerateNet30ClubInvoice;
+
+    // =========================================================================
+    // BET-V133-03 (Option A): Steel-Roof Arena Installable PWA + Offline Outbox
+    // =========================================================================
+    const SYNAPZ_OFFLINE_OUTBOX_STORAGE_KEY = 'synapz_offline_homework_outbox_v1';
+    window._deferredSynapzPwaPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', (ev) => {
+      ev.preventDefault();
+      window._deferredSynapzPwaPrompt = ev;
+      document.getElementById('installPwaNativeBtnWrap')?.classList.remove('hidden');
+    });
+
+    function openInstallRinkOfflineAppHelper() {
+      SoundFX.playTap();
+      const nativeWrap = document.getElementById('installPwaNativeBtnWrap');
+      if (nativeWrap) {
+        nativeWrap.classList.toggle('hidden', !window._deferredSynapzPwaPrompt);
+      }
+      document.getElementById('synapzInstallPwaModal')?.classList.remove('hidden');
+    }
+    window.openInstallRinkOfflineAppHelper = openInstallRinkOfflineAppHelper;
+
+    const SynapzOfflineHomeworkOutbox = {
+      readAll() {
+        try {
+          const parsed = JSON.parse(localStorage.getItem(SYNAPZ_OFFLINE_OUTBOX_STORAGE_KEY) || '[]');
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (_) {
+          return [];
+        }
+      },
+      writeAll(list) {
+        try {
+          localStorage.setItem(SYNAPZ_OFFLINE_OUTBOX_STORAGE_KEY, JSON.stringify(Array.isArray(list) ? list : []));
+        } catch (_) {}
+        this.refreshStatusBadges();
+      },
+      pendingCount() {
+        return this.readAll().filter(x => x && !x.synced).length;
+      },
+      refreshStatusBadges(justSyncedCount = 0) {
+        const pending = this.pendingCount();
+        const badge = document.getElementById('synapzOfflineOutboxStatusBadge');
+        const toast = document.getElementById('synapzGlobalOfflineSyncToast');
+        if (pending > 0) {
+          const msg = `📡 Saved Offline (${pending}) — Auto-Syncs Outside Rink`;
+          if (badge) {
+            badge.textContent = msg;
+            badge.classList.remove('hidden');
+          }
+          if (toast) {
+            toast.textContent = '📡 Saved Offline — Auto-Syncs Outside Rink';
+            toast.classList.remove('hidden');
+          }
+        } else if (justSyncedCount > 0) {
+          if (badge) {
+            badge.textContent = `✅ Synced ${justSyncedCount} Offline Assignment(s)`;
+            badge.classList.remove('hidden');
+          }
+          if (toast) {
+            toast.textContent = `✅ Synced ${justSyncedCount} Offline Assignment(s) to Coach Roster`;
+            toast.classList.remove('hidden');
+          }
+          setTimeout(() => {
+            if (this.pendingCount() === 0) {
+              badge?.classList.add('hidden');
+              toast?.classList.add('hidden');
+            }
+          }, 2600);
+        } else {
+          badge?.classList.add('hidden');
+          toast?.classList.add('hidden');
+        }
+      },
+      enqueue(record) {
+        const list = this.readAll();
+        const idx = list.findIndex(x => x && x.idempotencyKey === record.idempotencyKey);
+        const cleanRec = {
+          idempotencyKey: String(record.idempotencyKey),
+          profileId: String(record.profileId || 'skater'),
+          code: String(record.code || '').toUpperCase(),
+          codeType: String(record.codeType || (String(record.code || '').startsWith('CAMP-') ? 'camp' : 'primary_team')),
+          planId: String(record.planId || 'COACH-PLAN'),
+          completedDrillIds: Array.isArray(record.completedDrillIds) ? record.completedDrillIds : [],
+          iqEarned: Number(record.iqEarned || 0),
+          scorePct: Number(record.scorePct || 90),
+          struggleConcepts: Array.isArray(record.struggleConcepts) ? record.struggleConcepts : [],
+          playerKey: String(record.playerKey || ''),
+          playerName: String(record.playerName || 'Skater'),
+          jerseyNumber: record.jerseyNumber != null ? record.jerseyNumber : 9,
+          ageGroup: String(record.ageGroup || '12U'),
+          competitiveLevel: String(record.competitiveLevel || 'AA'),
+          positionCode: String(record.positionCode || 'C'),
+          completedAt: record.completedAt || new Date().toISOString(),
+          synced: false
+        };
+        if (idx >= 0) {
+          list[idx] = { ...list[idx], ...cleanRec, synced: Boolean(list[idx].synced && record.synced) };
+        } else {
+          list.push(cleanRec);
+        }
+        this.writeAll(list);
+        return cleanRec;
+      },
+      async flush() {
+        if (this._flushPromise) return this._flushPromise;
+        if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+          this.refreshStatusBadges();
+          return { flushed: 0, pending: this.pendingCount() };
+        }
+        const list = this.readAll();
+        const unsynced = list.filter(x => x && !x.synced);
+        if (!unsynced.length) {
+          this.refreshStatusBadges();
+          return { flushed: 0, pending: 0 };
+        }
+        this._flushing = true;
+        this._flushPromise = (async () => {
+          let flushedCount = 0;
+          try {
+            for (const item of list) {
+              if (!item || item.synced || !item.code) continue;
+              const teamDoc = await SynapzPortalCloud.fetchTeamByCode(item.code);
+              if (!teamDoc) continue;
+              if (!Array.isArray(teamDoc.planCompletions)) teamDoc.planCompletions = [];
+              const alreadyLogged = teamDoc.planCompletions.some(c =>
+                c && (c.idempotencyKey === item.idempotencyKey || (c.planId === item.planId && c.playerKey === item.playerKey))
+              );
+              if (!alreadyLogged) {
+                teamDoc.planCompletions.unshift({
+                  completionId: `CMP-${item.idempotencyKey.slice(-8)}`,
+                  idempotencyKey: item.idempotencyKey,
+                  planId: item.planId,
+                  playerKey: item.playerKey,
+                  playerName: item.playerName,
+                  jerseyNumber: item.jerseyNumber,
+                  ageGroup: item.ageGroup,
+                  competitiveLevel: item.competitiveLevel,
+                  positionCode: item.positionCode,
+                  iqEarned: item.iqEarned,
+                  completedDrillIds: item.completedDrillIds,
+                  scorePct: item.scorePct,
+                  struggleConcepts: item.struggleConcepts,
+                  completedAt: item.completedAt
+                });
+              }
+              await SynapzPortalCloud.saveTeamDoc(teamDoc);
+              const prof = typeof getActiveProfile === 'function' ? getActiveProfile() : null;
+              if (prof && prof.id === item.profileId) {
+                await SynapzPortalCloud.syncSlotToTeamRoster(item.code, prof, (state.currentAccount && state.currentAccount.accountId) || prof.id, '');
+              }
+              if (navigator.onLine !== false && SynapzPortalCloud._lastRemoteSyncOk !== false) {
+                item.synced = true;
+                item.syncedAt = new Date().toISOString();
+                flushedCount++;
+              }
+            }
+            this.writeAll(list);
+            this.refreshStatusBadges(flushedCount);
+            if (flushedCount > 0 && typeof renderSynapzCoachOfficeModal === 'function' && !document.getElementById('synapzCoachOfficeModal')?.classList.contains('hidden')) {
+              renderSynapzCoachOfficeModal();
+            }
+          } finally {
+            this._flushing = false;
+            this._flushPromise = null;
+          }
+          return { flushed: flushedCount, pending: this.pendingCount() };
+        })();
+        return this._flushPromise;
+      }
+    };
+    window.SynapzOfflineHomeworkOutbox = SynapzOfflineHomeworkOutbox;
+    window.flushOfflineHomeworkOutbox = () => SynapzOfflineHomeworkOutbox.flush();
+
+    window.addEventListener('online', () => {
+      SynapzOfflineHomeworkOutbox.flush().catch(() => {});
+    });
+    window.addEventListener('offline', () => {
+      SynapzOfflineHomeworkOutbox.refreshStatusBadges();
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && navigator.onLine !== false) {
+        SynapzOfflineHomeworkOutbox.flush().catch(() => {});
+      }
+    });
 
     // =========================================================================
     // v12.3 1-PLAYER GUIDED WAIST-UP CUTOUT + 8-STOCK-AVATAR PROFILE SETUP
@@ -22694,6 +23715,11 @@
       }
 
       if (isCampPass) {
+        installPlayerTeamCampSchema(prof);
+        const durWeeks = normalizeCampDurationWeeks(teamDoc.durationWeeks, 4);
+        const nowMs = Date.now();
+        const createdMs = Number(teamDoc.createdAtMs || (teamDoc.createdAt ? Date.parse(teamDoc.createdAt) : 0)) || nowMs;
+        const expiresMs = Number(typeof teamDoc.expiresAt === 'number' ? teamDoc.expiresAt : Date.parse(teamDoc.expiresAt || '')) || (createdMs + durWeeks * 7 * 86400000);
         if (!Array.isArray(prof.campPassCodes)) prof.campPassCodes = [];
         if (!prof.campPassCodes.includes(teamDoc.teamCode) && prof.campPassCodes.length >= 5) {
           if (toast) {
@@ -22702,9 +23728,21 @@
           }
           return false;
         }
-        if (!prof.campPassCodes.includes(teamDoc.teamCode)) {
+        prof.campPassMeta = prof.campPassMeta || {};
+        prof.campPassMeta[teamDoc.teamCode] = {
+          code: teamDoc.teamCode,
+          teamName: teamDoc.teamName || teamDoc.teamCode,
+          durationWeeks: durWeeks,
+          createdAt: createdMs,
+          expiresAt: expiresMs,
+          archived: false
+        };
+        if (nowMs > expiresMs || teamDoc.archived) {
+          evaluateAndArchiveExpiredCampPasses(prof, { [teamDoc.teamCode]: teamDoc });
+        } else if (!prof.campPassCodes.includes(teamDoc.teamCode)) {
           prof.campPassCodes.push(teamDoc.teamCode);
         }
+        prof.campPassEntries = prof.campPassCodes.map(c => prof.campPassMeta[c]).filter(Boolean);
         prof.campPassNames = { ...(prof.campPassNames || {}), [teamDoc.teamCode]: teamDoc.teamName || teamDoc.teamCode };
         state.playerInboxSourceTab = 'camp';
         if (state.currentAccount) {
@@ -22870,6 +23908,8 @@
         [
           SYNAPZ_PORTAL_STORE_LS_KEY,
           SYNAPZ_DEVICE_ID_LS_KEY,
+          SYNAPZ_OFFLINE_OUTBOX_STORAGE_KEY,
+          SYNAPZ_PENDING_STRIPE_STORAGE_KEY,
           'pucksense_iq_profiles_v3',
           'pucksense_profiles_v3',
           'synapz_v12_active_session'
@@ -23480,14 +24520,17 @@
         });
       }));
 
-      // Plan Card 2B (BET-V131-03 Option A): Skills / 3v3 Camp Cohort — $249/yr (100 Clinic Skaters + 2 Assistant Spaces)
+      // Plan Card 2B (BET-V131-03 + BET-V133-04): Skills / 3v3 Camp Cohort — $249/yr (4/6/8-Week Lifecycle)
       on('btnCoachPlanCampCohort249', () => queuePilotCheckoutPrep(async () => {
         const vals = await validateCoachAssocSignupInputs(true);
         if (!vals) return;
         const p = window.SYNAPZ_PRICING_CONFIG || {};
+        const durWeeks = normalizeCampDurationWeeks(document.getElementById('selectCampCohortDurationWeeks')?.value, 4);
         openPilotSandboxCheckout({
           mode: 'camp_cohort_100',
-          planLabel: `Skills / 3v3 Camp Cohort — $${formatSynapzPriceNum(p.campCohortAnnual || 249)}/yr (Up to 100 Rotating Clinic/3v3 Skaters • +2 Free Assistant Spaces)`,
+          sku: 'camp_cohort_249',
+          durationWeeks: durWeeks,
+          planLabel: `Skills / 3v3 Camp Cohort — $${formatSynapzPriceNum(p.campCohortAnnual || 249)}/yr (${durWeeks}-Week Pass • Up to 100 Skaters • +2 Assistants)`,
           ...vals
         });
       }));
@@ -23554,9 +24597,40 @@
         await enterLobbyForSinglePlayerAccount(acct);
       });
 
-      // Checkout Modal Buttons
+      // Checkout Modal, Net-30 PO / Invoice & Install Rink Offline App Buttons
       on('btnCancelPilotSandboxCheckout', closePilotSandboxCheckout);
-      on('btnConfirmPilotSandboxCheckout', completePilotSandboxCheckout);
+      on('btnConfirmPilotSandboxCheckout', () => completePilotSandboxCheckout());
+      on('btnCheckoutSwitchToNet30Po', () => {
+        const sku = (pendingPilotCheckoutConfig && pendingPilotCheckoutConfig.sku) || 'assoc_10t_850';
+        openNet30ClubPoModal(sku);
+      });
+      document.querySelectorAll('.btn-open-net30-po').forEach(btn => {
+        btn.addEventListener('click', () => {
+          openNet30ClubPoModal(btn.getAttribute('data-open-net30-po') || 'assoc_10t_850');
+        });
+      });
+      on('btnCloseNet30PoModal', () => document.getElementById('synapzNet30PoModal')?.classList.add('hidden'));
+      on('btnSubmitGenerateNet30Invoice', submitGenerateNet30ClubInvoice);
+
+      document.querySelectorAll('.btn-trigger-install-pwa').forEach(btn => {
+        btn.addEventListener('click', openInstallRinkOfflineAppHelper);
+      });
+      on('btnCloseInstallPwaModal', () => document.getElementById('synapzInstallPwaModal')?.classList.add('hidden'));
+      on('btnConfirmNativePwaInstall', async () => {
+        if (window._deferredSynapzPwaPrompt) {
+          try {
+            window._deferredSynapzPwaPrompt.prompt();
+            await window._deferredSynapzPwaPrompt.userChoice;
+          } catch (_) {}
+          window._deferredSynapzPwaPrompt = null;
+        }
+        document.getElementById('synapzInstallPwaModal')?.classList.add('hidden');
+      });
+
+      setTimeout(() => {
+        handleStripeCheckoutReturnUrl().catch(() => {});
+        SynapzOfflineHomeworkOutbox.flush().catch(() => {});
+      }, 120);
 
       // Lobby & Locker Logout Controls (Strict 1-Player Model — Zero 4-Slot Switcher!)
       on('btnLobbySwitchSlot', logoutSynapzAccount);
@@ -25870,14 +26944,15 @@
       const calibratedRate = getAgeCalibratedVoiceRate(chan.id, (activeProf && activeProf.ageGroup) || '12U');
       const cleanSentence = toNaturalHockeyTalk(fallbackText || '', chan.id, clipKey || 'greeting');
       const resolvedKey = resolveVoiceClipKey(chan.id, clipKey, cleanSentence);
-      const mp3Url = `${chan.basePath}/${resolvedKey}.mp3`;
+      const studioClipUrl = resolveStudioVoicePackClipUrl(chan.id, resolvedKey);
       window._lastPlayedCharacterVoice = {
         characterId: chan.id,
         characterName: chan.name,
         clipKey: resolvedKey,
         requestedClipKey: clipKey || 'greeting',
         calibratedRate,
-        mp3Url,
+        mp3Url: studioClipUrl || '',
+        voiceMode: studioClipUrl ? 'studio_pack' : 'natural_os_voice',
         text: cleanSentence,
         timestamp: Date.now()
       };
@@ -25906,19 +26981,47 @@
         }
       }
 
+      const mutedNow = SynapzMuteSafeCaptions.isMutedMode(activeProf);
+      if (!entryGateActive && cleanSentence && (mutedNow || suppressOverlay)) {
+        SynapzMuteSafeCaptions.startCaptionSession(`🎙️ ${chan.name}`, cleanSentence, {
+          forceMutedBadge: mutedNow,
+          autoPaceImmediately: mutedNow
+        });
+      }
+
+      if (mutedNow) {
+        return window._lastPlayedCharacterVoice;
+      }
+
       const speakFallback = () => {
-        if (!('speechSynthesis' in window) || !cleanSentence) return;
+        if (!('speechSynthesis' in window) || !cleanSentence) {
+          if (!entryGateActive && cleanSentence) {
+            SynapzMuteSafeCaptions.startCaptionSession(`🎙️ ${chan.name}`, cleanSentence, { forceMutedBadge: true, autoPaceImmediately: true });
+          }
+          return;
+        }
         try {
           window.speechSynthesis.cancel();
           const utter = new SpeechSynthesisUtterance(cleanSentence);
           utter.pitch = chan.pitch || 1.0;
           utter.rate = calibratedRate;
+          const wd = !entryGateActive ? SynapzMuteSafeCaptions.armIosSilentSwitchWatchdog(() => {
+            if (cleanSentence) {
+              SynapzMuteSafeCaptions.startCaptionSession(`🎙️ ${chan.name}`, cleanSentence, { forceMutedBadge: true, autoPaceImmediately: true });
+            }
+          }) : { markSpeechAlive: () => {} };
+          utter.onstart = () => wd.markSpeechAlive();
           utter.onboundary = (ev) => {
-            if (ev && ev.name === 'word' && window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
-              window.SynapzCharacterSpeechEngine._activeAdvanceWordFn();
+            wd.markSpeechAlive();
+            if (ev && ev.name === 'word') {
+              SynapzMuteSafeCaptions.advanceBoundaryWord();
+              if (window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
+                window.SynapzCharacterSpeechEngine._activeAdvanceWordFn();
+              }
             }
           };
           utter.onend = () => {
+            SynapzMuteSafeCaptions.finishSpeechCaption();
             if (!suppressOverlay && window.SynapzCharacterSpeechEngine) {
               window.SynapzCharacterSpeechEngine.minimizeToCircle(chan.id);
             }
@@ -25944,34 +27047,44 @@
         try {
           if ('speechSynthesis' in window) window.speechSynthesis.cancel();
         } catch (_) {}
-        const audio = new Audio(mp3Url);
-        audio.playbackRate = calibratedRate;
-        window._activeCharacterAudio = audio;
-        window._activeAudioPool.push(audio);
-        audio.ontimeupdate = () => {
-          if (audio.duration && audio.duration > 0 && window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
-            const wCount = (window.SynapzCharacterSpeechEngine.state.words || []).length || 1;
-            const targetWordIdx = Math.min(wCount, Math.max(1, Math.ceil((audio.currentTime / audio.duration) * wCount)));
-            if (targetWordIdx > window.SynapzCharacterSpeechEngine.state.currentWordIndex) {
-              window.SynapzCharacterSpeechEngine._activeAdvanceWordFn(targetWordIdx);
+
+        if (studioClipUrl) {
+          const audio = new Audio(studioClipUrl);
+          audio.playbackRate = calibratedRate;
+          window._activeCharacterAudio = audio;
+          window._activeAudioPool.push(audio);
+          audio.ontimeupdate = () => {
+            if (audio.duration && audio.duration > 0) {
+              if (window.SynapzCharacterSpeechEngine && typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
+                const wCount = (window.SynapzCharacterSpeechEngine.state.words || []).length || 1;
+                const targetWordIdx = Math.min(wCount, Math.max(1, Math.ceil((audio.currentTime / audio.duration) * wCount)));
+                if (targetWordIdx > window.SynapzCharacterSpeechEngine.state.currentWordIndex) {
+                  window.SynapzCharacterSpeechEngine._activeAdvanceWordFn(targetWordIdx);
+                }
+              }
+              const capWords = Math.max(1, SynapzMuteSafeCaptions.words.length);
+              SynapzMuteSafeCaptions.advanceBoundaryWord(Math.min(capWords, Math.max(1, Math.ceil((audio.currentTime / audio.duration) * capWords))));
             }
+          };
+          audio.onended = () => {
+            SynapzMuteSafeCaptions.finishSpeechCaption();
+            if (window.SynapzCharacterSpeechEngine) {
+              if (typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
+                const wCount = (window.SynapzCharacterSpeechEngine.state.words || []).length || 1;
+                window.SynapzCharacterSpeechEngine._activeAdvanceWordFn(wCount + 1);
+              }
+              if (!suppressOverlay) {
+                window.SynapzCharacterSpeechEngine.minimizeToCircle(chan.id);
+              }
+            }
+          };
+          audio.onerror = () => speakFallback();
+          const playPromise = audio.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => speakFallback());
           }
-        };
-        audio.onended = () => {
-          if (window.SynapzCharacterSpeechEngine) {
-            if (typeof window.SynapzCharacterSpeechEngine._activeAdvanceWordFn === 'function') {
-              const wCount = (window.SynapzCharacterSpeechEngine.state.words || []).length || 1;
-              window.SynapzCharacterSpeechEngine._activeAdvanceWordFn(wCount + 1);
-            }
-            if (!suppressOverlay) {
-              window.SynapzCharacterSpeechEngine.minimizeToCircle(chan.id);
-            }
-          }
-        };
-        audio.onerror = () => speakFallback();
-        const playPromise = audio.play();
-        if (playPromise && typeof playPromise.catch === 'function') {
-          playPromise.catch(() => speakFallback());
+        } else {
+          speakFallback();
         }
       } catch (e) {
         speakFallback();
@@ -26342,6 +27455,7 @@
       const psEl = document.getElementById('lockerEditPositionSelect');
       const hdEl = document.getElementById('lockerEditHandSelect');
       const camEl = document.getElementById('lockerEditCameraModeSelect');
+      const vcEl = document.getElementById('lockerEditVoicePrefSelect');
       if (nmEl) nmEl.value = prof.name || '';
       if (hsEl) hsEl.value = prof.hairStyle || 'flow';
       if (jnEl) jnEl.value = prof.jerseyNumber !== undefined ? prof.jerseyNumber : '';
@@ -26349,6 +27463,7 @@
       if (psEl) psEl.value = prof.positionCode || 'ALL';
       if (hdEl) hdEl.value = prof.hand || 'Left';
       if (camEl) camEl.value = prof.cameraModePref || 'auto';
+      if (vcEl) vcEl.value = prof.voiceModePref || 'auto';
       const curFed = getEffectiveFederationMode(prof);
       state.lockerEditingFederationMode = curFed;
       refreshFederationSwitcherPillsDom(curFed);
@@ -26409,6 +27524,11 @@
       prof.positionCode = document.getElementById('lockerEditPositionSelect')?.value || 'ALL';
       prof.hand = document.getElementById('lockerEditHandSelect')?.value || 'Left';
       prof.cameraModePref = document.getElementById('lockerEditCameraModeSelect')?.value || 'auto';
+      prof.voiceModePref = document.getElementById('lockerEditVoicePrefSelect')?.value || prof.voiceModePref || 'auto';
+      SoundFX.voiceEnabled = prof.voiceModePref !== 'captions_only';
+      if (prof.voiceModePref === 'captions_only' && 'speechSynthesis' in window) {
+        try { window.speechSynthesis.cancel(); } catch (_) {}
+      }
       if (state.lockerEditingFederationMode) {
         prof.federationMode = state.lockerEditingFederationMode;
         setFederationMode(prof.federationMode);
@@ -26893,7 +28013,101 @@
       const dateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
       const fed = getEffectiveFederationMode();
 
-      if (kind === 'board_roi_packet') {
+      if (kind === 'net30_club_invoice') {
+        const clubName = payload.clubName || 'Hockey Association / Club';
+        const treasurerEmail = payload.treasurerEmail || 'treasurer@hockeyclub.org';
+        const poNumber = payload.poNumber || 'NET-30 BOARD APPROVAL';
+        const invoiceNumber = payload.invoiceNumber || `INV-SYN-${Date.now().toString(36).slice(-5).toUpperCase()}`;
+        const annualPrice = Number(payload.annualPrice || 850);
+        const teamsCount = Math.max(1, Number(payload.teamsCount || 10));
+        const skatersCount = Math.max(1, Number(payload.skatersCount || 200));
+        const perSkaterAnnual = (annualPrice / skatersCount).toFixed(2);
+        const issuedDateStr = payload.issuedDateStr || dateStr;
+        const dueDateStr = payload.dueDateStr || new Date(Date.now() + 30 * 86400000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const provExpStr = payload.provisionalExpiresStr || new Date(Date.now() + 14 * 86400000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const provisionalCode = payload.provisionalCode || 'PROV14';
+        const starterCoachCode = payload.headCoachStarterCode || provisionalCode;
+        const planLabel = payload.planLabel || `${teamsCount}-Team Club License (${skatersCount} Skaters)`;
+        root.setAttribute('data-print-kind', 'net30_club_invoice');
+        root.innerHTML = `
+          <div class="synapz-print-single-page space-y-2.5 text-slate-950">
+            <div class="flex items-start justify-between border-b-2 border-slate-950 pb-2">
+              <div>
+                <div class="text-[10px] font-black uppercase tracking-widest text-slate-700">SYNAPZ HOCKEY LLC • OFFICIAL NET-30 CLUB PO / INVOICE &amp; REMITTANCE SHEET (${fed})</div>
+                <h2 class="text-lg font-black text-slate-950">${clubName} — Annual Hockey IQ Licensing Invoice</h2>
+              </div>
+              <div class="text-right text-[11px] font-bold text-slate-800">
+                <div>Invoice #: <strong class="font-mono">${invoiceNumber}</strong></div>
+                <div>PO #: <strong class="font-mono">${poNumber}</strong></div>
+                <div>Issued: ${issuedDateStr} • <strong>Due (Net-30): ${dueDateStr}</strong></div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="p-2 rounded-lg border border-slate-900 bg-slate-50">
+                <div class="text-[10px] font-black uppercase text-slate-600">Bill To (Club / Association / Camp)</div>
+                <div class="font-black text-slate-950">${clubName}</div>
+                <div class="font-semibold text-slate-700">Attn: Board Treasurer / Director (${treasurerEmail})</div>
+                <div class="text-[10px] font-bold text-slate-600">Customer PO Reference: ${poNumber}</div>
+              </div>
+              <div class="p-2 rounded-lg border border-slate-900 bg-slate-50">
+                <div class="text-[10px] font-black uppercase text-slate-600">Payable &amp; Remittance (W-9 / ACH / Check)</div>
+                <div class="font-black text-slate-950">SYNAPZ HOCKEY LLC</div>
+                <div class="font-semibold text-slate-700">Billing &amp; W-9 Desk: billing@synapzhockey.com</div>
+                <div class="text-[10px] font-bold text-slate-600">ACH / Check Terms: Net-30 Days • Reference Invoice #${invoiceNumber}</div>
+              </div>
+            </div>
+
+            <table class="w-full text-left text-xs border-collapse border-2 border-slate-950">
+              <thead>
+                <tr class="bg-slate-200 border-b-2 border-slate-950 font-black">
+                  <th class="py-1.5 px-2 border-r border-slate-900">Itemized License Tier</th>
+                  <th class="py-1.5 px-2 border-r border-slate-900 text-center">Teams / Cohorts</th>
+                  <th class="py-1.5 px-2 border-r border-slate-900 text-center">Included Skaters</th>
+                  <th class="py-1.5 px-2 border-r border-slate-900 text-center">Per-Skater Math</th>
+                  <th class="py-1.5 px-2 text-right">Annual Total (USD)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-slate-900 font-semibold">
+                  <td class="py-2 px-2 border-r border-slate-900">
+                    <div class="font-black text-slate-950">${planLabel}</div>
+                    <div class="text-[10px] text-slate-700">Includes 360+ 4-Way Rotated Drills, 12-Week Season Autopilot, Printable Rink-Glass Station Cards &amp; SafeSport Director Rollups</div>
+                  </td>
+                  <td class="py-2 px-2 border-r border-slate-900 text-center font-black">${teamsCount}</td>
+                  <td class="py-2 px-2 border-r border-slate-900 text-center font-black">${skatersCount}</td>
+                  <td class="py-2 px-2 border-r border-slate-900 text-center font-black text-emerald-900">$${perSkaterAnnual} / skater / yr</td>
+                  <td class="py-2 px-2 text-right font-black text-sm">$${formatSynapzPriceNum(annualPrice)}.00</td>
+                </tr>
+                <tr class="bg-slate-100 font-black">
+                  <td colspan="4" class="py-1.5 px-2 border-r border-slate-900 text-right uppercase">Total Net-30 Balance Due by ${dueDateStr}</td>
+                  <td class="py-1.5 px-2 text-right text-base">$${formatSynapzPriceNum(annualPrice)}.00</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="p-2.5 rounded-xl border-2 border-slate-950 bg-emerald-50 space-y-1">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-black uppercase text-slate-950">🔑 14-Day Provisional Activation Issued — Onboard Coaches Today!</span>
+                <span class="text-[10px] font-black text-slate-800">Provisional Window Thru: ${provExpStr}</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2 text-xs">
+                <div class="p-1.5 rounded border border-slate-900 bg-white">
+                  <span class="text-[10px] font-black uppercase text-slate-600 block">Provisional Club / Cohort Code</span>
+                  <span id="printedNet30ProvisionalCode" class="text-base font-mono font-black tracking-widest text-slate-950">${provisionalCode}</span>
+                </div>
+                <div class="p-1.5 rounded border border-slate-900 bg-white">
+                  <span class="text-[10px] font-black uppercase text-slate-600 block">Starter Coach Redemption Code</span>
+                  <span id="printedNet30StarterCoachCode" class="text-base font-mono font-black tracking-widest text-slate-950">${starterCoachCode}</span>
+                </div>
+              </div>
+              <p class="text-[10px] font-semibold text-slate-800 leading-snug">
+                Coaches can redeem the code above immediately in <strong>Coaches Portal → Create Account → Coaches Code</strong> while your board treasurer processes ACH or check remittance. Signed IRS Form W-9 furnished automatically upon email request to <strong>billing@synapzhockey.com</strong>.
+              </p>
+            </div>
+          </div>
+        `;
+      } else if (kind === 'board_roi_packet') {
         const assocName = payload.assocName || 'Hockey Association';
         const annualPrice = Number(payload.annualPrice || 850);
         const maxSkaters = Math.max(1, Number(payload.maxSkaters || 200));
@@ -27041,46 +28255,135 @@
     }
     window.pushCoachPlanToTeamInbox = pushCoachPlanToTeamInbox;
 
-    async function completeCoachInboxPlan(planId, scorePct = 90, struggles = []) {
+    async function completeCoachInboxPlan(planId, scorePct = 90, struggles = [], opts = {}) {
       if (typeof planId === 'number') {
         struggles = Array.isArray(scorePct) ? scorePct : [];
         scorePct = planId;
         planId = (state.activeCoachInboxPlan && state.activeCoachInboxPlan.planId) || 'COACH-PLAN';
       }
+      const options = (opts && typeof opts === 'object') ? opts : {};
       const prof = getActiveProfile();
+      if (!prof) return null;
+      installPlayerTeamCampSchema(prof);
       const acct = state.currentAccount;
-      const tCode = (state.activeCoachInboxPlan && state.activeCoachInboxPlan.teamCode) || (prof && prof.primaryTeamCode) || (prof && prof.teamCode) || state.teamCode;
+      const tCode = String(
+        options.code ||
+        (state.activeCoachInboxPlan && state.activeCoachInboxPlan.teamCode) ||
+        (state.playerInboxSourceTab === 'camp' && Array.isArray(prof.campPassCodes) && prof.campPassCodes[0]) ||
+        prof.primaryTeamCode ||
+        prof.teamCode ||
+        state.teamCode ||
+        ''
+      ).trim().toUpperCase();
       if (!tCode) return null;
-      const teamDoc = await SynapzPortalCloud.fetchTeamByCode(tCode);
-      if (!teamDoc) return null;
-      if (!Array.isArray(teamDoc.planCompletions)) teamDoc.planCompletions = [];
+
       const cleanPct = Math.max(0, Math.min(100, Math.round(Number(scorePct) || 0)));
       const cleanStruggles = Array.isArray(struggles) ? struggles.filter(Boolean) : [];
-      const completionEntry = {
-        completionId: `CMP-${Date.now().toString(36).toUpperCase()}`,
-        planId: planId || 'COACH-PLAN',
-        playerKey: `${normalizePortalIdentity((acct && acct.accountId) || 'acct')}::${prof.id}`,
-        playerName: prof.name || 'Skater',
-        jerseyNumber: prof.jerseyNumber || 9,
-        ageGroup: prof.ageGroup || '12U',
-        competitiveLevel: prof.competitiveLevel || teamDoc.competitiveLevel || 'AA',
-        positionCode: prof.positionCode || 'C',
-        scorePct: cleanPct,
-        struggleConcepts: cleanStruggles,
-        completedAt: new Date().toISOString()
-      };
-      teamDoc.planCompletions.unshift(completionEntry);
+      const iqEarned = Number(options.iqEarned != null ? options.iqEarned : Math.max(10, Math.round(cleanPct * 0.20)));
+      const pbEarned = Number(options.puckBucksEarned != null ? options.puckBucksEarned : Math.max(15, Math.round(cleanPct * 0.30)));
+      const completedDrillIds = Array.isArray(options.completedDrillIds) && options.completedDrillIds.length
+        ? options.completedDrillIds
+        : ['D1', 'D2', 'D3', 'D4', 'D5'];
 
+      // Immediately award local IQ & Puck Bucks so 0-bar steel-roof arena sessions reward skaters right away
+      if (!options.alreadyAwardedLocalIq) {
+        const baseIq = Math.max(Number(prof.iqScore) || 0, Number(state.iqScore) || 0);
+        const basePb = Math.max(Number(prof.puckBucks) || 0, Number(state.puckBucks) || 0);
+        state.iqScore = baseIq + iqEarned;
+        state.puckBucks = basePb + pbEarned;
+        prof.iqScore = state.iqScore;
+        prof.puckBucks = state.puckBucks;
+      }
       prof.completedPlansCount = Number(prof.completedPlansCount || 0) + 1;
       prof.lastPlanScorePct = cleanPct;
       prof.struggleConcepts = cleanStruggles;
+      saveProgress();
+      if (typeof updateHeaderStats === 'function') updateHeaderStats();
+
+      const playerKey = `${normalizePortalIdentity((acct && acct.accountId) || 'acct')}::${prof.id}`;
+      const cleanPlanId = String(planId || 'COACH-PLAN');
+      const idempotencyKey = String(options.idempotencyKey || `HW-${prof.id}-${tCode}-${cleanPlanId}`);
+      const nowIso = new Date().toISOString();
+      const codeType = tCode.startsWith('CAMP-') ? 'camp' : 'primary_team';
+
+      const outboxRecord = {
+        idempotencyKey,
+        profileId: prof.id,
+        code: tCode,
+        codeType,
+        planId: cleanPlanId,
+        completedDrillIds,
+        iqEarned,
+        scorePct: cleanPct,
+        struggleConcepts: cleanStruggles,
+        playerKey,
+        playerName: prof.name || 'Skater',
+        jerseyNumber: prof.jerseyNumber != null && prof.jerseyNumber !== '' ? prof.jerseyNumber : 9,
+        ageGroup: prof.ageGroup || '12U',
+        competitiveLevel: prof.competitiveLevel || 'AA',
+        positionCode: prof.positionCode || 'C',
+        completedAt: nowIso,
+        synced: false
+      };
+
+      const isOfflineNow = Boolean(
+        window.__SYNAPZ_FORCE_OFFLINE__ === true ||
+        (typeof navigator !== 'undefined' && navigator.onLine === false)
+      );
+
       if (acct && acct.portalRole === 'player') {
         acct.profile = JSON.parse(JSON.stringify(prof));
         acct.slots = [JSON.parse(JSON.stringify(prof))];
         await SynapzPortalCloud.saveAccount(acct);
       }
+
+      if (isOfflineNow) {
+        const queued = SynapzOfflineHomeworkOutbox.enqueue(outboxRecord);
+        SynapzOfflineHomeworkOutbox.refreshStatusBadges();
+        return { ...queued, queuedOffline: true };
+      }
+
+      const teamDoc = await SynapzPortalCloud.fetchTeamByCode(tCode);
+      if (!teamDoc) {
+        const queued = SynapzOfflineHomeworkOutbox.enqueue(outboxRecord);
+        SynapzOfflineHomeworkOutbox.refreshStatusBadges();
+        return { ...queued, queuedOffline: true };
+      }
+      if (!Array.isArray(teamDoc.planCompletions)) teamDoc.planCompletions = [];
+
+      const completionEntry = {
+        completionId: `CMP-${idempotencyKey.slice(-8)}`,
+        idempotencyKey,
+        planId: cleanPlanId,
+        playerKey,
+        playerName: outboxRecord.playerName,
+        jerseyNumber: outboxRecord.jerseyNumber,
+        ageGroup: outboxRecord.ageGroup,
+        competitiveLevel: prof.competitiveLevel || teamDoc.competitiveLevel || 'AA',
+        positionCode: outboxRecord.positionCode,
+        iqEarned,
+        completedDrillIds,
+        scorePct: cleanPct,
+        struggleConcepts: cleanStruggles,
+        completedAt: nowIso
+      };
+
+      const alreadyExists = teamDoc.planCompletions.some(c =>
+        c && (c.idempotencyKey === idempotencyKey || (c.planId === cleanPlanId && c.playerKey === playerKey))
+      );
+      if (!alreadyExists) {
+        teamDoc.planCompletions.unshift(completionEntry);
+      }
+
       await SynapzPortalCloud.saveTeamDoc(teamDoc);
-      await SynapzPortalCloud.syncSlotToTeamRoster(tCode, prof, (acct && acct.accountId) || prof.id);
+      await SynapzPortalCloud.syncSlotToTeamRoster(tCode, prof, (acct && acct.accountId) || prof.id, '');
+
+      if (SynapzPortalCloud._lastRemoteSyncOk === false) {
+        const queued = SynapzOfflineHomeworkOutbox.enqueue(outboxRecord);
+        SynapzOfflineHomeworkOutbox.refreshStatusBadges();
+        return { ...completionEntry, ...queued, queuedOffline: true };
+      }
+
       return completionEntry;
     }
     window.completeCoachInboxPlan = completeCoachInboxPlan;
@@ -27194,6 +28497,18 @@
         const completions = Array.isArray(teamDoc.planCompletions) ? teamDoc.planCompletions : [];
         const assistantInvites = Array.isArray(teamDoc.assistantInvites) ? teamDoc.assistantInvites : [];
         const teamSignupLink = `${baseAppUrl}?portal=player&team=${encodeURIComponent(teamDoc.teamCode)}`;
+        const bracketKey = resolveSeasonBracketKey(teamDoc.ageDivision || '12U');
+        const bracketWeeks = window.SEASON_12_WEEK_CURRICULUM_CALENDAR[bracketKey] || window.SEASON_12_WEEK_CURRICULUM_CALENDAR['12U'];
+        const autopilotActive = Boolean(teamDoc.seasonAutopilot && teamDoc.seasonAutopilot.enabled);
+        const autopilotPlanNow = autopilotActive ? resolveActiveSeasonAutopilotPlan(teamDoc) : null;
+        const previewWeekNum = autopilotPlanNow
+          ? autopilotPlanNow.autopilotWeek
+          : (Number(teamDoc.seasonAutopilot && teamDoc.seasonAutopilot.overrideWeek) || 1);
+        const previewWeekEntry = bracketWeeks.find(w => w.week === previewWeekNum) || bracketWeeks[0];
+        const campDurWeeks = normalizeCampDurationWeeks(teamDoc.durationWeeks, 4);
+        const campExpiresStr = teamDoc.expiresAt
+          ? new Date(typeof teamDoc.expiresAt === 'number' ? teamDoc.expiresAt : Date.parse(teamDoc.expiresAt)).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+          : 'Active Window';
 
         if (rolePortalBox) {
           rolePortalBox.innerHTML = `
@@ -27223,6 +28538,51 @@
               </div>
 
               ${activeTab === 'coach_plan' ? `
+                ${!isCampCohort ? `
+                  <div id="coachSeasonAutopilotCard" class="p-3 rounded-2xl ${autopilotActive ? 'bg-emerald-950/45 border-2 border-emerald-400/80' : 'bg-slate-900/95 border border-emerald-400/55'} space-y-2">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                      <div>
+                        <span class="text-xs font-black uppercase text-emerald-300">🗓️ 12-Week Season Autopilot (${bracketKey} Progressive Calendar)</span>
+                        <p class="text-[11px] text-slate-300 font-semibold">Set-and-forget weekly 5-play team plans + paired Rink-Glass 3-Station Card across all 16 tactical buckets.</p>
+                      </div>
+                      <span id="seasonAutopilotStatusPill" class="px-2.5 py-0.5 rounded-full text-[10px] font-black ${autopilotActive ? 'bg-emerald-400 text-slate-950' : 'bg-slate-800 text-slate-300 border border-slate-700'}">
+                        ${autopilotActive ? `🟢 AUTOPILOT LIVE • WEEK ${previewWeekEntry.week}/12` : '⚪ PAUSED (MANUAL)'}
+                      </span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 items-end">
+                      <div class="sm:col-span-2">
+                        <label for="selectAutopilotWeekOverride" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Preview / 1-Tap Week Override (Weeks 1–12)</label>
+                        <select id="selectAutopilotWeekOverride" class="w-full px-2.5 py-2 rounded-xl bg-slate-950 border border-emerald-400/55 text-xs font-bold text-white">
+                          <option value="0" ${!(teamDoc.seasonAutopilot && teamDoc.seasonAutopilot.overrideWeek) ? 'selected' : ''}>🔄 Auto-Advance by Calendar Week (Currently Week ${previewWeekEntry.week})</option>
+                          ${bracketWeeks.map(wk => `<option value="${wk.week}" ${(teamDoc.seasonAutopilot && Number(teamDoc.seasonAutopilot.overrideWeek) === wk.week) ? 'selected' : ''}>${wk.title} (${wk.bucketsCovered.join(' + ')})</option>`).join('')}
+                        </select>
+                      </div>
+                      <button id="btnToggleSeasonAutopilot" type="button" class="w-full py-2 px-3 rounded-xl font-black text-xs shadow cursor-pointer ${autopilotActive ? 'bg-slate-950 hover:bg-slate-800 border border-rose-400/70 text-rose-200' : 'bg-gradient-to-r from-emerald-400 to-cyan-300 hover:from-emerald-300 hover:to-cyan-200 text-slate-950'}">
+                        ${autopilotActive ? '⏸️ Pause Autopilot' : '🗓️ Activate 12-Week Season Autopilot'}
+                      </button>
+                    </div>
+                    <div class="p-2 rounded-xl bg-slate-950/90 border border-emerald-400/35 flex flex-wrap items-center justify-between gap-2 text-[11px]">
+                      <div class="text-slate-200 font-semibold">
+                        <strong class="text-emerald-300">${previewWeekEntry.title}:</strong> 5 Progressive Plays (${previewWeekEntry.progressiveDrillIds.join(', ')})
+                      </div>
+                      <button type="button" id="btnPrintAutopilotStationCard" class="px-2.5 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/35 border border-cyan-400/60 text-cyan-200 text-[10px] font-black cursor-pointer">
+                        🖨️ Week ${previewWeekEntry.week} Rink-Glass Card
+                      </button>
+                    </div>
+                  </div>
+                ` : `
+                  <div id="coachCampLifecycleCard" class="p-3 rounded-2xl bg-cyan-950/35 border border-cyan-400/65 flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                      <div class="text-xs font-black uppercase text-cyan-300">⚡ Camp / 3v3 Pass Lifecycle Window (${teamDoc.teamCode})</div>
+                      <div class="text-[11px] text-slate-200 font-semibold">Active Window: <strong>${campDurWeeks} Weeks</strong> (Auto-archives into players' Past Completed Camps after ${campExpiresStr} with 0 IQ loss)</div>
+                    </div>
+                    <select id="selectCoachOfficeCampDuration" aria-label="Camp Cohort Duration Weeks" class="px-2.5 py-1.5 rounded-xl bg-slate-950 border border-cyan-400/65 text-xs font-black text-cyan-100">
+                      <option value="4" ${campDurWeeks === 4 ? 'selected' : ''}>4 Weeks (Shinny / 3v3)</option>
+                      <option value="6" ${campDurWeeks === 6 ? 'selected' : ''}>6 Weeks (Spring / Fall Clinic)</option>
+                      <option value="8" ${campDurWeeks === 8 ? 'selected' : ''}>8 Weeks (Skills Camp)</option>
+                    </select>
+                  </div>
+                `}
                 <div class="p-3 rounded-2xl bg-slate-900/95 border border-amber-400/65 space-y-2.5">
                   <div class="text-xs font-black uppercase text-amber-300">🚀 Create &amp; Push AI Lesson Plan to Players' Coach's Inbox</div>
                   <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -27364,6 +28724,54 @@
             const lessonCount = Number(document.getElementById('coachPushLengthSelect')?.value || 5);
             const coachNote = document.getElementById('coachPushNoteInput')?.value || '';
             await pushCoachPlanToTeamInbox({ focusConcept, lessonCount, coachNote });
+          });
+          document.getElementById('btnToggleSeasonAutopilot')?.addEventListener('click', async () => {
+            SoundFX.playGoalHorn();
+            const overrideVal = Number(document.getElementById('selectAutopilotWeekOverride')?.value || 0);
+            const nextEnabled = !(teamDoc.seasonAutopilot && teamDoc.seasonAutopilot.enabled);
+            const nowMs = Date.now();
+            teamDoc.seasonAutopilot = {
+              enabled: nextEnabled,
+              activatedAt: (teamDoc.seasonAutopilot && teamDoc.seasonAutopilot.activatedAt) || new Date(nowMs).toISOString(),
+              startTimestamp: Number((teamDoc.seasonAutopilot && teamDoc.seasonAutopilot.startTimestamp) || nowMs),
+              bracketKey,
+              overrideWeek: overrideVal >= 1 && overrideVal <= 12 ? overrideVal : null
+            };
+            await SynapzPortalCloud.saveTeamDoc(teamDoc);
+            renderSynapzCoachOfficeModal();
+          });
+          document.getElementById('selectAutopilotWeekOverride')?.addEventListener('change', async (ev) => {
+            SoundFX.playTap();
+            const wkVal = Number(ev.currentTarget.value || 0);
+            const nowMs = Date.now();
+            teamDoc.seasonAutopilot = {
+              ...(teamDoc.seasonAutopilot || { enabled: false, activatedAt: new Date(nowMs).toISOString(), startTimestamp: nowMs, bracketKey }),
+              bracketKey,
+              overrideWeek: wkVal >= 1 && wkVal <= 12 ? wkVal : null
+            };
+            await SynapzPortalCloud.saveTeamDoc(teamDoc);
+            renderSynapzCoachOfficeModal();
+          });
+          document.getElementById('btnPrintAutopilotStationCard')?.addEventListener('click', () => {
+            SoundFX.playTap();
+            openSynapzPrintView('rink_glass_card', {
+              focusConcept: previewWeekEntry.stationCardId || previewWeekEntry.primaryBucket || previewWeekEntry.focusConcept,
+              lessonCount: 5,
+              teamCode: teamDoc.teamCode,
+              teamName: teamDoc.teamName,
+              ageDivision: teamDoc.ageDivision || '12U'
+            });
+          });
+          document.getElementById('selectCoachOfficeCampDuration')?.addEventListener('change', async (ev) => {
+            SoundFX.playTap();
+            const nextWeeks = normalizeCampDurationWeeks(ev.currentTarget.value, 4);
+            const createdMs = Number(teamDoc.createdAtMs || (teamDoc.createdAt ? Date.parse(teamDoc.createdAt) : 0)) || Date.now();
+            teamDoc.durationWeeks = nextWeeks;
+            teamDoc.createdAtMs = createdMs;
+            teamDoc.expiresAt = createdMs + nextWeeks * 7 * 86400000;
+            teamDoc.archived = Date.now() > teamDoc.expiresAt;
+            await SynapzPortalCloud.saveTeamDoc(teamDoc);
+            renderSynapzCoachOfficeModal();
           });
           document.getElementById('btnPrintLatestRinkGlassCard')?.addEventListener('click', () => {
             SoundFX.playTap();
@@ -27650,11 +29058,33 @@
         headerTitleEl.textContent = "📋 Coach's Office — IQ Stats, Coach's Inbox & Personal Development Plan";
       }
 
+      const officeRenderSeq = (state._coachOfficeRenderSeq = (state._coachOfficeRenderSeq || 0) + 1);
       const prof = getActiveProfile();
       if (prof) installPlayerTeamCampSchema(prof);
+      // Pre-fetch Camp docs & automatically archive any expired 4/6/8-week CAMP-XXXX passes with 0 IQ loss
+      const campDocsByCode = {};
+      if (prof && Array.isArray(prof.campPassCodes) && prof.campPassCodes.length > 0) {
+        for (const cc of [...prof.campPassCodes]) {
+          const cDoc = await SynapzPortalCloud.fetchTeamByCode(cc);
+          if (cDoc) campDocsByCode[cc] = cDoc;
+        }
+        const archEval = evaluateAndArchiveExpiredCampPasses(prof, campDocsByCode);
+        if (archEval.archivedNow.length > 0) {
+          saveProgress();
+          if (acct && acct.portalRole === 'player') {
+            acct.profile = JSON.parse(JSON.stringify(prof));
+            acct.slots = [JSON.parse(JSON.stringify(prof))];
+            await SynapzPortalCloud.saveAccount(acct);
+          }
+        }
+      }
+      if (officeRenderSeq !== state._coachOfficeRenderSeq) return;
+      SynapzOfflineHomeworkOutbox.refreshStatusBadges();
+
       const fullSuiteUnlocked = isPlayerFullSuiteActive(acct, prof);
       const linkedCode = (prof && prof.primaryTeamCode) || state.teamCode || '';
       const campCodes = (prof && Array.isArray(prof.campPassCodes)) ? prof.campPassCodes : [];
+      const archivedCamps = (prof && Array.isArray(prof.archivedCampPasses)) ? prof.archivedCampPasses : [];
       const activeInboxTab = state.playerInboxSourceTab === 'camp' ? 'camp' : 'primary';
 
       // BET-V131-03 (Option A): Dual Non-Destructive Tabs (Primary Winter Team | 3v3 & Skills Camps)
@@ -27763,22 +29193,49 @@
         const codesToLoad = activeInboxTab === 'camp'
           ? campCodes
           : (linkedCode ? [linkedCode] : []);
+        const archivedDrawerHtml = (activeInboxTab === 'camp' && archivedCamps.length > 0)
+          ? `
+            <details id="playerArchivedCampsDrawer" class="rounded-2xl bg-slate-900/95 border border-slate-700 p-2.5 space-y-1.5 mb-2">
+              <summary class="text-xs font-black text-slate-300 cursor-pointer select-none">
+                🗄️ Past Completed Camps (${archivedCamps.length} Archived • 100% IQ &amp; Puck Bucks Preserved)
+              </summary>
+              <div class="space-y-1.5 pt-1.5">
+                ${archivedCamps.map(ac => `
+                  <div data-archived-camp-code="${ac.code}" class="p-2 rounded-xl bg-slate-950 border border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs">
+                    <div>
+                      <span class="font-black text-slate-200">⚡ ${ac.teamName || ac.code}</span>
+                      <span class="font-mono text-[10px] text-cyan-300 ml-1">(${ac.code} • ${ac.durationWeeks || 4}-Wk Pass Completed)</span>
+                    </div>
+                    <span class="px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-400/45 text-[10px] font-black text-emerald-200">✅ IQ &amp; History Intact</span>
+                  </div>
+                `).join('')}
+              </div>
+            </details>
+          `
+          : '';
         if (codesToLoad.length === 0) {
           inboxBox.classList.remove('hidden');
           inboxBox.innerHTML = activeInboxTab === 'camp'
-            ? `<div class="p-2.5 rounded-2xl bg-cyan-950/35 border border-cyan-400/50 text-xs text-cyan-100 font-semibold mb-2">⚡ Enter a <strong>CAMP-XXXX</strong> clinic or 3v3 pass above—your Primary Winter Team ${linkedCode ? `(${linkedCode})` : ''} stays 100% connected!</div>`
+            ? `<div class="p-2.5 rounded-2xl bg-cyan-950/35 border border-cyan-400/50 text-xs text-cyan-100 font-semibold mb-2">⚡ Enter a <strong>CAMP-XXXX</strong> clinic or 3v3 pass above—your Primary Winter Team ${linkedCode ? `(${linkedCode})` : ''} stays 100% connected!</div>${archivedDrawerHtml}`
             : '';
           if (activeInboxTab !== 'camp') inboxBox.classList.add('hidden');
         } else {
           const allLoadedPlans = [];
           const headerNames = [];
           for (const cCode of codesToLoad) {
-            const tDoc = await SynapzPortalCloud.fetchTeamByCode(cCode);
+            const tDoc = campDocsByCode[cCode] || (await SynapzPortalCloud.fetchTeamByCode(cCode));
             headerNames.push(tDoc ? (tDoc.teamName || cCode) : cCode);
+            if (activeInboxTab === 'primary' && tDoc && tDoc.seasonAutopilot && tDoc.seasonAutopilot.enabled) {
+              const apPlan = resolveActiveSeasonAutopilotPlan(tDoc);
+              if (apPlan) {
+                allLoadedPlans.push({ ...apPlan, teamCode: cCode, sourceName: tDoc.teamName || cCode });
+              }
+            }
             if (tDoc && Array.isArray(tDoc.pushedPlans)) {
               tDoc.pushedPlans.forEach(pl => allLoadedPlans.push({ ...pl, teamCode: cCode, sourceName: tDoc.teamName || cCode }));
             }
           }
+          if (officeRenderSeq !== state._coachOfficeRenderSeq) return;
           inboxBox.classList.remove('hidden');
           inboxBox.innerHTML = `
             <div id="playerCoachInboxSection" class="p-3 rounded-2xl ${activeInboxTab === 'camp' ? 'bg-cyan-950/40 border border-cyan-400/70' : 'bg-emerald-950/40 border border-emerald-400/70'} space-y-2 mb-2.5">
@@ -27789,9 +29246,9 @@
               ${allLoadedPlans.length === 0
                 ? `<p class="text-xs text-slate-300 font-semibold">No assigned plans yet in this ${activeInboxTab === 'camp' ? 'Camp/3v3 pass' : 'Team'} inbox. When your Coach pushes a lesson plan, it appears right here!</p>`
                 : allLoadedPlans.map(pl => `
-                  <div class="p-2.5 rounded-xl bg-slate-950 border border-emerald-400/45 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div data-inbox-plan-id="${pl.planId}" class="p-2.5 rounded-xl bg-slate-950 border ${pl.isSeasonAutopilot ? 'border-cyan-400/75' : 'border-emerald-400/45'} flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
-                      <div class="text-xs font-black text-white">${activeInboxTab === 'camp' ? '⚡' : '🏒'} ${pl.focusConcept} (${pl.lessonCount} Plays • ${pl.sourceName})</div>
+                      <div class="text-xs font-black text-white">${pl.isSeasonAutopilot ? '🗓️' : (activeInboxTab === 'camp' ? '⚡' : '🏒')} ${pl.focusConcept} (${pl.lessonCount} Plays • ${pl.sourceName})</div>
                       <div class="text-[11px] text-slate-300">${pl.coachNote} • Reports score &amp; struggles to ${pl.assignedBy}</div>
                     </div>
                     <button type="button" data-play-coach-plan-id="${pl.planId}" class="btn-play-coach-inbox-plan px-3 py-2 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs font-black shrink-0 shadow cursor-pointer">
@@ -27800,6 +29257,7 @@
                   </div>
                 `).join('')}
             </div>
+            ${archivedDrawerHtml}
           `;
           inboxBox.querySelectorAll('.btn-play-coach-inbox-plan').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -30273,17 +31731,26 @@
       'BET-V131-02',
       'BET-V131-03',
       'BET-V131-04',
-      'BET-V131-05'
+      'BET-V131-05',
+      'BET-V133-01',
+      'BET-V133-02',
+      'BET-V133-03',
+      'BET-V133-04'
     ];
     window.CORE_DEPLOYED_UPGRADE_IDS = CORE_DEPLOYED_UPGRADE_IDS;
-    window.ALL_365_CUMULATIVE_UPGRADE_IDS = [
+    window.ALL_369_CUMULATIVE_UPGRADE_IDS = [
       ...ALL_360_DEPLOYED_UPGRADE_IDS,
       'BET-V131-01',
       'BET-V131-02',
       'BET-V131-03',
       'BET-V131-04',
-      'BET-V131-05'
+      'BET-V131-05',
+      'BET-V133-01',
+      'BET-V133-02',
+      'BET-V133-03',
+      'BET-V133-04'
     ];
+    window.ALL_365_CUMULATIVE_UPGRADE_IDS = window.ALL_369_CUMULATIVE_UPGRADE_IDS;
 
     const SYNAPZ_NORMALIZED_ID_CACHE = new Map();
     CORE_DEPLOYED_UPGRADE_IDS.forEach(id => SYNAPZ_NORMALIZED_ID_CACHE.set(id, id));
@@ -33068,6 +34535,8 @@
           const topModals = [
             'founderRedFlagModal',
             'pilotSandboxCheckoutModal',
+            'synapzNet30PoModal',
+            'synapzInstallPwaModal',
             'playerAgentPickerModal',
             'safeSportNotificationModal',
             'videoExampleModal',
@@ -33898,7 +35367,7 @@
               keys.filter(k => k !== window.SYNAPZ_CACHE_NAME).map(k => caches.delete(k))
             );
           }
-          const reg = await navigator.serviceWorker.register('./sw.js?v=13.2');
+          const reg = await navigator.serviceWorker.register('./sw.js?v=13.4');
           if (reg && typeof reg.update === 'function') {
             reg.update().catch(() => {});
           }
@@ -34126,7 +35595,15 @@
             <option value="4way">4-Way Pro (0°/90°/180°/270°)</option>
           </select>
         </div>
-        <div class="col-span-2">
+        <div>
+          <label class="block text-[10px] font-black uppercase text-emerald-300 mb-0.5">🔊 Coach Voice &amp; Captions</label>
+          <select id="lockerEditVoicePrefSelect" class="w-full px-2.5 py-1.5 rounded-xl bg-slate-900 border border-emerald-400/50 text-xs font-bold text-white">
+            <option value="auto">Auto (Natural OS Voice + Captions)</option>
+            <option value="captions_only">🔇 Mute Voice — Captions Only</option>
+            <option value="enhanced_voice">🎙️ Prefer Enhanced OS Voice</option>
+          </select>
+        </div>
+        <div class="col-span-2 sm:col-span-3">
           <label class="block text-[10px] font-black uppercase text-cyan-300 mb-0.5">🌍 Ice Federation &amp; Division Terminology</label>
           <div id="lockerEditFederationSwitcher" class="grid grid-cols-3 gap-1.5">
             <button type="button" data-federation-pill="USA" class="py-1.5 px-2 rounded-xl border text-[11px] font-black transition cursor-pointer bg-amber-500/25 border-amber-400 text-amber-200">🇺🇸 USA (8U–18U)</button>
@@ -34135,7 +35612,10 @@
           </div>
         </div>
       </div>
-      <div class="flex items-center justify-end gap-2 pt-1">
+      <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+        <button id="btnLockerInstallOfflineApp" type="button" data-trigger-install-pwa="locker" class="btn-trigger-install-pwa px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-400/65 text-cyan-200 text-[11px] font-black cursor-pointer">
+          📲 Install Rink Offline App
+        </button>
         <button id="btnSaveLockerProfileEdits" type="button" class="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 text-slate-950 text-xs font-black shadow-lg">
           💾 Save Profile Updates
         </button>
@@ -34191,9 +35671,15 @@
 
     <!-- Floating Coach's Office Drawer (Role-Based: Player | Coach / Shared Assistant | Association Director) -->
     <div id="coachOfficeOverlaySheet" class="hidden fixed inset-x-2.5 bottom-2.5 sm:inset-x-auto sm:w-[94vw] sm:max-w-5xl max-h-[85dvh] overflow-y-auto z-50 rounded-2xl bg-slate-950/95 border-2 border-amber-400/80 p-3.5 pb-16 shadow-2xl space-y-3 backdrop-blur-xl">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-2 gap-2">
+      <div class="flex flex-wrap items-center justify-between border-b border-slate-800 pb-2 gap-2">
         <div id="coachOfficeDrawerHeaderTitle" class="text-xs sm:text-sm font-black text-amber-300">📋 Coach's Office — IQ Stats, Coach's Inbox &amp; Personal Development Plan</div>
-        <div class="flex items-center gap-1.5 shrink-0">
+        <div class="flex flex-wrap items-center gap-1.5 shrink-0">
+          <span id="synapzOfflineOutboxStatusBadge" class="hidden px-2.5 py-1 rounded-full bg-amber-500/20 border border-amber-400/70 text-[10px] font-black text-amber-200">
+            📡 Saved Offline — Auto-Syncs Outside Rink
+          </span>
+          <button id="btnCoachOfficeInstallOfflineApp" type="button" data-trigger-install-pwa="coach_office" class="btn-trigger-install-pwa px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-400/65 text-cyan-200 text-[11px] font-black cursor-pointer">
+            📲 Install Rink Offline App
+          </button>
           <button id="btnCoachOfficeJoinTeam" type="button" class="px-3 py-1.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-[11px] font-black shadow">
             📋 Team Roster Hub
           </button>
@@ -34694,7 +36180,30 @@
     </div>
   </div>
 
-  <!-- BET-V131-04 (Option A): Single-Page @media print Sheet (Board ROI Packet & Rink-Glass 3-Station Card) -->
+  <!-- BET-V133-02 (Option B + Studio Hook): Non-Blocking Mute-Safe Broadcast Caption Ribbon + Offline Sync Pill -->
+  <style id="synapzV134CaptionAndOfflineStyles">
+    #synapzMuteSafeCaptionRibbon,
+    #synapzMuteSafeCaptionRibbon * {
+      pointer-events: none !important;
+      user-select: none !important;
+    }
+    #synapzGlobalOfflineSyncToast,
+    #synapzGlobalOfflineSyncToast * {
+      pointer-events: none !important;
+    }
+  </style>
+  <div id="synapzMuteSafeCaptionRibbon" aria-live="polite" style="pointer-events:none !important;" class="hidden fixed top-11 left-1/2 -translate-x-1/2 z-[94] w-[92vw] max-w-xl px-3 py-1.5 rounded-2xl bg-slate-950/88 border border-cyan-400/60 shadow-2xl backdrop-blur-md text-center">
+    <div class="flex items-center justify-center gap-2 mb-0.5">
+      <span id="synapzCaptionSpeakerBadge" class="text-[10px] font-black uppercase tracking-wider text-cyan-300">🎙️ Coach Bob</span>
+      <span id="synapzMutedCaptionsPill" class="hidden px-2 py-0.5 rounded-full bg-amber-500/25 border border-amber-400/75 text-[10px] font-black text-amber-200">🔇 Muted — Captions On</span>
+    </div>
+    <div id="synapzMuteSafeCaptionWords" class="text-xs sm:text-sm font-extrabold text-white leading-snug"></div>
+  </div>
+  <div id="synapzGlobalOfflineSyncToast" style="pointer-events:none !important;" class="hidden fixed top-2.5 left-1/2 -translate-x-1/2 z-[125] px-3.5 py-1.5 rounded-full bg-amber-950/95 border border-amber-400 text-[11px] font-black text-amber-200 shadow-2xl">
+    📡 Saved Offline — Auto-Syncs Outside Rink
+  </div>
+
+  <!-- BET-V131-04 + BET-V133-01: Single-Page @media print Sheet (Board ROI Packet, Rink-Glass 3-Station Card & Net-30 Club PO / Invoice) -->
   <style id="synapzV132PrintStyles">
     @media print {
       @page { size: letter portrait; margin: 0.4in; }
@@ -34718,7 +36227,16 @@
       html body #synapzLockerRoomModal,
       html body #proShopModal,
       html body #friendsWallModal,
+      html body.synapz-entry-gate-active #sandboxLoginModal,
+      html body #sandboxLoginModal,
       html body #synapzEntryGateOverlay,
+      html body #synapzEntryPortalsOverlay,
+      html body #coachPortalModal,
+      html body #associationMasterHqModal,
+      html body #synapzNet30PoModal,
+      html body #synapzInstallPwaModal,
+      html body #synapzMuteSafeCaptionRibbon,
+      html body #synapzGlobalOfflineSyncToast,
       html body #synapzPersistentCharCircleBtn,
       html body #synapzUniversalCharSpeechOverlay {
         display: none !important;
