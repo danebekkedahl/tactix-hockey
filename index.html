@@ -5472,7 +5472,7 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v13.4-commercial-launch-ready';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v14.0-honest-ihs-blooket-engine';
 
     // =========================================================================
     // SECTION 39 (v12.3) + SECTION 46 (v13.2) + SECTION 47 (v13.4):
@@ -17827,18 +17827,25 @@
         }
       }
       if (targetView === 'lobby') {
+        document.body.classList.remove('v14-white-ice-active');
         if (typeof renderSynapzRinkLobby === 'function') renderSynapzRinkLobby();
       } else if (targetView === 'map') {
+        document.body.classList.remove('v14-white-ice-active');
         renderNhlTourMap();
       } else {
         setTimeout(() => {
           resizeCanvas();
           drawRink();
         }, 40);
-        loadScenario(true);
+        loadScenario(false);
+        if (window.SynapzV14Engine && window.SynapzV14Engine.ready) {
+          window.SynapzV14Engine.activateInGameView();
+        }
       }
     }
     window.switchView = switchView;
+    window.saveProgress = saveProgress;
+    window.updateHeaderStats = updateHeaderStats;
 
     // =========================================================================
     // PHASE 4 STEP 2: WALK-IN WALL-STYLE SYNAPZ PRO SHOP & 75%-REALISTIC GEAR WALL CARDS
@@ -27984,6 +27991,9 @@
         if (bestKey) topFocus = bestKey;
       }
       const cardMeta = resolveStationCardForFocus(topFocus);
+      const v14RingsHtml = (window.SynapzV14Engine && window.SynapzV14Engine.ready)
+        ? `<div class="pt-1">${window.SynapzV14Engine.renderSkillRingsHtmlForProfile(p, { compact: true })}</div>`
+        : '';
       return `
         <div id="saturdayIceProofCard" data-saturday-ice-proof="true" class="saturday-ice-proof-card p-3 rounded-2xl bg-gradient-to-br from-slate-950 via-cyan-950/35 to-emerald-950/30 border border-cyan-400/65 space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-1.5">
@@ -27992,6 +28002,7 @@
               ${divBadge} (${fed}) • ${redemptionTransfers} Play N+3 Transfer(s)
             </span>
           </div>
+          ${v14RingsHtml}
           <p class="text-xs text-white font-bold leading-snug">
             What to watch on Saturday's shift (${cardMeta.title}):
           </p>
@@ -29297,6 +29308,7 @@
               <div>• <strong>Overall Hockey IQ:</strong> ${prof && prof.iqScore != null ? prof.iqScore : 100} • <strong>Lowest Pillar:</strong> 🥅 Goalie &amp; Crease Reads (79%)</div>
               <div>• <strong>Selected Pillar Readout:</strong> ${selMeta.icon} ${selMeta.label} (${selMeta.pct}%)</div>
             </div>
+            <div id="v14CoachOfficeSkillRingsMount" class="w-full">${(window.SynapzV14Engine && window.SynapzV14Engine.ready) ? window.SynapzV14Engine.renderSkillRingsHtmlForProfile(prof, { compact: false }) : ''}</div>
             ${renderSaturdayIceProofCardHtml(prof, false)}
             <div class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-400/40 text-[11px] text-amber-200 font-semibold">
               Upgrade to <strong>Full Suite ($${formatSynapzPriceNum(pCfg.playerFullSuiteMonthly || 7.99)}/mo or $${formatSynapzPriceNum(pCfg.playerFullSuiteAnnual || 49.99)}/yr)</strong> to unlock Coach Al's interactive AI Personal Development Plan &amp; custom focus builders!
@@ -29355,6 +29367,7 @@
               🏒 Launch 10-Lesson Mastery Plan ▶
             </button>
           </div>
+          <div id="v14CoachOfficeSkillRingsMount" class="w-full">${(window.SynapzV14Engine && window.SynapzV14Engine.ready) ? window.SynapzV14Engine.renderSkillRingsHtmlForProfile(prof, { compact: false }) : ''}</div>
           ${renderSaturdayIceProofCardHtml(prof, true)}
         </div>
       `;
@@ -31624,7 +31637,7 @@
     // SECTION 32–43: VERIFIED REAL CODED UPGRADES RUNTIME & PRE-CODED BANK
     // (`synapz-hockey-v12.7-5persona-human-vision` • 288 Live Upgrades)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v13.2-global-strategic-suite';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v14.0-honest-ihs-blooket-engine';
 
     const ALL_63_DEPLOYED_UPGRADE_IDS = [
       // Batch A (12 items)
@@ -31735,7 +31748,12 @@
       'BET-V133-01',
       'BET-V133-02',
       'BET-V133-03',
-      'BET-V133-04'
+      'BET-V133-04',
+      'V140-SLICE-01',
+      'V140-SLICE-02',
+      'V140-SLICE-03',
+      'V140-SLICE-04',
+      'V140-SLICE-05'
     ];
     window.CORE_DEPLOYED_UPGRADE_IDS = CORE_DEPLOYED_UPGRADE_IDS;
     window.ALL_369_CUMULATIVE_UPGRADE_IDS = [
@@ -31749,6 +31767,14 @@
       'BET-V133-02',
       'BET-V133-03',
       'BET-V133-04'
+    ];
+    window.ALL_374_CUMULATIVE_UPGRADE_IDS = [
+      ...window.ALL_369_CUMULATIVE_UPGRADE_IDS,
+      'V140-SLICE-01',
+      'V140-SLICE-02',
+      'V140-SLICE-03',
+      'V140-SLICE-04',
+      'V140-SLICE-05'
     ];
     window.ALL_365_CUMULATIVE_UPGRADE_IDS = window.ALL_369_CUMULATIVE_UPGRADE_IDS;
 
@@ -35076,7 +35102,7 @@
         state.seriesQuestionNum = 1;
         state.iqScore = 0;
         state.puckBucks = 250;
-        document.body.classList.remove('in-game-clean-mode');
+        document.body.classList.remove('in-game-clean-mode', 'v14-white-ice-active');
         const gBanner = document.getElementById('synapzGuestLiveShiftBanner');
         if (gBanner) gBanner.classList.add('hidden');
         const bottomExitBtn = document.getElementById('btnGameSaveExitLobby');
@@ -35367,7 +35393,7 @@
               keys.filter(k => k !== window.SYNAPZ_CACHE_NAME).map(k => caches.delete(k))
             );
           }
-          const reg = await navigator.serviceWorker.register('./sw.js?v=13.4');
+          const reg = await navigator.serviceWorker.register('./sw.js?v=14.0');
           if (reg && typeof reg.update === 'function') {
             reg.update().catch(() => {});
           }
@@ -36284,5 +36310,6 @@
     </div>
     <div id="synapzPrintDocumentRoot" class="w-full max-w-4xl rounded-2xl bg-white p-5 sm:p-7 shadow-2xl border-2 border-slate-300"></div>
   </div>
+  <script type="module" src="./engine/v14_bootstrap.js"></script>
 </body>
 </html>

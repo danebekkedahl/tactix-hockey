@@ -1,8 +1,15 @@
-const CACHE_NAME = 'synapz-hockey-v13.4-commercial-launch-ready';
+const CACHE_NAME = 'synapz-hockey-v14.0-honest-ihs-blooket-engine';
 const PRECACHE_ASSETS = [
   './',
   './index.html',
   './manifest.json',
+  './engine/rink_1000x500.js',
+  './engine/validate_drills.js',
+  './engine/chalk_reel.js',
+  './engine/modes_9pack.js',
+  './engine/blooket_payoff.js',
+  './engine/v14_bootstrap.js',
+  './drills/catalog_45.json',
   './apple-touch-icon.png',
   './icon-192.png',
   './icon-512.png',
