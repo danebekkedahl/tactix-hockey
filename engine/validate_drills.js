@@ -1,11 +1,11 @@
 /**
- * SYNAPZ HOCKEY v14.0 — Canonical Drill & 45-Concept Taxonomy Validator
+ * SYNAPZ HOCKEY v14.1 — Canonical 45/45 Drill, Kid-Clarity & Taxonomy Validator
  * (`engine/validate_drills.js`)
  *
  * Works identically as:
  *  1) Browser ES Module (`import { validateDrillSchema, validateDrillCatalog } from './validate_drills.js'`)
  *     powering runtime validation & the Slide-Over Catalog "Import Drills JSON" modal.
- *  2) Node CLI (`node engine/validate_drills.js`) validating `drills/catalog_45.json` (`18/18` starter drills).
+ *  2) Node CLI (`node engine/validate_drills.js`) enforcing `45/45` playable drills (`5 × 9` modes, `0` stub concepts).
  */
 
 export const CANONICAL_9_MODES = [
@@ -23,9 +23,38 @@ export const CANONICAL_9_MODES = [
 export const CANONICAL_5_ZONES = ['DZ', 'NZ', 'OM', 'OZ', 'ST'];
 export const CANONICAL_5_POSITIONS = ['C', 'LW', 'RW', 'LD', 'RD'];
 
-function countWords(str) {
+export function countWords(str) {
   const clean = String(str || '').trim();
   return clean ? clean.split(/\s+/).length : 0;
+}
+
+function samplePathAt(points, tRaw) {
+  if (!Array.isArray(points) || points.length === 0) return [500, 250];
+  if (points.length === 1) return [points[0][0], points[0][1]];
+  const t = Math.max(0, Math.min(1, Number(tRaw) || 0));
+  if (t <= 0) return [points[0][0], points[0][1]];
+  if (t >= 1) return [points[points.length - 1][0], points[points.length - 1][1]];
+  const segs = [];
+  let total = 0;
+  for (let i = 0; i < points.length - 1; i++) {
+    const d = Math.hypot(points[i + 1][0] - points[i][0], points[i + 1][1] - points[i][1]);
+    segs.push(d);
+    total += d;
+  }
+  if (total < 0.001) return [points[0][0], points[0][1]];
+  const want = total * t;
+  let acc = 0;
+  for (let i = 0; i < segs.length; i++) {
+    if (acc + segs[i] >= want || i === segs.length - 1) {
+      const lt = segs[i] > 0.0001 ? (want - acc) / segs[i] : 0;
+      return [
+        points[i][0] + (points[i + 1][0] - points[i][0]) * lt,
+        points[i][1] + (points[i + 1][1] - points[i][1]) * lt
+      ];
+    }
+    acc += segs[i];
+  }
+  return [points[points.length - 1][0], points[points.length - 1][1]];
 }
 
 function checkCoordPair(pair, label, errors) {
@@ -50,8 +79,48 @@ function checkPointList(points, label, errors) {
   points.forEach((pt, idx) => checkCoordPair(pt, `${label}[${idx}]`, errors));
 }
 
-export function validateDrillSchema(drill) {
+/**
+ * Checks if a non-shot pass/rim segment cuts impossibly through the back iron/mesh
+ * of the Left Goal Cage (x: 67..88.5, y: 228..272) or Right Goal Cage (x: 911.5..933, y: 228..272).
+ */
+export function segmentCutsGoalCageBack(a, b) {
+  if (!Array.isArray(a) || !Array.isArray(b)) return false;
+  const STEPS = 32;
+  for (let s = 1; s < STEPS; s++) {
+    const t = s / STEPS;
+    const x = a[0] + (b[0] - a[0]) * t;
+    const y = a[1] + (b[1] - a[1]) * t;
+    const inLeftCage = x >= 67 && x <= 88.2 && y >= 228 && y <= 272;
+    const inRightCage = x >= 911.8 && x <= 933 && y >= 228 && y <= 272;
+    if (inLeftCage || inRightCage) return true;
+  }
+  return false;
+}
+
+function checkPolylineGoalCageClearance(points, label, errors) {
+  if (!Array.isArray(points) || points.length < 2) return;
+  for (let i = 0; i < points.length - 1; i++) {
+    if (segmentCutsGoalCageBack(points[i], points[i + 1])) {
+      errors.push(`${label}[${i}->${i + 1}] cuts impossibly through the back of the goal cage`);
+    }
+  }
+}
+
+export function computeFreezeSkaterPositions(drill) {
+  const normT = drill.mode === 'spot_the_breakdown' ? 0.35 : 1.0;
+  return (drill.skaters || []).map((sk) => {
+    const traj = Array.isArray(sk.motion) && sk.motion.length > 0 ? sk.motion : [sk.start];
+    return {
+      id: sk.id,
+      team: sk.team,
+      pos: samplePathAt(traj, normT)
+    };
+  });
+}
+
+export function validateDrillSchema(drill, opts = {}) {
   const errors = [];
+  const strictKidClarity = opts.strictKidClarity !== false;
   if (!drill || typeof drill !== 'object') {
     return { valid: false, errors: ['Drill must be a non-null object'] };
   }
@@ -71,17 +140,23 @@ export function validateDrillSchema(drill) {
     errors.push(`Invalid drill.youRole "${drill.youRole}" (must be C, LW, RW, LD, or RD)`);
   }
 
-  // Briefing <= 120 chars & coachTip <= 110 chars & coachRule <= 15 words
+  // Kid-Clarity Copy Rules: briefing <= 15w (<=120 chars), coachTip <= 14w (<=110 chars), coachRule <= 15w
   const briefing = String(drill.briefing || '').trim();
   if (!briefing) errors.push('Missing drill.briefing');
   if (briefing.length > 120) {
     errors.push(`drill.briefing length (${briefing.length}) exceeds 120 chars`);
+  }
+  if (strictKidClarity && countWords(briefing) > 15) {
+    errors.push(`drill.briefing word count (${countWords(briefing)}) exceeds 15 words`);
   }
 
   const coachTip = String(drill.coachTip || '').trim();
   if (!coachTip) errors.push('Missing drill.coachTip');
   if (coachTip.length > 110) {
     errors.push(`drill.coachTip length (${coachTip.length}) exceeds 110 chars`);
+  }
+  if (strictKidClarity && countWords(coachTip) > 14) {
+    errors.push(`drill.coachTip word count (${countWords(coachTip)}) exceeds 14 words`);
   }
 
   const coachRule = String(drill.coachRule || '').trim();
@@ -101,7 +176,7 @@ export function validateDrillSchema(drill) {
     }
   }
 
-  // Skaters & coordinate paths
+  // Skaters & coordinate paths + >= 28 logical unit freeze separation
   if (!Array.isArray(drill.skaters) || drill.skaters.length < 5) {
     errors.push('drill.skaters must include at least the 5 team positions (C, LW, RW, LD, RD)');
   } else {
@@ -127,14 +202,30 @@ export function validateDrillSchema(drill) {
         errors.push(`drill.skaters missing home position "${pos}" required for Chalk-Talk [C][LW][RW][LD][RD] switcher`);
       }
     }
+
+    if (strictKidClarity) {
+      const freezeSkaters = computeFreezeSkaterPositions(drill);
+      for (let i = 0; i < freezeSkaters.length; i++) {
+        for (let j = i + 1; j < freezeSkaters.length; j++) {
+          const a = freezeSkaters[i];
+          const b = freezeSkaters[j];
+          const d = Math.hypot(a.pos[0] - b.pos[0], a.pos[1] - b.pos[1]);
+          if (d < 28) {
+            errors.push(`Token overlap at freeze: ${a.id} and ${b.id} are ${d.toFixed(1)} units apart (must be >= 28)`);
+          }
+        }
+      }
+    }
   }
 
   if (drill.puck && typeof drill.puck === 'object') {
     if (Array.isArray(drill.puck.livePath) && drill.puck.livePath.length > 0) {
       checkPointList(drill.puck.livePath, 'drill.puck.livePath', errors);
+      checkPolylineGoalCageClearance(drill.puck.livePath, 'drill.puck.livePath', errors);
     }
     if (Array.isArray(drill.puck.goldPath) && drill.puck.goldPath.length > 0) {
       checkPointList(drill.puck.goldPath, 'drill.puck.goldPath', errors);
+      checkPolylineGoalCageClearance(drill.puck.goldPath, 'drill.puck.goldPath', errors);
     }
     if (Array.isArray(drill.puck.missPath) && drill.puck.missPath.length > 0) {
       checkPointList(drill.puck.missPath, 'drill.puck.missPath', errors);
@@ -170,10 +261,17 @@ export function validateDrillSchema(drill) {
       reel.beats.forEach((b, bIdx) => {
         const bTag = `lessonReel.beats[${bIdx}]`;
         totalSec += Number(b.durationSec || 0);
-        if (!String(b.caption || '').trim()) errors.push(`${bTag}: missing caption`);
+        const cap = String(b.caption || '').trim();
+        if (!cap) errors.push(`${bTag}: missing caption`);
+        if (strictKidClarity && countWords(cap) > 12) {
+          errors.push(`${bTag}.caption (${countWords(cap)}w) exceeds 12-word Kid-Clarity limit`);
+        }
         if (Array.isArray(b.paths)) {
           b.paths.forEach((p, pIdx) => {
             checkPointList(p.points, `${bTag}.paths[${pIdx}].points`, errors);
+            if (p.type === 'pass') {
+              checkPolylineGoalCageClearance(p.points, `${bTag}.paths[${pIdx}].pass`, errors);
+            }
           });
         }
         if (b.thisSpaceHalo) {
@@ -202,6 +300,9 @@ export function validateDrillSchema(drill) {
   if (!mc || typeof mc !== 'object') {
     errors.push('Missing drill.modeConfig');
   } else {
+    const freezeSkaters = computeFreezeSkaterPositions(drill);
+    const youFreeze = freezeSkaters.find(s => s.id === drill.youRole);
+
     switch (drill.mode) {
       case 'read_and_react': {
         if (typeof mc.freezeTime !== 'number' || mc.freezeTime <= 0) {
@@ -216,6 +317,9 @@ export function validateDrillSchema(drill) {
             checkCoordPair(opt.target, `modeConfig.options[${i}].target`, errors);
             if (countWords(opt.label) > 6) {
               errors.push(`modeConfig.options[${i}].label "${opt.label}" exceeds 6 words`);
+            }
+            if (youFreeze && opt.pathType !== 'shot' && segmentCutsGoalCageBack(youFreeze.pos, opt.target)) {
+              errors.push(`modeConfig.options[${i}] pass cuts impossibly through goal cage`);
             }
           });
         }
@@ -258,6 +362,9 @@ export function validateDrillSchema(drill) {
             checkCoordPair(opt.target, `modeConfig.options[${i}].target`, errors);
             if (countWords(opt.label) > 6) {
               errors.push(`modeConfig.options[${i}].label "${opt.label}" exceeds 6 words`);
+            }
+            if (youFreeze && segmentCutsGoalCageBack(youFreeze.pos, opt.target)) {
+              errors.push(`modeConfig.options[${i}] outlet pass cuts impossibly through goal cage`);
             }
           });
         }
@@ -307,6 +414,9 @@ export function validateDrillSchema(drill) {
           mc.passes.forEach((p, i) => {
             checkCoordPair(p.from, `modeConfig.passes[${i}].from`, errors);
             checkCoordPair(p.to, `modeConfig.passes[${i}].to`, errors);
+            if (segmentCutsGoalCageBack(p.from, p.to)) {
+              errors.push(`modeConfig.passes[${i}] cuts impossibly through goal cage`);
+            }
           });
         }
         break;
@@ -342,15 +452,16 @@ export function validateDrillSchema(drill) {
   return {
     valid: errors.length === 0,
     drillId: id,
+    conceptId: drill.conceptId,
     mode: drill.mode,
     errors
   };
 }
 
-export function validateDrillCatalog(catalog) {
+export function validateDrillCatalog(catalog, opts = {}) {
   const catalogErrors = [];
   if (!catalog || typeof catalog !== 'object') {
-    return { valid: false, validCount: 0, totalCount: 0, catalogErrors: ['Catalog must be an object'], drillResults: [] };
+    return { valid: false, validCount: 0, totalCount: 0, stubConceptsCount: 45, catalogErrors: ['Catalog must be an object'], drillResults: [] };
   }
 
   const concepts = Array.isArray(catalog.concepts) ? catalog.concepts : [];
@@ -359,29 +470,49 @@ export function validateDrillCatalog(catalog) {
   }
 
   const drills = Array.isArray(catalog.drills) ? catalog.drills : [];
-  if (drills.length === 0) {
-    catalogErrors.push('Catalog contains 0 drills');
+  if (drills.length !== 45 && opts.allowPartial !== true) {
+    catalogErrors.push(`Expected 45/45 playable drills (5 × 9 modes), found ${drills.length}`);
   }
 
   const seenIds = new Set();
+  const coveredConcepts = new Set();
   const modeCounts = Object.fromEntries(CANONICAL_9_MODES.map(m => [m, 0]));
   const drillResults = drills.map((drill) => {
-    const res = validateDrillSchema(drill);
+    const res = validateDrillSchema(drill, opts);
     if (seenIds.has(drill.id)) {
       res.valid = false;
       res.errors.push(`Duplicate drill.id "${drill.id}"`);
     }
     seenIds.add(drill.id);
+    if (coveredConcepts.has(drill.conceptId)) {
+      res.valid = false;
+      res.errors.push(`Duplicate drill.conceptId "${drill.conceptId}"`);
+    }
+    coveredConcepts.add(drill.conceptId);
     if (modeCounts[drill.mode] != null) modeCounts[drill.mode] += 1;
     return res;
   });
 
+  const missingConcepts = concepts.map(c => c.id).filter(cid => !coveredConcepts.has(cid));
+  if (missingConcepts.length > 0 && opts.allowPartial !== true) {
+    catalogErrors.push(`Found ${missingConcepts.length} unplayable stub concept(s): ${missingConcepts.join(', ')}`);
+  }
+
+  if (drills.length === 45 && opts.allowPartial !== true) {
+    for (const mode of CANONICAL_9_MODES) {
+      if (modeCounts[mode] !== 5) {
+        catalogErrors.push(`Mode "${mode}" has ${modeCounts[mode]} drills (expected balanced 5 drills per mode across all 9 modes)`);
+      }
+    }
+  }
+
   const validCount = drillResults.filter(r => r.valid).length;
   return {
-    valid: catalogErrors.length === 0 && validCount === drills.length,
+    valid: catalogErrors.length === 0 && validCount === drills.length && drills.length > 0,
     validCount,
     totalCount: drills.length,
     conceptsCount: concepts.length,
+    stubConceptsCount: missingConcepts.length,
     modeCounts,
     catalogErrors,
     drillResults
@@ -417,19 +548,22 @@ if (isNodeCli) {
     const report = validateDrillCatalog(raw);
 
     if (!report.valid) {
-      console.error(`❌ Drill Validation FAILED (${report.validCount}/${report.totalCount} valid):`);
+      console.error(`❌ Drill Validation FAILED (${report.validCount}/${report.totalCount} valid | ${report.stubConceptsCount} stubs):`);
       for (const ce of report.catalogErrors) {
         console.error(`  - [CATALOG] ${ce}`);
       }
       for (const dr of report.drillResults) {
         if (!dr.valid) {
-          console.error(`  - [${dr.drillId} | ${dr.mode}]: ${dr.errors.join('; ')}`);
+          console.error(`  - [${dr.drillId} | ${dr.conceptId} | ${dr.mode}]: ${dr.errors.join('; ')}`);
         }
       }
       process.exit(1);
     }
 
-    console.log(`✅ SYNAPZ v14.0 Drill Schema Validator PASSED: ${report.validCount}/${report.totalCount} valid flagship drills | ${report.conceptsCount}/45 taxonomy concepts | Mode distribution:`, JSON.stringify(report.modeCounts));
+    console.log(
+      `✅ SYNAPZ v14.1 Drill Schema Validator PASSED: ${report.validCount}/${report.totalCount} playable drills valid (0 errors, ${report.stubConceptsCount} stub concepts) | ${report.conceptsCount}/45 taxonomy concepts | 9×5 Mode balance:`,
+      JSON.stringify(report.modeCounts)
+    );
   })().catch((err) => {
     console.error('❌ Validator fatal error:', err);
     process.exit(1);

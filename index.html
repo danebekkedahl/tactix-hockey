@@ -5401,6 +5401,10 @@
           <span class="text-sm font-black text-amber-200">📋 Coach 60-Sec Preview</span>
           <span class="text-[10px] font-extrabold text-purple-300 uppercase shrink-0">1 Play + Office ▶</span>
         </button>
+        <button id="btnGuestModalJoinShowdownPin" type="button" data-open-join-showdown="guest_modal" class="w-full py-3 px-3.5 rounded-2xl bg-gradient-to-r from-teal-500/25 to-emerald-500/25 hover:from-teal-500/35 hover:to-emerald-500/35 border-2 border-teal-400 text-left flex items-center justify-between gap-2 shadow cursor-pointer transition">
+          <span class="text-sm font-black text-teal-200">🎮 Join Showdown PIN</span>
+          <span class="text-[10px] font-extrabold text-amber-300 uppercase shrink-0">4-Digit PIN ▶</span>
+        </button>
       </div>
     </div>
   </div>
@@ -5472,7 +5476,7 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v14.0-honest-ihs-blooket-engine';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v14.1-complete-45-blooket-showdown';
 
     // =========================================================================
     // SECTION 39 (v12.3) + SECTION 46 (v13.2) + SECTION 47 (v13.4):
@@ -31637,7 +31641,7 @@
     // SECTION 32–43: VERIFIED REAL CODED UPGRADES RUNTIME & PRE-CODED BANK
     // (`synapz-hockey-v12.7-5persona-human-vision` • 288 Live Upgrades)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v14.0-honest-ihs-blooket-engine';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v14.1-complete-45-blooket-showdown';
 
     const ALL_63_DEPLOYED_UPGRADE_IDS = [
       // Batch A (12 items)
@@ -35703,6 +35707,9 @@
           <span id="synapzOfflineOutboxStatusBadge" class="hidden px-2.5 py-1 rounded-full bg-amber-500/20 border border-amber-400/70 text-[10px] font-black text-amber-200">
             📡 Saved Offline — Auto-Syncs Outside Rink
           </span>
+          <button id="btnCoachOfficeHostShowdown" type="button" data-open-host-showdown="coach_office" class="px-3 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-[11px] font-black shadow cursor-pointer">
+            ⚡ Host Team Showdown
+          </button>
           <button id="btnCoachOfficeInstallOfflineApp" type="button" data-trigger-install-pwa="coach_office" class="btn-trigger-install-pwa px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-400/65 text-cyan-200 text-[11px] font-black cursor-pointer">
             📲 Install Rink Offline App
           </button>
@@ -35774,7 +35781,15 @@
     <button id="btnFriendsWallSaveExitLobby" type="button" class="fixed top-3 left-3 z-40 px-3.5 py-2 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-amber-400/75 text-amber-200 text-xs font-black shadow-2xl backdrop-blur-md">
       ← Lobby
     </button>
-    <button id="btnCloseSynapzFriendsWallModal" type="button" class="fixed top-3 right-3 z-40 w-9 h-9 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-slate-600 text-slate-200 text-xs font-black flex items-center justify-center shadow-2xl">✕</button>
+    <div class="fixed top-3 right-3 z-40 flex items-center gap-1.5">
+      <button id="btnClubhouseHostShowdown" type="button" data-open-host-showdown="clubhouse" class="px-3 py-2 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 text-[11px] font-black shadow-2xl cursor-pointer">
+        ⚡ Host Team Showdown
+      </button>
+      <button id="btnClubhouseJoinShowdown" type="button" data-open-join-showdown="clubhouse" class="px-3 py-2 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-teal-400 text-teal-200 text-[11px] font-black shadow-2xl backdrop-blur-md cursor-pointer">
+        🎮 Join Showdown PIN
+      </button>
+      <button id="btnCloseSynapzFriendsWallModal" type="button" class="w-9 h-9 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-slate-600 text-slate-200 text-xs font-black flex items-center justify-center shadow-2xl">✕</button>
+    </div>
 
     <!-- Pure 16:9 Clubhouse Picture Stage (`assets/rooms/room-clubhouse.png`) -->
     <div id="clubhouseRoomSceneCanvas" class="synapz-pure-room-stage">

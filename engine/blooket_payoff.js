@@ -472,7 +472,7 @@ export class DrillCatalogDrawerController {
       <div id="v14CatalogBackdrop" class="fixed inset-0 z-[110] bg-slate-950/80 backdrop-blur-sm flex justify-end">
         <div class="w-full max-w-2xl h-full bg-[#090D16] border-l-2 border-teal-400/70 shadow-2xl flex flex-col overflow-hidden">
           <!-- Header -->
-          <div class="p-3.5 bg-slate-950 border-b border-slate-800 flex flex-wrap items-center justify-between gap-2">
+          <div class="p-3.5 pr-28 bg-slate-950 border-b border-slate-800 flex flex-wrap items-center justify-between gap-2">
             <div>
               <div class="text-[10px] font-black uppercase tracking-widest text-teal-400">45-CONCEPT TAXONOMY &amp; 9-MODE ENGINE</div>
               <h3 class="text-base font-black text-white">📚 Drill Catalog &amp; 5-Zone Skill Rings</h3>

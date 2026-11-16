@@ -40,7 +40,7 @@ export class ChalkTalkReelController {
     this.mountEl.innerHTML = `
       <div id="v14ChalkReelCard" class="w-full rounded-2xl bg-[#090D16] border-2 border-teal-400/80 shadow-2xl overflow-hidden flex flex-col">
         <!-- Header: Category Kicker + <=7-Word Human Headline -->
-        <div class="px-3.5 pt-3 pb-2 border-b border-slate-800/90 flex flex-wrap items-start justify-between gap-2">
+        <div class="px-3.5 pr-28 pt-3 pb-2 border-b border-slate-800/90 flex flex-wrap items-start justify-between gap-2">
           <div class="min-w-0">
             <div id="v14ChalkKicker" class="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-teal-400">
               DEFENSIVE ZONE · BREAKOUT
@@ -253,14 +253,9 @@ export class ChalkTalkReelController {
     if (typeof window === 'undefined') return;
     const clean = String(captionText || '').replace(/\n+/g, ' ').trim();
     if (!clean) return;
-    if (window.SynapzMuteSafeCaptions && typeof window.SynapzMuteSafeCaptions.startCaptionSession === 'function') {
-      try {
-        window.SynapzMuteSafeCaptions.startCaptionSession('🎬 Chalk Reel', clean, {
-          forceMutedBadge: false,
-          autoPaceImmediately: true
-        });
-      } catch (_) {}
-    }
+    // Note: Chalk-Talk Reel renders its own built-in 2-line vertical-bar caption (#v14ChalkVerticalCaption)
+    // right below the white ice, so hide the top floating #synapzMuteSafeCaptionRibbon to avoid double-caption overlap!
+    document.getElementById('synapzMuteSafeCaptionRibbon')?.classList.add('hidden');
     if (!window.__SYNAPZ_TEST_MODE__ && window.speechSynthesis) {
       try {
         window.speechSynthesis.cancel();

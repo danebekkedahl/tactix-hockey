@@ -157,7 +157,42 @@ export class WhiteIceRink1000x500 {
     this.camera = { focusX, focusY, zoom };
   }
 
-  syncCanvasResolution() {
+  _extractSceneFocalPoints(scene = {}) {
+    const pts = [];
+    const pushPt = (p, label = 'target') => {
+      if (Array.isArray(p) && typeof p[0] === 'number' && typeof p[1] === 'number') {
+        pts.push({ x: Math.max(0, Math.min(1000, p[0])), y: Math.max(0, Math.min(500, p[1])), label });
+      }
+    };
+    if (Array.isArray(scene.focalPoints)) {
+      for (const fp of scene.focalPoints) pushPt(fp, 'focal');
+    }
+    if (Array.isArray(scene.skaters)) {
+      const you = scene.skaters.find(s => s.id === scene.youRole && !s.isGhost);
+      if (you) pushPt(you.pos || you.start, 'YOU');
+      for (const sk of scene.skaters) {
+        if (sk.highlightSuspect || sk.chainBadge) pushPt(sk.pos || sk.start, sk.id);
+      }
+    }
+    if (Array.isArray(scene.abcOptions)) {
+      for (const opt of scene.abcOptions) pushPt(opt.target, `opt_${opt.id}`);
+    }
+    if (scene.thisSpaceHalo) {
+      pushPt([scene.thisSpaceHalo.x, scene.thisSpaceHalo.y], 'thisSpace');
+    }
+    if (Array.isArray(scene.extraHalos)) {
+      for (const h of scene.extraHalos) pushPt([h.x, h.y], 'extraHalo');
+    }
+    if (scene.gapZone && scene.gapZone.attackerPos) {
+      pushPt(scene.gapZone.attackerPos, 'attacker');
+    }
+    if (scene.activeStickSweep && scene.activeStickSweep.origin) {
+      pushPt(scene.activeStickSweep.origin, 'sweepOrigin');
+    }
+    return pts;
+  }
+
+  syncCanvasResolution(focalPoints = []) {
     if (!this.canvas) return this._viewportTransform;
     const rect = this.canvas.getBoundingClientRect();
     const cssW = Math.max(260, Math.round(rect.width || this.canvas.clientWidth || 720));
@@ -176,11 +211,75 @@ export class WhiteIceRink1000x500 {
 
     const pad = 8;
     const baseScale = Math.min((cssW - pad * 2) / worldW, (cssH - pad * 2) / worldH);
-    const scale = baseScale * (this.camera.zoom || 1.35);
+    let scale = baseScale * (this.camera.zoom || 1.35);
 
     // Map logical focus point into world space (supporting North-South 90° CCW portrait rotation)
-    const worldFocusX = portrait ? this.camera.focusY : this.camera.focusX;
-    const worldFocusY = portrait ? (RINK_SPEC.WIDTH - this.camera.focusX) : this.camera.focusY;
+    let worldFocusX = portrait ? this.camera.focusY : this.camera.focusX;
+    let worldFocusY = portrait ? (RINK_SPEC.WIDTH - this.camera.focusX) : this.camera.focusY;
+
+    // Kid-Clarity Viewport Lock: guarantee YOU + all candidate targets sit >= 28px inside canvas edges
+    const minInsetPx = 28;
+    const worldFocals = (Array.isArray(focalPoints) ? focalPoints : []).map(fp => {
+      const lx = Array.isArray(fp) ? fp[0] : fp.x;
+      const ly = Array.isArray(fp) ? fp[1] : fp.y;
+      return {
+        wx: portrait ? ly : lx,
+        wy: portrait ? (RINK_SPEC.WIDTH - lx) : ly
+      };
+    });
+
+    if (worldFocals.length > 0) {
+      let minWX = Infinity;
+      let maxWX = -Infinity;
+      let minWY = Infinity;
+      let maxWY = -Infinity;
+      for (const wf of worldFocals) {
+        if (wf.wx < minWX) minWX = wf.wx;
+        if (wf.wx > maxWX) maxWX = wf.wx;
+        if (wf.wy < minWY) minWY = wf.wy;
+        if (wf.wy > maxWY) maxWY = wf.wy;
+      }
+      const availW = Math.max(80, cssW - minInsetPx * 2);
+      const availH = Math.max(60, cssH - minInsetPx * 2);
+      const spanWX = Math.max(1, maxWX - minWX);
+      const spanWY = Math.max(1, maxWY - minWY);
+      const maxFitScale = Math.min(availW / spanWX, availH / spanWY);
+      if (scale > maxFitScale) {
+        scale = Math.max(baseScale * 0.84, maxFitScale * 0.98);
+      }
+
+      // Clamp worldFocusX / worldFocusY so [minWX..maxWX] and [minWY..maxWY] stay >= minInsetPx inside [0..cssW, 0..cssH]
+      const halfSpanCssX = Math.max(0, cssW / 2 - minInsetPx) / scale;
+      const halfSpanCssY = Math.max(0, cssH / 2 - minInsetPx) / scale;
+      const reqMinFX = maxWX - halfSpanCssX;
+      const reqMaxFX = minWX + halfSpanCssX;
+      const reqMinFY = maxWY - halfSpanCssY;
+      const reqMaxFY = minWY + halfSpanCssY;
+
+      // First clamp gently to rink margin, then strictly satisfy focal viewport lock!
+      const viewHalfW = (cssW / 2) / scale;
+      const viewHalfH = (cssH / 2) / scale;
+      const margin = 36;
+      const boardMinFX = Math.min(worldW / 2, Math.max(-margin + viewHalfW, 0));
+      const boardMaxFX = Math.max(worldW / 2, Math.min(worldW + margin - viewHalfW, worldW));
+      const boardMinFY = Math.min(worldH / 2, Math.max(-margin + viewHalfH, 0));
+      const boardMaxFY = Math.max(worldH / 2, Math.min(worldH + margin - viewHalfH, worldH));
+
+      let fx = viewHalfW * 2 >= worldW + margin * 2 ? worldW / 2 : Math.max(boardMinFX, Math.min(boardMaxFX, worldFocusX));
+      let fy = viewHalfH * 2 >= worldH + margin * 2 ? worldH / 2 : Math.max(boardMinFY, Math.min(boardMaxFY, worldFocusY));
+
+      if (reqMinFX <= reqMaxFX) fx = Math.max(reqMinFX, Math.min(reqMaxFX, fx));
+      else fx = (minWX + maxWX) / 2;
+
+      if (reqMinFY <= reqMaxFY) fy = Math.max(reqMinFY, Math.min(reqMaxFY, fy));
+      else fy = (minWY + maxWY) / 2;
+
+      const offsetX = cssW / 2 - fx * scale;
+      const offsetY = cssH / 2 - fy * scale;
+
+      this._viewportTransform = { scale, offsetX, offsetY, cssW, cssH, dpr, portrait };
+      return this._viewportTransform;
+    }
 
     // Clamp camera pan so we don't expose excessive void outside the rink boards
     const viewHalfW = (cssW / 2) / scale;
@@ -788,6 +887,12 @@ export class WhiteIceRink1000x500 {
     this._applyLogicalWorldTransform(ctx, vt);
   }
 
+  _rectCircleOverlap(rx0, ry0, rx1, ry1, cx, cy, r) {
+    const nx = Math.max(rx0, Math.min(cx, rx1));
+    const ny = Math.max(ry0, Math.min(cy, ry1));
+    return Math.hypot(cx - nx, cy - ny) < r;
+  }
+
   _drawIhsCalloutPill(ctx, pill) {
     if (!pill || !pill.text) return;
     const vt = this._viewportTransform;
@@ -797,9 +902,84 @@ export class WhiteIceRink1000x500 {
     ctx.font = '800 11px Inter, system-ui, sans-serif';
     const text = String(pill.text).slice(0, 44);
     const w = Math.min(vt.cssW - 16, ctx.measureText(text).width + 20);
-    const h = 23;
-    const cx = Math.max(w / 2 + 6, Math.min(vt.cssW - w / 2 - 6, pt.x));
-    const cy = Math.max(h / 2 + 6, Math.min(vt.cssH - h / 2 - 6, pt.y));
+    const h = 22;
+
+    const clampX = (x) => Math.max(w / 2 + 6, Math.min(vt.cssW - w / 2 - 6, x));
+    const clampY = (y) => Math.max(h / 2 + 5, Math.min(vt.cssH - h / 2 - 5, y));
+
+    const xAnchors = [
+      clampX(pt.x),
+      clampX(vt.cssW / 2),
+      clampX(w / 2 + 8),
+      clampX(vt.cssW - w / 2 - 8),
+      clampX(vt.cssW * 0.30),
+      clampX(vt.cssW * 0.70)
+    ];
+    const yAnchors = [
+      clampY(pt.y),
+      clampY(15),
+      clampY(vt.cssH - 15),
+      clampY(vt.cssH * 0.22),
+      clampY(vt.cssH * 0.78),
+      clampY(vt.cssH * 0.50)
+    ];
+    const candidates = [[clampX(pt.x), clampY(pt.y)]];
+    for (const cyA of yAnchors) {
+      for (const cxA of xAnchors) {
+        candidates.push([cxA, cyA]);
+      }
+    }
+
+    const protectedList = this._protectedCssCircles || [];
+    const prevPills = this._renderedCalloutRects || [];
+
+    let bestPos = candidates[0];
+    let bestMinClearance = -Infinity;
+
+    for (const [tx, ty] of candidates) {
+      const rx0 = tx - w / 2;
+      const ry0 = ty - h / 2;
+      const rx1 = tx + w / 2;
+      const ry1 = ty + h / 2;
+      let overlapsAny = false;
+      let minClearance = 9999;
+
+      for (const pc of protectedList) {
+        const nx = Math.max(rx0, Math.min(pc.x, rx1));
+        const ny = Math.max(ry0, Math.min(pc.y, ry1));
+        const clearance = Math.hypot(pc.x - nx, pc.y - ny) - pc.r;
+        if (clearance < minClearance) minClearance = clearance;
+        if (clearance < 2) overlapsAny = true;
+      }
+      for (const pr of prevPills) {
+        if (rx0 < pr.right + 4 && rx1 > pr.left - 4 && ry0 < pr.bottom + 4 && ry1 > pr.top - 4) {
+          overlapsAny = true;
+          minClearance = Math.min(minClearance, -20);
+        }
+      }
+      if (!overlapsAny) {
+        bestPos = [tx, ty];
+        bestMinClearance = minClearance;
+        break;
+      }
+      if (minClearance > bestMinClearance) {
+        bestMinClearance = minClearance;
+        bestPos = [tx, ty];
+      }
+    }
+
+    const [cx, cy] = bestPos;
+    if (Array.isArray(this._renderedCalloutRects)) {
+      this._renderedCalloutRects.push({
+        text,
+        left: cx - w / 2,
+        top: cy - h / 2,
+        right: cx + w / 2,
+        bottom: cy + h / 2,
+        width: w,
+        height: h
+      });
+    }
 
     const tone = pill.tone || 'gold';
     const palette = tone === 'danger'
@@ -814,7 +994,7 @@ export class WhiteIceRink1000x500 {
     ctx.strokeStyle = palette.border;
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.roundRect(cx - w / 2, cy - h / 2, w, h, 11.5);
+    ctx.roundRect(cx - w / 2, cy - h / 2, w, h, 11);
     ctx.fill();
     ctx.stroke();
     ctx.shadowBlur = 0;
@@ -827,7 +1007,7 @@ export class WhiteIceRink1000x500 {
     this._applyLogicalWorldTransform(ctx, vt);
   }
 
-  _drawAbcTargetLane(ctx, fromPos, opt, nowMs = 0) {
+  _drawAbcTargetLane(ctx, fromPos, opt) {
     const [tx, ty] = opt.target;
     const laneColors = {
       A: '#0D9488',
@@ -841,16 +1021,41 @@ export class WhiteIceRink1000x500 {
       points: [fromPos, [tx, ty]],
       color: col
     }, 1);
+  }
+
+  _drawAbcTargetBadge(ctx, fromPos, opt, skaters = [], nowMs = 0) {
+    const [tx, ty] = opt.target;
+    const laneColors = {
+      A: '#0D9488',
+      B: '#2563EB',
+      C: '#D97706'
+    };
+    const col = laneColors[opt.id] || '#0D9488';
+
+    // If an A/B/C target sits directly on a skater token, offset the visual badge slightly so BOTH skater role & A/B/C are 100% readable!
+    let bx = tx;
+    let by = ty;
+    const nearSkater = (skaters || []).find(s => {
+      const p = s.pos || s.start || [0, 0];
+      return Math.hypot(p[0] - tx, p[1] - ty) < 26;
+    });
+    if (nearSkater) {
+      const dx = fromPos[0] - tx;
+      const dy = fromPos[1] - ty;
+      const len = Math.max(1, Math.hypot(dx, dy));
+      bx = tx + (dx / len) * 28;
+      by = ty + (dy / len) * 28;
+    }
 
     const vt = this._viewportTransform;
     ctx.save();
     ctx.setTransform(vt.dpr, 0, 0, vt.dpr, 0, 0);
-    const pt = this.logicalToCss(tx, ty);
-    const r = 22 + 1.8 * Math.sin(nowMs * 0.006);
+    const pt = this.logicalToCss(bx, by);
+    const r = 16 + 1.4 * Math.sin(nowMs * 0.006);
 
     ctx.beginPath();
-    ctx.arc(pt.x, pt.y, r + 4, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(20, 184, 166, 0.16)';
+    ctx.arc(pt.x, pt.y, r + 3, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(20, 184, 166, 0.18)';
     ctx.fill();
 
     ctx.beginPath();
@@ -858,11 +1063,11 @@ export class WhiteIceRink1000x500 {
     ctx.fillStyle = '#FFFFFF';
     ctx.fill();
     ctx.strokeStyle = col;
-    ctx.lineWidth = 3.2;
+    ctx.lineWidth = 3;
     ctx.stroke();
 
     ctx.fillStyle = col;
-    ctx.font = '900 15px Inter, system-ui, sans-serif';
+    ctx.font = '900 13px Inter, system-ui, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(opt.id, pt.x, pt.y + 0.5);
@@ -949,8 +1154,16 @@ export class WhiteIceRink1000x500 {
     if (!this.canvas || !this.ctx) return;
     const ctx = this.ctx;
     if (scene.camera) this.setCamera(scene.camera);
-    const vt = this.syncCanvasResolution();
+    const focalPts = this._extractSceneFocalPoints(scene);
+    const vt = this.syncCanvasResolution(focalPts);
     const nowMs = scene.nowMs ?? (typeof performance !== 'undefined' ? performance.now() : Date.now());
+
+    // Build protected CSS bounding circles for YOU + all active target zones so callout pills NEVER occlude them!
+    this._protectedCssCircles = focalPts.map((fp) => {
+      const cPt = this.logicalToCss(fp.x, fp.y);
+      return { x: cPt.x, y: cPt.y, r: fp.label === 'YOU' ? 25 : 23, label: fp.label, lx: fp.x, ly: fp.y };
+    });
+    this._renderedCalloutRects = [];
 
     // Sleek jet-black surround (#090D16)
     ctx.save();
@@ -1026,6 +1239,13 @@ export class WhiteIceRink1000x500 {
       this._drawPuck(ctx, scene.puckPos);
     }
 
+    // 10.5 Crisp A / B / C Target Badges (drawn above skaters so both teammate role & A/B/C are 100% readable!)
+    if (Array.isArray(scene.abcOptions) && scene.abcOrigin) {
+      for (const opt of scene.abcOptions) {
+        this._drawAbcTargetBadge(ctx, scene.abcOrigin, opt, scene.skaters || [], nowMs);
+      }
+    }
+
     // 11. Blind-Side Fog-of-War Veil (drawn ABOVE hidden defenders until Shoulder-Check lifts it!)
     if (scene.fogOverlay) {
       this._drawFogOverlay(ctx, scene.fogOverlay);
@@ -1044,6 +1264,14 @@ export class WhiteIceRink1000x500 {
     }
 
     ctx.restore();
+
+    this._lastFrameAudit = {
+      cssW: vt.cssW,
+      cssH: vt.cssH,
+      scale: vt.scale,
+      protectedCircles: this._protectedCssCircles || [],
+      calloutRects: this._renderedCalloutRects || []
+    };
   }
 
   _drawShotClockRing(ctx, clock) {

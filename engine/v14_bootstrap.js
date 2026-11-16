@@ -21,6 +21,7 @@ import {
   BlooketPayoffController,
   DrillCatalogDrawerController
 } from './blooket_payoff.js';
+import { TeamShowdownController } from './team_showdown.js';
 
 class SynapzV14TeachingCoordinator {
   constructor() {
@@ -209,6 +210,64 @@ class SynapzV14TeachingCoordinator {
         }
       }
     });
+
+    // Global 4-Digit Blooket Live Team Showdown PIN Mount (accessible from Coach's Office, Ice Rink, Clubhouse & Try 3 Plays Free!)
+    let showdownMount = document.getElementById('v14GlobalShowdownMount');
+    if (!showdownMount) {
+      showdownMount = document.createElement('div');
+      showdownMount.id = 'v14GlobalShowdownMount';
+      showdownMount.className = 'hidden';
+      document.body.appendChild(showdownMount);
+    }
+
+    this.showdown = new TeamShowdownController({
+      mountEl: showdownMount,
+      getCatalog: () => this.catalog,
+      getActiveProfile: () => this._getActiveProfile(),
+      getFederationMode: () => this._getFederationMode(),
+      onRewardsCredited: ({ earnedBucks, earnedIq }) => {
+        const prof = this._getActiveProfile();
+        if (typeof window !== 'undefined' && window.state) {
+          window.state.puckBucks = Number(window.state.puckBucks || prof?.puckBucks || 0) + Number(earnedBucks || 0);
+          window.state.iqScore = Number(window.state.iqScore || prof?.iqScore || 0) + Number(earnedIq || 0);
+          if (prof && prof.id) {
+            prof.puckBucks = window.state.puckBucks;
+            prof.iqScore = window.state.iqScore;
+          }
+          if (typeof window.saveProgress === 'function') window.saveProgress();
+          if (typeof window.updateHeaderStats === 'function') window.updateHeaderStats();
+        }
+        this.refreshSkillRingsUI();
+      }
+    });
+
+    if (!this._boundShowdownDelegation) {
+      this._boundShowdownDelegation = true;
+      document.addEventListener('click', (ev) => {
+        const hostBtn = ev.target?.closest?.('[data-open-host-showdown]');
+        if (hostBtn) {
+          ev.preventDefault();
+          this.openHostShowdown();
+          return;
+        }
+        const joinBtn = ev.target?.closest?.('[data-open-join-showdown]');
+        if (joinBtn) {
+          ev.preventDefault();
+          document.getElementById('synapzGuestSpeedModal')?.classList.add('hidden');
+          this.openJoinShowdown();
+        }
+      });
+    }
+  }
+
+  openHostShowdown() {
+    if (!this.showdown) return;
+    this.showdown.openHostSetup();
+  }
+
+  openJoinShowdown(pin = '') {
+    if (!this.showdown) return;
+    this.showdown.openJoinModal(pin);
   }
 
   activateInGameView() {
@@ -458,6 +517,8 @@ export const synapzV14 = new SynapzV14TeachingCoordinator();
 
 if (typeof window !== 'undefined') {
   window.SynapzV14Engine = synapzV14;
+  window.openSynapzHostShowdown = () => synapzV14.openHostShowdown();
+  window.openSynapzJoinShowdown = (pin = '') => synapzV14.openJoinShowdown(pin);
   window.SynapzV14Modules = {
     RINK_SPEC,
     WhiteIceRink1000x500,
@@ -470,7 +531,8 @@ if (typeof window !== 'undefined') {
     markConceptReelWatched,
     recordConceptRepResult,
     compute5ZoneRingSummaries,
-    renderZoneSkillRingsHtml
+    renderZoneSkillRingsHtml,
+    TeamShowdownController
   };
   synapzV14.init().catch((err) => {
     console.error('[SYNAPZ v14.0] Bootstrap initialization error:', err);

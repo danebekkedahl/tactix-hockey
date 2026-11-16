@@ -110,7 +110,7 @@ export class Subconscious9ModeEngine {
     this.mountEl.innerHTML = `
       <div id="v14GameStageShell" class="w-full rounded-2xl bg-[#090D16] border border-slate-800 shadow-2xl overflow-hidden flex flex-col select-none">
         <!-- Compact Top Teaching & Mode Bar -->
-        <div id="v14TopModeHeader" class="px-3 py-2 bg-slate-950/95 border-b border-slate-800/90 flex flex-wrap items-center justify-between gap-2">
+        <div id="v14TopModeHeader" class="px-3 pr-28 py-2 bg-slate-950/95 border-b border-slate-800/90 flex flex-wrap items-center justify-between gap-2">
           <div class="flex flex-wrap items-center gap-1.5 min-w-0">
             <span id="v14ModeBadgePill" class="px-2.5 py-0.5 rounded-full bg-teal-500/20 border border-teal-400/70 text-teal-300 text-[10px] sm:text-[11px] font-black uppercase whitespace-nowrap">
               ❄️ Freeze &amp; Decide
@@ -134,6 +134,12 @@ export class Subconscious9ModeEngine {
             </button>
             <button id="btnV14OpenCatalog" type="button" class="px-2.5 py-1 rounded-full bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/70 text-sky-200 text-[10px] sm:text-[11px] font-black transition cursor-pointer">
               📚 Catalog
+            </button>
+            <button id="btnV14RinkHostShowdown" type="button" data-open-host-showdown="rink" class="px-2.5 py-1 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 text-[10px] sm:text-[11px] font-black transition cursor-pointer">
+              ⚡ Host Team Showdown
+            </button>
+            <button id="btnV14RinkJoinShowdown" type="button" data-open-join-showdown="rink" class="px-2.5 py-1 rounded-full bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/75 text-emerald-200 text-[10px] sm:text-[11px] font-black transition cursor-pointer">
+              🎮 Join Showdown PIN
             </button>
           </div>
         </div>
@@ -1297,8 +1303,50 @@ export class Subconscious9ModeEngine {
     const youObj = skaters.find(s => s.id === this.drill.youRole);
     let puckPos = samplePolylineAt(this.drill.puck?.livePath || [[500, 250]], normT);
 
+    // Build exact candidate target focalPoints so Kid-Clarity Viewport Lock (>=28px inset) covers every mode!
+    const focalPoints = [];
+    if (youObj && youObj.pos) focalPoints.push(youObj.pos);
+    if (Array.isArray(mc.options)) {
+      for (const opt of mc.options) if (opt.target) focalPoints.push(opt.target);
+    }
+    if (Array.isArray(mc.targetZoneKeyframes)) {
+      for (const kf of mc.targetZoneKeyframes) focalPoints.push([kf.x, kf.y]);
+    }
+    if (Array.isArray(mc.candidates)) {
+      for (const cand of mc.candidates) if (cand.target) focalPoints.push(cand.target);
+    }
+    if (mode === 'spot_the_breakdown') {
+      const culpritSk = skaters.find(s => s.id === mc.culpritId);
+      if (culpritSk && culpritSk.pos) focalPoints.push(culpritSk.pos);
+      for (const sus of (mc.suspects || [])) {
+        const sSk = skaters.find(s => s.id === sus.id);
+        if (sSk && sSk.pos) focalPoints.push(sSk.pos);
+      }
+    }
+    if (mode === 'gap_surfing') {
+      const attSk = skaters.find(s => s.id === mc.attackerId);
+      if (attSk && attSk.pos) focalPoints.push(attSk.pos);
+    }
+    if (mode === 'lane_sweeper') {
+      if (mc.pivotOrigin) focalPoints.push(mc.pivotOrigin);
+      for (const p of (mc.passes || [])) {
+        if (p.from) focalPoints.push(p.from);
+        if (p.to) focalPoints.push(p.to);
+      }
+    }
+    if (mode === 'draw_the_route') {
+      if (mc.thisSpace) focalPoints.push([mc.thisSpace.x, mc.thisSpace.y]);
+      if (Array.isArray(mc.idealRoute)) {
+        for (const pt of mc.idealRoute) focalPoints.push(pt);
+      }
+    }
+    if (mode === 'change_or_stay' && mc.benchPos) {
+      focalPoints.push(mc.benchPos);
+    }
+
     const scene = {
       camera: this.drill.camera,
+      focalPoints,
       nowMs,
       youRole: this.drill.youRole,
       showLeftHouse: Boolean(mc.showLeftHouse),
