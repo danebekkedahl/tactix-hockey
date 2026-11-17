@@ -62,6 +62,7 @@ export class Subconscious9ModeEngine {
     this.drill = null;
     this.stage = 'pre_snap'; // pre_snap | live_motion | challenge | outcome_movie | debrief_dock
     this.untimed = false;
+    this.isPausedByModal = false;
     this.orientationPref = 'auto'; // auto | landscape | portrait
     this._rafId = null;
     this._lastTs = 0;
@@ -349,8 +350,48 @@ export class Subconscious9ModeEngine {
     }
   }
 
+  pauseForModal() {
+    const activeTimerStage = this.stage === 'live_motion' || this.stage === 'challenge' || this.stage === 'outcome_movie';
+    if (this._rafId || activeTimerStage) {
+      this.isPausedByModal = true;
+      this.stopLoop();
+      try {
+        if (typeof window !== 'undefined' && window.speechSynthesis) {
+          window.speechSynthesis.cancel();
+        }
+      } catch (_) {}
+      return true;
+    }
+    return false;
+  }
+
+  resumeAfterModal() {
+    if (!this.isPausedByModal) return false;
+    this.isPausedByModal = false;
+    if (this.drill && (this.stage === 'live_motion' || this.stage === 'challenge' || this.stage === 'outcome_movie')) {
+      this._lastTs = typeof performance !== 'undefined' ? performance.now() : Date.now();
+      this._scheduleLoop();
+      return true;
+    }
+    return false;
+  }
+
+  getContextSnapshot() {
+    if (!this.drill) return null;
+    return {
+      activeScreen: 'Ice Rink',
+      drillId: this.drill.conceptId || this.drill.id || null,
+      catalogDrillId: this.drill.id || null,
+      drillTitle: this.drill.title || null,
+      gameMode: this.drill.mode || null,
+      positionRole: this.drill.youRole || null,
+      stage: this.stage || 'pre_snap'
+    };
+  }
+
   loadDrill(drill, opts = {}) {
     this.stopLoop();
+    this.isPausedByModal = false;
     this.drill = drill;
     this.stage = 'pre_snap';
     this.simTime = 0;
@@ -440,7 +481,7 @@ export class Subconscious9ModeEngine {
   }
 
   _stepSimulation(dt, ts) {
-    if (!this.drill) return;
+    if (!this.drill || this.isPausedByModal) return;
     const mode = this.drill.mode;
     const mc = this.drill.modeConfig || {};
 

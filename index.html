@@ -465,13 +465,18 @@
     body:has(#clubhouseOverlaySheet:not(.hidden)) #synapzPersistentCharCircleBtn {
       display: none !important;
     }
-    body.in-game-clean-mode #btnPersistentFounderRedFlag {
+    body.in-game-clean-mode #btnPersistentFounderRedFlag,
+    body.v14-white-ice-active #btnPersistentFounderRedFlag {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
       bottom: auto !important;
       top: 8px !important;
       right: 8px !important;
       padding: 4px 9px !important;
       font-size: 10px !important;
-      z-index: 48 !important;
+      z-index: 110 !important;
     }
     @media (max-width: 480px) {
       body.in-game-clean-mode #btnCallCoachBob {
@@ -5476,7 +5481,7 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v14.1-complete-45-blooket-showdown';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v14.2-live-redflag-board';
 
     // =========================================================================
     // SECTION 39 (v12.3) + SECTION 46 (v13.2) + SECTION 47 (v13.4):
@@ -9454,38 +9459,96 @@
         return this.agentInboxCache || [];
       },
 
+      generateRedFlagUuid() {
+        if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+          return crypto.randomUUID();
+        }
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+          const r = (Math.random() * 16) | 0;
+          const v = c === 'x' ? r : (r & 0x3) | 0x8;
+          return v.toString(16);
+        });
+      },
+
+      getOfflineRedFlagOutbox() {
+        try {
+          const raw = localStorage.getItem('synapz_offline_redflag_outbox_v142');
+          const parsed = raw ? JSON.parse(raw) : [];
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (_) {
+          return [];
+        }
+      },
+
+      saveOfflineRedFlagOutbox(list) {
+        try {
+          localStorage.setItem('synapz_offline_redflag_outbox_v142', JSON.stringify(Array.isArray(list) ? list : []));
+        } catch (_) {}
+      },
+
+      async flushOfflineRedFlagOutbox() {
+        const queue = this.getOfflineRedFlagOutbox();
+        if (!queue.length) return { flushed: 0, remaining: 0 };
+        const remaining = [];
+        let flushed = 0;
+        for (const item of queue) {
+          try {
+            const res = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox?on_conflict=id`, {
+              method: 'POST',
+              headers: SUPABASE_HEADERS,
+              body: JSON.stringify(item)
+            });
+            if (res.ok) {
+              flushed += 1;
+            } else {
+              remaining.push(item);
+            }
+          } catch (_) {
+            remaining.push(item);
+          }
+        }
+        this.saveOfflineRedFlagOutbox(remaining);
+        return { flushed, remaining: remaining.length };
+      },
+
       async postAgentInboxFlag(entry) {
-        const prof = getActiveProfile();
+        const prof = getActiveProfile() || {};
         const scen = (typeof getCurrentScenario === 'function' && getCurrentScenario()) || { id: 'basics-center', title: 'Center Ice Read' };
+        const rowId = entry.id && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(entry.id))
+          ? entry.id
+          : this.generateRedFlagUuid();
         const payload = {
-          created_by: entry.created_by || prof.name || 'Dane',
-          source_role: entry.source_role || prof.role || 'founder',
-          scenario_id: entry.scenario_id || scen.id || 'basics-center',
+          id: rowId,
+          created_by: entry.created_by || prof.name || 'Founder',
+          source_role: entry.source_role || 'SEAT_0_RED_FLAG',
+          scenario_id: entry.scenario_id || scen.id || 'LOBBY',
           age_division: entry.age_division || prof.ageGroup || '12U',
-          category: entry.category || 'drill_flag',
-          status: entry.status || 'open',
-          summary: entry.summary || 'Flagged drill for tactical review.',
+          category: entry.category || 'SEAT_0_RED_FLAG',
+          status: entry.status || 'open_red_flag',
+          summary: entry.summary || '🚩 Flagged drill/screen for Founder review.',
           details: entry.details || {
+            seat: 'SEAT_0_RED_FLAG',
             scenarioTitle: scen.title || '',
-            mode: state.pov3dActive ? '3D POV' : (state.twoStepMistakeEnabled ? '2-Step Mistake' : '2D Rink'),
-            city: (NHL_CITIES[state.currentCityIdx] && NHL_CITIES[state.currentCityIdx].name) || 'Seattle',
-            userLoginKey: prof.login_key || prof.id || 'dane',
             submittedAt: new Date().toISOString()
           }
         };
         try {
-          const res = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox`, {
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/pucksense_agent_inbox?on_conflict=id`, {
             method: 'POST',
             headers: SUPABASE_HEADERS,
             body: JSON.stringify(payload)
           });
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          const rows = await res.json();
-          const created = Array.isArray(rows) ? rows[0] : rows;
-          this.agentInboxCache.unshift(created || payload);
-          return created || payload;
+          const rows = await res.json().catch(() => []);
+          const created = (Array.isArray(rows) ? rows[0] : rows) || payload;
+          const enriched = { ...created, _syncedLive: true, _httpStatus: res.status };
+          this.agentInboxCache.unshift(enriched);
+          return enriched;
         } catch (err) {
-          const fallbackRow = { id: 'local_' + Date.now(), ...payload, created_at: new Date().toISOString() };
+          const outbox = this.getOfflineRedFlagOutbox().filter(x => x.id !== payload.id);
+          outbox.unshift(payload);
+          this.saveOfflineRedFlagOutbox(outbox);
+          const fallbackRow = { ...payload, created_at: new Date().toISOString(), _syncedLive: false, _queuedOffline: true };
           this.agentInboxCache.unshift(fallbackRow);
           try {
             localStorage.setItem('pucksense_agent_inbox_cache', JSON.stringify(this.agentInboxCache));
@@ -24944,28 +25007,34 @@
       const summaryText = (sumEl && sumEl.value.trim()) || `Flagged ${scen.id} (${scen.title}) on ${prof.ageGroup} for positioning/Zone review.`;
       const modeStr = state.pov3dActive ? '3D POV' : (state.twoStepMistakeEnabled ? '2-Step Mistake' : '2D Rink');
 
+      const ctx = typeof captureLiveRedFlagMetadata === 'function'
+        ? captureLiveRedFlagMetadata()
+        : { drillId: scen.id, drillTitle: scen.title || '', gameMode: modeStr, activeScreen: state.view || 'game', positionRole: prof.positionCode || 'C', ageTier: prof.ageGroup || '12U', viewport: `${window.innerWidth}x${window.innerHeight}`, deviceLabel: `${window.innerWidth}×${window.innerHeight}`, userAgentShort: navigator.userAgent.slice(0, 80) };
+
       const created = await PuckSenseCloud.postAgentInboxFlag({
-        created_by: prof.name || 'Coach Dane',
-        source_role: prof.role || 'founder',
-        scenario_id: scen.id,
-        age_division: prof.ageGroup || '12U',
-        category,
-        status: 'open',
-        summary: summaryText,
+        created_by: prof.name || 'Founder',
+        source_role: 'SEAT_0_RED_FLAG',
+        scenario_id: ctx.drillId || scen.id || `SCREEN:${ctx.activeScreen}`,
+        age_division: ctx.ageTier || prof.ageGroup || '12U',
+        category: 'SEAT_0_RED_FLAG',
+        status: 'open_red_flag',
+        summary: `🚩 [${ctx.drillId || ctx.activeScreen}] ${summaryText}`,
         details: {
-          scenarioTitle: scen.title || '',
-          mode: modeStr,
+          seat: 'SEAT_0_RED_FLAG',
+          ...ctx,
+          founderNote: summaryText,
+          note: summaryText,
           city: (NHL_CITIES[state.currentCityIdx] && NHL_CITIES[state.currentCityIdx].name) || 'Seattle',
-          youPos: state.youPos,
-          targetSpot: scen.targetSpot,
-          userLoginKey: prof.login_key || prof.id || 'dane',
-          submittedAt: new Date().toISOString()
+          userLoginKey: prof.login_key || prof.id || 'founder',
+          createdAt: new Date().toISOString()
         }
       });
 
       const toast = document.getElementById('flagDrillStatusToast');
       if (toast) {
-        toast.textContent = `✅ Flag posted to Supabase public.pucksense_agent_inbox (ID: ${String(created.id || 'live').slice(0, 8)} • Status: open)!`;
+        toast.textContent = created && created._syncedLive
+          ? '🚩 Synced Live to Founder Board!'
+          : '📴 Offline — Queued in Red-Flag Outbox (Auto-Syncs When Online)!';
         toast.classList.remove('hidden');
       }
       if (sumEl) sumEl.value = '';
@@ -25077,11 +25146,11 @@
     }
 
     const hdrFlagBtn = document.getElementById('btnHeaderFlagDrill');
-    if (hdrFlagBtn) hdrFlagBtn.addEventListener('click', openFlagDrillModal);
+    if (hdrFlagBtn) hdrFlagBtn.addEventListener('click', () => openFounderRedFlagModal());
     const ribFlagBtn = document.getElementById('btnRibbonFlagDrill');
-    if (ribFlagBtn) ribFlagBtn.addEventListener('click', openFlagDrillModal);
+    if (ribFlagBtn) ribFlagBtn.addEventListener('click', () => openFounderRedFlagModal());
     const coachFlagBtn = document.getElementById('btnOpenFlagDrillFromCoach');
-    if (coachFlagBtn) coachFlagBtn.addEventListener('click', openFlagDrillModal);
+    if (coachFlagBtn) coachFlagBtn.addEventListener('click', () => openFounderRedFlagModal());
     const refreshInboxBtn = document.getElementById('btnRefreshAgentInbox');
     if (refreshInboxBtn) refreshInboxBtn.addEventListener('click', refreshLiveAgentInbox);
     const closeFlagBtn = document.getElementById('btnCloseFlagDrillModal');
@@ -29926,110 +29995,258 @@
     }
     window.renderSynapzFriendsWallModal = renderSynapzFriendsWallModal;
 
-    // Persistent Founder Red Flag (`🚩`) Controller (Ultra-Responsive in Drills & Room Modals)
+    // Persistent Founder Red Flag (`🚩`) Controller (v14.2 Live Cross-Device Pipeline)
     function detectActiveRoomOrModalContext() {
       const modalMap = [
-        ['synapzLockerRoomModal', 'Locker Room Stall'],
+        ['synapzLockerRoomModal', 'Locker Room'],
         ['lockerSiblingStallSwitcherModal', 'Sibling Stall Switcher'],
         ['proShopModal', 'Pro Shop'],
-        ['synapzCoachOfficeModal', "Coach Al's Office"],
-        ['coachPortalModal', 'Coach & Director 4-Station Office'],
-        ['synapzFriendsWallModal', 'Clubhouse & Trophy Vault'],
-        ['playerTeamRosterHubModal', 'Player Team Roster Hub'],
-        ['filmRoomModal', 'Q5 Film Room'],
-        ['profileModal', 'Parent & Family HQ (Tab 4)']
+        ['synapzCoachOfficeModal', "Coach's Office"],
+        ['coachPortalModal', 'Coach & Director Office'],
+        ['synapzFriendsWallModal', 'Clubhouse & Trophy Case'],
+        ['playerTeamRosterHubModal', 'Team Roster Hub'],
+        ['filmRoomModal', 'Film Room'],
+        ['profileModal', 'Parent & Family HQ'],
+        ['pricingAndPlansModal', 'Membership & Plans']
       ];
       for (const [mId, label] of modalMap) {
         const el = document.getElementById(mId);
         if (el && !el.classList.contains('hidden')) return label;
       }
-      return state.view || 'lobby';
+      const v14Ctx = window.SynapzV14Engine?.getLiveRedFlagContext?.();
+      if (v14Ctx && v14Ctx.activeScreen) return v14Ctx.activeScreen;
+      if (document.body.classList.contains('synapz-entry-gate-active')) return 'Entry Portal Gate';
+      if (state.view === 'tour' || !document.getElementById('nhlTourMapSection')?.classList.contains('hidden')) return '32-City World Tour Globe';
+      if (state.view === 'game') return 'Ice Rink';
+      return 'Main Rink Lobby';
     }
     window.detectActiveRoomOrModalContext = detectActiveRoomOrModalContext;
+
+    function buildShortDeviceAndUserAgent() {
+      const w = typeof window !== 'undefined' ? Math.round(window.innerWidth || 0) : 0;
+      const h = typeof window !== 'undefined' ? Math.round(window.innerHeight || 0) : 0;
+      const viewport = `${w}x${h}`;
+      const ua = (typeof navigator !== 'undefined' && navigator.userAgent) || '';
+      let dev = 'Desktop';
+      if (/iPad/i.test(ua) || (/Macintosh/i.test(ua) && typeof navigator !== 'undefined' && navigator.maxTouchPoints > 1)) dev = 'iPad';
+      else if (/iPhone/i.test(ua)) dev = 'iPhone';
+      else if (/Pixel/i.test(ua)) dev = 'Pixel';
+      else if (/Android/i.test(ua)) dev = 'Android';
+      else if (w > 0 && w <= 480) dev = 'Phone';
+      else if (w > 480 && w <= 1080 && typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0) dev = 'Tablet';
+
+      let browser = 'Browser';
+      if (/Edg\//i.test(ua)) browser = 'Edge';
+      else if (/CriOS|Chrome\//i.test(ua)) browser = 'Chrome';
+      else if (/FxiOS|Firefox\//i.test(ua)) browser = 'Firefox';
+      else if (/Safari\//i.test(ua)) browser = 'Safari';
+
+      return {
+        viewport,
+        deviceLabel: `${dev} ${w}×${h}`,
+        userAgentShort: `${dev} • ${browser} (${viewport})`
+      };
+    }
+
+    function captureLiveRedFlagMetadata() {
+      const prof = getActiveProfile() || {};
+      const v14Ctx = window.SynapzV14Engine?.getLiveRedFlagContext?.() || null;
+      const activeScreen = detectActiveRoomOrModalContext();
+      const isRoomModalOpen = ['Locker Room', 'Sibling Stall Switcher', 'Pro Shop', "Coach's Office", 'Coach & Director Office', 'Clubhouse & Trophy Case', 'Team Roster Hub', 'Film Room', 'Parent & Family HQ', 'Membership & Plans'].includes(activeScreen);
+      const scen = !v14Ctx && state.view === 'game' && !isRoomModalOpen ? getCurrentScenario() : null;
+
+      const drillId = (!isRoomModalOpen && v14Ctx?.drillId) || (scen && scen.id) || null;
+      const catalogDrillId = (!isRoomModalOpen && v14Ctx?.catalogDrillId) || null;
+      const drillTitle = (!isRoomModalOpen && v14Ctx?.drillTitle) || (scen && scen.title) || null;
+      const gameMode = (!isRoomModalOpen && v14Ctx?.gameMode) || (scen ? 'legacy_rink' : null);
+      const stage = (!isRoomModalOpen && v14Ctx?.stage) || null;
+      const positionRole = (!isRoomModalOpen && v14Ctx?.positionRole) || prof.positionCode || (prof.position ? mapFullPosToCode(prof.position) : null) || 'C';
+      const guestTier = window.__synapzGuestDemoSession?.active ? window.__synapzGuestDemoSession.tier : null;
+      const ageTier = prof.ageGroup || prof.divisionLabel || (guestTier === 'youth' ? '10U' : (guestTier ? '14U' : '12U'));
+      const devMeta = buildShortDeviceAndUserAgent();
+
+      return {
+        drillId,
+        catalogDrillId,
+        drillTitle,
+        gameMode,
+        stage,
+        activeScreen,
+        positionRole,
+        ageTier,
+        viewport: devMeta.viewport,
+        deviceLabel: devMeta.deviceLabel,
+        userAgentShort: devMeta.userAgentShort
+      };
+    }
+    window.captureLiveRedFlagMetadata = captureLiveRedFlagMetadata;
+
+    window._selectedRedFlagQuickTag = '';
+    function selectFounderRedFlagQuickTag(tagLabel = '') {
+      window._selectedRedFlagQuickTag = window._selectedRedFlagQuickTag === tagLabel ? '' : String(tagLabel || '');
+      document.querySelectorAll('#founderRedFlagQuickTagsBar [data-redflag-quicktag]').forEach((btn) => {
+        const active = btn.getAttribute('data-redflag-quicktag') === window._selectedRedFlagQuickTag;
+        btn.className = active
+          ? 'px-2.5 py-1 rounded-full bg-rose-500 text-white border border-rose-200 text-[11px] font-black shadow cursor-pointer transition'
+          : 'px-2.5 py-1 rounded-full bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 text-[11px] font-bold cursor-pointer transition';
+      });
+    }
+    window.selectFounderRedFlagQuickTag = selectFounderRedFlagQuickTag;
+
+    function showGlobalRedFlagToast(msg, isOffline = false) {
+      const gToast = document.getElementById('founderRedFlagGlobalToast');
+      if (!gToast) return;
+      gToast.textContent = msg;
+      gToast.className = isOffline
+        ? 'fixed top-12 right-3 z-[135] px-4 py-2.5 rounded-2xl bg-amber-950/95 border-2 border-amber-400 text-amber-100 text-xs font-black shadow-2xl transition'
+        : 'fixed top-12 right-3 z-[135] px-4 py-2.5 rounded-2xl bg-emerald-950/95 border-2 border-emerald-400 text-emerald-100 text-xs font-black shadow-2xl transition';
+      gToast.classList.remove('hidden');
+      clearTimeout(window._redFlagGlobalToastTimer);
+      window._redFlagGlobalToastTimer = setTimeout(() => {
+        gToast.classList.add('hidden');
+      }, 3600);
+    }
 
     function openFounderRedFlagModal() {
       SoundFX.playTap();
       const modal = document.getElementById('founderRedFlagModal');
       if (!modal) return;
-      const scen = getCurrentScenario();
-      const prof = getActiveProfile() || { name: 'Miles', ageGroup: '12U' };
-      const rotDeg = Number(state.rinkRotationDeg ?? state.cameraRotationAngle ?? (scen && scen.rotationDegrees) ?? 0);
-      const activeUpgradesCount = (window.SYNAPZ_ACTIVE_UPGRADES && window.SYNAPZ_ACTIVE_UPGRADES.size)
-        ? Array.from(window.SYNAPZ_ACTIVE_UPGRADES).filter(id => id !== 'RF-COUNCIL-01').length
-        : 242;
-      const activeScreenOrModal = detectActiveRoomOrModalContext();
-      window._lastFounderRedFlagAutoContext = {
-        scenarioId: (scen && scen.id) || 'lobby',
-        rotationAngle: rotDeg,
-        ageDivision: prof.ageGroup || '12U',
-        activeScreenOrModal,
-        activeUpgradesCount
-      };
+
+      // Cleanly pause active Chalk-Talk Reel, 9-Mode Engine & legacy V1 timers while modal is open
+      const pausedV14 = Boolean(window.SynapzV14Engine?.pauseActiveTimers?.());
+      let pausedLegacy = false;
       if (state.view === 'game' && state.decisionInterval) {
+        clearInterval(state.decisionInterval);
+        state.decisionInterval = null;
         state._pausedByRedFlagModal = true;
+        pausedLegacy = true;
       }
+
+      const ctx = captureLiveRedFlagMetadata();
+      window._lastFounderRedFlagAutoContext = {
+        ...ctx,
+        scenarioId: ctx.drillId || ctx.activeScreen,
+        ageDivision: ctx.ageTier,
+        activeScreenOrModal: ctx.activeScreen,
+        timersPaused: pausedV14 || pausedLegacy
+      };
+
       const ctxEl = document.getElementById('founderRedFlagContextBadge');
       if (ctxEl) {
-        ctxEl.textContent = `📍 Auto-Context: Screen="${activeScreenOrModal}" • Scenario="${scen?.id || 'lobby'}" • Rotation="${rotDeg}°" • Age="${prof.ageGroup || '12U'}" • ActiveUpgrades=${activeUpgradesCount}`;
+        const drillPart = ctx.drillId
+          ? `Drill: ${ctx.drillId}${ctx.gameMode ? ' • Mode: ' + ctx.gameMode : ''} • Role: ${ctx.positionRole}`
+          : `Screen: ${ctx.activeScreen}`;
+        ctxEl.textContent = `📍 ${drillPart} • Age: ${ctx.ageTier} • ${ctx.deviceLabel}${pausedV14 || pausedLegacy ? ' • ⏸ Timer Paused' : ''}`;
       }
+      const toast = document.getElementById('founderRedFlagToast');
+      if (toast) toast.classList.add('hidden');
+      selectFounderRedFlagQuickTag('');
       modal.classList.remove('hidden');
+      setTimeout(() => {
+        try { document.getElementById('founderRedFlagNoteInput')?.focus(); } catch (_) {}
+      }, 40);
     }
     window.openFounderRedFlagModal = openFounderRedFlagModal;
+
     function closeFounderRedFlagModal() {
       const modal = document.getElementById('founderRedFlagModal');
       if (modal) modal.classList.add('hidden');
+      window.SynapzV14Engine?.resumeActiveTimers?.();
+      state._pausedByRedFlagModal = false;
     }
     window.closeFounderRedFlagModal = closeFounderRedFlagModal;
 
     async function submitFounderRedFlagPriority() {
-      SoundFX.playGoalHorn();
+      SoundFX.playTap();
+      const submitBtn = document.getElementById('btnSubmitFounderRedFlag');
+      if (submitBtn) submitBtn.disabled = true;
+
       const noteEl = document.getElementById('founderRedFlagNoteInput');
-      const rawNote = (noteEl && noteEl.value.trim()) || 'Founder flagged screen/drill for 12-Seat Council review.';
-      const scen = getCurrentScenario();
-      const prof = getActiveProfile() || { name: 'Miles', ageGroup: '12U' };
-      const rotDeg = Number(state.rinkRotationDeg ?? state.cameraRotationAngle ?? (scen && scen.rotationDegrees) ?? 0);
-      const activeUpgradesCount = (window.SYNAPZ_ACTIVE_UPGRADES && window.SYNAPZ_ACTIVE_UPGRADES.size)
-        ? Array.from(window.SYNAPZ_ACTIVE_UPGRADES).filter(id => id !== 'RF-COUNCIL-01').length
-        : 242;
-      const activeScreenOrModal = detectActiveRoomOrModalContext();
-      const scenarioId = (scen && scen.id) || `SCREEN-${String(state.view || 'lobby').toUpperCase()}`;
-      const ageDivision = prof.ageGroup || '12U';
+      const quickTag = window._selectedRedFlagQuickTag || '';
+      const typedNote = (noteEl && noteEl.value.trim()) || '';
+      const founderNote = typedNote || (quickTag ? `Flagged [${quickTag}] for Founder review.` : 'Flagged screen/drill for Founder review.');
+      const prof = getActiveProfile() || {};
+      const ctx = window._lastFounderRedFlagAutoContext && window._lastFounderRedFlagAutoContext.viewport
+        ? { ...captureLiveRedFlagMetadata(), ...window._lastFounderRedFlagAutoContext }
+        : captureLiveRedFlagMetadata();
+      const createdAt = new Date().toISOString();
+      const scenarioKey = ctx.drillId || `SCREEN:${ctx.activeScreen || 'Lobby'}`;
+      const tagPrefix = quickTag ? `[${quickTag}] ` : '';
+      const contextPrefix = ctx.drillId
+        ? `${ctx.drillId} • ${ctx.gameMode || 'drill'} • ${ctx.positionRole || 'C'}`
+        : `${ctx.activeScreen || 'Lobby'}`;
+
       const payload = {
-        created_by: 'Founder-Red-Flag',
-        source_role: 'founder_red_flag',
-        scenario_id: scenarioId,
-        age_division: ageDivision,
-        category: 'founder_red_flag',
-        status: 'flagged_for_council_review',
-        summary: `🚩 Founder Priority Flag (${activeScreenOrModal} • ${scenarioId} @ ${rotDeg}° • ${ageDivision}): ${rawNote}`,
+        created_by: prof.name || 'Founder',
+        source_role: 'SEAT_0_RED_FLAG',
+        scenario_id: scenarioKey,
+        age_division: ctx.ageTier || '12U',
+        category: 'SEAT_0_RED_FLAG',
+        status: 'open_red_flag',
+        summary: `🚩 [${contextPrefix}] ${tagPrefix}${founderNote}`,
         details: {
-          view: state.view,
-          activeScreenOrModal,
-          scenarioId,
-          rotationAngle: rotDeg,
-          ageDivision,
-          activeUpgradesCount,
-          activeProfile: prof.name || 'Miles',
-          scenarioTitle: scen?.title || null,
-          note: rawNote,
-          governanceProtocol: '4-Step Red Flag Council Review -> Options A/B -> Final Founder Approval',
-          flaggedAt: new Date().toISOString()
+          seat: 'SEAT_0_RED_FLAG',
+          drillId: ctx.drillId || null,
+          catalogDrillId: ctx.catalogDrillId || null,
+          drillTitle: ctx.drillTitle || null,
+          gameMode: ctx.gameMode || null,
+          stage: ctx.stage || null,
+          activeScreen: ctx.activeScreen || 'Main Rink Lobby',
+          positionRole: ctx.positionRole || 'C',
+          ageTier: ctx.ageTier || '12U',
+          viewport: ctx.viewport,
+          deviceLabel: ctx.deviceLabel,
+          userAgentShort: ctx.userAgentShort,
+          quickTag: quickTag || null,
+          founderNote,
+          note: founderNote,
+          activeProfile: prof.name || 'Guest Skater',
+          createdAt
         }
       };
+
       if (!Array.isArray(state.founderRedFlagsQueue)) state.founderRedFlagsQueue = [];
       state.founderRedFlagsQueue.unshift(payload);
       saveProgress();
+
+      let created = null;
       if (typeof PuckSenseCloud !== 'undefined' && PuckSenseCloud.postAgentInboxFlag) {
-        await PuckSenseCloud.postAgentInboxFlag(payload);
+        created = await PuckSenseCloud.postAgentInboxFlag(payload);
       }
+
+      const syncedLive = Boolean(created && created._syncedLive);
+      const toastMsg = syncedLive
+        ? '🚩 Synced Live to Founder Board!'
+        : '📴 Offline — Queued in Red-Flag Outbox (Auto-Syncs When Online)!';
+
       const toast = document.getElementById('founderRedFlagToast');
       if (toast) {
-        toast.textContent = `🚩 Flagged [${scenarioId} @ ${rotDeg}° • ${ageDivision} • ${activeUpgradesCount} Active Upgrades] directly to Section 2 / 📥 To Review on report.html!`;
+        toast.textContent = toastMsg;
         toast.classList.remove('hidden');
       }
-      return payload;
+      showGlobalRedFlagToast(toastMsg, !syncedLive);
+
+      if (noteEl) noteEl.value = '';
+      selectFounderRedFlagQuickTag('');
+      if (submitBtn) submitBtn.disabled = false;
+
+      setTimeout(() => {
+        closeFounderRedFlagModal();
+      }, 650);
+
+      return created || payload;
     }
     window.submitFounderRedFlagPriority = submitFounderRedFlagPriority;
+
+    if (typeof window !== 'undefined' && !window._redFlagOutboxAutoFlushBound) {
+      window._redFlagOutboxAutoFlushBound = true;
+      window.addEventListener('online', () => {
+        PuckSenseCloud?.flushOfflineRedFlagOutbox?.().catch(() => {});
+      });
+      setTimeout(() => {
+        PuckSenseCloud?.flushOfflineRedFlagOutbox?.().catch(() => {});
+      }, 1200);
+    }
 
     // =========================================================================
     // PHASE 5 & PHASE 6: TEAM PORTAL (COACH LOGIN VS COACH CODE), COACH'S OFFICE
@@ -31244,12 +31461,37 @@
 
       // Persistent Founder Red Flag
       bindClick('btnPersistentFounderRedFlag', openFounderRedFlagModal);
-      bindClick('btnCloseFounderRedFlagModal', () => document.getElementById('founderRedFlagModal').classList.add('hidden'));
+      bindClick('btnCloseFounderRedFlagModal', closeFounderRedFlagModal);
       bindClick('btnSubmitFounderRedFlag', submitFounderRedFlagPriority);
+      document.querySelectorAll('#founderRedFlagQuickTagsBar [data-redflag-quicktag]').forEach((chip) => {
+        chip.addEventListener('click', () => {
+          selectFounderRedFlagQuickTag(chip.getAttribute('data-redflag-quicktag') || '');
+        });
+      });
       bindClick('btnDictateFounderRedFlag', () => {
         const inp = document.getElementById('founderRedFlagNoteInput');
-        if (inp && !inp.value) {
-          inp.value = '🎙️ [Voice Note]: Tighten weak-side F2 support spacing on this breakout read.';
+        const btn = document.getElementById('btnDictateFounderRedFlag');
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRec) {
+          if (inp && !inp.value) {
+            inp.value = '🎙️ [Voice Note]: Clarify the drill prompt and target cue on this play.';
+          }
+          return;
+        }
+        try {
+          const rec = new SpeechRec();
+          rec.lang = 'en-US';
+          rec.interimResults = false;
+          if (btn) btn.textContent = '🔴 Listening...';
+          rec.onresult = (ev) => {
+            const transcript = ev.results?.[0]?.[0]?.transcript || '';
+            if (inp && transcript) inp.value = (inp.value ? inp.value + ' ' : '') + transcript;
+          };
+          rec.onend = () => { if (btn) btn.textContent = '🎙️ Voice Dictate'; };
+          rec.onerror = () => { if (btn) btn.textContent = '🎙️ Voice Dictate'; };
+          rec.start();
+        } catch (_) {
+          if (btn) btn.textContent = '🎙️ Voice Dictate';
         }
       });
     }
@@ -31641,7 +31883,7 @@
     // SECTION 32–43: VERIFIED REAL CODED UPGRADES RUNTIME & PRE-CODED BANK
     // (`synapz-hockey-v12.7-5persona-human-vision` • 288 Live Upgrades)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v14.1-complete-45-blooket-showdown';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v14.2-live-redflag-board';
 
     const ALL_63_DEPLOYED_UPGRADE_IDS = [
       // Batch A (12 items)
@@ -35410,31 +35652,44 @@
   <!-- PHASE 1 MODALS & PERSISTENT FOUNDER RED FLAG (`🚩`)                   -->
   <!-- ===================================================================== -->
 
-  <!-- Persistent Floating Founder Red Flag Button (Visible on Every Screen) -->
-  <button id="btnPersistentFounderRedFlag" type="button" class="fixed bottom-3 right-3 z-[95] px-3 py-2 rounded-full bg-rose-600/95 hover:bg-rose-500 border-2 border-rose-300 text-white font-black text-xs shadow-[0_0_20px_rgba(244,63,94,0.5)] flex items-center gap-1.5 cursor-pointer transition">
+  <!-- Persistent Floating Founder Red Flag Button (Visible Across Rooms, Chalk Reel & 9 Modes) -->
+  <button id="btnPersistentFounderRedFlag" type="button" class="fixed bottom-3 right-3 z-[110] px-3 py-2 rounded-full bg-rose-600/95 hover:bg-rose-500 border-2 border-rose-300 text-white font-black text-xs shadow-[0_0_20px_rgba(244,63,94,0.5)] flex items-center gap-1.5 cursor-pointer transition">
     <span>🚩</span><span>Red Flag</span>
   </button>
 
+  <!-- Global Live Sync Toast (Visible Even After Modal Closes) -->
+  <div id="founderRedFlagGlobalToast" class="hidden fixed top-12 right-3 z-[135] px-4 py-2.5 rounded-2xl bg-emerald-950/95 border-2 border-emerald-400 text-emerald-100 text-xs font-black shadow-2xl"></div>
+
   <!-- Founder Red Flag Priority Modal -->
-  <div id="founderRedFlagModal" class="hidden fixed inset-0 z-[105] bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4">
-    <div class="synapz-gunmetal-panel max-w-lg w-full rounded-2xl p-5 border-2 border-rose-400 shadow-2xl space-y-3">
+  <div id="founderRedFlagModal" class="hidden fixed inset-0 z-[130] bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="synapz-gunmetal-panel max-w-lg w-full rounded-2xl p-4 sm:p-5 border-2 border-rose-400 shadow-2xl space-y-3 my-auto">
       <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
-        <h3 class="text-base font-black text-white flex items-center gap-2"><span>🚩</span><span>Founder Priority Red Flag</span></h3>
-        <button id="btnCloseFounderRedFlagModal" type="button" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-black">✕</button>
+        <div>
+          <span class="text-[10px] font-black uppercase tracking-widest text-rose-300">SEAT 0 • INSTANT CROSS-DEVICE SUPABASE SYNC</span>
+          <h3 class="text-base font-black text-white flex items-center gap-2 mt-0.5"><span>🚩</span><span>Drop a Founder / Player Red Flag</span></h3>
+        </div>
+        <button id="btnCloseFounderRedFlagModal" type="button" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-black cursor-pointer">✕</button>
       </div>
       <div id="founderRedFlagContextBadge" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-rose-400/40 text-[11px] font-bold text-rose-200">
-        📍 Auto-Context: View="lobby"
+        📍 Screen: Main Rink Lobby
       </div>
-      <textarea id="founderRedFlagNoteInput" rows="3" placeholder="Speak or type what needs fixing on this screen, button, voice line, or drill..." class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white font-bold"></textarea>
+      <div id="founderRedFlagQuickTagsBar" class="flex flex-wrap gap-1.5">
+        <button type="button" data-redflag-quicktag="Unclear Question" class="px-2.5 py-1 rounded-full bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 text-[11px] font-bold cursor-pointer transition">❓ Unclear Question</button>
+        <button type="button" data-redflag-quicktag="Spacing / Target" class="px-2.5 py-1 rounded-full bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 text-[11px] font-bold cursor-pointer transition">🎯 Spacing / Target</button>
+        <button type="button" data-redflag-quicktag="Clipped / Overlap" class="px-2.5 py-1 rounded-full bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 text-[11px] font-bold cursor-pointer transition">📱 Clipped / Overlap</button>
+        <button type="button" data-redflag-quicktag="Voice / Caption" class="px-2.5 py-1 rounded-full bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 text-[11px] font-bold cursor-pointer transition">🔊 Voice / Caption</button>
+        <button type="button" data-redflag-quicktag="Bug / Freeze" class="px-2.5 py-1 rounded-full bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 text-[11px] font-bold cursor-pointer transition">🐛 Bug / Freeze</button>
+      </div>
+      <textarea id="founderRedFlagNoteInput" rows="3" placeholder="Type or dictate what felt confusing or needs fixing on this drill or screen..." class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs sm:text-sm text-white font-bold focus:border-rose-400 outline-none"></textarea>
       <div class="flex flex-wrap items-center justify-between gap-2">
-        <button id="btnDictateFounderRedFlag" type="button" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-cyan-400/50 text-cyan-200 text-xs font-black">
-          🎙️ Voice Dictate Note
+        <button id="btnDictateFounderRedFlag" type="button" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-cyan-400/50 text-cyan-200 text-xs font-black cursor-pointer">
+          🎙️ Voice Dictate
         </button>
-        <button id="btnSubmitFounderRedFlag" type="button" class="px-4 py-2 rounded-xl bg-rose-500 hover:bg-rose-400 text-white text-xs font-black shadow-lg">
-          🚩 Submit Priority Flag to Agent Inbox
+        <button id="btnSubmitFounderRedFlag" type="button" class="px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white text-xs sm:text-sm font-black shadow-lg cursor-pointer">
+          🚩 Sync Live to Founder Board
         </button>
       </div>
-      <div id="founderRedFlagToast" class="hidden p-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-emerald-200 text-xs font-bold"></div>
+      <div id="founderRedFlagToast" class="hidden p-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-emerald-200 text-xs font-black"></div>
     </div>
   </div>
 

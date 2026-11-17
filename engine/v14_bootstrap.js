@@ -324,7 +324,83 @@ class SynapzV14TeachingCoordinator {
   }
 
   getDrillById(id) {
-    return (this.catalog?.drills || []).find(d => d.id === id) || this.catalog?.drills?.[0] || null;
+    const clean = String(id || '').trim();
+    return (this.catalog?.drills || []).find(d => d.id === clean || d.conceptId === clean) || this.catalog?.drills?.[0] || null;
+  }
+
+  loadDrillByConceptOrId(code, { forceSkipReel = true, autoDrop = false } = {}) {
+    const drill = this.getDrillById(code);
+    if (!drill) return null;
+    this.shiftMode = 'single';
+    this.drillQueue = [drill];
+    this.queueIdx = 0;
+    this.presentDrill(drill, { forceSkipReel });
+    if (autoDrop && !this.chalkReel?.isOpen && this.modeEngine) {
+      this.modeEngine.dropPuck();
+    }
+    return drill;
+  }
+
+  pauseActiveTimers() {
+    let pausedAny = false;
+    if (this.chalkReel?.pauseForModal?.()) pausedAny = true;
+    if (this.modeEngine?.pauseForModal?.()) pausedAny = true;
+    return pausedAny;
+  }
+
+  resumeActiveTimers() {
+    let resumedAny = false;
+    if (this.chalkReel?.resumeAfterModal?.()) resumedAny = true;
+    if (this.modeEngine?.resumeAfterModal?.()) resumedAny = true;
+    return resumedAny;
+  }
+
+  getLiveRedFlagContext() {
+    const prof = this._getActiveProfile() || {};
+    const showdownRoot = typeof document !== 'undefined' ? document.getElementById('v14GlobalShowdownMount') : null;
+    if (showdownRoot && !showdownRoot.classList.contains('hidden') && this.showdown) {
+      const sdDrill = this.showdown.activeDrill || this.activeDrill;
+      return {
+        activeScreen: 'Team Showdown',
+        drillId: sdDrill?.conceptId || sdDrill?.id || null,
+        catalogDrillId: sdDrill?.id || null,
+        drillTitle: sdDrill?.title || null,
+        gameMode: sdDrill?.mode || 'team_showdown',
+        positionRole: prof.positionCode || sdDrill?.youRole || null,
+        stage: 'team_showdown'
+      };
+    }
+
+    const catRoot = typeof document !== 'undefined' ? document.getElementById('v14CatalogDrawerMount') : null;
+    if (catRoot && !catRoot.classList.contains('hidden')) {
+      const cur = this.activeDrill;
+      return {
+        activeScreen: 'Drill Catalog',
+        drillId: cur?.conceptId || cur?.id || null,
+        catalogDrillId: cur?.id || null,
+        drillTitle: cur?.title || null,
+        gameMode: cur?.mode || null,
+        positionRole: prof.positionCode || cur?.youRole || null,
+        stage: 'catalog_drawer'
+      };
+    }
+
+    const inGame = typeof document !== 'undefined' && (
+      document.body.classList.contains('v14-white-ice-active') ||
+      (typeof window !== 'undefined' && window.state && window.state.view === 'game')
+    );
+    if (inGame) {
+      const reelSnap = this.chalkReel?.getContextSnapshot?.();
+      if (reelSnap) return reelSnap;
+      const modeSnap = this.modeEngine?.getContextSnapshot?.();
+      if (modeSnap) {
+        return {
+          ...modeSnap,
+          positionRole: modeSnap.positionRole || prof.positionCode || null
+        };
+      }
+    }
+    return null;
   }
 
   getDrillByMode(modeName) {

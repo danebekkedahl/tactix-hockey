@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v14.1-complete-45-blooket-showdown';
+const CACHE_NAME = 'synapz-hockey-v14.2-live-redflag-board';
 const PRECACHE_ASSETS = [
   './',
   './index.html',

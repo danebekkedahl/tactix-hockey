@@ -28,6 +28,7 @@ export class ChalkTalkReelController {
     this.elapsedSec = 0;
     this.totalSec = 13;
     this.currentBeatIdx = -1;
+    this._pausedByModal = false;
     this._rafId = null;
     this._lastTs = 0;
     this.rink = null;
@@ -172,6 +173,7 @@ export class ChalkTalkReelController {
   close() {
     this.isOpen = false;
     this.isPlaying = false;
+    this._pausedByModal = false;
     if (this._rafId) {
       cancelAnimationFrame(this._rafId);
       this._rafId = null;
@@ -182,6 +184,49 @@ export class ChalkTalkReelController {
       }
     } catch (_) {}
     if (this.mountEl) this.mountEl.classList.add('hidden');
+  }
+
+  pauseForModal() {
+    if (!this.isOpen) return false;
+    if (this.isPlaying) {
+      this._pausedByModal = true;
+      this.isPlaying = false;
+      if (this._rafId) {
+        cancelAnimationFrame(this._rafId);
+        this._rafId = null;
+      }
+      this._syncPlayPauseBtn();
+    }
+    try {
+      if (typeof window !== 'undefined' && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    } catch (_) {}
+    return this._pausedByModal;
+  }
+
+  resumeAfterModal() {
+    if (!this.isOpen || !this._pausedByModal) return false;
+    this._pausedByModal = false;
+    this.isPlaying = true;
+    this._lastTs = typeof performance !== 'undefined' ? performance.now() : Date.now();
+    this._syncPlayPauseBtn();
+    this._scheduleFrame();
+    return true;
+  }
+
+  getContextSnapshot() {
+    if (!this.isOpen || !this.drill) return null;
+    return {
+      activeScreen: 'Chalk-Talk Reel',
+      drillId: this.drill.conceptId || this.drill.id || null,
+      catalogDrillId: this.drill.id || null,
+      drillTitle: this.drill.title || null,
+      gameMode: 'chalk_talk_reel',
+      drillMode: this.drill.mode || null,
+      positionRole: this.activePosition || this.drill.youRole || null,
+      stage: `beat_${Math.max(1, (this.currentBeatIdx || 0) + 1)}`
+    };
   }
 
   completeAndDropPuck() {
