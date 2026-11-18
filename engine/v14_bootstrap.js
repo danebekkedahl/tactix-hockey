@@ -10,7 +10,7 @@
 import { RINK_SPEC, WhiteIceRink1000x500 } from './rink_1000x500.js';
 import { CANONICAL_9_MODES, validateDrillSchema, validateDrillCatalog } from './validate_drills.js';
 import { ChalkTalkReelController } from './chalk_reel.js';
-import { Subconscious9ModeEngine, MODE_LABELS } from './modes_9pack.js';
+import { Subconscious9ModeEngine, MODE_LABELS, buildPlainKidQuestionHtml } from './modes_9pack.js';
 import {
   ensureProfileConceptMastery,
   getConceptStatus,
@@ -22,6 +22,45 @@ import {
   DrillCatalogDrawerController
 } from './blooket_payoff.js';
 import { TeamShowdownController } from './team_showdown.js';
+
+const LEGACY_SCENARIO_TO_V14_CONCEPT = Object.freeze({
+  'spacing-1': 'OZ-03',
+  'spacing-2': 'OZ-02',
+  'spacing-3': 'OZ-04',
+  'spacing-4': 'OZ-06',
+  'rush-1': 'OM-01',
+  'rush-2': 'OM-02',
+  'rush-2v1-dish': 'OM-01',
+  'rush-2v1-shoot': 'OM-06',
+  'breakout-1': 'DZ-01',
+  'breakout-2': 'DZ-05',
+  'breakout-3': 'DZ-07',
+  'breakout-4': 'DZ-06',
+  'breakout-dtod': 'DZ-01',
+  'house-1': 'DZ-03',
+  'house-2': 'DZ-04',
+  'house-3': 'DZ-08',
+  'house-4': 'DZ-02',
+  'basics-center': 'DZ-03',
+  'basics-defense': 'OZ-05',
+  'basics-offsides': 'NZ-05',
+  'forecheck-1': 'OZ-07',
+  'forecheck-2': 'OZ-08',
+  'forecheck-212': 'OZ-07',
+  'backcheck-1': 'NZ-06',
+  'regroup-nz': 'NZ-01',
+  'transition-1': 'NZ-02',
+  'protect-cutback-wall': 'OZ-04',
+  'delay-high-slot': 'OM-04',
+  'd-gap-1v1': 'NZ-06',
+  'd-2v1-slide': 'OM-05',
+  'd-netfront-boxout': 'DZ-04',
+  'd-blueline-walk': 'OZ-05',
+  'goalie-angle-depth': 'DZ-09',
+  'goalie-screen-look': 'DZ-10',
+  'goalie-rim-comm': 'DZ-11',
+  'goalie-rebound-steer': 'DZ-12'
+});
 
 class SynapzV14TeachingCoordinator {
   constructor() {
@@ -98,19 +137,39 @@ class SynapzV14TeachingCoordinator {
     const rinkWrapper = document.getElementById('rinkWrapper');
     if (!gameSec || !rinkWrapper) return;
 
-    // Inject strict v14 CSS hiding legacy dark-ice 4-button quiz bars & floating cutouts when v14 is mounted
+    // Inject strict v14.3 CSS hiding 100% of legacy V1 game DOM & expanding #leftRinkColumn to full 12-col width
     if (!document.getElementById('synapzV14EngineStyles')) {
       const style = document.createElement('style');
       style.id = 'synapzV14EngineStyles';
       style.textContent = `
+        body.v14-white-ice-active #gameTopSubheader,
         body.v14-white-ice-active #rinkWrapper,
+        body.v14-white-ice-active #habitComboControlsBar,
+        body.v14-white-ice-active #habitComboScorecardBox,
+        body.v14-white-ice-active #multiFormatControlsBar,
+        body.v14-white-ice-active #lessonConsistentBottomBar,
         body.v14-white-ice-active #coachCornerWidget,
+        body.v14-white-ice-active #rightPanelDeck,
         body.v14-white-ice-active #coachBobPopup,
         body.v14-white-ice-active #btnCallCoachBob,
         body.v14-white-ice-active #synapzPersistentCharCircleBtn,
         body.v14-white-ice-active #synapzUniversalCharSpeechOverlay,
-        body.v14-white-ice-active #firstShiftAgentDrillTourOverlay {
+        body.v14-white-ice-active #firstShiftAgentDrillTourOverlay,
+        body.v14-white-ice-active #firstShiftTourBanner,
+        body.in-game-clean-mode #gameTopSubheader,
+        body.in-game-clean-mode #rinkWrapper,
+        body.in-game-clean-mode #habitComboControlsBar,
+        body.in-game-clean-mode #habitComboScorecardBox,
+        body.in-game-clean-mode #multiFormatControlsBar,
+        body.in-game-clean-mode #lessonConsistentBottomBar,
+        body.in-game-clean-mode #coachCornerWidget,
+        body.in-game-clean-mode #rightPanelDeck {
           display: none !important;
+        }
+        body.v14-white-ice-active #leftRinkColumn,
+        body.in-game-clean-mode #leftRinkColumn {
+          grid-column: 1 / -1 !important;
+          width: 100% !important;
         }
       `;
       document.head.appendChild(style);
@@ -122,11 +181,17 @@ class SynapzV14TeachingCoordinator {
       root.id = 'v14TeachingEngineRoot';
       root.className = 'w-full space-y-2';
       root.innerHTML = `
+        <div id="v14ActiveQuestionBanner" class="w-full rounded-2xl px-3.5 pr-24 py-2.5 bg-gradient-to-r from-amber-500/20 via-[#0C1322] to-slate-950 border-2 border-amber-400/85 border-l-4 border-l-amber-400 shadow-lg">
+          <div id="v14ActiveQuestionBannerText" style="font-size: 16px; line-height: 1.32;" class="text-base sm:text-lg font-black text-white"></div>
+        </div>
         <div id="v14ChalkReelMount" class="hidden w-full"></div>
         <div id="v14ModeEngineMount" class="w-full"></div>
         <div id="v14RinkFooterBar" class="flex flex-wrap items-center justify-between gap-2 pt-1">
-          <div id="v14RinkSkillRingsBar" class="flex-1 min-w-[260px]"></div>
-          <div class="flex items-center gap-2 shrink-0">
+          <div id="v14RinkSkillRingsBar" class="flex-1 min-w-[240px]"></div>
+          <div class="flex flex-wrap items-center gap-2 shrink-0">
+            <button id="btnV14OpenTourMap" type="button" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-400/70 text-cyan-200 font-black text-xs cursor-pointer">
+              🗺️ 32-City Tour
+            </button>
             <button id="btnV14QuickDaily5" type="button" class="px-3 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs shadow cursor-pointer">
               ⚡ Daily 5 Shift
             </button>
@@ -140,6 +205,13 @@ class SynapzV14TeachingCoordinator {
       `;
       rinkWrapper.parentElement.insertBefore(root, rinkWrapper);
     }
+
+    root.querySelector('#btnV14OpenTourMap')?.addEventListener('click', () => {
+      document.body.classList.remove('v14-white-ice-active');
+      if (typeof window.switchView === 'function') {
+        window.switchView('map');
+      }
+    });
 
     root.querySelector('#btnV14QuickDaily5')?.addEventListener('click', () => {
       this.startDaily5Shift();
@@ -270,29 +342,73 @@ class SynapzV14TeachingCoordinator {
     this.showdown.openJoinModal(pin);
   }
 
+  mapLegacyScenarioOrFocusToConcept(rawId) {
+    const clean = String(rawId || '').trim();
+    if (!clean) return 'DZ-01';
+    if (LEGACY_SCENARIO_TO_V14_CONCEPT[clean]) return LEGACY_SCENARIO_TO_V14_CONCEPT[clean];
+    const upper = clean.toUpperCase();
+    if (/^(DZ|NZ|OM|OZ|ST)-\d{2}$/.test(upper) || upper.startsWith('DRILL-')) return upper;
+    const low = clean.toLowerCase();
+    if (low.includes('rush') || low.includes('2v1') || low.includes('3v2') || low.includes('delay')) return 'OM-01';
+    if (low.includes('spacing') || low.includes('cycle') || low.includes('cutback') || low.includes('forecheck') || low.includes('oz')) return 'OZ-03';
+    if (low.includes('power') || low.includes('penalty') || low.includes('pk') || low.includes('pp') || low.includes('special')) return 'ST-01';
+    if (low.includes('regroup') || low.includes('offsides') || low.includes('transition') || low.includes('gap') || low.includes('nz')) return 'NZ-01';
+    if (low.includes('goalie') || low.includes('screen') || low.includes('rebound')) return 'DZ-10';
+    if (low.includes('house') || low.includes('boxout')) return 'DZ-03';
+    return 'DZ-01';
+  }
+
+  resolveDrillsForFocus(focusStr = '', count = 5) {
+    if (!this.catalog?.drills?.length) return [];
+    const focusLower = String(focusStr || '').toLowerCase();
+    let matching = this.catalog.drills.filter((d) => {
+      if (focusLower.includes('rush') || focusLower.includes('2v1') || focusLower.includes('odd-man')) return d.zone === 'OM';
+      if (focusLower.includes('power') || focusLower.includes('penalty') || focusLower.includes('special') || focusLower.includes('pp') || focusLower.includes('pk')) return d.zone === 'ST';
+      if (focusLower.includes('forecheck') || focusLower.includes('o-zone') || focusLower.includes('spacing') || focusLower.includes('cycle') || focusLower.includes('cutback')) return d.zone === 'OZ';
+      if (focusLower.includes('regroup') || focusLower.includes('offsides') || focusLower.includes('neutral') || focusLower.includes('scan') || focusLower.includes('gap')) return d.zone === 'NZ';
+      if (focusLower.includes('d-zone') || focusLower.includes('house') || focusLower.includes('breakout') || focusLower.includes('goalie')) return d.zone === 'DZ';
+      return d.zone === 'DZ' || d.zone === 'NZ';
+    });
+    if (matching.length < 3) matching = this.catalog.drills.slice(0, 6);
+    const total = Math.max(1, Number(count || 5));
+    return Array.from({ length: total }, (_, i) => matching[i % matching.length]);
+  }
+
   activateInGameView() {
     if (!this.ready || !this.catalog) return;
     document.body.classList.add('v14-white-ice-active');
     this._enforceZeroCutoutOverlap();
 
     const guestSess = typeof window !== 'undefined' ? window.__synapzGuestDemoSession : null;
+    const isGuest = Boolean(guestSess && guestSess.active);
     const exitBtn = document.getElementById('btnV14SaveExitLobby');
+    const mapBtn = document.getElementById('btnV14OpenTourMap');
+    const dailyBtn = document.getElementById('btnV14QuickDaily5');
     if (exitBtn) {
-      exitBtn.textContent = guestSess && guestSess.active ? '← Exit Free Shift' : '💾 Save & Exit to Lobby';
+      exitBtn.textContent = isGuest ? '← Exit Free Shift' : '💾 Save & Exit to Lobby';
     }
+    if (mapBtn) mapBtn.classList.toggle('hidden', isGuest);
+    if (dailyBtn) dailyBtn.classList.toggle('hidden', isGuest);
 
-    if (guestSess && guestSess.active) {
+    if (isGuest) {
       this.shiftMode = 'guest';
-      const tierDrills = guestSess.tier === 'coach_preview'
-        ? [this.getDrillById('DRILL-RR-01')]
+      const defaultGuestCodes = guestSess.tier === 'coach_preview'
+        ? ['DZ-01']
         : (guestSess.tier === 'youth'
-            ? [this.getDrillById('DRILL-RR-01'), this.getDrillById('DRILL-GP-02'), this.getDrillById('DRILL-CS-01')]
-            : [this.getDrillById('DRILL-RR-02'), this.getDrillById('DRILL-FW-01'), this.getDrillById('DRILL-TT-01')]);
-      this.drillQueue = tierDrills.filter(Boolean);
-      this.queueIdx = Math.min(this.drillQueue.length - 1, Number(guestSess.playIndex || 0));
+            ? ['DZ-01', 'OZ-03', 'OM-01']
+            : (guestSess.tier === 'aaa'
+                ? ['ST-01', 'NZ-06', 'DZ-07']
+                : ['OM-01', 'NZ-01', 'NZ-03']));
+      const requestedCodes = Array.isArray(guestSess.playIds) && guestSess.playIds.length
+        ? guestSess.playIds.map(id => this.mapLegacyScenarioOrFocusToConcept(id))
+        : defaultGuestCodes;
+      // Keep guestSess.playIds synced to canonical v14 concept IDs (0 legacy spacing-1 / rush-1 IDs!)
+      guestSess.playIds = requestedCodes;
+      this.drillQueue = requestedCodes.map(code => this.getDrillById(code)).filter(Boolean);
+      this.queueIdx = Math.min(this.drillQueue.length - 1, Math.max(0, Number(guestSess.playIndex || 0)));
       const drill = this.drillQueue[this.queueIdx] || this.catalog.drills[0];
-      // Keep Try 3 Plays Free ultra-snappy (skip reel by default unless tapped)
-      this.presentDrill(drill, { forceSkipReel: true });
+      // Auto-open the 15s Honest/IHS YOU ARE Chalk-Talk Lesson Reel before Rep 1 of any unseen concept!
+      this.presentDrill(drill, { forceSkipReel: false });
       this.refreshSkillRingsUI();
       return;
     }
@@ -300,17 +416,20 @@ class SynapzV14TeachingCoordinator {
     if (window.state && window.state.activeCoachInboxPlan) {
       this.shiftMode = 'coach_inbox';
       const plan = window.state.activeCoachInboxPlan;
-      const focusLower = String(plan.focusConcept || '').toLowerCase();
-      let matching = this.catalog.drills.filter(d => {
-        if (focusLower.includes('rush')) return d.zone === 'OM';
-        if (focusLower.includes('d-zone') || focusLower.includes('house')) return d.zone === 'DZ';
-        if (focusLower.includes('power') || focusLower.includes('special')) return d.zone === 'ST';
-        if (focusLower.includes('forecheck') || focusLower.includes('o-zone')) return d.zone === 'OZ';
-        return d.zone === 'NZ' || d.zone === 'DZ';
-      });
-      if (matching.length < 3) matching = this.catalog.drills.slice(0, 5);
-      const count = Number(plan.lessonCount || 5);
-      this.drillQueue = Array.from({ length: count }, (_, i) => matching[i % matching.length]);
+      this.drillQueue = this.resolveDrillsForFocus(plan.focusConcept || 'breakout', Number(plan.lessonCount || 5));
+      this.queueIdx = 0;
+      this.shiftRepsCompleted = 0;
+      this.shiftGoldCount = 0;
+      this.presentDrill(this.drillQueue[0], { forceSkipReel: false });
+      this.refreshSkillRingsUI();
+      return;
+    }
+
+    if (window.state && window.state.customFocusShift) {
+      this.shiftMode = 'custom_focus';
+      const cf = window.state.customFocusShift;
+      window.state.customFocusShift = null;
+      this.drillQueue = this.resolveDrillsForFocus(cf.focus || 'breakout', Number(cf.lessonCount || 5));
       this.queueIdx = 0;
       this.shiftRepsCompleted = 0;
       this.shiftGoldCount = 0;
@@ -325,7 +444,8 @@ class SynapzV14TeachingCoordinator {
 
   getDrillById(id) {
     const clean = String(id || '').trim();
-    return (this.catalog?.drills || []).find(d => d.id === clean || d.conceptId === clean) || this.catalog?.drills?.[0] || null;
+    const mapped = LEGACY_SCENARIO_TO_V14_CONCEPT[clean] || clean;
+    return (this.catalog?.drills || []).find(d => d.id === mapped || d.conceptId === mapped || d.id === clean || d.conceptId === clean) || this.catalog?.drills?.[0] || null;
   }
 
   loadDrillByConceptOrId(code, { forceSkipReel = true, autoDrop = false } = {}) {
@@ -447,14 +567,21 @@ class SynapzV14TeachingCoordinator {
     const cStatus = getConceptStatus(prof, drill.conceptId);
     const shouldShowReel = forceChalkReel || (!forceSkipReel && cStatus.state === 'unwatched');
 
+    // Always keep #v14ActiveQuestionBanner visible & synced above both Chalk Reel and 9-Mode Ice!
+    const qBanner = typeof document !== 'undefined' ? document.getElementById('v14ActiveQuestionBanner') : null;
+    const qBannerText = typeof document !== 'undefined' ? document.getElementById('v14ActiveQuestionBannerText') : null;
+    if (qBanner) qBanner.classList.remove('hidden');
+    if (qBannerText) qBannerText.innerHTML = buildPlainKidQuestionHtml(drill);
+
     const modeMount = document.getElementById('v14ModeEngineMount');
+    // Prime modeEngine with drill so activeDrill/modeEngine.drill are always ready
+    this.modeEngine.loadDrill(drill, { autoDrop: false });
     if (shouldShowReel) {
       modeMount?.classList.add('hidden');
       this.chalkReel.open(drill, prof?.positionCode || drill.youRole);
     } else {
       this.chalkReel.close();
       modeMount?.classList.remove('hidden');
-      this.modeEngine.loadDrill(drill, { autoDrop: false });
     }
     this.modeEngine.updateStreakBadge(this.liveStreak);
   }
@@ -562,11 +689,31 @@ class SynapzV14TeachingCoordinator {
       }).catch(() => {});
     }
 
+    // Completed a 5-rep NHL City Tour Shift -> advance city stop & award +50 Tour Bonus Puck Bucks!
+    if (this.shiftMode === 'city' && typeof window !== 'undefined' && window.state) {
+      const prof = this._getActiveProfile();
+      const nextCity = Math.min(31, Number(window.state.currentCityIdx || 0) + 1);
+      window.state.currentCityIdx = nextCity;
+      window.state.puckBucks = Number(window.state.puckBucks || prof?.puckBucks || 0) + 50;
+      if (prof) {
+        prof.currentCityIdx = nextCity;
+        prof.unlockedCityIdx = Math.max(Number(prof.unlockedCityIdx || 0), nextCity);
+        prof.puckBucks = window.state.puckBucks;
+      }
+      if (typeof window.saveProgress === 'function') window.saveProgress();
+      if (typeof window.updateHeaderStats === 'function') window.updateHeaderStats();
+    }
+
     if (this.drillQueue.length >= 5 && !this.blooket.isOpen) {
       this.blooket.launch({
         reason: '🏆 5-Rep Shift Complete Bonus!',
         baseBucks: 50
       });
+    }
+
+    if (this.shiftMode === 'city') {
+      this.startCityShift(window.state?.currentCityIdx || 0);
+      return;
     }
 
     // Start fresh cycle

@@ -5481,7 +5481,7 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v14.2-live-redflag-board';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v14.3-full-white-ice-cutover';
 
     // =========================================================================
     // SECTION 39 (v12.3) + SECTION 46 (v13.2) + SECTION 47 (v13.4):
@@ -17900,13 +17900,22 @@
         document.body.classList.remove('v14-white-ice-active');
         renderNhlTourMap();
       } else {
-        setTimeout(() => {
-          resizeCanvas();
-          drawRink();
-        }, 40);
-        loadScenario(false);
-        if (window.SynapzV14Engine && window.SynapzV14Engine.ready) {
-          window.SynapzV14Engine.activateInGameView();
+        document.body.classList.add('v14-white-ice-active');
+        stopTimers();
+        if (typeof clearCountdownInterval === 'function') clearCountdownInterval();
+        if (state.flowFreezeAnimId) {
+          cancelAnimationFrame(state.flowFreezeAnimId);
+          state.flowFreezeAnimId = null;
+        }
+        hideCoachBobPopup();
+        if (window.SynapzV14Engine) {
+          if (window.SynapzV14Engine.ready) {
+            window.SynapzV14Engine.activateInGameView();
+          } else if (typeof window.SynapzV14Engine.init === 'function') {
+            window.SynapzV14Engine.init().then(() => {
+              if (state.view === 'game') window.SynapzV14Engine.activateInGameView();
+            }).catch(() => {});
+          }
         }
       }
     }
@@ -19117,6 +19126,7 @@
       SoundFX.playGoalHorn();
       const assign = state.coachWeeklyAssignment || { focus: 'breakout' };
       state.conceptFilter = assign.focus || 'breakout';
+      state.customFocusShift = { focus: assign.focus || 'breakout', lessonCount: 5 };
       state.seriesResults = [];
       state.seriesPointsEarned = 0;
       state.seriesQuestionNum = 1;
@@ -19125,7 +19135,6 @@
       state.activeScenarioInstance = null;
       document.getElementById('teamManagerModal').classList.add('hidden');
       switchView('game');
-      loadScenario(true);
     }
     window.launchCoachAssignment = launchCoachAssignment;
 
@@ -19428,10 +19437,10 @@
     });
 
     document.getElementById('btnPlayCurrentCity').addEventListener('click', () => {
-      SoundFX.playTap();
+      SoundFX.playGoalHorn();
       const currCity = NHL_CITIES[state.currentCityIdx || 0] || NHL_CITIES[0];
       triggerSynapzScreenTransition(`⚡ Flooding the Ice — Stop #${(state.currentCityIdx || 0) + 1}: ${currCity.name}...`, () => {
-        openCityIntroModal(state.currentCityIdx);
+        switchView('game');
       });
     });
 
@@ -21336,6 +21345,7 @@
         });
       });
       state.conceptFilter = sl.concept;
+      state.customFocusShift = { focus: sl.concept || 'breakout', lessonCount: 5 };
       state.seriesResults = [];
       state.seriesPointsEarned = 0;
       state.seriesQuestionNum = 1;
@@ -21345,7 +21355,6 @@
       saveProgress();
       closeReportModal();
       switchView('game');
-      loadScenario(true);
     }
     window.formulateHockeyIqPipPlan = formulateHockeyIqPipPlan;
 
@@ -21657,6 +21666,7 @@
     document.getElementById('btnStartWeaknessClinic').addEventListener('click', () => {
       const weak = getWeakestConcept() || 'spacing';
       state.conceptFilter = weak;
+      state.customFocusShift = { focus: weak, lessonCount: 5 };
       state.currentScenarioIndex = 0;
       state.permutationSeed += 1;
       state.activeScenarioInstance = null;
@@ -29357,7 +29367,6 @@
               document.getElementById('coachOfficeOverlaySheet')?.classList.add('hidden');
               triggerSynapzScreenTransition(`📬 Launching Assigned Plan (${chosenPlan.focusConcept})...`, () => {
                 switchView('game');
-                loadScenario(true);
               });
             });
           });
@@ -29464,13 +29473,13 @@
       const launchCoachAlPlan = (lessonCount) => {
         SoundFX.playGoalHorn();
         state.customPlanLength = lessonCount;
+        state.customFocusShift = { focus: selMeta.label || state.coachAlSelectedFocus || 'Breakouts', lessonCount };
         state.seriesQuestionNum = 1;
         state.seriesResults = [];
         document.getElementById('synapzCoachOfficeModal')?.classList.add('hidden');
         document.getElementById('coachOfficeOverlaySheet')?.classList.add('hidden');
         triggerSynapzScreenTransition(`⚡ Coach Al Launching ${lessonCount}-Lesson Plan (${selMeta.label})...`, () => {
           switchView('game');
-          loadScenario(true);
         });
       };
       document.getElementById('btnCoachAl5LessonQuick')?.addEventListener('click', () => launchCoachAlPlan(5));
@@ -29988,9 +29997,10 @@
         });
       });
       document.getElementById('btnLaunchBuddyMapRaceNow')?.addEventListener('click', () => {
+        SoundFX.playGoalHorn();
         document.getElementById('synapzFriendsWallModal')?.classList.add('hidden');
         document.getElementById('clubhouseOverlaySheet')?.classList.add('hidden');
-        switchView('map');
+        switchView('game');
       });
     }
     window.renderSynapzFriendsWallModal = renderSynapzFriendsWallModal;
@@ -30738,8 +30748,8 @@
             SoundFX.playGoalHorn();
             document.getElementById('playerTeamRosterHubModal').classList.add('hidden');
             state.conceptFilter = 'breakout';
+            state.customFocusShift = { focus: 'breakout', lessonCount: 5 };
             switchView('game');
-            loadScenario(true);
           });
         }
       } else if (state.activePlayerTeamHubTab === 'schedule') {
@@ -31204,10 +31214,10 @@
 
       // 5 Pure Picture Lobby Doorways (Zero Overlaid Text Labels, 100dvh)
       bindClick('lobbyStationHitTheIce', () => {
-        SoundFX.playTap();
+        SoundFX.playGoalHorn();
         if (state.lobbySpotlightActive) finishLobbyFirstTimeTour(false);
-        triggerSynapzScreenTransition('⚡ Pushing Through Center Ice Doors to NHL Map...', () => {
-          switchView('map');
+        triggerSynapzScreenTransition('⚡ Pushing Through Center Ice Doors onto the White Ice...', () => {
+          switchView('game');
         });
       });
       bindClick('lobbyStationLockerRoom', () => {
@@ -31868,10 +31878,10 @@
         state.coachAlSelectedSlice = params.get('slice') || 'breakout';
         state.coachAlSelectedFocus = params.get('focus') || 'Under F1 Pressure';
         state.customPlanLength = Number(params.get('plays') || 5);
+        state.customFocusShift = { focus: state.coachAlSelectedSlice || state.coachAlSelectedFocus || 'breakout', lessonCount: state.customPlanLength };
         state.seriesQuestionNum = 1;
         state.seriesResults = [];
         switchView('game');
-        loadScenario(true);
         return;
       }
       if (!state.sandboxAuthenticated && (!state.activeEntryScreenCode || state.activeEntryScreenCode === '1')) {
@@ -31883,7 +31893,7 @@
     // SECTION 32–43: VERIFIED REAL CODED UPGRADES RUNTIME & PRE-CODED BANK
     // (`synapz-hockey-v12.7-5persona-human-vision` • 288 Live Upgrades)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v14.2-live-redflag-board';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v14.3-full-white-ice-cutover';
 
     const ALL_63_DEPLOYED_UPGRADE_IDS = [
       // Batch A (12 items)
@@ -35165,7 +35175,7 @@
           ageGroup: '8U',
           divisionHint: '8U',
           adaptiveLevel: 0,
-          playIds: ['rush-1', 'breakout-1', 'spacing-1']
+          playIds: ['DZ-01', 'OZ-03', 'OM-01']
         },
         competitive: {
           tier: 'competitive',
@@ -35173,7 +35183,7 @@
           ageGroup: '12U',
           divisionHint: '12U Rec/B',
           adaptiveLevel: 1,
-          playIds: ['rush-2v1-dish', 'breakout-2', 'delay-high-slot']
+          playIds: ['OM-01', 'NZ-01', 'NZ-03']
         },
         aaa: {
           tier: 'aaa',
@@ -35181,7 +35191,7 @@
           ageGroup: '16U',
           divisionHint: '16U AAA',
           adaptiveLevel: 3,
-          playIds: ['rush-2v1-shoot', 'breakout-dtod', 'protect-cutback-wall']
+          playIds: ['ST-01', 'NZ-06', 'DZ-07']
         },
         coach_preview: {
           tier: 'coach_preview',
@@ -35189,7 +35199,7 @@
           ageGroup: '12U',
           divisionHint: '12U AA',
           adaptiveLevel: 2,
-          playIds: ['breakout-dtod']
+          playIds: ['DZ-01']
         }
       };
 
@@ -35548,7 +35558,6 @@
         state.activeScenarioInstance = null;
         persistGuestSession(sess);
         updateGuestHudBanner();
-        loadScenario(true);
       }
       window.advanceGuestDemoPlay = advanceGuestDemoPlay;
 

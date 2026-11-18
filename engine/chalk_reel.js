@@ -57,6 +57,9 @@ export class ChalkTalkReelController {
             <button id="btnChalkPlayPause" type="button" class="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-[11px] font-black text-teal-300 cursor-pointer">
               ⏸ Pause
             </button>
+            <button id="btnChalkSkipTop" type="button" class="px-3 py-1 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 text-[11px] font-black shadow cursor-pointer">
+              Skip / Drop Puck ➔
+            </button>
           </div>
         </div>
 
@@ -97,7 +100,7 @@ export class ChalkTalkReelController {
           <div id="v14ChalkVerticalCaption" class="pl-3 border-l-4 border-teal-400 text-xs sm:text-sm font-bold text-slate-100 leading-snug whitespace-pre-line flex-1 min-w-0">
           </div>
           <button id="btnChalkReelDropPuck" type="button" class="w-full sm:w-auto shrink-0 py-2.5 px-5 rounded-xl bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 text-slate-950 font-black text-sm shadow-lg transition cursor-pointer">
-            🏒 Got It — Drop Puck! ➔
+            🏒 Skip / Drop Puck ➔
           </button>
         </div>
       </div>
@@ -130,6 +133,9 @@ export class ChalkTalkReelController {
     });
 
     this.mountEl.querySelector('#btnChalkReelDropPuck')?.addEventListener('click', () => {
+      this.completeAndDropPuck();
+    });
+    this.mountEl.querySelector('#btnChalkSkipTop')?.addEventListener('click', () => {
       this.completeAndDropPuck();
     });
   }

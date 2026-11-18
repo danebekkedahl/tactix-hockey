@@ -175,9 +175,9 @@
           <div class="flex flex-wrap items-center gap-1.5">
             <h1 class="text-sm sm:text-lg font-black tracking-tight synapz-chrome-heading">SYNAPZ HOCKEY</h1>
             <span class="px-2 py-0.5 rounded bg-cyan-400 text-slate-950 text-[10px] font-black uppercase tracking-widest shadow">PLAY. LEARN. DOMINATE.</span>
-            <span id="reportTopLoopBadge" class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">V14.2 • ALL 45/45 DRILLS • 9 MODES • 4-DIGIT SHOWDOWN • LIVE RED-FLAG SYNC</span>
+            <span id="reportTopLoopBadge" class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">V14.3 • 100% V14 WHITE-ICE CUTOVER • 45/45 DRILLS • 9 MODES • LIVE RED-FLAG SYNC</span>
           </div>
-          <p id="reportTopLoopSubtitle" class="text-[11px] sm:text-xs text-slate-300 mt-0.5">v14.2 Live Founder Red-Flag Board • Real-Time Cross-Device Supabase Sync • All 45/45 Concepts (5 × 9 Modes) • 4-Digit Blooket Showdown • SHA-256 PIN Gate</p>
+          <p id="reportTopLoopSubtitle" class="text-[11px] sm:text-xs text-slate-300 mt-0.5">v14.3 Full White-Ice Cutover &amp; Persistent Question Banner • Red Flag a9a930d4 Resolved • Real-Time Cross-Device Supabase Sync • SHA-256 PIN Gate</p>
         </div>
       </div>
       <div class="flex flex-wrap items-center gap-1.5 w-full sm:w-auto">
@@ -196,7 +196,7 @@
       <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
         <div>
           <div class="flex flex-wrap items-center gap-1.5">
-            <span id="founderBoardVersionPill" class="px-2.5 py-0.5 rounded bg-emerald-400 text-slate-950 text-[10px] font-black uppercase tracking-widest">🏆 V14.2 • ALL 45/45 DRILLS • 9 MODES • 4-DIGIT SHOWDOWN • LIVE RED-FLAG SYNC</span>
+            <span id="founderBoardVersionPill" class="px-2.5 py-0.5 rounded bg-emerald-400 text-slate-950 text-[10px] font-black uppercase tracking-widest">🏆 V14.3 • 100% V14 WHITE-ICE CUTOVER • 45/45 DRILLS • 9 MODES • LIVE RED-FLAG SYNC</span>
             <span class="px-2.5 py-0.5 rounded bg-rose-500/20 border border-rose-400/50 text-rose-200 text-[10px] font-black uppercase">🚩 Real-Time Cross-Device Red-Flag Feed</span>
             <span class="px-2.5 py-0.5 rounded bg-sky-500/20 border border-sky-400/40 text-sky-300 text-[10px] font-black">danebekkedahl@gmail.com • evanbekk@gmail.com</span>
           </div>
@@ -311,6 +311,16 @@
 
       <!-- TAB 3: ✅ LIVE HISTORY (Historical Architecture Receipts, Stripe Readiness & All 378 Cumulative Upgrades) -->
       <div id="inboxTabPanelLive" class="hidden w-full space-y-3">
+        <!-- SECTION 51 (v14.3): ✅ RESOLVED FOUNDER RED FLAG [a9a930d4] — 100% V14 WHITE-ICE CUTOVER & PERSISTENT QUESTION BANNER -->
+        <div id="v143WhiteIceCutoverReceipt" class="p-4 rounded-xl bg-emerald-950/90 border-2 border-emerald-400 space-y-2 shadow-xl">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <span class="px-2.5 py-0.5 rounded bg-emerald-400 text-slate-950 text-[10px] font-black uppercase shadow">✅ v14.3 • Resolved Founder Red Flag [a9a930d4] • 100% V14 White-Ice Cutover • 0 Legacy Drills</span>
+              <h4 class="text-sm sm:text-base font-black text-white mt-1.5">🎯 v14.3 Full White-Ice Entry Cutover + Persistent <code>&gt;= 16px</code> Plain-Kid Question Banner (<code>#v14ActiveQuestionBanner</code>)</h4>
+              <p class="text-[11px] text-slate-200 mt-0.5"><strong>Resolved Red Flag <code>a9a930d4</code> (<em>&ldquo;No explanation of the drill question&rdquo;</em> on legacy <code>spacing-1</code>) &amp; removed test flag <code>9582bc31</code>:</strong> 100% of gameplay entry points (<code>⚡ Try 3 Plays Free</code>, Main Lobby painted <code>Ice Rink</code> doorway, 3D Globe &amp; Map <code>Play City</code>, <code>Coach's Inbox</code>, and Coach Al plans) now route exclusively into the v14 White-Ice <code>1000×500</code> Engine (<code>drills/catalog_45.json</code>, <code>DZ-01..ST-08</code>, <code>0</code> legacy <code>spacing-1</code> / <code>rush-1</code> loops). Auto-opens the 15s Honest/IHS <code>YOU ARE</code> Chalk-Talk Lesson Reel before Rep 1 of any unseen concept (with <code>Skip / Drop Puck ➔</code>) and keeps <code>#v14ActiveQuestionBanner</code> (<code>&gt;= 16px</code> bold white/gold plain-kid question + exact action prompt) visible above the ice across all 9 modes.</p>
+            </div>
+          </div>
+        </div>
         <!-- SECTION 50 (v14.2): 🚩 LIVE CROSS-DEVICE RED-FLAG PIPELINE & CLEAN BOARD RECEIPT -->
         <div id="v142LiveRedFlagPipelineReceipt" class="p-4 rounded-xl bg-rose-950/85 border-2 border-rose-400 space-y-2 shadow-xl">
           <div class="flex flex-wrap items-center justify-between gap-2">
@@ -1666,11 +1676,11 @@
     window.switchFounderInboxTab = switchFounderInboxTab;
 
     function updateDynamicVersionBadges() {
-      window._activeSynapzVersionLabel = 'v14.2';
+      window._activeSynapzVersionLabel = 'v14.3';
       const topBadge = document.getElementById('reportTopLoopBadge');
-      if (topBadge) topBadge.textContent = 'V14.2 • ALL 45/45 DRILLS • 9 MODES • 4-DIGIT SHOWDOWN • LIVE RED-FLAG SYNC';
+      if (topBadge) topBadge.textContent = 'V14.3 • 100% V14 WHITE-ICE CUTOVER • 45/45 DRILLS • 9 MODES • LIVE RED-FLAG SYNC';
       const boardPill = document.getElementById('founderBoardVersionPill');
-      if (boardPill) boardPill.textContent = '🏆 V14.2 • ALL 45/45 DRILLS • 9 MODES • 4-DIGIT SHOWDOWN • LIVE RED-FLAG SYNC';
+      if (boardPill) boardPill.textContent = '🏆 V14.3 • 100% V14 WHITE-ICE CUTOVER • 45/45 DRILLS • 9 MODES • LIVE RED-FLAG SYNC';
     }
     window.updateDynamicVersionBadges = updateDynamicVersionBadges;
 
@@ -4673,7 +4683,7 @@
   <div id="founderBatchDeployBar" class="fixed bottom-0 inset-x-0 z-40 bg-slate-950/95 backdrop-blur-md border-t-2 border-emerald-400 px-2.5 py-2.5 shadow-2xl">
     <div class="synapz-mobile-container !p-0 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
       <div class="flex flex-wrap items-center gap-1.5 text-[11px] sm:text-xs font-bold text-slate-100">
-        <span class="px-2 py-0.5 rounded bg-amber-400/20 border border-amber-400/60 text-amber-300 text-[10px] font-black uppercase">🏆 v14.2 • All 45/45 Drills • 9 Modes • Live Red-Flag Sync • 378 Live</span>
+        <span class="px-2 py-0.5 rounded bg-amber-400/20 border border-amber-400/60 text-amber-300 text-[10px] font-black uppercase">🏆 v14.3 • 100% White-Ice Cutover • 45/45 Drills • 9 Modes • 378 Live</span>
         <span id="founderBatchCartCountsText">📥 <span class="text-emerald-300 font-black">0</span> To Review &nbsp;•&nbsp; 🛠️ <span class="text-amber-300 font-black">0</span> Queued &nbsp;•&nbsp; ✅ <span class="text-cyan-300 font-black">378</span> Live</span>
       </div>
       <button id="btnTriggerRemoteBatchDeploy" type="button" onclick="window.runCloudBatchDeployAndNextAuditFromPhone && window.runCloudBatchDeployAndNextAuditFromPhone()" class="w-full sm:w-auto min-h-[44px] px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 via-amber-400 to-emerald-400 hover:from-emerald-300 hover:to-amber-300 text-slate-950 font-black text-xs shadow-xl transition">

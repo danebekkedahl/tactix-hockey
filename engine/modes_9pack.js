@@ -50,6 +50,42 @@ function segmentsIntersectDist(a1, a2, b1, b2) {
   return best;
 }
 
+export function escapeHtmlText(s) {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+export function buildPlainKidQuestionHtml(drill) {
+  if (!drill) return '';
+  const qRaw = String(drill.briefing || drill.title || '').trim();
+  const q = escapeHtmlText(qRaw);
+  switch (drill.mode) {
+    case 'read_and_react':
+      return `<span class="text-amber-300">❓ QUESTION:</span> <span class="text-white">${q} — </span><span class="text-amber-200">Tap the smartest play (A, B, or C) on the ice!</span>`;
+    case 'ghost_player':
+      return `<span class="text-amber-300">🎯 YOUR JOB:</span> <span class="text-white">Drag </span><span class="text-teal-300">YOUR glowing Teal player</span><span class="text-white"> to stay inside the green zone! (${q})</span>`;
+    case 'spot_the_breakdown':
+      return `<span class="text-amber-300">🕵️ DETECTIVE:</span> <span class="text-white">Watch the goal, then </span><span class="text-amber-200">tap the defender who blew coverage!</span> <span class="text-slate-200">(${q})</span>`;
+    case 'fog_of_war':
+      return `<span class="text-amber-300">👀 YOUR JOB:</span> <span class="text-white">Tap </span><span class="text-amber-200">SCAN</span><span class="text-white"> to check your blind spot, then pass to the open teammate! (${q})</span>`;
+    case 'two_touch':
+      return `<span class="text-amber-300">⚡ TWO-TOUCH:</span> <span class="text-white">Tap </span><span class="text-amber-200">Pass #1</span><span class="text-white"> then </span><span class="text-amber-200">Pass #2</span><span class="text-white"> BEFORE the puck hits your stick! (${q})</span>`;
+    case 'gap_surfing':
+      return `<span class="text-amber-300">🛡️ GAP CONTROL:</span> <span class="text-white">Slide backward to hold the green gap, then tap </span><span class="text-amber-200">POKE</span><span class="text-white"> at the blue line! (${q})</span>`;
+    case 'lane_sweeper':
+      return `<span class="text-amber-300">🏒 ACTIVE STICK:</span> <span class="text-white">Drag to angle your stick and block cross-ice seam passes! (${q})</span>`;
+    case 'draw_the_route':
+      return `<span class="text-amber-300">✏️ DRAW ROUTE:</span> <span class="text-white">Sketch your skating path into </span><span class="text-emerald-300">THIS SPACE</span><span class="text-white"> on time and onside! (${q})</span>`;
+    case 'change_or_stay':
+      return `<span class="text-amber-300">⏱️ BENCH IQ:</span> <span class="text-white">Legs are tired — tap </span><span class="text-amber-200">CHANGE NOW</span><span class="text-white"> or </span><span class="text-emerald-300">STAY &amp; DEFEND</span><span class="text-white">! (${q})</span>`;
+    default:
+      return `<span class="text-amber-300">❓ QUESTION:</span> <span class="text-white">${q}</span>`;
+  }
+}
+
 export class Subconscious9ModeEngine {
   constructor({ mountEl, onRepEvaluated, onNextRep, onOpenChalkReel, onOpenCatalog, getFederationMode }) {
     this.mountEl = mountEl;
@@ -145,9 +181,9 @@ export class Subconscious9ModeEngine {
           </div>
         </div>
 
-        <!-- Briefing Strip (<=120 chars) + Optional Mode Meter (Coverage / Fatigue) -->
-        <div id="v14BriefingBar" class="px-3 py-1.5 bg-[#0C1322] border-b border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
-          <p id="v14BriefingText" class="text-xs font-bold text-slate-100 leading-snug flex-1 min-w-[200px]"></p>
+        <!-- Optional Live Meter Strip (Coverage / Gap / Shift Fatigue) -->
+        <div id="v14BriefingBar" class="px-3 py-1 bg-[#0C1322] border-b border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
+          <p id="v14BriefingText" class="text-xs font-bold text-slate-300 leading-snug flex-1 min-w-[180px]"></p>
           <div id="v14LiveMeterWrap" class="hidden flex items-center gap-2 shrink-0">
             <span id="v14LiveMeterLabel" class="text-[10px] font-black uppercase text-emerald-300">COVERAGE</span>
             <div class="w-24 h-2.5 rounded-full bg-slate-800 overflow-hidden border border-slate-700">
@@ -389,6 +425,10 @@ export class Subconscious9ModeEngine {
     };
   }
 
+  _buildPlainKidQuestionHtml(drill) {
+    return buildPlainKidQuestionHtml(drill);
+  }
+
   loadDrill(drill, opts = {}) {
     this.stopLoop();
     this.isPausedByModal = false;
@@ -422,15 +462,19 @@ export class Subconscious9ModeEngine {
     this.ghostViewMode = 'my_play';
     this.scrubProgress = 1.0;
 
-    // Header & Briefing UI
+    // Header & Persistent High-Contrast Question/Goal Banner UI
     const modePill = this.mountEl?.querySelector('#v14ModeBadgePill');
     const codePill = this.mountEl?.querySelector('#v14ConceptCodePill');
     const titleEl = this.mountEl?.querySelector('#v14DrillTitleLabel');
     const briefEl = this.mountEl?.querySelector('#v14BriefingText');
+    const qBanner = typeof document !== 'undefined' ? document.getElementById('v14ActiveQuestionBanner') : null;
+    const qBannerText = typeof document !== 'undefined' ? document.getElementById('v14ActiveQuestionBannerText') : null;
     if (modePill) modePill.textContent = MODE_LABELS[drill.mode] || drill.mode;
     if (codePill) codePill.textContent = drill.conceptId;
     if (titleEl) titleEl.textContent = drill.title;
     if (briefEl) briefEl.textContent = drill.briefing;
+    if (qBanner) qBanner.classList.remove('hidden');
+    if (qBannerText) qBannerText.innerHTML = buildPlainKidQuestionHtml(drill);
 
     this._syncUntimedBtn();
     this._syncCanvasOrientation();
