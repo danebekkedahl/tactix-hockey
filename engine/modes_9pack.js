@@ -1,16 +1,16 @@
 /**
- * SYNAPZ HOCKEY v14.0 — All 9 Subconscious Game Modes + Universal Ghost Scrubber
+ * SYNAPZ HOCKEY v15.2 — All 9 Subconscious Game Modes + Failsafe Live Motion & Ghost Scrubber
  * (`engine/modes_9pack.js`)
  *
- * Unified 5-Stage Lifecycle across ALL 9 modes:
- *  Stage 1 (`pre_snap`):      Pre-Snap "YOU" Teal Ring + DROP PUCK + Untimed Toggle
- *  Stage 2 (`live_motion`):   Live 1000×500 Skater & Puck Motion
- *  Stage 3 (`challenge`):     Mode-Native Interactive Challenge (W3C Pointer + Keyboard)
- *  Stage 4 (`outcome_movie`): 3s Live Payoff / Turnover Consequence Movie
+ * Unified 5-Stage Lifecycle across ALL 45/45 drills & 9/9 modes:
+ *  Stage 1 (`pre_snap`):      Pre-Snap "YOU" Gold/Teal Halo + DROP PUCK + Untimed Toggle
+ *  Stage 2 (`live_motion`):   Live 1000×500 Skater & Puck Motion (60fps, 0 dead freezes!)
+ *  Stage 3 (`challenge`):     >= 44px Mode-Native On-Ice & Dock Interactive Targets + Micro-Instruction
+ *  Stage 4 (`outcome_movie`): Live Payoff / Turnover Consequence Movie
  *  Stage 5 (`debrief_dock`):  Outcome Banner + <=15w Coach Rule + Timeline Scrubber + [👻 My Play] / [⭐ Best Play] Toggle
  */
 
-import { WhiteIceRink1000x500, samplePolylineAt } from './rink_1000x500.js';
+import { WhiteIceRink1000x500, samplePolylineAt, normalizeDrillLineup } from './rink_1000x500.js';
 
 export const MODE_LABELS = Object.freeze({
   read_and_react: '❄️ Freeze & Decide',
@@ -41,15 +41,6 @@ function pointToSegmentDist(p, a, b) {
   return Math.hypot(p[0] - (a[0] + t * vx), p[1] - (a[1] + t * vy));
 }
 
-function segmentsIntersectDist(a1, a2, b1, b2) {
-  let best = Infinity;
-  for (let i = 0; i <= 8; i++) {
-    const p = [a1[0] + (a2[0] - a1[0]) * (i / 8), a1[1] + (a2[1] - a1[1]) * (i / 8)];
-    best = Math.min(best, pointToSegmentDist(p, b1, b2));
-  }
-  return best;
-}
-
 export function escapeHtmlText(s) {
   return String(s ?? '')
     .replace(/&/g, '&amp;')
@@ -64,13 +55,13 @@ export function buildPlainKidQuestionHtml(drill) {
   const q = escapeHtmlText(qRaw);
   switch (drill.mode) {
     case 'read_and_react':
-      return `<span class="text-amber-300">❓ QUESTION:</span> <span class="text-white">${q} — </span><span class="text-amber-200">Tap the smartest play (A, B, or C) on the ice!</span>`;
+      return `<span class="text-amber-300">❓ QUESTION:</span> <span class="text-white">${q} — </span><span class="text-amber-200">Tap the best ice target (A, B, or C)!</span>`;
     case 'ghost_player':
-      return `<span class="text-amber-300">🎯 YOUR JOB:</span> <span class="text-white">Drag </span><span class="text-teal-300">YOUR glowing Teal player</span><span class="text-white"> to stay inside the green zone! (${q})</span>`;
+      return `<span class="text-amber-300">🎯 YOUR JOB:</span> <span class="text-white">Drag </span><span class="text-teal-300">YOUR glowing skater</span><span class="text-white"> to stay inside THIS SPACE! (${q})</span>`;
     case 'spot_the_breakdown':
       return `<span class="text-amber-300">🕵️ DETECTIVE:</span> <span class="text-white">Watch the goal, then </span><span class="text-amber-200">tap the defender who blew coverage!</span> <span class="text-slate-200">(${q})</span>`;
     case 'fog_of_war':
-      return `<span class="text-amber-300">👀 YOUR JOB:</span> <span class="text-white">Tap </span><span class="text-amber-200">SCAN</span><span class="text-white"> to check your blind spot, then pass to the open teammate! (${q})</span>`;
+      return `<span class="text-amber-300">👀 YOUR JOB:</span> <span class="text-white">Tap </span><span class="text-amber-200">SCAN</span><span class="text-white"> to check your blind spot, then tap the open pass target! (${q})</span>`;
     case 'two_touch':
       return `<span class="text-amber-300">⚡ TWO-TOUCH:</span> <span class="text-white">Tap </span><span class="text-amber-200">Pass #1</span><span class="text-white"> then </span><span class="text-amber-200">Pass #2</span><span class="text-white"> BEFORE the puck hits your stick! (${q})</span>`;
     case 'gap_surfing':
@@ -78,7 +69,7 @@ export function buildPlainKidQuestionHtml(drill) {
     case 'lane_sweeper':
       return `<span class="text-amber-300">🏒 ACTIVE STICK:</span> <span class="text-white">Drag to angle your stick and block cross-ice seam passes! (${q})</span>`;
     case 'draw_the_route':
-      return `<span class="text-amber-300">✏️ DRAW ROUTE:</span> <span class="text-white">Sketch your skating path into </span><span class="text-emerald-300">THIS SPACE</span><span class="text-white"> on time and onside! (${q})</span>`;
+      return `<span class="text-amber-300">✏️ DRAW ROUTE:</span> <span class="text-white">Drag your skating route into </span><span class="text-emerald-300">THIS SPACE</span><span class="text-white"> on time and onside! (${q})</span>`;
     case 'change_or_stay':
       return `<span class="text-amber-300">⏱️ BENCH IQ:</span> <span class="text-white">Legs are tired — tap </span><span class="text-amber-200">CHANGE NOW</span><span class="text-white"> or </span><span class="text-emerald-300">STAY &amp; DEFEND</span><span class="text-white">! (${q})</span>`;
     default:
@@ -86,31 +77,131 @@ export function buildPlainKidQuestionHtml(drill) {
   }
 }
 
+/**
+ * Failsafe Watchdog: guarantees valid coordinates, trajectories, and interactive targets
+ * across all 9 modes even if an optional/custom drill field is missing.
+ */
+export function ensureSafeDrillForEngine(drillRaw) {
+  const base = normalizeDrillLineup(drillRaw || {});
+  const mode = base.mode || 'read_and_react';
+  const rawMc = (base.modeConfig && typeof base.modeConfig === 'object') ? { ...base.modeConfig } : {};
+  const homeFieldSkaters = (base.skaters || []).filter(s => s.team === 'home' && s.id !== 'G');
+  const awayFieldSkaters = (base.skaters || []).filter(s => s.team === 'away' && s.id !== 'G');
+  const youSk = homeFieldSkaters.find(s => s.id === base.youRole) || homeFieldSkaters[0] || { id: 'C', start: [240, 250], motion: [[240, 250], [260, 240]] };
+  const mates = homeFieldSkaters.filter(s => s.id !== youSk.id);
+
+  if (mode === 'read_and_react' || mode === 'fog_of_war') {
+    if (!Array.isArray(rawMc.options) || rawMc.options.length === 0) {
+      const m1 = mates[0]?.motion?.[mates[0].motion.length - 1] || [320, 150];
+      const m2 = mates[1]?.motion?.[mates[1].motion.length - 1] || [320, 350];
+      const m3 = mates[2]?.motion?.[mates[2].motion.length - 1] || [220, 250];
+      rawMc.options = [
+        { id: 'A', label: 'Hit open weak-side support', target: [...m1], isGold: true, pathType: 'pass' },
+        { id: 'B', label: 'Force into sealed strong wall', target: [...m2], isGold: false, pathType: 'pass' },
+        { id: 'C', label: 'Hold into heavy pressure', target: [...m3], isGold: false, pathType: 'skate' }
+      ];
+    } else if (!rawMc.options.some(o => o && o.isGold)) {
+      rawMc.options[0] = { ...rawMc.options[0], isGold: true };
+    }
+    if (mode === 'read_and_react' && (!rawMc.freezeTime || rawMc.freezeTime <= 0)) {
+      rawMc.freezeTime = 1.5;
+    }
+    if (mode === 'fog_of_war') {
+      if (!rawMc.passArrivalTime || rawMc.passArrivalTime <= 0) rawMc.passArrivalTime = 1.8;
+      if (!rawMc.fogRegion) rawMc.fogRegion = { x: 240, y: 30, w: 210, h: 180, label: 'BLIND-SIDE FOG — TAP SCAN!' };
+    }
+  } else if (mode === 'ghost_player') {
+    if (!Array.isArray(rawMc.targetZoneKeyframes) || rawMc.targetZoneKeyframes.length === 0) {
+      rawMc.targetZoneKeyframes = [
+        { t: 0, x: youSk.start[0] + 25, y: 250, rx: 52, ry: 42, label: 'THIS SPACE' },
+        { t: 1, x: youSk.start[0] + 45, y: 235, rx: 52, ry: 42, label: 'THIS SPACE' }
+      ];
+    }
+  } else if (mode === 'two_touch') {
+    if (!Array.isArray(rawMc.candidates) || rawMc.candidates.length < 2) {
+      const c1 = mates[0] || { id: 'C', start: [310, 210] };
+      const c2 = mates[1] || { id: 'RW', start: [410, 140] };
+      rawMc.candidates = [
+        { id: c1.id, label: `${c1.id} Support`, target: [...(c1.motion?.[c1.motion.length - 1] || c1.start)] },
+        { id: c2.id, label: `${c2.id} Outlet`, target: [...(c2.motion?.[c2.motion.length - 1] || c2.start)] }
+      ];
+    }
+    if (!Array.isArray(rawMc.goldSequence) || rawMc.goldSequence.length < 2) {
+      rawMc.goldSequence = [rawMc.candidates[0].id, rawMc.candidates[1].id];
+    }
+  } else if (mode === 'spot_the_breakdown') {
+    if (!Array.isArray(rawMc.suspects) || rawMc.suspects.length < 2) {
+      rawMc.suspects = homeFieldSkaters.slice(0, 3).map((s, idx) => ({
+        id: s.id,
+        roleLabel: `${s.id}`,
+        reason: idx === 0 ? 'Left assignment open in slot' : 'Held proper leverage'
+      }));
+    }
+    if (!rawMc.culpritId) rawMc.culpritId = rawMc.suspects[0]?.id || youSk.id;
+  } else if (mode === 'gap_surfing') {
+    if (!rawMc.attackerId) rawMc.attackerId = awayFieldSkaters[0]?.id || 'F1';
+    if (!rawMc.idealGapDist) rawMc.idealGapDist = 82;
+    if (!rawMc.gapTolerance) rawMc.gapTolerance = 48;
+    if (!Array.isArray(rawMc.pokeWindowX)) rawMc.pokeWindowX = [300, 460];
+  } else if (mode === 'lane_sweeper') {
+    if (!Array.isArray(rawMc.pivotOrigin)) rawMc.pivotOrigin = [...youSk.start];
+    if (!Array.isArray(rawMc.passes) || rawMc.passes.length === 0) {
+      rawMc.passes = [
+        { tStart: 0.3, tEnd: 1.4, from: [260, 110], to: [260, 380], isThreat: true, label: 'CROSS-SEAM THREAT!' }
+      ];
+    }
+  } else if (mode === 'draw_the_route') {
+    if (!rawMc.thisSpace) {
+      const mEnd = youSk.motion?.[youSk.motion.length - 1] || [youSk.start[0] + 90, youSk.start[1] - 40];
+      rawMc.thisSpace = { x: mEnd[0], y: mEnd[1], r: 54, label: 'THIS SPACE' };
+    }
+    if (!Array.isArray(rawMc.idealRoute) || rawMc.idealRoute.length < 2) {
+      rawMc.idealRoute = [[...youSk.start], [rawMc.thisSpace.x, rawMc.thisSpace.y]];
+    }
+  } else if (mode === 'change_or_stay') {
+    if (rawMc.correctAction !== 'change' && rawMc.correctAction !== 'stay') {
+      rawMc.correctAction = 'stay';
+    }
+    if (!Array.isArray(rawMc.benchPos)) rawMc.benchPos = [500, 16];
+    if (!rawMc.fatiguePct) rawMc.fatiguePct = 86;
+  }
+
+  return {
+    ...base,
+    mode,
+    modeConfig: rawMc
+  };
+}
+
 export class Subconscious9ModeEngine {
-  constructor({ mountEl, onRepEvaluated, onNextRep, onOpenChalkReel, onOpenCatalog, getFederationMode }) {
+  constructor({ mountEl, onRepEvaluated, onNextRep, onOpenChalkReel, onOpenCatalog, onUntimedChange, onStageChange, getFederationMode }) {
     this.mountEl = mountEl;
     this.onRepEvaluated = onRepEvaluated;
     this.onNextRep = onNextRep;
     this.onOpenChalkReel = onOpenChalkReel;
     this.onOpenCatalog = onOpenCatalog;
+    this.onUntimedChange = onUntimedChange;
+    this.onStageChange = onStageChange;
     this.getFederationMode = getFederationMode || (() => 'USA');
 
     this.drill = null;
     this.stage = 'pre_snap'; // pre_snap | live_motion | challenge | outcome_movie | debrief_dock
     this.untimed = false;
     this.isPausedByModal = false;
-    this.orientationPref = 'auto'; // auto | landscape | portrait
+    this.orientationPref = 'auto';
     this._rafId = null;
     this._lastTs = 0;
 
     // Runtime mode state
     this.simTime = 0;
+    this.ambientElapsed = 0;
     this.outcomeElapsed = 0;
-    this.outcomeDuration = 1.6; // Snappy 1.6s–2.8s live payoff movie
+    this.outcomeDuration = 1.6;
     this.isGoldResult = false;
     this.resultDetail = '';
     this.earnedIq = 0;
     this.earnedBucks = 0;
+    this.lastLiveSnapshot = null;
 
     // Mode-specific trackers
     this.youCurrentPos = [500, 250];
@@ -122,7 +213,7 @@ export class Subconscious9ModeEngine {
     this.fogLiftRemainingSec = 0;
     this.fogReadyForChoice = false;
     this.twoTouchPicked = [];
-    this.rewindPhase = 'watching_goal'; // watching_goal | rewinding | pick_culprit
+    this.rewindPhase = 'watching_goal';
     this.rewindProgress = 0;
     this.gapFramesGood = 0;
     this.gapFramesTotal = 0;
@@ -131,10 +222,11 @@ export class Subconscious9ModeEngine {
     this.sweptThreatSuccess = false;
     this.drawnRoutePoints = [];
     this.isDrawingRoute = false;
+    this._overlaySig = '';
 
     // Stage 5 Ghost Scrubber state
-    this.ghostViewMode = 'my_play'; // 'my_play' | 'best_play'
-    this.scrubProgress = 1.0; // 0..1 across totalTimelineSec
+    this.ghostViewMode = 'my_play';
+    this.scrubProgress = 1.0;
     this.totalTimelineSec = 4.5;
     this.recordedMyYouPath = [];
 
@@ -145,9 +237,9 @@ export class Subconscious9ModeEngine {
   _buildDom() {
     if (!this.mountEl) return;
     this.mountEl.innerHTML = `
-      <div id="v14GameStageShell" class="w-full rounded-2xl bg-[#090D16] border border-slate-800 shadow-2xl overflow-hidden flex flex-col select-none">
-        <!-- Compact Top Teaching & Mode Bar -->
-        <div id="v14TopModeHeader" class="px-3 pr-28 py-2 bg-slate-950/95 border-b border-slate-800/90 flex flex-wrap items-center justify-between gap-2">
+      <div id="v14GameStageShell" class="w-full h-full rounded-2xl bg-[#090D16] border border-slate-800 shadow-2xl overflow-hidden flex flex-col select-none">
+        <!-- Pure Tunnel-Vision Mode Strip (0 Host Showdown, 0 Join PIN, 0 Catalog, 0 Daily 5!) -->
+        <div id="v14TopModeHeader" class="px-3 py-1.5 bg-slate-950/95 border-b border-slate-800/90 flex flex-wrap items-center justify-between gap-2">
           <div class="flex flex-wrap items-center gap-1.5 min-w-0">
             <span id="v14ModeBadgePill" class="px-2.5 py-0.5 rounded-full bg-teal-500/20 border border-teal-400/70 text-teal-300 text-[10px] sm:text-[11px] font-black uppercase whitespace-nowrap">
               ❄️ Freeze &amp; Decide
@@ -155,11 +247,18 @@ export class Subconscious9ModeEngine {
             <span id="v14ConceptCodePill" class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-700 text-slate-300 text-[10px] font-mono font-black">
               DZ-01
             </span>
-            <span id="v14DrillTitleLabel" class="text-xs sm:text-sm font-black text-white truncate max-w-[200px] sm:max-w-[320px]">
+            <span id="v14DrillTitleLabel" class="text-xs sm:text-sm font-black text-white truncate max-w-[210px] sm:max-w-[360px]">
               Wheel vs. Reverse Behind Net
             </span>
           </div>
-          <div class="flex flex-wrap items-center gap-1.5 shrink-0">
+          <div class="flex flex-wrap items-center gap-2 shrink-0">
+            <div id="v14LiveMeterWrap" class="hidden flex items-center gap-1.5">
+              <span id="v14LiveMeterLabel" class="text-[10px] font-black uppercase text-emerald-300">COVERAGE</span>
+              <div class="w-20 h-2.5 rounded-full bg-slate-800 overflow-hidden border border-slate-700">
+                <div id="v14LiveMeterFill" class="h-full bg-emerald-400 transition-all duration-75" style="width: 80%;"></div>
+              </div>
+              <span id="v14LiveMeterPct" class="text-[11px] font-black text-white">80%</span>
+            </div>
             <span id="v14StreakPill" class="px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/60 text-amber-300 text-[11px] font-black">
               🔥 x0
             </span>
@@ -167,48 +266,31 @@ export class Subconscious9ModeEngine {
               ⏱️ Timed
             </button>
             <button id="btnV14ReplayChalkReel" type="button" class="px-2.5 py-1 rounded-full bg-teal-500/20 hover:bg-teal-500/30 border border-teal-400/70 text-teal-200 text-[10px] sm:text-[11px] font-black transition cursor-pointer">
-              🎬 15s Chalk Reel
-            </button>
-            <button id="btnV14OpenCatalog" type="button" class="px-2.5 py-1 rounded-full bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/70 text-sky-200 text-[10px] sm:text-[11px] font-black transition cursor-pointer">
-              📚 Catalog
-            </button>
-            <button id="btnV14RinkHostShowdown" type="button" data-open-host-showdown="rink" class="px-2.5 py-1 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 text-[10px] sm:text-[11px] font-black transition cursor-pointer">
-              ⚡ Host Team Showdown
-            </button>
-            <button id="btnV14RinkJoinShowdown" type="button" data-open-join-showdown="rink" class="px-2.5 py-1 rounded-full bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/75 text-emerald-200 text-[10px] sm:text-[11px] font-black transition cursor-pointer">
-              🎮 Join Showdown PIN
+              🎬 Watch 12s Reel
             </button>
           </div>
         </div>
+        <p id="v14BriefingText" class="hidden"></p>
 
-        <!-- Optional Live Meter Strip (Coverage / Gap / Shift Fatigue) -->
-        <div id="v14BriefingBar" class="px-3 py-1 bg-[#0C1322] border-b border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
-          <p id="v14BriefingText" class="text-xs font-bold text-slate-300 leading-snug flex-1 min-w-[180px]"></p>
-          <div id="v14LiveMeterWrap" class="hidden flex items-center gap-2 shrink-0">
-            <span id="v14LiveMeterLabel" class="text-[10px] font-black uppercase text-emerald-300">COVERAGE</span>
-            <div class="w-24 h-2.5 rounded-full bg-slate-800 overflow-hidden border border-slate-700">
-              <div id="v14LiveMeterFill" class="h-full bg-emerald-400 transition-all duration-75" style="width: 80%;"></div>
-            </div>
-            <span id="v14LiveMeterPct" class="text-[11px] font-black text-white">80%</span>
-          </div>
-        </div>
-
-        <!-- Main Zoomed White-Ice 1000×500 Canvas -->
-        <div class="relative w-full bg-[#090D16] px-2 py-1.5">
-          <div id="v14CanvasAspectBox" class="relative w-full mx-auto overflow-hidden rounded-xl" style="aspect-ratio: 16 / 9; max-height: 50vh;">
+        <!-- Main Zoomed White-Ice 1000×500 Canvas + >= 44px Interactive On-Ice Target Layer -->
+        <div class="relative w-full flex-1 min-h-0 bg-[#090D16] px-2 py-1.5 flex flex-col justify-center">
+          <div id="v14CanvasAspectBox" class="relative w-full h-full mx-auto overflow-hidden rounded-xl" style="aspect-ratio: 16 / 9; max-height: calc(100dvh - 210px); min-height: 215px;">
             <canvas id="v14RinkCanvas" class="w-full h-full block cursor-pointer" style="touch-action: none;"></canvas>
 
+            <!-- >= 44px On-Ice Interactive Target Overlay (Synced to logical coordinates) -->
+            <div id="v14OnIceInteractiveLayer" class="absolute inset-0 pointer-events-none z-10"></div>
+
             <!-- Stage 1 Pre-Snap Floating DROP PUCK Pill -->
-            <div id="v14PreSnapOverlay" class="absolute inset-x-0 bottom-3 flex items-center justify-center pointer-events-none px-3">
-              <button id="btnV14DropPuck" type="button" class="pointer-events-auto py-2.5 px-6 rounded-2xl bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 text-slate-950 font-black text-sm sm:text-base shadow-2xl border-2 border-white/80 transition cursor-pointer">
+            <div id="v14PreSnapOverlay" class="absolute inset-x-0 bottom-3 flex items-center justify-center pointer-events-none px-3 z-20">
+              <button id="btnV14DropPuck" type="button" class="pointer-events-auto min-h-[48px] py-2.5 px-7 rounded-2xl bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 text-slate-950 font-black text-sm sm:text-base shadow-2xl border-2 border-white/80 transition cursor-pointer">
                 🏒 DROP PUCK ➔
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Mode-Native Interactive Controls Dock (Stages 2 & 3) -->
-        <div id="v14ModeControlsDock" class="px-3 py-2 bg-slate-950 border-t border-slate-800/90 min-h-[54px] flex flex-col justify-center"></div>
+        <!-- Mode-Native >= 44px Interactive Controls Dock (Stages 2 & 3) -->
+        <div id="v14ModeControlsDock" class="px-3 py-2 bg-slate-950 border-t border-slate-800/90 min-h-[58px] flex flex-col justify-center"></div>
 
         <!-- Universal Stage 5 Tactical Debrief Scrubber Dock -->
         <div id="v14DebriefDock" class="hidden px-3.5 py-2.5 bg-slate-950 border-t-2 border-teal-400/80 space-y-2">
@@ -220,10 +302,10 @@ export class Subconscious9ModeEngine {
               <span id="v14DebriefSubDetail" class="text-[11px] font-bold text-slate-300"></span>
             </div>
             <div class="flex items-center gap-1.5">
-              <button id="btnV14GhostMyPlay" type="button" class="px-2.5 py-1 rounded-lg text-[11px] font-black border cursor-pointer">
+              <button id="btnV14GhostMyPlay" type="button" class="min-h-[38px] px-3 py-1.5 rounded-lg text-[11px] font-black border cursor-pointer">
                 👻 My Play
               </button>
-              <button id="btnV14GhostBestPlay" type="button" class="px-2.5 py-1 rounded-lg text-[11px] font-black border cursor-pointer">
+              <button id="btnV14GhostBestPlay" type="button" class="min-h-[38px] px-3 py-1.5 rounded-lg text-[11px] font-black border cursor-pointer">
                 ⭐ Best Play
               </button>
             </div>
@@ -240,10 +322,10 @@ export class Subconscious9ModeEngine {
               <span id="v14TimelineScrubLabel" class="text-[11px] font-mono font-black text-teal-300 shrink-0 w-20 text-right">4.5s / 4.5s</span>
             </div>
             <div class="flex items-center gap-2 shrink-0">
-              <button id="btnV14RetryRep" type="button" class="py-2 px-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 font-black text-xs cursor-pointer">
+              <button id="btnV14RetryRep" type="button" class="min-h-[44px] py-2 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 font-black text-xs cursor-pointer">
                 ↺ Retry
               </button>
-              <button id="btnV14NextRep" type="button" class="py-2 px-4 rounded-xl bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 text-slate-950 font-black text-xs sm:text-sm shadow-lg cursor-pointer">
+              <button id="btnV14NextRep" type="button" class="min-h-[44px] py-2 px-5 rounded-xl bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 text-slate-950 font-black text-xs sm:text-sm shadow-lg cursor-pointer">
                 Next Rep ➔
               </button>
             </div>
@@ -265,9 +347,7 @@ export class Subconscious9ModeEngine {
     });
 
     this.mountEl.querySelector('#btnV14UntimedToggle')?.addEventListener('click', () => {
-      this.untimed = !this.untimed;
-      this._syncUntimedBtn();
-      this._renderCurrentFrame();
+      this.setUntimed(!this.untimed, true);
     });
 
     this.mountEl.querySelector('#btnV14ReplayChalkReel')?.addEventListener('click', () => {
@@ -275,10 +355,6 @@ export class Subconscious9ModeEngine {
       if (typeof this.onOpenChalkReel === 'function' && this.drill) {
         this.onOpenChalkReel(this.drill);
       }
-    });
-
-    this.mountEl.querySelector('#btnV14OpenCatalog')?.addEventListener('click', () => {
-      if (typeof this.onOpenCatalog === 'function') this.onOpenCatalog();
     });
 
     this.mountEl.querySelector('#btnV14GhostMyPlay')?.addEventListener('click', () => {
@@ -295,7 +371,7 @@ export class Subconscious9ModeEngine {
     });
 
     this.mountEl.querySelector('#btnV14RetryRep')?.addEventListener('click', () => {
-      if (this.drill) this.loadDrill(this.drill, { autoDrop: false });
+      if (this.drill) this.loadDrill(this.drill, { autoDrop: true });
     });
 
     this.mountEl.querySelector('#btnV14NextRep')?.addEventListener('click', () => {
@@ -348,6 +424,15 @@ export class Subconscious9ModeEngine {
     }
   }
 
+  setUntimed(val, notify = false) {
+    this.untimed = Boolean(val);
+    this._syncUntimedBtn();
+    this._renderCurrentFrame();
+    if (notify && typeof this.onUntimedChange === 'function') {
+      this.onUntimedChange(this.untimed);
+    }
+  }
+
   updateStreakBadge(streakCount = 0) {
     const el = this.mountEl?.querySelector('#v14StreakPill');
     if (!el) return;
@@ -370,9 +455,7 @@ export class Subconscious9ModeEngine {
     if (!this.rink) return;
     this.rink.setFederationMode(this.getFederationMode());
     const box = this.mountEl?.querySelector('#v14CanvasAspectBox');
-    const isNarrowPortrait = typeof window !== 'undefined' && window.innerWidth < 480 && window.innerHeight > window.innerWidth * 1.35;
-    const usePortrait = this.orientationPref === 'portrait' || (this.orientationPref === 'auto' && false && isNarrowPortrait);
-    // Keep crisp 16:9 / 16:10 zoomed half-zone framing across phone/tablet/desktop unless portrait explicitly requested
+    const usePortrait = this.orientationPref === 'portrait';
     this.rink.setOrientation(usePortrait ? 'portrait' : 'landscape');
     if (box) {
       box.style.aspectRatio = usePortrait ? '10 / 12' : '16 / 9';
@@ -431,15 +514,22 @@ export class Subconscious9ModeEngine {
     return buildPlainKidQuestionHtml(drill);
   }
 
-  loadDrill(drill, opts = {}) {
+  loadDrill(drillRaw, opts = {}) {
     this.stopLoop();
     this.isPausedByModal = false;
+    const drill = ensureSafeDrillForEngine(drillRaw);
     this.drill = drill;
     this.stage = 'pre_snap';
     this.simTime = 0;
+    this.ambientElapsed = 0;
     this.outcomeElapsed = 0;
     this.isGoldResult = false;
     this.resultDetail = '';
+    this._overlaySig = '';
+
+    if (typeof opts.untimed === 'boolean') {
+      this.untimed = opts.untimed;
+    }
 
     const youSkater = (drill.skaters || []).find(s => s.id === drill.youRole) || drill.skaters[0];
     this.youCurrentPos = [...(youSkater?.start || [500, 250])];
@@ -485,21 +575,29 @@ export class Subconscious9ModeEngine {
     this.mountEl?.querySelector('#v14DebriefDock')?.classList.add('hidden');
     this.mountEl?.querySelector('#v14ModeControlsDock')?.classList.remove('hidden');
     this.mountEl?.querySelector('#v14LiveMeterWrap')?.classList.add('hidden');
+    this._clearOnIceInteractiveOverlay();
 
     this._renderModeControlsDock();
     this._renderCurrentFrame();
 
+    if (typeof this.onStageChange === 'function') {
+      this.onStageChange(this.stage, drill);
+    }
+
     if (opts.autoDrop) {
-      this.dropPuck();
+      this.dropPuck({ force: true });
     }
   }
 
-  dropPuck() {
+  dropPuck({ force = false } = {}) {
     if (!this.drill) return;
+    if (this.stage !== 'pre_snap' && !force) return;
+
     this.mountEl?.querySelector('#v14PreSnapOverlay')?.classList.add('hidden');
     this.simTime = 0;
+    this.ambientElapsed = 0;
+    this._overlaySig = '';
 
-    // Modes that start immediately interactive vs. running to freeze/arrival
     const immediateChallengeModes = new Set([
       'ghost_player',
       'gap_surfing',
@@ -512,9 +610,23 @@ export class Subconscious9ModeEngine {
       this.mountEl?.querySelector('#v14LiveMeterWrap')?.classList.remove('hidden');
     }
 
+    if (typeof window !== 'undefined' && window.SoundFX && typeof window.SoundFX.playTap === 'function') {
+      try { window.SoundFX.playTap(); } catch (_) {}
+    }
+
     this._renderModeControlsDock();
+    this._renderCurrentFrame();
+    if (typeof this.onStageChange === 'function') {
+      this.onStageChange(this.stage, this.drill);
+    }
     this._lastTs = typeof performance !== 'undefined' ? performance.now() : Date.now();
     this._scheduleLoop();
+  }
+
+  _playDecisionWhistleCue() {
+    if (typeof window !== 'undefined' && window.SoundFX && typeof window.SoundFX.playTap === 'function') {
+      try { window.SoundFX.playTap(); } catch (_) {}
+    }
   }
 
   _scheduleLoop() {
@@ -522,7 +634,16 @@ export class Subconscious9ModeEngine {
     this._rafId = requestAnimationFrame((ts) => {
       const dt = Math.min(0.08, Math.max(0.001, (ts - this._lastTs) / 1000));
       this._lastTs = ts;
-      this._stepSimulation(dt, ts);
+      try {
+        this._stepSimulation(dt, ts);
+      } catch (err) {
+        console.warn('[SYNAPZ v15.2] Mode simulation failsafe recovered cleanly:', err);
+        if (this.stage === 'live_motion') {
+          this.stage = 'challenge';
+          this._renderModeControlsDock();
+          this._renderCurrentFrame(ts);
+        }
+      }
     });
   }
 
@@ -530,19 +651,23 @@ export class Subconscious9ModeEngine {
     if (!this.drill || this.isPausedByModal) return;
     const mode = this.drill.mode;
     const mc = this.drill.modeConfig || {};
+    this.ambientElapsed += dt;
 
     if (this.stage === 'live_motion' || this.stage === 'challenge') {
       if (mode === 'read_and_react') {
         if (this.stage === 'live_motion') {
+          const freezeSec = Number(mc.freezeTime || 1.5);
           this.simTime += dt;
-          if (this.simTime >= (mc.freezeTime || 1.5)) {
-            this.simTime = mc.freezeTime || 1.5;
+          if (this.simTime >= freezeSec) {
+            this.simTime = freezeSec;
             this.stage = 'challenge';
-            this.shotClockLeft = mc.shotClockSec || 3.5;
+            this.shotClockLeft = Math.max(7.5, Number(mc.shotClockSec || 8.0));
+            this._playDecisionWhistleCue();
             this._renderModeControlsDock();
+            if (typeof this.onStageChange === 'function') this.onStageChange(this.stage, this.drill);
           }
         } else if (this.stage === 'challenge' && !this.untimed) {
-          this.shotClockLeft = Math.max(0, (this.shotClockLeft ?? 3.5) - dt);
+          this.shotClockLeft = Math.max(0, (this.shotClockLeft ?? 8.0) - dt);
           if (this.shotClockLeft <= 0) {
             const wrongOpt = (mc.options || []).find(o => !o.isGold) || mc.options[0];
             this._beginOutcomeMovie(false, `Shot clock expired! Best read: ${mc.options.find(o => o.isGold)?.label || ''}`, wrongOpt);
@@ -573,23 +698,26 @@ export class Subconscious9ModeEngine {
           this.fogLiftRemainingSec = Math.max(0, this.fogLiftRemainingSec - dt);
         }
         if (!this.fogReadyForChoice) {
+          const arr = Number(mc.passArrivalTime || 1.8);
           this.simTime += dt;
-          if (this.simTime >= (mc.passArrivalTime || 1.8)) {
-            this.simTime = mc.passArrivalTime || 1.8;
+          if (this.simTime >= arr) {
+            this.simTime = arr;
             this.fogReadyForChoice = true;
             this.stage = 'challenge';
-            this.shotClockLeft = 4.0;
+            this.shotClockLeft = 8.0;
+            this._playDecisionWhistleCue();
             this._renderModeControlsDock();
+            if (typeof this.onStageChange === 'function') this.onStageChange(this.stage, this.drill);
           }
         } else if (!this.untimed) {
-          this.shotClockLeft = Math.max(0, (this.shotClockLeft ?? 4.0) - dt);
+          this.shotClockLeft = Math.max(0, (this.shotClockLeft ?? 8.0) - dt);
           if (this.shotClockLeft <= 0) {
             this._beginOutcomeMovie(false, 'Pinned on the boards—scan & move puck quicker!');
             return;
           }
         }
       } else if (mode === 'two_touch') {
-        const arr = mc.passArrivalTime || 2.2;
+        const arr = Number(mc.passArrivalTime || 2.2);
         if (this.twoTouchPicked.length >= 2) {
           this._evaluateTwoTouchSelection();
           return;
@@ -598,11 +726,13 @@ export class Subconscious9ModeEngine {
           this.simTime = Math.min(arr, this.simTime + dt);
           if (this.simTime >= arr) {
             this.stage = 'challenge';
+            this._playDecisionWhistleCue();
             this._renderModeControlsDock();
-            if (!this.untimed) this.shotClockLeft = 3.5;
+            if (!this.untimed) this.shotClockLeft = 7.5;
+            if (typeof this.onStageChange === 'function') this.onStageChange(this.stage, this.drill);
           }
         } else if (!this.untimed) {
-          this.shotClockLeft = Math.max(0, (this.shotClockLeft ?? 3.5) - dt);
+          this.shotClockLeft = Math.max(0, (this.shotClockLeft ?? 7.5) - dt);
           if (this.shotClockLeft <= 0) {
             this._evaluateTwoTouchSelection();
             return;
@@ -619,12 +749,14 @@ export class Subconscious9ModeEngine {
             this._renderModeControlsDock();
           }
         } else if (this.rewindPhase === 'rewinding') {
-          this.rewindProgress += dt / 1.0; // Brisk 1.0s visual tape scrub rewinding -3.0s of game clock!
+          this.rewindProgress += dt / 1.0;
           if (this.rewindProgress >= 1) {
             this.rewindProgress = 1;
             this.rewindPhase = 'pick_culprit';
             this.stage = 'challenge';
+            this._playDecisionWhistleCue();
             this._renderModeControlsDock();
+            if (typeof this.onStageChange === 'function') this.onStageChange(this.stage, this.drill);
           }
         }
       } else if (mode === 'gap_surfing') {
@@ -679,23 +811,28 @@ export class Subconscious9ModeEngine {
           return;
         }
       } else if (mode === 'draw_the_route') {
-        // Waits patiently for player to sketch route or tap Run My Route
+        // Advance teammates, defenders, and puck through live pre-read motion (0 -> 1.8s) while awaiting route draw!
+        const setupSec = mc.setupMotionSec || 1.8;
+        if (this.simTime < setupSec) {
+          this.simTime = Math.min(setupSec, this.simTime + dt);
+        }
       } else if (mode === 'change_or_stay') {
-        const clipSec = mc.clipSec || 1.8;
+        const clipSec = mc.clipSec || 1.9;
         if (this.stage === 'live_motion') {
           this.simTime = Math.min(clipSec, this.simTime + dt);
           this._updateMeterUI('FATIGUE', mc.fatiguePct || 88, 'danger');
           if (this.simTime >= clipSec) {
             this.stage = 'challenge';
+            this._playDecisionWhistleCue();
             this._renderModeControlsDock();
+            if (typeof this.onStageChange === 'function') this.onStageChange(this.stage, this.drill);
           }
         }
       }
 
       this._renderCurrentFrame(ts);
-      if (this.stage === 'live_motion' || (this.stage === 'challenge' && mode !== 'draw_the_route' && !(mode === 'spot_the_breakdown' && this.rewindPhase === 'pick_culprit') && !(mode === 'change_or_stay'))) {
-        this._scheduleLoop();
-      }
+      // Keep 60fps loop alive throughout live_motion AND challenge so YOU halo, defender stick jitter & target pulses stay crisp!
+      this._scheduleLoop();
       return;
     }
 
@@ -754,7 +891,7 @@ export class Subconscious9ModeEngine {
     if (!this.fogReadyForChoice) {
       this.fogScannedInTime = true;
     }
-    this.fogLiftRemainingSec = mc.scanRevealSec || 1.2;
+    this.fogLiftRemainingSec = mc.scanRevealSec || 1.4;
     this._renderModeControlsDock();
     this._renderCurrentFrame();
   }
@@ -828,7 +965,6 @@ export class Subconscious9ModeEngine {
     const target = mc.thisSpace || { x: 500, y: 250, r: 54 };
     const hitTarget = dist2D(endPt, [target.x, target.y]) <= (target.r || 54) + 22;
 
-    // Check forbidden defender cones
     let hitDefender = false;
     for (const fz of (mc.forbiddenZones || [])) {
       for (const pt of this.drawnRoutePoints) {
@@ -839,7 +975,6 @@ export class Subconscious9ModeEngine {
       }
     }
 
-    // Check blue-line offside rule if enabled (don't bolt deep across x=660 in first 25% of route)
     let offside = false;
     if (mc.mustStayOnside && typeof mc.blueLineX === 'number') {
       const earlyIdx = Math.min(this.drawnRoutePoints.length - 1, Math.max(1, Math.floor(this.drawnRoutePoints.length * 0.25)));
@@ -879,6 +1014,11 @@ export class Subconscious9ModeEngine {
     this.outcomeDuration = (typeof window !== 'undefined' && window.__SYNAPZ_FAST_OUTCOME__) ? 0.12 : 1.1;
 
     this.mountEl?.querySelector('#v14ModeControlsDock')?.classList.add('hidden');
+    this._clearOnIceInteractiveOverlay();
+
+    if (typeof this.onStageChange === 'function') {
+      this.onStageChange(this.stage, this.drill);
+    }
 
     if (typeof this.onRepEvaluated === 'function') {
       this.onRepEvaluated({
@@ -899,6 +1039,7 @@ export class Subconscious9ModeEngine {
     this.stage = 'debrief_dock';
     this.ghostViewMode = this.isGoldResult ? 'my_play' : 'best_play';
     this.scrubProgress = 1.0;
+    this._clearOnIceInteractiveOverlay();
 
     const dock = this.mountEl?.querySelector('#v14DebriefDock');
     const banner = this.mountEl?.querySelector('#v14DebriefOutcomeBanner');
@@ -918,6 +1059,10 @@ export class Subconscious9ModeEngine {
     if (detailEl) detailEl.textContent = this.resultDetail;
     if (ruleEl) ruleEl.textContent = this.drill?.coachRule || '';
     if (scrubber) scrubber.value = '100';
+
+    if (typeof this.onStageChange === 'function') {
+      this.onStageChange(this.stage, this.drill);
+    }
 
     this._syncGhostButtons();
     this.setScrubProgress(1.0);
@@ -944,13 +1089,13 @@ export class Subconscious9ModeEngine {
     const bestBtn = this.mountEl?.querySelector('#btnV14GhostBestPlay');
     if (myBtn) {
       myBtn.className = this.ghostViewMode === 'my_play'
-        ? 'px-2.5 py-1 rounded-lg text-[11px] font-black border cursor-pointer bg-teal-400 text-slate-950 border-teal-200 shadow'
-        : 'px-2.5 py-1 rounded-lg text-[11px] font-black border cursor-pointer bg-slate-900 text-slate-300 border-slate-700';
+        ? 'min-h-[38px] px-3 py-1.5 rounded-lg text-[11px] font-black border cursor-pointer bg-teal-400 text-slate-950 border-teal-200 shadow'
+        : 'min-h-[38px] px-3 py-1.5 rounded-lg text-[11px] font-black border cursor-pointer bg-slate-900 text-slate-300 border-slate-700';
     }
     if (bestBtn) {
       bestBtn.className = this.ghostViewMode === 'best_play'
-        ? 'px-2.5 py-1 rounded-lg text-[11px] font-black border cursor-pointer bg-amber-400 text-slate-950 border-amber-200 shadow'
-        : 'px-2.5 py-1 rounded-lg text-[11px] font-black border cursor-pointer bg-slate-900 text-slate-300 border-slate-700';
+        ? 'min-h-[38px] px-3 py-1.5 rounded-lg text-[11px] font-black border cursor-pointer bg-amber-400 text-slate-950 border-amber-200 shadow'
+        : 'min-h-[38px] px-3 py-1.5 rounded-lg text-[11px] font-black border cursor-pointer bg-slate-900 text-slate-300 border-slate-700';
     }
   }
 
@@ -978,13 +1123,13 @@ export class Subconscious9ModeEngine {
     } catch (_) {}
 
     if (mode === 'read_and_react' && this.stage === 'challenge') {
-      const hit = (mc.options || []).find(opt => dist2D([lx, ly], opt.target) <= 46);
+      const hit = (mc.options || []).find(opt => dist2D([lx, ly], opt.target) <= 48);
       if (hit) this.submitAbcOption(hit.id);
     } else if (mode === 'fog_of_war') {
       if (!this.fogReadyForChoice) {
         this.triggerShoulderCheckScan();
       } else {
-        const hit = (mc.options || []).find(opt => dist2D([lx, ly], opt.target) <= 46);
+        const hit = (mc.options || []).find(opt => dist2D([lx, ly], opt.target) <= 48);
         if (hit) this.submitAbcOption(hit.id);
       }
     } else if (mode === 'ghost_player' && this.stage === 'challenge') {
@@ -992,14 +1137,14 @@ export class Subconscious9ModeEngine {
       this.youCurrentPos = [lx, ly];
       this._renderCurrentFrame();
     } else if (mode === 'two_touch') {
-      const hit = (mc.candidates || []).find(c => dist2D([lx, ly], c.target) <= 46);
+      const hit = (mc.candidates || []).find(c => dist2D([lx, ly], c.target) <= 48);
       if (hit) this.pickTwoTouchNode(hit.id);
     } else if (mode === 'spot_the_breakdown' && this.rewindPhase === 'pick_culprit') {
       const skatersNow = this._computeLiveSkaters(0.35);
       let closest = null;
-      let bestD = 52;
+      let bestD = 54;
       for (const sk of skatersNow) {
-        if (sk.team !== 'home') continue;
+        if (sk.team !== 'home' || sk.id === 'G') continue;
         const d = dist2D([lx, ly], sk.pos);
         if (d < bestD) {
           bestD = d;
@@ -1057,7 +1202,143 @@ export class Subconscious9ModeEngine {
   }
 
   // =========================================================================
-  // MODE-NATIVE BOTTOM CONTROLS DOCK RENDERER
+  // >= 44px ON-ICE INTERACTIVE OVERLAY TARGETS (Synced to Rink Logical Coords)
+  // =========================================================================
+
+  _clearOnIceInteractiveOverlay() {
+    const layer = this.mountEl?.querySelector('#v14OnIceInteractiveLayer');
+    if (layer && layer.innerHTML !== '') {
+      layer.innerHTML = '';
+    }
+    this._overlaySig = '';
+  }
+
+  _syncOnIceInteractiveOverlay(skaters = []) {
+    const layer = this.mountEl?.querySelector('#v14OnIceInteractiveLayer');
+    if (!layer || !this.drill || !this.rink) return;
+
+    if (this.stage === 'pre_snap' || this.stage === 'outcome_movie' || this.stage === 'debrief_dock') {
+      this._clearOnIceInteractiveOverlay();
+      return;
+    }
+
+    const mode = this.drill.mode;
+    const mc = this.drill.modeConfig || {};
+    const vt = this.rink._viewportTransform;
+    const clampCss = (pt) => ({
+      x: Math.max(26, Math.min(vt.cssW - 26, pt.x)),
+      y: Math.max(26, Math.min(vt.cssH - 26, pt.y))
+    });
+
+    const targets = [];
+    if (mode === 'read_and_react' && this.stage === 'challenge') {
+      for (const opt of (mc.options || [])) {
+        const cPt = clampCss(this.rink.logicalToCss(opt.target[0], opt.target[1]));
+        targets.push({
+          key: `abc_${opt.id}`,
+          x: cPt.x,
+          y: cPt.y,
+          label: opt.id,
+          aria: `Option ${opt.id}: ${opt.label}`,
+          kind: 'abc',
+          value: opt.id
+        });
+      }
+    } else if (mode === 'fog_of_war') {
+      if (!this.fogReadyForChoice) {
+        const fr = mc.fogRegion || { x: 250, y: 40, w: 200, h: 160 };
+        const cPt = clampCss(this.rink.logicalToCss(fr.x + fr.w / 2, fr.y + fr.h / 2));
+        targets.push({
+          key: `scan_${this.fogScannedInTime ? 'done' : 'wait'}`,
+          x: cPt.x,
+          y: cPt.y,
+          label: this.fogScannedInTime ? '✅ SCANNED' : '👀 SCAN',
+          aria: 'Tap to Shoulder-Check Scan blind spot',
+          kind: 'scan',
+          wide: true
+        });
+      } else if (this.stage === 'challenge') {
+        for (const opt of (mc.options || [])) {
+          const cPt = clampCss(this.rink.logicalToCss(opt.target[0], opt.target[1]));
+          targets.push({
+            key: `fog_abc_${opt.id}`,
+            x: cPt.x,
+            y: cPt.y,
+            label: opt.id,
+            aria: `Option ${opt.id}: ${opt.label}`,
+            kind: 'abc',
+            value: opt.id
+          });
+        }
+      }
+    } else if (mode === 'two_touch') {
+      for (const cand of (mc.candidates || [])) {
+        const cPt = clampCss(this.rink.logicalToCss(cand.target[0], cand.target[1]));
+        targets.push({
+          key: `tt_${cand.id}_${this.twoTouchPicked.join(',')}`,
+          x: cPt.x,
+          y: cPt.y,
+          label: cand.id,
+          aria: `Tap pass target ${cand.label}`,
+          kind: 'twotouch',
+          value: cand.id
+        });
+      }
+    } else if (mode === 'spot_the_breakdown' && this.rewindPhase === 'pick_culprit') {
+      for (const sus of (mc.suspects || [])) {
+        const sk = skaters.find(s => s.id === sus.id);
+        if (!sk || !sk.pos) continue;
+        const cPt = clampCss(this.rink.logicalToCss(sk.pos[0], sk.pos[1]));
+        targets.push({
+          key: `sus_${sus.id}`,
+          x: cPt.x,
+          y: cPt.y,
+          label: sus.id,
+          aria: `Suspect ${sus.roleLabel}`,
+          kind: 'suspect',
+          value: sus.id
+        });
+      }
+    }
+
+    const sig = targets.map(t => `${t.key}@${Math.round(t.x)},${Math.round(t.y)}`).join('|');
+    if (sig === this._overlaySig) return;
+    this._overlaySig = sig;
+
+    if (targets.length === 0) {
+      layer.innerHTML = '';
+      return;
+    }
+
+    layer.innerHTML = targets.map(t => `
+      <button
+        type="button"
+        data-v14-interactive-target="${t.key}"
+        data-target-kind="${t.kind}"
+        data-target-val="${t.value || ''}"
+        aria-label="${escapeHtmlText(t.aria)}"
+        style="left: ${t.x.toFixed(1)}px; top: ${t.y.toFixed(1)}px; transform: translate(-50%, -50%);"
+        class="pointer-events-auto absolute ${t.wide ? 'min-w-[96px] min-h-[46px] px-3 rounded-full bg-amber-400/95 text-slate-950 border-2 border-white shadow-xl text-xs font-black' : 'w-[48px] h-[48px] min-w-[48px] min-h-[48px] rounded-full bg-teal-400/15 hover:bg-teal-400/30 border-2 border-amber-300/85 shadow-lg'} flex items-center justify-center cursor-pointer transition"
+      >
+        ${t.wide ? `<span>${t.label}</span>` : `<span class="sr-only">${escapeHtmlText(t.aria)}</span>`}
+      </button>
+    `).join('');
+
+    layer.querySelectorAll('[data-v14-interactive-target]').forEach((btn) => {
+      btn.addEventListener('click', (ev) => {
+        ev.stopPropagation();
+        const kind = btn.getAttribute('data-target-kind');
+        const val = btn.getAttribute('data-target-val');
+        if (kind === 'abc') this.submitAbcOption(val);
+        else if (kind === 'scan') this.triggerShoulderCheckScan();
+        else if (kind === 'twotouch') this.pickTwoTouchNode(val);
+        else if (kind === 'suspect') this.submitCulpritSuspect(val);
+      });
+    });
+  }
+
+  // =========================================================================
+  // MODE-NATIVE >= 44px BOTTOM CONTROLS DOCK RENDERER
   // =========================================================================
 
   _renderModeControlsDock() {
@@ -1069,7 +1350,7 @@ export class Subconscious9ModeEngine {
     if (this.stage === 'pre_snap') {
       dock.innerHTML = `
         <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-300">
-          <span>💡 <strong>Coach Tip:</strong> ${this.drill.coachTip}</span>
+          <span>💡 <strong>Coach Tip:</strong> ${escapeHtmlText(this.drill.coachTip)}</span>
           <span class="text-teal-300 font-black">Tap 🏒 DROP PUCK to start live rep</span>
         </div>
       `;
@@ -1078,17 +1359,20 @@ export class Subconscious9ModeEngine {
 
     if (mode === 'read_and_react') {
       if (this.stage !== 'challenge') {
-        dock.innerHTML = `<div class="text-xs font-black text-teal-300 text-center">👀 Read the ice as the play develops...</div>`;
+        dock.innerHTML = `<div class="min-h-[44px] flex items-center justify-center text-xs sm:text-sm font-black text-teal-300">👀 Watch the skaters &amp; puck develop — read the pressure!</div>`;
         return;
       }
       dock.innerHTML = `
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-          ${(mc.options || []).map(opt => `
-            <button type="button" data-v14-choice="${opt.id}" class="py-2 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border-2 border-teal-400/70 text-left flex items-center gap-2 transition cursor-pointer">
-              <span class="w-6 h-6 rounded-full bg-teal-400 text-slate-950 font-black text-xs flex items-center justify-center shrink-0">${opt.id}</span>
-              <span class="text-xs font-black text-white leading-tight">${opt.label}</span>
-            </button>
-          `).join('')}
+        <div class="space-y-1">
+          <div class="text-[11px] font-black uppercase tracking-wider text-amber-300">🎯 Tap the best ice target (A, B, or C):</div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            ${(mc.options || []).map(opt => `
+              <button type="button" data-v14-choice="${opt.id}" class="min-h-[46px] py-2 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border-2 border-teal-400/75 text-left flex items-center gap-2.5 transition cursor-pointer">
+                <span class="w-7 h-7 rounded-full bg-teal-400 text-slate-950 font-black text-xs flex items-center justify-center shrink-0">${opt.id}</span>
+                <span class="text-xs font-black text-white leading-tight">${escapeHtmlText(opt.label)}</span>
+              </button>
+            `).join('')}
+          </div>
         </div>
       `;
       dock.querySelectorAll('[data-v14-choice]').forEach(btn => {
@@ -1096,16 +1380,24 @@ export class Subconscious9ModeEngine {
       });
     } else if (mode === 'ghost_player') {
       dock.innerHTML = `
-        <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
-          <span class="font-black text-teal-300">🖐️ Drag YOUR Teal skater inside the moving gold zone on the ice!</span>
-          <span class="text-slate-400 font-bold">Touch / Mouse Drag or Arrow Keys</span>
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <span class="text-xs font-black text-teal-300">🖐️ Drag YOUR glowing skater on the ice to stay inside THIS SPACE!</span>
+          <button id="btnV14SnapToSpace" type="button" class="min-h-[46px] px-4 py-2 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 font-black text-xs shadow cursor-pointer">
+            🛡️ Skate Into THIS SPACE
+          </button>
         </div>
       `;
+      dock.querySelector('#btnV14SnapToSpace')?.addEventListener('click', () => {
+        const dur = mc.durationSec || 3.8;
+        const z = this._sampleGhostTargetZone(Math.min(1, this.simTime / dur));
+        this.youCurrentPos = [z.x, z.y];
+        this._renderCurrentFrame();
+      });
     } else if (mode === 'fog_of_war') {
       if (!this.fogReadyForChoice) {
         dock.innerHTML = `
           <div class="flex items-center justify-center">
-            <button id="btnV14ShoulderScan" type="button" class="w-full sm:w-auto py-2.5 px-6 rounded-xl bg-gradient-to-r from-amber-400 to-sky-400 hover:from-amber-300 hover:to-sky-300 text-slate-950 font-black text-xs sm:text-sm shadow-lg cursor-pointer">
+            <button id="btnV14ShoulderScan" type="button" class="min-h-[46px] w-full sm:w-auto py-2.5 px-6 rounded-xl bg-gradient-to-r from-amber-400 to-sky-400 hover:from-amber-300 hover:to-sky-300 text-slate-950 font-black text-xs sm:text-sm shadow-lg cursor-pointer">
               👀 SHOULDER CHECK (SCAN) ${this.fogScannedInTime ? '✅ SCANNED!' : '— Tap Before Puck Arrives!'}
             </button>
           </div>
@@ -1113,13 +1405,16 @@ export class Subconscious9ModeEngine {
         dock.querySelector('#btnV14ShoulderScan')?.addEventListener('click', () => this.triggerShoulderCheckScan());
       } else {
         dock.innerHTML = `
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            ${(mc.options || []).map(opt => `
-              <button type="button" data-v14-choice="${opt.id}" class="py-2 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border-2 border-sky-400/70 text-left flex items-center gap-2 transition cursor-pointer">
-                <span class="w-6 h-6 rounded-full bg-sky-400 text-slate-950 font-black text-xs flex items-center justify-center shrink-0">${opt.id}</span>
-                <span class="text-xs font-black text-white leading-tight">${opt.label}</span>
-              </button>
-            `).join('')}
+          <div class="space-y-1">
+            <div class="text-[11px] font-black uppercase tracking-wider text-amber-300">🎯 Tap the open pass target (A, B, or C):</div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              ${(mc.options || []).map(opt => `
+                <button type="button" data-v14-choice="${opt.id}" class="min-h-[46px] py-2 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border-2 border-sky-400/75 text-left flex items-center gap-2.5 transition cursor-pointer">
+                  <span class="w-7 h-7 rounded-full bg-sky-400 text-slate-950 font-black text-xs flex items-center justify-center shrink-0">${opt.id}</span>
+                  <span class="text-xs font-black text-white leading-tight">${escapeHtmlText(opt.label)}</span>
+                </button>
+              `).join('')}
+            </div>
           </div>
         `;
         dock.querySelectorAll('[data-v14-choice]').forEach(btn => {
@@ -1130,10 +1425,10 @@ export class Subconscious9ModeEngine {
       dock.innerHTML = `
         <div class="flex flex-wrap items-center justify-between gap-2">
           <span class="text-xs font-black text-amber-300">⚡ Tap 2 Teammates (${this.twoTouchPicked.length}/2): ${this.twoTouchPicked.join(' ➔ ') || 'Pass #1 ➔ Pass #2'}</span>
-          <div class="flex flex-wrap items-center gap-1.5">
+          <div class="flex flex-wrap items-center gap-2">
             ${(mc.candidates || []).map(c => `
-              <button type="button" data-v14-node="${c.id}" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-teal-400/70 text-xs font-black text-white cursor-pointer">
-                ${c.label}
+              <button type="button" data-v14-node="${c.id}" class="min-h-[46px] px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border-2 border-teal-400/75 text-xs font-black text-white cursor-pointer">
+                ${escapeHtmlText(c.label)}
               </button>
             `).join('')}
           </div>
@@ -1145,18 +1440,18 @@ export class Subconscious9ModeEngine {
     } else if (mode === 'spot_the_breakdown') {
       if (this.rewindPhase !== 'pick_culprit') {
         dock.innerHTML = `
-          <div class="text-xs font-black text-rose-300 text-center">
+          <div class="min-h-[44px] flex items-center justify-center text-xs sm:text-sm font-black text-rose-300 text-center">
             ${this.rewindPhase === 'watching_goal' ? '🚨 Watch closely—opponent scores! Who blew their assignment?' : '⏪ Auto-Rewinding -3.0s to the breakdown moment...'}
           </div>
         `;
       } else {
         dock.innerHTML = `
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <span class="text-xs font-black text-amber-300">🕵️ Tap the culprit on ice or below:</span>
-            <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-xs font-black text-amber-300">🕵️ Tap the defender who blew coverage on the ice or below:</span>
+            <div class="flex flex-wrap items-center gap-2">
               ${(mc.suspects || []).map(s => `
-                <button type="button" data-v14-suspect="${s.id}" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-rose-400/70 text-xs font-black text-white cursor-pointer">
-                  ${s.roleLabel}
+                <button type="button" data-v14-suspect="${s.id}" class="min-h-[46px] px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border-2 border-rose-400/75 text-xs font-black text-white cursor-pointer">
+                  ${escapeHtmlText(s.roleLabel)}
                 </button>
               `).join('')}
             </div>
@@ -1169,11 +1464,11 @@ export class Subconscious9ModeEngine {
     } else if (mode === 'gap_surfing') {
       dock.innerHTML = `
         <div class="flex flex-wrap items-center justify-between gap-3">
-          <div class="flex items-center gap-2 flex-1 min-w-[180px]">
+          <div class="flex items-center gap-2 flex-1 min-w-[180px] min-h-[44px]">
             <span class="text-[11px] font-black text-teal-300 shrink-0">🌊 Surf Gap:</span>
-            <input id="v14GapSlider" type="range" min="160" max="540" value="${Math.round(this.youCurrentPos[0])}" class="w-full accent-teal-400 cursor-pointer" />
+            <input id="v14GapSlider" type="range" min="160" max="540" value="${Math.round(this.youCurrentPos[0])}" class="w-full h-3 accent-teal-400 cursor-pointer" />
           </div>
-          <button id="btnV14PokeAngle" type="button" class="py-2 px-5 rounded-xl bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 text-slate-950 font-black text-xs sm:text-sm shadow-lg cursor-pointer">
+          <button id="btnV14PokeAngle" type="button" class="min-h-[46px] py-2 px-5 rounded-xl bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 text-slate-950 font-black text-xs sm:text-sm shadow-lg cursor-pointer">
             🏒 POKE / ANGLE!
           </button>
         </div>
@@ -1185,20 +1480,33 @@ export class Subconscious9ModeEngine {
     } else if (mode === 'lane_sweeper') {
       dock.innerHTML = `
         <div class="flex flex-wrap items-center justify-between gap-3">
-          <span class="text-xs font-black text-teal-300">🏒 Drag on ice or slide to aim Active Stick through the SEAM lane:</span>
-          <input id="v14SweepAngleSlider" type="range" min="-180" max="180" value="${Math.round((this.stickSweepAngleRad * 180) / Math.PI)}" class="w-48 accent-teal-400 cursor-pointer" />
+          <span class="text-xs font-black text-teal-300">🏒 Drag on ice or slide to angle Active Stick across the SEAM lane:</span>
+          <div class="flex items-center gap-2 min-h-[46px]">
+            <input id="v14SweepAngleSlider" type="range" min="-180" max="180" value="${Math.round((this.stickSweepAngleRad * 180) / Math.PI)}" class="w-44 h-3 accent-teal-400 cursor-pointer" />
+            <button id="btnV14AimThreatSeam" type="button" class="min-h-[46px] px-3.5 py-2 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 font-black text-xs cursor-pointer">
+              🏒 Seal Seam
+            </button>
+          </div>
         </div>
       `;
       dock.querySelector('#v14SweepAngleSlider')?.addEventListener('input', (ev) => {
         this.stickSweepAngleRad = (Number(ev.currentTarget.value || 0) * Math.PI) / 180;
       });
+      dock.querySelector('#btnV14AimThreatSeam')?.addEventListener('click', () => {
+        const threat = (mc.passes || []).find(p => p.isThreat) || mc.passes?.[0];
+        if (threat && mc.pivotOrigin) {
+          const mid = [(threat.from[0] + threat.to[0]) / 2, (threat.from[1] + threat.to[1]) / 2];
+          this.stickSweepAngleRad = Math.atan2(mid[1] - mc.pivotOrigin[1], mid[0] - mc.pivotOrigin[0]);
+          this._renderCurrentFrame();
+        }
+      });
     } else if (mode === 'draw_the_route') {
       dock.innerHTML = `
         <div class="flex flex-wrap items-center justify-between gap-2">
-          <span class="text-xs font-black text-teal-300">✏️ Draw a curved route from YOU into gold THIS SPACE on the white ice!</span>
-          <div class="flex items-center gap-1.5">
-            <button id="btnV14ClearRoute" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-xs font-black text-slate-300 cursor-pointer">↺ Clear</button>
-            <button id="btnV14RunDrawnRoute" type="button" class="px-4 py-1.5 rounded-xl bg-teal-400 text-slate-950 text-xs font-black cursor-pointer">▶ Run Route</button>
+          <span class="text-xs font-black text-teal-300">✏️ Drag your skating route from YOU into gold THIS SPACE on the ice!</span>
+          <div class="flex items-center gap-2">
+            <button id="btnV14ClearRoute" type="button" class="min-h-[46px] px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-black text-slate-200 cursor-pointer">↺ Clear</button>
+            <button id="btnV14RunDrawnRoute" type="button" class="min-h-[46px] px-5 py-2 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 text-xs font-black shadow cursor-pointer">▶ Run Route</button>
           </div>
         </div>
       `;
@@ -1211,14 +1519,21 @@ export class Subconscious9ModeEngine {
         this.evaluateDrawnRoute(this.drawnRoutePoints);
       });
     } else if (mode === 'change_or_stay') {
+      if (this.stage !== 'challenge') {
+        dock.innerHTML = `<div class="min-h-[44px] flex items-center justify-center text-xs sm:text-sm font-black text-amber-300">⏱️ Read puck depth &amp; opponent rush numbers before deciding!</div>`;
+        return;
+      }
       dock.innerHTML = `
-        <div class="grid grid-cols-2 gap-2.5">
-          <button id="btnV14ChangeNow" type="button" class="py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 text-slate-950 font-black text-xs sm:text-sm shadow-lg cursor-pointer">
-            🏃 CHANGE NOW
-          </button>
-          <button id="btnV14StayDefend" type="button" class="py-2.5 px-4 rounded-xl bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 text-slate-950 font-black text-xs sm:text-sm shadow-lg cursor-pointer">
-            🛡️ STAY &amp; DEFEND
-          </button>
+        <div class="space-y-1">
+          <div class="text-[11px] font-black uppercase tracking-wider text-amber-300">⏱️ Tap Change or Stay:</div>
+          <div class="grid grid-cols-2 gap-2.5">
+            <button id="btnV14ChangeNow" type="button" class="min-h-[48px] py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 text-slate-950 font-black text-xs sm:text-sm shadow-lg cursor-pointer">
+              🏃 CHANGE NOW
+            </button>
+            <button id="btnV14StayDefend" type="button" class="min-h-[48px] py-2.5 px-4 rounded-xl bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 text-slate-950 font-black text-xs sm:text-sm shadow-lg cursor-pointer">
+              🛡️ STAY &amp; DEFEND
+            </button>
+          </div>
         </div>
       `;
       dock.querySelector('#btnV14ChangeNow')?.addEventListener('click', () => this.submitChangeOrStay('change'));
@@ -1252,19 +1567,24 @@ export class Subconscious9ModeEngine {
     return kfs[kfs.length - 1];
   }
 
-  _computeLiveSkaters(normProgress) {
+  _computeLiveSkaters(normProgress, applyDefenderJitter = false) {
     const mode = this.drill.mode;
-    return (this.drill.skaters || []).map((sk) => {
+    return (this.drill.skaters || []).map((sk, idx) => {
       let pos = samplePolylineAt(sk.motion || [sk.start], normProgress);
-      if (sk.id === this.drill.youRole && (mode === 'ghost_player' || mode === 'gap_surfing')) {
+      if (sk.id === this.drill.youRole && (mode === 'ghost_player' || mode === 'gap_surfing' || mode === 'draw_the_route')) {
         pos = [...this.youCurrentPos];
       }
       const pickIdx = this.twoTouchPicked.indexOf(sk.id);
+      const stickBase = sk.stickAngleDeg ?? (sk.team === 'home' ? 0 : 180);
+      const stickJitter = (applyDefenderJitter && sk.team === 'away' && sk.id !== 'G')
+        ? Math.sin(this.ambientElapsed * 5.2 + idx * 1.4) * 7.5
+        : 0;
       return {
         ...sk,
         pos,
+        stickAngleDeg: stickBase + stickJitter,
         chainBadge: pickIdx >= 0 ? `${pickIdx + 1}` : null,
-        highlightSuspect: mode === 'spot_the_breakdown' && this.rewindPhase === 'pick_culprit' && sk.team === 'home'
+        highlightSuspect: mode === 'spot_the_breakdown' && this.rewindPhase === 'pick_culprit' && sk.team === 'home' && sk.id !== 'G'
       };
     });
   }
@@ -1383,10 +1703,11 @@ export class Subconscious9ModeEngine {
         else normT = 0.35;
       } else if (mode === 'gap_surfing') normT = Math.min(1, this.simTime / Math.max(0.2, mc.durationSec || 3.4));
       else if (mode === 'lane_sweeper') normT = Math.min(1, this.simTime / Math.max(0.2, mc.durationSec || 3.8));
+      else if (mode === 'draw_the_route') normT = Math.min(1, this.simTime / Math.max(0.2, mc.setupMotionSec || 1.8));
       else if (mode === 'change_or_stay') normT = Math.min(1, this.simTime / Math.max(0.2, mc.clipSec || 1.8));
     }
 
-    const skaters = this._computeLiveSkaters(normT);
+    const skaters = this._computeLiveSkaters(normT, this.stage !== 'pre_snap');
     const youObj = skaters.find(s => s.id === this.drill.youRole);
     let puckPos = samplePolylineAt(this.drill.puck?.livePath || [[500, 250]], normT);
 
@@ -1458,7 +1779,7 @@ export class Subconscious9ModeEngine {
       scene.abcOptions = mc.options || [];
       scene.abcOrigin = youObj ? youObj.pos : puckPos;
       if (!this.untimed) {
-        scene.shotClock = { visible: true, remainingSec: this.shotClockLeft ?? 3.5, totalSec: mc.shotClockSec || 3.5 };
+        scene.shotClock = { visible: true, remainingSec: this.shotClockLeft ?? 8.0, totalSec: Math.max(7.5, mc.shotClockSec || 8.0) };
       }
     } else if (mode === 'ghost_player') {
       const z = this._sampleGhostTargetZone(normT);
@@ -1545,5 +1866,18 @@ export class Subconscious9ModeEngine {
     }
 
     this.rink.renderScene(scene);
+    this._syncOnIceInteractiveOverlay(skaters);
+
+    const audit = this.rink._lastFrameAudit || {};
+    this.lastLiveSnapshot = {
+      stage: this.stage,
+      simTime: this.simTime,
+      normT,
+      skaterCount: audit.skaterCount ?? skaters.length,
+      visibleSkaterCount: audit.visibleSkaterCount ?? skaters.length,
+      puckVisible: Boolean(audit.puckVisible),
+      puckPos: [...(scene.puckPos || puckPos)],
+      skaters: skaters.map(s => ({ id: s.id, team: s.team, pos: [...s.pos] }))
+    };
   }
 }

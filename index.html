@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="SYNAPZ HOCKEY" />
   <meta name="application-name" content="SYNAPZ HOCKEY" />
   <meta name="theme-color" content="#0d1829" />
-  <title>SYNAPZ HOCKEY v15.1 — Play. Learn. Dominate. (32-City Road to the Cup)</title>
+  <title>SYNAPZ HOCKEY v15.2 — Play. Learn. Dominate. (32-City Road to the Cup)</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
@@ -4136,7 +4136,7 @@
             Info
           </button>
         </div>
-        <div id="synapzAppBuildVersionBadge" class="text-[10px] font-bold text-slate-500 tracking-wider select-none">SYNAPZ HOCKEY v15.1</div>
+        <div id="synapzAppBuildVersionBadge" class="text-[10px] font-bold text-slate-500 tracking-wider select-none">SYNAPZ HOCKEY v15.2</div>
       </div>
 
       <!-- ================================================================= -->
@@ -4147,7 +4147,7 @@
           <button id="btnBackFromInfoToScreen1" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-black text-cyan-300">
             ← Back
           </button>
-          <span class="text-sm font-black text-white uppercase tracking-wider">Info Hub • v15.1</span>
+          <span class="text-sm font-black text-white uppercase tracking-wider">Info Hub • v15.2</span>
         </div>
 
         <!-- 3 Clean Info Tabs: Contact, Support, FAQ -->
@@ -5512,7 +5512,7 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.0-pass1-walkthrough-overhaul';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.2-evan-walkthrough-complete';
 
     // =========================================================================
     // SECTION 39 (v12.3) + SECTION 46 (v13.2) + SECTION 47 (v13.4):
@@ -6290,8 +6290,17 @@
       'tour_advance',
       'tour_close',
       'mute_toggle',
+      'user_mute_toggle',
       'explicit_speaker_btn',
-      'new_speak_clean'
+      'new_speak_clean',
+      'exit_to_lobby',
+      'silent_drill_exit',
+      'silent_guest_return',
+      'silent_head_coach_return',
+      'silent_inbox_return',
+      'silent_hub_return',
+      'silent_lobby_return',
+      'coach_preview_launch'
     ]);
 
     function cancelSynapzSpeechExplicit(reason = '') {
@@ -6333,6 +6342,7 @@
     window.isAnyDialogueOrTourCardVisible = isAnyDialogueOrTourCardVisible;
 
     function speakClean(rawText, opts = {}) {
+      if (window.__synapzSuppressNextAutoVoice && !opts.explicitUserAction) return null;
       const cleanVisual = String(rawText || '').trim();
       if (!cleanVisual) return null;
       const phoneticSpoken = applySynapzPhonetics(cleanVisual);
@@ -11513,6 +11523,7 @@
       const prof = getActiveProfile();
       if (!prof || prof.id === '__unconfigured__') return;
       prof.iqScore = state.iqScore;
+      prof.hockeyIQ = state.iqScore;
       prof.puckBucks = state.puckBucks;
       prof.streak = state.streak;
       prof.bestStreak = state.bestStreak;
@@ -11527,7 +11538,7 @@
         skates: prof.equippedSkate || null,
         owned: Array.isArray(prof.ownedGear) ? [...prof.ownedGear] : []
       };
-      prof.completedIds = JSON.parse(JSON.stringify(state.completedIds || {}));
+      prof.completedIds = JSON.parse(JSON.stringify({ ...(prof.completedIds || {}), ...(state.completedIds || {}) }));
       prof.conceptStats = JSON.parse(JSON.stringify(state.conceptStats || {}));
       prof.pillarStats = JSON.parse(JSON.stringify(state.pillarStats || {}));
       prof.habitStats = JSON.parse(JSON.stringify(state.habitStats || {}));
@@ -28170,34 +28181,42 @@
       const catalogDrills = (window.SynapzV14Engine && window.SynapzV14Engine.catalog && Array.isArray(window.SynapzV14Engine.catalog.drills))
         ? window.SynapzV14Engine.catalog.drills
         : [];
-      let targetZonePrefix = 'BRK';
-      let humanZoneLabel = 'Defensive Zone Breakout';
-      if (lower.includes('d-zone') || lower.includes('dz_') || lower.includes('house') || lower.includes('corner')) {
+      let targetZonePrefix = 'NZ';
+      let humanZoneLabel = 'Breakouts & Regroups';
+      if (lower.includes('d-zone') || lower.includes('dz_') || lower.includes('house') || lower.includes('corner') || lower.includes('goalie') || lower.includes('crease')) {
         targetZonePrefix = 'DZ';
         humanZoneLabel = 'Defensive Zone';
-      } else if (lower.includes('nz_') || lower.includes('neutral') || lower.includes('entry') || lower.includes('rush') || lower.includes('2v1')) {
-        targetZonePrefix = 'NZ';
-        humanZoneLabel = 'Neutral Zone & Transition';
-      } else if (lower.includes('forecheck') || lower.includes('oz_') || lower.includes('power') || lower.includes('special') || lower.includes('royal')) {
+      } else if (lower.includes('rush') || lower.includes('2v1') || lower.includes('odd-man') || lower.includes('entry')) {
+        targetZonePrefix = 'OM';
+        humanZoneLabel = 'Odd-Man Rushes';
+      } else if (lower.includes('power') || lower.includes('penalty') || lower.includes('special') || lower.includes('pp') || lower.includes('pk')) {
+        targetZonePrefix = 'ST';
+        humanZoneLabel = 'Special Teams';
+      } else if (lower.includes('forecheck') || lower.includes('oz_') || lower.includes('o-zone') || lower.includes('cycle') || lower.includes('royal') || lower.includes('spacing')) {
         targetZonePrefix = 'OZ';
         humanZoneLabel = 'Offensive Zone';
-      } else if (lower.includes('scan') || lower.includes('goalie') || lower.includes('crease') || lower.includes('habit')) {
-        targetZonePrefix = 'HAB';
-        humanZoneLabel = 'Hockey Habits & Crease IQ';
+      } else if (lower.includes('nz_') || lower.includes('neutral') || lower.includes('breakout') || lower.includes('scan') || lower.includes('habit')) {
+        targetZonePrefix = 'NZ';
+        humanZoneLabel = 'Breakouts & Transition';
       }
 
       const cleanAge = String(ageDivision || '12U').toUpperCase();
-      const matched = catalogDrills.filter(d => String(d.conceptId || '').startsWith(targetZonePrefix));
+      const dz01First = targetZonePrefix === 'NZ' ? catalogDrills.filter(d => d.conceptId === 'DZ-01') : [];
+      const matched = [
+        ...dz01First,
+        ...catalogDrills.filter(d => String(d.conceptId || '').startsWith(targetZonePrefix) && d.conceptId !== 'DZ-01')
+      ];
       const pool = matched.length >= 5 ? matched : [...matched, ...catalogDrills];
 
       if (pool.length >= 5) {
         return pool.slice(0, 5).map((d, idx) => ({
           playNum: idx + 1,
           drillId: d.id,
+          conceptId: d.conceptId,
           title: String(d.title || `Play ${idx + 1}`).replace(/\s*\[[^\]]*\]/g, '').trim(),
           zoneLabel: humanZoneLabel,
           ageBandLabel: cleanAge,
-          coachCue: String(d.coachCue || d.goldenRule || d.questionPrompt || 'Scan early before puck touch and hit the open support lane.').trim()
+          coachCue: String(d.coachRule || d.coachTip || d.briefing || 'Scan early before puck touch and hit the open support lane.').trim()
         }));
       }
 
@@ -28349,21 +28368,35 @@
       if (titleEl) {
         titleEl.textContent = customTitle || `👁️ Preview All 5 Plays — ${card.title} (${ageDivision})`;
       }
+      const drillIds = plays.map(p => p.drillId || p.conceptId).filter(Boolean);
       listEl.innerHTML = plays.map((pl, idx) => `
         <div data-preview-play-item="${pl.playNum}" class="p-3 rounded-2xl bg-slate-900 border border-cyan-400/45 grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
           <div class="sm:col-span-4">
             ${renderMiniRinkStationSvg(card, (idx % 3) + 1)}
           </div>
-          <div class="sm:col-span-8 space-y-1">
-            <div class="flex flex-wrap items-center gap-1.5">
-              <span class="px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black">PLAY ${pl.playNum} OF 5</span>
-              <span class="px-2 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-200 text-[10px] font-black">${pl.ageBandLabel} • ${pl.zoneLabel}</span>
+          <div class="sm:col-span-8 space-y-1.5">
+            <div class="flex flex-wrap items-center justify-between gap-1.5">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black">PLAY ${pl.playNum} OF 5</span>
+                <span class="px-2 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-200 text-[10px] font-black">${pl.ageBandLabel} • ${pl.zoneLabel}</span>
+              </div>
+              <button type="button" data-launch-coach-preview-idx="${idx}" class="px-3 py-1.5 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 text-[11px] font-black shadow cursor-pointer">
+                🏒 Skate Live on Ice ▸
+              </button>
             </div>
             <div class="text-sm font-black text-white">${pl.title}</div>
             <p class="text-xs text-slate-300 font-semibold leading-snug">🗣️ Coaching Read: ${pl.coachCue}</p>
           </div>
         </div>
       `).join('');
+      listEl.querySelectorAll('[data-launch-coach-preview-idx]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const sIdx = Number(btn.getAttribute('data-launch-coach-preview-idx') || 0);
+          if (window.SynapzV14Engine && typeof window.SynapzV14Engine.launchCoachWhiteboardPreviewDrills === 'function') {
+            window.SynapzV14Engine.launchCoachWhiteboardPreviewDrills(drillIds, sIdx);
+          }
+        });
+      });
       drawer.classList.remove('hidden');
       return true;
     }
@@ -30246,7 +30279,12 @@
               <div class="text-xs font-black uppercase text-cyan-300">💻 My Lesson Inbox — Team &amp; Personal 5-Play Packs</div>
               <p class="text-[11px] text-slate-300 font-semibold">Play 5-drill packs assigned by your Team Coach or built for you on the Wall Whiteboard by Coach Al.</p>
             </div>
-            <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/60 text-[10px] font-black text-cyan-200">${allInboxPacks.length} Pack(s)</span>
+            <div class="flex items-center gap-2">
+              <button type="button" id="btnInboxOpenDrillCatalog" class="px-3 py-1 rounded-full bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/70 text-[11px] font-black text-sky-200 cursor-pointer">
+                📚 Browse 45-Drill Catalog
+              </button>
+              <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/60 text-[10px] font-black text-cyan-200">${allInboxPacks.length} Pack(s)</span>
+            </div>
           </div>
 
           ${allInboxPacks.length === 0 ? `
@@ -30388,8 +30426,13 @@
           state.activePlayerOfficeStation = 'whiteboard';
           renderSynapzCoachOfficeModal();
         });
+        document.getElementById('btnInboxOpenDrillCatalog')?.addEventListener('click', () => {
+          SoundFX.playTap();
+          if (typeof window.openSynapzHitTheIceHub === 'function') window.openSynapzHitTheIceHub();
+        });
         document.getElementById('btnEmptyInboxPlayDaily5')?.addEventListener('click', () => {
           SoundFX.playGoalHorn();
+          window.__synapzDrillReturnContext = 'player_coach_inbox';
           document.getElementById('synapzCoachOfficeModal')?.classList.add('hidden');
           document.getElementById('coachOfficeOverlaySheet')?.classList.add('hidden');
           switchView('game');
@@ -30400,6 +30443,7 @@
             const pid = btn.getAttribute('data-play-inbox-pack-id');
             const origin = btn.getAttribute('data-play-inbox-origin');
             SoundFX.playGoalHorn();
+            window.__synapzDrillReturnContext = 'player_coach_inbox';
             if (origin === 'personal') {
               const pPack = (prof?.personalPlans || []).find(x => (x.planId || x.id) === pid);
               if (pPack) {
@@ -31968,6 +32012,7 @@
       // 5 Pure Picture Lobby Doorways (Zero Overlaid Text Labels, 100dvh)
       bindClick('lobbyStationHitTheIce', () => {
         SoundFX.playGoalHorn();
+        window.__synapzDrillReturnContext = 'lobby';
         if (state.lobbySpotlightActive) finishLobbyFirstTimeTour(false);
         triggerSynapzScreenTransition('⚡ Pushing Through Center Ice Doors onto the White Ice...', () => {
           switchView('game');
@@ -32686,7 +32731,7 @@
     // SECTION 32–43: VERIFIED REAL CODED UPGRADES RUNTIME & PRE-CODED BANK
     // (`synapz-hockey-v12.7-5persona-human-vision` • 288 Live Upgrades)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.0-pass1-walkthrough-overhaul';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.2-evan-walkthrough-complete';
 
     const ALL_63_DEPLOYED_UPGRADE_IDS = [
       // Batch A (12 items)
@@ -36445,7 +36490,7 @@
               keys.filter(k => k !== window.SYNAPZ_CACHE_NAME).map(k => caches.delete(k))
             );
           }
-          const reg = await navigator.serviceWorker.register('./sw.js?v=14.0');
+          const reg = await navigator.serviceWorker.register('./sw.js?v=15.2');
           if (reg && typeof reg.update === 'function') {
             reg.update().catch(() => {});
           }

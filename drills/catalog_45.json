@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "v14.1",
+  "schemaVersion": "v15.2",
   "title": "SYNAPZ HOCKEY v14.1 — Complete 45/45 Concept Library (5 Drills × 9 Subconscious Modes)",
   "gridSpec": {
     "width": 1000,
@@ -703,8 +703,8 @@
           ],
           "outcomeGold": [
             [
-              245,
-              430
+              253,
+              435
             ],
             [
               320,
@@ -713,8 +713,8 @@
           ],
           "outcomeMiss": [
             [
-              245,
-              430
+              253,
+              435
             ],
             [
               220,
@@ -820,8 +820,8 @@
           ],
           "outcomeGold": [
             [
-              225,
-              418
+              217,
+              413
             ],
             [
               210,
@@ -830,8 +830,8 @@
           ],
           "outcomeMiss": [
             [
-              225,
-              418
+              217,
+              413
             ],
             [
               175,
@@ -878,6 +878,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -990,7 +1029,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Wheel behind the net.\nUse goal iron as a pick.",
             "thisSpaceHalo": {
               "x": 145,
@@ -1276,8 +1315,8 @@
           ],
           "outcomeGold": [
             [
-              675,
-              250
+              672,
+              255
             ],
             [
               740,
@@ -1286,8 +1325,8 @@
           ],
           "outcomeMiss": [
             [
-              675,
-              250
+              672,
+              255
             ],
             [
               640,
@@ -1432,8 +1471,8 @@
           ],
           "outcomeGold": [
             [
-              690,
-              225
+              693,
+              220
             ],
             [
               740,
@@ -1442,8 +1481,8 @@
           ],
           "outcomeMiss": [
             [
-              690,
-              225
+              693,
+              220
             ],
             [
               650,
@@ -1594,7 +1633,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "D1 slides to take RW.\nCross-seam lane is bait.",
             "thisSpaceHalo": {
               "x": 845,
@@ -1776,7 +1815,7 @@
           ],
           "outcomeGold": [
             [
-              205,
+              191,
               275
             ],
             [
@@ -1786,7 +1825,7 @@
           ],
           "outcomeMiss": [
             [
-              205,
+              191,
               275
             ],
             [
@@ -2034,8 +2073,8 @@
           ],
           "outcomeGold": [
             [
-              218,
-              275
+              252,
+              288
             ],
             [
               235,
@@ -2044,8 +2083,8 @@
           ],
           "outcomeMiss": [
             [
-              218,
-              275
+              252,
+              288
             ],
             [
               195,
@@ -2053,6 +2092,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -2145,7 +2223,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Sag inside dots-to-posts.\nKeep head on a swivel.",
             "thisSpaceHalo": {
               "x": 205,
@@ -2375,8 +2453,8 @@
           ],
           "outcomeGold": [
             [
-              888,
-              335
+              901,
+              342
             ],
             [
               875,
@@ -2385,8 +2463,8 @@
           ],
           "outcomeMiss": [
             [
-              888,
-              335
+              901,
+              342
             ],
             [
               880,
@@ -2418,7 +2496,7 @@
           ],
           "outcomeGold": [
             [
-              855,
+              863,
               295
             ],
             [
@@ -2428,7 +2506,7 @@
           ],
           "outcomeMiss": [
             [
-              855,
+              863,
               295
             ],
             [
@@ -2547,8 +2625,8 @@
           ],
           "outcomeGold": [
             [
-              872,
-              325
+              861,
+              331
             ],
             [
               860,
@@ -2557,8 +2635,8 @@
           ],
           "outcomeMiss": [
             [
-              872,
-              325
+              861,
+              331
             ],
             [
               835,
@@ -2590,8 +2668,8 @@
           ],
           "outcomeGold": [
             [
-              845,
-              278
+              835,
+              265
             ],
             [
               835,
@@ -2600,8 +2678,8 @@
           ],
           "outcomeMiss": [
             [
-              845,
-              278
+              835,
+              265
             ],
             [
               790,
@@ -2751,7 +2829,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Drift into soft high slot.\nKeep stick cocked ready.",
             "thisSpaceHalo": {
               "x": 785,
@@ -2916,7 +2994,7 @@
           ],
           "outcomeGold": [
             [
-              255,
+              251,
               52
             ],
             [
@@ -2926,7 +3004,7 @@
           ],
           "outcomeMiss": [
             [
-              255,
+              251,
               52
             ],
             [
@@ -3111,7 +3189,7 @@
           ],
           "outcomeGold": [
             [
-              288,
+              292,
               56
             ],
             [
@@ -3121,7 +3199,7 @@
           ],
           "outcomeMiss": [
             [
-              288,
+              292,
               56
             ],
             [
@@ -3169,6 +3247,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -3272,7 +3389,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Shoulder-check early now!\nSpot D1 pinching down.",
             "thisSpaceHalo": {
               "x": 355,
@@ -3562,8 +3679,8 @@
           ],
           "outcomeGold": [
             [
-              265,
-              442
+              279,
+              448
             ],
             [
               355,
@@ -3572,8 +3689,8 @@
           ],
           "outcomeMiss": [
             [
-              265,
-              442
+              279,
+              448
             ],
             [
               250,
@@ -3679,8 +3796,8 @@
           ],
           "outcomeGold": [
             [
-              255,
-              438
+              241,
+              432
             ],
             [
               240,
@@ -3689,8 +3806,8 @@
           ],
           "outcomeMiss": [
             [
-              255,
-              438
+              241,
+              432
             ],
             [
               215,
@@ -3698,6 +3815,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            98,
+            216
+          ],
+          "motion": [
+            [
+              98,
+              216
+            ],
+            [
+              98,
+              214
+            ]
+          ],
+          "outcomeGold": [
+            [
+              98,
+              214
+            ],
+            [
+              98,
+              226
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              98,
+              214
+            ],
+            [
+              98,
+              224
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -3793,7 +3949,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Scan before retrieval!\nSee C curling open middle.",
             "thisSpaceHalo": {
               "x": 215,
@@ -4122,8 +4278,8 @@
           ],
           "outcomeGold": [
             [
-              295,
-              420
+              306,
+              429
             ],
             [
               385,
@@ -4132,8 +4288,8 @@
           ],
           "outcomeMiss": [
             [
-              295,
-              420
+              306,
+              429
             ],
             [
               275,
@@ -4200,8 +4356,8 @@
           ],
           "outcomeGold": [
             [
-              285,
-              412
+              274,
+              403
             ],
             [
               295,
@@ -4210,8 +4366,8 @@
           ],
           "outcomeMiss": [
             [
-              285,
-              412
+              274,
+              403
             ],
             [
               270,
@@ -4219,6 +4375,45 @@
             ]
           ],
           "stickAngleDeg": 175
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -4327,7 +4522,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Hinge quick pass to LD.\nShift point of attack.",
             "thisSpaceHalo": {
               "x": 335,
@@ -4512,8 +4707,8 @@
           ],
           "outcomeGold": [
             [
-              685,
-              135
+              677,
+              130
             ],
             [
               785,
@@ -4522,8 +4717,8 @@
           ],
           "outcomeMiss": [
             [
-              685,
-              135
+              677,
+              130
             ],
             [
               715,
@@ -4707,8 +4902,8 @@
           ],
           "outcomeGold": [
             [
-              705,
-              148
+              713,
+              153
             ],
             [
               755,
@@ -4717,8 +4912,8 @@
           ],
           "outcomeMiss": [
             [
-              705,
-              148
+              713,
+              153
             ],
             [
               692,
@@ -4916,7 +5111,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Bump short pass to C.\nSprint behind D1 hips.",
             "thisSpaceHalo": {
               "x": 855,
@@ -5140,8 +5335,8 @@
           ],
           "outcomeGold": [
             [
-              128,
-              275
+              122,
+              132
             ],
             [
               125,
@@ -5354,6 +5549,45 @@
             ]
           ],
           "stickAngleDeg": 185
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -5442,7 +5676,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "RD puck-watches and chases.\nBackdoor F2 stands alone!",
             "thisSpaceHalo": {
               "x": 132,
@@ -5663,8 +5897,8 @@
           ],
           "outcomeGold": [
             [
-              745,
-              255
+              875,
+              175
             ],
             [
               695,
@@ -5838,6 +6072,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "away",
+          "start": [
+            902,
+            250
+          ],
+          "motion": [
+            [
+              902,
+              250
+            ],
+            [
+              902,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              902,
+              256
+            ],
+            [
+              899,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              902,
+              256
+            ],
+            [
+              902,
+              250
+            ]
+          ],
+          "stickAngleDeg": 180
         }
       ],
       "puck": {
@@ -5922,7 +6195,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Greedy F3 dives deep.\nPuck squirts past all three!",
             "thisSpaceHalo": {
               "x": 735,
@@ -6065,7 +6338,7 @@
           ],
           "outcomeGold": [
             [
-              335,
+              320,
               165
             ],
             [
@@ -6075,7 +6348,7 @@
           ],
           "outcomeMiss": [
             [
-              265,
+              320,
               165
             ],
             [
@@ -6260,7 +6533,7 @@
           ],
           "outcomeGold": [
             [
-              355,
+              360,
               165
             ],
             [
@@ -6270,7 +6543,7 @@
           ],
           "outcomeMiss": [
             [
-              355,
+              360,
               165
             ],
             [
@@ -6279,6 +6552,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -6374,7 +6686,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Hold tight 1-stick gap.\nSteer carrier wide.",
             "thisSpaceHalo": {
               "x": 355,
@@ -6501,8 +6813,8 @@
           ],
           "outcomeGold": [
             [
-              332,
-              345
+              317,
+              344
             ],
             [
               445,
@@ -6511,8 +6823,8 @@
           ],
           "outcomeMiss": [
             [
-              255,
-              345
+              317,
+              344
             ],
             [
               215,
@@ -6696,8 +7008,8 @@
           ],
           "outcomeGold": [
             [
-              352,
-              352
+              357,
+              353
             ],
             [
               362,
@@ -6706,8 +7018,8 @@
           ],
           "outcomeMiss": [
             [
-              352,
-              352
+              357,
+              353
             ],
             [
               215,
@@ -6715,6 +7027,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -6810,7 +7161,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Surf inside-out angle.\nShrink space near boards.",
             "thisSpaceHalo": {
               "x": 350,
@@ -7229,6 +7580,45 @@
             ]
           ],
           "stickAngleDeg": 245
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -7313,7 +7703,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Ignore harmless D pass.\nDo not chase outside.",
             "thisSpaceHalo": {
               "x": 170,
@@ -7776,6 +8166,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -7860,7 +8289,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Let harmless rim go.\nHold inside slot lane.",
             "thisSpaceHalo": {
               "x": 190,
@@ -8047,7 +8476,7 @@
           "outcomeMiss": [
             [
               245,
-              275
+              172
             ],
             [
               345,
@@ -8075,8 +8504,8 @@
           ],
           "outcomeGold": [
             [
-              122,
-              138
+              115,
+              141
             ],
             [
               175,
@@ -8085,8 +8514,8 @@
           ],
           "outcomeMiss": [
             [
-              122,
-              138
+              115,
+              141
             ],
             [
               115,
@@ -8114,8 +8543,8 @@
           ],
           "outcomeGold": [
             [
-              275,
-              55
+              265,
+              54
             ],
             [
               395,
@@ -8124,8 +8553,8 @@
           ],
           "outcomeMiss": [
             [
-              275,
-              55
+              265,
+              54
             ],
             [
               265,
@@ -8231,8 +8660,8 @@
           ],
           "outcomeGold": [
             [
-              148,
-              128
+              155,
+              125
             ],
             [
               165,
@@ -8241,8 +8670,8 @@
           ],
           "outcomeMiss": [
             [
-              148,
-              128
+              155,
+              125
             ],
             [
               128,
@@ -8270,8 +8699,8 @@
           ],
           "outcomeGold": [
             [
-              295,
-              58
+              305,
+              59
             ],
             [
               315,
@@ -8280,8 +8709,8 @@
           ],
           "outcomeMiss": [
             [
-              295,
-              58
+              305,
+              59
             ],
             [
               280,
@@ -8289,6 +8718,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -8382,7 +8850,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Curl low under F1.\nTime arrival with eyes.",
             "thisSpaceHalo": {
               "x": 245,
@@ -8569,8 +9037,8 @@
           ],
           "outcomeMiss": [
             [
-              615,
-              255
+              775,
+              250
             ],
             [
               715,
@@ -8812,6 +9280,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "away",
+          "start": [
+            902,
+            250
+          ],
+          "motion": [
+            [
+              902,
+              250
+            ],
+            [
+              902,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              902,
+              256
+            ],
+            [
+              899,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              902,
+              256
+            ],
+            [
+              902,
+              250
+            ]
+          ],
+          "stickAngleDeg": 180
         }
       ],
       "puck": {
@@ -8907,7 +9414,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Stay onside at blue!\nDrive middle lane hard.",
             "thisSpaceHalo": {
               "x": 775,
@@ -9271,8 +9778,8 @@
           ],
           "outcomeGold": [
             [
-              865,
-              365
+              869,
+              361
             ],
             [
               895,
@@ -9281,8 +9788,8 @@
           ],
           "outcomeMiss": [
             [
-              865,
-              365
+              869,
+              361
             ],
             [
               895,
@@ -9310,8 +9817,8 @@
           ],
           "outcomeGold": [
             [
-              845,
-              385
+              841,
+              389
             ],
             [
               865,
@@ -9320,8 +9827,8 @@
           ],
           "outcomeMiss": [
             [
-              845,
-              385
+              841,
+              389
             ],
             [
               855,
@@ -9329,6 +9836,45 @@
             ]
           ],
           "stickAngleDeg": 45
+        },
+        {
+          "id": "G",
+          "team": "away",
+          "start": [
+            902,
+            250
+          ],
+          "motion": [
+            [
+              902,
+              250
+            ],
+            [
+              902,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              902,
+              256
+            ],
+            [
+              899,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              902,
+              256
+            ],
+            [
+              902,
+              250
+            ]
+          ],
+          "stickAngleDeg": 180
         }
       ],
       "puck": {
@@ -9409,7 +9955,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "C dumps puck 200ft deep.\nZero rush threat against.",
             "thisSpaceHalo": {
               "x": 500,
@@ -9536,8 +10082,8 @@
           ],
           "outcomeGold": [
             [
-              415,
-              155
+              419,
+              151
             ],
             [
               245,
@@ -9546,8 +10092,8 @@
           ],
           "outcomeMiss": [
             [
-              485,
-              115
+              419,
+              151
             ],
             [
               500,
@@ -9731,8 +10277,8 @@
           ],
           "outcomeGold": [
             [
-              395,
-              175
+              391,
+              179
             ],
             [
               295,
@@ -9741,8 +10287,8 @@
           ],
           "outcomeMiss": [
             [
-              395,
-              175
+              391,
+              179
             ],
             [
               195,
@@ -9828,6 +10374,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -9936,7 +10521,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "3-on-2 crosses center.\nPeeeling off gives 3-on-1.",
             "thisSpaceHalo": {
               "x": 255,
@@ -10355,6 +10940,45 @@
             ]
           ],
           "stickAngleDeg": 170
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -10464,7 +11088,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "LW slashes weak-side dot lane.\nOpen ice opens behind F1.",
             "pressureCones": [],
             "thisSpaceHalo": {
@@ -10927,6 +11551,45 @@
             ]
           ],
           "stickAngleDeg": -160
+        },
+        {
+          "id": "G",
+          "team": "away",
+          "start": [
+            902,
+            250
+          ],
+          "motion": [
+            [
+              902,
+              250
+            ],
+            [
+              902,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              902,
+              256
+            ],
+            [
+              899,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              902,
+              256
+            ],
+            [
+              902,
+              250
+            ]
+          ],
+          "stickAngleDeg": 180
         }
       ],
       "puck": {
@@ -11029,7 +11692,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "D2 is pinned by net-front C.\nRW sneaks open weak dot!",
             "pressureCones": [],
             "thisSpaceHalo": {
@@ -11353,8 +12016,8 @@
           ],
           "outcomeGold": [
             [
-              885,
-              305
+              890,
+              306
             ],
             [
               895,
@@ -11363,8 +12026,8 @@
           ],
           "outcomeMiss": [
             [
-              885,
-              305
+              890,
+              306
             ],
             [
               875,
@@ -11470,8 +12133,8 @@
           ],
           "outcomeGold": [
             [
-              855,
-              298
+              850,
+              297
             ],
             [
               845,
@@ -11480,8 +12143,8 @@
           ],
           "outcomeMiss": [
             [
-              855,
-              298
+              850,
+              297
             ],
             [
               865,
@@ -11525,6 +12188,45 @@
             [
               845,
               215
+            ]
+          ],
+          "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "away",
+          "start": [
+            902,
+            250
+          ],
+          "motion": [
+            [
+              902,
+              250
+            ],
+            [
+              902,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              902,
+              256
+            ],
+            [
+              899,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              902,
+              256
+            ],
+            [
+              902,
+              250
             ]
           ],
           "stickAngleDeg": 180
@@ -11630,7 +12332,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "D1 drops to cover goal-line RD.\nSlot Bumper C opens wide!",
             "pressureCones": [],
             "thisSpaceHalo": {
@@ -11794,8 +12496,8 @@
           ],
           "outcomeGold": [
             [
-              265,
-              275
+              268,
+              281
             ],
             [
               395,
@@ -11804,8 +12506,8 @@
           ],
           "outcomeMiss": [
             [
-              265,
-              275
+              268,
+              281
             ],
             [
               295,
@@ -11833,8 +12535,8 @@
           ],
           "outcomeGold": [
             [
-              118,
-              110
+              126,
+              120
             ],
             [
               160,
@@ -11843,8 +12545,8 @@
           ],
           "outcomeMiss": [
             [
-              118,
-              110
+              126,
+              120
             ],
             [
               120,
@@ -11989,8 +12691,8 @@
           ],
           "outcomeGold": [
             [
-              108,
-              98
+              100,
+              88
             ],
             [
               130,
@@ -11999,8 +12701,8 @@
           ],
           "outcomeMiss": [
             [
-              108,
-              98
+              100,
+              88
             ],
             [
               115,
@@ -12028,8 +12730,8 @@
           ],
           "outcomeGold": [
             [
-              255,
-              250
+              252,
+              244
             ],
             [
               285,
@@ -12038,8 +12740,8 @@
           ],
           "outcomeMiss": [
             [
-              255,
-              250
+              252,
+              244
             ],
             [
               215,
@@ -12086,6 +12788,45 @@
             ]
           ],
           "stickAngleDeg": 160
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -12172,7 +12913,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "RW sags off wide point.\nTake away dangerous slot first!",
             "pressureCones": [],
             "thisSpaceHalo": null,
@@ -12592,6 +13333,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "away",
+          "start": [
+            902,
+            250
+          ],
+          "motion": [
+            [
+              902,
+              250
+            ],
+            [
+              902,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              902,
+              256
+            ],
+            [
+              899,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              902,
+              256
+            ],
+            [
+              902,
+              250
+            ]
+          ],
+          "stickAngleDeg": 180
         }
       ],
       "puck": {
@@ -12678,7 +13458,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Curve stick-inside-out arc.\nCut off middle and reverse.",
             "pressureCones": [],
             "thisSpaceHalo": null,
@@ -13101,6 +13881,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "away",
+          "start": [
+            902,
+            250
+          ],
+          "motion": [
+            [
+              902,
+              250
+            ],
+            [
+              902,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              902,
+              256
+            ],
+            [
+              899,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              902,
+              256
+            ],
+            [
+              902,
+              250
+            ]
+          ],
+          "stickAngleDeg": 180
         }
       ],
       "puck": {
@@ -13202,7 +14021,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Slide LW right into shot lane.\nStay outside blue paint!",
             "pressureCones": [],
             "thisSpaceHalo": null,
@@ -13622,6 +14441,45 @@
             ]
           ],
           "stickAngleDeg": 45
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -13716,7 +14574,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Scan blind side before arrival.\nSpot D2 closing the boards.",
             "pressureCones": [],
             "thisSpaceHalo": {
@@ -13907,8 +14765,8 @@
           ],
           "outcomeGold": [
             [
-              895,
-              155
+              893,
+              160
             ],
             [
               875,
@@ -13917,8 +14775,8 @@
           ],
           "outcomeMiss": [
             [
-              895,
-              155
+              893,
+              160
             ],
             [
               890,
@@ -14063,8 +14921,8 @@
           ],
           "outcomeGold": [
             [
-              905,
-              125
+              907,
+              120
             ],
             [
               890,
@@ -14073,8 +14931,8 @@
           ],
           "outcomeMiss": [
             [
-              905,
-              125
+              907,
+              120
             ],
             [
               880,
@@ -14160,6 +15018,45 @@
             ]
           ],
           "stickAngleDeg": -95
+        },
+        {
+          "id": "G",
+          "team": "away",
+          "start": [
+            902,
+            250
+          ],
+          "motion": [
+            [
+              902,
+              250
+            ],
+            [
+              902,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              902,
+              256
+            ],
+            [
+              899,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              902,
+              256
+            ],
+            [
+              902,
+              250
+            ]
+          ],
+          "stickAngleDeg": 180
         }
       ],
       "puck": {
@@ -14254,7 +15151,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Scan middle before puck hits.\nSpot RW wide open in slot!",
             "pressureCones": [],
             "thisSpaceHalo": {
@@ -14401,8 +15298,8 @@
           ],
           "outcomeGold": [
             [
-              322,
-              185
+              311,
+              180
             ],
             [
               435,
@@ -14411,8 +15308,8 @@
           ],
           "outcomeMiss": [
             [
-              322,
-              185
+              311,
+              180
             ],
             [
               295,
@@ -14596,8 +15493,8 @@
           ],
           "outcomeGold": [
             [
-              338,
-              192
+              349,
+              197
             ],
             [
               355,
@@ -14606,8 +15503,8 @@
           ],
           "outcomeMiss": [
             [
-              338,
-              192
+              349,
+              197
             ],
             [
               335,
@@ -14693,6 +15590,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -14783,7 +15719,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Scan neutral ice as you close.\nSpot LW streaking open left!",
             "pressureCones": [],
             "thisSpaceHalo": {
@@ -15187,6 +16123,45 @@
             ]
           ],
           "stickAngleDeg": 175
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -15278,7 +16253,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "LD collects cleanly behind net.\nRD opens on weak-side dot.",
             "pressureCones": [],
             "thisSpaceHalo": null,
@@ -15572,8 +16547,8 @@
           ],
           "outcomeGold": [
             [
-              545,
-              390
+              539,
+              399
             ],
             [
               605,
@@ -15582,8 +16557,8 @@
           ],
           "outcomeMiss": [
             [
-              545,
-              390
+              539,
+              399
             ],
             [
               525,
@@ -15650,8 +16625,8 @@
           ],
           "outcomeGold": [
             [
-              555,
-              375
+              561,
+              366
             ],
             [
               565,
@@ -15660,8 +16635,8 @@
           ],
           "outcomeMiss": [
             [
-              555,
-              375
+              561,
+              366
             ],
             [
               535,
@@ -15708,6 +16683,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -15798,7 +16812,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "LD hinges slightly behind RD.\nEasy angle away from F1!",
             "pressureCones": [],
             "thisSpaceHalo": null,
@@ -16267,6 +17281,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "away",
+          "start": [
+            902,
+            250
+          ],
+          "motion": [
+            [
+              902,
+              250
+            ],
+            [
+              902,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              902,
+              256
+            ],
+            [
+              899,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              902,
+              256
+            ],
+            [
+              902,
+              250
+            ]
+          ],
+          "stickAngleDeg": 180
         }
       ],
       "puck": {
@@ -16357,7 +17410,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "One-touch pop out to LW.\nGoalie and box shift left.",
             "pressureCones": [],
             "thisSpaceHalo": null,
@@ -16787,6 +17840,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -16870,7 +17962,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "RD chases up toward F1 too!\nF2 stands alone at paint.",
             "pressureCones": [],
             "thisSpaceHalo": null,
@@ -17240,6 +18332,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "away",
+          "start": [
+            902,
+            250
+          ],
+          "motion": [
+            [
+              902,
+              250
+            ],
+            [
+              902,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              902,
+              256
+            ],
+            [
+              899,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              902,
+              256
+            ],
+            [
+              902,
+              250
+            ]
+          ],
+          "stickAngleDeg": 180
         }
       ],
       "puck": {
@@ -17338,7 +18469,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "RW crashes deep too instead!\nOpponent F1 leaks behind all!",
             "pressureCones": [],
             "thisSpaceHalo": null,
@@ -17761,6 +18892,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -17859,7 +19029,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "C sinks all way to crease!\nHigh-slot F3 shoots alone.",
             "pressureCones": [],
             "thisSpaceHalo": null,
@@ -18244,6 +19414,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -18334,7 +19543,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Keep tight 1-stick gap.\nBlade mirrors puck on ice.",
             "pressureCones": [],
             "thisSpaceHalo": {
@@ -18687,6 +19896,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -18777,7 +20025,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Hold 1-stick middle gap.\nProtect Defensive House!",
             "pressureCones": [],
             "thisSpaceHalo": {
@@ -19130,6 +20378,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -19220,7 +20507,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Hold tight 1-stick gap.\nFunnel D1 toward LW trap.",
             "pressureCones": [],
             "thisSpaceHalo": {
@@ -19359,8 +20646,8 @@
           ],
           "outcomeGold": [
             [
-              120,
-              135
+              119,
+              142
             ],
             [
               135,
@@ -19369,8 +20656,8 @@
           ],
           "outcomeMiss": [
             [
-              120,
-              135
+              119,
+              142
             ],
             [
               120,
@@ -19515,8 +20802,8 @@
           ],
           "outcomeGold": [
             [
-              122,
-              108
+              123,
+              101
             ],
             [
               135,
@@ -19525,8 +20812,8 @@
           ],
           "outcomeMiss": [
             [
-              122,
-              108
+              123,
+              101
             ],
             [
               122,
@@ -19612,6 +20899,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -19706,7 +21032,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "F1 fires low-to-backdoor seam.\nF2 waits at weak post!",
             "pressureCones": [],
             "thisSpaceHalo": null,
@@ -19959,8 +21285,8 @@
           ],
           "outcomeGold": [
             [
-              355,
-              130
+              365,
+              128
             ],
             [
               395,
@@ -19969,8 +21295,8 @@
           ],
           "outcomeMiss": [
             [
-              355,
-              130
+              365,
+              128
             ],
             [
               345,
@@ -20115,8 +21441,8 @@
           ],
           "outcomeGold": [
             [
-              335,
-              135
+              325,
+              137
             ],
             [
               345,
@@ -20125,8 +21451,8 @@
           ],
           "outcomeMiss": [
             [
-              335,
-              135
+              325,
+              137
             ],
             [
               335,
@@ -20134,6 +21460,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -20228,7 +21593,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Goalie squares to wide shooter.\nF1 saucers cross-seam to F2!",
             "pressureCones": [],
             "thisSpaceHalo": null,
@@ -20695,6 +22060,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -20789,7 +22193,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "F1 jams cross-crease seam low.\nKeep active blade on ice!",
             "pressureCones": [],
             "thisSpaceHalo": null,
@@ -20965,7 +22369,7 @@
           "outcomeGold": [
             [
               882,
-              365
+              369
             ],
             [
               865,
@@ -20975,7 +22379,7 @@
           "outcomeMiss": [
             [
               882,
-              365
+              369
             ],
             [
               882,
@@ -21121,7 +22525,7 @@
           "outcomeGold": [
             [
               882,
-              332
+              328
             ],
             [
               875,
@@ -21131,7 +22535,7 @@
           "outcomeMiss": [
             [
               882,
-              332
+              328
             ],
             [
               882,
@@ -21214,6 +22618,45 @@
             [
               735,
               185
+            ]
+          ],
+          "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "away",
+          "start": [
+            902,
+            250
+          ],
+          "motion": [
+            [
+              902,
+              250
+            ],
+            [
+              902,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              902,
+              256
+            ],
+            [
+              899,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              902,
+              256
+            ],
+            [
+              902,
+              250
             ]
           ],
           "stickAngleDeg": 180
@@ -21304,7 +22747,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Curve high around D2 stick.\nOpen gold Attack Triangle!",
             "pressureCones": [],
             "thisSpaceHalo": {
@@ -21714,6 +23157,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "away",
+          "start": [
+            902,
+            250
+          ],
+          "motion": [
+            [
+              902,
+              250
+            ],
+            [
+              902,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              902,
+              256
+            ],
+            [
+              899,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              902,
+              256
+            ],
+            [
+              902,
+              250
+            ]
+          ],
+          "stickAngleDeg": 180
         }
       ],
       "puck": {
@@ -21804,7 +23286,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Loop high above F1 stick.\nCut middle into high slot!",
             "pressureCones": [],
             "thisSpaceHalo": {
@@ -21987,7 +23469,7 @@
           "outcomeGold": [
             [
               635,
-              265
+              275
             ],
             [
               645,
@@ -21997,7 +23479,7 @@
           "outcomeMiss": [
             [
               635,
-              265
+              275
             ],
             [
               635,
@@ -22143,7 +23625,7 @@
           "outcomeGold": [
             [
               635,
-              245
+              235
             ],
             [
               645,
@@ -22153,7 +23635,7 @@
           "outcomeMiss": [
             [
               635,
-              245
+              235
             ],
             [
               635,
@@ -22236,6 +23718,45 @@
             [
               695,
               325
+            ]
+          ],
+          "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "away",
+          "start": [
+            902,
+            250
+          ],
+          "motion": [
+            [
+              902,
+              250
+            ],
+            [
+              902,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              902,
+              256
+            ],
+            [
+              899,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              902,
+              256
+            ],
+            [
+              902,
+              250
             ]
           ],
           "stickAngleDeg": 180
@@ -22329,7 +23850,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "Curl underneath catching drop.\nAvoid middle F1 stick!",
             "pressureCones": [],
             "thisSpaceHalo": {
@@ -22729,6 +24250,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "home",
+          "start": [
+            96,
+            250
+          ],
+          "motion": [
+            [
+              96,
+              250
+            ],
+            [
+              96,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              96,
+              256
+            ],
+            [
+              99,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              96,
+              256
+            ],
+            [
+              96,
+              250
+            ]
+          ],
+          "stickAngleDeg": 0
         }
       ],
       "puck": {
@@ -22819,7 +24379,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "D1 fires instant counter-pass.\nChanging hands them 2-on-1!",
             "pressureCones": [],
             "thisSpaceHalo": null,
@@ -23180,6 +24740,45 @@
             ]
           ],
           "stickAngleDeg": 180
+        },
+        {
+          "id": "G",
+          "team": "away",
+          "start": [
+            902,
+            250
+          ],
+          "motion": [
+            [
+              902,
+              250
+            ],
+            [
+              902,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              902,
+              256
+            ],
+            [
+              899,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              902,
+              256
+            ],
+            [
+              902,
+              250
+            ]
+          ],
+          "stickAngleDeg": 180
         }
       ],
       "puck": {
@@ -23255,7 +24854,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "LD loops back safely with puck.\nZero pressure near bench door.",
             "pressureCones": [],
             "thisSpaceHalo": null,
@@ -23616,6 +25215,45 @@
             ]
           ],
           "stickAngleDeg": 0
+        },
+        {
+          "id": "G",
+          "team": "away",
+          "start": [
+            902,
+            250
+          ],
+          "motion": [
+            [
+              902,
+              250
+            ],
+            [
+              902,
+              256
+            ]
+          ],
+          "outcomeGold": [
+            [
+              902,
+              256
+            ],
+            [
+              899,
+              250
+            ]
+          ],
+          "outcomeMiss": [
+            [
+              902,
+              256
+            ],
+            [
+              902,
+              250
+            ]
+          ],
+          "stickAngleDeg": 180
         }
       ],
       "puck": {
@@ -23691,7 +25329,7 @@
           },
           {
             "label": "Beat 2 · Movement",
-            "durationSec": 5,
+            "durationSec": 4,
             "caption": "RD fires 200ft clear deep.\nOpponent D1 retreats all way!",
             "pressureCones": [],
             "thisSpaceHalo": null,

@@ -119,6 +119,192 @@ export function slicePolylineUpTo(points, progressRaw) {
   return out;
 }
 
+const HOME_ALIAS_MAP = Object.freeze({
+  C: 'C', CENTER: 'C', F1: 'C',
+  LW: 'LW', LEFTWING: 'LW', F2: 'LW',
+  RW: 'RW', RIGHTWING: 'RW', F3: 'RW',
+  LD: 'LD', LEFTD: 'LD', D1: 'LD',
+  RD: 'RD', RIGHTD: 'RD', D2: 'RD',
+  G: 'G', GK: 'G', GOALIE: 'G'
+});
+
+const AWAY_ALIAS_MAP = Object.freeze({
+  X1: 'X1', X2: 'X2', X3: 'X3', X4: 'X4', X5: 'X5',
+  F1: 'F1', F2: 'F2', F3: 'F3',
+  D1: 'D1', D2: 'D2',
+  C: 'F1', LW: 'F2', RW: 'F3', LD: 'D1', RD: 'D2',
+  G: 'G', GK: 'G', GOALIE: 'G'
+});
+
+export function normalizeRoleAlias(rawId, team = 'home') {
+  const clean = String(rawId || '').trim().toUpperCase().replace(/[\s_-]+/g, '');
+  if (!clean) return team === 'home' ? 'C' : 'X1';
+  if (team === 'home') {
+    return HOME_ALIAS_MAP[clean] || clean;
+  }
+  return AWAY_ALIAS_MAP[clean] || clean;
+}
+
+/**
+ * Normalizes a drill's full on-ice lineup (`C/LW/RW/LD/RD` <-> `F1..D2`, opponents `X1..X5` / `F1..D2`,
+ * Goalie `G`, and `puck` trajectory) so ZERO actors are ever dropped or vanish due to key mismatches.
+ */
+export function normalizeDrillLineup(drill) {
+  if (!drill || typeof drill !== 'object') return drill;
+  const rawSkaters = Array.isArray(drill.skaters) ? drill.skaters : [];
+  const usedHomeIds = new Set();
+  const usedAwayIds = new Set();
+  const normalizedSkaters = [];
+
+  for (const sk of rawSkaters) {
+    if (!sk || typeof sk !== 'object') continue;
+    const rawTeam = String(sk.team || '').toLowerCase();
+    const inferredTeam = rawTeam === 'away' || rawTeam === 'opp' || rawTeam === 'opponent' || /^X\d/i.test(String(sk.id || ''))
+      ? 'away'
+      : 'home';
+    let normId = normalizeRoleAlias(sk.id || sk.role, inferredTeam);
+
+    if (inferredTeam === 'home') {
+      if (usedHomeIds.has(normId) && normId !== 'G') {
+        const fallbackHome = ['C', 'LW', 'RW', 'LD', 'RD'].find(r => !usedHomeIds.has(r));
+        if (fallbackHome) normId = fallbackHome;
+      }
+      usedHomeIds.add(normId);
+    } else {
+      if (usedAwayIds.has(normId) && normId !== 'G') {
+        const fallbackAway = ['F1', 'F2', 'F3', 'D1', 'D2', 'X1', 'X2', 'X3', 'X4', 'X5'].find(r => !usedAwayIds.has(r));
+        if (fallbackAway) normId = fallbackAway;
+      }
+      usedAwayIds.add(normId);
+    }
+
+    const startPt = Array.isArray(sk.start) && sk.start.length >= 2
+      ? [Number(sk.start[0]) || 500, Number(sk.start[1]) || 250]
+      : (Array.isArray(sk.motion?.[0]) ? [Number(sk.motion[0][0]) || 500, Number(sk.motion[0][1]) || 250] : [500, 250]);
+
+    const motionPts = Array.isArray(sk.motion) && sk.motion.length >= 2
+      ? sk.motion.map(p => [Number(p[0]) || startPt[0], Number(p[1]) || startPt[1]])
+      : [[...startPt], [...startPt]];
+    motionPts[0] = [...startPt];
+    const motionEnd = motionPts[motionPts.length - 1];
+
+    const goldPts = Array.isArray(sk.outcomeGold) && sk.outcomeGold.length >= 2
+      ? sk.outcomeGold.map(p => [Number(p[0]) || motionEnd[0], Number(p[1]) || motionEnd[1]])
+      : [[...motionEnd], [...motionEnd]];
+    if (Math.hypot(goldPts[0][0] - motionEnd[0], goldPts[0][1] - motionEnd[1]) > 1) {
+      goldPts.unshift([...motionEnd]);
+    }
+
+    const missPts = Array.isArray(sk.outcomeMiss) && sk.outcomeMiss.length >= 2
+      ? sk.outcomeMiss.map(p => [Number(p[0]) || motionEnd[0], Number(p[1]) || motionEnd[1]])
+      : [[...motionEnd], [...motionEnd]];
+    if (Math.hypot(missPts[0][0] - motionEnd[0], missPts[0][1] - motionEnd[1]) > 1) {
+      missPts.unshift([...motionEnd]);
+    }
+
+    normalizedSkaters.push({
+      ...sk,
+      id: normId,
+      label: sk.label || normId,
+      team: inferredTeam,
+      start: startPt,
+      motion: motionPts,
+      outcomeGold: goldPts,
+      outcomeMiss: missPts
+    });
+  }
+
+  // Ensure all 5 canonical home roles exist unless explicitly a 3v3 concept
+  const isExplicit3v3 = /3v3/i.test(`${drill.title || ''} ${drill.briefing || ''}`);
+  if (!isExplicit3v3) {
+    const defaultHomeCoords = {
+      C: [240, 250],
+      LW: [275, 130],
+      RW: [275, 370],
+      LD: [160, 195],
+      RD: [160, 305]
+    };
+    for (const role of ['C', 'LW', 'RW', 'LD', 'RD']) {
+      if (!usedHomeIds.has(role)) {
+        const pt = defaultHomeCoords[role];
+        normalizedSkaters.push({
+          id: role,
+          label: role,
+          team: 'home',
+          start: [...pt],
+          motion: [[...pt], [pt[0] + 14, pt[1]]],
+          outcomeGold: [[pt[0] + 14, pt[1]], [pt[0] + 28, pt[1]]],
+          outcomeMiss: [[pt[0] + 14, pt[1]], [...pt]],
+          stickAngleDeg: 0
+        });
+        usedHomeIds.add(role);
+      }
+    }
+  }
+
+  // Ensure Goalie G is present on ice
+  if (!normalizedSkaters.some(s => s.id === 'G')) {
+    const isLeft = (drill.camera?.focusX ?? 500) < 500;
+    const gStart = isLeft ? [96, 250] : [902, 250];
+    const gMid = isLeft ? [96, 246] : [902, 246];
+    normalizedSkaters.push({
+      id: 'G',
+      label: 'G',
+      team: isLeft ? 'home' : 'away',
+      start: gStart,
+      motion: [gStart, gMid],
+      outcomeGold: [gMid, gStart],
+      outcomeMiss: [gMid, gStart],
+      stickAngleDeg: isLeft ? 0 : 180
+    });
+  }
+
+  const normYouRole = normalizeRoleAlias(drill.youRole || 'C', 'home');
+  const youSk = normalizedSkaters.find(s => s.id === normYouRole) || normalizedSkaters[0];
+  const fallbackStart = youSk ? [...youSk.start] : [500, 250];
+  const fallbackEnd = youSk ? [...youSk.motion[youSk.motion.length - 1]] : [525, 250];
+
+  const rawPuck = drill.puck || {};
+  const livePath = Array.isArray(rawPuck.livePath) && rawPuck.livePath.length >= 1
+    ? rawPuck.livePath.map(p => [Number(p[0]) || fallbackStart[0], Number(p[1]) || fallbackStart[1]])
+    : [fallbackStart, fallbackEnd];
+  if (livePath.length === 1) livePath.push([livePath[0][0] + 16, livePath[0][1]]);
+  const liveEnd = livePath[livePath.length - 1];
+
+  const goldPath = Array.isArray(rawPuck.goldPath) && rawPuck.goldPath.length >= 1
+    ? rawPuck.goldPath.map(p => [Number(p[0]) || liveEnd[0], Number(p[1]) || liveEnd[1]])
+    : [[...liveEnd], [Math.min(900, liveEnd[0] + 60), liveEnd[1]]];
+  if (Math.hypot(goldPath[0][0] - liveEnd[0], goldPath[0][1] - liveEnd[1]) > 1) {
+    goldPath.unshift([...liveEnd]);
+  }
+  if (goldPath.length === 1) goldPath.push([...liveEnd]);
+
+  const missPath = Array.isArray(rawPuck.missPath) && rawPuck.missPath.length >= 1
+    ? rawPuck.missPath.map(p => [Number(p[0]) || liveEnd[0], Number(p[1]) || liveEnd[1]])
+    : [[...liveEnd], [...fallbackStart]];
+  if (Math.hypot(missPath[0][0] - liveEnd[0], missPath[0][1] - liveEnd[1]) > 1) {
+    missPath.unshift([...liveEnd]);
+  }
+  if (missPath.length === 1) missPath.push([...liveEnd]);
+
+  return {
+    ...drill,
+    youRole: POSITIONS_SET_5.has(normYouRole) ? normYouRole : 'C',
+    camera: drill.camera && typeof drill.camera === 'object'
+      ? drill.camera
+      : { focusX: 500, focusY: 250, zoom: 1.25 },
+    skaters: normalizedSkaters,
+    puck: {
+      ...rawPuck,
+      livePath,
+      goldPath,
+      missPath
+    }
+  };
+}
+
+const POSITIONS_SET_5 = new Set(['C', 'LW', 'RW', 'LD', 'RD']);
+
 export class WhiteIceRink1000x500 {
   constructor(canvas, options = {}) {
     this.canvas = canvas;
@@ -192,7 +378,7 @@ export class WhiteIceRink1000x500 {
     return pts;
   }
 
-  syncCanvasResolution(focalPoints = []) {
+  syncCanvasResolution(focalPoints = [], viewportBoundsPoints = []) {
     if (!this.canvas) return this._viewportTransform;
     const rect = this.canvas.getBoundingClientRect();
     const cssW = Math.max(260, Math.round(rect.width || this.canvas.clientWidth || 720));
@@ -217,9 +403,13 @@ export class WhiteIceRink1000x500 {
     let worldFocusX = portrait ? this.camera.focusY : this.camera.focusX;
     let worldFocusY = portrait ? (RINK_SPEC.WIDTH - this.camera.focusX) : this.camera.focusY;
 
-    // Kid-Clarity Viewport Lock: guarantee YOU + all candidate targets sit >= 28px inside canvas edges
+    // Kid-Clarity Viewport Lock + Full Actor Bounds: guarantee YOU, all targets, & all on-ice skaters/puck sit >= 28px inside canvas edges
     const minInsetPx = 28;
-    const worldFocals = (Array.isArray(focalPoints) ? focalPoints : []).map(fp => {
+    const combinedBounds = [
+      ...(Array.isArray(focalPoints) ? focalPoints : []),
+      ...(Array.isArray(viewportBoundsPoints) ? viewportBoundsPoints : [])
+    ];
+    const worldFocals = combinedBounds.map(fp => {
       const lx = Array.isArray(fp) ? fp[0] : fp.x;
       const ly = Array.isArray(fp) ? fp[1] : fp.y;
       return {
@@ -245,7 +435,7 @@ export class WhiteIceRink1000x500 {
       const spanWY = Math.max(1, maxWY - minWY);
       const maxFitScale = Math.min(availW / spanWX, availH / spanWY);
       if (scale > maxFitScale) {
-        scale = Math.max(baseScale * 0.84, maxFitScale * 0.98);
+        scale = Math.max(baseScale * 0.72, maxFitScale * 0.98);
       }
 
       // Clamp worldFocusX / worldFocusY so [minWX..maxWX] and [minWY..maxWY] stay >= minInsetPx inside [0..cssW, 0..cssH]
@@ -774,15 +964,21 @@ export class WhiteIceRink1000x500 {
     ctx.lineTo(bx, by);
     ctx.stroke();
 
-    // 2. Pulsing bright Teal (#14B8A6) "YOU" Halo
+    // 2. Pulsing Gold + Teal "YOU ARE" Crease Halo under the user's skater
     if (isYou) {
-      const pulseR = r + 7 + 3.5 * Math.sin(nowMs * 0.006);
+      const goldR = r + 11 + 3.5 * Math.sin(nowMs * 0.006);
       ctx.beginPath();
-      ctx.arc(x, y, pulseR, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(20, 184, 166, 0.24)';
+      ctx.arc(x, y, goldR, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(251, 191, 36, 0.24)';
       ctx.fill();
+      ctx.strokeStyle = '#F59E0B';
+      ctx.lineWidth = 3.0;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(x, y, r + 4.5, 0, Math.PI * 2);
       ctx.strokeStyle = '#14B8A6';
-      ctx.lineWidth = 2.8;
+      ctx.lineWidth = 2.2;
       ctx.stroke();
     } else if (isCulpritHighlight) {
       ctx.beginPath();
@@ -795,27 +991,28 @@ export class WhiteIceRink1000x500 {
     }
 
     // 3. Crisp Token Circle: Teal-rimmed Navy for YOU, solid Navy (#0F2942) for teammates, Crimson (#DC2626) for opponents
+    const isGoalie = sk.id === 'G';
     ctx.beginPath();
-    ctx.arc(x, y, r, 0, Math.PI * 2);
-    ctx.fillStyle = isYou ? '#0D9488' : (isHome ? '#0F2942' : (sk.ghosted ? '#64748B' : '#DC2626'));
+    ctx.arc(x, y, isGoalie ? r * 0.92 : r, 0, Math.PI * 2);
+    ctx.fillStyle = isYou ? '#0D9488' : (isHome ? (isGoalie ? '#1E3A8A' : '#0F2942') : (sk.ghosted ? '#64748B' : (isGoalie ? '#991B1B' : '#DC2626')));
     ctx.fill();
-    ctx.strokeStyle = isYou ? '#0F2942' : '#FFFFFF';
+    ctx.strokeStyle = isYou ? '#FBBF24' : (isGoalie ? '#38BDF8' : '#FFFFFF');
     ctx.lineWidth = 2.6;
     ctx.stroke();
 
     ctx.restore();
 
-    // 4. Upright Role Text inside circle + bold "YOU" badge above
+    // 4. Upright Role Text inside circle + bold Gold/Teal "YOU" badge above
     this._drawUprightText(ctx, x, y, sk.label || sk.id, {
       font: `900 ${isYou ? 13 : 12}px Inter, system-ui, sans-serif`,
       color: '#FFFFFF'
     });
 
     if (isYou && !isGhost) {
-      this._drawUprightBadge(ctx, x, y - r - 13, 'YOU', {
-        bg: '#14B8A6',
+      this._drawUprightBadge(ctx, x, y - r - 14, 'YOU', {
+        bg: '#FBBF24',
         border: '#0F2942',
-        color: '#042F2E'
+        color: '#0F172A'
       });
     }
     if (sk.chainBadge) {
@@ -1155,7 +1352,21 @@ export class WhiteIceRink1000x500 {
     const ctx = this.ctx;
     if (scene.camera) this.setCamera(scene.camera);
     const focalPts = this._extractSceneFocalPoints(scene);
-    const vt = this.syncCanvasResolution(focalPts);
+    const extraBounds = Array.isArray(scene.viewportBoundsPoints) ? [...scene.viewportBoundsPoints] : [];
+    const hiddenSetForBounds = new Set(scene.hiddenSkaterIds || []);
+    if (Array.isArray(scene.skaters)) {
+      for (const sk of scene.skaters) {
+        if (hiddenSetForBounds.has(sk.id)) continue;
+        const p = sk.pos || sk.start;
+        if (Array.isArray(p) && typeof p[0] === 'number' && typeof p[1] === 'number') {
+          extraBounds.push([p[0], p[1]]);
+        }
+      }
+    }
+    if (Array.isArray(scene.puckPos) && typeof scene.puckPos[0] === 'number') {
+      extraBounds.push([scene.puckPos[0], scene.puckPos[1]]);
+    }
+    const vt = this.syncCanvasResolution(focalPts, extraBounds);
     const nowMs = scene.nowMs ?? (typeof performance !== 'undefined' ? performance.now() : Date.now());
 
     // Build protected CSS bounding circles for YOU + all active target zones so callout pills NEVER occlude them!
@@ -1265,10 +1476,36 @@ export class WhiteIceRink1000x500 {
 
     ctx.restore();
 
+    const renderedSkaters = Array.isArray(scene.skaters)
+      ? scene.skaters.filter(sk => !hiddenSet.has(sk.id))
+      : [];
+    let visibleSkaterCount = 0;
+    for (const sk of renderedSkaters) {
+      const p = sk.pos || sk.start || [500, 250];
+      const cssPt = this.logicalToCss(p[0], p[1]);
+      if (cssPt.x >= 4 && cssPt.x <= vt.cssW - 4 && cssPt.y >= 4 && cssPt.y <= vt.cssH - 4) {
+        visibleSkaterCount += 1;
+      }
+    }
+    let puckVisible = false;
+    if (Array.isArray(scene.puckPos) && typeof scene.puckPos[0] === 'number') {
+      const pCss = this.logicalToCss(scene.puckPos[0], scene.puckPos[1]);
+      puckVisible = pCss.x >= 2 && pCss.x <= vt.cssW - 2 && pCss.y >= 2 && pCss.y <= vt.cssH - 2;
+    }
+
     this._lastFrameAudit = {
       cssW: vt.cssW,
       cssH: vt.cssH,
       scale: vt.scale,
+      skaterCount: renderedSkaters.length,
+      visibleSkaterCount,
+      puckVisible,
+      puckLogical: Array.isArray(scene.puckPos) ? [...scene.puckPos] : null,
+      skaterPositions: renderedSkaters.map(sk => ({
+        id: sk.id,
+        team: sk.team,
+        pos: [...(sk.pos || sk.start || [500, 250])]
+      })),
       protectedCircles: this._protectedCssCircles || [],
       calloutRects: this._renderedCalloutRects || []
     };

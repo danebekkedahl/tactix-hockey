@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v15.1-pass2-visual-overhaul';
+const CACHE_NAME = 'synapz-hockey-v15.2-evan-walkthrough-complete';
 const PRECACHE_ASSETS = [
   './',
   './index.html',
