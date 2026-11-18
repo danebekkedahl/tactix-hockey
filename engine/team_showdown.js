@@ -1219,7 +1219,7 @@ export class TeamShowdownController {
 
           <!-- Warmup Ice Lobby 3D Avatars Grid -->
           <div>
-            <div class="text-xs font-black uppercase text-slate-300 mb-2">⛸️ Skaters in Warmup Lobby (${players.length})</div>
+            <div class="text-xs font-black uppercase text-slate-300 mb-2">🏒 Skaters in Warmup Lobby (${players.length})</div>
             <div id="v14ShowdownLobbyGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
               ${players.map(p => `
                 <div data-lobby-skater="${escapeHtml(p.id)}" class="p-3 rounded-2xl bg-slate-950 border ${p.id === this.localPlayerId ? 'border-teal-400 shadow-lg' : 'border-slate-800'} flex flex-col items-center text-center gap-1">

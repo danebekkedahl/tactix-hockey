@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v15.0-pass1-walkthrough-overhaul';
+const CACHE_NAME = 'synapz-hockey-v15.1-pass2-visual-overhaul';
 const PRECACHE_ASSETS = [
   './',
   './index.html',
@@ -9,6 +9,10 @@ const PRECACHE_ASSETS = [
   './engine/modes_9pack.js',
   './engine/blooket_payoff.js',
   './engine/team_showdown.js',
+  './engine/skater_renderer_360.js',
+  './engine/gear_art_75_25.js',
+  './engine/nhl_atlas_map.js',
+  './engine/trophy_case_3shelf.js',
   './engine/v14_bootstrap.js',
   './drills/catalog_45.json',
   './apple-touch-icon.png',

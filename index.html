@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="SYNAPZ HOCKEY" />
   <meta name="application-name" content="SYNAPZ HOCKEY" />
   <meta name="theme-color" content="#0d1829" />
-  <title>SYNAPZ HOCKEY v15.0 — Play. Learn. Dominate. (32-City Road to the Cup)</title>
+  <title>SYNAPZ HOCKEY v15.1 — Play. Learn. Dominate. (32-City Road to the Cup)</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
@@ -1777,7 +1777,7 @@
           </span>
           <span id="skaterSetupTag" class="hidden">5v5 • Half Ice • 10 Pts</span>
           <button id="btnOpenCityIntroFromGame" type="button" class="hidden">🏙️ Town Info</button>
-          <button id="btnTogglePovMode" type="button" class="hidden">🥽 In-Skates 3D POV</button>
+          <button id="btnTogglePovMode" type="button" class="hidden">🏒 In-Skates 3D POV</button>
           <button id="btnToggleFullscreenRink" type="button" class="hidden">⛶ Full Rink</button>
           <button id="btnPrevDrill" type="button" class="hidden">◀ Prev</button>
           <button id="btnNextDrill" type="button" class="hidden">Next ▶</button>
@@ -2113,7 +2113,7 @@
               </button>
 
               <button id="btnRibbonPov" type="button" class="w-full py-1 px-1.5 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-400/40 text-indigo-200 font-extrabold text-[10px] flex items-center justify-center gap-1 transition">
-                <span>🥽 3D POV</span>
+                <span>🏒 3D POV</span>
               </button>
 
               <button id="btnRibbonFullscreen" type="button" class="w-full py-1 px-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/40 text-cyan-200 font-extrabold text-[10px] flex items-center justify-center gap-1 transition" title="Switch between Half-Ice Focus and Full-Ice Sheet">
@@ -3202,7 +3202,7 @@
               <label class="text-[11px] font-bold text-slate-300 block mb-1">Camera View</label>
               <select id="selectCustomView" class="w-full px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
                 <option value="plan">📋 2D Rink</option>
-                <option value="pov">🥽 3D POV</option>
+                <option value="pov">🏒 3D POV</option>
               </select>
             </div>
             <div>
@@ -3254,72 +3254,62 @@
 
       <!-- 2. Helmet & Bucket Shelves -->
       <button id="proShopHotspotHelmets" type="button" data-shop-fixture="Visor" aria-label="Helmet Wall" class="synapz-golden-gear-hotspot" style="left: 33.5%; top: 25.5%; width: 16.8%; height: 48.5%;">
-        <span class="synapz-room-object-pin-label" style="top: 10%; left: 50%; transform: translateX(-50%);">🥽 Helmets &amp; Visors</span>
+        <span class="synapz-room-object-pin-label" style="top: 10%; left: 50%; transform: translateX(-50%);">🛡️ Helmets &amp; Visors</span>
       </button>
 
-      <!-- 3. Center Glove & Jersey Showcase Counter -->
-      <button id="proShopHotspotGloves" type="button" data-shop-fixture="Gloves" aria-label="Gloves Counter" class="synapz-golden-gear-hotspot" style="left: 39.5%; top: 55.0%; width: 29.5%; height: 39.0%;">
-        <span class="synapz-room-object-pin-label" style="bottom: 12%; left: 50%; transform: translateX(-50%);">🧤 Gloves Counter</span>
+      <!-- 3. Center Glove Showcase -->
+      <button id="proShopHotspotGloves" type="button" data-shop-fixture="Gloves" aria-label="Gloves" class="synapz-golden-gear-hotspot" style="left: 39.5%; top: 55.0%; width: 29.5%; height: 39.0%;">
+        <span class="synapz-room-object-pin-label" style="bottom: 12%; left: 50%; transform: translateX(-50%);">🏒 Gloves</span>
       </button>
 
       <!-- 4. Try-On Floor / Visor Alcove -->
       <button id="proShopHotspotShowcaseCounter" type="button" data-shop-fixture="Visor" aria-label="Try-On Floor" class="synapz-golden-gear-hotspot" style="left: 72.0%; top: 29.5%; width: 15.5%; height: 52.0%;">
-        <span class="synapz-room-object-pin-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">🪞 3D Try-On Floor</span>
+        <span class="synapz-room-object-pin-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">🪞 360° Try-On Floor</span>
       </button>
 
       <!-- 5. Right Illuminated Skate Wall -->
       <button id="proShopHotspotSkates" type="button" data-shop-fixture="Skates" aria-label="Skate Wall" class="synapz-golden-gear-hotspot" style="left: 88.5%; top: 18.0%; width: 11.2%; height: 76.0%;">
-        <span class="synapz-room-object-pin-label" style="top: 14%; left: 50%; transform: translateX(-50%);">⛸️ Skate Wall</span>
+        <span class="synapz-room-object-pin-label" style="top: 14%; left: 50%; transform: translateX(-50%);">⚡ Skate Wall</span>
       </button>
     </div>
 
-    <!-- Floating Rack Overlay Drawer (Opens When Any Wall/Shelf/Counter Is Tapped — Fits Inside 100dvh!) -->
-    <div id="proShopRackOverlaySheet" class="hidden fixed inset-x-2.5 bottom-2.5 sm:inset-x-auto sm:w-[92vw] sm:max-w-4xl max-h-[82dvh] overflow-y-auto z-50 rounded-2xl bg-slate-950/95 border-2 border-amber-400/80 p-3.5 shadow-2xl space-y-2.5 backdrop-blur-xl">
+    <!-- Floating Rack Overlay Drawer (Single Live 360° Try-On Skater + Streamlined Gear Cards; Zero "Go to Locker Room Bag"!) -->
+    <div id="proShopRackOverlaySheet" class="hidden fixed inset-x-2.5 bottom-2.5 sm:inset-x-auto sm:w-[94vw] sm:max-w-5xl max-h-[84dvh] overflow-y-auto z-50 rounded-2xl bg-slate-950/96 border-2 border-amber-400/80 p-3.5 shadow-2xl space-y-2.5 backdrop-blur-xl">
       <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
-        <div class="flex flex-wrap items-center gap-1.5">
-          <button type="button" id="btnWallStick" data-shopcat="Stick" data-shop-cat="Stick" class="shop-cat-btn px-2.5 py-1.5 rounded-xl text-[11px] font-black border border-slate-700 bg-slate-900 text-slate-200">🏒 Sticks</button>
-          <button type="button" id="btnWallVisor" data-shopcat="Visor" data-shop-cat="Visor" class="shop-cat-btn px-2.5 py-1.5 rounded-xl text-[11px] font-black border border-slate-700 bg-slate-900 text-slate-200">🥽 Helmets &amp; Visors</button>
-          <button type="button" id="btnWallGloves" data-shopcat="Gloves" data-shop-cat="Gloves" class="shop-cat-btn px-2.5 py-1.5 rounded-xl text-[11px] font-black border border-cyan-300 bg-cyan-500 text-slate-950">🧤 Gloves &amp; Counter</button>
-          <button type="button" id="btnWallSkates" data-shopcat="Skates" data-shop-cat="Skates" class="shop-cat-btn px-2.5 py-1.5 rounded-xl text-[11px] font-black border border-slate-700 bg-slate-900 text-slate-200">⛸️ Skates</button>
+        <div id="proShopCategoryTabsBar" class="flex flex-wrap items-center gap-1.5">
+          <button type="button" id="btnWallStick" data-shopcat="Stick" data-shop-cat="Stick" class="shop-cat-btn px-3 py-1.5 rounded-xl text-xs font-black border border-slate-700 bg-slate-900 text-slate-200 inline-flex items-center gap-1.5 cursor-pointer">Sticks</button>
+          <button type="button" id="btnWallVisor" data-shopcat="Visor" data-shop-cat="Visor" class="shop-cat-btn px-3 py-1.5 rounded-xl text-xs font-black border border-slate-700 bg-slate-900 text-slate-200 inline-flex items-center gap-1.5 cursor-pointer">Helmets &amp; Visors</button>
+          <button type="button" id="btnWallGloves" data-shopcat="Gloves" data-shop-cat="Gloves" class="shop-cat-btn px-3 py-1.5 rounded-xl text-xs font-black border border-cyan-300 bg-cyan-500 text-slate-950 inline-flex items-center gap-1.5 cursor-pointer">Gloves</button>
+          <button type="button" id="btnWallSkates" data-shopcat="Skates" data-shop-cat="Skates" class="shop-cat-btn px-3 py-1.5 rounded-xl text-xs font-black border border-slate-700 bg-slate-900 text-slate-200 inline-flex items-center gap-1.5 cursor-pointer">Skates</button>
         </div>
         <div class="flex items-center gap-1.5">
-          <button id="btnOpenCustomAvatarFromShop" type="button" class="px-2.5 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/35 border border-emerald-400/70 text-emerald-200 text-[11px] font-black">
-            🎒 Go to Locker Room Bag
-          </button>
-          <button id="btnCloseProShopRackDrawer" type="button" class="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-black">✕ Close Rack</button>
+          <button id="btnCloseProShopRackDrawer" type="button" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-black cursor-pointer">✕ Close</button>
         </div>
       </div>
 
       <div id="proShopEquipmentBagToast" class="hidden p-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400 text-emerald-200 text-xs font-black flex flex-wrap items-center justify-between gap-2"></div>
 
       <div id="proShopInteractiveDrawer" class="grid grid-cols-1 md:grid-cols-12 gap-3 items-start">
-        <div id="proShopTryOnAvatarPreviewBox" class="md:col-span-4 bg-slate-900/95 border border-amber-400/60 rounded-2xl p-2.5 flex flex-col items-center gap-2">
+        <!-- SINGLE LARGE LIVE 360° CUSTOM SKATER FLOOR STAGE (Zero Twin CURRENT/TRY-ON Mini Static Boxes!) -->
+        <div id="proShopTryOnAvatarPreviewBox" class="md:col-span-4 bg-slate-900/95 border border-amber-400/60 rounded-2xl p-3 flex flex-col items-center gap-2">
           <div class="w-full flex items-center justify-between text-[10px] font-black text-amber-300">
-            <span id="shopPreviewBanner">3D Try-On Mirror</span>
-            <span id="shopSpinAngleBadge" class="text-cyan-300">3D Skater</span>
+            <span id="shopPreviewBanner">Live 360° Skater Floor</span>
+            <span id="shopSpinAngleBadge" class="text-cyan-300">Front (0°)</span>
           </div>
-          <div id="proShopTryOnComparisonGrid" class="w-full grid grid-cols-2 gap-1.5 items-center bg-slate-950/90 border border-slate-800 rounded-xl p-1.5">
-            <div class="flex flex-col items-center text-center border-r border-slate-800 pr-1">
-              <span class="text-[9px] font-black uppercase text-slate-400">Current</span>
-              <div id="proShopCurrentAvatarWrap" class="w-20 h-32 flex items-center justify-center"></div>
-              <span id="proShopCurrentLoadoutLabel" class="text-[9px] font-bold text-slate-300 truncate max-w-full">Equipped</span>
-            </div>
-            <div class="flex flex-col items-center text-center pl-1">
-              <span class="text-[9px] font-black uppercase text-cyan-300">Try-On</span>
-              <div id="proShopTryOnAvatarCanvas" class="w-20 h-32 flex items-center justify-center">
-                <div id="shop3dAvatarSvgWrap" class="w-full h-full flex items-center justify-center"></div>
-              </div>
-              <span id="proShopTryOnDeltaBadge" class="text-[9px] font-black text-amber-300 truncate max-w-full">Select Item</span>
-            </div>
+          <div id="proShopTryOnAvatarCanvas" class="w-full h-56 sm:h-64 rounded-xl bg-slate-950/90 border border-slate-800 flex items-center justify-center p-2">
+            <div id="shop3dAvatarSvgWrap" class="w-full h-full flex items-center justify-center"></div>
           </div>
-          <div id="shopPreviewItemName" class="text-[11px] font-extrabold text-amber-200 text-center">Tap any item to try it on or add to your Equipment Bag!</div>
-          <button id="btnBuyPreviewedItemNow" type="button" class="hidden w-full py-2 px-3 rounded-xl bg-gradient-to-r from-amber-400 to-emerald-400 text-slate-950 text-xs font-black shadow"></button>
+          <div id="proShopTryingOnPill" class="w-full px-2.5 py-1 rounded-xl bg-slate-950 border border-cyan-400/55 text-[11px] font-black text-cyan-200 text-center" style="white-space:normal;">
+            Tap any gear card to try it on live
+          </div>
+          <div id="shopPreviewItemName" class="hidden"></div>
+          <button id="btnBuyPreviewedItemNow" type="button" class="hidden w-full py-2 px-3 rounded-xl bg-gradient-to-r from-amber-400 to-emerald-400 text-slate-950 text-xs font-black shadow cursor-pointer"></button>
           <div class="flex items-center gap-1.5 w-full">
-            <button id="btnFlipShopBack" type="button" class="flex-1 py-1 px-2 rounded-lg bg-slate-800 text-amber-200 text-[10px] font-black">🔄 Flip</button>
-            <button id="btnShopPreviewBlackout" type="button" class="flex-1 py-1 px-2 rounded-lg bg-slate-800 text-cyan-200 text-[10px] font-black">🖤 Blackout</button>
+            <button id="btnFlipShopBack" type="button" class="flex-1 py-1.5 px-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-cyan-400/50 text-cyan-200 text-[11px] font-black cursor-pointer">🔄 Spin 360° (Front / Back)</button>
           </div>
-          <button id="btnClearShopPreview" type="button" class="hidden w-full py-1 rounded-lg bg-slate-800 text-slate-300 text-[10px] font-bold">↺ Reset Preview</button>
+          <button id="btnClearShopPreview" type="button" class="hidden w-full py-1.5 px-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-amber-400/55 text-amber-200 text-[11px] font-black cursor-pointer">↺ Reset to Equipped</button>
           <div class="hidden">
+            <button id="btnShopPreviewBlackout" type="button">Blackout</button>
             <button id="btnToggleShopSpin" type="button">Spin</button>
             <input id="sliderShopSpin" type="range" min="0" max="360" value="0" />
             <button id="btnCloseProShopBottom" type="button">Done</button>
@@ -3327,8 +3317,8 @@
         </div>
 
         <div class="md:col-span-8 flex flex-col gap-2">
-          <div id="proShopBrandShowcaseRack" class="p-2.5 rounded-xl bg-slate-900/95 border border-amber-400/60"></div>
-          <div id="proShopItemsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[42dvh] overflow-y-auto pr-1"></div>
+          <div id="proShopBrandShowcaseRack" class="hidden"></div>
+          <div id="proShopItemsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[58dvh] overflow-y-auto pr-1"></div>
         </div>
       </div>
     </div>
@@ -3807,7 +3797,7 @@
             <!-- Customization #4: Team Jersey Color Customizer & Coaching Pace Override -->
             <div id="coachJerseyAndPacePanel" class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 space-y-2">
               <div class="flex flex-wrap items-center justify-between gap-2">
-                <span class="text-[11px] font-black text-emerald-300">🎽 3. Team Sweater Colors (Rendered on Ice) &amp; Coaching Pace Override</span>
+                <span class="text-[11px] font-black text-emerald-300">🏒 3. Team Sweater Colors (Rendered on Ice) &amp; Coaching Pace Override</span>
                 <div class="flex items-center gap-1.5">
                   <button type="button" data-team-primary="#0284c7" data-team-secondary="#fbbf24" data-jersey-preset="#0284c7,#fbbf24" class="btn-team-jersey-preset px-2 py-0.5 rounded bg-sky-600 text-white text-[9px] font-black border border-amber-300">Wolves Blue/Gold</button>
                   <button type="button" data-team-primary="#ea580c" data-team-secondary="#f8fafc" data-jersey-preset="#ea580c,#f8fafc" class="btn-team-jersey-preset px-2 py-0.5 rounded bg-orange-600 text-white text-[9px] font-black border border-white">Flyers Orange</button>
@@ -4146,7 +4136,7 @@
             Info
           </button>
         </div>
-        <div id="synapzAppBuildVersionBadge" class="text-[10px] font-bold text-slate-500 tracking-wider select-none">SYNAPZ HOCKEY v15.0</div>
+        <div id="synapzAppBuildVersionBadge" class="text-[10px] font-bold text-slate-500 tracking-wider select-none">SYNAPZ HOCKEY v15.1</div>
       </div>
 
       <!-- ================================================================= -->
@@ -4157,7 +4147,7 @@
           <button id="btnBackFromInfoToScreen1" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-black text-cyan-300">
             ← Back
           </button>
-          <span class="text-sm font-black text-white uppercase tracking-wider">Info Hub • v15.0</span>
+          <span class="text-sm font-black text-white uppercase tracking-wider">Info Hub • v15.1</span>
         </div>
 
         <!-- 3 Clean Info Tabs: Contact, Support, FAQ -->
@@ -4423,18 +4413,19 @@
         <!-- STEP 2: BUILD YOUR SKATER (2-COLUMN ZERO-SCROLL VIEWPORT-FITTED GRID ON IPAD LANDSCAPE!) -->
         <div id="slotSetupStep2StockAvatar" class="hidden" style="max-height: calc(100dvh - 80px);">
           <div id="slotSetupStep2AvatarCard" class="p-2.5 sm:p-3 rounded-2xl bg-slate-950/95 border border-cyan-400/60 grid grid-cols-1 md:grid-cols-12 gap-3 items-stretch">
-            <!-- LEFT COLUMN: Clean Skater Preview + 8 Avatar Selector + Flip (ZERO Meta Clutter!) -->
-            <div class="md:col-span-5 flex flex-col justify-between gap-2 p-2 rounded-xl bg-slate-900/90 border border-slate-800">
+            <!-- LEFT COLUMN: Live 360° Customizable Skater Stage (Zero Static Cutout Thumbnails!) -->
+            <div class="md:col-span-5 flex flex-col justify-between gap-1.5 p-2 rounded-xl bg-slate-900/90 border border-slate-800">
               <div class="flex items-center justify-between gap-1.5">
                 <button id="btnSlotStep2BackTo1" type="button" class="px-2.5 py-1 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-700 text-slate-200 text-[10px] font-black cursor-pointer">
                   ← Guides
                 </button>
-                <button id="btnSlotSetupFlipPreview" type="button" class="px-2.5 py-1 rounded-lg bg-slate-950 hover:bg-slate-800 border border-cyan-400/50 text-cyan-200 text-[10px] font-black cursor-pointer">
-                  🔄 Flip Front / Back
+                <button id="btnSlotSetupFlipPreview" type="button" class="px-2.5 py-1 rounded-lg bg-slate-950 hover:bg-slate-800 border border-cyan-400/60 text-cyan-200 text-[10px] font-black cursor-pointer">
+                  🔄 Spin 360° (Front / Back)
                 </button>
               </div>
-              <div id="slotSetupLiveSkaterPreview" class="w-full h-36 md:h-44 flex items-center justify-center"></div>
-              <div id="slotSetupStep2StockAvatarsGrid" class="grid grid-cols-4 gap-1"></div>
+              <div id="slotSetupLiveSkaterPreview" class="w-full h-48 md:h-56 flex items-center justify-center"></div>
+              <div class="text-[10px] font-bold text-slate-400 text-center">Drag left/right or tap Spin 360° to inspect front &amp; back</div>
+              <div id="slotSetupStep2StockAvatarsGrid" class="hidden"></div>
             </div>
 
             <!-- RIGHT COLUMN: Compact Name, #Number, Age Band, Position, Skin Tone, HAIR, Hair Color, Jersey Color & Enter the Rink CTA -->
@@ -4502,24 +4493,25 @@
                 </div>
               </div>
 
-              <!-- Row 3: HAIR (Style Pills incl. Mohawk) -->
+              <!-- Row 3: HAIR (Style Pills: Flow, Short, Ponytail, Curly, Mohawk, Braids) -->
               <div>
                 <label class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">HAIR</label>
                 <select id="slotSetupHairStyle" class="hidden">
                   <option value="flow" selected>Flow</option>
-                  <option value="mohawk">Mohawk</option>
                   <option value="short">Short</option>
                   <option value="ponytail">Ponytail</option>
+                  <option value="curly">Curly</option>
+                  <option value="mohawk">Mohawk</option>
                   <option value="braids">Braids</option>
                   <option value="buzz">Buzz</option>
                 </select>
                 <div id="slotSetupHairStylePills" class="grid grid-cols-6 gap-1">
                   <button type="button" data-hair-style-pill="flow" class="slot-hairstyle-pill py-1 px-1 rounded-lg bg-cyan-400 text-slate-950 text-[10px] font-black shadow cursor-pointer">Flow</button>
-                  <button type="button" data-hair-style-pill="mohawk" class="slot-hairstyle-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[10px] font-bold cursor-pointer">Mohawk</button>
                   <button type="button" data-hair-style-pill="short" class="slot-hairstyle-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[10px] font-bold cursor-pointer">Short</button>
                   <button type="button" data-hair-style-pill="ponytail" class="slot-hairstyle-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[10px] font-bold cursor-pointer">Ponytail</button>
+                  <button type="button" data-hair-style-pill="curly" class="slot-hairstyle-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[10px] font-bold cursor-pointer">Curly</button>
+                  <button type="button" data-hair-style-pill="mohawk" class="slot-hairstyle-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[10px] font-bold cursor-pointer">Mohawk</button>
                   <button type="button" data-hair-style-pill="braids" class="slot-hairstyle-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[10px] font-bold cursor-pointer">Braids</button>
-                  <button type="button" data-hair-style-pill="buzz" class="slot-hairstyle-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[10px] font-bold cursor-pointer">Buzz</button>
                 </div>
               </div>
 
@@ -4537,11 +4529,12 @@
                 <div class="col-span-7">
                   <label class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Hair Color</label>
                   <div id="slotSetupHairColorPills" class="flex flex-wrap items-center gap-1">
-                    <button type="button" data-hair-hex="#facc15" data-hair-color="Blonde" title="Blonde" aria-label="Hair Color Blonde" class="slot-hair-pill px-2 py-1 rounded-lg bg-yellow-400 text-slate-950 text-[9px] font-black border border-white/40 cursor-pointer">Blonde</button>
-                    <button type="button" data-hair-hex="#78350f" data-hair-color="Brown" title="Brown" aria-label="Hair Color Brown" class="slot-hair-pill px-2 py-1 rounded-lg bg-amber-900 text-white text-[9px] font-black ring-2 ring-cyan-300 cursor-pointer">Brown</button>
-                    <button type="button" data-hair-hex="#111827" data-hair-color="Black" title="Black" aria-label="Hair Color Black" class="slot-hair-pill px-2 py-1 rounded-lg bg-slate-950 text-slate-100 text-[9px] font-black border border-slate-500 cursor-pointer">Black</button>
-                    <button type="button" data-hair-hex="#dc2626" data-hair-color="Red" title="Red" aria-label="Hair Color Red" class="slot-hair-pill px-2 py-1 rounded-lg bg-red-600 text-white text-[9px] font-black border border-white/40 cursor-pointer">Red</button>
-                    <button type="button" data-hair-hex="#06b6d4" data-hair-color="Cyan" title="Cyan" aria-label="Hair Color Cyan" class="slot-hair-pill px-2 py-1 rounded-lg bg-cyan-400 text-slate-950 text-[9px] font-black border border-white/40 cursor-pointer">Cyan</button>
+                    <button type="button" data-hair-hex="#facc15" data-hair-color="Blonde" title="Blonde" aria-label="Hair Color Blonde" class="slot-hair-pill px-1.5 py-1 rounded-lg bg-yellow-400 text-slate-950 text-[9px] font-black border border-white/40 cursor-pointer">Blonde</button>
+                    <button type="button" data-hair-hex="#78350f" data-hair-color="Brown" title="Brown" aria-label="Hair Color Brown" class="slot-hair-pill px-1.5 py-1 rounded-lg bg-amber-900 text-white text-[9px] font-black ring-2 ring-cyan-300 cursor-pointer">Brown</button>
+                    <button type="button" data-hair-hex="#111827" data-hair-color="Black" title="Black" aria-label="Hair Color Black" class="slot-hair-pill px-1.5 py-1 rounded-lg bg-slate-950 text-slate-100 text-[9px] font-black border border-slate-500 cursor-pointer">Black</button>
+                    <button type="button" data-hair-hex="#dc2626" data-hair-color="Red" title="Red" aria-label="Hair Color Red" class="slot-hair-pill px-1.5 py-1 rounded-lg bg-red-600 text-white text-[9px] font-black border border-white/40 cursor-pointer">Red</button>
+                    <button type="button" data-hair-hex="#2563eb" data-hair-color="Blue" title="Blue" aria-label="Hair Color Blue" class="slot-hair-pill px-1.5 py-1 rounded-lg bg-blue-600 text-white text-[9px] font-black border border-white/40 cursor-pointer">Blue</button>
+                    <button type="button" data-hair-hex="#e2e8f0" data-hair-color="Platinum" title="Platinum" aria-label="Hair Color Platinum" class="slot-hair-pill px-1.5 py-1 rounded-lg bg-slate-200 text-slate-950 text-[9px] font-black border border-white/60 cursor-pointer">Platinum</button>
                   </div>
                 </div>
               </div>
@@ -6919,35 +6912,35 @@
     // =========================================================================
     const PRO_SHOP_ITEMS = [
       // WALL 1: WALL OF GLOVES (4-Roll Pro vs Tapered Vapor + Sponsor Promo Showcase)
-      { id: 'gloves-blackout-pro', category: 'Gloves', slot: 'gloves', icon: '🧤', style: '4-roll-blackout', isPromoShowcase: true, brandTag: '⭐ PRO BRAND SHOWCASE • BAUER / CCM PROMO DROP', name: 'Blackout Pro 4-Roll Gloves (Promo Drop)', cost: 280, color: '#111827', accentColor: '#00e5ff', desc: 'Stealth matte-black 4-Roll pro nylon mitts with electric-cyan cuff stitching & pro Clarino palm' },
-      { id: 'gloves-vapor',        category: 'Gloves', slot: 'gloves', icon: '🧤', style: 'tapered-vapor',   isPromoShowcase: false, brandTag: 'TAPERED VAPOR FIT • BAUER READY', name: 'Vapor Pro-Stock Tapered Mitts', cost: 120, color: '#0284c7', accentColor: '#f8fafc', desc: '75%-realistic tapered fit with anatomical 2-piece flex thumb & white cuff roll' },
-      { id: 'gloves-jetspeed',     category: 'Gloves', slot: 'gloves', icon: '🧤', style: '4-roll-pro',      isPromoShowcase: false, brandTag: 'PRO 4-ROLL FIT • CCM READY', name: 'JetSpeed Crimson 4-Roll Mitts', cost: 180, color: '#e11d48', accentColor: '#f8fafc', desc: 'Classic 4-Roll pro-stock volume fit with cable-mesh gussets & reinforced palm' },
-      { id: 'gloves-cyan',         category: 'Gloves', slot: 'gloves', icon: '🧤', style: 'tapered-vapor',   isPromoShowcase: false, brandTag: 'SYNAPZ PRO SERIES', name: 'Synapz Electric Cyan Mitts', cost: 240, color: '#06b6d4', accentColor: '#0f172a', desc: 'Signature Synapz Hockey cyan-trimmed pro mitts with high-grip digital palm' },
-      { id: 'gloves-gold',         category: 'Gloves', slot: 'gloves', icon: '🧤', style: '4-roll-pro',      isPromoShowcase: false, brandTag: 'ALL-STAR EDITION', name: '24K All-Star Silky Mitts', cost: 320, color: '#facc15', accentColor: '#0f172a', desc: 'Championship metallic gold cuff & segmented backhand rolls' },
+      { id: 'gloves-blackout-pro', category: 'Gloves', slot: 'gloves', icon: '🏒', style: '4-roll-blackout', isPromoShowcase: true, tierLabel: 'Pro Drop', brandTag: 'PRO DROP', name: 'Blackout Pro 4-Roll Gloves', cost: 280, color: '#111827', accentColor: '#00e5ff', desc: 'Pro 4-Roll Hockey Gloves' },
+      { id: 'gloves-vapor',        category: 'Gloves', slot: 'gloves', icon: '🏒', style: 'tapered-vapor',   isPromoShowcase: false, tierLabel: 'Pro Stock', brandTag: 'PRO STOCK', name: 'Vapor Pro-Stock Tapered Mitts', cost: 120, color: '#0284c7', accentColor: '#f8fafc', desc: 'Tapered Fit Hockey Gloves' },
+      { id: 'gloves-jetspeed',     category: 'Gloves', slot: 'gloves', icon: '🏒', style: '4-roll-pro',      isPromoShowcase: false, tierLabel: 'Pro Stock', brandTag: 'PRO 4-ROLL', name: 'JetSpeed Crimson 4-Roll Mitts', cost: 180, color: '#e11d48', accentColor: '#f8fafc', desc: '4-Roll Pro Hockey Gloves' },
+      { id: 'gloves-cyan',         category: 'Gloves', slot: 'gloves', icon: '🏒', style: 'tapered-vapor',   isPromoShowcase: false, tierLabel: 'Elite Tier', brandTag: 'ELITE TIER', name: 'Synapz Electric Cyan Mitts', cost: 240, color: '#06b6d4', accentColor: '#0f172a', desc: 'Tapered Cyan Hockey Gloves' },
+      { id: 'gloves-gold',         category: 'Gloves', slot: 'gloves', icon: '🏒', style: '4-roll-pro',      isPromoShowcase: false, tierLabel: 'All-Star Tier', brandTag: 'ALL-STAR TIER', name: '24K All-Star Silky Mitts', cost: 320, color: '#facc15', accentColor: '#0f172a', desc: 'All-Star Gold 4-Roll Gloves' },
 
       // WALL 2: PRO STICK RACK (Carbon Weave, Kick-Point Band & Tape Job + Sponsor Promo Showcase)
-      { id: 'stick-carbon-pulse',  category: 'Stick',  slot: 'stick',  icon: '🏒', style: 'carbon-blackout', isPromoShowcase: true, brandTag: '⭐ UNRELEASED PROMO DROP • SPONSOR SHOWCASE', name: 'Pro Carbon Pulse Stick (Promo Drop)', cost: 320, color: '#0f172a', accentColor: '#00e5ff', tapeColor: '#0f172a', desc: 'Raw 18K exposed carbon-weave shaft, neon-cyan low-kick graphic band & pro blackout toe tape' },
-      { id: 'stick-neon',          category: 'Stick',  slot: 'stick',  icon: '🏒', style: 'low-kick-neon',   isPromoShowcase: false, brandTag: 'LOW-KICK RELEASE • BAUER / CCM READY', name: 'Neon Green Vapor Low-Kick Twig', cost: 100, color: '#22c55e', accentColor: '#0f172a', tapeColor: '#f8fafc', desc: 'High-vis neon green kick-point shaft with crisp white heel-to-toe cloth tape job' },
-      { id: 'stick-gold',          category: 'Stick',  slot: 'stick',  icon: '🏒', style: 'mid-kick-gold',   isPromoShowcase: false, brandTag: 'MID-KICK ONE-TIMER', name: 'Gold One-Timer Pro Twig', cost: 250, color: '#facc15', accentColor: '#0f172a', tapeColor: '#0f172a', desc: 'Heavy-shot championship gold carbon shaft with pro black friction blade tape' },
-      { id: 'stick-cyan',          category: 'Stick',  slot: 'stick',  icon: '🏒', style: 'hybrid-cyan',     isPromoShowcase: false, brandTag: 'SYNAPZ PRO SERIES', name: 'Electric Cyan Sniper Twig', cost: 400, color: '#06b6d4', accentColor: '#f8fafc', tapeColor: '#f8fafc', desc: 'Pro-stock cyan hybrid-kick sniper stick with stiff carbon hosel' },
-      { id: 'stick-crimson',       category: 'Stick',  slot: 'stick',  icon: '🏒', style: 'mid-kick-red',    isPromoShowcase: false, brandTag: 'POWER FLEX SERIES', name: 'Crimson Rocket Carbon Twig', cost: 350, color: '#f43f5e', accentColor: '#f8fafc', tapeColor: '#0f172a', desc: 'Blazing red 3K carbon-weave composite twig with tack-grip shaft' },
+      { id: 'stick-carbon-pulse',  category: 'Stick',  slot: 'stick',  icon: '🏒', style: 'carbon-blackout', isPromoShowcase: true, tierLabel: 'Pro Drop', brandTag: 'PRO DROP', name: 'Pro Carbon Pulse Stick', cost: 320, color: '#0f172a', accentColor: '#00e5ff', tapeColor: '#0f172a', desc: '18K Carbon Composite Twig' },
+      { id: 'stick-neon',          category: 'Stick',  slot: 'stick',  icon: '🏒', style: 'low-kick-neon',   isPromoShowcase: false, tierLabel: 'Pro Stock', brandTag: 'LOW-KICK', name: 'Neon Green Vapor Low-Kick Twig', cost: 100, color: '#22c55e', accentColor: '#0f172a', tapeColor: '#f8fafc', desc: 'Low-Kick Composite Twig' },
+      { id: 'stick-gold',          category: 'Stick',  slot: 'stick',  icon: '🏒', style: 'mid-kick-gold',   isPromoShowcase: false, tierLabel: 'Elite Tier', brandTag: 'MID-KICK', name: 'Gold One-Timer Pro Twig', cost: 250, color: '#facc15', accentColor: '#0f172a', tapeColor: '#0f172a', desc: 'Mid-Kick Composite Twig' },
+      { id: 'stick-cyan',          category: 'Stick',  slot: 'stick',  icon: '🏒', style: 'hybrid-cyan',     isPromoShowcase: false, tierLabel: 'All-Star Tier', brandTag: 'ALL-STAR TIER', name: 'Electric Cyan Sniper Twig', cost: 400, color: '#06b6d4', accentColor: '#f8fafc', tapeColor: '#f8fafc', desc: 'Hybrid-Kick Sniper Twig' },
+      { id: 'stick-crimson',       category: 'Stick',  slot: 'stick',  icon: '🏒', style: 'mid-kick-red',    isPromoShowcase: false, tierLabel: 'All-Star Tier', brandTag: 'POWER FLEX', name: 'Crimson Rocket Carbon Twig', cost: 350, color: '#f43f5e', accentColor: '#f8fafc', tapeColor: '#0f172a', desc: '3K Carbon Composite Twig' },
 
       // WALL 3: WALL OF SKATES (Quarter Package, Tendon Guard, Holder & Steel Runner + Sponsor Promo Showcase)
-      { id: 'skate-ridgecore-dlc', category: 'Skates', slot: 'skates', icon: '⛸️', style: 'black-steel',     isPromoShowcase: true, brandTag: '⭐ PRO BRAND SHOWCASE • DLC BLACK-STEEL', name: 'Elite Ridgecore Black-Steel Skates (Promo)', cost: 340, color: '#1e293b', accentColor: '#00e5ff', steelColor: '#0f172a', desc: 'One-piece carbon boot quarter-package, flexible tendon guard & DLC black-oxide steel runners' },
-      { id: 'skate-silver',        category: 'Skates', slot: 'skates', icon: '⛸️', style: 'chrome-steel',    isPromoShowcase: false, brandTag: 'PRO MIRROR STEEL • BAUER / CCM READY', name: 'Jet-Speed Mirror Chrome Skates', cost: 150, color: '#e2e8f0', accentColor: '#0284c7', steelColor: '#f8fafc', desc: 'Thermoformable pro composite boot with quick-release white holder & mirror-polished steel' },
-      { id: 'skate-blue',          category: 'Skates', slot: 'skates', icon: '⛸️', style: 'blue-steel',      isPromoShowcase: false, brandTag: 'ANODIZED EDGE SERIES', name: 'Electric Blue Runner Skates', cost: 300, color: '#38bdf8', accentColor: '#0f172a', steelColor: '#38bdf8', desc: 'Pro carbon quarter-package with glowing ice-blue anodized steel runners' },
-      { id: 'skate-gold',          category: 'Skates', slot: 'skates', icon: '⛸️', style: 'gold-steel',      isPromoShowcase: false, brandTag: 'CHAMPIONSHIP TITANIUM', name: '24K Gold Titanium Steel Skates', cost: 380, color: '#facc15', accentColor: '#0f172a', steelColor: '#facc15', desc: '24K gold titanium-nitride coated steel runners & pro white felt tongue' },
+      { id: 'skate-ridgecore-dlc', category: 'Skates', slot: 'skates', icon: '🏒', style: 'black-steel',     isPromoShowcase: true, tierLabel: 'Pro Drop', brandTag: 'DLC STEEL', name: 'Elite Ridgecore Black-Steel Skates', cost: 340, color: '#1e293b', accentColor: '#00e5ff', steelColor: '#0f172a', desc: 'DLC Black-Steel Hockey Skates' },
+      { id: 'skate-silver',        category: 'Skates', slot: 'skates', icon: '🏒', style: 'chrome-steel',    isPromoShowcase: false, tierLabel: 'Pro Stock', brandTag: 'MIRROR STEEL', name: 'Jet-Speed Mirror Chrome Skates', cost: 150, color: '#e2e8f0', accentColor: '#0284c7', steelColor: '#f8fafc', desc: 'Mirror-Steel Hockey Skates' },
+      { id: 'skate-blue',          category: 'Skates', slot: 'skates', icon: '🏒', style: 'blue-steel',      isPromoShowcase: false, tierLabel: 'Elite Tier', brandTag: 'ANODIZED EDGE', name: 'Electric Blue Runner Skates', cost: 300, color: '#38bdf8', accentColor: '#0f172a', steelColor: '#38bdf8', desc: 'Anodized-Steel Hockey Skates' },
+      { id: 'skate-gold',          category: 'Skates', slot: 'skates', icon: '🏒', style: 'gold-steel',      isPromoShowcase: false, tierLabel: 'All-Star Tier', brandTag: '24K TITANIUM', name: '24K Gold Titanium Steel Skates', cost: 380, color: '#facc15', accentColor: '#0f172a', steelColor: '#facc15', desc: 'Gold-Steel Hockey Skates' },
 
       // WALL 4: VISORS & BUCKETS (Clear, Smoke-Blackout, Blue-Iridium, Gold-Iridium & Chrome Cage + Sponsor Promo Showcase)
-      { id: 'visor-smoke-blackout', category: 'Visor', slot: 'visor',  icon: '🥽', style: 'smoke-blackout',  isPromoShowcase: true, brandTag: '⭐ PRO BRAND SHOWCASE • DARK SMOKE TINT', name: 'Smoke-Blackout Pro Visor Shield (Promo)', cost: 260, color: '#111827', accentColor: '#00e5ff', desc: 'Pro dark-smoke blackout polycarbonate shield with anti-fog coating & temple hardware' },
-      { id: 'visor-tint',           category: 'Visor', slot: 'visor',  icon: '🥽', style: 'chrome-cage',     isPromoShowcase: false, brandTag: 'MIRRORED CHROME / CAGE', name: 'Mirrored Chrome Shield & Pro Cage', cost: 200, color: '#94a3b8', accentColor: '#f8fafc', desc: 'Reflective silver pro visor shield with high-impact titanium cage bars' },
-      { id: 'visor-blue',           category: 'Visor', slot: 'visor',  icon: '🥽', style: 'blue-iridium',    isPromoShowcase: false, brandTag: 'ICE BLUE PRIZM OPTICS', name: 'Ice Blue Iridium Shield', cost: 260, color: '#38bdf8', accentColor: '#0284c7', desc: 'High-contrast sapphire blue iridium tinted shield over skater eyes' },
-      { id: 'visor-gold',           category: 'Visor', slot: 'visor',  icon: '🥽', style: 'gold-iridium',    isPromoShowcase: false, brandTag: 'SUNSET GOLD IRIDIUM', name: 'Sunset Gold Iridium Shield', cost: 320, color: '#facc15', accentColor: '#d97706', desc: 'Pro gold iridium mirrored shield with anti-glare arena optics' },
-      { id: 'helmet-navy',          category: 'Helmet', slot: 'helmet', icon: '⛑️', style: 'bucket-navy',    isPromoShowcase: false, brandTag: 'PRO VTX BUCKET', name: 'Pro Navy Aero Bucket', cost: 120, color: '#1e3a8a', accentColor: '#38bdf8', desc: 'Classic pro navy multi-vent shell with ear loops & occipital lock' },
-      { id: 'helmet-gold',          category: 'Helmet', slot: 'helmet', icon: '⛑️', style: 'bucket-gold',    isPromoShowcase: false, brandTag: 'ALL-STAR CHROME BUCKET', name: '24K Chrome Gold Bucket', cost: 300, color: '#eab308', accentColor: '#fef08a', desc: 'Metallic gold championship helmet shell with dual-ridge crown vents' },
-      { id: 'helmet-white',         category: 'Helmet', slot: 'helmet', icon: '⛑️', style: 'bucket-white',   isPromoShowcase: false, brandTag: 'CLEAN WHITEOUT BUCKET', name: 'All-Star Whiteout Bucket', cost: 180, color: '#f8fafc', accentColor: '#94a3b8', desc: 'Clean icy white pro shell with dark contrast ventilation ports' },
-      { id: 'celly-sniper',         category: 'Celly',  slot: 'celly',  icon: '🚨', style: 'celly-sniper',   isPromoShowcase: false, brandTag: 'GOAL CELLY', name: 'One-Knee Sniper Celly', cost: 250, color: '#f97316', accentColor: '#fde047', desc: 'Unlocks custom Goal Lamp celebration banner' },
-      { id: 'celly-cup',            category: 'Celly',  slot: 'celly',  icon: '🏆', style: 'celly-cup',      isPromoShowcase: false, brandTag: 'STANLEY CUP CELLY', name: 'Stanley Cup Raise Celly', cost: 500, color: '#eab308', accentColor: '#f8fafc', desc: 'Championship trophy celebration on goals' }
+      { id: 'visor-smoke-blackout', category: 'Visor', slot: 'visor',  icon: '🛡️', style: 'smoke-blackout',  isPromoShowcase: true, tierLabel: 'Pro Drop', brandTag: 'DARK SMOKE', name: 'Smoke-Blackout Pro Visor Shield', cost: 260, color: '#111827', accentColor: '#00e5ff', desc: 'Dark Smoke Polycarbonate Visor' },
+      { id: 'visor-tint',           category: 'Visor', slot: 'visor',  icon: '🛡️', style: 'chrome-cage',     isPromoShowcase: false, tierLabel: 'Pro Stock', brandTag: 'CHROME CAGE', name: 'Mirrored Chrome Pro Cage', cost: 200, color: '#94a3b8', accentColor: '#f8fafc', desc: 'Titanium Hockey Facemask Cage' },
+      { id: 'visor-blue',           category: 'Visor', slot: 'visor',  icon: '🛡️', style: 'blue-iridium',    isPromoShowcase: false, tierLabel: 'Elite Tier', brandTag: 'BLUE IRIDIUM', name: 'Ice Blue Iridium Shield', cost: 260, color: '#38bdf8', accentColor: '#0284c7', desc: 'Sapphire Iridium Hockey Visor' },
+      { id: 'visor-gold',           category: 'Visor', slot: 'visor',  icon: '🛡️', style: 'gold-iridium',    isPromoShowcase: false, tierLabel: 'All-Star Tier', brandTag: 'GOLD CHROME', name: 'Sunset Gold Iridium Shield', cost: 320, color: '#facc15', accentColor: '#d97706', desc: 'Gold Chrome Hockey Visor' },
+      { id: 'helmet-navy',          category: 'Helmet', slot: 'helmet', icon: '🛡️', style: 'bucket-navy',    isPromoShowcase: false, tierLabel: 'Pro Stock', brandTag: 'PRO BUCKET', name: 'Pro Navy Aero Bucket', cost: 120, color: '#1e3a8a', accentColor: '#38bdf8', desc: 'Aero Multi-Vent Hockey Helmet' },
+      { id: 'helmet-gold',          category: 'Helmet', slot: 'helmet', icon: '🛡️', style: 'bucket-gold',    isPromoShowcase: false, tierLabel: 'All-Star Tier', brandTag: 'ALL-STAR BUCKET', name: '24K Chrome Gold Bucket', cost: 300, color: '#eab308', accentColor: '#fef08a', desc: 'Metallic Gold Hockey Helmet' },
+      { id: 'helmet-white',         category: 'Helmet', slot: 'helmet', icon: '🛡️', style: 'bucket-white',   isPromoShowcase: false, tierLabel: 'Pro Stock', brandTag: 'WHITEOUT BUCKET', name: 'All-Star Whiteout Bucket', cost: 180, color: '#f8fafc', accentColor: '#94a3b8', desc: 'Icy White Pro Hockey Helmet' },
+      { id: 'celly-sniper',         category: 'Celly',  slot: 'celly',  icon: '🚨', style: 'celly-sniper',   isPromoShowcase: false, tierLabel: 'Goal Celly', brandTag: 'GOAL CELLY', name: 'One-Knee Sniper Celly', cost: 250, color: '#f97316', accentColor: '#fde047', desc: 'Goal Lamp Celebration' },
+      { id: 'celly-cup',            category: 'Celly',  slot: 'celly',  icon: '⭐', style: 'celly-cup',      isPromoShowcase: false, tierLabel: 'Championship', brandTag: 'CUP CELLY', name: 'Championship Cup Raise Celly', cost: 500, color: '#eab308', accentColor: '#f8fafc', desc: 'Championship Celebration' }
     ];
     window.PRO_SHOP_ITEMS = PRO_SHOP_ITEMS;
 
@@ -8195,7 +8188,7 @@
         autoRink: 'half',
         specialTeams: 'First-Person 3D POV Read',
         title: 'In the Skates 3D POV: Corner Cycle vs. Slot Read',
-        subtitle: '🥽 You\'re in the corner looking out! Tap the ONE teammate who is wide open!',
+        subtitle: '🏒 You\'re in the corner looking out! Tap the ONE teammate who is wide open!',
         voicePrompt: 'Put yourself in the skates! You have the puck in the corner looking out at the ice. Number 19 in front of the net is tied up, and the point is covered. Tap on teammate number 14 wide open in the high slot!',
         briefing: 'First-Person POV from the corner: #19 in front of the crease is tied up by a defender, and the point D is covered. Tap on wide-open #14 in the high slot!',
         goldenRule: 'Keep your head up in the corner—scan past the first covered teammate to find the open stick in the slot!',
@@ -11631,123 +11624,21 @@
     function renderYoungHockeyPlayerAvatar(prof, angleDeg = 0, previewItem = null, renderOpts = {}) {
       const p = JSON.parse(JSON.stringify(prof || {}));
       ensureProfileAvatarDefaults(p);
-      if (previewItem) {
-        if (previewItem.category === 'Gloves') { p.equippedGloves = previewItem.color; p.equippedGlovesId = previewItem.id; }
-        if (previewItem.category === 'Stick')  { p.equippedStick = previewItem.color;  p.equippedStickId = previewItem.id; }
-        if (previewItem.category === 'Helmet') { p.equippedHelmet = previewItem.color; p.equippedHelmetId = previewItem.id; }
-        if (previewItem.category === 'Visor')  { p.equippedVisor = previewItem.color;  p.equippedVisorId = previewItem.id; }
-        if (previewItem.category === 'Skates') { p.equippedSkate = previewItem.color;  p.equippedSkatesId = previewItem.id; }
-      }
-
       const rawAngle = Number.isFinite(Number(angleDeg)) ? Number(angleDeg) : 0;
       window.avatar3dAngle = rawAngle;
-      const normAngle = ((rawAngle % 360) + 360) % 360;
-      const isBack = Math.cos((normAngle * Math.PI) / 180) < 0;
 
-      const stockMeta = SYNAPZ_STOCK_3D_AVATARS.find(a => a.id === p.stockAvatarId) ||
-        (p.avatarType === 'girl' ? SYNAPZ_STOCK_3D_AVATARS[4] : SYNAPZ_STOCK_3D_AVATARS[0]);
-      const stockSrc = stockMeta.src;
-
-      const skin = p.skinTone || '#fdba74';
-      const hairCol = p.hairColor || '#78350f';
-      const jerseyCol = p.jerseyColor || '#0284c7';
-      const glovesMeta = resolveEquippedItemMeta(p.equippedGlovesId || p.equippedGloves, 'Gloves');
-      const stickMeta  = resolveEquippedItemMeta(p.equippedStickId || p.equippedStick, 'Stick');
-      const visorMeta  = resolveEquippedItemMeta(p.equippedVisorId || p.equippedVisor, 'Visor');
-      const skateMeta  = resolveEquippedItemMeta(p.equippedSkatesId || p.equippedSkate, 'Skates');
-
-      const glovesCol = resolveEquippedItemColor(p.equippedGloves, 'Gloves', '#0284c7');
-      const glovesStyle = (glovesMeta && glovesMeta.style) || (glovesCol === '#111827' ? '4-roll-blackout' : 'tapered-vapor');
-      const stickCol = resolveEquippedItemColor(p.equippedStick, 'Stick', '#22c55e');
-      const bladeTapeCol = (stickMeta && stickMeta.tapeColor) || (stickCol === '#0f172a' || stickCol === '#111827' ? '#0f172a' : '#f8fafc');
-      const helmetCol = resolveEquippedItemColor(p.equippedHelmet, 'Helmet', '#1e3a8a');
-      const visorCol = (!p.equippedVisor || p.equippedVisor === 'clear') ? '#38bdf8' : resolveEquippedItemColor(p.equippedVisor, 'Visor', '#38bdf8');
-      const visorStyle = (visorMeta && visorMeta.style) || (visorCol === '#111827' ? 'smoke-blackout' : (visorCol === '#94a3b8' ? 'chrome-cage' : 'blue-iridium'));
-      const skateCol = resolveEquippedItemColor(p.equippedSkate || p.equippedSkates, 'Skates', '#e2e8f0');
-      const steelCol = (skateMeta && skateMeta.steelColor) || skateCol;
-
-      const rawJerseyVal = p.jerseyNumber !== undefined && p.jerseyNumber !== null ? String(p.jerseyNumber).trim() : '';
-      const jNum = rawJerseyVal !== '' ? rawJerseyVal : '';
-      const backNameplate = String(p.jerseyBackName || p.name || p.lastName || 'SKATER').toUpperCase().slice(0, 12);
-      const customTeamBanner = String(p.customTeamName || p.teamName || '').trim().toUpperCase().slice(0, 14);
-      const hairStyleKey = String(p.hairStyle || 'flow').toLowerCase();
-      const isBlackoutLoadout = (jerseyCol === '#111827' || jerseyCol === '#0f172a') && (glovesCol === '#111827' || glovesCol === '#0f172a');
-
-      window._lastRenderedYoungPlayerAvatar = {
-        style: 'v122-fullbody-3d-stock-cutout',
-        stockAvatarId: stockMeta.id,
-        stockAvatarSrc: stockSrc,
-        profileId: p.id || 'skater',
-        name: p.name || 'Skater',
-        backNameplate,
-        customTeamBanner,
-        hairStyle: hairStyleKey,
-        hairColor: hairCol,
-        skinTone: skin,
-        jerseyNumber: jNum,
-        jerseyColor: jerseyCol,
-        glovesId: p.equippedGlovesId || (glovesMeta && glovesMeta.id) || 'gloves-cyan-dangler',
-        glovesColor: glovesCol,
-        glovesStyle,
-        stickId: p.equippedStickId || (stickMeta && stickMeta.id) || 'stick-gold-pro',
-        stickColor: stickCol,
-        bladeTapeColor: bladeTapeCol,
-        helmetColor: helmetCol,
-        visorId: p.equippedVisorId || (visorMeta && visorMeta.id) || 'visor-blue-iridium',
-        visorColor: visorCol,
-        visorStyle,
-        skatesId: p.equippedSkates || p.equippedSkatesId || (skateMeta && skateMeta.id) || 'skate-tuuk-cyan',
-        skateColor: skateCol,
-        steelColor: steelCol,
-        isBlackoutLoadout
-      };
-
-      const skinBrightness = skin === '#fde68a' ? 1.06 : (skin === '#d97706' ? 0.96 : (skin === '#78350f' ? 0.89 : 1.0));
-      const blackoutContrast = isBlackoutLoadout ? 'contrast(1.12) brightness(0.92)' : `brightness(${skinBrightness})`;
-      const auraShadow = `drop-shadow(0 12px 22px rgba(2,6,23,0.88)) drop-shadow(0 0 14px ${jerseyCol}77)`;
-      const pureStanding = Boolean(renderOpts && renderOpts.standingLockerFloor);
-
-      // Equipped Pro Shop gear badges (shown ONLY when owned gear is equipped or previewed, NEVER on Step 2 setup preview!)
-      const hideGearBadges = Boolean(renderOpts && renderOpts.hideGearBadges);
-      const ownedSet = new Set(Array.isArray(p.ownedGear) ? p.ownedGear : []);
-      const equippedGearBadges = [];
-      if (!hideGearBadges) {
-        if (glovesMeta && (previewItem || ownedSet.has(glovesMeta.id))) equippedGearBadges.push(`🧤 ${glovesMeta.name.split(' ')[0]}`);
-        if (stickMeta && (previewItem || ownedSet.has(stickMeta.id))) equippedGearBadges.push(`🏒 ${stickMeta.name.split(' ')[0]}`);
-        if (visorMeta && (previewItem || ownedSet.has(visorMeta.id))) equippedGearBadges.push(`🥽 ${visorMeta.name.split(' ')[0]}`);
-        if (skateMeta && (previewItem || ownedSet.has(skateMeta.id))) equippedGearBadges.push(`⛸️ ${skateMeta.name.split(' ')[0]}`);
+      if (window.SynapzSkaterRenderer360 && typeof window.SynapzSkaterRenderer360.buildCustomizableSkaterSvg === 'function') {
+        return `
+          <div class="synapz-live-360-avatar-wrap w-full h-full flex items-center justify-center select-none" data-avatar-renderer="v151-live-360">
+            ${window.SynapzSkaterRenderer360.buildCustomizableSkaterSvg(p, {
+              ...renderOpts,
+              angleDeg: rawAngle,
+              previewItem: previewItem || null
+            })}
+          </div>
+        `;
       }
-
-      return `
-        <div class="synapz-stock-3d-avatar-wrap select-none" data-avatar-renderer="v122-fullbody-3d-stock" data-stock-avatar-id="${stockMeta.id}" data-hair-style="${hairStyleKey}" data-blackout="${isBlackoutLoadout}">
-          ${hairStyleKey === 'mohawk' ? `
-            <span class="absolute top-[2%] z-20 px-1.5 py-0.5 rounded-full text-[9px] font-black shadow-lg border border-white/40" style="background:${hairCol};color:${hairCol === '#facc15' || hairCol === '#06b6d4' ? '#020617' : '#ffffff'};">
-              ⚡ MOHAWK
-            </span>
-          ` : ''}
-          <img
-            src="${stockSrc}"
-            alt="${p.name || stockMeta.label} 3D Hockey Avatar"
-            class="synapz-stock-3d-avatar-img transition-transform duration-300"
-            style="filter: ${blackoutContrast} ${auraShadow}; transform: ${isBack ? 'scaleX(-1)' : 'scaleX(1)'};"
-          />
-          ${isBack ? `
-            <div class="absolute top-[30%] z-20 px-2.5 py-1 rounded-xl border-2 border-white/80 shadow-2xl text-center" style="background:${jerseyCol};">
-              <div class="text-[8px] font-black tracking-wider text-slate-950 bg-white px-1.5 rounded">${backNameplate}</div>
-              ${jNum ? `<div class="text-sm font-black text-white leading-tight mt-0.5">#${jNum}</div>` : ''}
-            </div>
-          ` : (jNum && !pureStanding ? `
-            <span class="absolute bottom-[10%] right-[8%] z-20 px-1.5 py-0.5 rounded-md text-[10px] font-black text-white border border-white/60 shadow-lg" style="background:${jerseyCol};">
-              #${jNum}
-            </span>
-          ` : '')}
-          ${equippedGearBadges.length > 0 ? `
-            <div class="absolute bottom-1 inset-x-0 z-20 flex flex-wrap items-center justify-center gap-0.5 pointer-events-none">
-              ${equippedGearBadges.slice(0, 3).map(lbl => `<span class="px-1.5 py-0.5 rounded-full bg-slate-950/90 border border-amber-400/65 text-[8px] font-black text-amber-200 shadow">${lbl}</span>`).join('')}
-            </div>
-          ` : ''}
-        </div>
-      `;
+      return `<div class="w-full h-full flex items-center justify-center text-xs font-black text-cyan-300" data-avatar-pending="1">${p.name || 'Skater'}</div>`;
     }
     window.renderYoungHockeyPlayerAvatar = renderYoungHockeyPlayerAvatar;
 
@@ -11759,14 +11650,12 @@
     function renderMiniAvatarSvg(prof, size = 32) {
       const p = { ...(prof || {}) };
       ensureProfileAvatarDefaults(p);
-      const stockMeta = SYNAPZ_STOCK_3D_AVATARS.find(a => a.id === p.stockAvatarId) ||
-        (p.avatarType === 'girl' ? SYNAPZ_STOCK_3D_AVATARS[4] : SYNAPZ_STOCK_3D_AVATARS[0]);
+      if (window.SynapzSkaterRenderer360 && typeof window.SynapzSkaterRenderer360.buildMiniSkaterHeadSvg === 'function') {
+        return window.SynapzSkaterRenderer360.buildMiniSkaterHeadSvg(p, size);
+      }
       const jersey = p.jerseyColor || '#0284c7';
-      return `
-        <span class="inline-flex items-center justify-center rounded-full overflow-hidden bg-slate-950 shrink-0 shadow-md" style="width:${size}px;height:${size}px;border:2px solid ${jersey};" data-mini-stock-avatar="${stockMeta.id}">
-          <img src="${stockMeta.src}" alt="${p.name || 'Skater'}" style="width:100%;height:165%;object-fit:cover;object-position:top center;" />
-        </span>
-      `;
+      const num = p.jerseyNumber !== undefined && p.jerseyNumber !== '' ? `#${p.jerseyNumber}` : 'S';
+      return `<span class="inline-flex items-center justify-center rounded-full bg-slate-950 text-[10px] font-black text-white shrink-0 shadow-md" style="width:${size}px;height:${size}px;border:2px solid ${jersey};">${num}</span>`;
     }
 
     // =========================================================================
@@ -14455,9 +14344,9 @@
       renderMultiFormatControlsBar(scen);
 
       const povBtn = document.getElementById('btnTogglePovMode');
-      if (povBtn) povBtn.textContent = state.pov3dActive ? '🗺️ Top-Down View' : '🥽 In-Skates 3D POV';
+      if (povBtn) povBtn.textContent = state.pov3dActive ? '🗺️ Top-Down View' : '🏒 In-Skates 3D POV';
       const ribbonPov = document.getElementById('btnRibbonPov');
-      if (ribbonPov) ribbonPov.innerHTML = state.pov3dActive ? '<span>🗺️ 2D Rink</span>' : '<span>🥽 3D POV</span>';
+      if (ribbonPov) ribbonPov.innerHTML = state.pov3dActive ? '<span>🗺️ 2D Rink</span>' : '<span>🏒 3D POV</span>';
       const ribFullBtn = document.getElementById('btnRibbonFullscreen');
       if (ribFullBtn) {
         ribFullBtn.innerHTML = state.rinkType === 'full'
@@ -14553,11 +14442,11 @@
         document.getElementById('modeInstructionHeader').textContent = 'Use Arrow Keys / WASD or D-Pad to skate into open triangles!';
         if (ribbonCheckLbl) ribbonCheckLbl.textContent = 'Start Live Shift';
       } else if (state.pov3dActive) {
-        document.getElementById('mechanicTypeBadge').textContent = '🥽 3D First-Person In-Skates View';
+        document.getElementById('mechanicTypeBadge').textContent = '🏒 3D First-Person In-Skates View';
         document.getElementById('modeInstructionHeader').textContent = scen.correctTargetId === 'NET'
-          ? '🥽 Looking from your skates: TAP the open Goal Net to rip the shot!'
-          : '🥽 Looking from your skates: TAP the wide-open target in 3D view!';
-        checkBtn.innerHTML = '<span>🥽 Tap Open Target Directly in 3D Rink Above ☝️</span>';
+          ? '🏒 Looking from your skates: TAP the open Goal Net to rip the shot!'
+          : '🏒 Looking from your skates: TAP the wide-open target in 3D view!';
+        checkBtn.innerHTML = '<span>🏒 Tap Open Target Directly in 3D Rink Above ☝️</span>';
         if (ribbonCheckLbl) ribbonCheckLbl.textContent = 'Tap 3D Target';
       } else if (scen.mechanic === 'pass_decision') {
         document.getElementById('mechanicTypeBadge').textContent = '🎯 On-Puck Pass/Shoot Decision';
@@ -14840,7 +14729,7 @@
     }
 
     // =========================================================================
-    // 🥽 3D FIRST-PERSON "IN THE SKATES" POV SIMULATOR RENDERER
+    // 🏒 3D FIRST-PERSON "IN THE SKATES" POV SIMULATOR RENDERER
     // Looks out from the corner across the 3D rink with perspective boards, glass, net & 3D players!
     // =========================================================================
     function drawFirstPersonPovRink(ctx, W, H, scen) {
@@ -15012,10 +14901,10 @@
       ctx.font = `900 ${Math.max(11, Math.floor(W * 0.0135))}px Inter`;
       ctx.textAlign = 'center';
       const bannerTxt = isShootTarget
-        ? `🥽 3D POV [YOU #9: ${youPovRoleBadge}] — TAP THE GOAL NET TO SHOOT!`
+        ? `🏒 3D POV [YOU #9: ${youPovRoleBadge}] — TAP THE GOAL NET TO SHOOT!`
         : (scen.mechanic === 'position'
-            ? `🥽 3D POV [YOU #9: ${youPovRoleBadge}] — TAP THE CORRECT ICE LANE (A, B, OR C)!`
-            : `🥽 3D POV [YOU #9: ${youPovRoleBadge}] — TAP THE OPEN TEAMMATE TO PASS!`);
+            ? `🏒 3D POV [YOU #9: ${youPovRoleBadge}] — TAP THE CORRECT ICE LANE (A, B, OR C)!`
+            : `🏒 3D POV [YOU #9: ${youPovRoleBadge}] — TAP THE OPEN TEAMMATE TO PASS!`);
       ctx.fillText(bannerTxt, W * 0.50, H * 0.082);
       ctx.restore();
     }
@@ -16610,7 +16499,7 @@
 
       if (state.pov3dActive) {
         SoundFX.playTap();
-        CoachVoice.speak('Tap directly on the open target or ice lane in the 3D view!', '🥽 3D POV Read', false);
+        CoachVoice.speak('Tap directly on the open target or ice lane in the 3D view!', '🏒 3D POV Read', false);
         return;
       }
 
@@ -18213,109 +18102,19 @@
     // =========================================================================
     function renderProShopWallProductSvg(item) {
       if (!item) return '';
-      const col = item.color || '#00e5ff';
-      const acc = item.accentColor || '#38bdf8';
-      const cat = item.category || 'Gloves';
-
-      if (cat === 'Gloves') {
-        const is4Roll = (item.style || '').includes('4-roll');
-        return `
-          <svg viewBox="0 0 110 76" class="w-24 h-16 shrink-0 rounded-xl bg-slate-950/90 border border-cyan-500/30 p-1">
-            <!-- Pro Cuff with Brand Stitch -->
-            <rect x="14" y="10" width="82" height="16" rx="5" fill="${col}" stroke="${acc}" stroke-width="1.6"/>
-            <line x1="20" y1="18" x2="90" y2="18" stroke="${acc}" stroke-width="1.2" stroke-dasharray="4 2"/>
-            ${is4Roll ? `
-              <!-- 4-Roll Pro Backhand Padding -->
-              <rect x="16" y="28" width="78" height="7" rx="3.5" fill="${col}" stroke="#ffffff" stroke-width="0.9" opacity="0.95"/>
-              <rect x="16" y="36.5" width="78" height="7" rx="3.5" fill="${col}" stroke="#ffffff" stroke-width="0.9" opacity="0.95"/>
-              <rect x="16" y="45" width="78" height="7" rx="3.5" fill="${col}" stroke="#ffffff" stroke-width="0.9" opacity="0.95"/>
-              <rect x="18" y="53.5" width="74" height="6.5" rx="3.2" fill="${col}" stroke="${acc}" stroke-width="1"/>
-            ` : `
-              <!-- Tapered Vapor Dual-Density Backhand Plates -->
-              <path d="M 16 28 L 53 28 L 50 56 L 18 56 Z" fill="${col}" stroke="${acc}" stroke-width="1.3"/>
-              <path d="M 57 28 L 94 28 L 92 56 L 60 56 Z" fill="${col}" stroke="${acc}" stroke-width="1.3"/>
-            `}
-            <!-- Lock-Thumb & Nash Palm Gussets -->
-            <path d="M 8 32 Q 3 45 13 58 L 22 55 L 18 32 Z" fill="${acc}" stroke="#020617" stroke-width="1.2"/>
-            <rect x="24" y="61" width="14" height="10" rx="3" fill="${col}" stroke="#cbd5e1" stroke-width="0.9"/>
-            <rect x="40" y="61" width="14" height="10" rx="3" fill="${col}" stroke="#cbd5e1" stroke-width="0.9"/>
-            <rect x="56" y="61" width="14" height="10" rx="3" fill="${col}" stroke="#cbd5e1" stroke-width="0.9"/>
-            <rect x="72" y="61" width="13" height="9" rx="3" fill="${col}" stroke="#cbd5e1" stroke-width="0.9"/>
-          </svg>
-        `;
+      if (window.SynapzGearArt7525 && typeof window.SynapzGearArt7525.renderGearItemArtSvg === 'function') {
+        return window.SynapzGearArt7525.renderGearItemArtSvg(item);
       }
-
-      if (cat === 'Stick') {
-        return `
-          <svg viewBox="0 0 110 76" class="w-24 h-16 shrink-0 rounded-xl bg-slate-950/90 border border-cyan-500/30 p-1">
-            <!-- Carbon-Weave Pro Shaft -->
-            <line x1="14" y1="12" x2="74" y2="58" stroke="#0f172a" stroke-width="8" stroke-linecap="round"/>
-            <line x1="14" y1="12" x2="74" y2="58" stroke="${col}" stroke-width="5.5" stroke-linecap="round"/>
-            <!-- Kick-Point Graphic Band -->
-            <line x1="34" y1="27" x2="54" y2="43" stroke="${acc}" stroke-width="6" stroke-linecap="round"/>
-            <line x1="16" y1="14" x2="72" y2="56" stroke="#ffffff" stroke-width="1.1" stroke-dasharray="2 4" opacity="0.55"/>
-            <!-- Curved Pro Blade & Tape Job -->
-            <path d="M 72 57 Q 88 64 102 55 Q 104 49 95 48 Q 82 52 72 54 Z" fill="${col}" stroke="${acc}" stroke-width="1.5"/>
-            <path d="M 80 53 L 96 49 L 98 56 L 80 60 Z" fill="#f8fafc" opacity="0.9"/>
-            <line x1="84" y1="52" x2="85" y2="59" stroke="#cbd5e1" stroke-width="1"/>
-            <line x1="90" y1="50" x2="91" y2="58" stroke="#cbd5e1" stroke-width="1"/>
-          </svg>
-        `;
-      }
-
-      if (cat === 'Skates') {
-        const isBlackSteel = (item.style || '').includes('black-steel');
-        const isGoldSteel = (item.style || '').includes('gold-steel');
-        const runnerCol = isBlackSteel ? '#0f172a' : (isGoldSteel ? '#facc15' : '#e2e8f0');
-        return `
-          <svg viewBox="0 0 110 76" class="w-24 h-16 shrink-0 rounded-xl bg-slate-950/90 border border-cyan-500/30 p-1">
-            <!-- Tendon Guard & Pro Boot Quarter-Package -->
-            <rect x="28" y="8" width="9" height="18" rx="3" fill="${acc}" stroke="#020617" stroke-width="1"/>
-            <path d="M 26 20 L 62 20 L 84 40 Q 90 45 86 52 L 24 52 Q 20 44 26 20 Z" fill="#0f172a" stroke="${col}" stroke-width="2"/>
-            <!-- Quarter-Package Carbon Ribbing & Laces -->
-            <path d="M 32 30 Q 52 28 74 42" fill="none" stroke="${acc}" stroke-width="2.2"/>
-            <line x1="56" y1="24" x2="64" y2="22" stroke="#f8fafc" stroke-width="1.5"/>
-            <line x1="62" y1="29" x2="70" y2="27" stroke="#f8fafc" stroke-width="1.5"/>
-            <line x1="68" y1="34" x2="76" y2="32" stroke="#f8fafc" stroke-width="1.5"/>
-            <!-- Tuuk-Style Cutout Holder & Steel Runner -->
-            <path d="M 26 52 L 84 52 L 80 61 L 30 61 Z" fill="#f8fafc" stroke="#64748b" stroke-width="1.2"/>
-            <ellipse cx="44" cy="56.5" rx="6" ry="2.6" fill="#020617"/>
-            <ellipse cx="66" cy="56.5" rx="6" ry="2.6" fill="#020617"/>
-            <rect x="22" y="61" width="66" height="5" rx="2.5" fill="${runnerCol}" stroke="${acc}" stroke-width="1.1"/>
-          </svg>
-        `;
-      }
-
-      // Visors & Buckets
-      const isCage = (item.style || '').includes('cage');
-      return `
-        <svg viewBox="0 0 110 76" class="w-24 h-16 shrink-0 rounded-xl bg-slate-950/90 border border-cyan-500/30 p-1">
-          <!-- Pro Bucket Shell & Vents -->
-          <path d="M 22 42 C 20 14, 90 14, 88 42 L 82 48 L 28 48 Z" fill="#0f172a" stroke="${acc}" stroke-width="2"/>
-          <rect x="38" y="20" width="12" height="4" rx="2" fill="#020617" stroke="${col}" stroke-width="0.9"/>
-          <rect x="60" y="20" width="12" height="4" rx="2" fill="#020617" stroke="${col}" stroke-width="0.9"/>
-          ${isCage ? `
-            <rect x="28" y="38" width="54" height="24" rx="6" fill="rgba(226,232,240,0.15)" stroke="#e2e8f0" stroke-width="1.8"/>
-            <line x1="28" y1="46" x2="82" y2="46" stroke="#e2e8f0" stroke-width="1.3"/>
-            <line x1="28" y1="54" x2="82" y2="54" stroke="#e2e8f0" stroke-width="1.3"/>
-            <line x1="46" y1="38" x2="46" y2="62" stroke="#e2e8f0" stroke-width="1.3"/>
-            <line x1="64" y1="38" x2="64" y2="62" stroke="#e2e8f0" stroke-width="1.3"/>
-          ` : `
-            <!-- Tinted Pro Half-Shield Visor -->
-            <path d="M 24 36 Q 55 44 86 36 L 83 56 Q 55 64 27 56 Z" fill="${col}" fill-opacity="0.78" stroke="${acc}" stroke-width="1.8"/>
-            <path d="M 32 41 Q 55 46 76 40" fill="none" stroke="#ffffff" stroke-width="1.8" opacity="0.65"/>
-          `}
-        </svg>
-      `;
+      return '';
     }
     window.renderProShopWallProductSvg = renderProShopWallProductSvg;
 
     function equipProShopItemOnProfile(prof, item) {
       if (!prof || !item) return;
       if (!Array.isArray(prof.ownedGear)) prof.ownedGear = [];
-      if (!prof.ownedGear.includes(item.id)) prof.ownedGear.push(item.id);
+      if (!item.isStarter && !prof.ownedGear.includes(item.id)) prof.ownedGear.push(item.id);
       if (!Array.isArray(state.unlockedItems)) state.unlockedItems = [];
-      if (!state.unlockedItems.includes(item.id)) state.unlockedItems.push(item.id);
+      if (!item.isStarter && !state.unlockedItems.includes(item.id)) state.unlockedItems.push(item.id);
 
       if (item.category === 'Gloves' || item.slot === 'gloves') {
         prof.equippedGloves = item.color;
@@ -18326,10 +18125,11 @@
       } else if (item.category === 'Skates' || item.slot === 'skates') {
         prof.equippedSkate = item.color;
         prof.equippedSkates = item.id;
+        prof.equippedSkatesId = item.id;
       } else if (item.category === 'Helmet') {
         prof.equippedHelmet = item.color;
         prof.equippedHelmetId = item.id;
-      } else if (item.category === 'Visor' || item.slot === 'helmet') {
+      } else if (item.category === 'Visor' || item.slot === 'helmet' || item.slot === 'visor') {
         prof.equippedVisor = item.color;
         prof.equippedVisorId = item.id;
       }
@@ -18407,29 +18207,29 @@
         : state.shopPreviewItem;
       const angle = state.shopSpinAngle != null ? state.shopSpinAngle : (state.avatarSpinAngle || 0);
 
-      // Left Mirror: Current Equipped Loadout
-      const currentWrap = document.getElementById('proShopCurrentAvatarWrap');
-      if (currentWrap) {
-        currentWrap.innerHTML = renderYoungHockeyPlayerAvatar(prof, angle, null);
-      }
-      const currentLbl = document.getElementById('proShopCurrentLoadoutLabel');
-      if (currentLbl) {
-        currentLbl.textContent = `${prof.name} #${prof.jerseyNumber || '9'} Equipped`;
-      }
-
-      // Right Mirror: Live "Try It On My Skater" Preview
-      wrap.innerHTML = renderYoungHockeyPlayerAvatar(prof, angle, previewObj);
-      const deltaBadge = document.getElementById('proShopTryOnDeltaBadge');
-      if (deltaBadge) {
-        deltaBadge.textContent = previewObj
-          ? `✨ ${previewObj.name} (💰 ${previewObj.cost})`
-          : 'Tap Any Wall Item ▶';
+      if (window.renderCustomizableSkater) {
+        window.renderCustomizableSkater(wrap, prof, {
+          angleDeg: angle,
+          previewItem: previewObj || null,
+          showSpinButton: false,
+          onAngleChange: (nextA) => {
+            state.shopSpinAngle = nextA;
+            const normNext = Math.round(((nextA % 360) + 360) % 360);
+            const bEl = document.getElementById('shopSpinAngleBadge');
+            if (bEl) {
+              const isBk = normNext >= 115 && normNext <= 245;
+              bEl.textContent = `${isBk ? 'Back' : (normNext >= 25 && normNext <= 335 ? 'Angled' : 'Front')} (${normNext}°)`;
+            }
+          }
+        });
+      } else {
+        wrap.innerHTML = renderYoungHockeyPlayerAvatar(prof, angle, previewObj);
       }
 
       const normA = Math.round(((angle % 360) + 360) % 360);
-      const isBack = Math.cos((normA * Math.PI) / 180) < 0;
+      const isBack = normA >= 115 && normA <= 245;
       const badge = document.getElementById('shopSpinAngleBadge');
-      if (badge) badge.textContent = `${isBack ? 'Back Nameplate' : 'Front Gear'} (${normA}°)`;
+      if (badge) badge.textContent = `${isBack ? 'Back' : 'Front'} (${normA}°)`;
       const slider = document.getElementById('sliderShopSpin');
       if (slider && document.activeElement !== slider) slider.value = String(normA);
     }
@@ -18446,7 +18246,7 @@
         if (state.puckBucks < item.cost) {
           SoundFX.playBuzzer();
           if (toastEl) {
-            toastEl.innerHTML = `<span>⚠️ Need 💰 ${item.cost} Puck Bucks (You have 💰 ${state.puckBucks}). Complete drills on the ice to earn more!</span>`;
+            toastEl.innerHTML = `<span>⚠️ Need 💰 ${item.cost} Puck Bucks (You have 💰 ${state.puckBucks}). Play drills on the ice to earn more!</span>`;
             toastEl.classList.remove('hidden');
           }
           return false;
@@ -18457,6 +18257,7 @@
         if (!state.unlockedItems.includes(item.id)) state.unlockedItems.push(item.id);
       }
 
+      equipProShopItemOnProfile(prof, item);
       state.shopPreviewItem = null;
       SoundFX.playGoalHorn();
       saveProgress();
@@ -18465,18 +18266,8 @@
       if (typeof renderSynapzLockerRoomModal === 'function') renderSynapzLockerRoomModal();
 
       if (toastEl) {
-        toastEl.innerHTML = `
-          <span>✅ <strong>${item.name}</strong> is in your <strong>Locker Room Equipment Bag</strong>! Head to your Locker Room to equip it onto your standing 3D Avatar.</span>
-          <button type="button" id="btnToastJumpToLockerBag" class="px-3 py-1 rounded-lg bg-emerald-400 text-slate-950 text-[11px] font-black shrink-0 cursor-pointer">🎒 Open Locker Bag ▶</button>
-        `;
+        toastEl.innerHTML = `<span>✅ Purchased &amp; Equipped <strong>${item.name}</strong>! Saved permanently to ${prof.name}'s Equipment Bag.</span>`;
         toastEl.classList.remove('hidden');
-        const jumpBtn = document.getElementById('btnToastJumpToLockerBag');
-        if (jumpBtn) {
-          jumpBtn.onclick = () => {
-            document.getElementById('proShopModal')?.classList.add('hidden');
-            openSynapzLockerRoomModal({ openBagCategory: 'Bag' });
-          };
-        }
       }
       return true;
     }
@@ -18494,55 +18285,61 @@
     }
     window.openProShopRackCategory = openProShopRackCategory;
 
+    function syncProShopCategoryTabIcons() {
+      if (!window.SynapzGearArt7525 || typeof window.SynapzGearArt7525.renderGearCategoryIconSvg !== 'function') return;
+      const tabDefs = [
+        { id: 'btnWallStick', cat: 'Stick', label: 'Sticks' },
+        { id: 'btnWallVisor', cat: 'Visor', label: 'Helmets & Visors' },
+        { id: 'btnWallGloves', cat: 'Gloves', label: 'Gloves' },
+        { id: 'btnWallSkates', cat: 'Skates', label: 'Skates' }
+      ];
+      tabDefs.forEach(td => {
+        const el = document.getElementById(td.id);
+        if (el && !el.dataset.v151SvgHydrated) {
+          el.dataset.v151SvgHydrated = '1';
+          el.innerHTML = `${window.SynapzGearArt7525.renderGearCategoryIconSvg(td.cat, 18)}<span>${td.label}</span>`;
+        }
+      });
+    }
+
     function renderProShopModal() {
       const prof = getActiveProfile();
       ensureProfileAvatarDefaults(prof);
-      const agent = typeof getActivePlayerAgent === 'function' ? getActivePlayerAgent() : SYNAPZ_PLAYER_AGENTS[2];
+      syncProShopCategoryTabIcons();
 
       const balEl = document.getElementById('shopBalanceBadge');
       if (balEl) balEl.textContent = `💰 ${state.puckBucks} Puck Bucks`;
-
-      // Update Player Agent Economy Banner if present
-      const agImg = document.getElementById('proShopAgentPortraitImg') || document.getElementById('proShopAgentImg');
-      if (agImg && agent) agImg.src = agent.img;
-      const agTitle = document.getElementById('proShopAgentNameBadge') || document.getElementById('proShopAgentTitle');
-      if (agTitle && agent) {
-        agTitle.textContent = `🎙️ Agent ${agent.name} • How You Earn Puck Bucks for Pro Gear`;
-      }
-      const agQuote = document.getElementById('proShopAgentEconomyText') || document.getElementById('proShopAgentEconomyQuote');
-      if (agQuote && agent) {
-        agQuote.innerHTML = `"Score <strong class="text-emerald-300">95% Hockey IQ</strong> in any Map Series and earn <strong class="text-amber-300">+95 💰 Puck Bucks</strong>! Purchased gear goes straight into your Locker Room Equipment Bag."`;
-      }
 
       if (typeof state.shopPreviewItem === 'string') {
         state.shopPreviewItem = PRO_SHOP_ITEMS.find(i => i.id === state.shopPreviewItem) || null;
       }
       updateShop3dStage();
 
-      const previewLabel = document.getElementById('shopPreviewItemName');
+      const tryingOnPill = document.getElementById('proShopTryingOnPill');
       const resetPreviewBtn = document.getElementById('btnClearShopPreview');
       const buyPreviewBtn = document.getElementById('btnBuyPreviewedItemNow');
       if (state.shopPreviewItem) {
-        if (previewLabel) previewLabel.textContent = `👁️ Trying On: ${state.shopPreviewItem.name} (💰 ${state.shopPreviewItem.cost} Puck Bucks)`;
+        const pvItem = state.shopPreviewItem;
+        const pvOwned = (prof.ownedGear || []).includes(pvItem.id);
+        if (tryingOnPill) {
+          tryingOnPill.textContent = `Trying On: ${pvItem.name}`;
+          tryingOnPill.className = 'w-full px-2.5 py-1.5 rounded-xl bg-cyan-950/90 border border-cyan-300 text-[11px] font-black text-cyan-200 text-center';
+        }
         if (resetPreviewBtn) resetPreviewBtn.classList.remove('hidden');
         if (buyPreviewBtn) {
           buyPreviewBtn.classList.remove('hidden');
-          const pvItem = state.shopPreviewItem;
-          const pvOwned = (prof.ownedGear || []).includes(pvItem.id);
           buyPreviewBtn.textContent = pvOwned
-            ? `🎒 In Equipment Bag — Open Locker Room to Equip`
-            : `💰 Buy into Equipment Bag (${pvItem.cost} Puck Bucks)`;
+            ? `✅ Equip ${pvItem.name}`
+            : `💰 Buy & Equip (${pvItem.cost} Puck Bucks)`;
           buyPreviewBtn.onclick = () => {
-            if (pvOwned) {
-              document.getElementById('proShopModal')?.classList.add('hidden');
-              openSynapzLockerRoomModal({ openBagCategory: 'Bag' });
-            } else {
-              purchaseProShopItemIntoBag(prof, pvItem);
-            }
+            purchaseProShopItemIntoBag(prof, pvItem);
           };
         }
       } else {
-        if (previewLabel) previewLabel.textContent = `Tap any wall item to preview or add to ${prof.name}'s Equipment Bag!`;
+        if (tryingOnPill) {
+          tryingOnPill.textContent = `Showing Equipped Loadout • ${prof.name}${prof.jerseyNumber !== '' && prof.jerseyNumber != null ? ` #${prof.jerseyNumber}` : ''}`;
+          tryingOnPill.className = 'w-full px-2.5 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-[11px] font-bold text-slate-300 text-center';
+        }
         if (resetPreviewBtn) resetPreviewBtn.classList.add('hidden');
         if (buyPreviewBtn) buyPreviewBtn.classList.add('hidden');
       }
@@ -18567,66 +18364,12 @@
         i.category === activeCat || (activeCat === 'Visor' && (i.category === 'Visor' || i.category === 'Helmet'))
       );
 
-      // Render Dedicated Sponsor-Ready Brand Showcase & Promo Drop Card (#proShopBrandShowcaseRack)
-      const promoItem = wallItems.find(i => i.isPromoShowcase) || wallItems[0];
-      const promoSlot = document.getElementById('proShopBrandShowcaseRack') || document.getElementById('proShopPromoFeaturedCardSlot');
-      if (promoSlot && promoItem) {
-        const promoOwned = (prof.ownedGear || []).includes(promoItem.id);
-        const promoEquipped =
-          (promoItem.category === 'Gloves' && (prof.equippedGloves === promoItem.color || prof.equippedGlovesId === promoItem.id)) ||
-          (promoItem.category === 'Stick' && (prof.equippedStick === promoItem.color || prof.equippedStickId === promoItem.id)) ||
-          (promoItem.category === 'Skates' && (prof.equippedSkate === promoItem.color || prof.equippedSkates === promoItem.id)) ||
-          ((promoItem.category === 'Visor' || promoItem.category === 'Helmet') && (prof.equippedVisor === promoItem.color || prof.equippedVisorId === promoItem.id));
-
-        promoSlot.innerHTML = `
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-[10px] font-black uppercase tracking-widest text-amber-300">⭐ PRO BRAND SHOWCASE • ADDS TO LOCKER EQUIPMENT BAG</span>
-            <span class="px-2 py-0.5 rounded bg-amber-400/20 border border-amber-400/50 text-amber-200 text-[9px] font-black">PRO DROP</span>
-          </div>
-          <div class="p-3 rounded-xl bg-slate-950/95 border border-amber-400/60 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div class="flex items-center gap-3 min-w-0">
-              ${renderProShopWallProductSvg(promoItem)}
-              <div class="min-w-0">
-                <div class="flex flex-wrap items-center gap-1.5">
-                  <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 text-[9px] font-black uppercase">${promoItem.brandTag || 'PRO SHOWCASE DROP'}</span>
-                  <span class="text-sm font-black text-white">${promoItem.name}</span>
-                </div>
-                <p class="text-[11px] text-slate-300 mt-0.5">${promoItem.desc}</p>
-              </div>
-            </div>
-            <div class="flex items-center gap-2 shrink-0">
-              <button type="button" id="btnPromoTryOnSkater" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-400/60 text-cyan-200 text-xs font-black transition">
-                👁️ Try On
-              </button>
-              <button type="button" id="btnPromoBuyOrEquip" class="px-3.5 py-2 rounded-xl ${promoEquipped ? 'bg-emerald-400 text-slate-950' : (promoOwned ? 'bg-cyan-400 text-slate-950' : 'bg-amber-400 hover:bg-amber-300 text-slate-950')} text-xs font-black shadow transition">
-                ${promoEquipped ? '✅ Equipped' : (promoOwned ? '🎒 In Bag (Equip in Locker)' : `💰 Buy (${promoItem.cost} PB)`)}
-              </button>
-            </div>
-          </div>
-        `;
-        const tryBtn = document.getElementById('btnPromoTryOnSkater');
-        if (tryBtn) {
-          tryBtn.addEventListener('click', () => {
-            SoundFX.playTap();
-            state.shopPreviewItem = promoItem;
-            state.avatarSpinAngle = 0;
-            renderProShopModal();
-          });
-        }
-        const buyBtn = document.getElementById('btnPromoBuyOrEquip');
-        if (buyBtn) {
-          buyBtn.addEventListener('click', () => {
-            if (promoOwned) {
-              document.getElementById('proShopModal')?.classList.add('hidden');
-              openSynapzLockerRoomModal({ openBagCategory: 'Bag' });
-            } else {
-              purchaseProShopItemIntoBag(prof, promoItem);
-            }
-          });
-        }
+      const promoSlot = document.getElementById('proShopBrandShowcaseRack');
+      if (promoSlot) {
+        promoSlot.classList.add('hidden');
+        promoSlot.innerHTML = '';
       }
 
-      // Render Large Product Wall Cards in #proShopItemsGrid
       const grid = document.getElementById('proShopItemsGrid');
       if (!grid) return;
       grid.innerHTML = '';
@@ -18634,32 +18377,32 @@
       wallItems.forEach(item => {
         const owned = (prof.ownedGear || []).includes(item.id);
         const equipped =
-          (item.category === 'Gloves' && (prof.equippedGloves === item.color || prof.equippedGlovesId === item.id)) ||
-          (item.category === 'Stick' && (prof.equippedStick === item.color || prof.equippedStickId === item.id)) ||
-          (item.category === 'Skates' && (prof.equippedSkate === item.color || prof.equippedSkates === item.id)) ||
-          (item.category === 'Helmet' && (prof.equippedHelmet === item.color || prof.equippedHelmetId === item.id)) ||
-          (item.category === 'Visor' && (prof.equippedVisor === item.color || prof.equippedVisorId === item.id));
+          (item.category === 'Gloves' && prof.equippedGlovesId === item.id) ||
+          (item.category === 'Stick' && prof.equippedStickId === item.id) ||
+          (item.category === 'Skates' && (prof.equippedSkatesId === item.id || prof.equippedSkates === item.id)) ||
+          (item.category === 'Helmet' && prof.equippedHelmetId === item.id) ||
+          (item.category === 'Visor' && prof.equippedVisorId === item.id);
         const isPreviewing = state.shopPreviewItem && state.shopPreviewItem.id === item.id;
+        const tierText = item.tierLabel || (window.SynapzGearArt7525?.resolveItemTierLabel?.(item)) || 'Pro Stock';
 
         const card = document.createElement('div');
         card.className = `p-3 rounded-2xl border-2 flex flex-col justify-between gap-2.5 transition ${
           equipped
-            ? 'bg-emerald-950/35 border-emerald-400 shadow-[0_0_18px_rgba(16,185,129,0.22)]'
+            ? 'bg-emerald-950/35 border-emerald-400 shadow-[0_0_16px_rgba(16,185,129,0.2)]'
             : isPreviewing
-            ? 'bg-cyan-950/40 border-cyan-300 shadow-[0_0_18px_rgba(0,229,255,0.25)]'
+            ? 'bg-cyan-950/40 border-cyan-300 shadow-[0_0_16px_rgba(34,211,238,0.25)]'
             : 'bg-slate-950/95 border-slate-800 hover:border-cyan-400/50'
         }`;
         card.setAttribute('data-pro-shop-item-id', item.id);
         card.innerHTML = `
-          <div class="pro-shop-card-preview-trigger flex items-center gap-3 min-w-0 cursor-pointer">
+          <div class="pro-shop-card-preview-trigger flex items-center gap-3 cursor-pointer">
             ${renderProShopWallProductSvg(item)}
-            <div class="min-w-0 flex-1">
-              <div class="flex flex-wrap items-center gap-1">
-                <span class="px-1.5 py-0.5 rounded bg-slate-900 border border-cyan-500/40 text-cyan-300 text-[9px] font-black uppercase">${item.brandTag || item.category}</span>
-                ${owned ? '<span class="px-1.5 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 text-[9px] font-black">🎒 IN BAG</span>' : ''}
+            <div class="flex-1 space-y-1">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-full bg-slate-900 border border-cyan-400/45 text-cyan-300 text-[9.5px] font-black uppercase">${tierText}</span>
+                <span class="px-2 py-0.5 rounded-full bg-amber-500/15 border border-amber-400/45 text-amber-300 text-[9.5px] font-black">${owned ? 'Owned ✓' : `💰 ${item.cost} Puck Bucks`}</span>
               </div>
-              <div class="text-xs sm:text-sm font-black text-white mt-0.5">${item.name}</div>
-              <div class="text-[11px] text-slate-300 leading-snug mt-0.5">${item.desc}</div>
+              <div class="pro-shop-item-title text-xs sm:text-sm font-black text-white leading-snug" style="white-space:normal;overflow:visible;text-overflow:unset;word-break:break-word;">${item.name}</div>
             </div>
           </div>
         `;
@@ -18674,18 +18417,18 @@
         const prevBtn = document.createElement('button');
         prevBtn.type = 'button';
         prevBtn.setAttribute('data-try-on-item-id', item.id);
-        prevBtn.className = `btn-try-on-skater px-3 py-1.5 rounded-xl text-[11px] font-black border transition ${
+        prevBtn.className = `btn-try-on-skater px-3 py-1.5 rounded-xl text-[11px] font-black border transition cursor-pointer ${
           isPreviewing
             ? 'bg-cyan-400 text-slate-950 border-cyan-200'
-            : 'bg-slate-900 hover:bg-slate-800 text-cyan-200 border-cyan-500/40'
+            : 'bg-slate-900 hover:bg-slate-800 text-cyan-200 border-cyan-500/45'
         }`;
-        prevBtn.textContent = isPreviewing ? '👁️ Trying On' : '👁️ Try On';
+        prevBtn.textContent = isPreviewing ? 'Trying On ✓' : 'Try On';
         prevBtn.addEventListener('click', () => previewProShopItemOnSkater(item));
 
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.setAttribute('data-buy-bag-item-id', item.id);
-        btn.className = `btn-pro-shop-buy-bag px-3.5 py-1.5 rounded-xl text-xs font-black shrink-0 transition ${
+        btn.className = `btn-pro-shop-buy-bag px-3.5 py-1.5 rounded-xl text-xs font-black shrink-0 transition cursor-pointer ${
           equipped
             ? 'bg-emerald-400 text-slate-950'
             : owned
@@ -18694,14 +18437,9 @@
             ? 'bg-amber-400 hover:bg-amber-300 text-slate-950 shadow'
             : 'bg-slate-800 text-slate-400 cursor-not-allowed'
         }`;
-        btn.textContent = equipped ? '✅ Equipped' : (owned ? '🎒 In Bag (Locker)' : `💰 ${item.cost} Puck Bucks`);
+        btn.textContent = equipped ? 'Equipped ✅' : (owned ? 'Equip' : 'Buy & Equip');
         btn.addEventListener('click', () => {
-          if (owned) {
-            document.getElementById('proShopModal')?.classList.add('hidden');
-            openSynapzLockerRoomModal({ openBagCategory: 'Bag' });
-          } else {
-            purchaseProShopItemIntoBag(prof, item);
-          }
+          purchaseProShopItemIntoBag(prof, item);
         });
 
         actionsWrap.appendChild(prevBtn);
@@ -19140,7 +18878,7 @@
         desc: 'Tap "⛶ Full Rink" anytime to expand the ice horizontally for phones and tablets. Coach Bob tucks neatly into the bottom-left corner out of the way!',
         bullets: [
           '👉 Use the Right-Side Action Ribbon Bar for thumb-friendly Check My Position, Hint, Reset, and 3D POV.',
-          '🥽 Toggle First-Person "In-Skates 3D POV" to see the ice through your helmet visor.',
+          '🏒 Toggle First-Person "In-Skates 3D POV" to see the ice through your helmet visor.',
           '🎬 After every play, watch tagged NHL/USA Hockey video clips or launch the Pro Self-Eval Lab!'
         ]
       }
@@ -20239,9 +19977,9 @@
     document.getElementById('btnTogglePovMode').addEventListener('click', () => {
       SoundFX.playTap();
       state.pov3dActive = !state.pov3dActive;
-      document.getElementById('btnTogglePovMode').textContent = state.pov3dActive ? '🗺️ Top-Down View' : '🥽 In-Skates 3D POV';
+      document.getElementById('btnTogglePovMode').textContent = state.pov3dActive ? '🗺️ Top-Down View' : '🏒 In-Skates 3D POV';
       const ribbonPov = document.getElementById('btnRibbonPov');
-      if (ribbonPov) ribbonPov.innerHTML = state.pov3dActive ? '<span>🗺️ 2D Rink</span>' : '<span>🥽 3D POV</span>';
+      if (ribbonPov) ribbonPov.innerHTML = state.pov3dActive ? '<span>🗺️ 2D Rink</span>' : '<span>🏒 3D POV</span>';
       drawRink();
     });
 
@@ -23581,45 +23319,10 @@
 
     function renderSlotSetupStep2StockAvatars() {
       const grid = document.getElementById('slotSetupStep2StockAvatarsGrid');
-      const selectedStockId = state.draftSkater.stockAvatarId || document.getElementById('slotSetupStockAvatarId')?.value || 'avatar-male-1';
-      if (!grid) return;
-      grid.innerHTML = SYNAPZ_STOCK_3D_AVATARS.map((av, idx) => {
-        const isSel = av.id === selectedStockId;
-        const cleanShortLabel = `#${idx + 1}`;
-        return `
-          <button type="button" data-stock-avatar-id="${av.id}" data-stock-gender="${av.gender}" aria-label="${av.label}" class="slot-step2-stock-avatar-btn p-1 rounded-xl border-2 flex flex-col items-center justify-center cursor-pointer transition ${
-            isSel
-              ? 'border-amber-400 bg-amber-500/20 shadow-[0_0_10px_rgba(251,191,36,0.3)]'
-              : 'border-slate-800 bg-slate-900/90 hover:border-cyan-400/60 opacity-85 hover:opacity-100'
-          }">
-            <img src="${av.img}" alt="${av.label}" class="h-9 w-auto object-contain select-none pointer-events-none" />
-            <span class="text-[8.5px] font-black ${isSel ? 'text-amber-300' : 'text-slate-400'}">${cleanShortLabel}</span>
-          </button>
-        `;
-      }).join('');
-
-      grid.querySelectorAll('.slot-step2-stock-avatar-btn').forEach(btn => {
-        btn.addEventListener('click', (ev) => {
-          ev.preventDefault();
-          ev.stopPropagation();
-          SoundFX.playTap();
-          const pickedId = btn.getAttribute('data-stock-avatar-id') || 'avatar-male-1';
-          const pickedGender = btn.getAttribute('data-stock-gender') || 'boy';
-          state.draftSkater.stockAvatarId = pickedId;
-          state.draftSkater.avatarType = pickedGender;
-          const hidStock = document.getElementById('slotSetupStockAvatarId');
-          const hidType = document.getElementById('slotSetupAvatarType');
-          if (hidStock) hidStock.value = pickedId;
-          if (hidType) hidType.value = pickedGender;
-          if (pickedGender === 'girl' && state.draftSkater.hairStyle === 'flow') {
-            syncSlotHairStylePillsUI('ponytail');
-          } else if (pickedGender === 'boy' && state.draftSkater.hairStyle === 'ponytail') {
-            syncSlotHairStylePillsUI('flow');
-          }
-          renderSlotSetupStep2StockAvatars();
-          updateSlotSetupLivePreview();
-        });
-      });
+      if (grid) {
+        grid.innerHTML = '';
+        grid.classList.add('hidden');
+      }
     }
     window.renderSlotSetupStep2StockAvatars = renderSlotSetupStep2StockAvatars;
 
@@ -23679,7 +23382,18 @@
         equippedHelmet: themeHex === '#eab308' ? '#111827' : themeHex,
         customTeamName: customTeam
       };
-      wrap.innerHTML = renderYoungHockeyPlayerAvatar(previewProf, state.slotSetupPreviewAngle, null, { hideGearBadges: true });
+
+      if (window.renderCustomizableSkater) {
+        window.renderCustomizableSkater(wrap, previewProf, {
+          angleDeg: state.slotSetupPreviewAngle || 0,
+          showSpinButton: false,
+          onAngleChange: (nextA) => {
+            state.slotSetupPreviewAngle = nextA;
+          }
+        });
+      } else {
+        wrap.innerHTML = renderYoungHockeyPlayerAvatar(previewProf, state.slotSetupPreviewAngle, null, { hideGearBadges: true });
+      }
     }
     window.updateSlotSetupLivePreview = updateSlotSetupLivePreview;
 
@@ -25273,11 +24987,6 @@
         document.getElementById('synapzLockerRoomModal')?.classList.add('hidden');
         logoutSynapzAccount();
       });
-      on('btnLockerSpinFrontBack', () => {
-        SoundFX.playTap();
-        state.lockerSpinAngle = state.lockerSpinAngle === 180 ? 0 : 180;
-        renderSynapzLockerRoomModal();
-      });
       on('btnToggleAnnualFocusPosition', async () => {
         const acct = state.currentAccount;
         const prof = getActiveProfile();
@@ -25933,18 +25642,19 @@
       // TAB 2: 🎨 Equipped Pro Shop Gear Slots
       const gearSlotsGrid = document.getElementById('profileEquippedGearSlotsGrid');
       if (gearSlotsGrid) {
+        const iconFn = window.SynapzGearArt7525?.renderGearCategoryIconSvg;
         const slots = [
-          { label: '🪖 Helmet', color: activeProf.equippedHelmet || '#1e3a8a', name: 'Pro Bucket' },
-          { label: '🥽 Visor',  color: activeProf.equippedVisor || '#38bdf8',  name: activeProf.equippedVisor ? 'Tinted Shield' : 'Clear Shield' },
-          { label: '🏒 Stick',  color: activeProf.equippedStick || '#22c55e',  name: 'Pro Carbon Twig' },
-          { label: '⛸️ Skates', color: activeProf.equippedSkate || '#e2e8f0',  name: 'Custom Runners' }
+          { cat: 'helmets', label: 'Helmet & Visor', color: activeProf.equippedHelmet || '#1e3a8a', name: activeProf.equippedVisor ? 'Tinted Pro Bucket' : 'Pro Bucket' },
+          { cat: 'gloves',  label: 'Gloves',         color: activeProf.equippedGlove || '#0f172a',  name: '4-Roll Pro Mitts' },
+          { cat: 'sticks',  label: 'Stick',          color: activeProf.equippedStick || '#22c55e',  name: 'Pro Carbon Twig' },
+          { cat: 'skates',  label: 'Skates',         color: activeProf.equippedSkate || '#e2e8f0',  name: 'Pro Steel Runners' }
         ];
         gearSlotsGrid.innerHTML = slots.map(s => `
           <div class="p-1.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center gap-1.5">
-            <span class="w-3.5 h-3.5 rounded-full border border-white/40 shrink-0" style="background:${s.color}"></span>
+            <span class="w-4 h-4 shrink-0 inline-flex items-center justify-center">${iconFn ? iconFn(s.cat, { size: 16 }) : `<span class="w-3 h-3 rounded-full inline-block" style="background:${s.color}"></span>`}</span>
             <div class="min-w-0">
-              <div class="text-[9px] font-black text-slate-300 truncate">${s.label}</div>
-              <div class="text-[9px] text-amber-300 font-bold truncate">${s.name}</div>
+              <div class="text-[9px] font-black text-slate-300 leading-tight">${s.label}</div>
+              <div class="text-[9px] text-amber-300 font-bold leading-tight">${s.name}</div>
             </div>
           </div>
         `).join('');
@@ -27834,17 +27544,17 @@
         speaker: 'active-agent',
         steps: [
           { targetId: 'proShopHotspotSticks', badge: '1/4 Stick Rack', text: 'Tap the left Stick Rack to browse pro carbon twigs and spend your earned Puck Bucks.' },
-          { targetId: 'proShopHotspotGloves', badge: '2/4 Gloves Counter', text: 'Tap the center Gloves Counter to check out pro mitts and showcase gear.' },
-          { targetId: 'proShopHotspotSkates', badge: '3/4 Skate & Helmet Wall', text: 'Tap the Skate Wall or Helmet shelves to unlock custom blades, buckets, and tinted visors.' },
-          { targetId: 'proShopHotspotShowcaseCounter', badge: '4/4 3D Try-On Floor', text: 'Tap the Try-On Floor to compare any item side-by-side on your skater before adding it to your Equipment Bag!' }
+          { targetId: 'proShopHotspotGloves', badge: '2/4 Gloves', text: 'Tap the center Gloves showcase to check out pro 4-roll mitts and custom colorways.' },
+          { targetId: 'proShopHotspotSkates', badge: '3/4 Skate & Helmet Wall', text: 'Tap the Skate Wall or Helmet shelves to unlock custom steel runners, buckets, and tinted visors.' },
+          { targetId: 'proShopHotspotShowcaseCounter', badge: '4/4 Live 360° Try-On Floor', text: 'Tap Try On on any item to dress your live 360° skater before buying!' }
         ]
       },
       clubhouse: {
         speaker: 'active-agent',
         steps: [
           { targetId: 'clubhouseHotspotFriendsWall', badge: '1/3 Friends Wall', text: 'Tap the Friends Wall on the left to swap Friend Codes with teammates and see mutual friend milestones.' },
-          { targetId: 'clubhouseHotspotMapRaceScreen', badge: '2/3 Center TV — Live Showdown', text: 'Tap the Center TV to join a 4-Digit PIN Live Showdown or track your 32-City Tour Globe race!' },
-          { targetId: 'clubhouseHotspotTrophyCase', badge: '3/3 32-City Tour & Trophy Case', text: 'Tap the Trophy Case on the right to inspect your conquered city badges, streaks, and division Stanley Cups!' }
+          { targetId: 'clubhouseHotspotMapRaceScreen', badge: '2/3 Center TV — Live Showdown', text: 'Tap the Center TV to host or join a 4-Digit PIN Live Team Showdown!' },
+          { targetId: 'clubhouseHotspotTrophyCase', badge: '3/3 3-Shelf Trophy Case', text: 'Tap the Trophy Case on the right to inspect your Division Silver Cups, Mastery Medals, and 32-City Patches!' }
         ]
       },
       headCoachOffice: {
@@ -28130,26 +27840,10 @@
 
     function renderLockerEditStockAvatarsGrid() {
       const grid = document.getElementById('lockerEditStockAvatarsGrid');
-      if (!grid) return;
-      const curId = state.lockerEditingStockAvatarId || 'avatar-male-1';
-      grid.innerHTML = SYNAPZ_STOCK_3D_AVATARS.map((av, idx) => {
-        const isSel = av.id === curId;
-        return `
-          <button type="button" data-locker-edit-stock="${av.id}" class="locker-edit-stock-btn p-1.5 rounded-xl border-2 flex flex-col items-center gap-0.5 cursor-pointer transition ${
-            isSel ? 'border-cyan-300 bg-cyan-500/20 shadow' : 'border-slate-800 bg-slate-900/90 hover:border-cyan-400/50'
-          }">
-            <img src="${av.img}" alt="${av.label}" class="h-12 w-auto object-contain select-none pointer-events-none" />
-            <span class="text-[9px] font-black ${isSel ? 'text-cyan-200' : 'text-slate-300'}">#${idx + 1}</span>
-          </button>
-        `;
-      }).join('');
-      grid.querySelectorAll('.locker-edit-stock-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          SoundFX.playTap();
-          state.lockerEditingStockAvatarId = btn.getAttribute('data-locker-edit-stock') || 'avatar-male-1';
-          renderLockerEditStockAvatarsGrid();
-        });
-      });
+      if (grid) {
+        grid.innerHTML = '';
+        grid.classList.add('hidden');
+      }
     }
 
     async function saveLockerProfileEdits() {
@@ -28224,13 +27918,46 @@
     }
     window.openSynapzLockerRoomModal = openSynapzLockerRoomModal;
 
+    function syncLockerBagCategoryTabIcons() {
+      if (!window.SynapzGearArt7525 || typeof window.SynapzGearArt7525.renderGearCategoryIconSvg !== 'function') return;
+      const tabLabels = {
+        Bag: 'All Bag Gear',
+        Stick: 'Sticks',
+        Gloves: 'Gloves',
+        Visor: 'Helmets & Visors',
+        Skates: 'Skates',
+        Jersey: 'Jerseys'
+      };
+      document.querySelectorAll('.locker-cat-btn').forEach((btn) => {
+        const rawCat = btn.dataset.lockerCat || 'Bag';
+        const normCat = rawCat === 'Sticks' ? 'Stick' : (rawCat === 'Helmets' ? 'Visor' : rawCat);
+        if (!btn.dataset.v151SvgHydrated) {
+          btn.dataset.v151SvgHydrated = '1';
+          const lbl = tabLabels[normCat] || normCat;
+          btn.innerHTML = `${window.SynapzGearArt7525.renderGearCategoryIconSvg(normCat, 17)}<span>${lbl}</span>`;
+        }
+      });
+    }
+
     function renderSynapzLockerRoomModal() {
       const prof = getActiveProfile();
       ensureProfileAvatarDefaults(prof);
+      syncLockerBagCategoryTabIcons();
 
       const floorStage = document.getElementById('lockerStanding3dAvatarStage');
       if (floorStage) {
-        floorStage.innerHTML = renderYoungHockeyPlayerAvatar(prof, state.lockerSpinAngle || 0, null, { standingLockerFloor: true });
+        if (window.renderCustomizableSkater) {
+          window.renderCustomizableSkater(floorStage, prof, {
+            angleDeg: state.lockerSpinAngle || 0,
+            showSpinButton: true,
+            spinButtonId: 'btnLockerStallSpin360',
+            onAngleChange: (nextA) => {
+              state.lockerSpinAngle = nextA;
+            }
+          });
+        } else {
+          floorStage.innerHTML = renderYoungHockeyPlayerAvatar(prof, state.lockerSpinAngle || 0, null, { standingLockerFloor: true });
+        }
       }
       const hiddenWrap = document.getElementById('lockerRoom3dAvatarWrap');
       if (hiddenWrap) hiddenWrap.innerHTML = '';
@@ -28264,39 +27991,50 @@
         const bCat = b.dataset.lockerCat === 'Sticks' ? 'Stick' : (b.dataset.lockerCat === 'Helmets' ? 'Visor' : b.dataset.lockerCat);
         const isC = bCat === cat;
         b.className = isC
-          ? 'locker-cat-btn px-3 py-1.5 rounded-xl bg-amber-400 text-slate-950 font-black text-xs shadow transition'
-          : 'locker-cat-btn px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-xs transition';
+          ? 'locker-cat-btn px-3 py-1.5 rounded-xl bg-amber-400 text-slate-950 font-black text-xs shadow inline-flex items-center gap-1.5 transition cursor-pointer'
+          : 'locker-cat-btn px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-bold text-xs inline-flex items-center gap-1.5 transition cursor-pointer';
       });
 
-      const ownedIds = Array.isArray(prof.ownedGear) ? prof.ownedGear : [];
+      const allOwnedItems = window.SynapzGearArt7525?.getOwnedLockerBagItems
+        ? window.SynapzGearArt7525.getOwnedLockerBagItems(prof, PRO_SHOP_ITEMS, 'Bag')
+        : [];
       const countLbl = document.getElementById('lockerEquipmentBagCountLabel');
       if (countLbl) {
-        countLbl.textContent = `${ownedIds.length} Pro Shop Item${ownedIds.length === 1 ? '' : 's'} in ${prof.name}'s Equipment Bag`;
+        countLbl.textContent = `${allOwnedItems.length} Owned Gear Item${allOwnedItems.length === 1 ? '' : 's'} in ${prof.name}'s Personal Bag`;
       }
 
       const gearGrid = document.getElementById('lockerRoomGearItemsGrid');
       if (!gearGrid) return;
 
       if (cat === 'Jersey') {
-        const colors = [
-          { hex: '#0284c7', label: 'Championship Blue' },
-          { hex: '#7c3aed', label: 'Synapz Royal Purple' },
-          { hex: '#ec4899', label: 'Electric Ice Pink' },
-          { hex: '#111827', label: '🖤 Stealth Full-Blackout Pro Jersey' },
-          { hex: '#eab308', label: 'Stanley Cup Trophy Gold' },
-          { hex: '#dc2626', label: 'Championship Crimson Red' }
+        const swatches = window.SynapzGearArt7525?.STARTER_JERSEY_SWATCHES || [
+          { id: 'jersey-blue', hex: '#0284c7', accent: '#38bdf8', name: 'All-Star Ice Blue Sweater', tierLabel: 'Team Kit', owned: true },
+          { id: 'jersey-red', hex: '#dc2626', accent: '#fca5a5', name: 'Championship Crimson Red Sweater', tierLabel: 'Team Kit', owned: true },
+          { id: 'jersey-pink', hex: '#ec4899', accent: '#f9a8d4', name: 'Electric Rink Pink Sweater', tierLabel: 'Team Kit', owned: true },
+          { id: 'jersey-purple', hex: '#7c3aed', accent: '#c4b5fd', name: 'Royal Purple Pro Sweater', tierLabel: 'Team Kit', owned: true },
+          { id: 'jersey-gold', hex: '#eab308', accent: '#fef08a', name: 'Vegas Championship Gold Sweater', tierLabel: 'Team Kit', owned: true },
+          { id: 'jersey-black', hex: '#111827', accent: '#22d3ee', name: 'Stealth Blackout Pro Sweater', tierLabel: 'Team Kit', owned: true }
         ];
-        gearGrid.innerHTML = colors.map(c => `
-          <button type="button" data-jersey-hex="${c.hex}" class="btn-locker-jersey p-3 rounded-xl border ${prof.jerseyColor === c.hex ? 'border-cyan-300 bg-cyan-500/20' : 'border-slate-800 bg-slate-900'} text-left flex items-center justify-between gap-2.5 cursor-pointer">
-            <div class="flex items-center gap-2.5">
-              <span class="w-7 h-7 rounded-full border-2 border-white/50 shrink-0" style="background:${c.hex}"></span>
-              <span class="text-xs font-black text-white">${c.label}</span>
-            </div>
-            <span class="px-2.5 py-1 rounded-lg text-[10px] font-black ${prof.jerseyColor === c.hex ? 'bg-emerald-400 text-slate-950' : 'bg-cyan-500/20 text-cyan-200'}">
-              ${prof.jerseyColor === c.hex ? '✅ Wearing' : '⚡ Wear'}
-            </span>
-          </button>
-        `).join('');
+        gearGrid.innerHTML = swatches.map(sw => {
+          const isWearing = String(prof.jerseyColor || '').toLowerCase() === sw.hex.toLowerCase();
+          const jerseyArt = window.SynapzGearArt7525?.renderGearItemArtSvg
+            ? window.SynapzGearArt7525.renderGearItemArtSvg({ id: sw.id, category: 'Jersey', color: sw.hex, accentColor: sw.accent }, { compact: true })
+            : `<span class="w-8 h-8 rounded-full border border-white/50 shrink-0" style="background:${sw.hex}"></span>`;
+          return `
+            <button type="button" data-jersey-hex="${sw.hex}" data-owned="true" class="btn-locker-jersey p-2.5 rounded-xl border ${isWearing ? 'border-emerald-400 bg-emerald-500/20' : 'border-slate-800 bg-slate-900 hover:border-cyan-400/60'} text-left flex items-center justify-between gap-2.5 cursor-pointer">
+              <div class="flex items-center gap-2.5 flex-1">
+                ${jerseyArt}
+                <div class="flex-1">
+                  <div class="text-[10px] font-black uppercase text-cyan-300">${sw.tierLabel || 'Team Kit'}</div>
+                  <div class="locker-bag-item-title text-xs font-black text-white leading-snug" style="white-space:normal;overflow:visible;text-overflow:unset;word-break:break-word;">${sw.name}</div>
+                </div>
+              </div>
+              <span class="px-3 py-1.5 rounded-lg text-[11px] font-black shrink-0 ${isWearing ? 'bg-emerald-400 text-slate-950' : 'bg-amber-400 text-slate-950 shadow'}">
+                ${isWearing ? 'Equipped ✅' : 'Equip'}
+              </span>
+            </button>
+          `;
+        }).join('');
         gearGrid.querySelectorAll('.btn-locker-jersey').forEach(b => {
           b.addEventListener('click', () => {
             SoundFX.playTap();
@@ -28310,55 +28048,50 @@
         return;
       }
 
-      const candidateItems = cat === 'Bag'
-        ? PRO_SHOP_ITEMS.filter(i => ownedIds.includes(i.id))
-        : PRO_SHOP_ITEMS.filter(i =>
-            i.category === cat || (cat === 'Visor' && (i.category === 'Visor' || i.category === 'Helmet'))
-          );
+      // STRICTLY OWNED-ONLY (`owned === true`: Starter Rink Kit + Purchased/Unlocked Pro Shop Gear ONLY!)
+      const candidateItems = (window.SynapzGearArt7525?.getOwnedLockerBagItems
+        ? window.SynapzGearArt7525.getOwnedLockerBagItems(prof, PRO_SHOP_ITEMS, cat)
+        : []
+      ).filter(it => it && it.owned === true);
 
-      if (cat === 'Bag' && candidateItems.length === 0) {
-        gearGrid.innerHTML = `
-          <div class="sm:col-span-2 p-4 rounded-xl bg-slate-900/95 border border-amber-400/50 text-center space-y-2">
-            <div class="text-xs font-black text-amber-300">🎒 Your Equipment Bag Is Ready for Pro Gear!</div>
-            <p class="text-[11px] text-slate-300">Visit the Walk-In Pro Shop to pick up sticks, helmets, gloves, visors, and skates with your Puck Bucks—they land right here ready to equip onto your 3D Skater!</p>
-            <button type="button" id="btnEmptyBagVisitShop" class="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black shadow cursor-pointer">
-              🛍️ Visit Walk-In Pro Shop ▶
-            </button>
-          </div>
-        `;
-        const vBtn = document.getElementById('btnEmptyBagVisitShop');
-        if (vBtn) {
-          vBtn.onclick = () => {
-            document.getElementById('synapzLockerRoomModal')?.classList.add('hidden');
-            if (typeof window.openSynapzProShopRoom === 'function') window.openSynapzProShopRoom();
-          };
+      const isItemCurrentlyEquipped = (item) => {
+        if (item.category === 'Gloves') {
+          return prof.equippedGlovesId ? prof.equippedGlovesId === item.id : Boolean(item.isStarter);
         }
-        return;
-      }
+        if (item.category === 'Stick') {
+          return prof.equippedStickId ? prof.equippedStickId === item.id : Boolean(item.isStarter);
+        }
+        if (item.category === 'Skates') {
+          const eqSk = prof.equippedSkatesId || prof.equippedSkates;
+          return eqSk ? eqSk === item.id : Boolean(item.isStarter);
+        }
+        if (item.category === 'Helmet') {
+          return prof.equippedHelmetId === item.id;
+        }
+        if (item.category === 'Visor') {
+          return prof.equippedVisorId ? prof.equippedVisorId === item.id : Boolean(item.isStarter);
+        }
+        return false;
+      };
 
       gearGrid.innerHTML = candidateItems.map(item => {
-        const inBag = ownedIds.includes(item.id);
-        const isEq =
-          (item.category === 'Gloves' && prof.equippedGlovesId === item.id) ||
-          (item.category === 'Stick' && prof.equippedStickId === item.id) ||
-          (item.category === 'Skates' && prof.equippedSkates === item.id) ||
-          (item.category === 'Helmet' && prof.equippedHelmetId === item.id) ||
-          (item.category === 'Visor' && prof.equippedVisorId === item.id);
+        const isEq = isItemCurrentlyEquipped(item);
+        const tierBadge = item.tierLabel || (item.isStarter ? 'Starter Kit' : 'Owned Pro Gear');
         return `
-          <button type="button" data-equip-id="${item.id}" data-in-bag="${inBag ? '1' : '0'}" class="btn-locker-equip p-2.5 rounded-xl border ${
-            isEq ? 'border-emerald-400 bg-emerald-500/20' : (inBag ? 'border-cyan-400/60 bg-slate-900 hover:border-cyan-300' : 'border-slate-800 bg-slate-950/80 opacity-80')
+          <button type="button" data-equip-id="${item.id}" data-owned="true" class="btn-locker-equip p-2.5 rounded-xl border ${
+            isEq ? 'border-emerald-400 bg-emerald-500/20' : 'border-cyan-400/50 bg-slate-900 hover:border-cyan-300'
           } text-left flex items-center justify-between gap-2.5 cursor-pointer">
-            <div class="flex items-center gap-2.5 min-w-0">
+            <div class="flex items-center gap-2.5 flex-1">
               ${renderProShopWallProductSvg(item)}
-              <div class="min-w-0">
-                <div class="text-xs font-black text-white truncate">${item.name}</div>
-                <div class="text-[10px] text-slate-300 leading-snug">${inBag ? '🎒 In Equipment Bag' : `🛍️ Pro Shop (${item.cost} PB)`}</div>
+              <div class="flex-1 space-y-0.5">
+                <span class="inline-block px-1.5 py-0.5 rounded bg-slate-950 border border-slate-700 text-[9.5px] font-black uppercase text-cyan-300">${tierBadge}</span>
+                <div class="locker-bag-item-title text-xs font-black text-white leading-snug" style="white-space:normal;overflow:visible;text-overflow:unset;word-break:break-word;">${item.name}</div>
               </div>
             </div>
-            <span class="px-3 py-1.5 rounded-lg text-[10px] font-black shrink-0 ${
-              isEq ? 'bg-emerald-400 text-slate-950' : (inBag ? 'bg-amber-400 text-slate-950 shadow' : 'bg-slate-800 text-amber-200 border border-amber-400/40')
+            <span class="px-3 py-1.5 rounded-lg text-[11px] font-black shrink-0 ${
+              isEq ? 'bg-emerald-400 text-slate-950' : 'bg-amber-400 text-slate-950 shadow'
             }">
-              ${isEq ? '✅ Equipped' : (inBag ? '⚡ Equip' : '🛍️ Pro Shop')}
+              ${isEq ? 'Equipped ✅' : 'Equip'}
             </span>
           </button>
         `;
@@ -28366,17 +28099,18 @@
 
       gearGrid.querySelectorAll('.btn-locker-equip').forEach(b => {
         b.addEventListener('click', () => {
-          const it = PRO_SHOP_ITEMS.find(x => x.id === b.dataset.equipId);
+          const id = b.dataset.equipId;
+          const it = candidateItems.find(x => x.id === id) || PRO_SHOP_ITEMS.find(x => x.id === id);
           if (!it) return;
-          if (b.dataset.inBag !== '1') {
-            document.getElementById('synapzLockerRoomModal')?.classList.add('hidden');
-            if (typeof window.openSynapzProShopRoom === 'function') {
-              window.openSynapzProShopRoom(it.category === 'Helmet' ? 'Visor' : it.category);
-            }
-            return;
-          }
           SoundFX.playGoalHorn();
-          equipProShopItemOnProfile(prof, it);
+          if (it.isStarter) {
+            if (it.category === 'Gloves') { prof.equippedGlovesId = 'starter-gloves'; prof.equippedGloves = prof.jerseyColor || '#0284c7'; }
+            if (it.category === 'Stick')  { prof.equippedStickId = 'starter-stick'; prof.equippedStick = '#334155'; }
+            if (it.category === 'Skates') { prof.equippedSkatesId = 'starter-skates'; prof.equippedSkates = 'starter-skates'; prof.equippedSkate = '#e2e8f0'; }
+            if (it.category === 'Visor')  { prof.equippedVisorId = 'starter-visor'; prof.equippedVisor = 'clear'; prof.equippedHelmetId = null; }
+          } else {
+            equipProShopItemOnProfile(prof, it);
+          }
           saveProgress();
           renderSynapzLockerRoomModal();
           renderSynapzRinkLobby();
@@ -30837,6 +30571,26 @@
       }
     }
 
+    function openClubhouseCenterTvShowdown(mode = 'join') {
+      SoundFX.playTap();
+      const prof = getActiveProfile();
+      ensureClubhouseSocialState(prof);
+      if (state.activeRoomTourKey === 'clubhouse') {
+        finishRoomFirstVisitTour(true);
+      }
+      document.getElementById('synapzUniversalCharSpeechOverlay')?.classList.add('hidden');
+      document.getElementById('clubhouseOverlaySheet')?.classList.add('hidden');
+      document.getElementById('synapzFriendsWallModal')?.classList.remove('hidden');
+      if (window.SynapzCharacterSpeechEngine) {
+        const ag = getActivePlayerAgent();
+        window.SynapzCharacterSpeechEngine.minimizeToCircle(ag ? ag.id : 'active-agent');
+      }
+      if (window.SynapzV14Engine && window.SynapzV14Engine.showdown) {
+        window.SynapzV14Engine.showdown.openModal(mode === 'host' ? 'host' : 'join');
+      }
+    }
+    window.openClubhouseCenterTvShowdown = openClubhouseCenterTvShowdown;
+
     function openSynapzFriendsWallModal(tab = null) {
       SoundFX.playTap();
       const prof = getActiveProfile();
@@ -30845,12 +30599,18 @@
       const modal = document.getElementById('synapzFriendsWallModal');
       const wasRoomHidden = modal ? modal.classList.contains('hidden') : true;
 
+      if (tab === 'showdown') {
+        openClubhouseCenterTvShowdown('join');
+        return;
+      }
+
       if (tab) {
         // Opening or switching a sub-panel inside Clubhouse: 100% SILENT (Slice 4.2)!
         if (state.activeRoomTourKey === 'clubhouse') {
           finishRoomFirstVisitTour(true);
         }
-        state.friendsWallTab = tab;
+        state.friendsWallTab = tab === 'race' ? 'map' : tab;
+        state.selectedGlobeShowcasePinId = null;
         document.getElementById('synapzUniversalCharSpeechOverlay')?.classList.add('hidden');
         if (sheet) sheet.classList.remove('hidden');
         renderSynapzFriendsWallModal();
@@ -30910,29 +30670,25 @@
             `).join('');
 
         const acceptedHtml = prof.acceptedFriends.length === 0
-          ? '<div class="sm:col-span-2 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-400 font-semibold">0 friends connected yet. Swap Friend Codes with teammates to race across the 32-City Tour Map!</div>'
-          : prof.acceptedFriends.map((fr, fIdx) => {
-              const stMeta = SYNAPZ_STOCK_3D_AVATARS.find(a => a.id === fr.stockAvatarId) || SYNAPZ_STOCK_3D_AVATARS[0];
-              return `
-                <div data-accepted-friend-code="${fr.friendCode}" class="p-2.5 rounded-xl bg-slate-900/95 border border-cyan-400/45 flex items-center justify-between gap-2.5">
-                  <div class="flex items-center gap-2.5 min-w-0">
-                    <img src="${stMeta.img}" alt="${fr.name}" class="h-12 w-auto object-contain shrink-0" />
-                    <div class="min-w-0">
-                      <div class="text-xs font-black text-white truncate">${fr.name}${fr.jerseyNumber ? ` #${fr.jerseyNumber}` : ''} (${fr.divisionLabel || '12U'})</div>
-                      <div class="text-[10px] font-bold text-emerald-300 truncate">📍 ${fr.cityName || 'Seattle'} • IQ ${fr.iqScore || 0}</div>
-                    </div>
+          ? '<div class="sm:col-span-2 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-400 font-semibold">0 friends connected yet. Swap Friend Codes with teammates to see their tour stop on the 32-City NHL Map!</div>'
+          : prof.acceptedFriends.map((fr, fIdx) => `
+              <div data-accepted-friend-code="${fr.friendCode}" class="p-2.5 rounded-xl bg-slate-900/95 border border-cyan-400/45 flex items-center justify-between gap-2.5">
+                <div class="flex items-center gap-2.5 min-w-0">
+                  <div class="w-11 h-14 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-center shrink-0 p-0.5">
+                    ${renderYoungHockeyPlayerAvatar(fr, 0, null, { hideGearBadges: true })}
                   </div>
-                  <div class="flex items-center gap-1.5 shrink-0">
-                    <button type="button" data-race-invite-idx="${fIdx}" class="btn-invite-friend-race px-2.5 py-1.5 rounded-lg ${fr.inMapRace ? 'bg-emerald-500/20 border border-emerald-400 text-emerald-200' : 'bg-amber-400 text-slate-950'} text-[10px] font-black cursor-pointer">
-                      ${fr.inMapRace ? '🌍 On Map' : '🏁 Add to Map'}
-                    </button>
-                    <button type="button" data-view-friend-globe="${fr.friendCode}" class="btn-view-friend-on-globe px-2.5 py-1.5 rounded-lg bg-cyan-500/20 border border-cyan-400/60 text-cyan-200 text-[10px] font-black cursor-pointer">
-                      👀 Card
-                    </button>
+                  <div class="min-w-0">
+                    <div class="text-xs font-black text-white" style="white-space:normal;">${fr.name}${fr.jerseyNumber ? ` #${fr.jerseyNumber}` : ''} (${fr.divisionLabel || '12U'})</div>
+                    <div class="text-[10px] font-bold text-emerald-300">📍 ${fr.cityName || 'San Jose'} • IQ ${fr.iqScore || 0}</div>
                   </div>
                 </div>
-              `;
-            }).join('');
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <button type="button" data-race-invite-idx="${fIdx}" class="btn-invite-friend-race px-2.5 py-1.5 rounded-lg bg-cyan-500/20 border border-cyan-400/60 text-cyan-200 text-[10px] font-black cursor-pointer">
+                    🗺️ View on Map
+                  </button>
+                </div>
+              </div>
+            `).join('');
 
         const milestones = [];
         prof.acceptedFriends.forEach(fr => {
@@ -31057,228 +30813,43 @@
         });
         container.querySelectorAll('.btn-invite-friend-race').forEach(btn => {
           btn.addEventListener('click', () => {
-            SoundFX.playGoalHorn();
-            const idx = Number(btn.getAttribute('data-race-invite-idx') || 0);
-            if (prof.acceptedFriends[idx]) {
-              prof.acceptedFriends[idx].inMapRace = true;
-              saveProgress();
-              state.selectedGlobeShowcasePinId = prof.acceptedFriends[idx].friendCode;
-              openSynapzFriendsWallModal('race');
-            }
-          });
-        });
-        container.querySelectorAll('.btn-view-friend-on-globe').forEach(btn => {
-          btn.addEventListener('click', () => {
-            state.selectedGlobeShowcasePinId = btn.getAttribute('data-view-friend-globe');
-            openSynapzFriendsWallModal('race');
+            SoundFX.playTap();
+            openSynapzFriendsWallModal('map');
           });
         });
         return;
       }
 
       if (tab === 'trophies') {
-        if (hdr) hdr.textContent = '🏆 32-City Tour Patches & Trophy Case';
-        const earnedPatches = Array.isArray(prof.unlockedCityPatches) ? prof.unlockedCityPatches.length : 0;
-        const earnedCups = Array.isArray(prof.unlockedCups) ? prof.unlockedCups.length : 0;
-        const bestStreak = Number(prof.bestStreak || 0);
-        const currCity = NHL_CITIES[state.currentCityIdx || 0] || NHL_CITIES[0];
-        container.innerHTML = `
-          <div class="space-y-3">
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
-              <div class="p-3 rounded-xl bg-slate-900 border ${bestStreak >= 3 ? 'border-amber-400/60' : 'border-slate-800 opacity-75'} space-y-1">
-                <div class="text-lg">🔥</div>
-                <div class="font-black ${bestStreak >= 3 ? 'text-amber-300' : 'text-slate-400'}">3-Gold Streak</div>
-                <div class="text-[11px] text-slate-300">${bestStreak >= 3 ? 'Unlocked!' : 'Locked — Hit 3 Gold Reads'}</div>
-              </div>
-              <div class="p-3 rounded-xl bg-slate-900 border ${bestStreak >= 5 ? 'border-cyan-400/60' : 'border-slate-800 opacity-75'} space-y-1">
-                <div class="text-lg">⚡</div>
-                <div class="font-black ${bestStreak >= 5 ? 'text-cyan-300' : 'text-slate-400'}">Best Streak</div>
-                <div class="text-[11px] text-slate-300">${bestStreak} Straight</div>
-              </div>
-              <div class="p-3 rounded-xl bg-slate-900 border ${earnedPatches > 0 ? 'border-emerald-400/60' : 'border-slate-800 opacity-75'} space-y-1">
-                <div class="text-lg">🏙️</div>
-                <div class="font-black ${earnedPatches > 0 ? 'text-emerald-300' : 'text-slate-400'}">City Tour Patches</div>
-                <div class="text-[11px] text-slate-300">${earnedPatches} / 32 Conquered • Next: ${currCity.name}</div>
-              </div>
-              <div class="p-3 rounded-xl bg-slate-900 border ${earnedCups > 0 ? 'border-yellow-400/60' : 'border-slate-800 opacity-75'} space-y-1">
-                <div class="text-lg">🏆</div>
-                <div class="font-black ${earnedCups > 0 ? 'text-yellow-300' : 'text-slate-400'}">Stanley Cups</div>
-                <div class="text-[11px] text-slate-300">${earnedCups} Unlocked</div>
-              </div>
-            </div>
-            <button type="button" id="btnOpenFull3DTrophyVaultFromClubhouse" class="w-full py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs uppercase shadow cursor-pointer">
-              🏆 Open Full 3D Stanley Cup Trophy Vault ▶
-            </button>
-          </div>
-        `;
-        document.getElementById('btnOpenFull3DTrophyVaultFromClubhouse')?.addEventListener('click', () => {
-          // Stay-In-Room × Rule: DO NOT hide synapzFriendsWallModal! Layer trophyRoomModal cleanly above Clubhouse!
-          if (typeof openTrophyRoomModal === 'function') openTrophyRoomModal();
-        });
+        if (hdr) hdr.textContent = '3-Shelf Championship Trophy Case';
+        container.innerHTML = `<div id="clubhouseWalnutTrophyCaseMount"></div>`;
+        if (window.renderTrophyCase3Shelf) {
+          const prog = window.SynapzTrophyCase3Shelf?.evaluateTrophyCaseProgress?.(prof, window.SynapzV14Engine?.catalog || null);
+          const badgeEl = document.getElementById('trophyRoomPrestigeBadge');
+          if (badgeEl && prog) {
+            badgeEl.textContent = prog.earnedCupsCount > 0
+              ? `${prog.earnedCupsCount} Stanley Cups Unlocked`
+              : '0 Stanley Cups Unlocked — Road to 32 NHL Cities';
+          }
+          window.renderTrophyCase3Shelf(container.querySelector('#clubhouseWalnutTrophyCaseMount'), {
+            profile: prof,
+            catalog: window.SynapzV14Engine?.catalog || null
+          });
+        }
         return;
       }
 
-      // Default / 'race': Center TV — Live Team Showdown + 32-City Tour Map Race!
-      if (hdr) hdr.textContent = '📺 Center TV — Live Team Showdown & 32-City Tour Globe';
-      const zoom = Math.max(1.0, Math.min(3.0, Number(state.clubhouseGlobeZoom || 1.0)));
-      const myCity = NHL_CITIES[state.currentCityIdx || 0] || NHL_CITIES[0];
-      const youPin = {
-        pinId: 'YOU',
-        isYou: true,
-        name: prof.name || 'Skater',
-        jerseyNumber: prof.jerseyNumber,
-        divisionLabel: prof.divisionLabel || prof.ageGroup || '12U',
-        stockAvatarId: prof.stockAvatarId || 'avatar-male-1',
-        hairStyle: prof.hairStyle || 'flow',
-        hairColor: prof.hairColor || '#78350f',
-        skinTone: prof.skinTone || '#fdba74',
-        jerseyColor: prof.jerseyColor || '#0284c7',
-        equippedStickId: prof.equippedStickId,
-        equippedGlovesId: prof.equippedGlovesId,
-        equippedVisorId: prof.equippedVisorId,
-        equippedSkates: prof.equippedSkates,
-        iqScore: Number(prof.iqScore || 0),
-        cityName: myCity.name,
-        globeX: 34,
-        globeY: 36,
-        trophies: Array.isArray(prof.unlockedCityPatches) ? prof.unlockedCityPatches : []
-      };
-      const racePins = [
-        youPin,
-        ...prof.acceptedFriends.filter(f => f.inMapRace !== false).map(f => ({
-          ...f,
-          pinId: f.friendCode
-        }))
-      ];
-      const selectedPin = racePins.find(p => p.pinId === state.selectedGlobeShowcasePinId) || null;
-
-      const pinsMarkup = racePins.map(pin => {
-        const stMeta = SYNAPZ_STOCK_3D_AVATARS.find(a => a.id === pin.stockAvatarId) || SYNAPZ_STOCK_3D_AVATARS[0];
-        const isActive = selectedPin && selectedPin.pinId === pin.pinId;
-        return `
-          <button type="button" data-globe-pin-id="${pin.pinId}" class="globe-avatar-crest-pin absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer transition-transform ${
-            isActive ? 'scale-125 z-30' : 'hover:scale-110 z-20'
-          }" style="left:${pin.globeX}%; top:${pin.globeY}%;">
-            <div class="w-10 h-10 rounded-full ${pin.isYou ? 'bg-cyan-950 border-2 border-cyan-300 shadow-[0_0_14px_rgba(34,211,238,0.85)]' : 'bg-slate-950 border-2 border-amber-400 shadow-[0_0_14px_rgba(251,191,36,0.75)]'} overflow-hidden flex items-start justify-center p-0.5">
-              <img src="${stMeta.img}" alt="${pin.name}" class="w-9 h-auto object-contain select-none pointer-events-none" />
-            </div>
-            <span class="mt-0.5 px-1.5 py-0.2 rounded-full bg-slate-950/95 border ${pin.isYou ? 'border-cyan-400 text-cyan-200' : 'border-amber-400/70 text-amber-200'} text-[9px] font-black whitespace-nowrap">
-              ${pin.name}${pin.jerseyNumber !== '' && pin.jerseyNumber != null ? ` #${pin.jerseyNumber}` : ''} • ${pin.cityName}
-            </span>
-          </button>
-        `;
-      }).join('');
-
-      let showcaseCardHtml = `
-        <div id="globeAvatarShowcasePopup" class="p-2.5 rounded-2xl bg-slate-900/95 border border-slate-700 text-xs text-slate-300 flex items-center justify-between">
-          <span>👆 Tap any player's crest pin on the 32-City Tour Globe to inspect their 3D Skater, equipped gear, and earned IQ!</span>
-        </div>
-      `;
-      if (selectedPin) {
-        const gearNames = [
-          PRO_SHOP_ITEMS.find(i => i.id === selectedPin.equippedStickId)?.name,
-          PRO_SHOP_ITEMS.find(i => i.id === selectedPin.equippedGlovesId)?.name,
-          PRO_SHOP_ITEMS.find(i => i.id === selectedPin.equippedVisorId)?.name,
-          PRO_SHOP_ITEMS.find(i => i.id === selectedPin.equippedSkates)?.name
-        ].filter(Boolean);
-        showcaseCardHtml = `
-          <div id="globeAvatarShowcasePopup" data-showcase-pin-id="${selectedPin.pinId}" class="p-3 rounded-2xl bg-slate-900/95 border-2 border-amber-400 shadow-2xl grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
-            <div class="sm:col-span-4 h-40 rounded-xl bg-slate-950/90 border border-cyan-400/40 flex items-center justify-center p-2">
-              ${renderYoungHockeyPlayerAvatar(selectedPin, 0, null, { hideGearBadges: true })}
-            </div>
-            <div class="sm:col-span-8 space-y-1.5 text-left">
-              <div class="flex flex-wrap items-center justify-between gap-1.5">
-                <span class="text-sm font-black text-white">${selectedPin.name}${selectedPin.jerseyNumber !== '' && selectedPin.jerseyNumber != null ? ` #${selectedPin.jerseyNumber}` : ''} (${selectedPin.divisionLabel})</span>
-                <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/60 text-emerald-300 text-[10px] font-black">📍 ${selectedPin.cityName} • ${selectedPin.iqScore} IQ</span>
-              </div>
-              <div class="text-xs text-slate-200">Equipped Gear: <strong class="text-amber-300">${gearNames.length ? gearNames.join(' • ') : 'Standard Rink Kit'}</strong></div>
-              <div class="flex flex-wrap items-center gap-1.5 pt-0.5">
-                ${(selectedPin.trophies || []).length === 0
-                  ? '<span class="text-[11px] text-slate-400 font-semibold">0 City Patches unlocked yet</span>'
-                  : (selectedPin.trophies || []).map(t => `<span class="px-2 py-0.5 rounded bg-amber-400/20 border border-amber-400/50 text-amber-200 text-[10px] font-black">🏆 ${t}</span>`).join('')}
-              </div>
-            </div>
-          </div>
-        `;
-      }
-
-      container.innerHTML = `
-        <div class="space-y-2.5">
-          <div class="p-2.5 rounded-2xl bg-slate-900/95 border border-teal-400/60 flex flex-wrap items-center justify-between gap-2">
-            <div>
-              <div class="text-xs font-black text-teal-300 uppercase">📺 Live 3-Minute Team Showdown</div>
-              <div class="text-[11px] text-slate-300 font-semibold">Enter your Coach's 4-Digit Room PIN to compete live with teammates!</div>
-            </div>
-            <div class="flex items-center gap-1.5">
-              <button type="button" id="btnCenterTvJoinShowdown" class="px-3 py-1.5 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 text-xs font-black shadow cursor-pointer">
-                🎮 Join Showdown PIN
-              </button>
-              <button type="button" id="btnCenterTvHostShowdown" class="px-3 py-1.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-amber-400/70 text-amber-200 text-xs font-black cursor-pointer">
-                ⚡ Host Showdown
-              </button>
-            </div>
-          </div>
-
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div class="text-xs font-bold text-slate-200">32-City North America Tour Globe:</div>
-            <div class="flex items-center gap-1.5">
-              <button type="button" id="btnGlobeZoomOut" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white text-xs font-black cursor-pointer">− Zoom Out</button>
-              <span id="globeZoomLevelBadge" class="px-2.5 py-1 rounded-lg bg-slate-950 border border-cyan-400/60 text-cyan-300 text-xs font-black">${zoom.toFixed(1)}x</span>
-              <button type="button" id="btnGlobeZoomIn" class="px-2.5 py-1 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-black cursor-pointer">+ Zoom In</button>
-            </div>
-          </div>
-
-          <div id="clubhouse3dGlobeViewport" class="relative w-full h-52 sm:h-56 rounded-2xl bg-slate-950 border border-cyan-400/50 overflow-hidden flex items-center justify-center">
-            <div id="clubhouse3dGlobeSphere" class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full transition-transform duration-200" style="transform: scale(${zoom}); background: radial-gradient(circle at 35% 30%, #0ea5e9 0%, #0f172a 58%, #020617 100%); box-shadow: inset -18px -18px 36px rgba(2,6,23,0.92), 0 0 38px rgba(14,165,233,0.35); border: 1.5px solid rgba(56,189,248,0.55);">
-              <svg viewBox="0 0 200 200" class="absolute inset-0 w-full h-full opacity-45 pointer-events-none">
-                <ellipse cx="100" cy="100" rx="88" ry="42" fill="none" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="3 3"/>
-                <ellipse cx="100" cy="100" rx="42" ry="88" fill="none" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="3 3"/>
-                <path d="M 42 58 Q 76 38 122 54 Q 140 78 118 110 Q 86 122 58 98 Z" fill="rgba(16,185,129,0.28)" stroke="#34d399" stroke-width="1.2"/>
-                <polyline points="68,72 84,92 102,76 108,96" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-dasharray="4 2"/>
-              </svg>
-              ${pinsMarkup}
-            </div>
-          </div>
-
-          ${showcaseCardHtml}
-
-          <button type="button" id="btnLaunchBuddyMapRaceNow" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-cyan-400 hover:from-amber-300 hover:to-cyan-300 text-slate-950 font-black text-xs uppercase shadow cursor-pointer">
-            🏒 Skate Next 32-City Tour Stop Now ▶
-          </button>
-        </div>
-      `;
-
-      document.getElementById('btnCenterTvJoinShowdown')?.addEventListener('click', () => {
-        SoundFX.playTap();
-        window.SynapzV14Engine?.showdown?.openModal('join');
-      });
-      document.getElementById('btnCenterTvHostShowdown')?.addEventListener('click', () => {
-        SoundFX.playTap();
-        window.SynapzV14Engine?.showdown?.openModal('host');
-      });
-      document.getElementById('btnGlobeZoomIn')?.addEventListener('click', () => {
-        SoundFX.playTap();
-        state.clubhouseGlobeZoom = Math.min(3.0, Math.round((Number(state.clubhouseGlobeZoom || 1.0) + 0.5) * 10) / 10);
-        renderSynapzFriendsWallModal();
-      });
-      document.getElementById('btnGlobeZoomOut')?.addEventListener('click', () => {
-        SoundFX.playTap();
-        state.clubhouseGlobeZoom = Math.max(1.0, Math.round((Number(state.clubhouseGlobeZoom || 1.0) - 0.5) * 10) / 10);
-        renderSynapzFriendsWallModal();
-      });
-      container.querySelectorAll('.globe-avatar-crest-pin').forEach(btn => {
-        btn.addEventListener('click', () => {
-          SoundFX.playTap();
-          state.selectedGlobeShowcasePinId = btn.getAttribute('data-globe-pin-id');
-          renderSynapzFriendsWallModal();
+      // 'map' / 'race': Real Zoomable/Pannable North America 32-City NHL Atlas Map!
+      // (Zero loose Showdown buttons here — Showdown lives directly on the Center TV hotspot!
+      //  Zero auto-popped friend cards, and Zero "SKATE NEXT 32-CITY TOUR STOP NOW" buttons!)
+      if (hdr) hdr.textContent = '🗺️ 32-City North America NHL Tour Map';
+      container.innerHTML = `<div id="clubhouseNhlAtlasMount"></div>`;
+      if (window.renderNhlAtlasMap) {
+        window.renderNhlAtlasMap(container.querySelector('#clubhouseNhlAtlasMount'), {
+          profile: prof,
+          currentCityIdx: state.currentCityIdx || 0
         });
-      });
-      document.getElementById('btnLaunchBuddyMapRaceNow')?.addEventListener('click', () => {
-        SoundFX.playGoalHorn();
-        document.getElementById('synapzFriendsWallModal')?.classList.add('hidden');
-        document.getElementById('clubhouseOverlaySheet')?.classList.add('hidden');
-        switchView('game');
-      });
+      }
     }
     window.renderSynapzFriendsWallModal = renderSynapzFriendsWallModal;
 
@@ -32573,6 +32144,10 @@
 
       // Room 5: Clubhouse Hotspots (Friends Wall, Center TV Showdown/Map, Trophy Case — Stay-In-Room × Rule!)
       bindClick('btnCloseSynapzFriendsWallModal', () => {
+        if (window.SynapzV14Engine?.showdown?.isOpen) {
+          window.SynapzV14Engine.showdown.close();
+          return;
+        }
         const sheet = document.getElementById('clubhouseOverlaySheet');
         if (sheet && !sheet.classList.contains('hidden')) {
           sheet.classList.add('hidden');
@@ -32581,10 +32156,34 @@
         document.getElementById('synapzFriendsWallModal')?.classList.add('hidden');
       });
       bindClick('btnFriendsWallSaveExitLobby', saveAndExitToRinkLobby);
-      bindClick('btnCloseClubhouseDrawer', () => document.getElementById('clubhouseOverlaySheet')?.classList.add('hidden'));
+      bindClick('btnCloseClubhouseDrawer', () => {
+        document.getElementById('clubhouseOverlaySheet')?.classList.add('hidden');
+        if (window.SynapzV14Engine?.showdown?.isOpen) {
+          window.SynapzV14Engine.showdown.close();
+        }
+      });
       bindClick('clubhouseHotspotFriendsWall', () => openSynapzFriendsWallModal('find'));
-      bindClick('clubhouseHotspotMapRaceScreen', () => openSynapzFriendsWallModal('race'));
+      bindClick('clubhouseHotspotMapRaceScreen', () => openClubhouseCenterTvShowdown('join'));
+      bindClick('clubhouseHotspotTourMap', () => openSynapzFriendsWallModal('map'));
+      bindClick('btnClubhouseOpenTourMap', () => openSynapzFriendsWallModal('map'));
       bindClick('clubhouseHotspotTrophyCase', () => openSynapzFriendsWallModal('trophies'));
+
+      window.syncV151VisualModulesOnReady = () => {
+        try { syncProShopCategoryTabIcons(); } catch (_) {}
+        try { syncLockerBagCategoryTabIcons(); } catch (_) {}
+        if (window.SynapzTrophyCase3Shelf && typeof window.SynapzTrophyCase3Shelf.evaluateTrophyCaseProgress === 'function') {
+          try {
+            const p = getActiveProfile();
+            const prog = window.SynapzTrophyCase3Shelf.evaluateTrophyCaseProgress(p);
+            const badgeEl = document.getElementById('trophyRoomPrestigeBadge');
+            if (badgeEl) {
+              badgeEl.textContent = prog.earnedCupsCount > 0
+                ? `${prog.earnedCupsCount} Stanley Cups Unlocked`
+                : '0 Stanley Cups Unlocked — Road to 32 NHL Cities';
+            }
+          } catch (_) {}
+        }
+      };
 
       // SafeSport Notification Modal
       bindClick('btnCloseSafeSportNotificationModal', () => document.getElementById('safeSportNotificationModal')?.classList.add('hidden'));
@@ -32620,6 +32219,13 @@
         window._v15StayInRoomEscapeBound = true;
         document.addEventListener('keydown', (ev) => {
           if (ev.key !== 'Escape') return;
+          const sdMount = document.getElementById('v14GlobalShowdownMount');
+          if (sdMount && !sdMount.classList.contains('hidden')) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            window.SynapzV14Engine?.showdown?.close?.();
+            return;
+          }
           const subPanelsInPriority = [
             'founderRedFlagModal',
             'v14CoachPreviewAll5Drawer',
@@ -35090,7 +34696,7 @@
       },
       /* [REAL-CODED-FEATURE: S12-AD] */
       'S12-AD': {
-        id: 'S12-AD', batch: 'AD', seat: 12, title: 'Full 242-Upgrade + Blooket 3-Tier Portal (Association -> Coach -> 4-Slot Player) Pilot Readiness Receipt',
+        id: 'S12-AD', batch: 'AD', seat: 12, title: 'Full 242-Upgrade + Live Showdown 3-Tier Portal (Association -> Coach -> 4-Slot Player) Pilot Readiness Receipt',
         applyDom() { state.v120PortalAnd242UpgradesReceiptVerified = true; return { id: 'S12-AD', active: true, verifiedUpgrades: 242 }; }
       },
 
@@ -36976,12 +36582,12 @@
       </button>
     </div>
 
-    <!-- Floating Equipment Bag Drawer -->
-    <div id="lockerEquipmentBagSheet" class="hidden fixed inset-x-2.5 bottom-2.5 sm:inset-x-auto sm:w-[92vw] sm:max-w-3xl max-h-[78dvh] overflow-y-auto z-50 rounded-2xl bg-slate-950/95 border-2 border-amber-400/85 p-3.5 shadow-2xl space-y-2.5 backdrop-blur-xl">
+    <!-- Floating Equipment Bag Drawer (Strictly Owned-Only Gear + Full Unwrapped Titles + Single Subtle Footer Link!) -->
+    <div id="lockerEquipmentBagSheet" class="hidden fixed inset-x-2.5 bottom-2.5 sm:inset-x-auto sm:w-[92vw] sm:max-w-3xl max-h-[80dvh] overflow-y-auto z-50 rounded-2xl bg-slate-950/96 border-2 border-amber-400/85 p-3.5 shadow-2xl space-y-2.5 backdrop-blur-xl">
       <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
         <div>
-          <div class="text-[10px] font-black uppercase tracking-widest text-amber-300">🎒 EQUIPMENT BAG • EQUIP PRO SHOP GEAR ONTO YOUR 3D SKATER</div>
-          <div id="lockerEquipmentBagCountLabel" class="text-xs font-black text-white">Purchased Items Ready to Equip</div>
+          <div class="text-[10px] font-black uppercase tracking-widest text-amber-300">PERSONAL EQUIPMENT BAG • OWNED GEAR ONLY</div>
+          <div id="lockerEquipmentBagCountLabel" class="text-xs font-black text-white">Owned Gear Ready to Equip</div>
         </div>
         <div class="flex items-center gap-1.5">
           <div id="lockerAnnualFocusPosWrap" class="hidden">
@@ -36989,44 +36595,42 @@
               🎯 Focus Position: OFF
             </button>
           </div>
-          <button id="btnLockerGoToProShop" type="button" class="px-2.5 py-1.5 rounded-xl bg-amber-400/20 hover:bg-amber-400/35 border border-amber-400/70 text-amber-200 text-[11px] font-black cursor-pointer">
-            🛍️ Pro Shop
-          </button>
-          <button id="btnCloseLockerEquipmentBag" type="button" class="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-black cursor-pointer">✕ Close Bag</button>
+          <button id="btnCloseLockerEquipmentBag" type="button" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-black cursor-pointer">✕ Close Bag</button>
         </div>
       </div>
 
       <div class="flex flex-wrap items-center gap-1.5">
-        <button type="button" data-locker-cat="Bag" class="locker-cat-btn px-3 py-1.5 rounded-xl bg-amber-400 text-slate-950 font-black text-xs cursor-pointer">🎒 All Bag Gear</button>
-        <button type="button" data-locker-cat="Stick" class="locker-cat-btn px-3 py-1.5 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs cursor-pointer">🏒 Sticks</button>
-        <button type="button" data-locker-cat="Gloves" class="locker-cat-btn px-3 py-1.5 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs cursor-pointer">🧤 Gloves</button>
-        <button type="button" data-locker-cat="Visor" class="locker-cat-btn px-3 py-1.5 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs cursor-pointer">🥽 Helmets &amp; Visors</button>
-        <button type="button" data-locker-cat="Skates" class="locker-cat-btn px-3 py-1.5 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs cursor-pointer">⛸️ Skates</button>
-        <button type="button" data-locker-cat="Jersey" class="locker-cat-btn px-3 py-1.5 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs cursor-pointer">🎽 Jersey Color</button>
+        <button type="button" data-locker-cat="Bag" class="locker-cat-btn px-3 py-1.5 rounded-xl bg-amber-400 text-slate-950 font-black text-xs cursor-pointer">All Bag Gear</button>
+        <button type="button" data-locker-cat="Stick" class="locker-cat-btn px-3 py-1.5 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs cursor-pointer">Sticks</button>
+        <button type="button" data-locker-cat="Gloves" class="locker-cat-btn px-3 py-1.5 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs cursor-pointer">Gloves</button>
+        <button type="button" data-locker-cat="Visor" class="locker-cat-btn px-3 py-1.5 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs cursor-pointer">Helmets &amp; Visors</button>
+        <button type="button" data-locker-cat="Skates" class="locker-cat-btn px-3 py-1.5 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs cursor-pointer">Skates</button>
+        <button type="button" data-locker-cat="Jersey" class="locker-cat-btn px-3 py-1.5 rounded-xl bg-slate-900 text-slate-200 font-bold text-xs cursor-pointer">Jerseys</button>
       </div>
 
-      <div id="lockerRoomGearItemsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-56 overflow-y-auto pr-1"></div>
+      <div id="lockerRoomGearItemsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-60 overflow-y-auto pr-1"></div>
 
-      <div class="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-slate-800">
-        <div class="flex items-center gap-1.5">
-          <button id="btnLockerSpinFrontBack" type="button" class="px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-400/60 text-cyan-200 text-[11px] font-black cursor-pointer">
-            🔄 Flip Skater Front/Back
-          </button>
-          <button id="btnLockerPreviewBlackout" type="button" class="px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-amber-400/60 text-amber-200 text-[11px] font-black cursor-pointer">
-            🖤 Blackout Loadout
-          </button>
+      <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800">
+        <button id="btnLockerSpinFrontBack" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-400/60 text-cyan-200 text-[11px] font-black cursor-pointer">
+          🔄 Spin 360° (Front / Back)
+        </button>
+        <button id="btnLockerGoToProShop" type="button" class="text-[11px] font-bold text-amber-300 hover:text-amber-200 underline cursor-pointer">
+          Want new twigs, visors, or skates? Visit the Walk-In Pro Shop →
+        </button>
+        <div class="hidden">
+          <button id="btnLockerPreviewBlackout" type="button">Blackout</button>
+          <div id="lockerRoom3dAvatarWrap"></div>
         </div>
-        <div id="lockerRoom3dAvatarWrap" class="hidden"></div>
       </div>
     </div>
 
     <!-- Floating Edit Player Profile Drawer -->
     <div id="lockerEditProfileSheet" class="hidden fixed inset-x-2.5 bottom-2.5 sm:inset-x-auto sm:w-[92vw] sm:max-w-2xl max-h-[82dvh] overflow-y-auto z-50 rounded-2xl bg-slate-950/95 border-2 border-cyan-400/85 p-3.5 shadow-2xl space-y-2.5 backdrop-blur-xl">
       <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-        <div class="text-xs sm:text-sm font-black text-cyan-300">✏️ Edit Player Profile &amp; 3D Skater</div>
+        <div class="text-xs sm:text-sm font-black text-cyan-300">✏️ Edit Player Profile &amp; 360° Skater</div>
         <button id="btnCloseLockerEditProfile" type="button" class="px-2.5 py-1 rounded-xl bg-slate-800 text-slate-200 text-xs font-black cursor-pointer">✕ Close</button>
       </div>
-      <div id="lockerEditStockAvatarsGrid" class="grid grid-cols-4 gap-1.5"></div>
+      <div id="lockerEditStockAvatarsGrid" class="hidden"></div>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
         <div>
           <label class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Skater Name</label>
@@ -37036,9 +36640,10 @@
           <label class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Hair</label>
           <select id="lockerEditHairStyleSelect" class="w-full px-2.5 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-white">
             <option value="flow">Hockey Flow</option>
-            <option value="mohawk">Mohawk</option>
-            <option value="short">Short</option>
+            <option value="short">Short / Fade</option>
             <option value="ponytail">Ponytail</option>
+            <option value="curly">Curly</option>
+            <option value="mohawk">Mohawk</option>
             <option value="braids">Braids</option>
             <option value="buzz">Buzz Cut</option>
           </select>
@@ -37193,15 +36798,20 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- ROOM 5: PURE FULL-SCREEN CLUBHOUSE (Zero Yellow Outlines, Clean Copy) -->
+  <!-- ROOM 5: PURE FULL-SCREEN CLUBHOUSE (Center TV Showdown + 32-City Map + 3-Shelf Trophy Case) -->
   <!-- ===================================================================== -->
   <div id="synapzFriendsWallModal" class="hidden synapz-pure-fullscreen-room z-[98]">
     <img loading="lazy" decoding="async" src="assets/rooms/room-clubhouse.png" alt="" aria-hidden="true" class="synapz-pure-room-ambient-bg" />
 
-    <!-- Top-Left Exit Only (Showdown lives cleanly inside Center TV!) -->
-    <button id="btnFriendsWallSaveExitLobby" type="button" class="fixed top-3 left-3 z-40 px-3.5 py-2 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-amber-400/75 text-amber-200 text-xs font-black shadow-2xl backdrop-blur-md cursor-pointer">
-      ← Main Lobby
-    </button>
+    <!-- Top-Left Exit + 32-City Map Pill (Unobstructed Top-Right Red Flag!) -->
+    <div class="fixed top-3 left-3 z-40 flex items-center gap-2">
+      <button id="btnFriendsWallSaveExitLobby" type="button" class="px-3.5 py-2 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-amber-400/75 text-amber-200 text-xs font-black shadow-2xl backdrop-blur-md cursor-pointer">
+        ← Main Lobby
+      </button>
+      <button id="btnClubhouseOpenTourMap" type="button" class="px-3 py-2 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-cyan-400/75 text-cyan-200 text-xs font-black shadow-2xl backdrop-blur-md cursor-pointer">
+        🗺️ 32-City NHL Map
+      </button>
+    </div>
     <div class="hidden">
       <button id="btnCloseSynapzFriendsWallModal" type="button">✕</button>
     </div>
@@ -37213,16 +36823,19 @@
       <button id="clubhouseHotspotFriendsWall" type="button" data-clubhouse-hotspot="find" aria-label="Friends Wall" class="synapz-golden-gear-hotspot" style="left: 1.5%; top: 17.5%; width: 25.0%; height: 66.0%;">
         <span class="synapz-room-object-pin-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">🖼️ Friends Wall</span>
       </button>
-      <button id="clubhouseHotspotMapRaceScreen" type="button" data-clubhouse-hotspot="race" aria-label="Center TV Live Showdown and Tour Map" class="synapz-golden-gear-hotspot" style="left: 36.8%; top: 39.0%; width: 26.4%; height: 23.5%;">
-        <span class="synapz-room-object-pin-label" style="bottom: 8%; left: 50%; transform: translateX(-50%);">📺 Live Showdown &amp; Globe</span>
+      <button id="clubhouseHotspotMapRaceScreen" type="button" data-clubhouse-hotspot="showdown" aria-label="Center TV Live Team Showdown" class="synapz-golden-gear-hotspot" style="left: 36.8%; top: 39.0%; width: 26.4%; height: 23.5%;">
+        <span class="synapz-room-object-pin-label" style="bottom: 8%; left: 50%; transform: translateX(-50%);">⚡ Live Team Showdown</span>
       </button>
-      <button id="clubhouseHotspotTrophyCase" type="button" data-clubhouse-hotspot="trophies" aria-label="32-City Tour and Trophy Case" class="synapz-golden-gear-hotspot" style="left: 73.5%; top: 18.0%; width: 25.0%; height: 65.0%;">
-        <span class="synapz-room-object-pin-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">🏆 Trophy Case</span>
+      <button id="clubhouseHotspotTourMap" type="button" data-clubhouse-hotspot="map" aria-label="32-City North America NHL Tour Map" class="synapz-golden-gear-hotspot" style="left: 31.0%; top: 65.5%; width: 38.0%; height: 28.5%;">
+        <span class="synapz-room-object-pin-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">🗺️ 32-City NHL Map</span>
+      </button>
+      <button id="clubhouseHotspotTrophyCase" type="button" data-clubhouse-hotspot="trophies" aria-label="3-Shelf Championship Trophy Case" class="synapz-golden-gear-hotspot" style="left: 73.5%; top: 18.0%; width: 25.0%; height: 65.0%;">
+        <span class="synapz-room-object-pin-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">3-Shelf Trophy Case</span>
       </button>
     </div>
 
     <!-- Floating Clubhouse Drawer -->
-    <div id="clubhouseOverlaySheet" class="hidden fixed inset-x-2.5 bottom-2.5 sm:inset-x-auto sm:w-[92vw] sm:max-w-4xl max-h-[84dvh] overflow-y-auto z-50 rounded-2xl bg-slate-950/95 border-2 border-amber-400/85 p-3.5 shadow-2xl space-y-2.5 backdrop-blur-xl">
+    <div id="clubhouseOverlaySheet" class="hidden fixed inset-x-2.5 bottom-2.5 sm:inset-x-auto sm:w-[94vw] sm:max-w-5xl max-h-[86dvh] overflow-y-auto z-50 rounded-2xl bg-slate-950/96 border-2 border-amber-400/85 p-3.5 shadow-2xl space-y-2.5 backdrop-blur-xl">
       <div class="flex items-center justify-between border-b border-slate-800 pb-2">
         <div id="clubhouseDrawerHeaderTitle" class="text-xs sm:text-sm font-black text-amber-300">🏛️ Clubhouse</div>
         <button id="btnCloseClubhouseDrawer" type="button" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-black cursor-pointer">✕ Close</button>

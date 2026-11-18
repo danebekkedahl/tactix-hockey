@@ -22,6 +22,10 @@ import {
   DrillCatalogDrawerController
 } from './blooket_payoff.js';
 import { TeamShowdownController } from './team_showdown.js';
+import SynapzSkaterRenderer360, { renderCustomizableSkater, buildCustomizableSkaterSvg, buildMiniSkaterHeadSvg } from './skater_renderer_360.js';
+import SynapzGearArt7525, { renderGearCategoryIconSvg, renderGearItemArtSvg, getOwnedLockerBagItems } from './gear_art_75_25.js';
+import SynapzNhlAtlasMap, { renderNhlAtlasMap, NHL_ATLAS_CITIES } from './nhl_atlas_map.js';
+import SynapzTrophyCase3Shelf, { renderTrophyCase3Shelf, evaluateTrophyCaseProgress } from './trophy_case_3shelf.js';
 
 const LEGACY_SCENARIO_TO_V14_CONCEPT = Object.freeze({
   'spacing-1': 'OZ-03',
@@ -814,8 +818,25 @@ if (typeof window !== 'undefined') {
     recordConceptRepResult,
     compute5ZoneRingSummaries,
     renderZoneSkillRingsHtml,
-    TeamShowdownController
+    TeamShowdownController,
+    SynapzSkaterRenderer360,
+    renderCustomizableSkater,
+    buildCustomizableSkaterSvg,
+    buildMiniSkaterHeadSvg,
+    SynapzGearArt7525,
+    renderGearCategoryIconSvg,
+    renderGearItemArtSvg,
+    getOwnedLockerBagItems,
+    SynapzNhlAtlasMap,
+    renderNhlAtlasMap,
+    NHL_ATLAS_CITIES,
+    SynapzTrophyCase3Shelf,
+    renderTrophyCase3Shelf,
+    evaluateTrophyCaseProgress
   };
+  if (typeof window.syncV151VisualModulesOnReady === 'function') {
+    try { window.syncV151VisualModulesOnReady(); } catch (_) {}
+  }
   synapzV14.init().catch((err) => {
     console.error('[SYNAPZ v14.0] Bootstrap initialization error:', err);
   });
