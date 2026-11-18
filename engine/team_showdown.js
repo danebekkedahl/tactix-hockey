@@ -434,6 +434,16 @@ export class TeamShowdownController {
     this.mountEl.querySelector('#btnV14CloseShowdown')?.addEventListener('click', () => {
       this.close();
     });
+    this.mountEl.querySelector('#v14ShowdownBackdrop')?.addEventListener('click', (ev) => {
+      if (ev.target && ev.target.id === 'v14ShowdownBackdrop') {
+        this.close();
+      }
+    });
+  }
+
+  openModal(mode = 'host', prefillPin = '') {
+    if (mode === 'join') return this.openJoinModal(prefillPin);
+    return this.openHostSetup();
   }
 
   openHostSetup() {
@@ -1027,7 +1037,7 @@ export class TeamShowdownController {
         <div class="space-y-4">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <div>
-              <h3 class="text-lg sm:text-xl font-black text-white">⚡ Host a 4-Digit Blooket Team Showdown</h3>
+              <h3 class="text-lg sm:text-xl font-black text-white">⚡ Host Live 3-Minute Team Showdown (4-Digit PIN)</h3>
               <p class="text-xs font-bold text-slate-300">Phones, iPads &amp; PCs join in 5 seconds—calibrated fairly across 8U–16U+ age bands!</p>
             </div>
             <button id="btnSwitchToJoinView" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-cyan-400/70 text-cyan-200 text-xs font-black cursor-pointer">

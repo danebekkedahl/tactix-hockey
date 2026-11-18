@@ -185,7 +185,9 @@ export class ChalkTalkReelController {
       this._rafId = null;
     }
     try {
-      if (typeof window !== 'undefined' && window.speechSynthesis && !window.__SYNAPZ_TEST_MODE__) {
+      if (typeof window !== 'undefined' && typeof window.cancelSynapzSpeechExplicit === 'function') {
+        window.cancelSynapzSpeechExplicit('room_change');
+      } else if (typeof window !== 'undefined' && window.speechSynthesis && !window.__SYNAPZ_TEST_MODE__) {
         window.speechSynthesis.cancel();
       }
     } catch (_) {}
@@ -204,7 +206,9 @@ export class ChalkTalkReelController {
       this._syncPlayPauseBtn();
     }
     try {
-      if (typeof window !== 'undefined' && window.speechSynthesis) {
+      if (typeof window !== 'undefined' && typeof window.cancelSynapzSpeechExplicit === 'function') {
+        window.cancelSynapzSpeechExplicit('tour_close');
+      } else if (typeof window !== 'undefined' && window.speechSynthesis) {
         window.speechSynthesis.cancel();
       }
     } catch (_) {}
@@ -307,7 +311,11 @@ export class ChalkTalkReelController {
     // Note: Chalk-Talk Reel renders its own built-in 2-line vertical-bar caption (#v14ChalkVerticalCaption)
     // right below the white ice, so hide the top floating #synapzMuteSafeCaptionRibbon to avoid double-caption overlap!
     document.getElementById('synapzMuteSafeCaptionRibbon')?.classList.add('hidden');
-    if (!window.__SYNAPZ_TEST_MODE__ && window.speechSynthesis) {
+    if (typeof window.speakClean === 'function') {
+      if (!window.__SYNAPZ_TEST_MODE__) {
+        window.speakClean(clean, { characterId: 'coach-bob', rate: 1.04, reason: 'chalk_reel_beat', suppressCaptionRibbon: true });
+      }
+    } else if (!window.__SYNAPZ_TEST_MODE__ && window.speechSynthesis) {
       try {
         window.speechSynthesis.cancel();
         const utt = new SpeechSynthesisUtterance(clean);

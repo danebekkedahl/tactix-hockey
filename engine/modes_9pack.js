@@ -392,7 +392,9 @@ export class Subconscious9ModeEngine {
       this.isPausedByModal = true;
       this.stopLoop();
       try {
-        if (typeof window !== 'undefined' && window.speechSynthesis) {
+        if (typeof window !== 'undefined' && typeof window.cancelSynapzSpeechExplicit === 'function') {
+          window.cancelSynapzSpeechExplicit('tour_close');
+        } else if (typeof window !== 'undefined' && window.speechSynthesis) {
           window.speechSynthesis.cancel();
         }
       } catch (_) {}

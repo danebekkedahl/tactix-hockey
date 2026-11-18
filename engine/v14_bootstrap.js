@@ -416,7 +416,35 @@ class SynapzV14TeachingCoordinator {
     if (window.state && window.state.activeCoachInboxPlan) {
       this.shiftMode = 'coach_inbox';
       const plan = window.state.activeCoachInboxPlan;
-      this.drillQueue = this.resolveDrillsForFocus(plan.focusConcept || 'breakout', Number(plan.lessonCount || 5));
+      if (Array.isArray(plan.drillIds) && plan.drillIds.length > 0) {
+        this.drillQueue = plan.drillIds.map(id => this.getDrillById(id)).filter(Boolean);
+      } else {
+        this.drillQueue = this.resolveDrillsForFocus(plan.focusConcept || 'breakout', Number(plan.lessonCount || 5));
+      }
+      this.queueIdx = 0;
+      this.shiftRepsCompleted = 0;
+      this.shiftGoldCount = 0;
+      this.presentDrill(this.drillQueue[0], { forceSkipReel: false });
+      this.refreshSkillRingsUI();
+      return;
+    }
+
+    if (window.state && window.state.activePersonalCoachAlPlan) {
+      this.shiftMode = 'personal_plan';
+      const pPlan = window.state.activePersonalCoachAlPlan;
+      const prof = this._getActiveProfile();
+      if (prof && Array.isArray(prof.personalPlans)) {
+        const found = prof.personalPlans.find(x => x && x.planId === pPlan.planId);
+        if (found && found.status !== 'Completed') {
+          found.status = 'In Progress';
+          if (typeof window.saveProgress === 'function') window.saveProgress();
+        }
+      }
+      if (Array.isArray(pPlan.drillIds) && pPlan.drillIds.length > 0) {
+        this.drillQueue = pPlan.drillIds.map(id => this.getDrillById(id)).filter(Boolean);
+      } else {
+        this.drillQueue = this.resolveDrillsForFocus(pPlan.focusConcept || 'breakout', Number(pPlan.lessonCount || 5));
+      }
       this.queueIdx = 0;
       this.shiftRepsCompleted = 0;
       this.shiftGoldCount = 0;
@@ -619,7 +647,16 @@ class SynapzV14TeachingCoordinator {
       window.state.puckBucks = Math.max(0, Number(window.state.puckBucks || prof?.puckBucks || 0) + earnedBucks);
       if (prof) {
         prof.iqScore = window.state.iqScore;
+        prof.hockeyIQ = window.state.iqScore;
         prof.puckBucks = window.state.puckBucks;
+        prof.drillsCompleted = Number(prof.drillsCompleted || 0) + 1;
+        if (drill?.id) {
+          if (!prof.completedIds || typeof prof.completedIds !== 'object') prof.completedIds = {};
+          prof.completedIds[drill.id] = true;
+        }
+        if (isGold) {
+          prof.bestStreak = Math.max(Number(prof.bestStreak || 0), this.liveStreak);
+        }
       }
       if (typeof window.saveProgress === 'function') window.saveProgress();
       if (typeof window.updateHeaderStats === 'function') window.updateHeaderStats();
@@ -650,6 +687,7 @@ class SynapzV14TeachingCoordinator {
       if (prof) {
         prof.puckBucks = window.state.puckBucks;
         prof.iqScore = window.state.iqScore;
+        prof.hockeyIQ = window.state.iqScore;
         prof.blooketBagsOpened = Number(prof.blooketBagsOpened || 0) + 1;
         prof.unlockedCityIdx = Math.min(31, Number(prof.unlockedCityIdx || 0) + Number(loot.cityProgressPts || 1));
         if (!Array.isArray(prof.blooketGearDrops)) prof.blooketGearDrops = [];
@@ -676,7 +714,23 @@ class SynapzV14TeachingCoordinator {
       return;
     }
 
-    // Completed a 5-rep Daily / City / Coach's Inbox Shift!
+    // Completed a 5-rep Daily / City / Coach's Inbox / Personal Plan Shift!
+    if (this.shiftMode === 'personal_plan' && window.state?.activePersonalCoachAlPlan) {
+      const pPlan = window.state.activePersonalCoachAlPlan;
+      const pct = Math.round((this.shiftGoldCount / Math.max(1, this.drillQueue.length)) * 100);
+      window.state.activePersonalCoachAlPlan = null;
+      const prof = this._getActiveProfile();
+      if (prof && Array.isArray(prof.personalPlans)) {
+        const found = prof.personalPlans.find(x => x && x.planId === pPlan.planId);
+        if (found) {
+          found.status = 'Completed';
+          found.scorePct = pct;
+          found.completedAt = new Date().toISOString();
+        }
+      }
+      if (typeof window.saveProgress === 'function') window.saveProgress();
+    }
+
     if (this.shiftMode === 'coach_inbox' && window.state?.activeCoachInboxPlan && typeof window.completeCoachInboxPlan === 'function') {
       const plan = window.state.activeCoachInboxPlan;
       const pct = Math.round((this.shiftGoldCount / Math.max(1, this.drillQueue.length)) * 100);
@@ -696,6 +750,11 @@ class SynapzV14TeachingCoordinator {
       window.state.currentCityIdx = nextCity;
       window.state.puckBucks = Number(window.state.puckBucks || prof?.puckBucks || 0) + 50;
       if (prof) {
+        const conqueredCity = ((typeof window !== 'undefined' && window.NHL_CITIES) || [])[window.state.currentCityIdx || 0];
+        if (!Array.isArray(prof.unlockedCityPatches)) prof.unlockedCityPatches = [];
+        if (conqueredCity && conqueredCity.id && !prof.unlockedCityPatches.includes(conqueredCity.id)) {
+          prof.unlockedCityPatches.push(conqueredCity.id);
+        }
         prof.currentCityIdx = nextCity;
         prof.unlockedCityIdx = Math.max(Number(prof.unlockedCityIdx || 0), nextCity);
         prof.puckBucks = window.state.puckBucks;

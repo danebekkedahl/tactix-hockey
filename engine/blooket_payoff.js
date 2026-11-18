@@ -97,7 +97,7 @@ export function compute5ZoneRingSummaries(prof, catalog) {
     const pct = Math.min(100, Math.round((progressUnits / total) * 100));
     const stageBadge = mastered > 0
       ? `${mastered}/${total} Mastered`
-      : (practicing > 0 ? `${practicing} Practicing` : (watched > 0 ? `${watched} Watched` : `0/${total} New`));
+      : (practicing > 0 ? `${practicing}/${total} Practicing` : (watched > 0 ? `${watched}/${total} Watched` : `0/${total} New`));
 
     return {
       ...z,
@@ -119,18 +119,18 @@ export function renderZoneSkillRingsHtml(prof, catalog, opts = {}) {
   const circ = Number((2 * Math.PI * r).toFixed(2));
 
   return `
-    <div data-v14-skill-rings="true" class="grid grid-cols-2 sm:grid-cols-5 gap-1.5 w-full">
+    <div data-v14-skill-rings="true" class="grid ${compact ? 'grid-cols-2 sm:grid-cols-5 gap-1.5' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2'} w-full">
       ${rings.map((ring) => {
         const dashOffset = Number((circ * (1 - ring.pct / 100)).toFixed(2));
         return `
-          <div data-zone-ring="${ring.id}" class="p-1.5 sm:p-2 rounded-xl bg-slate-950/95 border border-slate-800 flex items-center gap-2 min-w-0">
+          <div data-zone-ring="${ring.id}" class="p-2 sm:p-2.5 rounded-xl bg-slate-950/95 border border-slate-800 flex items-center gap-2 min-w-0">
             <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" class="shrink-0 -rotate-90">
               <circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="#1E293B" stroke-width="4"/>
               <circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="${ring.color}" stroke-width="4" stroke-linecap="round" stroke-dasharray="${circ}" stroke-dashoffset="${dashOffset}"/>
             </svg>
             <div class="min-w-0 flex-1">
-              <div class="text-[10px] font-black text-white truncate">${ring.icon} ${compact ? ring.shortLabel : ring.label}</div>
-              <div class="text-[9px] font-extrabold text-teal-300 truncate">${ring.pct}% • ${ring.stageBadge}</div>
+              <div class="${compact ? 'text-[10px] leading-tight' : 'text-xs leading-snug'} font-black text-white whitespace-normal break-words">${ring.icon} ${compact ? ring.shortLabel : ring.label}</div>
+              <div class="text-[10px] font-extrabold text-teal-300 whitespace-normal leading-tight mt-0.5">${ring.pct}% • ${ring.stageBadge}</div>
             </div>
           </div>
         `;
@@ -422,7 +422,7 @@ export class BlooketPayoffController {
     const hl = this.mountEl.querySelector('#v14BagRevealHeadline');
     const sub = this.mountEl.querySelector('#v14BagRevealSub');
     if (summaryBox) summaryBox.classList.remove('hidden');
-    if (hl) hl.textContent = `🎉 ${chosen.mult}x BLOOKET JACKPOT: +$${totalBucks} Puck Bucks & +${bonusIq} Bonus IQ!`;
+    if (hl) hl.textContent = `🎉 ${chosen.mult}x BREAKAWAY JACKPOT: +$${totalBucks} Puck Bucks & +${bonusIq} Bonus IQ!`;
     if (sub) sub.textContent = `Unlocked: ${chosen.gearBonus} • +${chosen.cityPts} NHL City Tour Progress Credited!`;
 
     if (typeof this.onRewardCredited === 'function') {

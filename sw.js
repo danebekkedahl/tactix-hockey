@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v14.3-full-white-ice-cutover';
+const CACHE_NAME = 'synapz-hockey-v15.0-pass1-walkthrough-overhaul';
 const PRECACHE_ASSETS = [
   './',
   './index.html',
