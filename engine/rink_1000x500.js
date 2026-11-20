@@ -259,8 +259,9 @@ export function normalizeDrillLineup(drill) {
     });
   }
 
-  const normYouRole = normalizeRoleAlias(drill.youRole || 'C', 'home');
-  const youSk = normalizedSkaters.find(s => s.id === normYouRole) || normalizedSkaters[0];
+  const normYouRole = normalizeRoleAlias(drill.primaryRole || drill.youRole || 'C', 'home');
+  const resolvedPrimaryRole = POSITIONS_SET_5.has(normYouRole) ? normYouRole : 'C';
+  const youSk = normalizedSkaters.find(s => s.id === resolvedPrimaryRole) || normalizedSkaters[0];
   const fallbackStart = youSk ? [...youSk.start] : [500, 250];
   const fallbackEnd = youSk ? [...youSk.motion[youSk.motion.length - 1]] : [525, 250];
 
@@ -289,7 +290,8 @@ export function normalizeDrillLineup(drill) {
 
   return {
     ...drill,
-    youRole: POSITIONS_SET_5.has(normYouRole) ? normYouRole : 'C',
+    primaryRole: resolvedPrimaryRole,
+    youRole: resolvedPrimaryRole,
     camera: drill.camera && typeof drill.camera === 'object'
       ? drill.camera
       : { focusX: 500, focusY: 250, zoom: 1.25 },
@@ -1009,18 +1011,66 @@ export class WhiteIceRink1000x500 {
     });
 
     if (isYou && !isGhost) {
-      this._drawUprightBadge(ctx, x, y - r - 14, 'YOU', {
-        bg: '#FBBF24',
-        border: '#0F2942',
-        color: '#0F172A'
+      this._safeDrawDecoration(ctx, this._viewportTransform, () => {
+        this._drawUprightBadge(ctx, x, y - r - 14, 'YOU', {
+          bg: '#FBBF24',
+          border: '#0F2942',
+          color: '#0F172A'
+        });
       });
     }
     if (sk.chainBadge) {
-      this._drawUprightBadge(ctx, x + r + 4, y - r + 2, String(sk.chainBadge), {
-        bg: '#F59E0B',
-        border: '#0F172A',
-        color: '#0F172A'
+      this._safeDrawDecoration(ctx, this._viewportTransform, () => {
+        this._drawUprightBadge(ctx, x + r + 4, y - r + 2, String(sk.chainBadge), {
+          bg: '#F59E0B',
+          border: '#0F172A',
+          color: '#0F172A'
+        });
       });
+    }
+  }
+
+  _safeRoundRect(ctx, x, y, w, h, radius = 0) {
+    if (typeof ctx.roundRect === 'function') {
+      ctx.roundRect(x, y, w, h, radius);
+      return;
+    }
+    if (typeof window !== 'undefined' && window.__SYNAPZ_SAFARI15_POLYFILL__ && typeof window.__SYNAPZ_SAFARI15_POLYFILL__.traceRoundRectPath === 'function') {
+      window.__SYNAPZ_SAFARI15_POLYFILL__.traceRoundRectPath(ctx, x, y, w, h, radius);
+      return;
+    }
+    const left = w >= 0 ? x : x + w;
+    const right = w >= 0 ? x + w : x;
+    const top = h >= 0 ? y : y + h;
+    const bottom = h >= 0 ? y + h : y;
+    const absW = Math.abs(w);
+    const absH = Math.abs(h);
+    const rNum = typeof radius === 'number' ? radius : (Array.isArray(radius) ? Number(radius[0]) || 0 : 0);
+    const r = Math.max(0, Math.min(rNum, Math.min(absW, absH) / 2));
+    ctx.moveTo(left + r, top);
+    ctx.lineTo(right - r, top);
+    if (r > 0) ctx.arcTo(right, top, right, top + r, r);
+    ctx.lineTo(right, bottom - r);
+    if (r > 0) ctx.arcTo(right, bottom, right - r, bottom, r);
+    ctx.lineTo(left + r, bottom);
+    if (r > 0) ctx.arcTo(left, bottom, left, bottom - r, r);
+    ctx.lineTo(left, top + r);
+    if (r > 0) ctx.arcTo(left, top, left + r, top, r);
+    ctx.closePath();
+  }
+
+  _safeDrawDecoration(ctx, vt, fn) {
+    try {
+      fn();
+    } catch (_) {
+      try {
+        ctx.restore();
+      } catch (_2) {}
+      if (vt) {
+        try {
+          this._applyLogicalWorldTransform(ctx, vt);
+        } catch (_3) {}
+      }
     }
   }
 
@@ -1052,7 +1102,7 @@ export class WhiteIceRink1000x500 {
       const ph = 18;
       ctx.fillStyle = opts.bgPill;
       ctx.beginPath();
-      ctx.roundRect(pt.x - pw / 2, pt.y - ph / 2, pw, ph, 9);
+      this._safeRoundRect(ctx, pt.x - pw / 2, pt.y - ph / 2, pw, ph, 9);
       ctx.fill();
     }
     ctx.fillStyle = opts.color || '#0F172A';
@@ -1073,7 +1123,7 @@ export class WhiteIceRink1000x500 {
     ctx.strokeStyle = opts.border || '#0F172A';
     ctx.lineWidth = 1.6;
     ctx.beginPath();
-    ctx.roundRect(pt.x - w / 2, pt.y - h / 2, w, h, 8.5);
+    this._safeRoundRect(ctx, pt.x - w / 2, pt.y - h / 2, w, h, 8.5);
     ctx.fill();
     ctx.stroke();
     ctx.fillStyle = opts.color || '#042F2E';
@@ -1191,7 +1241,7 @@ export class WhiteIceRink1000x500 {
     ctx.strokeStyle = palette.border;
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.roundRect(cx - w / 2, cy - h / 2, w, h, 11);
+    this._safeRoundRect(ctx, cx - w / 2, cy - h / 2, w, h, 11);
     ctx.fill();
     ctx.stroke();
     ctx.shadowBlur = 0;
@@ -1276,7 +1326,7 @@ export class WhiteIceRink1000x500 {
     if (!fog || fog.lifted) return;
     ctx.save();
     ctx.beginPath();
-    ctx.roundRect(fog.x, fog.y, fog.w, fog.h, 24);
+    this._safeRoundRect(ctx, fog.x, fog.y, fog.w, fog.h, 24);
     ctx.fillStyle = 'rgba(15, 23, 42, 0.78)';
     ctx.fill();
     ctx.strokeStyle = '#38BDF8';
@@ -1349,6 +1399,8 @@ export class WhiteIceRink1000x500 {
 
   renderScene(scene = {}) {
     if (!this.canvas || !this.ctx) return;
+    this.lastScene = scene;
+    this.youRole = scene.youRole || null;
     const ctx = this.ctx;
     if (scene.camera) this.setCamera(scene.camera);
     const focalPts = this._extractSceneFocalPoints(scene);
@@ -1390,50 +1442,54 @@ export class WhiteIceRink1000x500 {
     this._drawBaseWhiteIceSheet(ctx);
 
     // 2. Optional Canonical House Polygons
-    if (scene.showLeftHouse) this._drawHousePolygon(ctx, RINK_SPEC.LEFT_HOUSE, 'DEFENSIVE HOUSE');
-    if (scene.showRightHouse) this._drawHousePolygon(ctx, RINK_SPEC.RIGHT_HOUSE, 'SLOT HOUSE');
+    if (scene.showLeftHouse) this._safeDrawDecoration(ctx, vt, () => this._drawHousePolygon(ctx, RINK_SPEC.LEFT_HOUSE, 'DEFENSIVE HOUSE'));
+    if (scene.showRightHouse) this._safeDrawDecoration(ctx, vt, () => this._drawHousePolygon(ctx, RINK_SPEC.RIGHT_HOUSE, 'SLOT HOUSE'));
 
     // 3. Defender Pressure Cones
     if (Array.isArray(scene.pressureCones)) {
-      for (const cone of scene.pressureCones) this._drawPressureCone(ctx, cone);
+      for (const cone of scene.pressureCones) {
+        this._safeDrawDecoration(ctx, vt, () => this._drawPressureCone(ctx, cone));
+      }
     }
 
     // 4. Gold / Emerald "THIS SPACE" Soft-Ice Halos
     if (scene.thisSpaceHalo) {
-      this._drawThisSpaceHalo(ctx, scene.thisSpaceHalo, nowMs);
+      this._safeDrawDecoration(ctx, vt, () => this._drawThisSpaceHalo(ctx, scene.thisSpaceHalo, nowMs));
     }
     if (Array.isArray(scene.extraHalos)) {
-      for (const h of scene.extraHalos) this._drawThisSpaceHalo(ctx, h, nowMs);
+      for (const h of scene.extraHalos) {
+        this._safeDrawDecoration(ctx, vt, () => this._drawThisSpaceHalo(ctx, h, nowMs));
+      }
     }
 
     // 5. Gap Surfing Ideal Zone
     if (scene.gapZone) {
-      this._drawGapZone(
+      this._safeDrawDecoration(ctx, vt, () => this._drawGapZone(
         ctx,
         scene.gapZone.attackerPos,
         scene.gapZone.idealDist,
         scene.gapZone.tolerance,
         scene.gapZone.isInZone
-      );
+      ));
     }
 
     // 6. Whiteboard Paths (skate, carry, pass, shot, t_stop, user-drawn spline, Stage 5 ghost paths)
     if (Array.isArray(scene.paths)) {
       for (const p of scene.paths) {
-        this._drawWhiteboardPath(ctx, p, p.progress ?? 1);
+        this._safeDrawDecoration(ctx, vt, () => this._drawWhiteboardPath(ctx, p, p.progress ?? 1));
       }
     }
 
     // 7. Read & React A / B / C Target Lanes
     if (Array.isArray(scene.abcOptions) && scene.abcOrigin) {
       for (const opt of scene.abcOptions) {
-        this._drawAbcTargetLane(ctx, scene.abcOrigin, opt, nowMs);
+        this._safeDrawDecoration(ctx, vt, () => this._drawAbcTargetLane(ctx, scene.abcOrigin, opt, nowMs));
       }
     }
 
     // 8. Active Stick Sweep (lane_sweeper mode)
     if (scene.activeStickSweep) {
-      this._drawActiveStickSweep(ctx, scene.activeStickSweep);
+      this._safeDrawDecoration(ctx, vt, () => this._drawActiveStickSweep(ctx, scene.activeStickSweep));
     }
 
     // 9. Skater Tokens (Teammates, Opponents, Ghost Tokens & Pulsing Teal "YOU")
@@ -1459,19 +1515,19 @@ export class WhiteIceRink1000x500 {
 
     // 11. Blind-Side Fog-of-War Veil (drawn ABOVE hidden defenders until Shoulder-Check lifts it!)
     if (scene.fogOverlay) {
-      this._drawFogOverlay(ctx, scene.fogOverlay);
+      this._safeDrawDecoration(ctx, vt, () => this._drawFogOverlay(ctx, scene.fogOverlay));
     }
 
     // 12. 1-Line Rounded IHS Callout Pills on Open Ice Margins
     if (Array.isArray(scene.calloutPills)) {
       for (const pill of scene.calloutPills) {
-        this._drawIhsCalloutPill(ctx, pill);
+        this._safeDrawDecoration(ctx, vt, () => this._drawIhsCalloutPill(ctx, pill));
       }
     }
 
     // 13. Circular Freeze Shot Clock (read_and_react when Untimed is OFF)
     if (scene.shotClock && scene.shotClock.visible) {
-      this._drawShotClockRing(ctx, scene.shotClock);
+      this._safeDrawDecoration(ctx, vt, () => this._drawShotClockRing(ctx, scene.shotClock));
     }
 
     ctx.restore();

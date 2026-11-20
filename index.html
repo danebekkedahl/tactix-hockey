@@ -9,7 +9,9 @@
   <meta name="apple-mobile-web-app-title" content="SYNAPZ HOCKEY" />
   <meta name="application-name" content="SYNAPZ HOCKEY" />
   <meta name="theme-color" content="#0d1829" />
-  <title>SYNAPZ HOCKEY v15.2 — Play. Learn. Dominate. (32-City Road to the Cup)</title>
+  <title>SYNAPZ HOCKEY v15.3 — Play. Learn. Dominate. (32-City Road to the Cup)</title>
+  <script src="./engine/safari15_polyfill.js"></script>
+  <script src="./engine/practice_stations_svg.js"></script>
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
@@ -146,6 +148,7 @@
     body.in-game-clean-mode,
     body.fullscreen-rink-mode {
       overflow: hidden !important;
+      height: 100vh !important;
       height: 100dvh !important;
       width: 100vw !important;
       background: #020617 !important;
@@ -206,6 +209,7 @@
       z-index: 35 !important;
       max-width: 100vw !important;
       width: 100vw !important;
+      height: 100vh !important;
       height: 100dvh !important;
       padding: 6px !important;
       margin: 0 !important;
@@ -296,6 +300,7 @@
     #cityIntroModal > div,
     #seriesCompleteModal > div,
     #flagDrillModal > div {
+      max-height: 92vh !important;
       max-height: 92dvh !important;
       overflow-y: auto !important;
       overflow-x: hidden !important;
@@ -340,6 +345,7 @@
       left: 50% !important;
       transform: translateX(-50%) !important;
       width: min(95vw, 920px) !important;
+      max-height: 90vh !important;
       max-height: 90dvh !important;
       overflow-y: auto !important;
       z-index: 70 !important;
@@ -402,6 +408,7 @@
     }
     #pricingAndPlansModal > div,
     #successStoriesModal > div {
+      max-height: 92vh !important;
       max-height: 92dvh !important;
       overflow-y: auto !important;
       overflow-x: hidden !important;
@@ -723,7 +730,9 @@
     /* ===================================================================== */
     body.in-lobby-clean-mode {
       overflow: hidden !important;
+      height: 100vh !important;
       height: 100dvh !important;
+      max-height: 100vh !important;
       max-height: 100dvh !important;
       background: #030816 !important;
     }
@@ -731,8 +740,10 @@
       position: fixed !important;
       inset: 0 !important;
       width: 100vw !important;
+      height: 100vh !important;
       height: 100dvh !important;
       max-width: 100vw !important;
+      max-height: 100vh !important;
       max-height: 100dvh !important;
       overflow: hidden !important;
       overflow: clip !important;
@@ -759,9 +770,11 @@
     }
     .synapz-pure-room-stage {
       position: relative;
+      width: min(100vw, calc(100vh * 16 / 9));
       width: min(100vw, calc(100dvh * 16 / 9));
       aspect-ratio: 16 / 9;
       max-width: 100vw;
+      max-height: 100vh;
       max-height: 100dvh;
       overflow: hidden;
       box-shadow: 0 24px 64px rgba(0, 0, 0, 0.88);
@@ -778,7 +791,7 @@
     .synapz-pure-door-hotspot {
       position: absolute;
       background: transparent;
-      border: 1.5px solid rgba(251, 191, 36, 0.08);
+      border: 1.5px solid transparent;
       border-radius: 0.65rem;
       cursor: pointer;
       padding: 0;
@@ -787,15 +800,16 @@
       transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
     }
     .synapz-pure-door-hotspot:hover,
-    .synapz-pure-door-hotspot:focus-visible {
+    .synapz-pure-door-hotspot:focus-visible,
+    body.synapz-show-hotspots .synapz-pure-door-hotspot {
       background: radial-gradient(circle at center, rgba(251, 191, 36, 0.18) 0%, rgba(14, 165, 233, 0.08) 100%);
-      border-color: rgba(251, 191, 36, 0.72);
+      border-color: rgba(251, 191, 36, 0.82);
       box-shadow: 0 0 22px rgba(251, 191, 36, 0.48), inset 0 0 14px rgba(251, 191, 36, 0.24);
     }
     .synapz-golden-gear-hotspot {
       position: absolute;
       background: transparent;
-      border: 1px solid transparent;
+      border: 1.5px solid transparent;
       border-radius: 0.6rem;
       box-shadow: none;
       cursor: pointer;
@@ -805,49 +819,52 @@
       transition: all 0.18s ease;
     }
     #clubhouseRoomSceneCanvas .synapz-golden-gear-hotspot {
-      background: transparent !important;
-      border-color: transparent !important;
-      box-shadow: none !important;
-      outline: none !important;
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
+      outline: none;
     }
     #clubhouseRoomSceneCanvas .synapz-golden-gear-hotspot:hover,
-    #clubhouseRoomSceneCanvas .synapz-golden-gear-hotspot:focus-visible {
-      background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.18) 0%, transparent 72%) !important;
-      border-color: rgba(56, 189, 248, 0.55) !important;
+    #clubhouseRoomSceneCanvas .synapz-golden-gear-hotspot:focus-visible,
+    body.synapz-show-hotspots #clubhouseRoomSceneCanvas .synapz-golden-gear-hotspot {
+      background: radial-gradient(ellipse at center, rgba(251, 191, 36, 0.22) 0%, transparent 74%) !important;
+      border-color: rgba(251, 191, 36, 0.85) !important;
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.55), inset 0 0 12px rgba(251, 191, 36, 0.25) !important;
     }
+    /* SLICE 3.1: Permanent text banners over room illustrations strictly forbidden */
     .synapz-room-object-pin-label {
-      position: absolute;
-      bottom: 6px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 3px 9px;
-      border-radius: 9999px;
-      background: rgba(9, 13, 22, 0.90);
-      border: 1px solid rgba(251, 191, 36, 0.65);
-      color: #fde68a;
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-      box-shadow: 0 4px 12px rgba(2, 6, 23, 0.85);
-      pointer-events: none;
+      display: none !important;
     }
+    /* Safari 15 vh fallbacks for Tailwind arbitrary dvh classes */
+    .max-h-\[46dvh\] { max-height: 46vh; max-height: 46dvh; }
+    .max-h-\[48dvh\] { max-height: 48vh; max-height: 48dvh; }
+    .max-h-\[58dvh\] { max-height: 58vh; max-height: 58dvh; }
+    .max-h-\[78dvh\] { max-height: 78vh; max-height: 78dvh; }
+    .max-h-\[80dvh\] { max-height: 80vh; max-height: 80dvh; }
+    .max-h-\[82dvh\] { max-height: 82vh; max-height: 82dvh; }
+    .max-h-\[84dvh\] { max-height: 84vh; max-height: 84dvh; }
+    .max-h-\[85dvh\] { max-height: 85vh; max-height: 85dvh; }
+    .max-h-\[86dvh\] { max-height: 86vh; max-height: 86dvh; }
+    .max-h-\[88dvh\] { max-height: 88vh; max-height: 88dvh; }
+    .max-h-\[94dvh\] { max-height: 94vh; max-height: 94dvh; }
     @media (min-width: 768px) {
       #v12EntryGateCard:has(#entryScreen1A4SlotSetup:not(.hidden)) {
         max-width: 860px !important;
         padding: 14px 18px !important;
       }
       #v12EntryGateCard:has(#slotSetupStep2StockAvatar:not(.hidden)) {
+        max-height: calc(100vh - 28px) !important;
         max-height: calc(100dvh - 28px) !important;
         overflow: hidden !important;
       }
     }
     .synapz-golden-gear-hotspot:hover,
-    .synapz-golden-gear-hotspot:focus-visible {
-      background: radial-gradient(ellipse at center, rgba(251, 191, 36, 0.30) 0%, rgba(212, 175, 55, 0.14) 72%, transparent 100%);
+    .synapz-golden-gear-hotspot:focus-visible,
+    body.synapz-show-hotspots .synapz-golden-gear-hotspot {
+      background: radial-gradient(ellipse at center, rgba(251, 191, 36, 0.24) 0%, rgba(212, 175, 55, 0.10) 72%, transparent 100%);
       border-color: #fde047;
-      box-shadow: 0 0 24px rgba(251, 191, 36, 0.75), inset 0 0 14px rgba(251, 191, 36, 0.35);
-      transform: scale(1.02);
+      box-shadow: 0 0 24px rgba(251, 191, 36, 0.72), inset 0 0 14px rgba(251, 191, 36, 0.32);
+      transform: scale(1.01);
     }
     .synapz-tour-spotlight-active {
       z-index: 46 !important;
@@ -1418,7 +1435,12 @@
   <section id="synapzRinkLobbySection" class="hidden synapz-pure-fullscreen-room z-30">
     <img loading="lazy" decoding="async" src="assets/rooms/room-rink-lobby.jpg" alt="" aria-hidden="true" class="synapz-pure-room-ambient-bg" />
 
-    <!-- Strictly 1 Clean "Log Out" Pill Returning to Screen 1 (v12.3: 1 Account = 1 Individual Player, Zero 4-Slot Picker) -->
+    <!-- Strictly Clean "Log Out" + Tiny Optional "? Show Hotspots" Pill (Off by Default) -->
+    <div class="fixed top-3 left-3 z-40 flex items-center gap-1.5">
+      <button id="btnLobbyToggleHotspots" type="button" data-toggle-room-hotspots="1" class="px-2.5 py-1.5 rounded-full bg-slate-950/85 hover:bg-slate-900 border border-slate-700/80 text-slate-300 hover:text-amber-200 text-[11px] font-black shadow-xl backdrop-blur-md transition cursor-pointer">
+        ? Show Hotspots
+      </button>
+    </div>
     <button id="btnLobbySwitchSlot" type="button" class="fixed top-3 right-3 z-40 px-3.5 py-2 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-amber-400/75 text-amber-200 text-xs font-black shadow-2xl backdrop-blur-md transition cursor-pointer">
       Log Out
     </button>
@@ -1508,7 +1530,7 @@
       <div id="mathseedsTierTrackBar" class="grid grid-cols-2 sm:grid-cols-5 gap-2 bg-slate-950/90 border border-cyan-500/35 rounded-2xl p-2.5"></div>
 
       <!-- 2. Geographically Accurate North America Map (#nhlTourMapSvg — U.S. States + Canadian Provinces + 32 NHL Cities) -->
-      <div class="relative w-full rounded-2xl border border-cyan-400/45 overflow-hidden p-1.5 shadow-[0_0_30px_rgba(0,229,255,0.16)]" style="aspect-ratio: 16 / 7.4; max-height: 58dvh; background: radial-gradient(circle at 50% 45%, #0d1829 0%, #060b14 100%);">
+      <div class="relative w-full rounded-2xl border border-cyan-400/45 overflow-hidden p-1.5 shadow-[0_0_30px_rgba(0,229,255,0.16)]" style="aspect-ratio: 16 / 7.4; max-height: 58vh; max-height: 58dvh; background: radial-gradient(circle at 50% 45%, #0d1829 0%, #060b14 100%);">
         <!-- Post-Cup Future Tours Teaser Badge (Tabled Until Proof-of-Concept Completion) -->
         <div id="postCupFutureToursTeaserBadge" class="absolute top-2.5 right-2.5 z-20 px-3 py-1 rounded-full bg-slate-950/92 border border-amber-400/60 text-[10px] sm:text-[11px] font-black text-amber-300 shadow-xl backdrop-blur-md flex items-center gap-1.5 pointer-events-none">
           <span>🌍</span>
@@ -3234,43 +3256,38 @@
   <div id="proShopModal" class="hidden synapz-pure-fullscreen-room z-[96]">
     <img loading="lazy" decoding="async" src="assets/rooms/room-pro-shop.jpg" alt="" aria-hidden="true" class="synapz-pure-room-ambient-bg" />
 
-    <!-- Minimal Floating Corner Controls (← Main Lobby + Wallet — Unobstructed Top-Right Red Flag!) -->
-    <button id="btnShopSaveExitLobby" type="button" class="fixed top-3 left-3 z-40 px-3.5 py-2 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-amber-400/75 text-amber-200 text-xs font-black shadow-2xl backdrop-blur-md cursor-pointer">
-      ← Main Lobby
-    </button>
+    <!-- Minimal Floating Corner Controls (← Main Lobby + ? Show Hotspots + Wallet — Unobstructed Top-Right Red Flag!) -->
+    <div class="fixed top-3 left-3 z-40 flex items-center gap-1.5">
+      <button id="btnShopSaveExitLobby" type="button" class="px-3.5 py-2 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-amber-400/75 text-amber-200 text-xs font-black shadow-2xl backdrop-blur-md cursor-pointer">
+        ← Main Lobby
+      </button>
+      <button id="btnShopToggleHotspots" type="button" data-toggle-room-hotspots="1" class="px-2.5 py-1.5 rounded-full bg-slate-950/85 hover:bg-slate-900 border border-slate-700/80 text-slate-300 hover:text-amber-200 text-[11px] font-black shadow-xl backdrop-blur-md cursor-pointer">
+        ? Show Hotspots
+      </button>
+    </div>
     <div class="fixed top-3 right-28 z-40 flex items-center gap-2">
       <span id="shopBalanceBadge" class="px-3.5 py-1.5 rounded-full bg-slate-950/90 border border-amber-400 text-amber-300 text-xs font-black shadow-2xl">💰 250 Puck Bucks</span>
       <button id="btnCloseProShop" type="button" class="hidden w-9 h-9 rounded-full bg-slate-950/90 border border-slate-600 text-slate-200 text-xs font-black items-center justify-center">✕</button>
     </div>
 
-    <!-- Pure 16:9 HD Pro Shop Picture Stage (Subtle Brass Room Pin Labels) -->
+    <!-- Pure 16:9 HD Pro Shop Picture Stage (Zero Permanent Text Banners; Warm-Gold Hover/Focus Glow) -->
     <div id="proShopRoomSceneCanvas" class="synapz-pure-room-stage">
       <img loading="lazy" decoding="async" id="proShopRoomSceneImg" src="assets/rooms/room-pro-shop.jpg" alt="SYNAPZ PRO SHOP Walk-In Store" class="synapz-room-bg-img" />
 
       <!-- 1. Left Illuminated Stick Wall -->
-      <button id="proShopHotspotSticks" type="button" data-shop-fixture="Stick" aria-label="Stick Rack" class="synapz-golden-gear-hotspot" style="left: 0.5%; top: 13.0%; width: 30.0%; height: 78.0%;">
-        <span class="synapz-room-object-pin-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">🏒 Stick Rack</span>
-      </button>
+      <button id="proShopHotspotSticks" type="button" data-shop-fixture="Stick" aria-label="Stick Rack" title="Stick Rack" class="synapz-golden-gear-hotspot" style="left: 0.5%; top: 13.0%; width: 30.0%; height: 78.0%;"></button>
 
       <!-- 2. Helmet & Bucket Shelves -->
-      <button id="proShopHotspotHelmets" type="button" data-shop-fixture="Visor" aria-label="Helmet Wall" class="synapz-golden-gear-hotspot" style="left: 33.5%; top: 25.5%; width: 16.8%; height: 48.5%;">
-        <span class="synapz-room-object-pin-label" style="top: 10%; left: 50%; transform: translateX(-50%);">🛡️ Helmets &amp; Visors</span>
-      </button>
+      <button id="proShopHotspotHelmets" type="button" data-shop-fixture="Visor" aria-label="Helmet Wall" title="Helmets &amp; Visors" class="synapz-golden-gear-hotspot" style="left: 33.5%; top: 25.5%; width: 16.8%; height: 48.5%;"></button>
 
       <!-- 3. Center Glove Showcase -->
-      <button id="proShopHotspotGloves" type="button" data-shop-fixture="Gloves" aria-label="Gloves" class="synapz-golden-gear-hotspot" style="left: 39.5%; top: 55.0%; width: 29.5%; height: 39.0%;">
-        <span class="synapz-room-object-pin-label" style="bottom: 12%; left: 50%; transform: translateX(-50%);">🏒 Gloves</span>
-      </button>
+      <button id="proShopHotspotGloves" type="button" data-shop-fixture="Gloves" aria-label="Gloves" title="Gloves" class="synapz-golden-gear-hotspot" style="left: 39.5%; top: 55.0%; width: 29.5%; height: 39.0%;"></button>
 
       <!-- 4. Try-On Floor / Visor Alcove -->
-      <button id="proShopHotspotShowcaseCounter" type="button" data-shop-fixture="Visor" aria-label="Try-On Floor" class="synapz-golden-gear-hotspot" style="left: 72.0%; top: 29.5%; width: 15.5%; height: 52.0%;">
-        <span class="synapz-room-object-pin-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">🪞 360° Try-On Floor</span>
-      </button>
+      <button id="proShopHotspotShowcaseCounter" type="button" data-shop-fixture="Visor" aria-label="Try-On Floor" title="360° Try-On Floor" class="synapz-golden-gear-hotspot" style="left: 72.0%; top: 29.5%; width: 15.5%; height: 52.0%;"></button>
 
       <!-- 5. Right Illuminated Skate Wall -->
-      <button id="proShopHotspotSkates" type="button" data-shop-fixture="Skates" aria-label="Skate Wall" class="synapz-golden-gear-hotspot" style="left: 88.5%; top: 18.0%; width: 11.2%; height: 76.0%;">
-        <span class="synapz-room-object-pin-label" style="top: 14%; left: 50%; transform: translateX(-50%);">⚡ Skate Wall</span>
-      </button>
+      <button id="proShopHotspotSkates" type="button" data-shop-fixture="Skates" aria-label="Skate Wall" title="Skate Wall" class="synapz-golden-gear-hotspot" style="left: 88.5%; top: 18.0%; width: 11.2%; height: 76.0%;"></button>
     </div>
 
     <!-- Floating Rack Overlay Drawer (Single Live 360° Try-On Skater + Streamlined Gear Cards; Zero "Go to Locker Room Bag"!) -->
@@ -4136,7 +4153,7 @@
             Info
           </button>
         </div>
-        <div id="synapzAppBuildVersionBadge" class="text-[10px] font-bold text-slate-500 tracking-wider select-none">SYNAPZ HOCKEY v15.2</div>
+        <div id="synapzAppBuildVersionBadge" class="text-[10px] font-bold text-slate-500 tracking-wider select-none">SYNAPZ HOCKEY v15.3</div>
       </div>
 
       <!-- ================================================================= -->
@@ -4147,7 +4164,7 @@
           <button id="btnBackFromInfoToScreen1" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-black text-cyan-300">
             ← Back
           </button>
-          <span class="text-sm font-black text-white uppercase tracking-wider">Info Hub • v15.2</span>
+          <span class="text-sm font-black text-white uppercase tracking-wider">Info Hub • v15.3</span>
         </div>
 
         <!-- 3 Clean Info Tabs: Contact, Support, FAQ -->
@@ -4411,7 +4428,7 @@
         </div>
 
         <!-- STEP 2: BUILD YOUR SKATER (2-COLUMN ZERO-SCROLL VIEWPORT-FITTED GRID ON IPAD LANDSCAPE!) -->
-        <div id="slotSetupStep2StockAvatar" class="hidden" style="max-height: calc(100dvh - 80px);">
+        <div id="slotSetupStep2StockAvatar" class="hidden" style="max-height: calc(100vh - 80px); max-height: calc(100dvh - 80px);">
           <div id="slotSetupStep2AvatarCard" class="p-2.5 sm:p-3 rounded-2xl bg-slate-950/95 border border-cyan-400/60 grid grid-cols-1 md:grid-cols-12 gap-3 items-stretch">
             <!-- LEFT COLUMN: Live 360° Customizable Skater Stage (Zero Static Cutout Thumbnails!) -->
             <div class="md:col-span-5 flex flex-col justify-between gap-1.5 p-2 rounded-xl bg-slate-900/90 border border-slate-800">
@@ -5512,7 +5529,7 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.2-evan-walkthrough-complete';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.3-safari15-and-real-diagrams';
 
     // =========================================================================
     // SECTION 39 (v12.3) + SECTION 46 (v13.2) + SECTION 47 (v13.4):
@@ -28175,44 +28192,87 @@
     }
     window.getEarnedFocusAreaPct = getEarnedFocusAreaPct;
 
-    function getFivePlaysForFocusOrBucket(focusOrBucket = 'Breakouts', ageDivision = '12U') {
+    function getFivePlaysForFocusOrBucket(focusOrBucket = 'Breakouts', ageDivision = '12U', weekOffset = 0) {
       const raw = String(focusOrBucket || 'Breakouts').trim();
       const lower = raw.toLowerCase();
       const catalogDrills = (window.SynapzV14Engine && window.SynapzV14Engine.catalog && Array.isArray(window.SynapzV14Engine.catalog.drills))
         ? window.SynapzV14Engine.catalog.drills
         : [];
       let targetZonePrefix = 'NZ';
+      let secondaryZonePrefix = 'DZ';
       let humanZoneLabel = 'Breakouts & Regroups';
       if (lower.includes('d-zone') || lower.includes('dz_') || lower.includes('house') || lower.includes('corner') || lower.includes('goalie') || lower.includes('crease')) {
         targetZonePrefix = 'DZ';
+        secondaryZonePrefix = 'NZ';
         humanZoneLabel = 'Defensive Zone';
-      } else if (lower.includes('rush') || lower.includes('2v1') || lower.includes('odd-man') || lower.includes('entry')) {
+      } else if (lower.includes('rush') || lower.includes('2v1') || lower.includes('odd-man') || lower.includes('odd_man') || lower.includes('entry') || lower.includes('entries')) {
         targetZonePrefix = 'OM';
-        humanZoneLabel = 'Odd-Man Rushes';
+        secondaryZonePrefix = 'NZ';
+        humanZoneLabel = 'Odd-Man Rushes & Entries';
       } else if (lower.includes('power') || lower.includes('penalty') || lower.includes('special') || lower.includes('pp') || lower.includes('pk')) {
         targetZonePrefix = 'ST';
-        humanZoneLabel = 'Special Teams';
-      } else if (lower.includes('forecheck') || lower.includes('oz_') || lower.includes('o-zone') || lower.includes('cycle') || lower.includes('royal') || lower.includes('spacing')) {
+        secondaryZonePrefix = 'OZ';
+        humanZoneLabel = 'Special Teams (PP & PK)';
+      } else if (lower.includes('forecheck') || lower.includes('2-1-2') || lower.includes('gap')) {
         targetZonePrefix = 'OZ';
-        humanZoneLabel = 'Offensive Zone';
-      } else if (lower.includes('nz_') || lower.includes('neutral') || lower.includes('breakout') || lower.includes('scan') || lower.includes('habit')) {
+        secondaryZonePrefix = 'NZ';
+        humanZoneLabel = 'Forecheck & Gap Control';
+      } else if (lower.includes('oz_') || lower.includes('o-zone') || lower.includes('ozone') || lower.includes('cycle') || lower.includes('cycling') || lower.includes('royal') || lower.includes('spacing') || lower.includes('net-front') || lower.includes('netfront')) {
+        targetZonePrefix = 'OZ';
+        secondaryZonePrefix = 'OM';
+        humanZoneLabel = 'O-Zone Cycling & Net-Front';
+      } else if (lower.includes('neutral') || lower.includes('nz_')) {
         targetZonePrefix = 'NZ';
+        secondaryZonePrefix = 'OM';
+        humanZoneLabel = 'Neutral Zone & Regroups';
+      } else if (lower.includes('breakout') || lower.includes('scan') || lower.includes('habit')) {
+        targetZonePrefix = 'NZ';
+        secondaryZonePrefix = 'DZ';
         humanZoneLabel = 'Breakouts & Transition';
       }
 
       const cleanAge = String(ageDivision || '12U').toUpperCase();
-      const dz01First = targetZonePrefix === 'NZ' ? catalogDrills.filter(d => d.conceptId === 'DZ-01') : [];
-      const matched = [
-        ...dz01First,
-        ...catalogDrills.filter(d => String(d.conceptId || '').startsWith(targetZonePrefix) && d.conceptId !== 'DZ-01')
-      ];
-      const pool = matched.length >= 5 ? matched : [...matched, ...catalogDrills];
+      const isBreakoutPrimary = lower.includes('breakout') || lower === 'breakouts_regroups';
+      const dz01First = isBreakoutPrimary ? catalogDrills.filter(d => d.conceptId === 'DZ-01') : [];
+      const nz01Second = isBreakoutPrimary ? catalogDrills.filter(d => d.conceptId === 'NZ-01') : [];
+      const primaryZoneHits = catalogDrills.filter(d =>
+        String(d.conceptId || '').startsWith(targetZonePrefix) &&
+        d.conceptId !== 'DZ-01' &&
+        (!isBreakoutPrimary || d.conceptId !== 'NZ-01')
+      );
+      const secondaryZoneHits = catalogDrills.filter(d =>
+        String(d.conceptId || '').startsWith(secondaryZonePrefix) &&
+        d.conceptId !== 'DZ-01' &&
+        (!isBreakoutPrimary || d.conceptId !== 'NZ-01')
+      );
 
-      if (pool.length >= 5) {
-        return pool.slice(0, 5).map((d, idx) => ({
+      const dedupedPool = [];
+      const seenIds = new Set();
+      for (const d of [...dz01First, ...nz01Second, ...primaryZoneHits, ...secondaryZoneHits, ...catalogDrills]) {
+        if (d && d.id && !seenIds.has(d.id)) {
+          seenIds.add(d.id);
+          dedupedPool.push(d);
+        }
+      }
+
+      if (dedupedPool.length >= 5) {
+        let subBucketHash = 0;
+        if (lower.includes('_') && lower !== 'breakouts_regroups' && lower !== 'breakout_d_to_d') {
+          for (let ci = 0; ci < lower.length; ci++) subBucketHash = (subBucketHash * 31 + lower.charCodeAt(ci)) >>> 0;
+        }
+        const startShift = (!isBreakoutPrimary || subBucketHash > 0)
+          ? ((Math.max(0, Number(weekOffset) - 1) * 2) + (subBucketHash % 7)) % Math.max(1, dedupedPool.length - 4)
+          : 0;
+        const chosen5 = [];
+        for (let i = 0; i < 5; i++) {
+          chosen5.push(dedupedPool[(startShift + i) % dedupedPool.length]);
+        }
+        return chosen5.map((d, idx) => ({
           playNum: idx + 1,
           drillId: d.id,
           conceptId: d.conceptId,
+          primaryRole: d.primaryRole || d.youRole || 'C',
+          drillObj: d,
           title: String(d.title || `Play ${idx + 1}`).replace(/\s*\[[^\]]*\]/g, '').trim(),
           zoneLabel: humanZoneLabel,
           ageBandLabel: cleanAge,
@@ -28224,6 +28284,9 @@
       return [1, 2, 3, 4, 5].map(idx => ({
         playNum: idx,
         drillId: null,
+        conceptId: `DZ-0${idx}`,
+        primaryRole: 'C',
+        drillObj: null,
         title: [
           `${card.title.split(':')[0]} — Pre-Touch Shoulder Scan`,
           `${card.title.split(':')[0]} — Close Triangle Outlet`,
@@ -28238,169 +28301,149 @@
     }
     window.getFivePlaysForFocusOrBucket = getFivePlaysForFocusOrBucket;
 
-    // Drawn SVG Mini-Rink Diagram Generator (Boards, Crease, Nets, Cones/Tires, X/O Positions, Skate/Pass/Shot Arrows)
-    function renderMiniRinkStationSvg(card, stationNum = 1) {
-      const fKey = String((card && card.focusKey) || 'Breakouts').toLowerCase();
-      const stNum = Number(stationNum) || 1;
-      const uid = `mr_${fKey.replace(/[^a-z0-9]/g, '')}_s${stNum}`;
-
-      let tacticalElements = '';
-      if (stNum === 1) {
-        // Station 1: Edge/Scan Warmup with Cones, Tires & Curved Skating + Shoulder-Scan Cues
-        tacticalElements = `
-          <!-- Orange Practice Cones & Black Tire -->
-          <polygon points="88,44 83,54 93,54" fill="#f97316" stroke="#9a3412" stroke-width="1.2"/>
-          <polygon points="138,88 133,98 143,98" fill="#f97316" stroke="#9a3412" stroke-width="1.2"/>
-          <circle cx="176" cy="52" r="7" fill="none" stroke="#1e293b" stroke-width="3.5"/>
-          <!-- Skate Path (dashed) & Pass Line (solid) -->
-          <path d="M 52 108 Q 74 52 118 62 T 188 74" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#${uid}_skate)"/>
-          <line x1="188" y1="74" x2="226" y2="74" stroke="#dc2626" stroke-width="2.4" marker-end="url(#${uid}_shot)"/>
-          <!-- X Skaters & Coach C -->
-          <g font-family="Inter,Arial,sans-serif" font-weight="900" font-size="11" text-anchor="middle">
-            <circle cx="52" cy="108" r="9" fill="#0ea5e9" stroke="#0f172a" stroke-width="1.5"/>
-            <text x="52" y="112" fill="#ffffff">X1</text>
-            <circle cx="116" cy="116" r="9" fill="#0ea5e9" stroke="#0f172a" stroke-width="1.5"/>
-            <text x="116" y="120" fill="#ffffff">X2</text>
-            <rect x="148" y="106" width="18" height="16" rx="4" fill="#fbbf24" stroke="#0f172a" stroke-width="1.4"/>
-            <text x="157" y="118" fill="#0f172a" font-size="10">C</text>
-          </g>
-        `;
-      } else if (stNum === 2) {
-        // Station 2: Constrained Small-Area 2v2 / 3v2 with Cones, X Attackers, O Defenders, Pass + Shot Arrows
-        const isDZone = fKey.includes('d-zone') || fKey.includes('goalie');
-        tacticalElements = `
-          <!-- Zone Divider Cones -->
-          <polygon points="104,24 99,33 109,33" fill="#f97316" stroke="#9a3412" stroke-width="1.1"/>
-          <polygon points="104,116 99,125 109,125" fill="#f97316" stroke="#9a3412" stroke-width="1.1"/>
-          <!-- Skate & Pass Paths -->
-          <path d="M 134 38 Q 168 36 184 54" fill="none" stroke="#0284c7" stroke-width="2.1" stroke-dasharray="4 3" marker-end="url(#${uid}_skate)"/>
-          <line x1="138" y1="108" x2="182" y2="58" stroke="#0f172a" stroke-width="2.1" stroke-dasharray="2 2" marker-end="url(#${uid}_pass)"/>
-          <line x1="186" y1="58" x2="226" y2="74" stroke="#dc2626" stroke-width="2.5" marker-end="url(#${uid}_shot)"/>
-          <g font-family="Inter,Arial,sans-serif" font-weight="900" font-size="10.5" text-anchor="middle">
-            <circle cx="136" cy="108" r="9" fill="#0284c7" stroke="#0f172a" stroke-width="1.5"/>
-            <text x="136" y="112" fill="#ffffff">${isDZone ? 'D1' : 'X1'}</text>
-            <circle cx="134" cy="38" r="9" fill="#0284c7" stroke="#0f172a" stroke-width="1.5"/>
-            <text x="134" y="42" fill="#ffffff">${isDZone ? 'C' : 'X2'}</text>
-            <circle cx="174" cy="84" r="9" fill="#ffffff" stroke="#dc2626" stroke-width="2.2"/>
-            <text x="174" y="88" fill="#dc2626">O1</text>
-            <circle cx="198" cy="68" r="9" fill="#ffffff" stroke="#dc2626" stroke-width="2.2"/>
-            <text x="198" y="72" fill="#dc2626">O2</text>
-          </g>
-        `;
-      } else {
-        // Station 3: Full 5v5 / 3v3 Live Shift Read (X1/X2/X3 vs O1/O2 + Breakout/Entry Seam Pass + Shot)
-        tacticalElements = `
-          <!-- Tire Barrier at Center & Multi-Lane Flow -->
-          <circle cx="118" cy="74" r="6.5" fill="none" stroke="#1e293b" stroke-width="3.2"/>
-          <path d="M 46 42 Q 92 34 152 42" fill="none" stroke="#0284c7" stroke-width="2.1" stroke-dasharray="5 3" marker-end="url(#${uid}_skate)"/>
-          <path d="M 52 106 Q 108 114 166 96" fill="none" stroke="#0284c7" stroke-width="2.1" stroke-dasharray="5 3" marker-end="url(#${uid}_skate)"/>
-          <line x1="52" y1="106" x2="150" y2="44" stroke="#0f172a" stroke-width="2.1" marker-end="url(#${uid}_pass)"/>
-          <line x1="154" y1="44" x2="226" y2="72" stroke="#dc2626" stroke-width="2.5" marker-end="url(#${uid}_shot)"/>
-          <g font-family="Inter,Arial,sans-serif" font-weight="900" font-size="10" text-anchor="middle">
-            <circle cx="52" cy="106" r="8.5" fill="#0284c7" stroke="#0f172a" stroke-width="1.4"/>
-            <text x="52" y="109.5" fill="#ffffff">X1</text>
-            <circle cx="46" cy="42" r="8.5" fill="#0284c7" stroke="#0f172a" stroke-width="1.4"/>
-            <text x="46" y="45.5" fill="#ffffff">X2</text>
-            <circle cx="96" cy="74" r="8.5" fill="#0284c7" stroke="#0f172a" stroke-width="1.4"/>
-            <text x="96" y="77.5" fill="#ffffff">X3</text>
-            <circle cx="164" cy="62" r="8.5" fill="#ffffff" stroke="#dc2626" stroke-width="2"/>
-            <text x="164" y="65.5" fill="#dc2626">O1</text>
-            <circle cx="184" cy="92" r="8.5" fill="#ffffff" stroke="#dc2626" stroke-width="2"/>
-            <text x="184" y="95.5" fill="#dc2626">O2</text>
-          </g>
-        `;
+    // Authentic 18-Station Regulation Rink SVG Bridge (Zero Recycled X1/O1 Diagrams!)
+    function renderMiniRinkStationSvg(cardOrTopic, stationNum = 1, opts = {}) {
+      if (window.SynapzPracticeStationsSVG && typeof window.SynapzPracticeStationsSVG.renderPracticeStationDiagramSvg === 'function') {
+        return window.SynapzPracticeStationsSVG.renderPracticeStationDiagramSvg(cardOrTopic, stationNum, opts);
       }
-
-      return `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 148" data-mini-rink-svg="station-${stNum}" class="w-full h-auto max-h-36 rounded-xl border border-slate-400 bg-white shadow-sm select-none" role="img" aria-label="Station ${stNum} Mini-Rink Diagram">
-          <defs>
-            <marker id="${uid}_skate" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-              <polygon points="0,0 7,3.5 0,7" fill="#0284c7"/>
-            </marker>
-            <marker id="${uid}_pass" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-              <polygon points="0,0 7,3.5 0,7" fill="#0f172a"/>
-            </marker>
-            <marker id="${uid}_shot" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto">
-              <polygon points="0,0 8,4 0,8" fill="#dc2626"/>
-            </marker>
-          </defs>
-          <!-- Outer Rink Boards -->
-          <rect x="4" y="4" width="252" height="140" rx="26" ry="26" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
-          <!-- Goal Lines (Red) & Blue Line -->
-          <line x1="26" y1="8" x2="26" y2="140" stroke="#ef4444" stroke-width="1.8"/>
-          <line x1="234" y1="8" x2="234" y2="140" stroke="#ef4444" stroke-width="1.8"/>
-          <line x1="92" y1="6" x2="92" y2="142" stroke="#2563eb" stroke-width="3"/>
-          <!-- Faceoff Circles & Dots -->
-          <circle cx="188" cy="42" r="20" fill="none" stroke="#ef4444" stroke-width="1.1" opacity="0.65"/>
-          <circle cx="188" cy="42" r="2.2" fill="#ef4444"/>
-          <circle cx="188" cy="106" r="20" fill="none" stroke="#ef4444" stroke-width="1.1" opacity="0.65"/>
-          <circle cx="188" cy="106" r="2.2" fill="#ef4444"/>
-          <!-- Left & Right Goal Creases + Nets -->
-          <path d="M 26 62 A 12 12 0 0 1 26 86 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="1.4"/>
-          <rect x="17" y="65" width="9" height="18" rx="2" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
-          <path d="M 234 62 A 12 12 0 0 0 234 86 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="1.4"/>
-          <rect x="234" y="65" width="9" height="18" rx="2" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
-          ${tacticalElements}
-        </svg>
-      `;
+      return '';
     }
     window.renderMiniRinkStationSvg = renderMiniRinkStationSvg;
 
-    function buildThreeBulletCuesForStation(card, stationNum = 1) {
-      const rawLine = stationNum === 1 ? card.station1 : (stationNum === 2 ? card.station2 : card.station3);
+    function buildThreeBulletCuesForStation(cardOrTopic, stationNum = 1) {
+      if (window.SynapzPracticeStationsSVG && typeof window.SynapzPracticeStationsSVG.resolvePracticeTopicPack === 'function') {
+        const pack = (cardOrTopic && Array.isArray(cardOrTopic.stations))
+          ? cardOrTopic
+          : window.SynapzPracticeStationsSVG.resolvePracticeTopicPack(
+              (cardOrTopic && (cardOrTopic.topicId || cardOrTopic.bucketId || cardOrTopic.focusKey || cardOrTopic.title)) || cardOrTopic
+            );
+        const st = pack.stations[Math.max(0, Math.min(2, (Number(stationNum) || 1) - 1))];
+        if (st && Array.isArray(st.cues) && st.cues.length >= 3) {
+          return st.cues;
+        }
+      }
+      const rawLine = stationNum === 1 ? cardOrTopic.station1 : (stationNum === 2 ? cardOrTopic.station2 : cardOrTopic.station3);
       const bodyTxt = String(rawLine || '').split(':').slice(1).join(':').trim() || String(rawLine || '');
       const parts = bodyTxt.split(/[;.]+/).map(s => s.trim()).filter(Boolean);
       const cueA = parts[0] || 'Keep head up and scan twice before receiving puck.';
-      const cueB = parts[1] || card.benchCues[(stationNum - 1) % card.benchCues.length] || 'Support puck carrier inside clean passing triangle.';
-      const cueC = card.benchCues[stationNum % card.benchCues.length] || card.benchCues[0] || 'Finish play with stick on the ice!';
+      const cueB = parts[1] || cardOrTopic.benchCues[(stationNum - 1) % cardOrTopic.benchCues.length] || 'Support puck carrier inside clean passing triangle.';
+      const cueC = cardOrTopic.benchCues[stationNum % cardOrTopic.benchCues.length] || cardOrTopic.benchCues[0] || 'Finish play with stick on the ice!';
       return [cueA, cueB, `Bench Cue: "${cueC}"`];
     }
     window.buildThreeBulletCuesForStation = buildThreeBulletCuesForStation;
 
-    function openCoachPreviewAll5PlaysDrawer(focusOrBucket = 'Breakouts', ageDivision = '12U', customTitle = '') {
-      SoundFX.playTap();
+    function openCoachPreviewAll5PlaysDrawer(focusOrBucket = 'Breakouts', ageDivision = '12U', customTitle = '', opts = {}) {
+      if (!opts || !opts.silentRestore) SoundFX.playTap();
       const drawer = document.getElementById('v14CoachPreviewAll5Drawer');
+      const scrollCard = document.getElementById('v14CoachPreviewAll5Card') || drawer?.firstElementChild;
       const titleEl = document.getElementById('v14CoachPreviewAll5Title');
       const listEl = document.getElementById('v14CoachPreviewAll5List');
       if (!drawer || !listEl) return false;
-      const plays = getFivePlaysForFocusOrBucket(focusOrBucket, ageDivision);
-      const card = resolveStationCardForFocus(focusOrBucket);
+
+      const weekOffset = Number((opts && opts.weekOffset) || 0);
+      const plays = getFivePlaysForFocusOrBucket(focusOrBucket, ageDivision, weekOffset);
+      const pack = (window.SynapzPracticeStationsSVG && typeof window.SynapzPracticeStationsSVG.resolvePracticeTopicPack === 'function')
+        ? window.SynapzPracticeStationsSVG.resolvePracticeTopicPack(focusOrBucket)
+        : resolveStationCardForFocus(focusOrBucket);
+      const resolvedTitle = customTitle || `👁️ Preview All 5 Plays — ${pack.label || pack.title} (${ageDivision})`;
       if (titleEl) {
-        titleEl.textContent = customTitle || `👁️ Preview All 5 Plays — ${card.title} (${ageDivision})`;
+        titleEl.textContent = resolvedTitle;
       }
+
+      state.coachPreviewAll5Context = {
+        reopenOnExit: false,
+        focusOrBucket,
+        ageDivision,
+        customTitle: resolvedTitle,
+        weekOffset,
+        scrollTop: Number((opts && opts.scrollTop) || 0)
+      };
+
       const drillIds = plays.map(p => p.drillId || p.conceptId).filter(Boolean);
-      listEl.innerHTML = plays.map((pl, idx) => `
-        <div data-preview-play-item="${pl.playNum}" class="p-3 rounded-2xl bg-slate-900 border border-cyan-400/45 grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
-          <div class="sm:col-span-4">
-            ${renderMiniRinkStationSvg(card, (idx % 3) + 1)}
-          </div>
-          <div class="sm:col-span-8 space-y-1.5">
-            <div class="flex flex-wrap items-center justify-between gap-1.5">
-              <div class="flex flex-wrap items-center gap-1.5">
-                <span class="px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black">PLAY ${pl.playNum} OF 5</span>
-                <span class="px-2 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-200 text-[10px] font-black">${pl.ageBandLabel} • ${pl.zoneLabel}</span>
-              </div>
-              <button type="button" data-launch-coach-preview-idx="${idx}" class="px-3 py-1.5 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 text-[11px] font-black shadow cursor-pointer">
-                🏒 Skate Live on Ice ▸
-              </button>
+      listEl.innerHTML = plays.map((pl, idx) => {
+        const realDrill = pl.drillObj || (window.SynapzV14Engine && typeof window.SynapzV14Engine.getDrillById === 'function'
+          ? window.SynapzV14Engine.getDrillById(pl.drillId || pl.conceptId)
+          : null);
+        const protagonist = (realDrill && (realDrill.primaryRole || realDrill.youRole)) || pl.primaryRole || 'C';
+        const thumbSvg = (typeof window.renderCatalogPlayThumbnailSVG === 'function' && realDrill)
+          ? window.renderCatalogPlayThumbnailSVG(realDrill)
+          : renderMiniRinkStationSvg(pack, (idx % 3) + 1);
+        return `
+          <div data-preview-play-item="${pl.playNum}" data-preview-concept-id="${pl.conceptId || ''}" class="p-3 rounded-2xl bg-slate-900 border border-cyan-400/45 grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+            <div class="sm:col-span-5">
+              ${thumbSvg}
             </div>
-            <div class="text-sm font-black text-white">${pl.title}</div>
-            <p class="text-xs text-slate-300 font-semibold leading-snug">🗣️ Coaching Read: ${pl.coachCue}</p>
+            <div class="sm:col-span-7 space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-1.5">
+                <div class="flex flex-wrap items-center gap-1.5">
+                  <span class="px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black">PLAY ${pl.playNum} OF 5</span>
+                  <span class="px-2 py-0.5 rounded-full bg-amber-400/20 border border-amber-400 text-amber-200 text-[10px] font-black">YOU ARE: ${protagonist}</span>
+                  <span class="px-2 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-200 text-[10px] font-black">${pl.ageBandLabel} • ${pl.zoneLabel}</span>
+                </div>
+              </div>
+              <div class="text-sm font-black text-white">${pl.title}</div>
+              <p class="text-xs text-slate-300 font-semibold leading-snug">🗣️ Coaching Read: ${pl.coachCue}</p>
+              <div class="flex flex-wrap items-center gap-2 pt-0.5">
+                <button type="button" data-watch-coach-preview-reel-idx="${idx}" class="px-3 py-1.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-teal-400/80 text-teal-200 text-[11px] font-black shadow cursor-pointer">
+                  🎬 Watch 12s Reel
+                </button>
+                <button type="button" data-launch-coach-preview-idx="${idx}" data-skate-coach-preview-live-idx="${idx}" class="px-3.5 py-1.5 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 text-[11px] font-black shadow cursor-pointer">
+                  🏒 Skate Live ▸
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
+
+      const captureScrollAndLaunch = (sIdx, mode) => {
+        const currentScroll = (scrollCard ? scrollCard.scrollTop : 0) || drawer.scrollTop || 0;
+        state.coachPreviewAll5Context = {
+          reopenOnExit: true,
+          focusOrBucket,
+          ageDivision,
+          customTitle: resolvedTitle,
+          weekOffset,
+          scrollTop: currentScroll
+        };
+        if (window.SynapzV14Engine && typeof window.SynapzV14Engine.launchCoachWhiteboardPreviewDrills === 'function') {
+          window.SynapzV14Engine.launchCoachWhiteboardPreviewDrills(drillIds, sIdx, { mode });
+        }
+      };
+
+      listEl.querySelectorAll('[data-watch-coach-preview-reel-idx]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const sIdx = Number(btn.getAttribute('data-watch-coach-preview-reel-idx') || 0);
+          captureScrollAndLaunch(sIdx, 'reel');
+        });
+      });
+
       listEl.querySelectorAll('[data-launch-coach-preview-idx]').forEach(btn => {
         btn.addEventListener('click', () => {
           const sIdx = Number(btn.getAttribute('data-launch-coach-preview-idx') || 0);
-          if (window.SynapzV14Engine && typeof window.SynapzV14Engine.launchCoachWhiteboardPreviewDrills === 'function') {
-            window.SynapzV14Engine.launchCoachWhiteboardPreviewDrills(drillIds, sIdx);
-          }
+          captureScrollAndLaunch(sIdx, 'live');
         });
       });
+
       drawer.classList.remove('hidden');
+      const targetScroll = Number((opts && opts.scrollTop) || 0);
+      if (scrollCard) scrollCard.scrollTop = targetScroll;
+      drawer.scrollTop = targetScroll;
       return true;
     }
     window.openCoachPreviewAll5PlaysDrawer = openCoachPreviewAll5PlaysDrawer;
+
+    function restoreCoachPreviewAll5PlaysDrawer() {
+      const ctx = state.coachPreviewAll5Context;
+      if (!ctx) return false;
+      return openCoachPreviewAll5PlaysDrawer(
+        ctx.focusOrBucket || 'Breakouts',
+        ctx.ageDivision || '12U',
+        ctx.customTitle || '',
+        { weekOffset: ctx.weekOffset || 0, scrollTop: ctx.scrollTop || 0, silentRestore: true }
+      );
+    }
+    window.restoreCoachPreviewAll5PlaysDrawer = restoreCoachPreviewAll5PlaysDrawer;
 
     function renderDeterministicQrSvg(codeText, sizePx = 88) {
       const clean = String(codeText || 'SYNAPZ').toUpperCase();
@@ -28677,6 +28720,27 @@
       const dateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
       const fed = getEffectiveFederationMode();
 
+      const dynStyleExisting = document.getElementById('synapzDynamicPrintOrientationStyle');
+      if (dynStyleExisting && kind !== 'rink_glass_card') {
+        dynStyleExisting.textContent = '';
+      }
+      const tbWrap = document.getElementById('synapzPrintToolbar');
+      const tbTitleReset = document.querySelector('#synapzPrintToolbar > span');
+      const tbBtnReset = document.getElementById('btnTriggerNativePrintNow');
+      if (kind !== 'rink_glass_card') {
+        if (tbTitleReset) tbTitleReset.textContent = '🖨️ Single-Page Print Preview (Letter / A4 Ready)';
+        if (tbBtnReset) tbBtnReset.textContent = '🖨️ Print / Save 1-Page PDF';
+        tbWrap?.classList.remove('max-w-6xl');
+        tbWrap?.classList.add('max-w-4xl');
+        root.classList.remove('max-w-6xl');
+        root.classList.add('max-w-4xl');
+      } else {
+        tbWrap?.classList.remove('max-w-4xl');
+        tbWrap?.classList.add('max-w-6xl');
+        root.classList.remove('max-w-4xl');
+        root.classList.add('max-w-6xl');
+      }
+
       if (kind === 'net30_club_invoice') {
         const clubName = payload.clubName || 'Hockey Association / Club';
         const treasurerEmail = payload.treasurerEmail || 'treasurer@hockeyclub.org';
@@ -28874,50 +28938,80 @@
           </div>
         `;
       } else {
-        const card = resolveStationCardForFocus(payload.focusConcept || payload.focusLabel || 'Breakouts');
+        const pack = (window.SynapzPracticeStationsSVG && typeof window.SynapzPracticeStationsSVG.resolvePracticeTopicPack === 'function')
+          ? window.SynapzPracticeStationsSVG.resolvePracticeTopicPack(payload.focusConcept || payload.focusLabel || 'breakouts_regroups')
+          : resolveStationCardForFocus(payload.focusConcept || payload.focusLabel || 'Breakouts');
         const teamName = payload.teamName || 'Hockey Team';
         const divBadge = formatFederationDivisionBadge(payload.ageDivision || '12U', fed);
-        const stList = [
-          { num: 1, heading: card.station1.split(':')[0] || 'Station 1 (Edge & Scan Warmup)', cues: buildThreeBulletCuesForStation(card, 1) },
-          { num: 2, heading: card.station2.split(':')[0] || 'Station 2 (Constrained Small-Area)', cues: buildThreeBulletCuesForStation(card, 2) },
-          { num: 3, heading: card.station3.split(':')[0] || 'Station 3 (Live 5v5 Shift)', cues: buildThreeBulletCuesForStation(card, 3) }
-        ];
+        const stList = [1, 2, 3].map(n => {
+          const stObj = (pack.stations && pack.stations[n - 1]) || null;
+          return {
+            num: n,
+            formatTag: stObj ? stObj.formatTag : `Station ${n}`,
+            heading: stObj ? stObj.heading : (n === 1 ? pack.station1 : (n === 2 ? pack.station2 : pack.station3)).split(':')[0],
+            cues: stObj ? stObj.cues : buildThreeBulletCuesForStation(pack, n)
+          };
+        });
+
+        // Inject @page landscape orientation rule when Rink-Glass 3-Page Sheet is active
+        let dynPageStyle = document.getElementById('synapzDynamicPrintOrientationStyle');
+        if (!dynPageStyle) {
+          dynPageStyle = document.createElement('style');
+          dynPageStyle.id = 'synapzDynamicPrintOrientationStyle';
+          document.head.appendChild(dynPageStyle);
+        }
+        dynPageStyle.textContent = `@media print { @page { size: landscape; margin: 0.35in; } }`;
+
+        const tbTitle = document.querySelector('#synapzPrintToolbar > span');
+        const tbBtn = document.getElementById('btnTriggerNativePrintNow');
+        if (tbTitle) tbTitle.textContent = '🖨️ 3-Page Landscape Rink-Glass Sheet (11" × 8.5" • 1 Full Diagram Per Page)';
+        if (tbBtn) tbBtn.textContent = '🖨️ Print / Save 3-Page Landscape PDF';
+
         root.setAttribute('data-print-kind', 'rink_glass_card');
         root.innerHTML = `
-          <div class="synapz-print-single-page space-y-2.5 text-slate-950">
-            <div class="flex items-start justify-between border-b-4 border-slate-950 pb-2">
-              <div>
-                <div class="text-[11px] font-black uppercase tracking-widest text-slate-700">SYNAPZ RINK-GLASS 3-STATION PRACTICE CARD • TAPE TO BENCH GLASS</div>
-                <h2 class="text-xl font-black text-slate-950">${card.title}</h2>
-              </div>
-              <div class="text-right text-xs font-black text-slate-900">
-                <div>${teamName} (${divBadge} • ${fed})</div>
-                <div>Code: ${payload.teamCode || 'TEAM'} • ${payload.lessonCount || 5}-Play Digital Prep</div>
-              </div>
-            </div>
-            <div class="grid grid-cols-1 gap-2">
-              ${stList.map(st => `
-                <div class="p-2.5 rounded-xl border-2 border-slate-950 bg-slate-50 grid grid-cols-12 gap-3 items-center">
-                  <div class="col-span-5">
-                    ${renderMiniRinkStationSvg(card, st.num)}
+          <div class="synapz-print-3page-deck space-y-6 text-slate-950">
+            ${stList.map((st, idx) => `
+              <section
+                data-print-station-page="${st.num}"
+                data-diagram-height-pct="75"
+                style="${idx < 2 ? 'page-break-after: always; break-after: page;' : 'page-break-after: auto; break-after: auto;'} min-height: 760px;"
+                class="synapz-print-station-page w-full rounded-2xl border-2 border-slate-950 bg-white p-3.5 sm:p-4 flex flex-col justify-between gap-2 shadow-lg"
+              >
+                <div class="flex items-center justify-between gap-3 border-b-2 border-slate-950 pb-1 shrink-0">
+                  <div class="min-w-0">
+                    <div class="text-[10px] font-black uppercase tracking-widest text-slate-700">
+                      PAGE ${st.num} OF 3 • SYNAPZ RINK-GLASS FULL-SHEET STATION (${st.formatTag})
+                    </div>
+                    <h2 class="text-sm sm:text-lg font-black text-slate-950 leading-tight">${pack.label || pack.title} — ${st.heading}</h2>
                   </div>
-                  <div class="col-span-7 space-y-1">
-                    <div class="text-xs sm:text-sm font-black uppercase text-slate-950">${st.num}️⃣ ${st.heading}</div>
-                    <ul class="list-disc pl-4 text-xs font-bold text-slate-900 space-y-0.5">
-                      ${st.cues.map(c => `<li>${c}</li>`).join('')}
-                    </ul>
+                  <div class="text-right text-[11px] font-black text-slate-900 shrink-0">
+                    <div>${teamName} (${divBadge} • ${fed})</div>
+                    <div>Team Code: ${payload.teamCode || 'TEAM'} • Tape to Bench Glass</div>
                   </div>
                 </div>
-              `).join('')}
-            </div>
-            <div class="p-2.5 rounded-xl border-2 border-slate-950 bg-amber-50">
-              <div class="text-[11px] font-black uppercase tracking-wider text-slate-950 mb-1">🗣️ 3 Verbal Bench Cues (Match Players' Pre-Practice App Cues 1:1)</div>
-              <div class="grid grid-cols-3 gap-2 text-[11px] font-black text-slate-950">
-                ${card.benchCues.map((cue, idx) => `<div class="p-1.5 rounded border border-slate-900 bg-white">"${idx + 1}. ${cue}"</div>`).join('')}
-              </div>
-            </div>
+
+                <div class="synapz-print-diagram-75 w-full flex items-center justify-center overflow-hidden" style="flex: 1 1 75%; height: 75%; min-height: 440px;">
+                  ${renderMiniRinkStationSvg(pack, st.num, { printFullPage: true })}
+                </div>
+
+                <div class="synapz-print-glass-cues rounded-xl border-2 border-slate-950 bg-slate-50 px-4 py-2 shrink-0">
+                  <ol class="list-decimal pl-6 space-y-0.5 text-slate-950 font-black" style="font-size: 16pt; line-height: 1.2;">
+                    ${st.cues.map(c => `<li>${c}</li>`).join('')}
+                  </ol>
+                </div>
+              </section>
+            `).join('')}
           </div>
         `;
+      }
+
+      if (kind !== 'rink_glass_card') {
+        const dynPageStyle = document.getElementById('synapzDynamicPrintOrientationStyle');
+        if (dynPageStyle) dynPageStyle.textContent = '';
+        const tbTitle = document.querySelector('#synapzPrintToolbar > span');
+        const tbBtn = document.getElementById('btnTriggerNativePrintNow');
+        if (tbTitle) tbTitle.textContent = '🖨️ Single-Page Print Preview (Letter / A4 Ready)';
+        if (tbBtn) tbBtn.textContent = '🖨️ Print / Save 1-Page PDF';
       }
 
       overlay.classList.remove('hidden');
@@ -29085,40 +29179,54 @@
     state.activeHeadCoachStation = 'clipboard';
     state.headCoachWhiteboardTab = 'single_topic';
     state.headCoachBinderTab = 'rink_cards';
+    state.coachAutopilotInspectWeek = 1;
     state.coachMonitorSample12Preview = false;
     state.coachMonitorSelectedPlanId = '';
     state.coachBoosterSentMap = {};
     state.activePlayerOfficeStation = 'computer';
+    state.showRoomHotspots = false;
+
+    function syncRoomHotspotsToggleUI() {
+      const on = Boolean(state.showRoomHotspots);
+      document.body.classList.toggle('synapz-show-hotspots', on);
+      document.querySelectorAll('[data-toggle-room-hotspots]').forEach((btn) => {
+        btn.textContent = on ? '✓ Hide Hotspots' : '? Show Hotspots';
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.className = on
+          ? 'px-2.5 py-1.5 rounded-full bg-amber-400 text-slate-950 border border-amber-200 text-[11px] font-black shadow-xl cursor-pointer transition'
+          : 'px-2.5 py-1.5 rounded-full bg-slate-950/85 hover:bg-slate-900 border border-slate-700/80 text-slate-300 hover:text-amber-200 text-[11px] font-black shadow-xl backdrop-blur-md cursor-pointer transition';
+      });
+    }
+    window.syncRoomHotspotsToggleUI = syncRoomHotspotsToggleUI;
+
+    function toggleRoomHotspotsVisibility() {
+      SoundFX.playTap();
+      state.showRoomHotspots = !state.showRoomHotspots;
+      syncRoomHotspotsToggleUI();
+    }
+    window.toggleRoomHotspotsVisibility = toggleRoomHotspotsVisibility;
 
     function syncCoachOfficeRoomPinLabels(role = 'player') {
       const isCoach = role === 'coach' || role === 'assistant_coach';
       const pinMap = isCoach
         ? {
-            coachOfficeHotspotCoachAl: '📋 Team & Staff Codes',
-            coachOfficeHotspotWhiteboard: '🖍️ Preview & Assign Plays',
-            coachOfficeHotspotLaptop: '🖥️ Assignments & Boosters',
-            coachOfficeHotspotBookshelf: '📓 Printables & Showdown'
+            coachOfficeHotspotCoachAl: 'Desk Clipboard — Team & Staff Codes',
+            coachOfficeHotspotWhiteboard: 'Wall Whiteboard — Preview & Assign Plays',
+            coachOfficeHotspotLaptop: 'Desktop Monitor — Sent Assignments & Boosters',
+            coachOfficeHotspotBookshelf: 'Desk Binder — Printables & Live Showdown'
           }
         : {
-            coachOfficeHotspotCoachAl: '📋 My Team & Schedule',
-            coachOfficeHotspotLaptop: '💻 My Lesson Inbox',
-            coachOfficeHotspotWhiteboard: '🖍️ Zone Stats & Coach Al',
-            coachOfficeHotspotBookshelf: '📓 Saturday Ice Proof'
+            coachOfficeHotspotCoachAl: 'Wall Clipboard — My Team & Schedule',
+            coachOfficeHotspotLaptop: 'Desk Computer — My Lesson Inbox',
+            coachOfficeHotspotWhiteboard: 'Wall Whiteboard — Zone Stats & Coach Al',
+            coachOfficeHotspotBookshelf: 'Desk Binder — Saturday Ice Proof'
           };
       Object.entries(pinMap).forEach(([id, txt]) => {
         const btn = document.getElementById(id);
         if (!btn) return;
         btn.setAttribute('aria-label', txt);
-        let pin = btn.querySelector('.synapz-room-object-pin-label');
-        if (!pin) {
-          pin = document.createElement('span');
-          pin.className = 'synapz-room-object-pin-label';
-          pin.style.bottom = '8%';
-          pin.style.left = '50%';
-          pin.style.transform = 'translateX(-50%)';
-          btn.appendChild(pin);
-        }
-        pin.textContent = txt;
+        btn.setAttribute('title', txt);
+        btn.querySelectorAll('.synapz-room-object-pin-label').forEach(el => el.remove());
       });
     }
     window.syncCoachOfficeRoomPinLabels = syncCoachOfficeRoomPinLabels;
@@ -29202,25 +29310,43 @@
     window.openCoachOfficeSheetStep = openCoachOfficeSheetStep;
 
     const SAMPLE_12_SKATER_PREVIEW_ROSTER = [
-      { playerKey: 'sample_1', name: 'Liam Carter', jerseyNumber: 14, positionCode: 'C', funnelState: 'Completed', scorePct: 92 },
-      { playerKey: 'sample_2', name: 'Maya Lindstrom', jerseyNumber: 19, positionCode: 'LW', funnelState: 'Completed', scorePct: 88 },
-      { playerKey: 'sample_3', name: 'Noah Gallagher', jerseyNumber: 4, positionCode: 'LD', funnelState: 'Completed', scorePct: 60 },
-      { playerKey: 'sample_4', name: 'Chloe Bergeron', jerseyNumber: 22, positionCode: 'RW', funnelState: 'Completed', scorePct: 84 },
-      { playerKey: 'sample_5', name: 'Ethan Kowalski', jerseyNumber: 27, positionCode: 'RD', funnelState: 'Completed', scorePct: 58 },
-      { playerKey: 'sample_6', name: 'Sofia Rossi', jerseyNumber: 9, positionCode: 'C', funnelState: 'Completed', scorePct: 96 },
-      { playerKey: 'sample_7', name: 'Lucas Novak', jerseyNumber: 11, positionCode: 'LW', funnelState: 'Completed', scorePct: 64 },
-      { playerKey: 'sample_8', name: 'Ava Thompson', jerseyNumber: 31, positionCode: 'G', funnelState: 'Completed', scorePct: 90 },
-      { playerKey: 'sample_9', name: 'Mason Brooks', jerseyNumber: 8, positionCode: 'RD', funnelState: 'Completed', scorePct: 76 },
-      { playerKey: 'sample_10', name: 'Harper Sato', jerseyNumber: 17, positionCode: 'RW', funnelState: 'Opened', scorePct: null },
-      { playerKey: 'sample_11', name: 'Owen Dubois', jerseyNumber: 6, positionCode: 'LD', funnelState: 'Opened', scorePct: null },
-      { playerKey: 'sample_12', name: 'Caleb Vance', jerseyNumber: 24, positionCode: 'C', funnelState: 'Delivered', scorePct: null }
+      { playerKey: 'sample_1', name: 'Liam Carter', jerseyNumber: 14, positionCode: 'C', funnelState: 'Completed', scorePct: 92, weakestRead: 'Low-Center Support Timing' },
+      { playerKey: 'sample_2', name: 'Maya Lindstrom', jerseyNumber: 19, positionCode: 'LW', funnelState: 'Completed', scorePct: 88, weakestRead: 'Weak-Side Rim Pre-Scan' },
+      { playerKey: 'sample_3', name: 'Noah Gallagher', jerseyNumber: 4, positionCode: 'LD', funnelState: 'Completed', scorePct: 60, weakestRead: 'D-Zone: Wheel vs. Reverse Read' },
+      { playerKey: 'sample_4', name: 'Chloe Bergeron', jerseyNumber: 22, positionCode: 'RW', funnelState: 'Completed', scorePct: 84, weakestRead: 'Blue-Line Onside Straddle' },
+      { playerKey: 'sample_5', name: 'Ethan Kowalski', jerseyNumber: 27, positionCode: 'RD', funnelState: 'Completed', scorePct: 58, weakestRead: 'Neutral Zone: D-to-D Hinge Scan' },
+      { playerKey: 'sample_6', name: 'Sofia Rossi', jerseyNumber: 9, positionCode: 'C', funnelState: 'Completed', scorePct: 96, weakestRead: 'None — All 5 Reads Gold' },
+      { playerKey: 'sample_7', name: 'Lucas Novak', jerseyNumber: 11, positionCode: 'LW', funnelState: 'Completed', scorePct: 64, weakestRead: 'Wall Rim Shoulder-Check (NZ-01)' },
+      { playerKey: 'sample_8', name: 'Ava Thompson', jerseyNumber: 31, positionCode: 'G', funnelState: 'Completed', scorePct: 90, weakestRead: 'Trapezoid Rim Callout' },
+      { playerKey: 'sample_9', name: 'Mason Brooks', jerseyNumber: 8, positionCode: 'RD', funnelState: 'Completed', scorePct: 76, weakestRead: '1-Stick Blue-Line Gap' },
+      { playerKey: 'sample_10', name: 'Harper Sato', jerseyNumber: 17, positionCode: 'RW', funnelState: 'Opened', scorePct: null, weakestRead: 'In Progress (Opened Pack)' },
+      { playerKey: 'sample_11', name: 'Owen Dubois', jerseyNumber: 6, positionCode: 'LD', funnelState: 'Opened', scorePct: null, weakestRead: 'In Progress (Opened Pack)' },
+      { playerKey: 'sample_12', name: 'Caleb Vance', jerseyNumber: 24, positionCode: 'C', funnelState: 'Delivered', scorePct: null, weakestRead: 'Awaiting First Shift' }
     ];
 
-    async function renderSynapzCoachOfficeModal() {
+    const BINDER_6_PRACTICE_TOPICS = [
+      { key: 'breakouts_regroups', icon: '🚀', label: 'Breakouts & Regroups' },
+      { key: 'forecheck_gap', icon: '⚡', label: 'Forecheck & Gap Control' },
+      { key: 'neutral_zone_regroups', icon: '🔄', label: 'Neutral Zone & Regroups' },
+      { key: 'odd_man_rush_entries', icon: '📐', label: 'Odd-Man Rush & Entries' },
+      { key: 'ozone_cycling_netfront', icon: '🔥', label: 'O-Zone Cycling & Net-Front' },
+      { key: 'special_teams_pp_pk', icon: '🛡️', label: 'Special Teams (PP & PK)' }
+    ];
+
+    function buildGuaranteedAssistantInvites(teamCode) {
+      const prefix = String(teamCode || 'TEAM01').replace(/[^A-Z0-9]/gi, '').toUpperCase().slice(0, 4) || 'TEAM';
+      return [
+        { slotNumber: 1, coachCode: `AC1-${prefix}`, redeemedByAccountId: null, assistantName: null },
+        { slotNumber: 2, coachCode: `AC2-${prefix}`, redeemedByAccountId: null, assistantName: null }
+      ];
+    }
+
+    async function renderSynapzCoachOfficeModal(renderOpts = {}) {
       const topOfficeSeq = (state._coachOfficeTopSeq = (state._coachOfficeTopSeq || 0) + 1);
       const acct = state.currentAccount;
       const role = (acct && acct.portalRole) || 'player';
       syncCoachOfficeRoomPinLabels(role);
+      syncRoomHotspotsToggleUI();
 
       const exitBtn = document.getElementById('btnCoachOfficeSaveExitLobby');
       const openDrawerBtn = document.getElementById('btnCoachOfficeOpenDrawer');
@@ -29233,7 +29359,6 @@
       if (exitBtn) {
         exitBtn.textContent = role === 'player' ? '← Main Lobby' : '🚪 Log Out';
       }
-      // Remove colliding top-right Coach Al Suite & Roster pill completely!
       if (openDrawerBtn) {
         openDrawerBtn.classList.add('hidden');
       }
@@ -29246,26 +29371,28 @@
         : 'https://danebekkedahl.github.io/synapz-hockey/';
 
       // =======================================================================
-      // ROLE B: HEAD COACH OR SHARED ASSISTANT COACH — 4 SINGLE-PURPOSE OBJECTS
-      //   1) clipboard  — Team & Staff Codes
-      //   2) whiteboard — Preview & Assign Plays (Send 1 Topic Now | 12-Week Auto-Schedule)
-      //   3) monitor    — Active Sent Assignments & Coach Al Boosters (+ Sample 12-Skater Toggle)
-      //   4) binder     — Printable 3-Station SVG Mini-Rink Cards + Club ROI/PO + Live Showdown
+      // ROLE B: HEAD COACH OR SHARED ASSISTANT COACH — STRICT 1-OBJECT-1-MODAL
+      //   1) clipboard  — Team & Staff Codes + Roster (0ms Non-Blank Guarantee!)
+      //   2) whiteboard — Preview & Assign Plays (Send 1 Topic | Full W1–W12 Auto-Schedule)
+      //   3) monitor    — Auto-Expanded Per-Skater Score & Coach Al Booster Table
+      //   4) binder     — 3-Page Full-Sheet Regulation Rink-Glass Printables + Showdown
       // =======================================================================
       if (role === 'coach' || role === 'assistant_coach') {
         if (joinBar) joinBar.classList.add('hidden');
         if (playerGrid) playerGrid.classList.add('hidden');
         if (rolePortalBox) rolePortalBox.classList.remove('hidden');
 
-        const tCode = (acct && acct.teamCode) || state.teamCode || '';
-        const fetchedDoc = tCode ? await SynapzPortalCloud.fetchTeamByCode(tCode) : null;
-        if (topOfficeSeq !== state._coachOfficeTopSeq) return;
-        const cleanAssoc = String((fetchedDoc && fetchedDoc.associationName) || (acct && acct.associationName) || '').trim();
-        const cleanTeam = String((fetchedDoc && fetchedDoc.teamName) || (acct && acct.teamName) || (acct && acct.orgName) || 'Coach Team').trim();
+        const rawCode = String((acct && acct.teamCode) || state.teamCode || 'TEAM01').trim().toUpperCase();
+        const tCode = rawCode || 'TEAM01';
+        const localStore = typeof readLocalPortalStore === 'function' ? readLocalPortalStore() : { teams: {} };
+        const cachedDoc = (renderOpts && renderOpts.overrideTeamDoc) || (localStore && localStore.teams && localStore.teams[tCode]) || null;
+
+        const cleanAssoc = String((cachedDoc && cachedDoc.associationName) || (acct && acct.associationName) || '').trim();
+        const cleanTeam = String((cachedDoc && cachedDoc.teamName) || (acct && acct.teamName) || (acct && acct.orgName) || 'Coach Team').trim();
         const displayTeamTitle = (cleanAssoc && !cleanTeam.includes(cleanAssoc)) ? `${cleanAssoc} • ${cleanTeam}` : cleanTeam;
 
-        const teamDoc = fetchedDoc || {
-          teamCode: tCode || 'TEAM01',
+        const teamDoc = cachedDoc || {
+          teamCode: tCode,
           associationName: cleanAssoc,
           teamName: cleanTeam,
           displayTeamLabel: displayTeamTitle,
@@ -29276,8 +29403,16 @@
           rosterPlayers: [],
           pushedPlans: [],
           planCompletions: [],
-          assistantInvites: []
+          assistantInvites: buildGuaranteedAssistantInvites(tCode)
         };
+        if (!Array.isArray(teamDoc.assistantInvites) || teamDoc.assistantInvites.length < 2) {
+          teamDoc.assistantInvites = buildGuaranteedAssistantInvites(teamDoc.teamCode || tCode);
+          if (localStore && localStore.teams) {
+            localStore.teams[teamDoc.teamCode || tCode] = JSON.parse(JSON.stringify(teamDoc));
+            writeLocalPortalStore(localStore);
+          }
+        }
+
         const isAssistant = role === 'assistant_coach';
         const isCampCohort = Boolean(teamDoc.isCampCohort || String(teamDoc.teamCode || '').startsWith('CAMP-') || (acct && acct.planType === 'camp_cohort_100'));
         const station = ['clipboard', 'whiteboard', 'monitor', 'binder'].includes(state.activeHeadCoachStation)
@@ -29288,7 +29423,7 @@
           clipboard: `📋 Desk Clipboard — Team & Staff Codes (${displayTeamTitle})`,
           whiteboard: `🖍️ Wall Whiteboard — Preview & Assign Plays (${teamDoc.ageDivision || '12U'})`,
           monitor: `🖥️ Desktop Monitor — Sent Assignments & Coach Al Boosters`,
-          binder: `📓 Desk Binder — Printable 3-Station Mini-Rink Cards & Live Showdown`
+          binder: `📓 Desk Binder — 3-Page Full-Sheet Rink-Glass Printables & Live Showdown`
         };
         if (headerTitleEl) {
           headerTitleEl.textContent = stationTitles[station];
@@ -29299,37 +29434,35 @@
         const extraPrice = (window.SYNAPZ_PRICING_CONFIG && window.SYNAPZ_PRICING_CONFIG.coachExtraSkaterPrice) || 4.99;
         const pushedPlans = Array.isArray(teamDoc.pushedPlans) ? teamDoc.pushedPlans : [];
         const completions = Array.isArray(teamDoc.planCompletions) ? teamDoc.planCompletions : [];
-        const assistantInvites = Array.isArray(teamDoc.assistantInvites) ? teamDoc.assistantInvites : [];
+        const assistantInvites = teamDoc.assistantInvites;
         const teamSignupLink = `${baseAppUrl}?portal=player&team=${encodeURIComponent(teamDoc.teamCode)}`;
         const bracketKey = resolveSeasonBracketKey(teamDoc.ageDivision || '12U');
         const bracketWeeks = window.SEASON_12_WEEK_CURRICULUM_CALENDAR[bracketKey] || window.SEASON_12_WEEK_CURRICULUM_CALENDAR['12U'];
         const autopilotActive = Boolean(teamDoc.seasonAutopilot && teamDoc.seasonAutopilot.enabled);
         const autopilotPlanNow = autopilotActive ? resolveActiveSeasonAutopilotPlan(teamDoc) : null;
-        const previewWeekNum = autopilotPlanNow
-          ? autopilotPlanNow.autopilotWeek
-          : (Number(teamDoc.seasonAutopilot && teamDoc.seasonAutopilot.overrideWeek) || 1);
-        const previewWeekEntry = bracketWeeks.find(w => w.week === previewWeekNum) || bracketWeeks[0];
-        const wbTab = state.headCoachWhiteboardTab === 'autopilot_12wk' ? 'autopilot_12wk' : 'single_topic';
-        const binderTab = state.headCoachBinderTab === 'club_po_roi' ? 'club_po_roi' : 'rink_cards';
-        const activeFocusTopic = state.coachWhiteboardSelectedTopic || FULL_SUITE_FOCUS_AREAS[0].key;
-        const activeBinderFocus = state.coachBinderSelectedTopic || (pushedPlans[0] && pushedPlans[0].focusConcept) || activeFocusTopic;
-        const binderCard = resolveStationCardForFocus(activeBinderFocus);
-        const alreadyAssignedCurrentTopic = pushedPlans.some(p => p && p.focusConcept === activeFocusTopic);
+        const weekTopicOverrides = (teamDoc.seasonAutopilot && teamDoc.seasonAutopilot.weekTopicOverrides) || {};
+        const inspectWeekNum = Math.max(1, Math.min(12, Number(state.coachAutopilotInspectWeek || (teamDoc.seasonAutopilot && teamDoc.seasonAutopilot.overrideWeek) || (autopilotPlanNow && autopilotPlanNow.autopilotWeek) || 1)));
+        const baseWeekEntry = bracketWeeks.find(w => w.week === inspectWeekNum) || bracketWeeks[0];
+        const effectiveWeekBucket = weekTopicOverrides[inspectWeekNum] || baseWeekEntry.primaryBucket;
+        const effectiveWeekTopicLabel = HUMAN_BUCKET_LABELS[effectiveWeekBucket] || (BINDER_6_PRACTICE_TOPICS.find(t => t.key === effectiveWeekBucket)?.label) || baseWeekEntry.primaryHumanTitle;
+        const inspectWeekPlays5 = getFivePlaysForFocusOrBucket(effectiveWeekBucket, teamDoc.ageDivision || '12U', inspectWeekNum);
 
-        // Quick 4-Object Switcher Pills inside the drawer so Coach can also hop cleanly between objects
-        const stationNavBar = `
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 pb-1">
-            <button type="button" data-hc-station-btn="clipboard" class="py-1.5 px-2.5 rounded-xl text-[11px] font-black cursor-pointer transition ${station === 'clipboard' ? 'bg-emerald-400 text-slate-950 shadow' : 'bg-slate-900 border border-slate-700 text-slate-200 hover:border-emerald-400/60'}">📋 Team &amp; Staff Codes</button>
-            <button type="button" data-hc-station-btn="whiteboard" class="py-1.5 px-2.5 rounded-xl text-[11px] font-black cursor-pointer transition ${station === 'whiteboard' ? 'bg-amber-400 text-slate-950 shadow' : 'bg-slate-900 border border-slate-700 text-slate-200 hover:border-amber-400/60'}">🖍️ Preview &amp; Assign</button>
-            <button type="button" data-hc-station-btn="monitor" class="py-1.5 px-2.5 rounded-xl text-[11px] font-black cursor-pointer transition ${station === 'monitor' ? 'bg-cyan-400 text-slate-950 shadow' : 'bg-slate-900 border border-slate-700 text-slate-200 hover:border-cyan-400/60'}">🖥️ Sent &amp; Boosters</button>
-            <button type="button" data-hc-station-btn="binder" class="py-1.5 px-2.5 rounded-xl text-[11px] font-black cursor-pointer transition ${station === 'binder' ? 'bg-purple-400 text-slate-950 shadow' : 'bg-slate-900 border border-slate-700 text-slate-200 hover:border-purple-400/60'}">📓 Printables &amp; Showdown</button>
-          </div>
-        `;
+        const wbTab = state.headCoachWhiteboardTab === 'autopilot_12wk' ? 'autopilot_12wk' : 'single_topic';
+        const activeFocusTopic = state.coachWhiteboardSelectedTopic || FULL_SUITE_FOCUS_AREAS[0].key;
+        const rawBinderSelection = state.coachBinderSelectedTopic || (pushedPlans[0] && pushedPlans[0].focusConcept) || 'breakouts_regroups';
+        const binderPack = (window.SynapzPracticeStationsSVG && typeof window.SynapzPracticeStationsSVG.resolvePracticeTopicPack === 'function')
+          ? window.SynapzPracticeStationsSVG.resolvePracticeTopicPack(rawBinderSelection)
+          : resolveStationCardForFocus(rawBinderSelection);
+        const activeBinderTopicKey = binderPack.topicId || 'breakouts_regroups';
+        const alreadyAssignedCurrentTopic = pushedPlans.some(p => p && p.focusConcept === activeFocusTopic);
+        const rosterLiveContextText = roster.length === 0
+          ? `0/${maxSeats} skaters joined yet — share Team Code ${teamDoc.teamCode} on your Desk Clipboard`
+          : `${roster.length}/${maxSeats} skaters active on Team ${teamDoc.teamCode}`;
 
         let stationBodyHtml = '';
 
         // ---------------------------------------------------------------------
-        // OBJECT 1: DESK CLIPBOARD (Team & Staff Codes)
+        // OBJECT 1: DESK CLIPBOARD (Team & Staff Codes + Roster — 0ms Non-Blank!)
         // ---------------------------------------------------------------------
         if (station === 'clipboard') {
           stationBodyHtml = `
@@ -29350,7 +29483,7 @@
                   <div class="flex items-center gap-3 p-2.5 rounded-xl bg-slate-950 border border-emerald-400/40">
                     ${renderDeterministicQrSvg(teamDoc.teamCode, 82)}
                     <div class="space-y-1.5 min-w-0 flex-1">
-                      <div class="text-xl font-mono font-black text-emerald-300 tracking-widest" id="coachOfficeLiveTeamCode">${teamDoc.teamCode}</div>
+                      <div class="text-2xl font-mono font-black text-emerald-300 tracking-widest" id="coachOfficeLiveTeamCode">${teamDoc.teamCode}</div>
                       <input type="text" readonly value="${teamSignupLink}" class="w-full px-2 py-1 rounded bg-slate-900 border border-slate-700 text-[10px] font-mono text-cyan-200" />
                       <div class="flex flex-wrap gap-1.5">
                         <button type="button" id="btnCopyCoachTeamInviteLink" class="px-2.5 py-1 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-[10px] font-black cursor-pointer">📋 Copy Signup Link</button>
@@ -29367,17 +29500,15 @@
                   <div class="text-xs font-black uppercase text-cyan-300">🤝 2 Free Assistant Coach Codes</div>
                   <p class="text-[11px] text-slate-300 leading-snug">Assistants redeem these in <em>Coaches Portal → Create Account → Coaches Code</em> to co-manage <strong>${displayTeamTitle}</strong>.</p>
                   <div class="space-y-1.5">
-                    ${assistantInvites.length === 0
-                      ? '<div class="p-2.5 rounded-xl bg-slate-950 text-xs text-slate-400 font-semibold">Assistant invite codes generate automatically with your team.</div>'
-                      : assistantInvites.map(inv => `
-                        <div class="p-2 rounded-xl bg-slate-950 border border-cyan-400/40 flex items-center justify-between gap-2 text-xs">
-                          <div>
-                            <div class="font-mono font-black text-cyan-300">Assistant #${inv.slotNumber}: <span data-assistant-code-slot="${inv.slotNumber}">${inv.coachCode}</span></div>
-                            <div class="text-[10px] text-slate-300">${inv.redeemedByAccountId ? `✅ Claimed by ${inv.assistantName || inv.redeemedByAccountId}` : '🟢 Open — Ready to Share'}</div>
-                          </div>
-                          <button type="button" data-copy-code="${inv.coachCode}" class="btn-copy-any-portal-code px-2.5 py-1 rounded-lg bg-cyan-400 text-slate-950 text-[10px] font-black cursor-pointer">Copy Code</button>
+                    ${assistantInvites.map(inv => `
+                      <div class="p-2 rounded-xl bg-slate-950 border border-cyan-400/40 flex items-center justify-between gap-2 text-xs">
+                        <div>
+                          <div class="font-mono font-black text-cyan-300">Assistant #${inv.slotNumber}: <span data-assistant-code-slot="${inv.slotNumber}">${inv.coachCode}</span></div>
+                          <div class="text-[10px] text-slate-300">${inv.redeemedByAccountId ? `✅ Claimed by ${inv.assistantName || inv.redeemedByAccountId}` : '🟢 Open — Ready to Share'}</div>
                         </div>
-                      `).join('')}
+                        <button type="button" data-copy-code="${inv.coachCode}" class="btn-copy-any-portal-code px-2.5 py-1 rounded-lg bg-cyan-400 text-slate-950 text-[10px] font-black cursor-pointer">Copy Code</button>
+                      </div>
+                    `).join('')}
                   </div>
                 </div>
               </div>
@@ -29393,16 +29524,21 @@
         }
 
         // ---------------------------------------------------------------------
-        // OBJECT 2: WALL WHITEBOARD (Preview & Assign Plays — Zero Raw Code IDs!)
+        // OBJECT 2: WALL WHITEBOARD (Send 1 Topic | Interactive W1–W12 Auto-Schedule)
         // ---------------------------------------------------------------------
         if (station === 'whiteboard') {
           const selFocusMeta = FULL_SUITE_FOCUS_AREAS.find(f => f.key === activeFocusTopic) || FULL_SUITE_FOCUS_AREAS[0];
           const previewPlays5 = getFivePlaysForFocusOrBucket(activeFocusTopic, teamDoc.ageDivision || '12U');
           stationBodyHtml = `
             <div data-hc-station-pane="whiteboard" class="space-y-3">
-              <div class="flex flex-wrap items-center gap-2">
-                <button type="button" data-wb-mode-tab="single_topic" class="px-3.5 py-2 rounded-xl text-xs font-black cursor-pointer transition ${wbTab === 'single_topic' ? 'bg-amber-400 text-slate-950 shadow' : 'bg-slate-900 border border-slate-700 text-slate-200'}">🎯 Send 1 Topic Now</button>
-                <button type="button" data-wb-mode-tab="autopilot_12wk" class="px-3.5 py-2 rounded-xl text-xs font-black cursor-pointer transition ${wbTab === 'autopilot_12wk' ? 'bg-emerald-400 text-slate-950 shadow' : 'bg-slate-900 border border-slate-700 text-slate-200'}">🗓️ 12-Week Auto-Schedule</button>
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex flex-wrap items-center gap-2">
+                  <button type="button" data-wb-mode-tab="single_topic" class="px-3.5 py-2 rounded-xl text-xs font-black cursor-pointer transition ${wbTab === 'single_topic' ? 'bg-amber-400 text-slate-950 shadow' : 'bg-slate-900 border border-slate-700 text-slate-200'}">🎯 Send 1 Topic Now</button>
+                  <button type="button" data-wb-mode-tab="autopilot_12wk" class="px-3.5 py-2 rounded-xl text-xs font-black cursor-pointer transition ${wbTab === 'autopilot_12wk' ? 'bg-emerald-400 text-slate-950 shadow' : 'bg-slate-900 border border-slate-700 text-slate-200'}">🗓️ 12-Week Auto-Schedule</button>
+                </div>
+                <span data-wb-roster-context="true" class="px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-[11px] font-bold text-slate-300">
+                  👥 ${rosterLiveContextText}
+                </span>
               </div>
 
               ${wbTab === 'single_topic' ? `
@@ -29431,48 +29567,99 @@
                     <div class="text-xs text-slate-200">
                       <span class="font-black text-cyan-300">${selFocusMeta.icon} ${selFocusMeta.label}</span>
                       <span class="text-slate-400 font-bold"> • ${teamDoc.ageDivision || '12U'} • ${selFocusMeta.zoneLabel}</span>
-                      <div class="text-[11px] text-slate-300 mt-0.5">Includes: ${previewPlays5.slice(0, 3).map(p => p.title).join(' • ')} + 2 more</div>
+                      <div class="text-[11px] text-slate-300 mt-0.5">Includes: ${previewPlays5.map(p => p.title).join(' • ')}</div>
                     </div>
                     <button type="button" id="btnPreviewBeforeSend5Plays" data-preview-5-focus="${activeFocusTopic}" class="btn-open-preview-5-plays px-3 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/35 border border-cyan-400 text-cyan-200 text-xs font-black cursor-pointer shrink-0">
                       👁️ Preview All 5 Plays
                     </button>
                   </div>
 
-                  <button id="btnCoachPushPlanToInbox" type="button" class="w-full py-2.5 px-4 rounded-xl font-black text-xs sm:text-sm shadow cursor-pointer transition ${alreadyAssignedCurrentTopic ? 'bg-emerald-500/25 border-2 border-emerald-400 text-emerald-200' : 'bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 text-slate-950'}">
-                    ${alreadyAssignedCurrentTopic ? '✅ Live on Team Roster' : '📤 Assign to Team Roster'}
-                  </button>
+                  <div class="space-y-1.5">
+                    <button id="btnCoachPushPlanToInbox" type="button" class="w-full py-2.5 px-4 rounded-xl font-black text-xs sm:text-sm shadow cursor-pointer transition ${alreadyAssignedCurrentTopic ? 'bg-emerald-500/25 border-2 border-emerald-400 text-emerald-200' : 'bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 text-slate-950'}">
+                      ${alreadyAssignedCurrentTopic ? '✅ Live on Team Roster' : '📤 Assign to Team Roster'}
+                    </button>
+                    ${alreadyAssignedCurrentTopic ? `<div class="text-[11px] font-bold text-amber-200 text-center">📋 ${rosterLiveContextText}</div>` : ''}
+                  </div>
                 </div>
               ` : `
-                <div id="coachSeasonAutopilotCard" class="p-3.5 rounded-2xl ${autopilotActive ? 'bg-emerald-950/45 border-2 border-emerald-400/80' : 'bg-slate-900/95 border border-emerald-400/55'} space-y-2.5">
+                <div id="coachSeasonAutopilotCard" class="p-3.5 rounded-2xl ${autopilotActive ? 'bg-emerald-950/45 border-2 border-emerald-400/80' : 'bg-slate-900/95 border border-emerald-400/55'} space-y-3">
                   <div class="flex flex-wrap items-center justify-between gap-2">
                     <div>
-                      <span class="text-xs font-black uppercase text-emerald-300">🗓️ 12-Week Auto-Schedule (${previewWeekEntry.bracketLabel})</span>
-                      <p class="text-[11px] text-slate-300 font-semibold">Automatically delivers 1 progressive 5-play pack per week in plain coaching English.</p>
+                      <span class="text-xs font-black uppercase text-emerald-300">🗓️ Interactive 12-Week Auto-Schedule (${baseWeekEntry.bracketLabel})</span>
+                      <p class="text-[11px] text-slate-300 font-semibold">Click any week (W1–W12) to inspect all 5 plays, swap topics, or preview on the ice before activating.</p>
                     </div>
-                    <span id="seasonAutopilotStatusPill" class="px-2.5 py-0.5 rounded-full text-[10px] font-black ${autopilotActive ? 'bg-emerald-400 text-slate-950' : 'bg-slate-800 text-slate-300 border border-slate-700'}">
-                      ${autopilotActive ? `✅ Live on Team Roster • Week ${previewWeekEntry.week}/12` : '⚪ Manual Mode'}
-                    </span>
+                    <div class="flex flex-wrap items-center gap-2">
+                      <span id="seasonAutopilotStatusPill" class="px-2.5 py-1 rounded-full text-[10px] font-black ${autopilotActive ? 'bg-emerald-400 text-slate-950' : 'bg-slate-800 text-slate-300 border border-slate-700'}">
+                        ${autopilotActive ? `✅ Live on Team Roster • Week ${inspectWeekNum}/12` : '⚪ Manual / Preview Mode'}
+                      </span>
+                      <button id="btnToggleSeasonAutopilot" type="button" class="py-1.5 px-3 rounded-xl font-black text-xs shadow cursor-pointer ${autopilotActive ? 'bg-emerald-500/25 border border-emerald-400 text-emerald-200' : 'bg-gradient-to-r from-emerald-400 to-cyan-300 text-slate-950'}">
+                        ${autopilotActive ? '✅ Live on Team Roster (Tap to Pause)' : '📤 Activate 12-Week Auto-Schedule'}
+                      </button>
+                    </div>
                   </div>
-                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 items-end">
-                    <div class="sm:col-span-2">
-                      <label for="selectAutopilotWeekOverride" class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Select Curriculum Week (Weeks 1–12)</label>
-                      <select id="selectAutopilotWeekOverride" class="w-full px-2.5 py-2 rounded-xl bg-slate-950 border border-emerald-400/55 text-xs font-bold text-white">
-                        <option value="0" ${!(teamDoc.seasonAutopilot && teamDoc.seasonAutopilot.overrideWeek) ? 'selected' : ''}>🔄 Auto-Advance by Calendar Week (Currently ${previewWeekEntry.title})</option>
-                        ${bracketWeeks.map(wk => `<option value="${wk.week}" ${(teamDoc.seasonAutopilot && Number(teamDoc.seasonAutopilot.overrideWeek) === wk.week) ? 'selected' : ''}>${wk.title} • ${wk.zoneLabel}</option>`).join('')}
-                      </select>
-                    </div>
-                    <button id="btnToggleSeasonAutopilot" type="button" class="w-full py-2 px-3 rounded-xl font-black text-xs shadow cursor-pointer ${autopilotActive ? 'bg-emerald-500/25 border border-emerald-400 text-emerald-200' : 'bg-gradient-to-r from-emerald-400 to-cyan-300 text-slate-950'}">
-                      ${autopilotActive ? '✅ Live on Team Roster (Tap to Pause)' : '📤 Assign 12-Week Auto-Schedule'}
-                    </button>
+
+                  <!-- Interactive Week 1 through Week 12 Selector Grid -->
+                  <div id="coachAutopilot12WeeksBar" class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-12 gap-1.5">
+                    ${bracketWeeks.map(wk => {
+                      const isCurWk = wk.week === inspectWeekNum;
+                      const hasSwap = Boolean(weekTopicOverrides[wk.week]);
+                      return `
+                        <button
+                          type="button"
+                          data-autopilot-week-pill="${wk.week}"
+                          class="py-1.5 px-2 rounded-xl text-xs font-black cursor-pointer transition ${
+                            isCurWk
+                              ? 'bg-emerald-400 text-slate-950 shadow-md ring-2 ring-emerald-200'
+                              : 'bg-slate-950 hover:bg-slate-800 border border-slate-700 text-slate-200'
+                          }"
+                        >
+                          W${wk.week}${hasSwap ? '*' : ''}
+                        </button>
+                      `;
+                    }).join('')}
                   </div>
-                  <div class="p-2.5 rounded-xl bg-slate-950/90 border border-emerald-400/35 flex flex-wrap items-center justify-between gap-2 text-xs">
-                    <div>
-                      <div class="font-black text-emerald-300">${previewWeekEntry.title}</div>
-                      <div class="text-[11px] text-slate-300">${previewWeekEntry.bracketLabel} • ${previewWeekEntry.zoneLabel} • ${previewWeekEntry.humanSummaryLabel}</div>
+
+                  <div class="hidden">
+                    <select id="selectAutopilotWeekOverride">
+                      <option value="0">Auto</option>
+                      ${bracketWeeks.map(wk => `<option value="${wk.week}" ${wk.week === inspectWeekNum ? 'selected' : ''}>Week ${wk.week}</option>`).join('')}
+                    </select>
+                  </div>
+
+                  <!-- Selected Week (W1..W12) Full 5-Play Breakdown + Topic Swap + Preview All 5 Plays -->
+                  <div data-autopilot-selected-week-card="${inspectWeekNum}" class="p-3 rounded-2xl bg-slate-950/95 border border-emerald-400/45 space-y-2.5">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                      <div>
+                        <div class="text-xs sm:text-sm font-black text-emerald-300">Week ${inspectWeekNum} of 12 — ${effectiveWeekTopicLabel}</div>
+                        <div class="text-[11px] text-slate-300 font-semibold">${baseWeekEntry.bracketLabel} • ${(window.SynapzPracticeStationsSVG?.resolvePracticeTopicPack(effectiveWeekBucket)?.zoneLabel) || baseWeekEntry.zoneLabel}</div>
+                      </div>
+                      <div class="flex flex-wrap items-center gap-2">
+                        <label for="selectSwapAutopilotWeekTopic" class="text-[10px] font-black uppercase text-slate-400">Swap W${inspectWeekNum} Topic:</label>
+                        <select id="selectSwapAutopilotWeekTopic" class="px-2.5 py-1.5 rounded-xl bg-slate-900 border border-emerald-400/55 text-xs font-bold text-white">
+                          ${Object.entries(HUMAN_BUCKET_LABELS).map(([bKey, bLabel]) => `
+                            <option value="${bKey}" ${bKey === effectiveWeekBucket ? 'selected' : ''}>${bLabel}</option>
+                          `).join('')}
+                        </select>
+                        <button
+                          type="button"
+                          data-preview-5-focus="${effectiveWeekBucket}"
+                          data-preview-5-week="${inspectWeekNum}"
+                          data-preview-5-title="👁️ Preview All 5 Plays — Week ${inspectWeekNum}: ${effectiveWeekTopicLabel}"
+                          class="btn-open-preview-5-plays px-3 py-1.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/35 border border-cyan-400 text-cyan-200 text-xs font-black cursor-pointer"
+                        >
+                          👁️ Preview All 5 Plays
+                        </button>
+                      </div>
                     </div>
-                    <button type="button" data-preview-5-focus="${previewWeekEntry.primaryBucket}" data-preview-5-title="👁️ Preview All 5 Plays — ${previewWeekEntry.title}" class="btn-open-preview-5-plays px-3 py-1.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/35 border border-cyan-400 text-cyan-200 text-xs font-black cursor-pointer">
-                      👁️ Preview All 5 Plays
-                    </button>
+
+                    <ol data-autopilot-week-plays-list="${inspectWeekNum}" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-1.5 text-xs">
+                      ${inspectWeekPlays5.map((pl) => `
+                        <li class="p-2 rounded-xl bg-slate-900 border border-slate-800 flex flex-col justify-between gap-1">
+                          <span class="text-[10px] font-black text-amber-300">PLAY ${pl.playNum} • YOU ARE: ${pl.primaryRole}</span>
+                          <span class="font-bold text-white leading-snug">${pl.title}</span>
+                        </li>
+                      `).join('')}
+                    </ol>
                   </div>
                 </div>
               `}
@@ -29487,7 +29674,7 @@
                         <div class="p-2.5 rounded-xl bg-slate-950 border border-emerald-400/45 flex flex-wrap items-center justify-between gap-2 text-xs">
                           <div>
                             <div class="font-black text-white">${fMeta.icon} ${fMeta.label} (${pl.lessonCount || 5} Plays • ${teamDoc.ageDivision || '12U'} • ${fMeta.zoneLabel})</div>
-                            <div class="text-[11px] text-slate-300">${pl.coachNote}</div>
+                            <div class="text-[11px] text-slate-300">${pl.coachNote} • <span class="text-amber-200 font-bold">${rosterLiveContextText}</span></div>
                           </div>
                           <div class="flex items-center gap-1.5">
                             <button type="button" data-preview-5-focus="${pl.focusConcept}" class="btn-open-preview-5-plays px-2.5 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/35 border border-cyan-400 text-cyan-200 text-[11px] font-black cursor-pointer">👁️ Preview All 5 Plays</button>
@@ -29502,7 +29689,7 @@
         }
 
         // ---------------------------------------------------------------------
-        // OBJECT 3: DESKTOP MONITOR (Active Sent Assignments & Coach Al Boosters)
+        // OBJECT 3: DESKTOP MONITOR (Auto-Expanded Score & Booster Table!)
         // ---------------------------------------------------------------------
         if (station === 'monitor') {
           const allSentPlans = [
@@ -29511,9 +29698,9 @@
           ];
           const selectedPlan = allSentPlans.find(p => p.planId === state.coachMonitorSelectedPlanId) || allSentPlans[0] || {
             planId: 'SAMPLE-PLAN-BRK',
-            focusConcept: 'Breakouts',
+            focusConcept: 'Breakouts & Regroups',
             lessonCount: 5,
-            coachNote: 'Sample 5-Play Breakout Pack'
+            coachNote: 'Latest 5-Play Team Assignment'
           };
           const showSample12 = Boolean(state.coachMonitorSample12Preview);
           const effectiveRows = roster.length > 0
@@ -29521,13 +29708,19 @@
                 const cmp = completions.find(c => c && c.planId === selectedPlan.planId && (c.playerKey === sk.playerKey || c.playerName === sk.name));
                 const pct = cmp ? Number(cmp.scorePct) : (sk.lastPlanScorePct != null ? Number(sk.lastPlanScorePct) : null);
                 const funnel = pct != null ? 'Completed' : (sk.openedInbox ? 'Opened' : 'Delivered');
+                const struggles = (cmp && Array.isArray(cmp.struggleConcepts) && cmp.struggleConcepts.length)
+                  ? cmp.struggleConcepts.join(', ')
+                  : (Array.isArray(sk.struggleConcepts) && sk.struggleConcepts.length
+                      ? sk.struggleConcepts.join(', ')
+                      : (pct != null && pct < 75 ? `${selectedPlan.focusConcept} — Pre-Touch Scan` : (pct != null ? 'None — Clean Reads' : 'Awaiting Completion')));
                 return {
                   playerKey: sk.playerKey || sk.name,
                   name: sk.name || 'Skater',
                   jerseyNumber: sk.jerseyNumber || 9,
                   positionCode: sk.positionCode || 'C',
                   funnelState: funnel,
-                  scorePct: pct
+                  scorePct: pct,
+                  weakestRead: struggles
                 };
               })
             : (showSample12 ? SAMPLE_12_SKATER_PREVIEW_ROSTER : []);
@@ -29536,8 +29729,8 @@
             <div data-hc-station-pane="monitor" class="space-y-3">
               <div class="p-3 rounded-2xl bg-slate-900/95 border border-cyan-400/65 flex flex-wrap items-center justify-between gap-2">
                 <div>
-                  <div class="text-xs font-black uppercase text-cyan-300">🖥️ Active Sent Assignments (${allSentPlans.length})</div>
-                  <div class="text-[11px] text-slate-300 font-semibold">Click any assignment to view per-skater Delivered → Opened → Completed (%) &amp; Coach Al Boosters.</div>
+                  <div class="text-xs font-black uppercase text-cyan-300">🖥️ Active Sent Assignments (${allSentPlans.length}) — Per-Skater Tracking &amp; Coach Al Boosters</div>
+                  <div class="text-[11px] text-slate-300 font-semibold">Auto-expanded tracking for <strong>${selectedPlan.focusConcept}</strong> (${roster.length} / ${maxSeats} Real Skaters Joined).</div>
                 </div>
                 ${roster.length === 0 ? `
                   <button type="button" id="btnToggleSample12SkaterPreview" class="px-3 py-1.5 rounded-xl text-xs font-black cursor-pointer transition ${showSample12 ? 'bg-amber-400 text-slate-950 shadow' : 'bg-slate-950 hover:bg-slate-800 border border-amber-400 text-amber-200'}">
@@ -29559,163 +29752,168 @@
                 </div>
               ` : ''}
 
-              ${effectiveRows.length === 0 ? `
-                <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 text-center space-y-2">
-                  <div class="text-sm font-black text-white">0 Skaters Joined Roster Yet</div>
-                  <p class="text-xs text-slate-300">Share Team Code <strong class="text-emerald-300 font-mono">${teamDoc.teamCode}</strong> on your Desk Clipboard, or toggle <strong>👀 Preview Sample 12-Skater Team</strong> above to test-drive per-skater tracking and Coach Al Boosters!</p>
-                </div>
-              ` : `
-                ${showSample12 && roster.length === 0 ? '<div class="px-3 py-1.5 rounded-xl bg-amber-500/15 border border-amber-400/60 text-[11px] font-black text-amber-200">🧪 SAMPLE PREVIEW MODE — Showing ephemeral 12-skater demo funnel (your real roster remains 0 skaters).</div>' : ''}
-                <div class="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-950/95">
-                  <table class="w-full text-left text-xs">
-                    <thead>
-                      <tr class="border-b border-slate-800 text-[10px] uppercase text-slate-400 bg-slate-900/90">
-                        <th class="py-2 px-2.5">Skater</th>
-                        <th class="py-2 px-2">Funnel Status</th>
-                        <th class="py-2 px-2">Score</th>
-                        <th class="py-2 px-2.5 text-right">Coach Al Recommendation</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      ${effectiveRows.map(r => {
-                        const boosterKey = `${selectedPlan.planId}::${r.playerKey}`;
-                        const boosterSent = Boolean(state.coachBoosterSentMap && state.coachBoosterSentMap[boosterKey]);
-                        const funnelPill = r.funnelState === 'Completed'
-                          ? '<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-black">Delivered → Opened → Completed</span>'
-                          : (r.funnelState === 'Opened'
-                            ? '<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-200 text-[10px] font-black">Delivered → Opened</span>'
-                            : '<span class="px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 text-[10px] font-black">Delivered</span>');
-                        let actionHtml = '<span class="text-[11px] text-slate-400 font-semibold">Awaiting Completion</span>';
-                        if (r.scorePct != null) {
-                          if (r.scorePct < 70) {
-                            actionHtml = boosterSent
-                              ? '<span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-400/60 text-emerald-200 text-[10px] font-black">✅ 3-Play Booster Sent</span>'
-                              : `<button type="button" data-send-booster-key="${boosterKey}" data-booster-skater="${r.name}" class="btn-send-coach-al-booster px-2.5 py-1 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 text-[10px] font-black shadow cursor-pointer">⚡ Send 3-Play Booster Pack</button>`;
-                          } else if (r.scorePct >= 80) {
-                            actionHtml = '<span class="text-emerald-300 text-[11px] font-black">✅ Concept Mastered — No Booster Needed</span>';
-                          } else {
-                            actionHtml = '<span class="text-cyan-200 text-[11px] font-bold">👍 Solid Read — On Track</span>';
-                          }
+              ${showSample12 && roster.length === 0 ? '<div class="px-3 py-1.5 rounded-xl bg-amber-500/15 border border-amber-400/60 text-[11px] font-black text-amber-200">🧪 SAMPLE PREVIEW MODE — Showing ephemeral 12-skater demo funnel (your real roster remains 0 skaters).</div>' : ''}
+
+              <!-- Auto-Expanded Per-Skater Tracking & Coach Al Booster Table (Always Visible Immediately on Open!) -->
+              <div id="hcMonitorAutoExpandedTableWrap" class="overflow-x-auto rounded-2xl border border-slate-700 bg-slate-950/95">
+                <table id="hcMonitorSkaterTrackingTable" class="w-full text-left text-xs">
+                  <thead>
+                    <tr class="border-b border-slate-800 text-[10px] uppercase text-cyan-200 bg-slate-900/95 font-black">
+                      <th class="py-2.5 px-2.5">Skater</th>
+                      <th class="py-2.5 px-2">Status (Delivered / Opened / Completed)</th>
+                      <th class="py-2.5 px-2">Score (%)</th>
+                      <th class="py-2.5 px-2">Weakest Zone/Read</th>
+                      <th class="py-2.5 px-2.5 text-right">Coach Al Action (⚡ Send 3-Play Booster / ✅ Mastered)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${effectiveRows.map(r => {
+                      const boosterKey = `${selectedPlan.planId}::${r.playerKey}`;
+                      const boosterSent = Boolean(state.coachBoosterSentMap && state.coachBoosterSentMap[boosterKey]);
+                      const funnelPill = r.funnelState === 'Completed'
+                        ? '<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-black">Delivered → Opened → Completed</span>'
+                        : (r.funnelState === 'Opened'
+                          ? '<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-200 text-[10px] font-black">Delivered → Opened</span>'
+                          : '<span class="px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 text-[10px] font-black">Delivered</span>');
+                      let actionHtml = '<span class="text-[11px] text-slate-400 font-semibold">Awaiting Completion</span>';
+                      if (r.scorePct != null) {
+                        if (r.scorePct < 70) {
+                          actionHtml = boosterSent
+                            ? '<span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-400/60 text-emerald-200 text-[10px] font-black">✅ 3-Play Booster Sent</span>'
+                            : `<button type="button" data-send-booster-key="${boosterKey}" data-booster-skater="${r.name}" class="btn-send-coach-al-booster px-2.5 py-1 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 text-[10px] font-black shadow cursor-pointer">⚡ Send 3-Play Booster</button>`;
+                        } else if (r.scorePct >= 80) {
+                          actionHtml = '<span class="text-emerald-300 text-[11px] font-black">✅ Concept Mastered — No Booster Needed</span>';
+                        } else {
+                          actionHtml = '<span class="text-cyan-200 text-[11px] font-bold">👍 Solid Read — On Track</span>';
                         }
-                        return `
-                          <tr class="border-b border-slate-800/70">
-                            <td class="py-2 px-2.5 font-black text-white">${r.name} #${r.jerseyNumber} <span class="text-cyan-300 text-[10px]">(${r.positionCode})</span></td>
-                            <td class="py-2 px-2">${funnelPill}</td>
-                            <td class="py-2 px-2 font-black ${r.scorePct == null ? 'text-slate-400' : (r.scorePct < 70 ? 'text-rose-300' : 'text-emerald-300')}">${r.scorePct != null ? `${r.scorePct}%` : '—'}</td>
-                            <td class="py-2 px-2.5 text-right">${actionHtml}</td>
-                          </tr>
-                        `;
-                      }).join('')}
-                    </tbody>
-                  </table>
-                </div>
-              `}
+                      }
+                      return `
+                        <tr class="border-b border-slate-800/70">
+                          <td class="py-2 px-2.5 font-black text-white">${r.name} #${r.jerseyNumber} <span class="text-cyan-300 text-[10px]">(${r.positionCode})</span></td>
+                          <td class="py-2 px-2">${funnelPill}</td>
+                          <td class="py-2 px-2 font-black ${r.scorePct == null ? 'text-slate-400' : (r.scorePct < 70 ? 'text-rose-300' : 'text-emerald-300')}">${r.scorePct != null ? `${r.scorePct}%` : '—'}</td>
+                          <td class="py-2 px-2 font-semibold text-slate-300">${r.weakestRead || '—'}</td>
+                          <td class="py-2 px-2.5 text-right">${actionHtml}</td>
+                        </tr>
+                      `;
+                    }).join('')}
+                  </tbody>
+                </table>
+                ${effectiveRows.length === 0 ? `
+                  <div class="p-4 border-t border-slate-800 bg-slate-950 text-center space-y-1.5">
+                    <div class="text-sm font-black text-white">0 Skaters Joined Roster Yet</div>
+                    <p class="text-xs text-slate-300">Share Team Code <strong class="text-emerald-300 font-mono">${teamDoc.teamCode}</strong> from your Desk Clipboard, or click <strong>👀 Preview Sample 12-Skater Team</strong> right above to test-drive live scores &amp; 1-tap Coach Al Boosters immediately!</p>
+                  </div>
+                ` : ''}
+              </div>
             </div>
           `;
         }
 
         // ---------------------------------------------------------------------
-        // OBJECT 4: DESK BINDER (Printable 3-Station SVG Mini-Rink Cards + Club PO/ROI + Live Showdown)
+        // OBJECT 4: DESK BINDER (3-Page Full-Sheet Rink-Glass Printables + Showdown; ZERO Club ROI Tab!)
         // ---------------------------------------------------------------------
         if (station === 'binder') {
-          const stPreview = [1, 2, 3].map(n => ({
-            num: n,
-            heading: (n === 1 ? binderCard.station1 : (n === 2 ? binderCard.station2 : binderCard.station3)).split(':')[0],
-            cues: buildThreeBulletCuesForStation(binderCard, n)
-          }));
+          const stPreview = [1, 2, 3].map(n => {
+            const stObj = (binderPack.stations && binderPack.stations[n - 1]) || null;
+            return {
+              num: n,
+              formatTag: stObj ? stObj.formatTag : `Station ${n}`,
+              heading: stObj ? stObj.heading : `Station ${n}`,
+              cues: stObj ? stObj.cues : buildThreeBulletCuesForStation(binderPack, n)
+            };
+          });
           stationBodyHtml = `
             <div data-hc-station-pane="binder" class="space-y-3">
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <div class="flex items-center gap-1.5">
-                  <button type="button" data-binder-tab="rink_cards" class="px-3 py-1.5 rounded-xl text-xs font-black cursor-pointer ${binderTab === 'rink_cards' ? 'bg-amber-400 text-slate-950 shadow' : 'bg-slate-900 border border-slate-700 text-slate-200'}">🖨️ 3-Station Rink-Glass Cards</button>
-                  <button type="button" data-binder-tab="club_po_roi" class="px-3 py-1.5 rounded-xl text-xs font-black cursor-pointer ${binderTab === 'club_po_roi' ? 'bg-cyan-400 text-slate-950 shadow' : 'bg-slate-900 border border-slate-700 text-slate-200'}">🏛️ Club ROI &amp; Net-30 PO</button>
+              <div class="flex flex-wrap items-center justify-between gap-2 p-3 rounded-2xl bg-slate-900/95 border border-amber-400/65">
+                <div class="flex flex-wrap items-center gap-2">
+                  <label for="selectBinderStationTopic" class="text-[11px] font-black uppercase text-amber-300">Practice Topic (6 Topics × 3 Full-Sheet Stations):</label>
+                  <select id="selectBinderStationTopic" class="px-2.5 py-1.5 rounded-xl bg-slate-950 border border-amber-400/60 text-xs font-bold text-white">
+                    ${BINDER_6_PRACTICE_TOPICS.map(t => `<option value="${t.key}" ${t.key === activeBinderTopicKey ? 'selected' : ''}>${t.icon} ${t.label}</option>`).join('')}
+                  </select>
                 </div>
-                <button type="button" id="btnBinderHostLiveShowdown" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-teal-300 hover:from-amber-300 hover:to-teal-200 text-slate-950 text-xs font-black shadow cursor-pointer">
-                  ⚡ Host Live 3-Minute Team Showdown (4-Digit PIN)
-                </button>
+                <div class="flex flex-wrap items-center gap-2">
+                  <button type="button" id="btnPrintLatestRinkGlassCard" class="px-3.5 py-2 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-xs font-black shadow cursor-pointer">
+                    🖨️ Print / Open 3-Page Rink-Glass Sheet (1 Full Diagram Per Page)
+                  </button>
+                  <button type="button" id="btnBinderHostLiveShowdown" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-teal-300 hover:from-amber-300 hover:to-teal-200 text-slate-950 text-xs font-black shadow cursor-pointer">
+                    ⚡ Host Live 3-Minute Team Showdown (4-Digit PIN)
+                  </button>
+                </div>
               </div>
 
-              ${binderTab === 'rink_cards' ? `
-                <div class="p-3 rounded-2xl bg-slate-900/95 border border-amber-400/65 space-y-2.5">
-                  <div class="flex flex-wrap items-center justify-between gap-2">
-                    <div class="flex items-center gap-2">
-                      <label for="selectBinderStationTopic" class="text-[11px] font-black uppercase text-amber-300">Practice Topic:</label>
-                      <select id="selectBinderStationTopic" class="px-2.5 py-1.5 rounded-xl bg-slate-950 border border-amber-400/60 text-xs font-bold text-white">
-                        ${FULL_SUITE_FOCUS_AREAS.map(f => `<option value="${f.key}" ${f.key === activeBinderFocus ? 'selected' : ''}>${f.icon} ${f.label}</option>`).join('')}
-                      </select>
-                    </div>
-                    <button type="button" id="btnPrintLatestRinkGlassCard" class="px-3.5 py-2 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-xs font-black shadow cursor-pointer">
-                      🖨️ Open 1-Page Printable Rink-Glass Sheet
-                    </button>
-                  </div>
-
-                  <div class="grid grid-cols-1 lg:grid-cols-3 gap-2.5">
-                    ${stPreview.map(st => `
-                      <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-700 space-y-2">
-                        <div class="text-xs font-black text-amber-300">${st.num}️⃣ ${st.heading}</div>
-                        ${renderMiniRinkStationSvg(binderCard, st.num)}
-                        <ul class="list-disc pl-4 text-[11px] text-slate-200 space-y-0.5 font-semibold">
-                          ${st.cues.map(c => `<li>${c}</li>`).join('')}
-                        </ul>
+              <!-- 3 Large Vertical Full-Sheet Station Cards (Page 1 of 3, Page 2 of 3, Page 3 of 3) -->
+              <div class="flex flex-col space-y-4">
+                ${stPreview.map(st => `
+                  <div data-binder-fullsheet-card="${st.num}" class="p-3.5 sm:p-4 rounded-2xl bg-slate-950 border-2 border-slate-700 space-y-2.5 shadow-xl">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
+                      <div class="text-xs sm:text-sm font-black text-amber-300">
+                        📄 Page ${st.num} of 3 • ${st.heading}
                       </div>
-                    `).join('')}
+                      <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/60 text-[10px] font-black text-cyan-200">
+                        ${st.formatTag} • Regulation NHL/USA Rink
+                      </span>
+                    </div>
+                    <div class="w-full">
+                      ${renderMiniRinkStationSvg(binderPack, st.num)}
+                    </div>
+                    <ol class="list-decimal pl-5 text-xs sm:text-sm text-slate-100 space-y-1 font-bold leading-snug">
+                      ${st.cues.map(c => `<li>${c}</li>`).join('')}
+                    </ol>
                   </div>
-                </div>
-              ` : `
-                <div class="p-3.5 rounded-2xl bg-slate-900/95 border border-cyan-400/65 space-y-2.5">
-                  <div class="text-xs font-black uppercase text-cyan-300">🏛️ Club Board ROI Summary &amp; Net-30 PO / Invoice Generator</div>
-                  <p class="text-xs text-slate-300">Generate a 1-page printable Club Board ROI Summary or an itemized Net-30 Club PO / Invoice for your association treasurer.</p>
-                  <div class="flex flex-wrap gap-2">
-                    <button type="button" id="btnBinderOpenBoardRoiPrint" class="px-3.5 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black shadow cursor-pointer">
-                      🖨️ Print 1-Page Club ROI Sheet
-                    </button>
-                    <button type="button" id="btnBinderOpenNet30PoModal" class="px-3.5 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-cyan-400 text-cyan-200 text-xs font-black cursor-pointer">
-                      🧾 Generate Net-30 Club PO / Invoice
-                    </button>
-                  </div>
-                </div>
-              `}
+                `).join('')}
+              </div>
             </div>
           `;
         }
 
         if (rolePortalBox) {
-          rolePortalBox.innerHTML = `<div class="space-y-2.5">${stationNavBar}${stationBodyHtml}</div>`;
+          // Strict 1-Object-1-Modal Rule: ZERO top 4-tab switcher bar!
+          rolePortalBox.innerHTML = `<div class="space-y-2.5">${stationBodyHtml}</div>`;
 
-          rolePortalBox.querySelectorAll('[data-hc-station-btn]').forEach(btn => {
-            btn.addEventListener('click', () => {
-              SoundFX.playTap();
-              state.activeHeadCoachStation = btn.getAttribute('data-hc-station-btn') || 'clipboard';
-              renderSynapzCoachOfficeModal();
-            });
-          });
           rolePortalBox.querySelectorAll('[data-wb-mode-tab]').forEach(btn => {
             btn.addEventListener('click', () => {
               SoundFX.playTap();
               state.headCoachWhiteboardTab = btn.getAttribute('data-wb-mode-tab') || 'single_topic';
-              renderSynapzCoachOfficeModal();
-            });
-          });
-          rolePortalBox.querySelectorAll('[data-binder-tab]').forEach(btn => {
-            btn.addEventListener('click', () => {
-              SoundFX.playTap();
-              state.headCoachBinderTab = btn.getAttribute('data-binder-tab') || 'rink_cards';
-              renderSynapzCoachOfficeModal();
+              renderSynapzCoachOfficeModal({ skipCloudRefresh: true });
             });
           });
           document.getElementById('coachPushFocusSelect')?.addEventListener('change', (e) => {
             state.coachWhiteboardSelectedTopic = e.target.value || 'Breakouts';
-            renderSynapzCoachOfficeModal();
+            renderSynapzCoachOfficeModal({ skipCloudRefresh: true });
           });
           document.getElementById('selectBinderStationTopic')?.addEventListener('change', (e) => {
-            state.coachBinderSelectedTopic = e.target.value || 'Breakouts';
-            renderSynapzCoachOfficeModal();
+            state.coachBinderSelectedTopic = e.target.value || 'breakouts_regroups';
+            renderSynapzCoachOfficeModal({ skipCloudRefresh: true });
+          });
+          rolePortalBox.querySelectorAll('[data-autopilot-week-pill]').forEach(btn => {
+            btn.addEventListener('click', () => {
+              SoundFX.playTap();
+              const wk = Number(btn.getAttribute('data-autopilot-week-pill') || 1);
+              state.coachAutopilotInspectWeek = Math.max(1, Math.min(12, wk));
+              renderSynapzCoachOfficeModal({ skipCloudRefresh: true });
+            });
+          });
+          document.getElementById('selectSwapAutopilotWeekTopic')?.addEventListener('change', async (e) => {
+            SoundFX.playTap();
+            const chosenBucket = e.target.value || baseWeekEntry.primaryBucket;
+            const prevOverrides = (teamDoc.seasonAutopilot && teamDoc.seasonAutopilot.weekTopicOverrides) || {};
+            teamDoc.seasonAutopilot = {
+              ...(teamDoc.seasonAutopilot || { enabled: false, bracketKey, activatedAt: new Date().toISOString(), startTimestamp: Date.now(), overrideWeek: 0 }),
+              weekTopicOverrides: {
+                ...prevOverrides,
+                [inspectWeekNum]: chosenBucket
+              }
+            };
+            await SynapzPortalCloud.saveTeamDoc(teamDoc);
+            renderSynapzCoachOfficeModal({ skipCloudRefresh: true, overrideTeamDoc: teamDoc });
           });
           rolePortalBox.querySelectorAll('.btn-open-preview-5-plays').forEach(btn => {
             btn.addEventListener('click', () => {
               const fc = btn.getAttribute('data-preview-5-focus') || activeFocusTopic;
               const customT = btn.getAttribute('data-preview-5-title') || '';
-              openCoachPreviewAll5PlaysDrawer(fc, teamDoc.ageDivision || '12U', customT);
+              const wkOff = Number(btn.getAttribute('data-preview-5-week') || 0);
+              openCoachPreviewAll5PlaysDrawer(fc, teamDoc.ageDivision || '12U', customT, { weekOffset: wkOff });
             });
           });
           document.getElementById('btnCoachPushPlanToInbox')?.addEventListener('click', async () => {
@@ -29728,37 +29926,38 @@
           });
           document.getElementById('btnToggleSeasonAutopilot')?.addEventListener('click', async () => {
             SoundFX.playGoalHorn();
-            const overrideVal = Number(document.getElementById('selectAutopilotWeekOverride')?.value || 0);
             const nextEnabled = !autopilotActive;
             teamDoc.seasonAutopilot = {
+              ...(teamDoc.seasonAutopilot || {}),
               enabled: nextEnabled,
               bracketKey,
               activatedAt: (teamDoc.seasonAutopilot && teamDoc.seasonAutopilot.activatedAt) || new Date().toISOString(),
               startTimestamp: (teamDoc.seasonAutopilot && teamDoc.seasonAutopilot.startTimestamp) || Date.now(),
-              overrideWeek: overrideVal >= 1 && overrideVal <= 12 ? overrideVal : 0
+              overrideWeek: inspectWeekNum >= 1 && inspectWeekNum <= 12 ? inspectWeekNum : 0
             };
             await SynapzPortalCloud.saveTeamDoc(teamDoc);
-            renderSynapzCoachOfficeModal();
+            renderSynapzCoachOfficeModal({ skipCloudRefresh: true, overrideTeamDoc: teamDoc });
           });
           document.getElementById('selectAutopilotWeekOverride')?.addEventListener('change', async (e) => {
             const wkVal = Number(e.target.value || 0);
+            if (wkVal >= 1 && wkVal <= 12) state.coachAutopilotInspectWeek = wkVal;
             teamDoc.seasonAutopilot = {
               ...(teamDoc.seasonAutopilot || { enabled: false, bracketKey, activatedAt: new Date().toISOString(), startTimestamp: Date.now() }),
               overrideWeek: wkVal >= 1 && wkVal <= 12 ? wkVal : 0
             };
             await SynapzPortalCloud.saveTeamDoc(teamDoc);
-            renderSynapzCoachOfficeModal();
+            renderSynapzCoachOfficeModal({ skipCloudRefresh: true, overrideTeamDoc: teamDoc });
           });
           document.getElementById('btnToggleSample12SkaterPreview')?.addEventListener('click', () => {
             SoundFX.playTap();
             state.coachMonitorSample12Preview = !state.coachMonitorSample12Preview;
-            renderSynapzCoachOfficeModal();
+            renderSynapzCoachOfficeModal({ skipCloudRefresh: true });
           });
           rolePortalBox.querySelectorAll('.btn-monitor-select-plan').forEach(btn => {
             btn.addEventListener('click', () => {
               SoundFX.playTap();
               state.coachMonitorSelectedPlanId = btn.getAttribute('data-monitor-plan-id') || '';
-              renderSynapzCoachOfficeModal();
+              renderSynapzCoachOfficeModal({ skipCloudRefresh: true });
             });
           });
           rolePortalBox.querySelectorAll('.btn-send-coach-al-booster').forEach(btn => {
@@ -29766,13 +29965,13 @@
               SoundFX.playGoalHorn();
               const k = btn.getAttribute('data-send-booster-key') || '';
               if (k) state.coachBoosterSentMap[k] = true;
-              renderSynapzCoachOfficeModal();
+              renderSynapzCoachOfficeModal({ skipCloudRefresh: true });
             });
           });
           document.getElementById('btnPrintLatestRinkGlassCard')?.addEventListener('click', () => {
             SoundFX.playTap();
             openSynapzPrintView('rink_glass_card', {
-              focusConcept: activeBinderFocus,
+              focusConcept: activeBinderTopicKey,
               lessonCount: 5,
               teamName: displayTeamTitle,
               teamCode: teamDoc.teamCode,
@@ -29784,22 +29983,6 @@
             if (window.SynapzV14Engine && window.SynapzV14Engine.showdown) {
               window.SynapzV14Engine.showdown.openModal('host');
             }
-          });
-          document.getElementById('btnBinderOpenBoardRoiPrint')?.addEventListener('click', () => {
-            SoundFX.playTap();
-            openSynapzPrintView('board_roi_packet', {
-              assocCode: teamDoc.teamCode,
-              assocName: displayTeamTitle,
-              annualPrice: isCampCohort ? 249 : 99.99,
-              maxTeams: 1,
-              maxSkaters: maxSeats,
-              activeSkaters: roster.length,
-              avgIq: 0,
-              teams: [{ teamName: displayTeamTitle, ageDivision: teamDoc.ageDivision || '12U', coachName: teamDoc.coachName || 'Coach', skaterCount: roster.length, weeklyPushes: pushedPlans.length, latestFocus: activeBinderFocus }]
-            });
-          });
-          document.getElementById('btnBinderOpenNet30PoModal')?.addEventListener('click', () => {
-            openNet30ClubPoModal(isCampCohort ? 'camp_cohort_249' : 'assoc_10t_850');
           });
           document.getElementById('btnCopyCoachTeamInviteLink')?.addEventListener('click', (e) => {
             if (navigator.clipboard) navigator.clipboard.writeText(teamSignupLink).catch(() => {});
@@ -29818,6 +30001,19 @@
               btn.textContent = '✅ Copied';
             });
           });
+        }
+
+        // Background non-blocking cloud sync (NEVER blanks out the already-rendered station!)
+        if (!renderOpts?.skipCloudRefresh && tCode) {
+          SynapzPortalCloud.fetchTeamByCode(tCode).then((remoteDoc) => {
+            if (!remoteDoc || topOfficeSeq !== state._coachOfficeTopSeq) return;
+            if (!Array.isArray(remoteDoc.assistantInvites) || remoteDoc.assistantInvites.length < 2) {
+              remoteDoc.assistantInvites = buildGuaranteedAssistantInvites(remoteDoc.teamCode || tCode);
+            }
+            if (JSON.stringify(remoteDoc) !== JSON.stringify(teamDoc)) {
+              renderSynapzCoachOfficeModal({ skipCloudRefresh: true, overrideTeamDoc: remoteDoc });
+            }
+          }).catch(() => {});
         }
         return;
       }
@@ -30218,15 +30414,7 @@
         `
         : '';
 
-      // Quick 4-Object Switcher Bar for Player's Coach's Office
-      const playerNavBar = `
-        <div class="md:col-span-12 grid grid-cols-2 sm:grid-cols-4 gap-1.5">
-          <button type="button" data-pl-office-station="clipboard" class="py-1.5 px-2.5 rounded-xl text-[11px] font-black cursor-pointer transition ${pStation === 'clipboard' ? 'bg-emerald-400 text-slate-950 shadow' : 'bg-slate-900 border border-slate-700 text-slate-200 hover:border-emerald-400/60'}">📋 My Team &amp; Schedule</button>
-          <button type="button" data-pl-office-station="computer" class="py-1.5 px-2.5 rounded-xl text-[11px] font-black cursor-pointer transition ${pStation === 'computer' ? 'bg-cyan-400 text-slate-950 shadow' : 'bg-slate-900 border border-slate-700 text-slate-200 hover:border-cyan-400/60'}">💻 My Lesson Inbox (${teamAssignedPlans.length + personalPlans.length})</button>
-          <button type="button" data-pl-office-station="whiteboard" class="py-1.5 px-2.5 rounded-xl text-[11px] font-black cursor-pointer transition ${pStation === 'whiteboard' ? 'bg-amber-400 text-slate-950 shadow' : 'bg-slate-900 border border-slate-700 text-slate-200 hover:border-amber-400/60'}">🖍️ Zone Stats &amp; Coach Al</button>
-          <button type="button" data-pl-office-station="binder" class="py-1.5 px-2.5 rounded-xl text-[11px] font-black cursor-pointer transition ${pStation === 'binder' ? 'bg-purple-400 text-slate-950 shadow' : 'bg-slate-900 border border-slate-700 text-slate-200 hover:border-purple-400/60'}">📓 Saturday Ice Proof</button>
-        </div>
-      `;
+      // Strict 1-Object-1-Modal Rule (v15.3): ZERO top 4-tab cross-link switcher bar in Player's Coach's Office!
 
       // Pane 1: Clipboard (My Team & Schedule)
       const teamRosterMembers = (primaryTeamDoc && Array.isArray(primaryTeamDoc.rosterPlayers)) ? primaryTeamDoc.rosterPlayers : [];
@@ -30374,15 +30562,7 @@
       ` : '';
 
       if (playerGrid) {
-        playerGrid.innerHTML = `${playerNavBar}${clipboardPaneHtml}${computerPaneHtml}${whiteboardPaneHtml}${binderPaneHtml}`;
-
-        playerGrid.querySelectorAll('[data-pl-office-station]').forEach(btn => {
-          btn.addEventListener('click', () => {
-            SoundFX.playTap();
-            state.activePlayerOfficeStation = btn.getAttribute('data-pl-office-station') || 'computer';
-            renderSynapzCoachOfficeModal();
-          });
-        });
+        playerGrid.innerHTML = `${clipboardPaneHtml}${computerPaneHtml}${whiteboardPaneHtml}${binderPaneHtml}`;
 
         playerGrid.querySelectorAll('.full-suite-focus-pill').forEach(pill => {
           pill.addEventListener('click', () => {
@@ -30423,8 +30603,7 @@
 
         document.getElementById('btnEmptyInboxGoWhiteboard')?.addEventListener('click', () => {
           SoundFX.playTap();
-          state.activePlayerOfficeStation = 'whiteboard';
-          renderSynapzCoachOfficeModal();
+          document.getElementById('coachOfficeOverlaySheet')?.classList.add('hidden');
         });
         document.getElementById('btnInboxOpenDrillCatalog')?.addEventListener('click', () => {
           SoundFX.playTap();
@@ -32050,7 +32229,20 @@
       bindClick('btnLobbyChangePlayerAgent', openPlayerAgentPickerModal);
       bindClick('btnUniversalRoomTourNext', () => advanceRoomFirstVisitTour());
       bindClick('btnUniversalRoomTourSkip', () => finishRoomFirstVisitTour(true));
-      bindClick('btnCloseCoachPreview5Plays', () => document.getElementById('v14CoachPreviewAll5Drawer')?.classList.add('hidden'));
+      bindClick('btnCloseCoachPreview5Plays', () => {
+        state.coachPreviewAll5Context = null;
+        document.getElementById('v14CoachPreviewAll5Drawer')?.classList.add('hidden');
+      });
+      if (!window._v153HotspotsToggleBound) {
+        window._v153HotspotsToggleBound = true;
+        document.addEventListener('click', (ev) => {
+          const hsBtn = ev.target && ev.target.closest ? ev.target.closest('[data-toggle-room-hotspots]') : null;
+          if (hsBtn) {
+            ev.preventDefault();
+            toggleRoomHotspotsVisibility();
+          }
+        });
+      }
 
       // Agent Picker Modal (Closes strictly back to current room or lobby!)
       bindClick('btnClosePlayerAgentPickerModal', () => document.getElementById('playerAgentPickerModal')?.classList.add('hidden'));
@@ -32254,6 +32446,7 @@
           mEl.dataset.v15BackdropBound = '1';
           mEl.addEventListener('click', (ev) => {
             if (ev.target === mEl) {
+              if (modalId === 'v14CoachPreviewAll5Drawer') state.coachPreviewAll5Context = null;
               mEl.classList.add('hidden');
             }
           });
@@ -32292,6 +32485,7 @@
               if (pid === 'founderRedFlagModal' && typeof closeFounderRedFlagModal === 'function') {
                 closeFounderRedFlagModal();
               } else {
+                if (pid === 'v14CoachPreviewAll5Drawer') state.coachPreviewAll5Context = null;
                 pEl.classList.add('hidden');
               }
               return;
@@ -32731,7 +32925,7 @@
     // SECTION 32–43: VERIFIED REAL CODED UPGRADES RUNTIME & PRE-CODED BANK
     // (`synapz-hockey-v12.7-5persona-human-vision` • 288 Live Upgrades)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.2-evan-walkthrough-complete';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.3-safari15-and-real-diagrams';
 
     const ALL_63_DEPLOYED_UPGRADE_IDS = [
       // Batch A (12 items)
@@ -36587,11 +36781,16 @@
   <div id="synapzLockerRoomModal" class="hidden synapz-pure-fullscreen-room z-[98]">
     <img loading="lazy" decoding="async" src="assets/rooms/room-locker-room.jpg" alt="" aria-hidden="true" class="synapz-pure-room-ambient-bg" />
 
-    <!-- Floating Corner Controls (← Main Lobby | Equipment Bag | Edit Profile | Guide — Unobstructed Top-Right Red Flag!) -->
+    <!-- Floating Corner Controls (← Main Lobby | ? Show Hotspots | Equipment Bag | Edit Profile | Guide — Unobstructed Top-Right Red Flag!) -->
     <div class="fixed top-2.5 inset-x-2.5 z-40 flex items-center justify-between gap-1.5 pointer-events-none">
-      <button id="btnLockerSaveExitLobby" type="button" class="pointer-events-auto px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-amber-400/75 text-amber-200 text-[11px] sm:text-xs font-black shadow-2xl backdrop-blur-md shrink-0 cursor-pointer">
-        ← Main Lobby
-      </button>
+      <div class="pointer-events-auto flex items-center gap-1.5 shrink-0">
+        <button id="btnLockerSaveExitLobby" type="button" class="px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-amber-400/75 text-amber-200 text-[11px] sm:text-xs font-black shadow-2xl backdrop-blur-md shrink-0 cursor-pointer">
+          ← Main Lobby
+        </button>
+        <button type="button" data-toggle-room-hotspots="1" aria-pressed="false" class="px-2.5 py-1.5 rounded-full bg-slate-950/85 hover:bg-slate-900 border border-slate-700/80 text-slate-300 hover:text-amber-200 text-[11px] font-black shadow-xl backdrop-blur-md cursor-pointer transition">
+          ? Show Hotspots
+        </button>
+      </div>
       <div class="pointer-events-auto flex items-center gap-1 sm:gap-2 pr-24 sm:pr-28">
         <button id="btnLockerOpenEquipmentBag" type="button" class="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-amber-400/80 text-amber-200 text-[11px] sm:text-xs font-black shadow-2xl backdrop-blur-md cursor-pointer">
           🎒 <span class="hidden sm:inline">Equipment </span>Bag
@@ -36622,9 +36821,7 @@
       <button id="lockerHotspotBreezers" type="button" data-locker-hotspot="Jersey" aria-label="Stall Breezers" class="synapz-golden-gear-hotspot" style="left: 78.8%; top: 35.2%; width: 8.6%; height: 26.8%; z-index: 25;"></button>
       <button id="lockerHotspotSkates" type="button" data-locker-hotspot="Skates" aria-label="Stall Skates" class="synapz-golden-gear-hotspot" style="left: 62.0%; top: 76.5%; width: 10.2%; height: 17.5%; z-index: 24;"></button>
       <button id="lockerHotspotStick" type="button" data-locker-hotspot="Stick" aria-label="Stall Stick" class="synapz-golden-gear-hotspot" style="left: 76.5%; top: 62.5%; width: 11.8%; height: 31.0%; z-index: 23;"></button>
-      <button id="lockerHotspotDuffleBag" type="button" data-locker-hotspot="Bag" aria-label="Equipment Bag" class="synapz-golden-gear-hotspot" style="left: 83.0%; top: 77.0%; width: 16.8%; height: 21.5%; z-index: 25;">
-        <span class="synapz-room-object-pin-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">🎒 Equipment Bag</span>
-      </button>
+      <button id="lockerHotspotDuffleBag" type="button" data-locker-hotspot="Bag" aria-label="Equipment Bag" title="Equipment Bag" class="synapz-golden-gear-hotspot" style="left: 83.0%; top: 77.0%; width: 16.8%; height: 21.5%; z-index: 25;"></button>
     </div>
 
     <!-- Floating Equipment Bag Drawer (Strictly Owned-Only Gear + Full Unwrapped Titles + Single Subtle Footer Link!) -->
@@ -36765,31 +36962,28 @@
   <div id="synapzCoachOfficeModal" class="hidden synapz-pure-fullscreen-room z-[98]">
     <img loading="lazy" decoding="async" src="assets/rooms/room-coaches-office.jpg" alt="" aria-hidden="true" class="synapz-pure-room-ambient-bg" />
 
-    <!-- Top-Left Exit Only (Top-Right is 100% Unobstructed for 🚩 Red Flag!) -->
-    <button id="btnCoachOfficeSaveExitLobby" type="button" class="fixed top-3 left-3 z-40 px-3.5 py-2 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-amber-400/75 text-amber-200 text-xs font-black shadow-2xl backdrop-blur-md cursor-pointer">
-      ← Main Lobby
-    </button>
+    <!-- Top-Left Exit + Optional ? Show Hotspots Toggle (Top-Right is 100% Unobstructed for 🚩 Red Flag!) -->
+    <div class="fixed top-3 left-3 z-40 flex items-center gap-2">
+      <button id="btnCoachOfficeSaveExitLobby" type="button" class="px-3.5 py-2 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-amber-400/75 text-amber-200 text-xs font-black shadow-2xl backdrop-blur-md cursor-pointer">
+        ← Main Lobby
+      </button>
+      <button id="btnCoachOfficeToggleHotspots" type="button" data-toggle-room-hotspots="1" aria-pressed="false" class="px-2.5 py-1.5 rounded-full bg-slate-950/85 hover:bg-slate-900 border border-slate-700/80 text-slate-300 hover:text-amber-200 text-[11px] font-black shadow-xl backdrop-blur-md cursor-pointer transition">
+        ? Show Hotspots
+      </button>
+    </div>
     <div class="hidden">
       <button id="btnCoachOfficeOpenDrawer" type="button"></button>
       <button id="btnCloseSynapzCoachOfficeModal" type="button">✕</button>
     </div>
 
-    <!-- Pure 16:9 HD Coach's Office Stage with 4 Subtle Brass Room Pin Labels -->
+    <!-- Pure 16:9 HD Coach's Office Stage (Clean Artwork — Zero Permanent Text Banners!) -->
     <div id="coachOfficeRoomSceneCanvas" class="synapz-pure-room-stage">
       <img loading="lazy" decoding="async" id="coachOfficeRoomSceneImg" src="assets/rooms/room-coaches-office.jpg" alt="SYNAPZ Coach's Office" class="synapz-room-bg-img" />
 
-      <button id="coachOfficeHotspotWhiteboard" type="button" data-office-hotspot="whiteboard" aria-label="Wall Whiteboard" class="synapz-golden-gear-hotspot" style="left: 5.8%; top: 24.5%; width: 28.8%; height: 38.0%;">
-        <span class="synapz-room-object-pin-label" style="bottom: 8%; left: 50%; transform: translateX(-50%);">🖍️ Zone Stats &amp; Coach Al</span>
-      </button>
-      <button id="coachOfficeHotspotLaptop" type="button" data-office-hotspot="laptop" aria-label="Desk Computer" class="synapz-golden-gear-hotspot" style="left: 50.5%; top: 44.5%; width: 17.5%; height: 21.0%;">
-        <span class="synapz-room-object-pin-label" style="bottom: 6%; left: 50%; transform: translateX(-50%);">💻 My Lesson Inbox</span>
-      </button>
-      <button id="coachOfficeHotspotCoachAl" type="button" data-office-hotspot="clipboard" aria-label="Clipboard" class="synapz-golden-gear-hotspot" style="left: 66.0%; top: 65.5%; width: 15.5%; height: 16.5%;">
-        <span class="synapz-room-object-pin-label" style="bottom: 6%; left: 50%; transform: translateX(-50%);">📋 My Team &amp; Schedule</span>
-      </button>
-      <button id="coachOfficeHotspotBookshelf" type="button" data-office-hotspot="bookshelf" aria-label="Desk Binder" class="synapz-golden-gear-hotspot" style="left: 81.8%; top: 70.5%; width: 17.5%; height: 25.5%;">
-        <span class="synapz-room-object-pin-label" style="bottom: 8%; left: 50%; transform: translateX(-50%);">📓 Saturday Ice Proof</span>
-      </button>
+      <button id="coachOfficeHotspotWhiteboard" type="button" data-office-hotspot="whiteboard" aria-label="Wall Whiteboard" title="Wall Whiteboard" class="synapz-golden-gear-hotspot" style="left: 5.8%; top: 24.5%; width: 28.8%; height: 38.0%;"></button>
+      <button id="coachOfficeHotspotLaptop" type="button" data-office-hotspot="laptop" aria-label="Desk Computer" title="Desk Monitor" class="synapz-golden-gear-hotspot" style="left: 50.5%; top: 44.5%; width: 17.5%; height: 21.0%;"></button>
+      <button id="coachOfficeHotspotCoachAl" type="button" data-office-hotspot="clipboard" aria-label="Clipboard" title="Desk Clipboard" class="synapz-golden-gear-hotspot" style="left: 64.5%; top: 63.5%; width: 17.0%; height: 19.5%;"></button>
+      <button id="coachOfficeHotspotBookshelf" type="button" data-office-hotspot="bookshelf" aria-label="Desk Binder" title="Desk Binder" class="synapz-golden-gear-hotspot" style="left: 81.8%; top: 70.5%; width: 17.5%; height: 25.5%;"></button>
     </div>
 
     <!-- Single-Purpose Station Drawer (Closes via × right back to Coach's Office Room!) -->
@@ -36832,7 +37026,7 @@
 
     <!-- Interactive "👁️ Preview All 5 Plays" Drawer (Available BEFORE & AFTER Assigning on Whiteboard!) -->
     <div id="v14CoachPreviewAll5Drawer" class="hidden fixed inset-0 z-[118] bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
-      <div class="w-full max-w-3xl max-h-[88dvh] overflow-y-auto rounded-2xl bg-slate-950 border-2 border-cyan-400 p-4 shadow-2xl space-y-3">
+      <div id="v14CoachPreviewAll5Card" class="w-full max-w-4xl max-h-[88dvh] overflow-y-auto rounded-2xl bg-slate-950 border-2 border-cyan-400 p-4 shadow-2xl space-y-3">
         <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2">
           <div id="v14CoachPreviewAll5Title" class="text-sm sm:text-base font-black text-cyan-300">👁️ Preview All 5 Plays</div>
           <button id="btnCloseCoachPreview5Plays" type="button" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-black cursor-pointer">✕ Close Preview</button>
@@ -36848,7 +37042,7 @@
   <div id="synapzFriendsWallModal" class="hidden synapz-pure-fullscreen-room z-[98]">
     <img loading="lazy" decoding="async" src="assets/rooms/room-clubhouse.png" alt="" aria-hidden="true" class="synapz-pure-room-ambient-bg" />
 
-    <!-- Top-Left Exit + 32-City Map Pill (Unobstructed Top-Right Red Flag!) -->
+    <!-- Top-Left Exit + 32-City Map Pill + Optional ? Show Hotspots (Unobstructed Top-Right Red Flag!) -->
     <div class="fixed top-3 left-3 z-40 flex items-center gap-2">
       <button id="btnFriendsWallSaveExitLobby" type="button" class="px-3.5 py-2 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-amber-400/75 text-amber-200 text-xs font-black shadow-2xl backdrop-blur-md cursor-pointer">
         ← Main Lobby
@@ -36856,27 +37050,22 @@
       <button id="btnClubhouseOpenTourMap" type="button" class="px-3 py-2 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-cyan-400/75 text-cyan-200 text-xs font-black shadow-2xl backdrop-blur-md cursor-pointer">
         🗺️ 32-City NHL Map
       </button>
+      <button type="button" data-toggle-room-hotspots="1" aria-pressed="false" class="px-2.5 py-1.5 rounded-full bg-slate-950/85 hover:bg-slate-900 border border-slate-700/80 text-slate-300 hover:text-amber-200 text-[11px] font-black shadow-xl backdrop-blur-md cursor-pointer transition">
+        ? Show Hotspots
+      </button>
     </div>
     <div class="hidden">
       <button id="btnCloseSynapzFriendsWallModal" type="button">✕</button>
     </div>
 
-    <!-- Pure 16:9 Clubhouse Picture Stage (Zero Yellow Debug Outlines; Subtle Brass Pin Labels) -->
+    <!-- Pure 16:9 Clubhouse Picture Stage (Clean Artwork — Zero Permanent Text Banners!) -->
     <div id="clubhouseRoomSceneCanvas" class="synapz-pure-room-stage">
       <img loading="lazy" decoding="async" id="clubhouseRoomSceneImg" src="assets/rooms/room-clubhouse.png" alt="SYNAPZ Clubhouse Lounge" class="synapz-room-bg-img" />
 
-      <button id="clubhouseHotspotFriendsWall" type="button" data-clubhouse-hotspot="find" aria-label="Friends Wall" class="synapz-golden-gear-hotspot" style="left: 1.5%; top: 17.5%; width: 25.0%; height: 66.0%;">
-        <span class="synapz-room-object-pin-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">🖼️ Friends Wall</span>
-      </button>
-      <button id="clubhouseHotspotMapRaceScreen" type="button" data-clubhouse-hotspot="showdown" aria-label="Center TV Live Team Showdown" class="synapz-golden-gear-hotspot" style="left: 36.8%; top: 39.0%; width: 26.4%; height: 23.5%;">
-        <span class="synapz-room-object-pin-label" style="bottom: 8%; left: 50%; transform: translateX(-50%);">⚡ Live Team Showdown</span>
-      </button>
-      <button id="clubhouseHotspotTourMap" type="button" data-clubhouse-hotspot="map" aria-label="32-City North America NHL Tour Map" class="synapz-golden-gear-hotspot" style="left: 31.0%; top: 65.5%; width: 38.0%; height: 28.5%;">
-        <span class="synapz-room-object-pin-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">🗺️ 32-City NHL Map</span>
-      </button>
-      <button id="clubhouseHotspotTrophyCase" type="button" data-clubhouse-hotspot="trophies" aria-label="3-Shelf Championship Trophy Case" class="synapz-golden-gear-hotspot" style="left: 73.5%; top: 18.0%; width: 25.0%; height: 65.0%;">
-        <span class="synapz-room-object-pin-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">3-Shelf Trophy Case</span>
-      </button>
+      <button id="clubhouseHotspotFriendsWall" type="button" data-clubhouse-hotspot="find" aria-label="Friends Wall" title="Friends Wall" class="synapz-golden-gear-hotspot" style="left: 1.5%; top: 17.5%; width: 25.0%; height: 66.0%;"></button>
+      <button id="clubhouseHotspotMapRaceScreen" type="button" data-clubhouse-hotspot="showdown" aria-label="Center TV Live Team Showdown" title="Center TV Live Team Showdown" class="synapz-golden-gear-hotspot" style="left: 36.8%; top: 39.0%; width: 26.4%; height: 23.5%;"></button>
+      <button id="clubhouseHotspotTourMap" type="button" data-clubhouse-hotspot="map" aria-label="32-City North America NHL Tour Map" title="32-City North America NHL Tour Map" class="synapz-golden-gear-hotspot" style="left: 31.0%; top: 65.5%; width: 38.0%; height: 28.5%;"></button>
+      <button id="clubhouseHotspotTrophyCase" type="button" data-clubhouse-hotspot="trophies" aria-label="3-Shelf Championship Trophy Case" title="3-Shelf Championship Trophy Case" class="synapz-golden-gear-hotspot" style="left: 73.5%; top: 18.0%; width: 25.0%; height: 65.0%;"></button>
     </div>
 
     <!-- Floating Clubhouse Drawer -->
@@ -37404,6 +37593,26 @@
       .synapz-print-single-page {
         page-break-inside: avoid !important;
         break-inside: avoid !important;
+      }
+      .synapz-print-3page-deck {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .synapz-print-station-page {
+        width: 100% !important;
+        height: 7.7in !important;
+        max-height: 7.7in !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0.18in !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .synapz-print-diagram-75 {
+        flex: 1 1 0% !important;
+        min-height: 0 !important;
+        height: auto !important;
+        max-height: 75% !important;
       }
     }
   </style>

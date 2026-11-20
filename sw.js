@@ -1,8 +1,10 @@
-const CACHE_NAME = 'synapz-hockey-v15.2-evan-walkthrough-complete';
+const CACHE_NAME = 'synapz-hockey-v15.3-safari15-and-real-diagrams';
 const PRECACHE_ASSETS = [
   './',
   './index.html',
   './manifest.json',
+  './engine/safari15_polyfill.js',
+  './engine/practice_stations_svg.js',
   './engine/rink_1000x500.js',
   './engine/validate_drills.js',
   './engine/chalk_reel.js',

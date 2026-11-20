@@ -404,7 +404,7 @@ export class TeamShowdownController {
     if (!this.mountEl) return;
     this.mountEl.innerHTML = `
       <div id="v14ShowdownBackdrop" class="fixed inset-0 z-[130] bg-slate-950/95 backdrop-blur-md flex items-center justify-center p-2.5 sm:p-4 overflow-y-auto">
-        <div id="v14ShowdownCard" class="w-full max-w-4xl rounded-3xl bg-[#090D16] border-2 border-amber-400/90 shadow-[0_0_50px_rgba(245,158,11,0.28)] overflow-hidden flex flex-col my-auto max-h-[94dvh]">
+        <div id="v14ShowdownCard" class="w-full max-w-4xl rounded-3xl bg-[#090D16] border-2 border-amber-400/90 shadow-[0_0_50px_rgba(245,158,11,0.28)] overflow-hidden flex flex-col my-auto max-h-[94dvh]" style="max-height: 94vh; max-height: 94dvh;">
           <!-- Top Broadcast Header -->
           <div class="px-4 py-2.5 bg-slate-950 border-b border-slate-800 flex flex-wrap items-center justify-between gap-2 shrink-0">
             <div class="flex items-center gap-2 min-w-0">

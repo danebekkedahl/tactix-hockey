@@ -1194,7 +1194,8 @@
             "isGold": false
           }
         ]
-      }
+      },
+      "primaryRole": "LD"
     },
     {
       "id": "DRILL-RR-02",
@@ -1768,7 +1769,8 @@
             "isGold": false
           }
         ]
-      }
+      },
+      "primaryRole": "LW"
     },
     {
       "id": "DRILL-GP-01",
@@ -2363,7 +2365,8 @@
             "label": "PICK OFF PASS"
           }
         ]
-      }
+      },
+      "primaryRole": "C"
     },
     {
       "id": "DRILL-GP-02",
@@ -2951,7 +2954,8 @@
             "label": "ONE-TIMER POCKET"
           }
         ]
-      }
+      },
+      "primaryRole": "RW"
     },
     {
       "id": "DRILL-FW-01",
@@ -3174,32 +3178,32 @@
           "id": "D1",
           "team": "away",
           "start": [
-            350,
+            385,
             62
           ],
           "motion": [
             [
-              350,
+              385,
               62
             ],
             [
-              292,
+              358,
               56
             ]
           ],
           "outcomeGold": [
             [
-              292,
+              358,
               56
             ],
             [
-              270,
+              315,
               52
             ]
           ],
           "outcomeMiss": [
             [
-              292,
+              358,
               56
             ],
             [
@@ -3504,8 +3508,8 @@
             "id": "B",
             "label": "Turn straight up into D1",
             "target": [
-              295,
-              54
+              308,
+              55
             ],
             "isGold": false
           },
@@ -3519,7 +3523,8 @@
             "isGold": false
           }
         ]
-      }
+      },
+      "primaryRole": "LW"
     },
     {
       "id": "DRILL-FW-02",
@@ -4079,7 +4084,8 @@
             "isGold": false
           }
         ]
-      }
+      },
+      "primaryRole": "RD"
     },
     {
       "id": "DRILL-TT-01",
@@ -4664,7 +4670,8 @@
             "label": "C (Middle)"
           }
         ]
-      }
+      },
+      "primaryRole": "RD"
     },
     {
       "id": "DRILL-TT-02",
@@ -5253,7 +5260,8 @@
             "label": "RD (Weak Point)"
           }
         ]
-      }
+      },
+      "primaryRole": "LW"
     },
     {
       "id": "DRILL-SB-01",
@@ -5776,7 +5784,8 @@
             "reason": "Covered strong-side point D"
           }
         ]
-      }
+      },
+      "primaryRole": "C"
     },
     {
       "id": "DRILL-SB-02",
@@ -6295,7 +6304,8 @@
             "reason": "Left stranded on odd-man counter-rush"
           }
         ]
-      }
+      },
+      "primaryRole": "LD"
     },
     {
       "id": "DRILL-GS-01",
@@ -6770,7 +6780,8 @@
           315,
           425
         ]
-      }
+      },
+      "primaryRole": "LD"
     },
     {
       "id": "DRILL-GS-02",
@@ -7245,7 +7256,8 @@
           315,
           425
         ]
-      }
+      },
+      "primaryRole": "RD"
     },
     {
       "id": "DRILL-LS-01",
@@ -7832,7 +7844,8 @@
             "label": "Cross-Seam Backdoor Threat (BLOCK!)"
           }
         ]
-      }
+      },
+      "primaryRole": "LD"
     },
     {
       "id": "DRILL-LS-02",
@@ -8418,7 +8431,8 @@
             "label": "Centering Slot Pass (BLOCK!)"
           }
         ]
-      }
+      },
+      "primaryRole": "C"
     },
     {
       "id": "DRILL-DR-01",
@@ -8980,7 +8994,8 @@
             172
           ]
         ]
-      }
+      },
+      "primaryRole": "C"
     },
     {
       "id": "DRILL-DR-02",
@@ -9540,7 +9555,8 @@
             250
           ]
         ]
-      }
+      },
+      "primaryRole": "C"
     },
     {
       "id": "DRILL-CS-01",
@@ -10039,7 +10055,8 @@
         ],
         "correctAction": "change",
         "situationTag": "Puck Dumped Deep (Zero Threat)"
-      }
+      },
+      "primaryRole": "LW"
     },
     {
       "id": "DRILL-CS-02",
@@ -10605,7 +10622,8 @@
         ],
         "correctAction": "stay",
         "situationTag": "3-on-2 Counter Against (DANGER!)"
-      }
+      },
+      "primaryRole": "LD"
     },
     {
       "id": "DRILL-RR-03",
@@ -11216,7 +11234,8 @@
             "isGold": false
           }
         ]
-      }
+      },
+      "primaryRole": "RD"
     },
     {
       "id": "DRILL-RR-04",
@@ -11817,7 +11836,8 @@
             "isGold": false
           }
         ]
-      }
+      },
+      "primaryRole": "LW"
     },
     {
       "id": "DRILL-RR-05",
@@ -12453,7 +12473,8 @@
             "isGold": false
           }
         ]
-      }
+      },
+      "primaryRole": "RW"
     },
     {
       "id": "DRILL-GP-03",
@@ -12998,7 +13019,8 @@
             "label": "INTERCEPT F3"
           }
         ]
-      }
+      },
+      "primaryRole": "RW"
     },
     {
       "id": "DRILL-GP-04",
@@ -13546,7 +13568,8 @@
             "label": "FORCE BOARDS"
           }
         ]
-      }
+      },
+      "primaryRole": "C"
     },
     {
       "id": "DRILL-GP-05",
@@ -14106,7 +14129,8 @@
             "label": "TIP SHOT!"
           }
         ]
-      }
+      },
+      "primaryRole": "LW"
     },
     {
       "id": "DRILL-FW-03",
@@ -14683,7 +14707,8 @@
             "isGold": false
           }
         ]
-      }
+      },
+      "primaryRole": "RW"
     },
     {
       "id": "DRILL-FW-04",
@@ -15255,7 +15280,8 @@
             "isGold": false
           }
         ]
-      }
+      },
+      "primaryRole": "LW"
     },
     {
       "id": "DRILL-FW-05",
@@ -15827,7 +15853,8 @@
             "isGold": false
           }
         ]
-      }
+      },
+      "primaryRole": "C"
     },
     {
       "id": "DRILL-TT-03",
@@ -16348,7 +16375,8 @@
             "label": "C (Middle)"
           }
         ]
-      }
+      },
+      "primaryRole": "LD"
     },
     {
       "id": "DRILL-TT-04",
@@ -16907,7 +16935,8 @@
             "label": "C (Middle)"
           }
         ]
-      }
+      },
+      "primaryRole": "RD"
     },
     {
       "id": "DRILL-TT-05",
@@ -17505,7 +17534,8 @@
             "label": "RD (Goal Line)"
           }
         ]
-      }
+      },
+      "primaryRole": "C"
     },
     {
       "id": "DRILL-SB-03",
@@ -18036,7 +18066,8 @@
             "reason": "Covered strong point D1"
           }
         ]
-      }
+      },
+      "primaryRole": "LD"
     },
     {
       "id": "DRILL-SB-04",
@@ -18557,7 +18588,8 @@
             "reason": "Occupied crease defender"
           }
         ]
-      }
+      },
+      "primaryRole": "RW"
     },
     {
       "id": "DRILL-SB-05",
@@ -19118,7 +19150,8 @@
             "reason": "Tracked trailing D"
           }
         ]
-      }
+      },
+      "primaryRole": "C"
     },
     {
       "id": "DRILL-GS-03",
@@ -19600,7 +19633,8 @@
           235,
           365
         ]
-      }
+      },
+      "primaryRole": "LD"
     },
     {
       "id": "DRILL-GS-04",
@@ -20082,7 +20116,8 @@
           315,
           425
         ]
-      }
+      },
+      "primaryRole": "C"
     },
     {
       "id": "DRILL-GS-05",
@@ -20102,7 +20137,7 @@
         "focusY": 205,
         "zoom": 1.26
       },
-      "briefing": "2-1-2 forecheck! Surf tight F1 angle on carrier D1 and poke at blue.",
+      "briefing": "2-1-2 forecheck! Lead the hunt as C, surf tight on D1, and poke!",
       "coachTip": "Lead with your stick blade to cut the ice in half—no fly-bys!",
       "coachRule": "Stick-on-puck angle cuts the rink in half!",
       "skaters": [
@@ -20564,7 +20599,8 @@
           315,
           420
         ]
-      }
+      },
+      "primaryRole": "C"
     },
     {
       "id": "DRILL-LS-03",
@@ -21125,7 +21161,8 @@
             "label": "Crease Backdoor Seam (BLOCK!)"
           }
         ]
-      }
+      },
+      "primaryRole": "RD"
     },
     {
       "id": "DRILL-LS-04",
@@ -21686,7 +21723,8 @@
             "label": "2-on-1 Cross-Seam (BLOCK!)"
           }
         ]
-      }
+      },
+      "primaryRole": "LD"
     },
     {
       "id": "DRILL-LS-05",
@@ -22286,7 +22324,8 @@
             "label": "Goal-Line Cross-Crease (BLOCK!)"
           }
         ]
-      }
+      },
+      "primaryRole": "RD"
     },
     {
       "id": "DRILL-DR-03",
@@ -22861,7 +22900,8 @@
             205
           ]
         ]
-      }
+      },
+      "primaryRole": "C"
     },
     {
       "id": "DRILL-DR-04",
@@ -23386,7 +23426,8 @@
             225
           ]
         ]
-      }
+      },
+      "primaryRole": "RW"
     },
     {
       "id": "DRILL-DR-05",
@@ -23954,7 +23995,8 @@
             185
           ]
         ]
-      }
+      },
+      "primaryRole": "C"
     },
     {
       "id": "DRILL-CS-03",
@@ -24444,7 +24486,8 @@
         ],
         "correctAction": "stay",
         "situationTag": "Shallow Clear — Live Counter!"
-      }
+      },
+      "primaryRole": "RD"
     },
     {
       "id": "DRILL-CS-04",
@@ -24919,7 +24962,8 @@
         ],
         "correctAction": "change",
         "situationTag": "Safe 3v3 Possession Regroup"
-      }
+      },
+      "primaryRole": "C"
     },
     {
       "id": "DRILL-CS-05",
@@ -25394,7 +25438,9 @@
         ],
         "correctAction": "change",
         "situationTag": "200-Foot PK Clear Deep!"
-      }
+      },
+      "primaryRole": "LW"
     }
-  ]
+  ],
+  "version": "15.3.0"
 }

@@ -174,13 +174,14 @@ export function ensureSafeDrillForEngine(drillRaw) {
 }
 
 export class Subconscious9ModeEngine {
-  constructor({ mountEl, onRepEvaluated, onNextRep, onOpenChalkReel, onOpenCatalog, onUntimedChange, onStageChange, getFederationMode }) {
+  constructor({ mountEl, onRepEvaluated, onNextRep, onOpenChalkReel, onOpenCatalog, onUntimedChange, onRoleSync, onStageChange, getFederationMode }) {
     this.mountEl = mountEl;
     this.onRepEvaluated = onRepEvaluated;
     this.onNextRep = onNextRep;
     this.onOpenChalkReel = onOpenChalkReel;
     this.onOpenCatalog = onOpenCatalog;
     this.onUntimedChange = onUntimedChange;
+    this.onRoleSync = onRoleSync;
     this.onStageChange = onStageChange;
     this.getFederationMode = getFederationMode || (() => 'USA');
 
@@ -262,9 +263,6 @@ export class Subconscious9ModeEngine {
             <span id="v14StreakPill" class="px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/60 text-amber-300 text-[11px] font-black">
               🔥 x0
             </span>
-            <button id="btnV14UntimedToggle" type="button" class="px-2.5 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-[10px] sm:text-[11px] font-black transition cursor-pointer">
-              ⏱️ Timed
-            </button>
             <button id="btnV14ReplayChalkReel" type="button" class="px-2.5 py-1 rounded-full bg-teal-500/20 hover:bg-teal-500/30 border border-teal-400/70 text-teal-200 text-[10px] sm:text-[11px] font-black transition cursor-pointer">
               🎬 Watch 12s Reel
             </button>
@@ -274,7 +272,7 @@ export class Subconscious9ModeEngine {
 
         <!-- Main Zoomed White-Ice 1000×500 Canvas + >= 44px Interactive On-Ice Target Layer -->
         <div class="relative w-full flex-1 min-h-0 bg-[#090D16] px-2 py-1.5 flex flex-col justify-center">
-          <div id="v14CanvasAspectBox" class="relative w-full h-full mx-auto overflow-hidden rounded-xl" style="aspect-ratio: 16 / 9; max-height: calc(100dvh - 210px); min-height: 215px;">
+          <div id="v14CanvasAspectBox" class="relative w-full h-full mx-auto overflow-hidden rounded-xl" style="aspect-ratio: 16 / 9; max-height: calc(100vh - 210px); max-height: calc(100dvh - 210px); min-height: 215px;">
             <canvas id="v14RinkCanvas" class="w-full h-full block cursor-pointer" style="touch-action: none;"></canvas>
 
             <!-- >= 44px On-Ice Interactive Target Overlay (Synced to logical coordinates) -->
@@ -531,7 +529,14 @@ export class Subconscious9ModeEngine {
       this.untimed = opts.untimed;
     }
 
-    const youSkater = (drill.skaters || []).find(s => s.id === drill.youRole) || drill.skaters[0];
+    const protagonistRole = drill.primaryRole || drill.youRole || 'C';
+    drill.primaryRole = protagonistRole;
+    drill.youRole = protagonistRole;
+    if (typeof this.onRoleSync === 'function') {
+      this.onRoleSync(protagonistRole);
+    }
+
+    const youSkater = (drill.skaters || []).find(s => s.id === protagonistRole) || drill.skaters[0];
     this.youCurrentPos = [...(youSkater?.start || [500, 250])];
     this.recordedMyYouPath = [[...this.youCurrentPos]];
     this.pointerDragging = false;

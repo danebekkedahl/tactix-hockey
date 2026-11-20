@@ -77,7 +77,7 @@ export class ChalkTalkReelController {
 
         <!-- Zoomed Crisp 1000x500 White-Ice Video Sheet (Maximized Tunnel-Vision Area) -->
         <div class="relative w-full flex-1 min-h-0 bg-[#090D16] px-2 pt-1.5 pb-1 flex flex-col justify-center">
-          <div id="v14ChalkCanvasWrap" class="relative w-full h-full mx-auto overflow-hidden rounded-xl" style="aspect-ratio: 16 / 9; max-height: calc(100dvh - 218px); min-height: 210px;">
+          <div id="v14ChalkCanvasWrap" class="relative w-full h-full mx-auto overflow-hidden rounded-xl" style="aspect-ratio: 16 / 9; max-height: calc(100vh - 218px); max-height: calc(100dvh - 218px); min-height: 210px;">
             <canvas id="v14ChalkCanvas" class="w-full h-full block" style="touch-action: none;"></canvas>
           </div>
         </div>
@@ -239,7 +239,8 @@ export class ChalkTalkReelController {
     this._clipEnvelopePoints = this._computeClipEnvelopePoints(drill);
 
     const reel = drill.lessonReel;
-    const preferred = POSITIONS_5.includes(defaultPosition) ? defaultPosition : (drill.youRole || 'C');
+    const protagonist = drill.primaryRole || drill.youRole || 'C';
+    const preferred = POSITIONS_5.includes(defaultPosition) ? defaultPosition : protagonist;
     this.activePosition = preferred;
     if (typeof opts.untimed === 'boolean') {
       this.setUntimed(opts.untimed, false);
@@ -370,6 +371,7 @@ export class ChalkTalkReelController {
   }
 
   completeAndDropPuck() {
+    if (!this.isOpen || !this.drill) return;
     const drillRef = this.drill;
     const roleRef = this.activePosition;
     const untimedRef = this.untimed;
