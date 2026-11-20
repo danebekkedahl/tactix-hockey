@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="SYNAPZ HOCKEY" />
   <meta name="application-name" content="SYNAPZ HOCKEY" />
   <meta name="theme-color" content="#0d1829" />
-  <title>SYNAPZ HOCKEY v15.3 — Play. Learn. Dominate. (32-City Road to the Cup)</title>
+  <title>SYNAPZ HOCKEY v15.4 — Play. Learn. Dominate. (32-City Road to the Cup)</title>
   <script src="./engine/safari15_polyfill.js"></script>
   <script src="./engine/practice_stations_svg.js"></script>
   <link rel="manifest" href="manifest.json" />
@@ -494,8 +494,8 @@
       }
     }
 
-    /* Fix C: Fit Step 2 (8 Avatars) + Waist-Up Agent Guide cleanly inside 390x844 */
-    @media (max-height: 880px) {
+    /* Fix C: Fit Step 2 Painted Skater cleanly across Mobile Portrait (390x844) & iPad Landscape (1024x768 / 1180x820) */
+    @media (max-width: 767px) and (max-height: 880px) {
       #entryScreen1A4SlotSetup {
         gap: 0.35rem !important;
       }
@@ -503,21 +503,21 @@
         padding: 0.5rem !important;
         gap: 0.35rem !important;
       }
-      #slotSetupStep2AvatarCard > * + * {
-        margin-top: 0.35rem !important;
-      }
       #slotSetupLiveSkaterPreview {
-        width: 4.5rem !important;
-        height: 5.25rem !important;
-      }
-      #slotSetupStep2StockAvatarsGrid img {
-        max-height: 52px !important;
+        width: 100% !important;
+        height: 148px !important;
       }
       #guidedSetupCutoutImg {
         height: clamp(78px, 11.5vh, 110px) !important;
       }
       #guidedSetupBubbleBox {
         padding: 0.45rem 0.6rem !important;
+      }
+    }
+    @media (min-width: 768px) {
+      #slotSetupLiveSkaterPreview {
+        width: 100% !important;
+        height: 248px !important;
       }
     }
 
@@ -1198,6 +1198,26 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 </head>
 <body class="min-h-screen flex flex-col synapz-entry-gate-active">
+
+  <!-- Runtime Staging Environment Indicator (Shown ONLY on tactix-hockey or ?env=staging; 0 badge on synapz-hockey Golden Live!) -->
+  <div id="synapzStagingRinkBadge" class="hidden" aria-label="Staging Rink Environment" style="position:fixed;top:6px;left:8px;z-index:9999;pointer-events:none;padding:2px 9px;border-radius:9999px;background:rgba(15,23,42,0.92);border:1px solid rgba(251,191,36,0.85);color:#fde68a;font-size:10px;font-weight:900;letter-spacing:0.04em;box-shadow:0 4px 12px rgba(2,6,23,0.65);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);">
+    🧪 STAGING RINK • v15.4
+  </div>
+  <script>
+    (function initSynapzStagingBadge() {
+      try {
+        var p = String(window.location.pathname || '');
+        var s = String(window.location.search || '');
+        var isStaging = p.indexOf('tactix-hockey') !== -1 || /[?&]env=staging(?:\b|&|$)/i.test(s);
+        var el = document.getElementById('synapzStagingRinkBadge');
+        if (el) {
+          if (isStaging) el.classList.remove('hidden');
+          else el.classList.add('hidden');
+        }
+        window.__SYNAPZ_IS_STAGING_RINK__ = isStaging;
+      } catch (_) {}
+    })();
+  </script>
 
   <!-- ===================================================================== -->
   <!-- BETWEEN-SCREEN TRANSITION SPLASH OVERLAY (#synapzTransitionSplash)    -->
@@ -3322,7 +3342,7 @@
           <div id="shopPreviewItemName" class="hidden"></div>
           <button id="btnBuyPreviewedItemNow" type="button" class="hidden w-full py-2 px-3 rounded-xl bg-gradient-to-r from-amber-400 to-emerald-400 text-slate-950 text-xs font-black shadow cursor-pointer"></button>
           <div class="flex items-center gap-1.5 w-full">
-            <button id="btnFlipShopBack" type="button" class="flex-1 py-1.5 px-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-cyan-400/50 text-cyan-200 text-[11px] font-black cursor-pointer">🔄 Spin 360° (Front / Back)</button>
+            <button id="btnFlipShopBack" type="button" class="flex-1 py-1.5 px-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-cyan-400/50 text-cyan-200 text-[11px] font-black cursor-pointer">🔄 Flip Front / Back</button>
           </div>
           <button id="btnClearShopPreview" type="button" class="hidden w-full py-1.5 px-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-amber-400/55 text-amber-200 text-[11px] font-black cursor-pointer">↺ Reset to Equipped</button>
           <div class="hidden">
@@ -4153,7 +4173,7 @@
             Info
           </button>
         </div>
-        <div id="synapzAppBuildVersionBadge" class="text-[10px] font-bold text-slate-500 tracking-wider select-none">SYNAPZ HOCKEY v15.3</div>
+        <div id="synapzAppBuildVersionBadge" class="text-[10px] font-bold text-slate-500 tracking-wider select-none">SYNAPZ HOCKEY v15.4</div>
       </div>
 
       <!-- ================================================================= -->
@@ -4164,7 +4184,7 @@
           <button id="btnBackFromInfoToScreen1" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-black text-cyan-300">
             ← Back
           </button>
-          <span class="text-sm font-black text-white uppercase tracking-wider">Info Hub • v15.3</span>
+          <span class="text-sm font-black text-white uppercase tracking-wider">Info Hub • v15.4</span>
         </div>
 
         <!-- 3 Clean Info Tabs: Contact, Support, FAQ -->
@@ -4430,23 +4450,23 @@
         <!-- STEP 2: BUILD YOUR SKATER (2-COLUMN ZERO-SCROLL VIEWPORT-FITTED GRID ON IPAD LANDSCAPE!) -->
         <div id="slotSetupStep2StockAvatar" class="hidden" style="max-height: calc(100vh - 80px); max-height: calc(100dvh - 80px);">
           <div id="slotSetupStep2AvatarCard" class="p-2.5 sm:p-3 rounded-2xl bg-slate-950/95 border border-cyan-400/60 grid grid-cols-1 md:grid-cols-12 gap-3 items-stretch">
-            <!-- LEFT COLUMN: Live 360° Customizable Skater Stage (Zero Static Cutout Thumbnails!) -->
+            <!-- LEFT COLUMN: Real Painted 75/25 High-DPI Canvas Skater Stage + Front/Back Flip -->
             <div class="md:col-span-5 flex flex-col justify-between gap-1.5 p-2 rounded-xl bg-slate-900/90 border border-slate-800">
               <div class="flex items-center justify-between gap-1.5">
                 <button id="btnSlotStep2BackTo1" type="button" class="px-2.5 py-1 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-700 text-slate-200 text-[10px] font-black cursor-pointer">
                   ← Guides
                 </button>
                 <button id="btnSlotSetupFlipPreview" type="button" class="px-2.5 py-1 rounded-lg bg-slate-950 hover:bg-slate-800 border border-cyan-400/60 text-cyan-200 text-[10px] font-black cursor-pointer">
-                  🔄 Spin 360° (Front / Back)
+                  🔄 Flip Front / Back
                 </button>
               </div>
-              <div id="slotSetupLiveSkaterPreview" class="w-full h-48 md:h-56 flex items-center justify-center"></div>
-              <div class="text-[10px] font-bold text-slate-400 text-center">Drag left/right or tap Spin 360° to inspect front &amp; back</div>
+              <div id="slotSetupLiveSkaterPreview" class="w-full h-56 md:h-64 flex items-center justify-center" style="width: 100%; height: 248px; display: flex; align-items: center; justify-content: center;"></div>
+              <div class="text-[10px] font-bold text-slate-400 text-center">Drag left/right or tap Flip Front / Back to inspect front &amp; back</div>
               <div id="slotSetupStep2StockAvatarsGrid" class="hidden"></div>
             </div>
 
-            <!-- RIGHT COLUMN: Compact Name, #Number, Age Band, Position, Skin Tone, HAIR, Hair Color, Jersey Color & Enter the Rink CTA -->
-            <div class="md:col-span-7 flex flex-col justify-between gap-2">
+            <!-- RIGHT COLUMN: Compact Name, #Number, Age Band, Position, Skater 1..8 Portrait Style, Hair Color, Jersey Color & Enter the Rink CTA -->
+            <div class="md:col-span-7 flex flex-col justify-between gap-1.5">
               <!-- Row 1: Name & #Number -->
               <div class="grid grid-cols-12 gap-2">
                 <div class="col-span-8">
@@ -4510,10 +4530,21 @@
                 </div>
               </div>
 
-              <!-- Row 3: HAIR (Style Pills: Flow, Short, Ponytail, Curly, Mohawk, Braids) -->
+              <!-- Row 3: Painted 75/25 Skater Style Selector (Kid-Friendly Skater 1..8 — Zero Raw Filenames!) -->
               <div>
-                <label class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">HAIR</label>
-                <select id="slotSetupHairStyle" class="hidden">
+                <label class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Skater Style</label>
+                <div id="slotSetupPaintedSkaterPills" class="grid grid-cols-4 sm:grid-cols-8 gap-1">
+                  <button type="button" data-skater-art-pill="avatar-male-1" class="slot-skater-art-pill py-1 px-1 rounded-lg bg-cyan-400 text-slate-950 text-[9.5px] font-black shadow cursor-pointer" title="Skater 1 • Classic Flow">Skater 1</button>
+                  <button type="button" data-skater-art-pill="avatar-male-2" class="slot-skater-art-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[9.5px] font-bold cursor-pointer" title="Skater 2 • Pro Fade">Skater 2</button>
+                  <button type="button" data-skater-art-pill="avatar-male-3" class="slot-skater-art-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[9.5px] font-bold cursor-pointer" title="Skater 3 • Mohawk Edge">Skater 3</button>
+                  <button type="button" data-skater-art-pill="avatar-male-4" class="slot-skater-art-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[9.5px] font-bold cursor-pointer" title="Skater 4 • Side Part">Skater 4</button>
+                  <button type="button" data-skater-art-pill="avatar-female-1" class="slot-skater-art-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[9.5px] font-bold cursor-pointer" title="Skater 5 • High Pony">Skater 5</button>
+                  <button type="button" data-skater-art-pill="avatar-female-2" class="slot-skater-art-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[9.5px] font-bold cursor-pointer" title="Skater 6 • Pro Braids">Skater 6</button>
+                  <button type="button" data-skater-art-pill="avatar-female-3" class="slot-skater-art-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[9.5px] font-bold cursor-pointer" title="Skater 7 • Wavy Flow">Skater 7</button>
+                  <button type="button" data-skater-art-pill="avatar-female-4" class="slot-skater-art-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[9.5px] font-bold cursor-pointer" title="Skater 8 • Twin Braids">Skater 8</button>
+                </div>
+                <!-- Hidden legacy compatibility hooks mapped cleanly to Skater 1..8 -->
+                <select id="slotSetupHairStyle" class="hidden" aria-hidden="true">
                   <option value="flow" selected>Flow</option>
                   <option value="short">Short</option>
                   <option value="ponytail">Ponytail</option>
@@ -4522,55 +4553,52 @@
                   <option value="braids">Braids</option>
                   <option value="buzz">Buzz</option>
                 </select>
-                <div id="slotSetupHairStylePills" class="grid grid-cols-6 gap-1">
-                  <button type="button" data-hair-style-pill="flow" class="slot-hairstyle-pill py-1 px-1 rounded-lg bg-cyan-400 text-slate-950 text-[10px] font-black shadow cursor-pointer">Flow</button>
-                  <button type="button" data-hair-style-pill="short" class="slot-hairstyle-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[10px] font-bold cursor-pointer">Short</button>
-                  <button type="button" data-hair-style-pill="ponytail" class="slot-hairstyle-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[10px] font-bold cursor-pointer">Ponytail</button>
-                  <button type="button" data-hair-style-pill="curly" class="slot-hairstyle-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[10px] font-bold cursor-pointer">Curly</button>
-                  <button type="button" data-hair-style-pill="mohawk" class="slot-hairstyle-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[10px] font-bold cursor-pointer">Mohawk</button>
-                  <button type="button" data-hair-style-pill="braids" class="slot-hairstyle-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[10px] font-bold cursor-pointer">Braids</button>
+                <div id="slotSetupHairStylePills" class="hidden" aria-hidden="true">
+                  <button type="button" data-hair-style-pill="flow" class="slot-hairstyle-pill"></button>
+                  <button type="button" data-hair-style-pill="short" class="slot-hairstyle-pill"></button>
+                  <button type="button" data-hair-style-pill="ponytail" class="slot-hairstyle-pill"></button>
+                  <button type="button" data-hair-style-pill="curly" class="slot-hairstyle-pill"></button>
+                  <button type="button" data-hair-style-pill="mohawk" class="slot-hairstyle-pill"></button>
+                  <button type="button" data-hair-style-pill="braids" class="slot-hairstyle-pill"></button>
+                </div>
+                <div id="slotSetupSkinTonePills" class="hidden" aria-hidden="true">
+                  <button type="button" data-skin-hex="#fde68a" class="slot-skin-pill"></button>
+                  <button type="button" data-skin-hex="#fdba74" class="slot-skin-pill"></button>
+                  <button type="button" data-skin-hex="#d97706" class="slot-skin-pill"></button>
+                  <button type="button" data-skin-hex="#78350f" class="slot-skin-pill"></button>
                 </div>
               </div>
 
-              <!-- Row 4: Skin Tone & Hair Color -->
-              <div class="grid grid-cols-12 gap-2 items-center">
-                <div class="col-span-5">
-                  <label class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Skin Tone</label>
-                  <div id="slotSetupSkinTonePills" class="flex items-center gap-1.5">
-                    <button type="button" data-skin-hex="#fde68a" title="Fair" aria-label="Fair Skin Tone" class="slot-skin-pill w-6 h-6 rounded-full border border-white/40 cursor-pointer" style="background:#fde68a"></button>
-                    <button type="button" data-skin-hex="#fdba74" title="Warm" aria-label="Warm Skin Tone" class="slot-skin-pill w-6 h-6 rounded-full ring-2 ring-cyan-300 cursor-pointer" style="background:#fdba74"></button>
-                    <button type="button" data-skin-hex="#d97706" title="Tan" aria-label="Tan Skin Tone" class="slot-skin-pill w-6 h-6 rounded-full border border-white/40 cursor-pointer" style="background:#d97706"></button>
-                    <button type="button" data-skin-hex="#78350f" title="Deep" aria-label="Deep Skin Tone" class="slot-skin-pill w-6 h-6 rounded-full border border-white/40 cursor-pointer" style="background:#78350f"></button>
-                  </div>
-                </div>
-                <div class="col-span-7">
-                  <label class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Hair Color</label>
-                  <div id="slotSetupHairColorPills" class="flex flex-wrap items-center gap-1">
-                    <button type="button" data-hair-hex="#facc15" data-hair-color="Blonde" title="Blonde" aria-label="Hair Color Blonde" class="slot-hair-pill px-1.5 py-1 rounded-lg bg-yellow-400 text-slate-950 text-[9px] font-black border border-white/40 cursor-pointer">Blonde</button>
-                    <button type="button" data-hair-hex="#78350f" data-hair-color="Brown" title="Brown" aria-label="Hair Color Brown" class="slot-hair-pill px-1.5 py-1 rounded-lg bg-amber-900 text-white text-[9px] font-black ring-2 ring-cyan-300 cursor-pointer">Brown</button>
-                    <button type="button" data-hair-hex="#111827" data-hair-color="Black" title="Black" aria-label="Hair Color Black" class="slot-hair-pill px-1.5 py-1 rounded-lg bg-slate-950 text-slate-100 text-[9px] font-black border border-slate-500 cursor-pointer">Black</button>
-                    <button type="button" data-hair-hex="#dc2626" data-hair-color="Red" title="Red" aria-label="Hair Color Red" class="slot-hair-pill px-1.5 py-1 rounded-lg bg-red-600 text-white text-[9px] font-black border border-white/40 cursor-pointer">Red</button>
-                    <button type="button" data-hair-hex="#2563eb" data-hair-color="Blue" title="Blue" aria-label="Hair Color Blue" class="slot-hair-pill px-1.5 py-1 rounded-lg bg-blue-600 text-white text-[9px] font-black border border-white/40 cursor-pointer">Blue</button>
-                    <button type="button" data-hair-hex="#e2e8f0" data-hair-color="Platinum" title="Platinum" aria-label="Hair Color Platinum" class="slot-hair-pill px-1.5 py-1 rounded-lg bg-slate-200 text-slate-950 text-[9px] font-black border border-white/60 cursor-pointer">Platinum</button>
-                  </div>
+              <!-- Row 4: Hair Color -->
+              <div>
+                <label class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Hair Color</label>
+                <div id="slotSetupHairColorPills" class="grid grid-cols-6 gap-1">
+                  <button type="button" data-hair-hex="#facc15" data-hair-color="Blonde" title="Blonde" aria-label="Hair Color Blonde" class="slot-hair-pill py-1 px-1 rounded-lg bg-yellow-400 text-slate-950 text-[9px] font-black border border-white/40 cursor-pointer">Blonde</button>
+                  <button type="button" data-hair-hex="#78350f" data-hair-color="Brown" title="Brown" aria-label="Hair Color Brown" class="slot-hair-pill py-1 px-1 rounded-lg bg-amber-900 text-white text-[9px] font-black ring-2 ring-cyan-300 cursor-pointer">Brown</button>
+                  <button type="button" data-hair-hex="#111827" data-hair-color="Black" title="Black" aria-label="Hair Color Black" class="slot-hair-pill py-1 px-1 rounded-lg bg-slate-950 text-slate-100 text-[9px] font-black border border-slate-500 cursor-pointer">Black</button>
+                  <button type="button" data-hair-hex="#dc2626" data-hair-color="Red" title="Red" aria-label="Hair Color Red" class="slot-hair-pill py-1 px-1 rounded-lg bg-red-600 text-white text-[9px] font-black border border-white/40 cursor-pointer">Red</button>
+                  <button type="button" data-hair-hex="#2563eb" data-hair-color="Blue" title="Blue" aria-label="Hair Color Blue" class="slot-hair-pill py-1 px-1 rounded-lg bg-blue-600 text-white text-[9px] font-black border border-white/40 cursor-pointer">Blue</button>
+                  <button type="button" data-hair-hex="#e2e8f0" data-hair-color="Platinum" title="Platinum" aria-label="Hair Color Platinum" class="slot-hair-pill py-1 px-1 rounded-lg bg-slate-200 text-slate-950 text-[9px] font-black border border-white/60 cursor-pointer">Platinum</button>
                 </div>
               </div>
 
               <!-- Row 5: Jersey Color -->
               <div>
                 <label class="block text-[10px] font-black uppercase text-slate-300 mb-0.5">Jersey Color</label>
-                <div id="slotSetupThemeColorPills" class="grid grid-cols-6 gap-1">
-                  <button type="button" data-theme-name="Purple" data-theme-hex="#7c3aed" class="slot-theme-pill py-1 px-1 rounded-lg bg-purple-700 text-white text-[9px] font-black border border-white/30 cursor-pointer">Purple</button>
-                  <button type="button" data-theme-name="Pink" data-theme-hex="#ec4899" class="slot-theme-pill py-1 px-1 rounded-lg bg-pink-600 text-white text-[9px] font-black border border-white/30 cursor-pointer">Pink</button>
-                  <button type="button" data-theme-name="Black" data-theme-hex="#111827" class="slot-theme-pill py-1 px-1 rounded-lg bg-slate-950 text-cyan-300 text-[9px] font-black border border-cyan-400/50 cursor-pointer">Black</button>
+                <div id="slotSetupThemeColorPills" class="grid grid-cols-4 sm:grid-cols-8 gap-1">
                   <button type="button" data-theme-name="Championship Blue" data-theme-hex="#0284c7" class="slot-theme-pill py-1 px-1 rounded-lg bg-sky-600 text-white text-[9px] font-black ring-2 ring-amber-300 cursor-pointer">Blue</button>
+                  <button type="button" data-theme-name="Red" data-theme-hex="#dc2626" class="slot-theme-pill py-1 px-1 rounded-lg bg-red-700 text-white text-[9px] font-black border border-white/30 cursor-pointer">Red</button>
+                  <button type="button" data-theme-name="Pink" data-theme-hex="#ec4899" class="slot-theme-pill py-1 px-1 rounded-lg bg-pink-600 text-white text-[9px] font-black border border-white/30 cursor-pointer">Pink</button>
+                  <button type="button" data-theme-name="Teal" data-theme-hex="#0d9488" class="slot-theme-pill py-1 px-1 rounded-lg bg-teal-600 text-white text-[9px] font-black border border-white/30 cursor-pointer">Teal</button>
+                  <button type="button" data-theme-name="Emerald" data-theme-hex="#059669" class="slot-theme-pill py-1 px-1 rounded-lg bg-emerald-600 text-white text-[9px] font-black border border-white/30 cursor-pointer">Emerald</button>
                   <button type="button" data-theme-name="Gold" data-theme-hex="#eab308" class="slot-theme-pill py-1 px-1 rounded-lg bg-amber-500 text-slate-950 text-[9px] font-black border border-white/40 cursor-pointer">Gold</button>
-                  <button type="button" data-theme-name="Red" data-theme-hex="#dc2626" class="slot-theme-pill py-1 px-1 rounded-lg bg-red-700 text-white text-[9px] font-black border border-white/30 cursor-pointer">Crimson</button>
+                  <button type="button" data-theme-name="Purple" data-theme-hex="#7c3aed" class="slot-theme-pill py-1 px-1 rounded-lg bg-purple-700 text-white text-[9px] font-black border border-white/30 cursor-pointer">Purple</button>
+                  <button type="button" data-theme-name="Black" data-theme-hex="#111827" class="slot-theme-pill py-1 px-1 rounded-lg bg-slate-950 text-cyan-300 text-[9px] font-black border border-cyan-400/50 cursor-pointer">Black</button>
                 </div>
               </div>
 
               <!-- Row 6: Primary CTA -->
-              <button id="btnSaveSlotAndEnterLobby" type="button" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-slate-950 text-xs sm:text-sm font-black shadow-lg cursor-pointer">
+              <button id="btnSaveSlotAndEnterLobby" type="button" class="w-full py-2 px-4 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-slate-950 text-xs sm:text-sm font-black shadow-lg cursor-pointer">
                 Enter the Rink ▸
               </button>
             </div>
@@ -5529,7 +5557,7 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.3-safari15-and-real-diagrams';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.4-ratchet-and-painted-avatars';
 
     // =========================================================================
     // SECTION 39 (v12.3) + SECTION 46 (v13.2) + SECTION 47 (v13.4):
@@ -9323,8 +9351,8 @@
       avatarSpinAngle: 0,
       profileSpinAngle: 0,
       shopSpinAngle: 0,
-      profileAutoSpin: true,
-      shopAutoSpin: true,
+      profileAutoSpin: false,
+      shopAutoSpin: false,
       shopPreviewItem: null,
       shopCategoryFilter: 'all',
       shopCategory: 'all',
@@ -11277,16 +11305,16 @@
       teamCode: ''
     };
 
-    // Section 38 (v12.2): 8 Full-Body Transparent 3D Stock Player Avatars (4 Male + 4 Female)
+    // Section 38 / v15.4: 8 Studio-Painted 75/25 Hockey Skater Artworks (Kid-Friendly Labels Skater 1..8)
     const SYNAPZ_STOCK_3D_AVATARS = [
-      { id: 'avatar-male-1', gender: 'boy', label: 'Male 1', desc: 'Blonde Flow', src: 'assets/avatars/avatar-male-1.png', img: 'assets/avatars/avatar-male-1.png', defaultHair: 'flow', defaultHairColor: '#facc15', defaultSkin: '#fdba74' },
-      { id: 'avatar-male-2', gender: 'boy', label: 'Male 2', desc: 'Classic Cut', src: 'assets/avatars/avatar-male-2.png', img: 'assets/avatars/avatar-male-2.png', defaultHair: 'short', defaultHairColor: '#78350f', defaultSkin: '#fdba74' },
-      { id: 'avatar-male-3', gender: 'boy', label: 'Male 3', desc: 'Athletic Fade', src: 'assets/avatars/avatar-male-3.png', img: 'assets/avatars/avatar-male-3.png', defaultHair: 'buzz', defaultHairColor: '#111827', defaultSkin: '#92400e' },
-      { id: 'avatar-male-4', gender: 'boy', label: 'Male 4', desc: 'Copper Flow', src: 'assets/avatars/avatar-male-4.png', img: 'assets/avatars/avatar-male-4.png', defaultHair: 'flow', defaultHairColor: '#c2410c', defaultSkin: '#fde68a' },
-      { id: 'avatar-female-1', gender: 'girl', label: 'Female 1', desc: 'Blonde Pony', src: 'assets/avatars/avatar-female-1.png', img: 'assets/avatars/avatar-female-1.png', defaultHair: 'ponytail', defaultHairColor: '#facc15', defaultSkin: '#fdba74' },
-      { id: 'avatar-female-2', gender: 'girl', label: 'Female 2', desc: 'Pro Braids', src: 'assets/avatars/avatar-female-2.png', img: 'assets/avatars/avatar-female-2.png', defaultHair: 'braids', defaultHairColor: '#111827', defaultSkin: '#92400e' },
-      { id: 'avatar-female-3', gender: 'girl', label: 'Female 3', desc: 'Brunette Pony', src: 'assets/avatars/avatar-female-3.png', img: 'assets/avatars/avatar-female-3.png', defaultHair: 'ponytail', defaultHairColor: '#78350f', defaultSkin: '#d97706' },
-      { id: 'avatar-female-4', gender: 'girl', label: 'Female 4', desc: 'Auburn Flow', src: 'assets/avatars/avatar-female-4.png', img: 'assets/avatars/avatar-female-4.png', defaultHair: 'ponytail', defaultHairColor: '#c2410c', defaultSkin: '#fde68a' }
+      { id: 'avatar-male-1', gender: 'boy', label: 'Skater 1', desc: 'Classic Flow', src: 'assets/avatars/avatar-male-1.png', img: 'assets/avatars/avatar-male-1.png', defaultHair: 'flow', defaultHairColor: '#facc15', defaultSkin: '#fdba74' },
+      { id: 'avatar-male-2', gender: 'boy', label: 'Skater 2', desc: 'Pro Fade', src: 'assets/avatars/avatar-male-2.png', img: 'assets/avatars/avatar-male-2.png', defaultHair: 'buzz', defaultHairColor: '#111827', defaultSkin: '#78350f' },
+      { id: 'avatar-male-3', gender: 'boy', label: 'Skater 3', desc: 'Mohawk Edge', src: 'assets/avatars/avatar-male-3.png', img: 'assets/avatars/avatar-male-3.png', defaultHair: 'mohawk', defaultHairColor: '#111827', defaultSkin: '#d97706' },
+      { id: 'avatar-male-4', gender: 'boy', label: 'Skater 4', desc: 'Side Part', src: 'assets/avatars/avatar-male-4.png', img: 'assets/avatars/avatar-male-4.png', defaultHair: 'short', defaultHairColor: '#78350f', defaultSkin: '#fdba74' },
+      { id: 'avatar-female-1', gender: 'girl', label: 'Skater 5', desc: 'High Pony', src: 'assets/avatars/avatar-female-1.png', img: 'assets/avatars/avatar-female-1.png', defaultHair: 'ponytail', defaultHairColor: '#facc15', defaultSkin: '#fde68a' },
+      { id: 'avatar-female-2', gender: 'girl', label: 'Skater 6', desc: 'Pro Braids', src: 'assets/avatars/avatar-female-2.png', img: 'assets/avatars/avatar-female-2.png', defaultHair: 'braids', defaultHairColor: '#78350f', defaultSkin: '#78350f' },
+      { id: 'avatar-female-3', gender: 'girl', label: 'Skater 7', desc: 'Wavy Flow', src: 'assets/avatars/avatar-female-3.png', img: 'assets/avatars/avatar-female-3.png', defaultHair: 'curly', defaultHairColor: '#78350f', defaultSkin: '#d97706' },
+      { id: 'avatar-female-4', gender: 'girl', label: 'Skater 8', desc: 'Twin Braids', src: 'assets/avatars/avatar-female-4.png', img: 'assets/avatars/avatar-female-4.png', defaultHair: 'braids', defaultHairColor: '#dc2626', defaultSkin: '#fde68a' }
     ];
     window.SYNAPZ_STOCK_3D_AVATARS = SYNAPZ_STOCK_3D_AVATARS;
 
@@ -18240,13 +18268,14 @@
           angleDeg: angle,
           previewItem: previewObj || null,
           showSpinButton: false,
+          showLoadoutDock: true,
           onAngleChange: (nextA) => {
             state.shopSpinAngle = nextA;
             const normNext = Math.round(((nextA % 360) + 360) % 360);
             const bEl = document.getElementById('shopSpinAngleBadge');
             if (bEl) {
-              const isBk = normNext >= 115 && normNext <= 245;
-              bEl.textContent = `${isBk ? 'Back' : (normNext >= 25 && normNext <= 335 ? 'Angled' : 'Front')} (${normNext}°)`;
+              const isBk = normNext >= 95 && normNext <= 265;
+              bEl.textContent = `${isBk ? 'Back' : 'Front'} (${normNext}°)`;
             }
           }
         });
@@ -23367,11 +23396,43 @@
       });
     }
 
+    function syncSlotPaintedSkaterPillsUI(avatarId = 'avatar-male-1') {
+      const found = SYNAPZ_STOCK_3D_AVATARS.find(a => a.id === avatarId) || SYNAPZ_STOCK_3D_AVATARS[0];
+      state.draftSkater.stockAvatarId = found.id;
+      state.draftSkater.avatarType = found.gender;
+      state.draftSkater.hairStyle = found.defaultHair || 'flow';
+      const stockInp = document.getElementById('slotSetupStockAvatarId');
+      const avInp = document.getElementById('slotSetupAvatarType');
+      const hsSel = document.getElementById('slotSetupHairStyle');
+      if (stockInp) stockInp.value = found.id;
+      if (avInp) avInp.value = found.gender;
+      if (hsSel) hsSel.value = state.draftSkater.hairStyle;
+      document.querySelectorAll('[data-skater-art-pill]').forEach(b => {
+        const active = (b.getAttribute('data-skater-art-pill') || '') === found.id;
+        b.className = active
+          ? 'slot-skater-art-pill py-1 px-1 rounded-lg bg-cyan-400 text-slate-950 text-[9.5px] font-black shadow cursor-pointer'
+          : 'slot-skater-art-pill py-1 px-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-[9.5px] font-bold cursor-pointer';
+      });
+    }
+    window.syncSlotPaintedSkaterPillsUI = syncSlotPaintedSkaterPillsUI;
+
     function syncSlotHairStylePillsUI(styleVal = 'flow') {
       const clean = styleVal || 'flow';
       state.draftSkater.hairStyle = clean;
       const sel = document.getElementById('slotSetupHairStyle');
       if (sel) sel.value = clean;
+      const styleToAvatar = {
+        flow: 'avatar-male-1',
+        buzz: 'avatar-male-2',
+        mohawk: 'avatar-male-3',
+        short: 'avatar-male-4',
+        ponytail: 'avatar-female-1',
+        braids: 'avatar-female-2',
+        curly: 'avatar-female-3'
+      };
+      if (styleToAvatar[clean]) {
+        syncSlotPaintedSkaterPillsUI(styleToAvatar[clean]);
+      }
       document.querySelectorAll('[data-hair-style-pill]').forEach(b => {
         const active = (b.getAttribute('data-hair-style-pill') || '') === clean;
         b.className = active
@@ -23573,6 +23634,7 @@
       if (stockInp) stockInp.value = defaultStock;
       if (avSel) avSel.value = defaultAvatarType;
       syncSlotHairStylePillsUI(defaultHairStyle);
+      syncSlotPaintedSkaterPillsUI(defaultStock);
       syncSlotHairAndSkinPillsUI(defaultHairHex, defaultSkinHex);
       syncSlotThemePillsUI(defaultJerseyHex);
       syncSlotPosPillsUI(defaultPos);
@@ -24603,6 +24665,17 @@
           SoundFX.playTap();
           const pos = btn.getAttribute('data-pos-pill') || 'ALL';
           syncSlotPosPillsUI(pos);
+          updateSlotSetupLivePreview();
+        });
+      });
+
+      document.querySelectorAll('[data-skater-art-pill]').forEach(btn => {
+        btn.addEventListener('click', (ev) => {
+          ev.preventDefault();
+          ev.stopPropagation();
+          SoundFX.playTap();
+          const artId = btn.getAttribute('data-skater-art-pill') || 'avatar-male-1';
+          syncSlotPaintedSkaterPillsUI(artId);
           updateSlotSetupLivePreview();
         });
       });
@@ -27831,6 +27904,7 @@
       const sheet = document.getElementById('lockerEditProfileSheet');
       if (!sheet) return;
       state.lockerEditingStockAvatarId = prof.stockAvatarId || 'avatar-male-1';
+      state.lockerEditingHairColor = prof.hairColor || '#78350f';
       renderLockerEditStockAvatarsGrid();
       const nmEl = document.getElementById('lockerEditNameInput');
       const hsEl = document.getElementById('lockerEditHairStyleSelect');
@@ -27868,10 +27942,53 @@
 
     function renderLockerEditStockAvatarsGrid() {
       const grid = document.getElementById('lockerEditStockAvatarsGrid');
-      if (grid) {
-        grid.innerHTML = '';
-        grid.classList.add('hidden');
-      }
+      if (!grid) return;
+      const prof = getActiveProfile();
+      const curId = state.lockerEditingStockAvatarId || prof.stockAvatarId || 'avatar-male-1';
+      const curHairHex = state.lockerEditingHairColor || prof.hairColor || '#78350f';
+      const hairSwatches = [
+        { label: 'Blonde', hex: '#facc15', cls: 'bg-yellow-400 text-slate-950' },
+        { label: 'Brown', hex: '#78350f', cls: 'bg-amber-900 text-white' },
+        { label: 'Black', hex: '#111827', cls: 'bg-slate-950 text-slate-100 border-slate-500' },
+        { label: 'Red', hex: '#dc2626', cls: 'bg-red-600 text-white' },
+        { label: 'Blue', hex: '#2563eb', cls: 'bg-blue-600 text-white' },
+        { label: 'Platinum', hex: '#e2e8f0', cls: 'bg-slate-200 text-slate-950' }
+      ];
+      grid.className = 'space-y-2';
+      grid.innerHTML = `
+        <div>
+          <label class="block text-[10px] font-black uppercase text-cyan-300 mb-1">Painted Skater Style</label>
+          <div class="grid grid-cols-4 sm:grid-cols-8 gap-1">
+            ${SYNAPZ_STOCK_3D_AVATARS.map(av => {
+              const isAct = av.id === curId;
+              return `<button type="button" data-locker-skater-art="${av.id}" class="py-1 px-1 rounded-lg text-[10px] font-black cursor-pointer ${isAct ? 'bg-cyan-400 text-slate-950 shadow' : 'bg-slate-900 border border-slate-700 text-slate-200'}">${av.label}</button>`;
+            }).join('')}
+          </div>
+        </div>
+        <div>
+          <label class="block text-[10px] font-black uppercase text-cyan-300 mb-1">Hair Color</label>
+          <div class="grid grid-cols-6 gap-1">
+            ${hairSwatches.map(sw => {
+              const isAct = sw.hex.toLowerCase() === String(curHairHex).toLowerCase();
+              return `<button type="button" data-locker-hair-hex="${sw.hex}" class="py-1 px-1 rounded-lg text-[10px] font-black border border-white/30 cursor-pointer ${sw.cls} ${isAct ? 'ring-2 ring-cyan-300' : ''}">${sw.label}</button>`;
+            }).join('')}
+          </div>
+        </div>
+      `;
+      grid.querySelectorAll('[data-locker-skater-art]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          SoundFX.playTap();
+          state.lockerEditingStockAvatarId = btn.getAttribute('data-locker-skater-art') || 'avatar-male-1';
+          renderLockerEditStockAvatarsGrid();
+        });
+      });
+      grid.querySelectorAll('[data-locker-hair-hex]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          SoundFX.playTap();
+          state.lockerEditingHairColor = btn.getAttribute('data-locker-hair-hex') || '#78350f';
+          renderLockerEditStockAvatarsGrid();
+        });
+      });
     }
 
     async function saveLockerProfileEdits() {
@@ -27885,6 +28002,9 @@
       const pickedStock = state.lockerEditingStockAvatarId || prof.stockAvatarId || 'avatar-male-1';
       prof.stockAvatarId = pickedStock;
       prof.avatarType = pickedStock.includes('female') ? 'girl' : 'boy';
+      if (state.lockerEditingHairColor) {
+        prof.hairColor = state.lockerEditingHairColor;
+      }
       prof.hairStyle = document.getElementById('lockerEditHairStyleSelect')?.value || prof.hairStyle || 'flow';
       const rawJn = String(document.getElementById('lockerEditJerseyNumInput')?.value ?? '').trim();
       prof.jerseyNumber = rawJn === '' ? '' : Math.max(0, Math.min(99, parseInt(rawJn, 10) || 0));
@@ -27978,10 +28098,20 @@
           window.renderCustomizableSkater(floorStage, prof, {
             angleDeg: state.lockerSpinAngle || 0,
             showSpinButton: true,
+            showLoadoutDock: true,
             spinButtonId: 'btnLockerStallSpin360',
             onAngleChange: (nextA) => {
               state.lockerSpinAngle = nextA;
             }
+          });
+          floorStage.querySelectorAll('[data-skater-loadout-dock] [data-dock-slot]').forEach(slotEl => {
+            slotEl.classList.add('cursor-pointer', 'hover:border-cyan-300');
+            slotEl.addEventListener('click', (ev) => {
+              ev.stopPropagation();
+              const sl = slotEl.getAttribute('data-dock-slot') || 'Bag';
+              const catMap = { visor: 'Visor', stick: 'Stick', gloves: 'Gloves', skates: 'Skates' };
+              openLockerEquipmentBagDrawer(catMap[sl] || 'Bag');
+            });
           });
         } else {
           floorStage.innerHTML = renderYoungHockeyPlayerAvatar(prof, state.lockerSpinAngle || 0, null, { standingLockerFloor: true });
@@ -32279,7 +32409,8 @@
       });
       bindClick('btnLockerSpinFrontBack', () => {
         SoundFX.playTap();
-        state.lockerSpinAngle = (state.lockerSpinAngle || 0) === 180 ? 0 : 180;
+        const norm = (((state.lockerSpinAngle || 0) % 360) + 360) % 360;
+        state.lockerSpinAngle = (norm >= 95 && norm <= 265) ? 0 : 180;
         renderSynapzLockerRoomModal();
       });
       bindClick('btnLockerOpenEditProfile', openLockerEditProfileDrawer);
@@ -32925,7 +33056,7 @@
     // SECTION 32–43: VERIFIED REAL CODED UPGRADES RUNTIME & PRE-CODED BANK
     // (`synapz-hockey-v12.7-5persona-human-vision` • 288 Live Upgrades)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.3-safari15-and-real-diagrams';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.4-ratchet-and-painted-avatars';
 
     const ALL_63_DEPLOYED_UPGRADE_IDS = [
       // Batch A (12 items)
@@ -36809,7 +36940,7 @@
     <div id="lockerRoomSceneCanvas" class="synapz-pure-room-stage">
       <img loading="lazy" decoding="async" id="lockerRoomSceneImg" src="assets/rooms/room-locker-room.jpg" alt="SYNAPZ Player Locker Room" class="synapz-room-bg-img" />
 
-      <div id="lockerStanding3dAvatarStage" class="absolute z-20 flex items-end justify-center pointer-events-auto cursor-pointer select-none" style="left: 10.0%; bottom: 4.0%; width: 28.0%; height: 80.0%;" title="Your Standing 3D Skater — Tap to Open Equipment Bag"></div>
+      <div id="lockerStanding3dAvatarStage" class="absolute z-20 flex items-end justify-center pointer-events-auto cursor-pointer select-none" style="left: 8.0%; bottom: 4.0%; width: 33.5%; height: 80.0%;" title="Your Standing Painted Skater — Tap to Open Equipment Bag"></div>
 
       <div id="lockerBrassNameplatePlaque" class="synapz-inscene-brass-plaque" style="left: 68.3%; top: 7.2%; width: 11.5%; height: 4.8%;">
         <span id="lockerBrassNameplateText" class="truncate px-1">SKATER</span>
@@ -36854,7 +36985,7 @@
 
       <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800">
         <button id="btnLockerSpinFrontBack" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-400/60 text-cyan-200 text-[11px] font-black cursor-pointer">
-          🔄 Spin 360° (Front / Back)
+          🔄 Flip Front / Back
         </button>
         <button id="btnLockerGoToProShop" type="button" class="text-[11px] font-bold text-amber-300 hover:text-amber-200 underline cursor-pointer">
           Want new twigs, visors, or skates? Visit the Walk-In Pro Shop →

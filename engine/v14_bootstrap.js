@@ -96,6 +96,12 @@ class SynapzV14TeachingCoordinator {
   async init() {
     if (this.readyPromise) return this.readyPromise;
     this.readyPromise = (async () => {
+      if (SynapzSkaterRenderer360 && typeof SynapzSkaterRenderer360.preloadAllPaintedAvatars === 'function') {
+        await Promise.race([
+          SynapzSkaterRenderer360.preloadAllPaintedAvatars().catch(() => {}),
+          new Promise((r) => setTimeout(r, 1500))
+        ]);
+      }
       const res = await fetch('./drills/catalog_45.json');
       if (!res.ok) throw new Error(`Failed to load drills/catalog_45.json (HTTP ${res.status})`);
       this.catalog = await res.json();

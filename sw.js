@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v15.3-safari15-and-real-diagrams';
+const CACHE_NAME = 'synapz-hockey-v15.4-ratchet-and-painted-avatars';
 const PRECACHE_ASSETS = [
   './',
   './index.html',
