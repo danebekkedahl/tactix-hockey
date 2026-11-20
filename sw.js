@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapz-hockey-v15.4-ratchet-and-painted-avatars';
+const CACHE_NAME = 'synapz-hockey-v15.4.1-live-and-8law-constitution';
 const PRECACHE_ASSETS = [
   './',
   './index.html',

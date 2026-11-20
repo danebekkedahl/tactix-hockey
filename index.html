@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="SYNAPZ HOCKEY" />
   <meta name="application-name" content="SYNAPZ HOCKEY" />
   <meta name="theme-color" content="#0d1829" />
-  <title>SYNAPZ HOCKEY v15.4 — Play. Learn. Dominate. (32-City Road to the Cup)</title>
+  <title>SYNAPZ HOCKEY v15.4.1 — Play. Learn. Dominate. (32-City Road to the Cup)</title>
   <script src="./engine/safari15_polyfill.js"></script>
   <script src="./engine/practice_stations_svg.js"></script>
   <link rel="manifest" href="manifest.json" />
@@ -1199,22 +1199,21 @@
 </head>
 <body class="min-h-screen flex flex-col synapz-entry-gate-active">
 
-  <!-- Runtime Staging Environment Indicator (Shown ONLY on tactix-hockey or ?env=staging; 0 badge on synapz-hockey Golden Live!) -->
-  <div id="synapzStagingRinkBadge" class="hidden" aria-label="Staging Rink Environment" style="position:fixed;top:6px;left:8px;z-index:9999;pointer-events:none;padding:2px 9px;border-radius:9999px;background:rgba(15,23,42,0.92);border:1px solid rgba(251,191,36,0.85);color:#fde68a;font-size:10px;font-weight:900;letter-spacing:0.04em;box-shadow:0 4px 12px rgba(2,6,23,0.65);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);">
-    🧪 STAGING RINK • v15.4
+  <!-- Runtime Safe Backup Vault Indicator (Shown ONLY on tactix-hockey; 0 pills on synapz-hockey Primary Live App!) -->
+  <div id="synapzStagingRinkBadge" class="hidden" aria-label="Safe Backup Vault Environment" style="position:fixed;top:6px;left:8px;z-index:9999;pointer-events:none;padding:2px 9px;border-radius:9999px;background:rgba(15,23,42,0.92);border:1px solid rgba(56,189,248,0.85);color:#bae6fd;font-size:10px;font-weight:900;letter-spacing:0.04em;box-shadow:0 4px 12px rgba(2,6,23,0.65);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);">
+    🛡️ SAFE BACKUP VAULT • v15.4.1
   </div>
   <script>
-    (function initSynapzStagingBadge() {
+    (function initSynapzBackupVaultBadge() {
       try {
         var p = String(window.location.pathname || '');
-        var s = String(window.location.search || '');
-        var isStaging = p.indexOf('tactix-hockey') !== -1 || /[?&]env=staging(?:\b|&|$)/i.test(s);
+        var isBackupVault = p.indexOf('tactix-hockey') !== -1;
         var el = document.getElementById('synapzStagingRinkBadge');
         if (el) {
-          if (isStaging) el.classList.remove('hidden');
+          if (isBackupVault) el.classList.remove('hidden');
           else el.classList.add('hidden');
         }
-        window.__SYNAPZ_IS_STAGING_RINK__ = isStaging;
+        window.__SYNAPZ_IS_BACKUP_VAULT__ = isBackupVault;
       } catch (_) {}
     })();
   </script>
@@ -4173,7 +4172,7 @@
             Info
           </button>
         </div>
-        <div id="synapzAppBuildVersionBadge" class="text-[10px] font-bold text-slate-500 tracking-wider select-none">SYNAPZ HOCKEY v15.4</div>
+        <div id="synapzAppBuildVersionBadge" class="text-[10px] font-bold text-slate-500 tracking-wider select-none">SYNAPZ HOCKEY v15.4.1</div>
       </div>
 
       <!-- ================================================================= -->
@@ -4184,7 +4183,7 @@
           <button id="btnBackFromInfoToScreen1" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-black text-cyan-300">
             ← Back
           </button>
-          <span class="text-sm font-black text-white uppercase tracking-wider">Info Hub • v15.4</span>
+          <span class="text-sm font-black text-white uppercase tracking-wider">Info Hub • v15.4.1</span>
         </div>
 
         <!-- 3 Clean Info Tabs: Contact, Support, FAQ -->
@@ -5557,7 +5556,7 @@
     // =========================================================================
     // NATURAL VOICE & WEB AUDIO ENGINE (Picks Neural/Natural Voice + Neon Green Ice Highlights)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.4-ratchet-and-painted-avatars';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.4.1-live-and-8law-constitution';
 
     // =========================================================================
     // SECTION 39 (v12.3) + SECTION 46 (v13.2) + SECTION 47 (v13.4):
@@ -33056,7 +33055,7 @@
     // SECTION 32–43: VERIFIED REAL CODED UPGRADES RUNTIME & PRE-CODED BANK
     // (`synapz-hockey-v12.7-5persona-human-vision` • 288 Live Upgrades)
     // =========================================================================
-    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.4-ratchet-and-painted-avatars';
+    window.SYNAPZ_CACHE_NAME = 'synapz-hockey-v15.4.1-live-and-8law-constitution';
 
     const ALL_63_DEPLOYED_UPGRADE_IDS = [
       // Batch A (12 items)
